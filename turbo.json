@@ -1,0 +1,72 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": [
+    "**/.env.*local"
+  ],
+  "pipeline": {
+    "setup": {
+      "cache": false,
+      "dependsOn": [
+        "settings#buildSettings"
+      ]
+    },
+    "clean": {},
+    "lint": {},
+    "test": {},
+    "test:watch": {},
+    "test:coverage": {
+      "outputs": [
+        "coverage/**"
+      ]
+    },
+    "buildSettings": {
+      "cache": false,
+      "outputs": [
+        "dist/**"
+      ]
+    },
+    "generate:types": {},
+    "dev": {
+      "cache": false,
+      "dependsOn": [
+        "settings#buildSettings",
+        "^generate:types"
+      ],
+      "persistent": true
+    },
+    "build": {
+      "dependsOn": [
+        "settings#buildSettings",
+        "^build"
+      ],
+      "env": [
+        "PROJECT_NAME",
+        "NEXT_PORT",
+        "DOCS_PORT",
+        "LOCAL",
+        "MONGODB_URI",
+        "PAYLOAD_SECRET",
+        "VERCEL_GIT_PULL_REQUEST_ID",
+        "VERCEL_GIT_COMMIT_REF",
+        "PORT",
+        "BLOB_READ_WRITE_TOKEN",
+        "BLOB_ENDPOINT_URL",
+        "BLOB_STORE_ID",
+        "FORCE_WEB_URL",
+        "POSTGRES_URL",
+        "NODE_ENV"
+      ],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "!.next/cache/**"
+      ]
+    },
+    "start": {
+      "dependsOn": [
+        "^start"
+      ],
+      "outputs": []
+    }
+  }
+}

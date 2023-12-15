@@ -1,0 +1,22 @@
+{
+  "name": "theme",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf -- ./.turbo ./dist ./coverage",
+    "lint": "eslint \"**/*.ts*\" --fix"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "tsconfig": "*"
+  },
+  "dependencies": {
+    "@refract-ui/sc": "1.0.1-alpha.31"
+  },
+  "peerDependencies": {
+    "next": "*",
+    "react": "*",
+    "react-dom": "*",
+    "styled-components": "*"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "nextjs-payload-monorepo",
+  "private": true,
+  "repository": {
+    "url": "https://github.com/graveflex/nextjs-payload-monorepo"
+  },
+  "scripts": {
+    "setup": "turbo run setup",
+    "clean": "turbo run clean",
+    "reinstall": "rm -rf -- ./node_modules/ ./**/node_modules && yarn install",
+    "create:component": "npx hygen component new --with-prompt",
+    "create:package": "npx hygen package new --with-prompt",
+    "generate:types": "turbo run generate:types",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "test:coverage": "turbo run test:coverage",
+    "build": "turbo run build",
+    "buildSettings": "turbo run buildSettings",
+    "start": "turbo run start --parallel",
+    "dev": "turbo run dev --filter=!settings",
+    "lint": "turbo run lint",
+    "cicd": "yarn lint && yarn test:coverage --force && yarn build --force"
+  },
+  "devDependencies": {
+    "@turbo/gen": "^1.10.15",
+    "eslint-config-custom": "*",
+    "hygen": "^6.2.11",
+    "prettier": "3.0.3",
+    "turbo": "1.10.15"
+  },
+  "packageManager": "yarn@1.22.19",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}
