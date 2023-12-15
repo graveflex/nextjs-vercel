@@ -2,7 +2,7 @@
 
 monorepo for gfx projects that includes nextjs, payload cms, storybook, and refract. built to deploy directly to Vercel. 
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fgraveflex%2Fnextjs-payload-monorepo&stores=%5B%7B%22type%22%3A%20%22postgres%22%7D%5D&env=PAYLOAD_SECRET)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fgraveflex%2Fnextjs-vercel&stores=%5B%7B%22type%22%3A%20%22postgres%22%7D%5D&env=PAYLOAD_SECRET)
 
 ## getting started
 
