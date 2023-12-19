@@ -8,7 +8,6 @@ const Layout = async ({ children }: PropsWithChildren<{}>) => {
   const navigation = await fetchPayloadData((client) =>
     client.findGlobal({ slug: "navigation" })
   );
-  console.log('THIS IS THE NAVIGATION', navigation);
   return <Client navigation={navigation}>{children}</Client>;
 };
 
