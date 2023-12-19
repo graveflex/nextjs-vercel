@@ -6,8 +6,8 @@ import styled from 'styled-components';
 
 import Button from 'ui/components/Button';
 
-import isMedia from '@web/lib/isMedia';
 import { Page } from '@web/payload/payload-types';
+import isMedia from '../../lib/isMedia';
 
 const Container = styled.div`
   position: relative;

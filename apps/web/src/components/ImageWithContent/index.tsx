@@ -4,8 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
 
-import isMedia from '@web/lib/isMedia';
 import { Page } from '@web/payload/payload-types';
+import isMedia from '../../lib/isMedia';
 
 type ExtractBlockType<T, BlockType> = T extends { blockType: BlockType }
   ? T
