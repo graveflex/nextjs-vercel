@@ -27,7 +27,7 @@ export interface Page {
             header?: string | null;
             subHeader?: string | null;
             cta?: string | null;
-            image: number | Media;
+            image?: number | Media | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'Hero';

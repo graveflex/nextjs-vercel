@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 import Button from 'ui/components/Button';
 
+import isMedia from '@web/lib/isMedia';
 import { Page } from '@web/payload/payload-types';
 
 const Container = styled.div`
@@ -50,18 +51,21 @@ const SubHeader = styled.h3`
 type ExtractBlockType<T, BlockType> = T extends { blockType: BlockType }
   ? T
   : never;
-type HeroType = ExtractBlockType<NonNullable<Page['layout']>[number], 'Hero'>;
+export type HeroType = ExtractBlockType<
+  NonNullable<Page['layout']>[number],
+  'Hero'
+>;
 
 function Hero({ header, subHeader, cta, image }: HeroType) {
   return (
     <Container>
-      {image && (
+      {image && isMedia(image) && (
         <Image
           layout="responsive"
           width="100"
           height="720"
           alt="banner-image"
-          src={image?.url}
+          src={image?.url || ''}
         />
       )}
 

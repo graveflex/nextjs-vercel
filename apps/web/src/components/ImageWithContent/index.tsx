@@ -4,11 +4,18 @@ import React from 'react';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
 
+import isMedia from '@web/lib/isMedia';
 import { Page } from '@web/payload/payload-types';
 
-type Directions = 'right' | 'left';
+type ExtractBlockType<T, BlockType> = T extends { blockType: BlockType }
+  ? T
+  : never;
+export type ImageWithContentType = ExtractBlockType<
+  NonNullable<Page['layout']>[number],
+  'ImageWithContent'
+>;
 
-const Container = styled.div<{ direction: Directions }>`
+const Container = styled.div<{ direction: ImageWithContentType['direction'] }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -55,14 +62,6 @@ const Header = styled.h1`
   font-size: 48px;
 `;
 
-type ExtractBlockType<T, BlockType> = T extends { blockType: BlockType }
-  ? T
-  : never;
-export type ImageWithContentType = ExtractBlockType<
-  NonNullable<Page['layout']>[number],
-  'ImageWithContent'
->;
-
 function ImageWithContent({
   title,
   content,
@@ -77,12 +76,12 @@ function ImageWithContent({
       </ContentWrapper>
 
       <ImageWrapper>
-        {image && (
+        {image && isMedia(image) && (
           <Image
             width="501"
             height="410"
             alt="Image with content"
-            src={image?.url}
+            src={image?.url || ''}
           />
         )}
       </ImageWrapper>

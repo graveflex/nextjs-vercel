@@ -1,20 +1,3 @@
-// import React from 'react';
-// import { type PropsWithChildren } from 'react';
-
-// import Client from '@web/components/Layout/Client';
-// import fetchPayloadData from '@web/lib/fetchPayloadData';
-
-// interface ILayout {}
-
-// const Layout = async ({ children }: PropsWithChildren<ILayout>) => {
-//   const navigation = await fetchPayloadData((client) =>
-//     client.findGlobal({ slug: 'navigation' })
-//   );
-//   return <Client navigation={navigation}>{children}</Client>;
-// };
-
-// export default Layout;
-
 'use client';
 
 import React, { PropsWithChildren } from 'react';
@@ -90,6 +73,9 @@ function MenuLinks({ links }: MenuLinksType) {
 }
 
 function Layout({ navigation, children }: PropsWithChildren<LayoutType>) {
+  if (navigation && 'error' in navigation) {
+    return null;
+  }
   return (
     <>
       <Wrapper>

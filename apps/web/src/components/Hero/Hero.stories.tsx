@@ -17,6 +17,7 @@ type Story = StoryObj<HeroType>;
 
 export const Defaults: Story = {
   args: {
-    placeholder: 'Enter text here'
+    header: "I'm a header",
+    subHeader: "I'm a subheader"
   }
 };
