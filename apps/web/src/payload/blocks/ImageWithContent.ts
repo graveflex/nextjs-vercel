@@ -28,11 +28,13 @@ const Schema: Block = {
           value: 'left'
         }
       ]
+    },
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      required: true
     }
-    // {
-    //   name: 'image',
-    //   type: 'upload'
-    // }
   ]
 };
 

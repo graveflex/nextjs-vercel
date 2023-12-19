@@ -2,12 +2,15 @@
 
 import React, { PropsWithChildren } from 'react';
 import Image from 'next/image';
+import first from 'lodash/first';
 import { css, styled } from 'styled-components';
 
 import Button from 'ui/components/Button';
 
+import { Navigation } from '@web/payload/payload-types';
+
 interface IClient {
-  navigation: object;
+  navigation: Navigation;
 }
 
 const Wrapper = styled.div`
@@ -71,12 +74,13 @@ function MenuLinks({ links }: MenuLinksType) {
 }
 
 function Client({ navigation, children }: PropsWithChildren<IClient>) {
-  const imageSrc: string =
-    'https://public-bucket-haseeb-gfx.s3.amazonaws.com/Logo+(1).png';
   return (
     <>
       <Wrapper>
-        <Image width={193} height={17} src={imageSrc} alt="Logo" />
+        {navigation?.logo && (
+          <Image width={193} height={17} src="/public/Logo.png" alt="Logo" />
+        )}
+
         <MenuLinks links={navigation?.headerItems || []} />
       </Wrapper>
       {children}

@@ -3,12 +3,12 @@ import { GlobalConfig } from 'payload/types';
 const Navigation: GlobalConfig = {
   slug: 'navigation',
   fields: [
-    // {
-    //   name: 'logo',
-    //   type: 'upload',
-    //   required: true,
-    //   relationTo: 'cms_media'
-    // },
+    {
+      name: 'logo',
+      type: 'upload',
+      required: true,
+      relationTo: 'media'
+    },
     {
       name: 'headerItems',
       type: 'array',

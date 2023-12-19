@@ -1,27 +1,29 @@
-import React from "react";
+import React from 'react';
+import dynamic from 'next/dynamic';
 
-// TODO: we don't want to import this since I don't think the code
-// splitting works like we're assuming
-import * as Blocks from "@web/components";
-// import { Layout } from 'ui/types/extract';
+import { Layout } from 'ui/types/extract';
 
-// NOTE: don't we want more than just the `layout` stuff here?
 interface IRenderBlocks {
-  blocks: any[];
+  blocks: Layout[];
 }
 
-// TODO: remove unnecessary div.
 function RenderBlocks({ blocks }: IRenderBlocks) {
-  return blocks?.map((blockProps: any) => {
+  return blocks?.map((blockProps: Layout) => {
     const { blockType } = blockProps;
-    const BlockComponent = Blocks[
-      blockType
-    ] as (typeof Blocks)[keyof typeof Blocks];
 
-    if (BlockComponent) {
-      return <BlockComponent key="Block" {...blockProps} />;
-    }
-    return null;
+    const BlockComponent = dynamic(() =>
+      import(`@web/components/${blockType}`).catch(() => {
+        return function Block() {
+          return <div>Component not found: {blockType}</div>;
+        };
+      })
+    );
+
+    return (
+      <React.Fragment key={blockType}>
+        <BlockComponent {...blockProps} />
+      </React.Fragment>
+    );
   });
 }
 

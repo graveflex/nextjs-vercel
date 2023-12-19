@@ -6,6 +6,8 @@ import styled from 'styled-components';
 
 import Button from 'ui/components/Button';
 
+import { Page } from '@web/payload/payload-types';
+
 const Container = styled.div`
   position: relative;
 `;
@@ -45,22 +47,24 @@ const SubHeader = styled.h3`
   }
 `;
 
-export type HeroType = {
-  header: string;
-  subHeader: string;
-  cta: string;
-};
+type ExtractBlockType<T, BlockType> = T extends { blockType: BlockType }
+  ? T
+  : never;
+type HeroType = ExtractBlockType<NonNullable<Page['layout']>[number], 'Hero'>;
 
-function Hero({ header, subHeader, cta }: HeroType) {
+function Hero({ header, subHeader, cta, image }: HeroType) {
   return (
     <Container>
-      <Image
-        layout="responsive"
-        width="100"
-        height="720"
-        alt="banner-image"
-        src="https://public-bucket-haseeb-gfx.s3.amazonaws.com/Frame+2+(1).png"
-      />
+      {image && (
+        <Image
+          layout="responsive"
+          width="100"
+          height="720"
+          alt="banner-image"
+          src={image?.url}
+        />
+      )}
+
       <ContentWrapper>
         <Header> {header} </Header>
         <SubHeader> {subHeader} </SubHeader>

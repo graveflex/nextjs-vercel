@@ -4,6 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
 
+import { Page } from '@web/payload/payload-types';
+
 type Directions = 'right' | 'left';
 
 const Container = styled.div<{ direction: Directions }>`
@@ -53,14 +55,20 @@ const Header = styled.h1`
   font-size: 48px;
 `;
 
-// TODO: Shouldn't this be derived from the Payload Schema?
-export type ImageWithContentType = {
-  title: string;
-  content: string;
-  direction: Directions;
-};
+type ExtractBlockType<T, BlockType> = T extends { blockType: BlockType }
+  ? T
+  : never;
+type ImageWithContentBlock = ExtractBlockType<
+  NonNullable<Page['layout']>[number],
+  'ImageWithContent'
+>;
 
-function ImageWithContent({ title, content, direction }: ImageWithContentType) {
+function ImageWithContent({
+  title,
+  content,
+  direction,
+  image
+}: ImageWithContentBlock) {
   return (
     <Container direction={direction}>
       <ContentWrapper>
@@ -69,12 +77,14 @@ function ImageWithContent({ title, content, direction }: ImageWithContentType) {
       </ContentWrapper>
 
       <ImageWrapper>
-        <Image
-          width="501"
-          height="410"
-          alt="Image with content"
-          src="https://images.unsplash.com/photo-1682695795255-b236b1f1267d?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        />
+        {image && (
+          <Image
+            width="501"
+            height="410"
+            alt="Image with content"
+            src={image?.url}
+          />
+        )}
       </ImageWrapper>
     </Container>
   );

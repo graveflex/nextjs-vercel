@@ -18,6 +18,12 @@ const Schema: Block = {
     {
       name: 'cta',
       type: 'text'
+    },
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      required: true
     }
   ]
 };

@@ -5,12 +5,20 @@ to: <%= app_name %>/<%= path %>/<%= name %>/index.tsx
 
 import React from 'react';
 import styled from 'styled-components';
+<%= isPayloadBlock && `import { Page } from '@web/payload/payload-types';` %>
 
 const Container = styled.div``;
 
-export type <%= name %>Type = {
+<%= isPayloadBlock ? `type ExtractBlockType<T, BlockType> = T extends { blockType: BlockType }
+  ? T
+  : never;
+type <%= name %>Type = ExtractBlockType<
+  NonNullable<Page['layout']>[number],
+  'ImageWithContent'
+>;` : `export type <%= name %>Type = {
   placeholder?: string;
 };
+` %>
 
 function <%= name %>({ placeholder = 'placeholder' }: <%= name %>Type) {
   return <Container>{placeholder}</Container>;
