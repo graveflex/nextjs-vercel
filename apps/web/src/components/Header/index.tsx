@@ -4,9 +4,9 @@ import React from 'react';
 import Image from 'next/image';
 import { styled } from 'styled-components';
 
-import { type Header as HeaderType } from 'web/src/payload/payload-types';
+import { type Navigation } from 'web/src/payload/payload-types';
 
-import MenuLinks from '../MenuLinks';
+import MenuLinks from '@web/components/MenuLinks';
 
 const Container = styled.div`
   display: flex;
@@ -25,13 +25,13 @@ const Container = styled.div`
   `}
 `;
 
-function Header({ links }: HeaderType) {
+function Header({ headerItems }) {
   const imageSrc: string =
     'https://public-bucket-haseeb-gfx.s3.amazonaws.com/Logo+(1).png';
   return (
     <Container>
       <Image width={193} height={17} src={imageSrc} alt="Logo" />
-      <MenuLinks links={links || []} />
+      <MenuLinks links={headerItems || []} />
     </Container>
   );
 }

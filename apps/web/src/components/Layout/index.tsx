@@ -1,37 +1,15 @@
-/* eslint-disable @next/next/no-async-client-component */
+import React from "react";
+import { type PropsWithChildren } from "react";
 
-'use client';
+import Client from "@web/components/Layout/Client";
+import fetchPayloadData from "@web/lib/fetchPayloadData";
 
-import type { PropsWithChildren } from 'react';
-import React from 'react';
-import { styled } from "styled-components";
-
-import Footer from 'ui/components/Footer'; // TODO: make local component
-import Header from 'ui/components/Header'; // TODO: make local component
-
-import fetchPayloadData from '@web/lib/fetchPayloadData';
-
-export type LayoutType = {};
-// TODO: refactor to have `navigation` global
-const Container = styled.div``;
-
-async function Layout({ children }: PropsWithChildren<LayoutType>) {
-  const [headerData, footerData] = await Promise.all([
-    fetchPayloadData((client) => client.findGlobal({ slug: 'header' })),
-    fetchPayloadData((client) => client.findGlobal({ slug: 'footer' }))
-  ]);
-
-  if ('error' in headerData || 'error' in footerData) {
-    return null;
-  }
-
-  return (
-    <Container>
-      <Header {...headerData} />
-      {children}
-      <Footer {...footerData} />
-    </Container>
+const Layout = async ({ children }: PropsWithChildren<{}>) => {
+  const navigation = await fetchPayloadData((client) =>
+    client.findGlobal({ slug: "navigation" })
   );
-}
+  console.log('THIS IS THE NAVIGATION', navigation);
+  return <Client navigation={navigation}>{children}</Client>;
+};
 
 export default Layout;

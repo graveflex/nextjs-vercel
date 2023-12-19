@@ -14,8 +14,7 @@ export interface Config {
     'payload-migrations': PayloadMigration;
   };
   globals: {
-    footer: Footer;
-    header: Header;
+    navigation: Navigation;
   };
 }
 export interface Page {
@@ -85,9 +84,17 @@ export interface PayloadMigration {
   updatedAt: string;
   createdAt: string;
 }
-export interface Footer {
+export interface Navigation {
   id: number;
-  items: {
+  headerItems?:
+    | {
+        type?: ('button' | 'link') | null;
+        title: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  footerItems: {
     links?:
       | {
           title: string;
@@ -97,19 +104,6 @@ export interface Footer {
       | null;
     id?: string | null;
   }[];
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-export interface Header {
-  id: number;
-  links?:
-    | {
-        type?: ('button' | 'link') | null;
-        title: string;
-        url: string;
-        id?: string | null;
-      }[]
-    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

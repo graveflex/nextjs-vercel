@@ -1,16 +1,18 @@
-import React, { PropsWithChildren } from 'react';
+import React, { PropsWithChildren } from "react";
 
-import ThemeProvider from 'theme/src/ThemeProvider';
-// import Layout from '@web/components/Layout'; TODO: get the layout prepped
+import ThemeProvider from "theme/src/ThemeProvider";
 
-import StyledComponentsRegistry from '@web/lib/StyledComponentRegistry';
+import Layout from "@web/components/Layout";
+import StyledComponentsRegistry from "@web/lib/StyledComponentRegistry";
 
 export default function AppLayout({ children }: PropsWithChildren<object>) {
   return (
     <html lang="en">
       <body>
         <StyledComponentsRegistry>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <Layout>{children}</Layout>
+          </ThemeProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

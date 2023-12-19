@@ -3,7 +3,7 @@
 import React from 'react';
 import { css, styled } from 'styled-components';
 
-import Button from '../Button';
+import Button from 'ui/components/Button';
 
 const Container = styled.div`
   display: flex;

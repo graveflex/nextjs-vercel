@@ -7,7 +7,7 @@ module.exports = withPayload(
     transpilePackages: ['ui', 'settings'],
     images: {
       domains: [
-        'public-bucket-haseeb-gfx-s3.amazonaws.com',
+        'public-bucket-haseeb-gfx.s3.amazonaws.com',
         'images.unsplash.com'
       ]
     },

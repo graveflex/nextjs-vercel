@@ -1,10 +1,8 @@
 // CODE INJECTION COMMENT
-import Footer from './Footer';
-import Header from './Header';
+import Navigation from './Navigation';
 
 const globals = {
-  Footer,
-  Header
+  Navigation
 };
 
 export default globals;

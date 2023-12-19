@@ -27,10 +27,10 @@ const Container = styled.div`
 // TODO: let's initialize the `Layout` using a component
 // generator/plop
 
-function Footer({ items }: FooterType) {
+function Footer({ footerItems }: FooterType) {
   return (
     <Container>
-      {items?.map((linkSet) => (
+      {footerItems?.map((linkSet) => (
         <MenuLinks key="FooterLink" links={linkSet?.links || []} />
       ))}
 

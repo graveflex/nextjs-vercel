@@ -7,13 +7,8 @@ import * as Blocks from '@web/components/';
 
 // NOTE: don't we want more than just the `layout` stuff here?
 interface IRenderBlocks {
-  blocks: Layout[];
+  blocks: any[];
 }
-
-// NOTE: in general, there's a mismatch here in terms of where things live
-// Blocks should live in the `web` project since they're specific to the `web`
-// project. The components project is for primitives (buttons, inputs, etc).
-// Moving things around also allows us to colocate the blocks w/ their schemas
 
 // TODO: remove unnecessary div.
 function RenderBlocks({ blocks }: IRenderBlocks) {

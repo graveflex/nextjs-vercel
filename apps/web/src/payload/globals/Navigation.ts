@@ -1,7 +1,7 @@
 import { GlobalConfig } from 'payload/types';
 
-const Header: GlobalConfig = {
-  slug: 'header',
+const Navigation: GlobalConfig = {
+  slug: 'navigation',
   fields: [
     // {
     //   name: 'logo',
@@ -10,7 +10,7 @@ const Header: GlobalConfig = {
     //   relationTo: 'cms_media'
     // },
     {
-      name: 'links',
+      name: 'headerItems',
       type: 'array',
       maxRows: 6,
       fields: [
@@ -51,8 +51,41 @@ const Header: GlobalConfig = {
           }
         }
       }
+    },
+    {
+      name: 'footerItems',
+      type: 'array',
+      required: true,
+      maxRows: 1,
+      fields: [
+        {
+          name: 'links',
+          type: 'array',
+          maxRows: 5,
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              required: true
+            },
+            {
+              name: 'url',
+              type: 'text',
+              defaultValue: '/',
+              required: true
+            }
+          ],
+          admin: {
+            components: {
+              RowLabel: ({ data }) => {
+                return data?.title;
+              }
+            }
+          }
+        }
+      ]
     }
   ]
 };
 
-export default Header;
+export default Navigation;
