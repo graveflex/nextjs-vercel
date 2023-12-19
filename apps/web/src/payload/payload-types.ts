@@ -8,11 +8,43 @@
 
 export interface Config {
   collections: {
+    page: Page;
     users: User;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  globals: {};
+  globals: {
+    footer: Footer;
+    header: Header;
+  };
+}
+export interface Page {
+  id: number;
+  title: string;
+  layout?:
+    | (
+        | {
+            header?: string | null;
+            subHeader?: string | null;
+            cta?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'Hero';
+          }
+        | {
+            title?: string | null;
+            content?: string | null;
+            direction?: ('right' | 'left') | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ImageWithContent';
+          }
+      )[]
+    | null;
+  slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 export interface User {
   id: number;
@@ -52,6 +84,34 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+export interface Footer {
+  id: number;
+  items: {
+    links?:
+      | {
+          title: string;
+          url: string;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+export interface Header {
+  id: number;
+  links?:
+    | {
+        type?: ('button' | 'link') | null;
+        title: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 
 

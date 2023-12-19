@@ -18,7 +18,13 @@ module.exports = {
         name: 'path',
         message: 'Where should this component be created?',
         choices: ['components', 'fields', 'providers']
-      }
+      },
+      {
+	        type: 'confirm',
+        name: 'isPayloadBlock',
+        message: 'Is this component going to be used as a Payload block?'
+
+	}
     ];
 
     return inquirer.prompt(questions);

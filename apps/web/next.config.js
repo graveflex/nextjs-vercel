@@ -5,6 +5,12 @@ module.exports = withPayload(
   {
     reactStrictMode: true,
     transpilePackages: ['ui', 'settings'],
+    images: {
+      domains: [
+        'public-bucket-haseeb-gfx-s3.amazonaws.com',
+        'images.unsplash.com'
+      ]
+    },
     compiler: {
       styledComponents: true
     }

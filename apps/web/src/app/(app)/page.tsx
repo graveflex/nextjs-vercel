@@ -1,36 +1,37 @@
-import React from 'react';
-import { notFound } from 'next/navigation';
+import React from "react";
+import { notFound } from "next/navigation";
+import { Page } from "@web/payload/payload-types";
+import first from "lodash/first";
 
-import Button from 'ui/components/Button';
+import RenderBlocks from "@web/components/RenderBlocks";
 
-import getPayloadClient from '@web/payload/payloadClient';
+import getPayloadClient from "@web/payload/payloadClient";
 
-async function pageApi() {
+const pageApi = async (slug: string) => {
   const payload = await getPayloadClient();
   try {
     return await payload.find({
-      collection: 'users'
+      collection: "page",
+      where: {
+        slug: {
+          equals: slug,
+        },
+      },
     });
   } catch (err) {
     return { error: err };
   }
-}
+};
 
 export default async function Page() {
-  const data = await pageApi();
+  const data = (await pageApi("home")) as { docs: Page[] };
+
+  const page = first(data?.docs);
 
   // if there's an error fetching data, 404
-  if ('error' in data) {
+  if ("error" in data) {
     return notFound();
   }
 
-  return (
-    <>
-      <h1>hello world</h1>
-      <Button type="button" />
-
-      <h2>users:</h2>
-      <pre>{JSON.stringify(data?.docs, null, 2)}</pre>
-    </>
-  );
+  return <RenderBlocks blocks={page?.layout || []} />;
 }

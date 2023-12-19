@@ -10,6 +10,8 @@
     "reinstall": "rm -rf -- ./node_modules/ ./**/node_modules && yarn install",
     "create:component": "npx hygen component new --with-prompt",
     "create:package": "npx hygen package new --with-prompt",
+    "create:collection": "npx hygen collection new --with-prompt",
+    "create:global": "npx hygen global new --with-prompt",
     "generate:types": "turbo run generate:types",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",

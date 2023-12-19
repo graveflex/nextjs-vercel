@@ -12,7 +12,7 @@ export type <%= name %>Type = {
   placeholder?: string;
 };
 
-function <%= name %>({ placeholder = 'placeholder' }) {
+function <%= name %>({ placeholder = 'placeholder' }: <%= name %>Type) {
   return <Container>{placeholder}</Container>;
 }
 
