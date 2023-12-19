@@ -1,7 +1,7 @@
 // CODE INJECTION COMMENT
+import Media from './Media';
 import Page from './Page';
 import User from './User';
-import Media from './Media';
 
 const collections = {
   Page,

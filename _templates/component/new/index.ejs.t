@@ -9,10 +9,10 @@ import styled from 'styled-components';
 
 const Container = styled.div``;
 
-<%= isPayloadBlock ? `type ExtractBlockType<T, BlockType> = T extends { blockType: BlockType }
+<%= isPayloadBlock ? `export type ExtractBlockType<T, BlockType> = T extends { blockType: BlockType }
   ? T
   : never;
-type <%= name %>Type = ExtractBlockType<
+export type <%= name %>Type = ExtractBlockType<
   NonNullable<Page['layout']>[number],
   'ImageWithContent'
 >;` : `export type <%= name %>Type = {

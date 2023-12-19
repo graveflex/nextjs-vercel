@@ -16,7 +16,5 @@ export default meta;
 type Story = StoryObj<LayoutType>;
 
 export const Defaults: Story = {
-  args: {
-    placeholder: 'Enter text here'
-  }
+  args: {}
 };

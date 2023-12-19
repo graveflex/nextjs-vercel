@@ -58,7 +58,7 @@ const Header = styled.h1`
 type ExtractBlockType<T, BlockType> = T extends { blockType: BlockType }
   ? T
   : never;
-type ImageWithContentBlock = ExtractBlockType<
+export type ImageWithContentType = ExtractBlockType<
   NonNullable<Page['layout']>[number],
   'ImageWithContent'
 >;
@@ -68,7 +68,7 @@ function ImageWithContent({
   content,
   direction,
   image
-}: ImageWithContentBlock) {
+}: ImageWithContentType) {
   return (
     <Container direction={direction}>
       <ContentWrapper>
