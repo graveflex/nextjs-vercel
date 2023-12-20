@@ -8,11 +8,99 @@
 
 export interface Config {
   collections: {
+    page: Page;
     users: User;
+    media: Media;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  globals: {};
+  globals: {
+    navigation: Navigation;
+  };
+}
+export interface Page {
+  id: number;
+  title: string;
+  layout?:
+    | (
+        | {
+            header?: string | null;
+            subHeader?: string | null;
+            cta?: string | null;
+            image?: number | Media | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'Hero';
+          }
+        | {
+            title?: string | null;
+            content?: string | null;
+            direction?: ('right' | 'left') | null;
+            image: number | Media;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'ImageWithContent';
+          }
+      )[]
+    | null;
+  slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+export interface Media {
+  id: number;
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    mobile?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    tablet?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    desktop?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    ultrawide?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 export interface User {
   id: number;
@@ -52,6 +140,30 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+export interface Navigation {
+  id: number;
+  logo: number | Media;
+  headerItems?:
+    | {
+        type?: ('button' | 'link') | null;
+        title: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  footerItems: {
+    links?:
+      | {
+          title: string;
+          url: string;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 
 

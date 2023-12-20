@@ -5,7 +5,9 @@ import { buildConfig } from 'payload/config';
 
 import { POSTGRES_URL } from 'settings';
 
+import collections from '@web/payload/collections';
 import Users from '@web/payload/collections/User';
+import globals from '@web/payload/globals';
 
 export default buildConfig({
   db: postgresAdapter({
@@ -14,7 +16,8 @@ export default buildConfig({
     }
   }),
   editor: slateEditor({}),
-  collections: [Users],
+  collections: Object.values(collections),
+  globals: Object.values(globals),
   routes: {
     api: '/api/payload'
   },
