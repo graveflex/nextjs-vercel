@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import Button from 'ui/components/Button';
 
 import { Page } from '@web/payload/payload-types';
-import isMedia from '../../lib/isMedia';
+import defaultTheme from 'theme/src/theme';
 
 const Container = styled.div`
   position: relative;
@@ -59,12 +59,12 @@ export type HeroType = ExtractBlockType<
 function Hero({ header, subHeader, cta, image }: HeroType) {
   return (
     <Container>
-      {image && isMedia(image) && (
+      {typeof image === 'object' && (
         <Image
           layout="responsive"
           width="100"
           height="720"
-          alt="banner-image"
+          alt={image?.alt || ''}
           src={image?.url || ''}
         />
       )}

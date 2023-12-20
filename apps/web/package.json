@@ -31,11 +31,13 @@
   },
   "devDependencies": {
     "@storybook/testing-react": "^2.0.1",
+    "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.0.0",
     "@types/node": "^18.17.14",
     "@types/react": "18.2.21",
     "@types/react-dom": "^18.2.7",
     "eslint-config-custom": "*",
+    "jest-styled-components": "^7.2.0",
     "tsconfig": "*",
     "typescript": "^5.2.2"
   }

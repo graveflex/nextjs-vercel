@@ -5,7 +5,8 @@ import Image from 'next/image';
 import styled, { css } from 'styled-components';
 
 import { Page } from '@web/payload/payload-types';
-import isMedia from '../../lib/isMedia';
+import defaultTheme from 'theme/src/theme';
+
 
 type ExtractBlockType<T, BlockType> = T extends { blockType: BlockType }
   ? T
@@ -76,11 +77,11 @@ function ImageWithContent({
       </ContentWrapper>
 
       <ImageWrapper>
-        {image && isMedia(image) && (
+        {typeof image === 'object' && (
           <Image
             width="501"
             height="410"
-            alt="Image with content"
+            alt={image?.alt || ''}
             src={image?.url || ''}
           />
         )}

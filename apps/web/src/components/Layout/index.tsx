@@ -61,7 +61,7 @@ function MenuLinks({ links }: MenuLinksType) {
     <MenuLinksContainer>
       {links?.map((link) =>
         link?.type === 'button' ? (
-          <Button key="MenuLink">{link?.title}</Button>
+          <Button key={`FooterLink-${link?.title}`}>{link?.title}</Button>
         ) : (
           <MenuLink href={link?.url} key="MenuLink">
             {link?.title}
@@ -88,7 +88,7 @@ function Layout({ navigation, children }: PropsWithChildren<LayoutType>) {
       {children}
       <Wrapper>
         {navigation?.footerItems?.map((linkSet) => (
-          <MenuLinks key="FooterLink" links={linkSet?.links || []} />
+          <MenuLinks key={`FooterLinks-${linkSet?.id}`} links={linkSet.links} />
         ))}
 
         <MenuLink>{new Date().getFullYear()} All rights reserved</MenuLink>
