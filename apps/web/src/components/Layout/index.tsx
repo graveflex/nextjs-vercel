@@ -48,12 +48,15 @@ export const MenuLink = styled.a`
 `;
 
 export type MenuLinksType = {
-  links: {
-    title: string;
-    url: string;
-    type?: 'button' | 'link' | null | undefined;
-    id?: string | null | undefined;
-  }[];
+  links:
+    | {
+        title: string;
+        url: string;
+        type?: 'button' | 'link' | null | undefined;
+        id?: string | null | undefined;
+      }[]
+    | undefined
+    | null;
 };
 
 function MenuLinks({ links }: MenuLinksType) {
@@ -83,7 +86,7 @@ function Layout({ navigation, children }: PropsWithChildren<LayoutType>) {
           <Image
             width={193}
             height={17}
-            src={navigation?.logo?.url || ''}
+            src={navigation?.logo?.url as string}
             alt="Logo"
           />
         )}
@@ -93,10 +96,7 @@ function Layout({ navigation, children }: PropsWithChildren<LayoutType>) {
       {children}
       <Wrapper>
         {navigation?.footerItems?.map((linkSet) => (
-          <MenuLinks
-            key={`FooterLinks-${linkSet?.id}`}
-            links={linkSet.links || []}
-          />
+          <MenuLinks key={`FooterLinks-${linkSet?.id}`} links={linkSet.links} />
         ))}
 
         <MenuLink>{new Date().getFullYear()} All rights reserved</MenuLink>

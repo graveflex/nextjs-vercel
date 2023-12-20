@@ -19,7 +19,7 @@ describe('Layout', () => {
     expect(screen.queryByText('Error message')).toBeNull();
   });
 
-  it('renders logo image if navigation has a logo', () => {
+  it('renders logo image', () => {
     const navigationWithLogo = {
       logo: {
         url: '/public/Logo.png',
@@ -51,21 +51,23 @@ describe('Layout', () => {
   it('renders footer items with links', () => {
     const navigationWithFooterItems = {
       footerItems: [
-        { links: [{ title: 'Contact', url: '/contact' }] },
-        { links: [{ title: 'About Us', url: '/about' }] }
+        { id: '1', links: [{ title: 'Footer Link 1', url: '/footer-link-1' }] },
+        { id: '2', links: [{ title: 'Footer Link 2', url: '/footer-link-2' }] }
       ]
     };
     render(<Defaults navigation={navigationWithFooterItems as Navigation} />);
-    expect(screen.getByText('Contact')).not.toBeNull();
-    expect(screen.getByText('About Us')).not.toBeNull();
+    expect(screen.getByText('Footer Link 1')).not.toBeNull();
+    expect(screen.getByText('Footer Link 2')).not.toBeNull();
   });
 
-  it('does not render footer items when footerItems is empty', () => {
-    const navigationWithEmptyFooterItems = { id: 1, logo: 2, footerItems: [] };
-    render(
-      <Defaults navigation={navigationWithEmptyFooterItems as Navigation} />
-    );
-    expect(screen.queryByText('Contact')).toBeNull();
-    expect(screen.queryByText('About Us')).toBeNull();
+  it('renders footer items with links', () => {
+    const navigationWithFooterItems = {
+      id: 1,
+      logo: 2,
+      footerItems: []
+    };
+    render(<Defaults navigation={navigationWithFooterItems as Navigation} />);
+    expect(screen.queryByText('Footer Link 1')).toBeNull();
+    expect(screen.queryByText('Footer Link 2')).toBeNull();
   });
 });
