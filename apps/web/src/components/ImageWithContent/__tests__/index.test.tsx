@@ -44,6 +44,5 @@ describe('ImageWithContent', () => {
     const { firstChild } = container;
 
     expect(firstChild).toHaveAttribute('direction', 'right');
-
   });
 });

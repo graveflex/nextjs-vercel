@@ -4,9 +4,9 @@ import React from 'react';
 import Image from 'next/image';
 import styled, { css } from 'styled-components';
 
-import { Page } from '@web/payload/payload-types';
 import defaultTheme from 'theme/src/theme';
 
+import { Page } from '@web/payload/payload-types';
 
 type ExtractBlockType<T, BlockType> = T extends { blockType: BlockType }
   ? T

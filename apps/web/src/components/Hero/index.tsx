@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import Button from 'ui/components/Button';
 
 import { Page } from '@web/payload/payload-types';
-import defaultTheme from 'theme/src/theme';
 
 const Container = styled.div`
   position: relative;
