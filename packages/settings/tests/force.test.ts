@@ -15,6 +15,4 @@ describe('local urls', () => {
     });
     expect(result).toEqual('https://google.com');
   });
-
-  
 });

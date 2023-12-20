@@ -93,7 +93,10 @@ function Layout({ navigation, children }: PropsWithChildren<LayoutType>) {
       {children}
       <Wrapper>
         {navigation?.footerItems?.map((linkSet) => (
-          <MenuLinks key={`FooterLinks-${linkSet?.id}`} links={linkSet.links} />
+          <MenuLinks
+            key={`FooterLinks-${linkSet?.id}`}
+            links={linkSet.links || []}
+          />
         ))}
 
         <MenuLink>{new Date().getFullYear()} All rights reserved</MenuLink>
