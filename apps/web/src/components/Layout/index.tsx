@@ -79,8 +79,13 @@ function Layout({ navigation, children }: PropsWithChildren<LayoutType>) {
   return (
     <>
       <Wrapper>
-        {navigation?.logo && (
-          <Image width={193} height={17} src="/public/Logo.png" alt="Logo" />
+        {typeof navigation?.logo === 'object' && (
+          <Image
+            width={193}
+            height={17}
+            src={navigation?.logo?.url || ''}
+            alt="Logo"
+          />
         )}
 
         <MenuLinks links={navigation?.headerItems || []} />
