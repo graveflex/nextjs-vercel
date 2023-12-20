@@ -54,7 +54,7 @@ describe('Layout', () => {
         { links: [{ title: 'Contact', url: '/contact' }] },
         { links: [{ title: 'About Us', url: '/about' }] }
       ]
-    };
+    }; 
     render(<Defaults navigation={navigationWithFooterItems as Navigation} />);
     expect(screen.getByText('Contact')).not.toBeNull();
     expect(screen.getByText('About Us')).not.toBeNull();
@@ -67,6 +67,6 @@ describe('Layout', () => {
     );
     expect(screen.queryByText('Contact')).toBeNull();
     expect(screen.queryByText('About Us')).toBeNull();
-  });
+  })
 
 });
