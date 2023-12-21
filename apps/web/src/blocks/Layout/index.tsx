@@ -6,7 +6,8 @@ import { css, styled } from 'styled-components';
 
 import Button from 'ui/components/Button';
 
-import { Layout } from '@web/payload/payload-types';
+import isExpandedDoc from '@web/lib/isExpandedDoc';
+import { Layout, Media } from '@web/payload/payload-types';
 
 export interface LayoutType {
   navigation: Layout | { error: string };
@@ -82,7 +83,7 @@ function Layout({ navigation, children }: PropsWithChildren<LayoutType>) {
   return (
     <>
       <Wrapper>
-        {typeof navigation?.logo === 'object' && (
+        {isExpandedDoc<Media>(navigation?.logo) && (
           <Image
             width={193}
             height={17}
