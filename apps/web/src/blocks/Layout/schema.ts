@@ -55,39 +55,30 @@ const Layout: GlobalConfig = {
         }
       }
     },
-    // TODO: change the footer items
     {
       name: 'footerItems',
       type: 'array',
-      required: true,
-      maxRows: 1,
+      maxRows: 6,
       fields: [
         {
-          name: 'links',
-          type: 'array',
-          maxRows: 5,
-          fields: [
-            {
-              name: 'title',
-              type: 'text',
-              required: true
-            },
-            {
-              name: 'url',
-              type: 'text',
-              defaultValue: '/',
-              required: true
-            }
-          ],
-          admin: {
-            components: {
-              RowLabel: ({ data }) => {
-                return data?.title;
-              }
-            }
+          name: 'title',
+          type: 'text',
+          required: true
+        },
+        {
+          name: 'url',
+          type: 'text',
+          defaultValue: '/',
+          required: true
+        }
+      ],
+      admin: {
+        components: {
+          RowLabel: ({ data }) => {
+            return data?.title;
           }
         }
-      ]
+      }
     }
   ]
 };

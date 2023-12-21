@@ -7,9 +7,12 @@ import type { DefaultTheme } from 'styled-components';
 import defaultTheme from './theme';
 
 const containerStyles = {
-  display: 'grid',
-  minHeight: '100svh',
-  gridTemplateRows: '1fr'
+  backgroundColor: '#000000',
+  color: defaultTheme.allColors.plainBg,
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  minHeight: '100vh'
 };
 
 function ThemeProvider({

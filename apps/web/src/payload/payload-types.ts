@@ -121,16 +121,13 @@ export interface Layout {
         id?: string | null;
       }[]
     | null;
-  footerItems: {
-    links?:
-      | {
-          title: string;
-          url: string;
-          id?: string | null;
-        }[]
-      | null;
-    id?: string | null;
-  }[];
+  footerItems?:
+    | {
+        title: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

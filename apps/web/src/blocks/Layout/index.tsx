@@ -9,10 +9,6 @@ import Button from 'ui/components/Button';
 import isExpandedDoc from '@web/lib/isExpandedDoc';
 import { Layout, Media } from '@web/payload/payload-types';
 
-export interface LayoutType {
-  navigation: Layout | { error: string };
-}
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -48,19 +44,7 @@ export const MenuLink = styled.a`
   letter-spacing: -0.17px;
 `;
 
-export type MenuLinksType = {
-  links:
-    | {
-        title: string;
-        url: string;
-        type?: 'button' | 'link' | null | undefined;
-        id?: string | null | undefined;
-      }[]
-    | undefined
-    | null;
-};
-
-function MenuLinks({ links }: MenuLinksType) {
+function MenuLinks({ links }: { links: Layout['headerItems'] }) {
   return (
     <MenuLinksContainer>
       {links?.map((link) =>
@@ -76,30 +60,24 @@ function MenuLinks({ links }: MenuLinksType) {
   );
 }
 
-function Layout({ navigation, children }: PropsWithChildren<LayoutType>) {
-  if (navigation && 'error' in navigation) {
-    return null;
-  }
+function Layout({
+  logo,
+  footerItems,
+  headerItems,
+  children
+}: PropsWithChildren<Layout>) {
   return (
     <>
       <Wrapper>
-        {isExpandedDoc<Media>(navigation?.logo) && (
-          <Image
-            width={193}
-            height={17}
-            src={navigation?.logo?.url as string}
-            alt="Logo"
-          />
+        {isExpandedDoc<Media>(logo) && (
+          <Image width={193} height={17} src={logo?.url || ''} alt="Logo" />
         )}
 
-        <MenuLinks links={navigation?.headerItems || []} />
+        <MenuLinks links={headerItems} />
       </Wrapper>
       {children}
       <Wrapper>
-        {navigation?.footerItems?.map((linkSet) => (
-          <MenuLinks key={`FooterLinks-${linkSet?.id}`} links={linkSet.links} />
-        ))}
-
+        <MenuLinks links={footerItems} />
         <MenuLink>{new Date().getFullYear()} All rights reserved</MenuLink>
       </Wrapper>
     </>

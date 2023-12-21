@@ -51,8 +51,8 @@ describe('Layout', () => {
   it('renders footer items with links', () => {
     const navigationWithFooterItems = {
       footerItems: [
-        { id: '1', links: [{ title: 'Footer Link 1', url: '/footer-link-1' }] },
-        { id: '2', links: [{ title: 'Footer Link 2', url: '/footer-link-2' }] }
+        { title: 'Footer Link 1', url: '/' },
+        { title: 'Footer Link 2', url: '/' }
       ]
     };
     render(<Defaults navigation={navigationWithFooterItems as Layout} />);
