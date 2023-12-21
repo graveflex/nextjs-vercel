@@ -1,8 +1,5 @@
-function isExpandedDoc<T>(doc: unknown): doc is T {
-  if (typeof doc === 'object') {
-    return true;
-  }
-  return false;
+function isExpandedDoc<T extends object>(doc: unknown): doc is T {
+  return typeof doc === 'object' && doc !== null;
 }
 
 export default isExpandedDoc;
