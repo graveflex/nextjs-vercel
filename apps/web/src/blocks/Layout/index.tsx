@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import React, { PropsWithChildren } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { css, styled } from "styled-components";
+import React, { PropsWithChildren } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { css, styled } from 'styled-components';
 
-import Button from "ui/components/Button";
+import Button from 'ui/components/Button';
 
-import isExpandedDoc from "@web/lib/isExpandedDoc";
-import { Layout, Media } from "@web/payload/payload-types";
+import { Layout as LayoutType, Media } from '@web/payload/payload-types';
+import isExpandedDoc from '../../lib/isExpandedDoc';
 
 const Wrapper = styled.div`
   display: flex;
@@ -19,8 +19,8 @@ const Wrapper = styled.div`
   padding: 30px;
   ${({
     theme: {
-      mq: { lg },
-    },
+      mq: { lg }
+    }
   }) => lg`
     flex-direction: row;
     gap: unset;
@@ -49,11 +49,11 @@ export const MenuLink = styled.p`
   }
 `;
 
-function MenuLinks({ links }: { links: Layout["headerItems"] }) {
+function MenuLinks({ links }: { links: LayoutType['headerItems'] }) {
   return (
     <MenuLinksContainer>
       {links?.map((link) =>
-        link?.type === "button" ? (
+        link?.type === 'button' ? (
           <Button key={`FooterLink-${link?.title}`}>{link?.title}</Button>
         ) : (
           <Link key="MenuLink" href={link?.url}>
@@ -69,13 +69,13 @@ function Layout({
   logo,
   footerItems,
   headerItems,
-  children,
-}: PropsWithChildren<Layout>) {
+  children
+}: PropsWithChildren<LayoutType>) {
   return (
     <>
       <Wrapper>
         {isExpandedDoc<Media>(logo) && (
-          <Image width={193} height={17} src={logo?.url || ""} alt="Logo" />
+          <Image width={193} height={17} src={logo?.url || ''} alt="Logo" />
         )}
 
         <MenuLinks links={headerItems} />

@@ -13,11 +13,6 @@ describe('Layout', () => {
   it('component mounts', () => {
     render(<Defaults />);
   });
-  it('renders nothing if navigation has an error', () => {
-    const navigationWithError = { error: 'Error message' };
-    render(<Defaults navigation={navigationWithError} />);
-    expect(screen.queryByText('Error message')).toBeNull();
-  });
 
   it('renders logo image', () => {
     const navigationWithLogo = {
@@ -28,8 +23,18 @@ describe('Layout', () => {
         createdAt: ''
       }
     };
-    render(<Defaults navigation={navigationWithLogo as Layout} />);
+    render(<Defaults {...navigationWithLogo} />);
     const logoImage = screen.getByAltText('Logo');
+    expect(logoImage).not.toBeNull();
+  });
+
+  it('empty object for logo', () => {
+    const navigationWithLogo = {
+      id: 1,
+      logo: {}
+    };
+    render(<Defaults {...(navigationWithLogo as Layout)} />);
+    const logoImage = screen.queryByAltText('Logo');
     expect(logoImage).not.toBeNull();
   });
 
@@ -43,7 +48,7 @@ describe('Layout', () => {
       ],
       footerItems: []
     };
-    render(<Defaults navigation={navigationWithHeaderItems as Layout} />);
+    render(<Defaults {...(navigationWithHeaderItems as Layout)} />);
     const headerLink = screen.getByText('Home');
     expect(headerLink).not.toBeNull();
   });
@@ -55,7 +60,7 @@ describe('Layout', () => {
         { title: 'Footer Link 2', url: '/' }
       ]
     };
-    render(<Defaults navigation={navigationWithFooterItems as Layout} />);
+    render(<Defaults {...navigationWithFooterItems} />);
     expect(screen.getByText('Footer Link 1')).not.toBeNull();
     expect(screen.getByText('Footer Link 2')).not.toBeNull();
   });
@@ -66,7 +71,7 @@ describe('Layout', () => {
       logo: 2,
       footerItems: []
     };
-    render(<Defaults navigation={navigationWithFooterItems as Layout} />);
+    render(<Defaults {...navigationWithFooterItems} />);
     expect(screen.queryByText('Footer Link 1')).toBeNull();
     expect(screen.queryByText('Footer Link 2')).toBeNull();
   });
