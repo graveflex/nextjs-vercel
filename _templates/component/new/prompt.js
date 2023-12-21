@@ -17,7 +17,7 @@ module.exports = {
         type: 'select',
         name: 'path',
         message: 'Where should this component be created?',
-        choices: ['components', 'fields', 'providers']
+        choices: ['components', 'fields', 'providers', 'blocks']
       }
     ];
 

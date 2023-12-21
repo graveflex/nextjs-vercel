@@ -5,6 +5,8 @@ import { buildConfig } from 'payload/config';
 
 import { POSTGRES_URL } from 'settings';
 
+import Layout from '@web/blocks/Layout/schema';
+import Media from '@web/payload/collections/Media';
 import Users from '@web/payload/collections/User';
 
 export default buildConfig({
@@ -14,7 +16,8 @@ export default buildConfig({
     }
   }),
   editor: slateEditor({}),
-  collections: [Users],
+  collections: [Users, Media],
+  globals: [Layout],
   routes: {
     api: '/api/payload'
   },
