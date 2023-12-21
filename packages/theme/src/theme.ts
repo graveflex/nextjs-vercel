@@ -1,16 +1,16 @@
 import { theme } from '@refract-ui/sc';
 
 const defaultTheme = theme({
-  colors: () => ({
+  colors: {
     yellow: '#FEF600',
     gray: '#3A3A3A',
     black: '#000',
     white: '#FFF'
-  }),
+  },
   themeColors: ({ colors }) => ({
     primary: colors.yellow
   }),
-  fontVariants: () => ({
+  fontVariants: {
     heading1: {
       fontSize: '5.75rem',
       lineHeight: 5.689375
@@ -27,7 +27,7 @@ const defaultTheme = theme({
       fontSize: '1.5rem',
       lineHeight: 1.5625
     }
-  })
+  }
 });
 
 export type RefractTheme = typeof defaultTheme;
