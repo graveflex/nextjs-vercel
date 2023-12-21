@@ -2,7 +2,7 @@
 
 'use client';
 
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { css, styled } from 'styled-components';
 
 export type ButtonType = {
@@ -11,6 +11,9 @@ export type ButtonType = {
 };
 
 const StyledButton = styled.button`
+  padding: 10px 24px;
+  border-radius: 62px;
+  border: none;
   ${({ theme: { themeColors } }) => css`
     background: ${themeColors.primary};
   `}
