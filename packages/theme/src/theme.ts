@@ -1,12 +1,6 @@
 import { theme } from '@refract-ui/sc';
 
 const defaultTheme = theme({
-  colors: {
-    yellow: '#FEF600',
-    gray: '#3A3A3A',
-    black: '#000',
-    white: '#FFF'
-  },
   themeColors: ({ colors }) => ({
     primary: colors.yellow
   }),
