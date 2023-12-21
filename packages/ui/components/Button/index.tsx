@@ -21,12 +21,12 @@ const StyledButton = styled.button`
 
 function Button({
   type = 'button',
-  onClick = () => console.log('@--> click')
-}: ButtonType) {
+  onClick = () => console.log('@--> click'),
+  children
+}: PropsWithChildren<ButtonType>) {
   return (
-    // eslint-disable-next-line react/button-has-type
     <StyledButton onClick={onClick} type={type}>
-      Boop
+      {children}
     </StyledButton>
   );
 }
