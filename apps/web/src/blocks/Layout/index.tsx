@@ -32,7 +32,7 @@ const MenuLinksContainer = styled.div`
   gap: 28px;
 `;
 
-export const MenuLink = styled.a`
+export const MenuLink = styled.link`
   ${({ theme }) => css`
     color: ${theme.allColors.plainBg};
   `}
