@@ -33,8 +33,8 @@ const MenuLinksContainer = styled.div`
 `;
 
 export const MenuLink = styled.link`
-  ${({ theme }) => css`
-    color: ${theme.allColors.plainBg};
+  ${({ theme: { colors } }) => css`
+    color: ${colors.white};
   `}
   font-size: 17px;
   font-style: normal;
