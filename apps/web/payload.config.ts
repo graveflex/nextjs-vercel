@@ -5,7 +5,7 @@ import { buildConfig } from 'payload/config';
 
 import { POSTGRES_URL } from 'settings';
 
-import Layout from '@web/blocks/Layout/schema';
+import Layout from '@web/globals/Layout/schema';
 import Media from '@web/payload/collections/Media';
 import Users from '@web/payload/collections/User';
 

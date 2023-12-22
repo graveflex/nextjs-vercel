@@ -12,6 +12,13 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react', 'simple-import-sort'],
   rules: {
     '@next/next/no-html-link-for-pages': 'off',
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      {
+        prefer: 'type-imports',
+        disallowTypeAnnotations: false
+      }
+    ],
     'import/no-extraneous-dependencies': [
       'error',
       { devDependencies: true, peerDependencies: true }

@@ -1,22 +1,23 @@
 'use client';
 
-import React, { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { css, styled } from 'styled-components';
 
 import Button from 'ui/components/Button';
 
-import { Layout as LayoutType, Media } from '@web/payload/payload-types';
+import type { Layout as LayoutType, Media } from '@web/payload/payload-types';
 import isExpandedDoc from '../../lib/isExpandedDoc';
 
-const Wrapper = styled.div`
+const Header = styled.header`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
   justify-content: space-between;
   align-items: center;
-  padding: 30px;
+  padding: 1.875rem;
   ${({
     theme: {
       mq: { lg }
@@ -27,13 +28,17 @@ const Wrapper = styled.div`
   `}
 `;
 
+const Footer = styled.footer`
+  ${Header}
+`;
+
 const MenuLinksContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 28px;
+  gap: 1.75rem;
 `;
 
-export const MenuLink = styled.p`
+const baseMenuItemStyles = css`
   ${({ theme: { colors } }) => css`
     color: ${colors.white};
   `}
@@ -49,16 +54,24 @@ export const MenuLink = styled.p`
   }
 `;
 
+export const MenuLink = styled(Link)`
+  ${baseMenuItemStyles}
+`;
+
+export const MenuText = styled.p`
+  ${baseMenuItemStyles}
+`;
+
 function MenuLinks({ links }: { links: LayoutType['headerItems'] }) {
   return (
     <MenuLinksContainer>
       {links?.map((link) =>
         link?.type === 'button' ? (
-          <Button key={`FooterLink-${link?.title}`}>{link?.title}</Button>
+          <Button key={`FooterLink-${link?.id}`}>{link?.title}</Button>
         ) : (
-          <Link key="MenuLink" href={link?.url}>
-            <MenuLink>{link?.title}</MenuLink>
-          </Link>
+          <MenuLink key={`MenuLink-${link?.id}`} href={link?.url}>
+            {link?.title}
+          </MenuLink>
         )
       )}
     </MenuLinksContainer>
@@ -73,18 +86,19 @@ function Layout({
 }: PropsWithChildren<LayoutType>) {
   return (
     <>
-      <Wrapper>
-        {isExpandedDoc<Media>(logo) && (
+      <Header>
+        {isExpandedDoc<Media>(logo) ? (
           <Image width={193} height={17} src={logo?.url || ''} alt="Logo" />
+        ) : (
+          <div />
         )}
-
         <MenuLinks links={headerItems} />
-      </Wrapper>
+      </Header>
       {children}
-      <Wrapper>
+      <Footer>
         <MenuLinks links={footerItems} />
-        <MenuLink>{new Date().getFullYear()} All rights reserved</MenuLink>
-      </Wrapper>
+        <MenuText>{new Date().getFullYear()} All rights reserved</MenuText>
+      </Footer>
     </>
   );
 }

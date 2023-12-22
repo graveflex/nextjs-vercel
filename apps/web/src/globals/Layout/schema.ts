@@ -1,4 +1,4 @@
-import { GlobalConfig } from 'payload/types';
+import type { GlobalConfig } from 'payload/types';
 
 const Layout: GlobalConfig = {
   slug: 'layout',
@@ -7,17 +7,20 @@ const Layout: GlobalConfig = {
   },
   fields: [
     {
+      label: 'Logo',
       name: 'logo',
       type: 'upload',
       required: true,
       relationTo: 'media'
     },
     {
+      label: 'Header Items',
       name: 'headerItems',
       type: 'array',
       maxRows: 6,
       fields: [
         {
+          label: 'Link',
           name: 'type',
           type: 'select',
           hasMany: false,
@@ -36,11 +39,13 @@ const Layout: GlobalConfig = {
           ]
         },
         {
+          label: 'Title',
           name: 'title',
           type: 'text',
           required: true
         },
         {
+          label: 'URL',
           name: 'url',
           type: 'text',
           defaultValue: '/',
@@ -49,23 +54,24 @@ const Layout: GlobalConfig = {
       ],
       admin: {
         components: {
-          RowLabel: ({ data }) => {
-            return data?.title;
-          }
+          RowLabel: ({ data }) => data.title
         }
       }
     },
     {
+      label: 'Footer Items',
       name: 'footerItems',
       type: 'array',
       maxRows: 6,
       fields: [
         {
+          label: 'Title',
           name: 'title',
           type: 'text',
           required: true
         },
         {
+          label: 'URL',
           name: 'url',
           type: 'text',
           defaultValue: '/',
@@ -74,9 +80,7 @@ const Layout: GlobalConfig = {
       ],
       admin: {
         components: {
-          RowLabel: ({ data }) => {
-            return data?.title;
-          }
+          RowLabel: ({ data }) => data.title
         }
       }
     }

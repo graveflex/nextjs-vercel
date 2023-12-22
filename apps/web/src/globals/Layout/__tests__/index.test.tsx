@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 
 import projectAnnotations from 'ui/utils/testSetup';
 
-import { Layout } from '@web/payload/payload-types';
+import type { Layout } from '@web/payload/payload-types';
 import * as stories from '../Layout.stories';
 
 const { Defaults } = composeStories(stories, projectAnnotations);

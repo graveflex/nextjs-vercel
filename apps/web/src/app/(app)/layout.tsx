@@ -1,8 +1,9 @@
-import React, { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
+import React from 'react';
 
 import ThemeProvider from 'theme/src/ThemeProvider';
 
-import Layout from '@web/blocks/Layout';
+import Layout from '@web/globals/Layout';
 import fetchPayloadData from '@web/lib/fetchPayloadData';
 import StyledComponentsRegistry from '@web/lib/StyledComponentRegistry';
 import { type Layout as LayoutType } from '@web/payload/payload-types';
@@ -13,6 +14,10 @@ export default async function AppLayout({
   const layout = await fetchPayloadData((client) =>
     client.findGlobal({ slug: 'layout' })
   );
+
+  if ('error' in layout) {
+    return null;
+  }
 
   return (
     <html lang="en">

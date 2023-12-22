@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Layout as LayoutType } from '@web/payload/payload-types';
+import type { Layout as LayoutType } from '@web/payload/payload-types';
 
 import Layout from '.';
 

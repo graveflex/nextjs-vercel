@@ -1,14 +1,15 @@
 'use client';
 
-import React, { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
+import React from 'react';
 import GlobalStyles from '@refract-ui/sc/components/GlobalStyles';
 import type { DefaultTheme } from 'styled-components';
 
 import defaultTheme from './theme';
 
 const containerStyles = {
-  backgroundColor: '#000000',
-  color: defaultTheme.allColors.plainBg,
+  backgroundColor: defaultTheme.themeColors.bg,
+  color: defaultTheme.colors.white,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',

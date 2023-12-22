@@ -8,7 +8,9 @@ const defaultTheme = theme({
     white: '#FFF'
   },
   themeColors: ({ colors }) => ({
-    primary: colors.yellow
+    primary: colors.yellow,
+    bg: colors.black,
+    fg: colors.black
   }),
   fontVariants: {
     heading1: {
