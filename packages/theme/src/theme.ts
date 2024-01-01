@@ -12,6 +12,10 @@ const defaultTheme = theme({
     bg: colors.black,
     fg: colors.black
   }),
+  colorTokens: ({ colors }) => ({
+    fg: colors.white,
+    bg: colors.black
+  }),
   fontVariants: {
     heading1: {
       fontSize: '5.75rem',

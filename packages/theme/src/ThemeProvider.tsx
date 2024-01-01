@@ -8,8 +8,6 @@ import type { DefaultTheme } from 'styled-components';
 import defaultTheme from './theme';
 
 const containerStyles = {
-  backgroundColor: defaultTheme.themeColors.bg,
-  color: defaultTheme.colors.white,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
