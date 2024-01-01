@@ -18,6 +18,7 @@ const Layout: GlobalConfig = {
       name: 'headerItems',
       type: 'array',
       maxRows: 6,
+      interfaceName: 'HeaderMenuItem',
       fields: [
         {
           label: 'Link',
@@ -62,6 +63,7 @@ const Layout: GlobalConfig = {
       label: 'Footer Items',
       name: 'footerItems',
       type: 'array',
+      interfaceName: 'FooterMenuItem',
       maxRows: 6,
       fields: [
         {

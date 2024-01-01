@@ -8,7 +8,11 @@ import { css, styled } from 'styled-components';
 
 import Button from 'ui/components/Button';
 
-import type { Layout as LayoutType, Media } from '@web/payload/payload-types';
+import type {
+  HeaderMenuItem,
+  Layout as LayoutType,
+  Media
+} from '@web/payload/payload-types';
 import isExpandedDoc from '../../lib/isExpandedDoc';
 
 const Header = styled.header`
@@ -62,7 +66,7 @@ export const MenuText = styled.p`
   ${baseMenuItemStyles}
 `;
 
-function MenuLinks({ links }: { links: LayoutType['headerItems'] }) {
+function MenuLinks({ links }: { links?: HeaderMenuItem }) {
   return (
     <MenuLinksContainer>
       {links?.map((link) =>

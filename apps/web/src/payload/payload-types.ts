@@ -6,6 +6,22 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
+export type HeaderMenuItem =
+  | {
+      type?: ('button' | 'link') | null;
+      title: string;
+      url: string;
+      id?: string | null;
+    }[]
+  | null;
+export type FooterMenuItem =
+  | {
+      title: string;
+      url: string;
+      id?: string | null;
+    }[]
+  | null;
+
 export interface Config {
   collections: {
     users: User;
@@ -113,21 +129,8 @@ export interface PayloadMigration {
 export interface Layout {
   id: number;
   logo: number | Media;
-  headerItems?:
-    | {
-        type?: ('button' | 'link') | null;
-        title: string;
-        url: string;
-        id?: string | null;
-      }[]
-    | null;
-  footerItems?:
-    | {
-        title: string;
-        url: string;
-        id?: string | null;
-      }[]
-    | null;
+  headerItems?: HeaderMenuItem;
+  footerItems?: FooterMenuItem;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
