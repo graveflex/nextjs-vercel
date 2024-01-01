@@ -6,7 +6,6 @@ import ThemeProvider from 'theme/src/ThemeProvider';
 import Layout from '@web/globals/Layout';
 import fetchPayloadData from '@web/lib/fetchPayloadData';
 import StyledComponentsRegistry from '@web/lib/StyledComponentRegistry';
-// import { type Layout as LayoutType } from '@web/payload/payload-types';
 
 export default async function AppLayout({
   children
