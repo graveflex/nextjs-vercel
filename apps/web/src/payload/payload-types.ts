@@ -104,7 +104,7 @@ export interface Media {
 export interface Page {
   id: number;
   title: string;
-  layout?: HeroBlock[] | null;
+  layout?: (HeroBlock | ImageWithContentBlockType)[] | null;
   slug?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -118,6 +118,15 @@ export interface HeroBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'HeroBlock';
+}
+export interface ImageWithContentBlockType {
+  title?: string | null;
+  content?: string | null;
+  direction?: ('right' | 'left') | null;
+  image: number | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ImageWithContentBlock';
 }
 export interface PayloadPreference {
   id: number;
