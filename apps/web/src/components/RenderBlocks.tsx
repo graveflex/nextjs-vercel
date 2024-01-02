@@ -1,7 +1,7 @@
+import type { ComponentType } from 'react';
 import React from 'react';
 import dynamic from 'next/dynamic';
 
-import type * as Blocks from '@web/blocks';
 import type { Page } from '@web/payload/payload-types';
 
 interface IRenderBlocks {
@@ -14,19 +14,26 @@ export type Layout = ExtractArray<Required<Page>['layout']>;
 
 export type Block<T extends string> = Extract<Layout, { blockType: T }>;
 
-function RenderBlocks({ blocks }: IRenderBlocks) {
-  return blocks?.map((blockProps: Layout) => {
-    const { blockType } = blockProps;
+function ComponentNotFound({ blockType }: { blockType: string }) {
+  return <div>Component not found: {blockType}</div>;
+}
 
-    const BlockComponent = dynamic(() =>
-      import(`@web/blocks/${blockType}`).catch(() => {
-        return function Component() {
-          return <div>Component not found: {blockType}</div>;
-        };
-      })
-    ) as (typeof Blocks)[keyof typeof Blocks];
-    return <BlockComponent key={blockType} {...blockProps} />;
-  });
+function RenderBlocks({ blocks }: IRenderBlocks) {
+  return (
+    <div>
+      {blocks?.map((blockProps: Layout) => {
+        const { blockType } = blockProps;
+
+        const BlockComponent = dynamic(() =>
+          import(`@web/blocks/${blockType}`).catch(() => (
+            <ComponentNotFound blockType={blockType} />
+          ))
+        ) as ComponentType<typeof blockProps>;
+
+        return <BlockComponent key={blockType} {...blockProps} />;
+      })}
+    </div>
+  );
 }
 
 export default RenderBlocks;

@@ -23,7 +23,7 @@ export default async function AppLayout({
       <body>
         <StyledComponentsRegistry>
           <ThemeProvider>
-            <Layout {...layout}>{children}</Layout>
+            <Layout {...layout}> {children} </Layout>
           </ThemeProvider>
         </StyledComponentsRegistry>
       </body>

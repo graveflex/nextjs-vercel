@@ -25,4 +25,5 @@ function ThemeProvider({
   );
 }
 
-export default React.memo(ThemeProvider);
+// export default React.memo(ThemeProvider);
+export default ThemeProvider;
