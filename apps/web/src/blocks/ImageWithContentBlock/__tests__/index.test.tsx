@@ -29,7 +29,7 @@ describe('ImageWithContentBlock', () => {
   });
 
   it('does not render image when image prop is invalid', () => {
-    render(<Defaults image={null} />);
+    render(<Defaults image={undefined} />);
     const imageElement = screen.queryByAltText('Invalid Image');
     expect(imageElement).toBeNull();
   });
