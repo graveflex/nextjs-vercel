@@ -12,8 +12,6 @@ export type ExtractArray<A> = A extends (infer T)[] ? T : never;
 
 export type Layout = ExtractArray<Required<Page>['layout']>;
 
-export type Block<T extends string> = Extract<Layout, { blockType: T }>;
-
 function ComponentNotFound({ blockType }: { blockType: string }) {
   return <div>Component not found: {blockType}</div>;
 }
