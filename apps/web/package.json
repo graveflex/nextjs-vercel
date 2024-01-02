@@ -13,6 +13,9 @@
     "generate:types": "payload generate:types",
     "setup": "./bin/init_db.sh"
   },
+  "resolutions": {
+    "@types/react": "17.0.40"
+  },
   "dependencies": {
     "@payloadcms/bundler-webpack": "^1.0.5",
     "@payloadcms/db-postgres": "^0.2.1",
@@ -32,7 +35,7 @@
     "@storybook/testing-react": "^2.0.1",
     "@testing-library/react": "^14.0.0",
     "@types/node": "^18.17.14",
-    "@types/react": "18.2.21",
+    "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "eslint-config-custom": "*",
     "tsconfig": "*",

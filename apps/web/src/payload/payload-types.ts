@@ -26,6 +26,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    page: Page;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -99,6 +100,24 @@ export interface Media {
       filename?: string | null;
     };
   };
+}
+export interface Page {
+  id: number;
+  title: string;
+  layout?: HeroBlock[] | null;
+  slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+export interface HeroBlock {
+  header?: string | null;
+  subHeader?: string | null;
+  cta?: string | null;
+  image?: number | Media | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'HeroBlock';
 }
 export interface PayloadPreference {
   id: number;
