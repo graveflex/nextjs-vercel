@@ -4,6 +4,7 @@ const menu: ArrayField = {
   name: 'main',
   label: 'Main navigation',
   type: 'array',
+  interfaceName: 'MenuItems',
   admin: {
     initCollapsed: true
   },
@@ -58,7 +59,7 @@ const Nav: GlobalConfig = {
           name: 'logo',
           label: 'Logo',
           type: 'upload',
-          relationTo: 'media',
+          relationTo: 'image',
           admin: {
             description: 'Logo for header. Prefer `.svg`'
           }

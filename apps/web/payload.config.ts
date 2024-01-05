@@ -1,4 +1,3 @@
-import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { slateEditor } from '@payloadcms/richtext-slate';
@@ -13,7 +12,7 @@ import {
   POSTGRES_URL
 } from 'settings';
 
-import Media from '@web/collections/Media';
+import Images from '@web/collections/Images';
 import Users from '@web/collections/User';
 import Nav from '@web/globals/Layout/Layout.config';
 
@@ -24,16 +23,13 @@ const adapter = vercelBlobAdapter({
 });
 
 export default buildConfig({
-  /* db: postgresAdapter({ */
-  /*   pool: { */
-  /*     connectionString: POSTGRES_URL */
-  /*   } */
-  /* }), */
-  db: mongooseAdapter({
-    url: 'mongodb://localhost/gfx-develop-upload'
+  db: postgresAdapter({
+    pool: {
+      connectionString: POSTGRES_URL
+    }
   }),
   editor: slateEditor({}),
-  collections: [Users, Media],
+  collections: [Users, Images],
   globals: [Nav],
   routes: {
     api: '/api/payload'
@@ -41,7 +37,7 @@ export default buildConfig({
   plugins: [
     cloudStorage({
       collections: {
-        media: {
+        images: {
           adapter
         }
       }

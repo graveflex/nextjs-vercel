@@ -10,7 +10,7 @@ const baseUrl = 'https://hgeiz69t7wl1ssgi.public.blob.vercel-storage.com';
 const prefix = 'media';
 
 export async function GET(
-  request: Request,
+  _: Request,
   { params }: { params: { filename: string } }
 ) {
   const { filename } = params;
@@ -37,9 +37,8 @@ export async function GET(
       }
     }
 
-    console.log('@--> above next');
-    NextResponse.next();
+    return NextResponse.next();
   } catch (err: unknown) {
-    NextResponse.json({}, { status: 500, statusText: err as string });
+    return NextResponse.json({}, { status: 500, statusText: err as string });
   }
 }
