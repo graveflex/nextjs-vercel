@@ -8,7 +8,7 @@ import type { Image as ImageT } from '@web/payload/payload-types';
 
 export type ResponsivePayloadImageType = {
   image: ImageT;
-  imageProps?: ImageProps;
+  imageProps?: Partial<ImageProps>;
 };
 
 const ImageWrapper = styled.div`
@@ -48,13 +48,17 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const checkSizes = (sizes: Record<string, object>) =>
-  Object.values(sizes).reduce((acc, size) => {
-    if (Object.keys(size).length > 0) {
+const checkSizes = (sizes: ImageT['sizes']) => {
+  if (!sizes) {
+    return false;
+  }
+  return Object.values(sizes).reduce((acc, size) => {
+    if (size?.url) {
       return true;
     }
     return acc;
   }, false);
+};
 
 function ResponsivePayloadImage({
   image,

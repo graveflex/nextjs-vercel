@@ -2,10 +2,10 @@
 
 import type { PropsWithChildren } from 'react';
 import React, { useMemo } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
 import { expandedDoc } from '@web/lib/isExpandedDoc';
 import type {
   Image as ImageT,
@@ -22,25 +22,24 @@ const Header = styled.header`
 `;
 const Footer = styled.footer``;
 
-const LogoWrapper = styled.div`
+const Logo = styled(ResponsivePayloadImage)`
   width: 200px;
-  position: relative;
-  height: 100%;
 `;
-const Logo = styled(Image)``;
+
+const MenuLink = styled(Link)``;
 
 export type LayoutType = PropsWithChildren<Nav>;
 
 function Menu(menuItems: MenuItems | undefined) {
-  if (!menuItems) {
+  if (!menuItems?.length) {
     return null;
   }
   return (
     <nav>
-      {menuItems.map(({ label, slug, type, id }) => (
-        <Link href={slug} key={id}>
+      {menuItems?.map(({ label, slug, type, id }) => (
+        <MenuLink href={slug} key={id} className={type || 'link'}>
           {label}
-        </Link>
+        </MenuLink>
       ))}
     </nav>
   );
@@ -52,11 +51,7 @@ function Layout({ children, header, footer }: LayoutType) {
   return (
     <>
       <Header>
-        {logo?.url && (
-          <LogoWrapper>
-            <Image src={logo?.url} alt={logo?.alt || 'Logo'} fill />
-          </LogoWrapper>
-        )}
+        {logo?.url && <Logo image={logo} imageProps={{ loading: 'eager' }} />}
         {HeaderMenu}
       </Header>
       <main>{children}</main>
