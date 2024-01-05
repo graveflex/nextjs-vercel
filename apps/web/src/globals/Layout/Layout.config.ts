@@ -59,7 +59,7 @@ const Nav: GlobalConfig = {
           name: 'logo',
           label: 'Logo',
           type: 'upload',
-          relationTo: 'image',
+          relationTo: 'images',
           admin: {
             description: 'Logo for header. Prefer `.svg`'
           }

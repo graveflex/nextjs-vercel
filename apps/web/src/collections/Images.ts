@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload/types';
 
 const Images: CollectionConfig = {
-  slug: 'image',
+  slug: 'images',
   access: {
     read: () => true
   },
