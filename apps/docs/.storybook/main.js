@@ -29,12 +29,23 @@ const config = {
   docs: {
     autodocs: 'tag'
   },
-  webpackFinal: async (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@web': resolve(__dirname, '../../web/src')
+  staticDirs: [
+    {
+      from: '../../../packages/theme/fonts',
+      to: resolve(__dirname, '../../../packages/theme/fonts')
+    }
+  ],
+  webpackFinal: async (c) => {
+    return {
+      ...c,
+      resolve: {
+        ...c.resolve,
+        alias: {
+          ...c.resolve.alias,
+          '@web': resolve(__dirname, '../../web/src')
+        }
+      }
     };
-    return config;
   }
 };
 export default config;
