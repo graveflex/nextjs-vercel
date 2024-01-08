@@ -48,10 +48,7 @@ const ImageWrapper = styled.div`
   }
 `;
 
-const checkSizes = (sizes: ImageT['sizes']) => {
-  if (!sizes) {
-    return false;
-  }
+const checkSizes = (sizes: NonNullable<ImageT['sizes']>) => {
   return Object.values(sizes).reduce((acc, size) => {
     if (size?.url) {
       return true;
@@ -95,7 +92,7 @@ function ResponsivePayloadImage({
             fill
             {...imageProps}
             src={url}
-            key={url}
+            key={`${key}-${url}`}
             alt={alt || filename}
             className={key}
           />

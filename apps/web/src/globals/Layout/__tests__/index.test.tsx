@@ -6,10 +6,14 @@ import projectAnnotations from 'ui/utils/testSetup';
 
 import * as stories from '../Layout.stories';
 
-const { Defaults } = composeStories(stories, projectAnnotations);
+const { Defaults, MissingMenu } = composeStories(stories, projectAnnotations);
 
 describe('Layout', () => {
   it('component mounts', () => {
     render(<Defaults />);
+  });
+
+  it('component mounts without menus', () => {
+    render(<MissingMenu />);
   });
 });

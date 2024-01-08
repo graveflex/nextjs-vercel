@@ -6,7 +6,7 @@ import Link from 'next/link';
 import styled, { css } from 'styled-components';
 
 import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
-import { expandedDoc } from '@web/lib/isExpandedDoc';
+import expandedDoc from '@web/lib/isExpandedDoc';
 import type {
   Image as ImageT,
   MenuItems,
