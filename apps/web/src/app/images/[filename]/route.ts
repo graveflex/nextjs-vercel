@@ -42,9 +42,7 @@ export async function GET(
   } catch (err: unknown) {
     return NextResponse.json(
       {
-        error: JSON.stringify(err),
-        storeId: BLOB_STORE_ID,
-        rw: BLOB_READ_WRITE_TOKEN
+        error: JSON.stringify(err)
       },
       { status: 500, statusText: JSON.stringify(err) }
     );

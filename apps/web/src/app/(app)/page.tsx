@@ -3,21 +3,14 @@ import { notFound } from 'next/navigation';
 
 import Button from 'ui/components/Button';
 
-import getPayloadClient from '@web/payload/payloadClient';
-
-async function pageApi() {
-  const payload = await getPayloadClient();
-  try {
-    return await payload.find({
-      collection: 'users'
-    });
-  } catch (err) {
-    return { error: err };
-  }
-}
+import fetchPayloadData from '@web/lib/fetchPayloadData';
 
 export default async function Page() {
-  const data = await pageApi();
+  const data = await fetchPayloadData(async (client) =>
+    client.find({
+      collection: 'users'
+    })
+  );
 
   // if there's an error fetching data, 404
   if ('error' in data) {
