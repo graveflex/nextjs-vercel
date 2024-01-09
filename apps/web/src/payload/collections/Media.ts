@@ -15,7 +15,7 @@ const Media: CollectionConfig = {
   ],
   upload: {
     staticURL: '/media',
-    staticDir: 'media',
+    staticDir: 'public/media',
     imageSizes: [
       {
         name: 'thumbnail',
