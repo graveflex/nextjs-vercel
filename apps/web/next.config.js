@@ -4,7 +4,7 @@ const { withPayload } = require('@payloadcms/next-payload');
 module.exports = withPayload(
   {
     reactStrictMode: true,
-    transpilePackages: ['ui', 'settings'],
+    transpilePackages: ['ui', 'settings', 'vercel-blob-storage'],
     compiler: {
       styledComponents: true
     }

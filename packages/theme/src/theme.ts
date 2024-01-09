@@ -1,6 +1,32 @@
 import { theme } from '@refract-ui/sc';
 
+import satoshi from '../fonts';
+
+const textSizes = {
+  '-1': 0.75, // 12px
+  '0': 0.875, // 14px
+  '1': 1, // 16px
+  '2': 1.125, // 18px
+  '3': 1.5, // 24px
+  '4': 2, // 32px
+  '5': 2.5, // 40px
+  '6': 3, // 48px
+  '7': 4
+};
+
 const defaultTheme = theme({
+  fontStacks: {
+    sans: [satoshi.style.fontFamily]
+  },
+  textSizes,
+  textVariants: {
+    menuLink: {
+      stack: 'sans',
+      color: 'white',
+      weight: '400',
+      size: 1
+    }
+  },
   colors: {
     yellow: '#FEF600',
     gray: '#3A3A3A',

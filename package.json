@@ -19,6 +19,8 @@
     "start": "turbo run start --parallel",
     "dev": "turbo run dev --filter=!settings",
     "lint": "turbo run lint",
+    "migrations:create": "turbo run migrations:create",
+    "migrations:run": "turbo run migrations:run",
     "cicd": "yarn lint && yarn test:coverage --force && yarn build --force"
   },
   "devDependencies": {

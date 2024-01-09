@@ -50,6 +50,7 @@ module.exports = {
     ],
     'simple-import-sort/exports': 'error',
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': ['error']
+    '@typescript-eslint/no-use-before-define': ['error'],
+    '@typescript-eslint/consistent-type-imports': 'error'
   }
 };

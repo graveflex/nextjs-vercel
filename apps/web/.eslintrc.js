@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   extends: ['custom'],
+  ignorePatterns: ['src/migrations/*.ts'],
   rules: {
     'react/require-default-props': 'off'
   },

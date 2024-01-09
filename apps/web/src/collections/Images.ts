@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload/types';
 
-const Media: CollectionConfig = {
-  slug: 'media',
+const Images: CollectionConfig = {
+  slug: 'images',
   access: {
     read: () => true
   },
@@ -14,8 +14,8 @@ const Media: CollectionConfig = {
     }
   ],
   upload: {
-    staticURL: '/media',
-    staticDir: 'media',
+    staticURL: '/images',
+    staticDir: 'images',
     imageSizes: [
       {
         name: 'thumbnail',
@@ -48,4 +48,4 @@ const Media: CollectionConfig = {
   }
 };
 
-export default Media;
+export default Images;

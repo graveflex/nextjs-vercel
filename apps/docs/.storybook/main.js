@@ -1,4 +1,4 @@
-import { dirname, join } from 'path';
+import { dirname, join, resolve } from 'path';
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -28,6 +28,24 @@ const config = {
   },
   docs: {
     autodocs: 'tag'
+  },
+  staticDirs: [
+    {
+      from: '../../../packages/theme/fonts',
+      to: resolve(__dirname, '../../../packages/theme/fonts')
+    }
+  ],
+  webpackFinal: async (c) => {
+    return {
+      ...c,
+      resolve: {
+        ...c.resolve,
+        alias: {
+          ...c.resolve.alias,
+          '@web': resolve(__dirname, '../../web/src')
+        }
+      }
+    };
   }
 };
 export default config;

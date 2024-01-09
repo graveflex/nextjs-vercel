@@ -10,22 +10,29 @@
     "start": "export $(grep -e '^NEXT_PORT' -- ../../.env) && next start -p ${NEXT_PORT}",
     "lint": "eslint . --ext js,jsx,ts,tsx --fix",
     "generate:types": "payload generate:types",
+    "migrations:create": "payload migrate:create",
+    "migrations:run": "payload migrate",
     "setup": "./bin/init_db.sh"
   },
   "dependencies": {
     "@payloadcms/bundler-webpack": "^1.0.5",
     "@payloadcms/db-postgres": "^0.2.1",
     "@payloadcms/next-payload": "^0.1.11",
+    "@payloadcms/plugin-cloud-storage": "^1.1.1",
     "@payloadcms/richtext-slate": "^1.3.1",
+    "@refract-ui/sc": "1.0.1-alpha.31",
+    "@vercel/blob": "^0.16.1",
     "drizzle-orm": "^0.29.1",
-    "next": "^13.5.4",
+    "next": "13.5.3",
     "payload": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "settings": "*",
+    "sharp": "0.32.6",
     "styled-components": "^6.0.0-beta.11",
     "theme": "*",
-    "ui": "*"
+    "ui": "*",
+    "vercel-blob-storage": "*"
   },
   "devDependencies": {
     "@storybook/testing-react": "^2.0.1",
