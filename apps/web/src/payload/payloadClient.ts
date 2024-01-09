@@ -1,7 +1,8 @@
-import config from 'payload.config';
 import { getPayload, type Payload } from 'payload/dist/payload';
 
 import { PAYLOAD_SECRET } from 'settings';
+
+import config from '../../payload.config';
 
 if (!PAYLOAD_SECRET) {
   throw new Error('PAYLOAD_SECRET environment variable is missing');
