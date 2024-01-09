@@ -6,13 +6,33 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
+export type HeaderMenuItem =
+  | {
+      type?: ('button' | 'link') | null;
+      title: string;
+      url: string;
+      id?: string | null;
+    }[]
+  | null;
+export type FooterMenuItem =
+  | {
+      title: string;
+      url: string;
+      id?: string | null;
+    }[]
+  | null;
+
 export interface Config {
   collections: {
     users: User;
+    media: Media;
+    page: Page;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  globals: {};
+  globals: {
+    layout: Layout;
+  };
 }
 export interface User {
   id: number;
@@ -26,6 +46,78 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password: string | null;
+}
+export interface Media {
+  id: number;
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    mobile?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    tablet?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    desktop?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    ultrawide?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+export interface Page {
+  id: number;
+  title: string;
+  layout?: HeroBlock[] | null;
+  slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+export interface HeroBlock {
+  header?: string | null;
+  subHeader?: string | null;
+  cta?: string | null;
+  image?: number | Media | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'HeroBlock';
 }
 export interface PayloadPreference {
   id: number;
@@ -52,6 +144,14 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+export interface Layout {
+  id: number;
+  logo: number | Media;
+  headerItems?: HeaderMenuItem;
+  footerItems?: FooterMenuItem;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 
 

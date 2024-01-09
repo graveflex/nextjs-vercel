@@ -2,6 +2,7 @@
 
 'use client';
 
+import type { PropsWithChildren } from 'react';
 import React from 'react';
 import { css, styled } from 'styled-components';
 
@@ -11,6 +12,9 @@ export type ButtonType = {
 };
 
 const StyledButton = styled.button`
+  padding: 10px 24px;
+  border-radius: 62px;
+  border: none;
   ${({ theme: { themeColors } }) => css`
     background: ${themeColors.primary};
   `}
@@ -18,12 +22,12 @@ const StyledButton = styled.button`
 
 function Button({
   type = 'button',
-  onClick = () => console.log('@--> click')
-}: ButtonType) {
+  onClick = () => console.log('@--> click'),
+  children
+}: PropsWithChildren<ButtonType>) {
   return (
-    // eslint-disable-next-line react/button-has-type
     <StyledButton onClick={onClick} type={type}>
-      Boop
+      {children}
     </StyledButton>
   );
 }
