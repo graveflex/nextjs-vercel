@@ -13,6 +13,8 @@
     "test:coverage": {
       "outputs": ["coverage/**"]
     },
+    "migrations:create": {},
+    "migrations:run": {},
     "buildSettings": {
       "cache": false,
       "outputs": ["dist/**"]
