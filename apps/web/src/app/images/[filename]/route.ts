@@ -40,7 +40,7 @@ export async function GET(
     return NextResponse.next();
   } catch (err: unknown) {
     return NextResponse.json(
-      {},
+      { error: JSON.stringify(err) },
       { status: 500, statusText: JSON.stringify(err) }
     );
   }
