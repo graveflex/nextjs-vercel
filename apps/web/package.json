@@ -28,6 +28,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "settings": "*",
+    "sharp": "^0.33.1",
     "styled-components": "^6.0.0-beta.11",
     "theme": "*",
     "ui": "*",
@@ -42,8 +43,5 @@
     "eslint-config-custom": "*",
     "tsconfig": "*",
     "typescript": "^5.2.2"
-  },
-  "engines": {
-    "node": "18.17.0"
   }
 }
