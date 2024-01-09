@@ -7,7 +7,8 @@ import { BLOB_READ_WRITE_TOKEN, BLOB_STORE_ID } from 'settings';
 export const dynamic = 'force-dynamic'; // defaults to auto
 
 const baseUrl = `https://${BLOB_STORE_ID}.public.blob.vercel-storage.com`;
-const prefix = 'media';
+// TODO: hook into config prefix
+const prefix = '';
 
 export async function GET(
   _: Request,
