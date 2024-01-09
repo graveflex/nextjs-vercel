@@ -2,11 +2,11 @@ import { NextResponse } from 'next/server';
 import { head } from '@vercel/blob';
 import path from 'path';
 
-import { BLOB_READ_WRITE_TOKEN } from 'settings';
+import { BLOB_READ_WRITE_TOKEN, BLOB_STORE_ID } from 'settings';
 
 export const dynamic = 'force-dynamic'; // defaults to auto
 
-const baseUrl = 'https://hgeiz69t7wl1ssgi.public.blob.vercel-storage.com';
+const baseUrl = `https://${BLOB_STORE_ID}.public.blob.vercel-storage.com`;
 const prefix = 'media';
 
 export async function GET(
@@ -39,6 +39,9 @@ export async function GET(
 
     return NextResponse.next();
   } catch (err: unknown) {
-    return NextResponse.json({}, { status: 500, statusText: err as string });
+    return NextResponse.json(
+      {},
+      { status: 500, statusText: JSON.stringify(err) }
+    );
   }
 }
