@@ -42,5 +42,8 @@
     "eslint-config-custom": "*",
     "tsconfig": "*",
     "typescript": "^5.2.2"
+  },
+  "engines": {
+    "node": "18.17.0"
   }
 }
