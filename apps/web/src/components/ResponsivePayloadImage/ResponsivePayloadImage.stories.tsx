@@ -157,3 +157,66 @@ export const Null: Story = {
     }
   }
 };
+
+export const SrcSet: Story = {
+  args: {
+    image: {
+      id: 2,
+      alt: 'test',
+      updatedAt: '2024-01-09T21:42:47.363Z',
+      createdAt: '2024-01-09T21:42:47.363Z',
+      url: 'http://localhost:3000/images/small-image-2-1024x768.jpg',
+      filename: 'small-image-2-1024x768.jpg',
+      mimeType: 'image/jpeg',
+      filesize: 77483,
+      width: 1024,
+      height: 768,
+      sizes: {
+        thumbnail: {
+          url: 'http://localhost:3000/images/small-image-2-1024x768-300x225.jpg',
+          width: 300,
+          height: 225,
+          mimeType: 'image/jpeg',
+          filesize: 14412,
+          filename: 'small-image-2-1024x768-300x225.jpg'
+        },
+
+        mobile: {
+          url: 'http://localhost:3000/images/small-image-2-1024x768-768x576.jpg',
+          width: 768,
+          height: 576,
+          mimeType: 'image/jpeg',
+          filesize: 54046,
+          filename: 'small-image-2-1024x768-768x576.jpg'
+        },
+
+        tablet: {
+          url: 'http://localhost:3000/images/small-image-2-1024x768-1024x768.jpg',
+          width: 1024,
+          height: 768,
+          mimeType: 'image/jpeg',
+          filesize: 77509,
+          filename: 'small-image-2-1024x768-1024x768.jpg'
+        },
+
+        desktop: {
+          url: 'http://localhost:3000/images/small-image-2-1024x768-2048x1536.jpg',
+          width: 2048,
+          height: 1536,
+          mimeType: 'image/jpeg',
+          filesize: 191938,
+          filename: 'small-image-2-1024x768-2048x1536.jpg'
+        },
+
+        ultrawide: {
+          url: 'http://localhost:3000/images/small-image-2-1024x768-4096x3072.jpg',
+          width: 4096,
+          height: 3072,
+          mimeType: 'image/jpeg',
+          filesize: 519951,
+          filename: 'small-image-2-1024x768-4096x3072.jpg'
+        }
+      }
+    }
+  }
+};

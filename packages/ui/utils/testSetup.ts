@@ -14,5 +14,4 @@ vi.mock('next/font/local', async () => {
   };
 });
 
-
 export default projectAnnotations as Preview;

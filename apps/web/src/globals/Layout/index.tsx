@@ -82,10 +82,6 @@ function Menu(menuItems: MenuItems | undefined) {
 export type LayoutType = PropsWithChildren<NavT>;
 
 function Layout({ children, header, footer }: LayoutType) {
-  // eslint-disable-next-line no-console
-  console.log('@--> header', header);
-  // eslint-disable-next-line no-console
-  console.log('@--> footer', footer);
   const logo = expandedDoc<ImageT>(header?.logo);
   const HeaderMenu = useMemo(() => Menu(header?.main), [header?.main]);
   const FooterMenu = useMemo(
