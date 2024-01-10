@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import Image, { type ImageProps } from 'next/image';
+import type { ImageProps } from 'next/image';
+import Image from 'next/image';
 import styled from 'styled-components';
 
 import type { Image as ImageT } from '@web/payload/payload-types';
