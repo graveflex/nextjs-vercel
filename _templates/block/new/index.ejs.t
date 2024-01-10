@@ -6,14 +6,19 @@ to: <%= app_name %>/blocks/<%= name %>/index.tsx
 import React from 'react';
 import styled from 'styled-components';
 
-const Container = styled.div``;
+import type { <%= name %>T as PayloadType } from '@web/payload/payload-type';
 
-export type <%= name %>Type = {
-  placeholder?: string;
-};
+export type <%= name %>Type = Pick<<%= name %>Type, 'title'>;
 
-function <%= name %>({ placeholder = 'placeholder' }) {
-  return <Container>{placeholder}</Container>;
+const Wrapper = styled.section``;
+
+function <%= name %>({ title }: <% name %>Type) {
+  return (
+    <Wrapper>
+      <h1><%= name %></h1>
+      <pre>{JSON.stringify({ title })}</pre>
+    </Wrapper>
+  );
 }
 
 export default <%= name %>;
