@@ -17,14 +17,27 @@ export type MenuItems =
 
 export interface Config {
   collections: {
+    pages: Page;
     users: User;
-    image: Image;
+    images: Image;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
   globals: {
     nav: Nav;
   };
+}
+export interface Page {
+  id: number;
+  blocks?: HeroBlockT[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface HeroBlockT {
+  title?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroBlock';
 }
 export interface User {
   id: number;
