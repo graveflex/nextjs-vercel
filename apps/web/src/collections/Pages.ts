@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload/types';
 
+// InsertBlockConfigs
 import HeroBlock from '@web/blocks/HeroBlock/HeroBlock.config';
 
 const Pages: CollectionConfig = {
@@ -12,7 +13,10 @@ const Pages: CollectionConfig = {
       name: 'blocks',
       label: 'Blocks',
       type: 'blocks',
-      blocks: [HeroBlock]
+      blocks: [
+        // InsertBlockConfigFields
+        HeroBlock
+      ]
     }
   ]
 };

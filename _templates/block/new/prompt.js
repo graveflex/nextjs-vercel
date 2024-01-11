@@ -10,13 +10,8 @@ module.exports = {
       {
         type: 'select',
         name: 'app_name',
-        message: 'Which app does this component belong to?',
-        choices: [
-          {
-            name: 'web',
-            value: 'apps/web/src'
-          }
-        ]
+        message: 'Which directory does this component belong to?',
+        choices: ['apps/web/src']
       }
     ];
 

@@ -1,5 +1,5 @@
 ---
-to: <%= app_name %>/blocks/<%= name %>/<%= name$>.config.ts
+to: <%= app_name %>/blocks/<%= name %>/<%= name %>.config.ts
 ---
 
 import type { Block } from 'payload/types';
@@ -17,4 +17,4 @@ const <%= name %>: Block = {
   ]
 };
 
-export default HeroBlock;
+export default <%= name %>;
