@@ -16,7 +16,7 @@ function <%= name %>({ title }: <%= name %>Type) {
   return (
     <Wrapper>
       <h1><%= name %></h1>
-      <pre>{JSON.stringify({ title })}</pre>
+      <pre>{JSON.stringify({ title }, null, 2)}</pre>
     </Wrapper>
   );
 }

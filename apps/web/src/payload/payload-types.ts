@@ -29,13 +29,13 @@ export interface Config {
 }
 export interface Page {
   id: number;
-  pageConfig?: PageConfigType;
+  pageConfig: PageConfigType;
   blocks?: HeroBlockT[] | null;
   updatedAt: string;
   createdAt: string;
 }
 export interface PageConfigType {
-  slug?: string | null;
+  slug: string;
 }
 export interface HeroBlockT {
   title?: string | null;

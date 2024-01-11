@@ -1,8 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 
-import Button from 'ui/components/Button';
-
+import BlocksRenderer from '@web/components/BlocksRenderer';
 import fetchPayloadData from '@web/lib/fetchPayloadData';
 
 export default async function Page() {
@@ -13,22 +12,17 @@ export default async function Page() {
         'pageConfig.slug': {
           equals: '/'
         }
-      }
+      },
+      limit: 1
     })
   );
 
   // if there's an error fetching data, 404
-  if ('error' in data) {
+  if ('error' in data || !data.docs[0]?.blocks) {
     return notFound();
   }
 
-  return (
-    <>
-      <h1>hello world</h1>
-      <Button type="button" />
+  const blocks = data.docs[0]?.blocks;
 
-      <h2>users:</h2>
-      <pre>{JSON.stringify(data?.docs[0], null, 2)}</pre>
-    </>
-  );
+  return <BlocksRenderer blocks={blocks} />;
 }
