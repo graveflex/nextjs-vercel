@@ -8,7 +8,12 @@ import fetchPayloadData from '@web/lib/fetchPayloadData';
 export default async function Page() {
   const data = await fetchPayloadData(async (client) =>
     client.find({
-      collection: 'users'
+      collection: 'pages',
+      where: {
+        'pageConfig.slug': {
+          equals: '/'
+        }
+      }
     })
   );
 
@@ -23,7 +28,7 @@ export default async function Page() {
       <Button type="button" />
 
       <h2>users:</h2>
-      <pre>{JSON.stringify(data?.docs, null, 2)}</pre>
+      <pre>{JSON.stringify(data?.docs[0], null, 2)}</pre>
     </>
   );
 }

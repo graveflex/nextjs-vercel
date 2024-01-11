@@ -29,28 +29,26 @@ export interface Config {
 }
 export interface Page {
   id: number;
+  pageConfig?: PageConfigType;
   blocks?: HeroBlockT[] | null;
   updatedAt: string;
   createdAt: string;
 }
+export interface PageConfigType {
+  slug?: string | null;
+}
 export interface HeroBlockT {
   title?: string | null;
+  subTitle?: string | null;
+  cta: CTAType;
+  background?: number | Image | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroBlock';
 }
-export interface User {
-  id: number;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password: string | null;
+export interface CTAType {
+  label: string;
+  href: string;
 }
 export interface Image {
   id: number;
@@ -105,6 +103,19 @@ export interface Image {
       filename?: string | null;
     };
   };
+}
+export interface User {
+  id: number;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password: string | null;
 }
 export interface PayloadPreference {
   id: number;
