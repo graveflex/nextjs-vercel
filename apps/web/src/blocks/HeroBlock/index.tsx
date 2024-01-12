@@ -11,7 +11,7 @@ import type {
   Image
 } from '@web/payload/payload-types';
 
-export type HeroBlockType = PayloadType;
+export type HeroBlockType = Omit<PayloadType, 'blockType'>;
 
 const Wrapper = styled.section`
   position: relative;

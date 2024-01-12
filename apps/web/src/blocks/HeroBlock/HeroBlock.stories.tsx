@@ -17,6 +17,10 @@ type Story = StoryObj<HeroBlockType>;
 
 export const Defaults: Story = {
   args: {
-    title: 'Hero block'
+    title: 'Hero block',
+    cta: {
+      href: 'https://google.com',
+      label: 'Test'
+    }
   }
 };
