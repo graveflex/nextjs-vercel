@@ -12,9 +12,9 @@ export const metadata = {
   description: 'Homepage'
 };
 
-export default async function RootLayout({
-  children
-}: PropsWithChildren<object>) {
+export const revalidate = 60;
+
+async function RootLayout({ children }: PropsWithChildren<object>) {
   const data = await fetchPayloadData(async (client) =>
     client.findGlobal({ slug: 'nav' })
   );
@@ -35,3 +35,5 @@ export default async function RootLayout({
     </html>
   );
 }
+
+export default RootLayout;

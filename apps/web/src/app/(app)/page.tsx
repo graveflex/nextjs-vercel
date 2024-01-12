@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 import BlocksRenderer from '@web/components/BlocksRenderer';
 import fetchPayloadData from '@web/lib/fetchPayloadData';
 
+export const revalidate = 60;
+
 export default async function Page() {
   const data = await fetchPayloadData(async (client) =>
     client.find({
