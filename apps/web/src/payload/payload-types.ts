@@ -17,8 +17,9 @@ export type MenuItems =
 
 export interface Config {
   collections: {
+    pages: Page;
     users: User;
-    image: Image;
+    images: Image;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -26,18 +27,28 @@ export interface Config {
     nav: Nav;
   };
 }
-export interface User {
+export interface Page {
   id: number;
+  pageConfig: PageConfigType;
+  blocks?: HeroBlockT[] | null;
   updatedAt: string;
   createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password: string | null;
+}
+export interface PageConfigType {
+  slug: string;
+}
+export interface HeroBlockT {
+  title?: string | null;
+  subTitle?: string | null;
+  cta: CTAType;
+  background?: number | Image | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroBlock';
+}
+export interface CTAType {
+  label: string;
+  href: string;
 }
 export interface Image {
   id: number;
@@ -92,6 +103,19 @@ export interface Image {
       filename?: string | null;
     };
   };
+}
+export interface User {
+  id: number;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password: string | null;
 }
 export interface PayloadPreference {
   id: number;

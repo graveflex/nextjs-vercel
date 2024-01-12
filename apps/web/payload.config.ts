@@ -13,6 +13,7 @@ import {
 } from 'settings';
 
 import Images from '@web/collections/Images';
+import Pages from '@web/collections/Pages';
 import Users from '@web/collections/User';
 import Nav from '@web/globals/Layout/Layout.config';
 
@@ -29,7 +30,7 @@ export default buildConfig({
     }
   }),
   editor: slateEditor({}),
-  collections: [Users, Images],
+  collections: [Pages, Users, Images],
   globals: [Nav],
   routes: {
     api: '/api/payload'
