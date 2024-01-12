@@ -9,6 +9,7 @@ const defaultOpts = {
 };
 
 const blockList = {
+  // InsertBlockDict
   heroBlock: dynamic(() => import('@web/blocks/HeroBlock'), { ...defaultOpts })
 };
 
