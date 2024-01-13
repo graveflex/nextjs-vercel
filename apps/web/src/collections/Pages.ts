@@ -1,7 +1,8 @@
 import type { CollectionConfig, GroupField } from 'payload/types';
 
-// InsertBlockConfigs
 import HeroBlock from '@web/blocks/HeroBlock/HeroBlock.config';
+// InsertBlockConfigs
+import TextImageBlock from '@web/blocks/TextImageBlock/TextImageBlock.config';
 
 const PageConfig: GroupField = {
   name: 'pageConfig',
@@ -31,6 +32,8 @@ const Pages: CollectionConfig = {
       type: 'blocks',
       blocks: [
         // InsertBlockConfigFields
+        TextImageBlock,
+
         HeroBlock
       ]
     }

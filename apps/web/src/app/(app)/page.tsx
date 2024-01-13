@@ -26,8 +26,5 @@ export default async function Page() {
 
   const blocks = data.docs[0]?.blocks;
 
-  // eslint-disable-next-line no-console
-  console.log('@--> blocks', blocks);
-
   return <BlocksRenderer blocks={blocks} />;
 }
