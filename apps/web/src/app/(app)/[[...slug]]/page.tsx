@@ -2,9 +2,10 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import type { PaginatedDocs } from 'payload/database';
 
-import BlocksRenderer from '@web/components/BlocksRenderer';
 import fetchPayloadDataRest from '@web/lib/fetchPayloadDataRest';
 import type { Page } from '@web/payload/payload-types';
+
+import PageTemplate from './page.client';
 
 export const revalidate = 60;
 
@@ -22,11 +23,11 @@ export default async function Page() {
   });
 
   // if there's an error fetching data, 404
-  if ('error' in data || !data.docs[0]?.blocks) {
+  if ('error' in data || !data.docs[0]) {
     return notFound();
   }
 
-  const blocks = data.docs[0]?.blocks;
+  const page = data.docs[0];
 
-  return <BlocksRenderer blocks={blocks} />;
+  return <PageTemplate page={page} />;
 }

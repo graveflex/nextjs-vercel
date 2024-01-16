@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import lens from '@refract-ui/sc/lens';
 import styled, { css } from 'styled-components';
 
 import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
@@ -29,28 +30,21 @@ const BackgroundImage = styled(ResponsivePayloadImage)`
   position: absolute;
 `;
 
-const Title = styled.h1`
+// replace w/ `lens`
+const Title = lens.h1({ m: 0, p: 0 })`
   position: relative;
-  margin: 0;
-  padding: 0;
-  && {
-    font-size: 7.5rem;
-    font-weight: 700;
-    line-height: 121px;
-    letter-spacing: -0.04em;
-  }
+  font-size: 7.5rem;
+  font-weight: 700;
+  line-height: 121px;
+  letter-spacing: -0.04em;
 `;
 
-const SubTitle = styled.h2`
+const SubTitle = lens.h2({ m: 0, p: 0 })`
   position: relative;
-  margin: 0;
-  padding: 0;
-  && {
-    font-size: 2.25rem;
-    font-weight: 700;
-    line-height: 49px;
-    letter-spacing: -0.04em;
-  }
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 49px;
+  letter-spacing: -0.04em;
 `;
 
 const Button = styled(Link)`
