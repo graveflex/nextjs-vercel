@@ -11,7 +11,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function Page() {
   const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
-    endpoint: '/api/pages',
+    endpoint: '/api/payload/pages',
     params: {
       where: {
         'pageConfig.slug': {
