@@ -32,19 +32,29 @@ const BackgroundImage = styled(ResponsivePayloadImage)`
 
 // replace w/ `lens`
 const Title = lens.h1({ m: 0, p: 0 })`
+  text-align: center;
   position: relative;
-  font-size: 7.5rem;
+  font-size: 3rem;
   font-weight: 700;
-  line-height: 121px;
   letter-spacing: -0.04em;
+
+  ${({ theme: { mq } }) => mq.md`
+    font-size: 7.5rem;
+    line-height: 121px;
+  `};
 `;
 
 const SubTitle = lens.h2({ m: 0, p: 0 })`
   position: relative;
-  font-size: 2.25rem;
+  text-align: center;
   font-weight: 700;
-  line-height: 49px;
+  font-size: 1.75rem;
   letter-spacing: -0.04em;
+  ${({ theme: { mq } }) => mq.md`
+    font-size: 2.25rem;
+    line-height: 49px;
+  `};
+
 `;
 
 const Button = styled(Link)`
@@ -73,7 +83,7 @@ function HeroBlock({ title, subTitle, cta, background }: HeroBlockType) {
       {bg && <BackgroundImage image={bg} imageProps={{ objectFit: 'cover' }} />}
       {title && <Title>{title}</Title>}
       {subTitle && <SubTitle>{subTitle}</SubTitle>}
-      {cta && <Button href={cta.href}>{cta.label}</Button>}
+      {cta?.label && <Button href={cta?.href}>{cta?.label}</Button>}
     </Wrapper>
   );
 }

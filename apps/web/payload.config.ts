@@ -56,6 +56,32 @@ export default buildConfig({
       url: ({ data }) => {
         return `${WEB_URL}${data?.pageConfig?.slug}`;
       },
+      breakpoints: [
+        {
+          label: 'Mobile',
+          name: 'mobile',
+          width: 375,
+          height: 667
+        },
+        {
+          label: 'Tablet',
+          name: 'tablet',
+          width: 820,
+          height: 1180
+        },
+        {
+          label: 'Desktop',
+          name: 'desktop',
+          width: 1400,
+          height: 900
+        },
+        {
+          label: 'High Density',
+          name: 'density',
+          width: 2560,
+          height: 1600
+        }
+      ],
       collections: ['pages']
     }
   },

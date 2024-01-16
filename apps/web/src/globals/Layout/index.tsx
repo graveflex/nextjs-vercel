@@ -14,29 +14,53 @@ import type {
 } from '@web/payload/payload-types';
 
 const Header = styled.header`
-  padding: 1.625rem 2rem;
+  padding: 1.625rem 1rem;
   height: 96px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  ${({ theme: { mq } }) => mq.md`
+    padding: 1.625rem 2rem;
+  `};
 `;
 
 const Footer = styled.footer`
   padding: 0.75rem 2rem;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  nav {
+    flex-direction: column;
+  }
+
+  ${({ theme: { mq } }) => mq.md`
+    flex-direction: row;
+
+    nav {
+      flex-direction: row;
+    }
+  `};
 `;
 
 const Nav = styled.nav`
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 1rem;
+  ${({ theme: { mq } }) => mq.md`
+    gap: 1.75rem;
+  `};
 `;
 
 const Logo = styled(ResponsivePayloadImage)`
-  width: 200px;
-  height: 100%;
+  width: 0;
+  ${({ theme: { mq } }) => mq.md`
+    display: block;
+    width: 200px;
+    height: 100%;
+  `}
 `;
 
 const MenuLink = styled(Link)`
@@ -95,7 +119,7 @@ function Layout({ children, header, footer }: LayoutType) {
         {HeaderMenu}
       </Header>
       <main>{children}</main>
-      <Footer>
+      <Footer className="footer">
         {FooterMenu}
         {footer?.copyright && <Copyright>{footer.copyright}</Copyright>}
       </Footer>
