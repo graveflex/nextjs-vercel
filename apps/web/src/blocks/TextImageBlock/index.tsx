@@ -28,25 +28,38 @@ const Wrapper = styled.section`
 const InnerWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 42px 42px 1fr;
+  row-gap: 1rem;
 
-  & > div:first-child {
-    grid-column: 3 / 5;
-  }
-
-  & > div:last-child {
-    grid-column: 1;
-    grid-row: 1;
+  & > div {
+    grid-column: 1 / 5;
   }
 
   &.reverse {
+    & > div:last-child {
+      grid-row: 1;
+    }
+  }
+
+  ${({ theme: { mq } }) => mq.lg`
     & > div:first-child {
-      grid-column: 1 / 3;
+      grid-column: 3 / 5;
     }
 
     & > div:last-child {
-      grid-column: 4;
+      grid-column: 1;
+      grid-row: 1;
     }
-  }
+
+    &.reverse {
+      & > div:first-child {
+        grid-column: 1 / 3;
+      }
+
+      & > div:last-child {
+        grid-column: 4;
+      }
+    }
+  `};
 `;
 
 const ImageWrapper = styled(ResponsivePayloadImage)`
