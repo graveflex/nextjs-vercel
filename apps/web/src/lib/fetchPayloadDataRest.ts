@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import qs from 'qs';
 
 import { WEB_URL } from 'settings';
@@ -26,6 +27,8 @@ async function fetchPayloadDataRest<T>({
     addQueryPrefix: true
   })}`;
 
+  console.log('@--> fetching url', url);
+
   try {
     const res = await fetch(url, {
       next: { revalidate: 10, ...next },
@@ -36,6 +39,7 @@ async function fetchPayloadDataRest<T>({
     const { status } = res;
     if (status < 400) {
       const data = await res.json();
+      console.log('@--> returning data', data);
       return data;
     }
 

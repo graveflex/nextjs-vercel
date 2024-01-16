@@ -7,7 +7,6 @@ import fetchPayloadDataRest from '@web/lib/fetchPayloadDataRest';
 import type { Page } from '@web/payload/payload-types';
 
 export const revalidate = 60;
-export const dynamic = 'force-dynamic';
 
 export default async function Page() {
   const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
