@@ -9,7 +9,8 @@ import {
   BLOB_ENDPOINT_URL,
   BLOB_READ_WRITE_TOKEN,
   BLOB_STORE_ID,
-  POSTGRES_URL
+  POSTGRES_URL,
+  WEB_URL
 } from 'settings';
 
 import Images from '@web/collections/Images';
@@ -50,7 +51,13 @@ export default buildConfig({
     }
   },
   admin: {
-    user: Users.slug
+    user: Users.slug,
+    livePreview: {
+      url: ({ data }) => {
+        return `${WEB_URL}${data?.pageConfig?.slug}`;
+      },
+      collections: ['pages']
+    }
   },
   typescript: {
     outputFile: path.resolve(__dirname, './src/payload/payload-types.ts')
