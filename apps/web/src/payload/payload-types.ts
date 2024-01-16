@@ -30,25 +30,27 @@ export interface Config {
 export interface Page {
   id: number;
   pageConfig: PageConfigType;
-  blocks?: HeroBlockT[] | null;
+  blocks?: (TextImageBlockT | HeroBlockT)[] | null;
   updatedAt: string;
   createdAt: string;
 }
 export interface PageConfigType {
   slug: string;
 }
-export interface HeroBlockT {
+export interface TextImageBlockT {
   title?: string | null;
-  subTitle?: string | null;
-  cta: CTAType;
-  background?: number | Image | null;
+  content?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
+  image?: number | Image | null;
+  blockOptions?: {
+    contentSide?: ('left' | 'right') | null;
+  };
   id?: string | null;
   blockName?: string | null;
-  blockType: 'heroBlock';
-}
-export interface CTAType {
-  label: string;
-  href: string;
+  blockType: 'textImageBlock';
 }
 export interface Image {
   id: number;
@@ -103,6 +105,19 @@ export interface Image {
       filename?: string | null;
     };
   };
+}
+export interface HeroBlockT {
+  title?: string | null;
+  subTitle?: string | null;
+  cta: CTAType;
+  background?: number | Image | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroBlock';
+}
+export interface CTAType {
+  label: string;
+  href: string;
 }
 export interface User {
   id: number;

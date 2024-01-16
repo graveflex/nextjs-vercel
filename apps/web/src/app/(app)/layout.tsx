@@ -4,8 +4,9 @@ import React from 'react';
 import ThemeProvider from 'theme/src/ThemeProvider';
 
 import Layout from '@web/globals/Layout';
-import fetchPayloadData from '@web/lib/fetchPayloadData';
+import fetchPayloadDataRest from '@web/lib/fetchPayloadDataRest';
 import StyledComponentsRegistry from '@web/lib/StyledComponentRegistry';
+import type { Nav } from '@web/payload/payload-types';
 
 export const metadata = {
   title: 'Homepage',
@@ -13,11 +14,12 @@ export const metadata = {
 };
 
 export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 async function RootLayout({ children }: PropsWithChildren<object>) {
-  const data = await fetchPayloadData(async (client) =>
-    client.findGlobal({ slug: 'nav' })
-  );
+  const data = await fetchPayloadDataRest<Nav>({
+    endpoint: '/api/payload/globals/nav'
+  });
 
   if ('error' in data) {
     return null;
