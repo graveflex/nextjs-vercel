@@ -1,0 +1,18 @@
+# for PR deploys
+name: Create DB for PR Deployment
+on:
+  pull_request_target:
+    types: [opened]
+    branches: ['develop', 'preprod', 'main']
+
+jobs:
+  create-sync-database:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.opened == true
+    steps:
+      - name: Determine DB
+        run: echo 'Running against...'
+      - name: Create new DB in neon
+        run: echo 'Creating DB'
+      - name: Create deployment using vercel CI
+        run: echo 'Creating deployment'
