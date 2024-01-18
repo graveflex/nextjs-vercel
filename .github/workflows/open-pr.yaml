@@ -40,6 +40,8 @@ jobs:
       - name: Determine Base DB
         if: github.event.action == 'opened'
         id: set-base-db
+        env:
+          BASE_BRANCH: ${{ github.event.pull_request.base.ref }}
         run: |
           BASE_BRANCH=${{ github.event.pull_request.base.ref }}
           if [[ $BASE_BRANCH == develop ]]
