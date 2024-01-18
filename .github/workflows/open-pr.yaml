@@ -74,8 +74,8 @@ jobs:
     steps:
       - name: Get DB URL
         run: |
-          echo 'Current branch: ${{ GITHUB_HEAD_REF }}' 
-          $CURRENT_LABEL=${{ GITHUB_HEAD_REF }}
+          echo 'Current branch: ${GITHUB_HEAD_REF}' 
+          $CURRENT_LABEL=${GITHUB_HEAD_REF}
           $CURRENT_URL="${CURRENT_LABEL/\//%2F}"
           $CURRENT_DB_URL="${{ secrets.NEON_URL_BASE }}/${CURRENT_URL}"
 
