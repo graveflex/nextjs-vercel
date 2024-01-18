@@ -47,8 +47,6 @@ jobs:
             BASE_DB_URL="${{ secrets.NEON_BASE_URL }}/${BASE_URL}"
           fi
 
-          echo "BASE_DB_URL: ${BASE_DB_URL}"
-          echo "::add-mask::${BASE_DB_URL}" 
           echo "BASE_DB_URL=${BASE_DB_URL}" >> "$GITHUB_OUTPUT"
       - name: Echo Secret
         run: |
@@ -81,6 +79,4 @@ jobs:
           CURRENT_URL="${CURRENT_LABEL/\//%2F}"
           CURRENT_DB_URL="${{ secrets.NEON_BASE_URL }}/${CURRENT_URL}"
 
-          echo $CURRENT_DB_URL
-          echo "::add-mask::$CURRENT_DB_URL"
           echo "CURRENT_DB_URL=$CURRENT_DB_URL" >> "$GITHUB_OUTPUT"
