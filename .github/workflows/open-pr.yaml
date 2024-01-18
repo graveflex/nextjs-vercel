@@ -23,7 +23,7 @@ jobs:
       startsWith(github.head_ref, 'revert/') ||
       startsWith(github.head_ref, 'style/') ||
       startsWith(github.head_ref, 'test/')) &&
-      github.event.pull_request.action == opened
+      github.event.pull_request.action == 'opened'
     steps:
       - name: Determine Base DB
         id: set-base-db
@@ -79,7 +79,7 @@ jobs:
           echo "CURRENT_DB_URL=$CURRENT_DB_URL" >> "$GITHUB_ENV"
       - name: Pull env vars from Vercel
         run: |
-          npx vercel --token="${{ secrets.VERCEL_TOKEN }}" --scope graveflex env pull --environment=development --yes .env
+          npx vercel --token="${{ secrets.VERCEL_TOKEN }}" --scope graveflex env pull --yes --environment=development .env
       - name: Run Build
         run: |
           POSTGRES_URL=${{ env.CURRENT_DB_URL }} npx vercel --token=${{ secrets.VERCEL_TOKEN }} build
