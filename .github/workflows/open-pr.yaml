@@ -18,7 +18,6 @@ on:
 jobs:
   create-sync-database:
     runs-on: ubuntu-latest
-
     if: |
       (startsWith(github.head_ref, 'chore/') ||
       startsWith(github.head_ref, 'docs/') ||
@@ -28,7 +27,8 @@ jobs:
       startsWith(github.head_ref, 'refactor/') ||
       startsWith(github.head_ref, 'revert/') ||
       startsWith(github.head_ref, 'style/') ||
-      startsWith(github.head_ref, 'test/'))
+      startsWith(github.head_ref, 'test/')) &&
+      github.event.pull_request.action == 'opened'
     steps:
       - uses: actions/checkout@v4
         if: github.event.action == 'opened'
@@ -73,7 +73,6 @@ jobs:
           pg_dump -Fc -v -d ${{ env.BASE_DB_URL }} | pg_restore -v -x --no-owner -d "${{ env.CURRENT_DB_URL }}?sslmode=require"
 
   build-and-deploy:
-    needs: create-sync-database
     runs-on: ubuntu-latest
     needs: create-sync-database
     if: |
