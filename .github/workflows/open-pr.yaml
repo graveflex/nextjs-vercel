@@ -81,7 +81,7 @@ jobs:
           BASE_DB_URL="${{ secrets.NEON_BASE_URL }}/${BASE_URL}"
           # fi
 
-          echo ${BASE_DB_URL}
+          echo ${{ env.BASE_DB_URL }}
           echo "::add-mask::$BASE_DB_URL" 
           echo "BASE_DB_URL=$BASE_DB_URL" >> "$GITHUB_OUTPUT"
       - name: Echo Secret
