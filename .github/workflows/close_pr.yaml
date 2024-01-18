@@ -1,14 +1,12 @@
-# for PR deploys
+# for closing PRs and removing neon DB
 name: Create DB for PR Deployment
 on:
   pull_request_target:
-    types: [opened]
-    branches: ['develop', 'preprod', 'main']
+    types: [closed]
 
 jobs:
-  create-sync-database:
+  delete-database:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.opened == true
     steps:
       - name: Determine DB
         run: echo 'Running against...'
