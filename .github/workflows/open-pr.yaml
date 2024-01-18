@@ -80,7 +80,7 @@ jobs:
       - name: Pull env vars from Vercel
         run: |
           echo "Init pull"
-          npx vercel --token="${{ secrets.VERCEL_TOKEN }}" --scope graveflex env pull --yes
+          npx vercel --token="${{ secrets.VERCEL_TOKEN }}" pull --yes --environment=development
           echo "Env vars"
           npx vercel --token="${{ secrets.VERCEL_TOKEN }}" --scope graveflex env pull --yes --environment=development .env
       - name: Run Build
