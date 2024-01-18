@@ -68,6 +68,8 @@ jobs:
         env:
           BASE_BRANCH: ${{ github.event.pull_request.base.ref }}
         run: |
+          BASE_URL=""
+          BASE_DB_URL=""
           if [[ -z ${{ env.BASE_BRANCH }} == develop ]]; then
             BASE_DB_URL=${{ secrets.MAIN_DB_URL }} || ""
           elif [[ -z ${{ env.BASE_BRANCH }} == preprod ]]; then
@@ -79,7 +81,7 @@ jobs:
             BASE_DB_URL="${{ secrets.NEON_BASE_URL }}/${BASE_URL}"
           fi
 
-          echo "${BASE_DB_URL}"
+          echo ${BASE_DB_URL}
           echo "::add-mask::$BASE_DB_URL" 
           echo "BASE_DB_URL=$BASE_DB_URL" >> "$GITHUB_OUTPUT"
       - name: Echo Secret
@@ -109,9 +111,9 @@ jobs:
       - name: Get DB URL
         run: |
           echo 'Current branch: ${{ github.event.pull_request.head.ref }}' 
-          $CURRENT_LABEL=${{ github.head.ref }}
-          echo $CURRENT_URL="${${CURRENT_LABEL}/\//%2F}"
-          $CURRENT_DB_URL="${{ secrets.NEON_BASE_URL }}/${CURRENT_URL}"
+          CURRENT_LABEL=${{ github.event.pull_request.head.ref }}
+          CURRENT_URL="${${CURRENT_LABEL}/\//%2F}"
+          CURRENT_DB_URL="${{ secrets.NEON_BASE_URL }}/${CURRENT_URL}"
 
           echo $CURRENT_DB_URL
           echo "::add-mask::$CURRENT_DB_URL"
