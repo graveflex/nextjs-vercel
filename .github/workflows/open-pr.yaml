@@ -15,6 +15,16 @@ jobs:
   create-sync-database:
     runs-on: ubuntu-latest
     # if: github.event.pull_request.action == 'opened'
+    if: |
+      (startsWith(github.head_ref, 'chore/') ||
+      startsWith(github.head_ref, 'docs/') ||
+      startsWith(github.head_ref, 'feat/') ||
+      startsWith(github.head_ref, 'fix/') ||
+      startsWith(github.head_ref, 'perf/') ||
+      startsWith(github.head_ref, 'refactor/') ||
+      startsWith(github.head_ref, 'revert/') ||
+      startsWith(github.head_ref, 'style/') ||
+      startsWith(github.head_ref, 'test/'))
     steps:
       - name: Determine DB
         run: |
@@ -51,6 +61,16 @@ jobs:
 
   build-and-deploy:
     runs-on: ubuntu-latest
+    if: |
+      (startsWith(github.head_ref, 'chore/') ||
+      startsWith(github.head_ref, 'docs/') ||
+      startsWith(github.head_ref, 'feat/') ||
+      startsWith(github.head_ref, 'fix/') ||
+      startsWith(github.head_ref, 'perf/') ||
+      startsWith(github.head_ref, 'refactor/') ||
+      startsWith(github.head_ref, 'revert/') ||
+      startsWith(github.head_ref, 'style/') ||
+      startsWith(github.head_ref, 'test/'))
     steps:
       - name: Get DB URL
         run: |
