@@ -27,20 +27,18 @@ jobs:
     steps:
       - name: Determine DB
         run: |
-          echo 'Running against: ${{ github.event.pull_request.base.label }}'
+          echo 'Running against: ${{ env.GITHUB_BASE_REF }}'
       - name: Determine Base DB
         id: set-base-db
-        env:
-          BASE_BRANCH: ${{ github.event.pull_request.base.label }}
         run: |
-          if [[ -z ${BASE_BRANCH} == "develop" ]]; then
+          if [[ -z ${{ env.GITHUB_BASE_REF }} == "develop" ]]; then
             $BASE_DB_URL=${{ secrets.DEVELOP_DB_URL }}
-          elif [[ -z $BASE_BRANCH == "preprod" ]]; then
+          elif [[ -z ${{ env.GITHUB_BASE_REF }} == "preprod" ]]; then
             $BASE_DB_URL=${{ secrets.PREPROD_DB_URL }}
-          elif [[ -z $BASE_BRANCH == "main" ]]; then
+          elif [[ -z ${{ env.GITHUB_BASE_REF }} == "main" ]]; then
             $BASE_DB_URL=${{ secrets.MAIN_DB_URL }}
           else
-            $BASE_LABEL=${{ github.event.pull_request.base.label }}
+            $BASE_LABEL=${{ env.GITHUB_BASE_REF }}
             $BASE_URL="${BASE_LABEL/\//%2F}"
             $BASE_DB_URL="${{ secrets.NEON_URL_BASE }}/${BASE_URL}"
           fi
@@ -74,8 +72,8 @@ jobs:
     steps:
       - name: Get DB URL
         run: |
-          echo 'Current branch: ${GITHUB_HEAD_REF}' 
-          $CURRENT_LABEL=${GITHUB_HEAD_REF}
+          echo 'Current branch: ${{ env.GITHUB_HEAD_REF }}' 
+          $CURRENT_LABEL=${{ env.GITHUB_HEAD_REF }}
           $CURRENT_URL="${CURRENT_LABEL/\//%2F}"
           $CURRENT_DB_URL="${{ secrets.NEON_URL_BASE }}/${CURRENT_URL}"
 
