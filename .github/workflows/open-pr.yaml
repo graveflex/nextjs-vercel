@@ -7,18 +7,9 @@ env:
   NEON_PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }}
   NEON_BASE_URL: ${{ secrets.NEON_BASE_URL }}
 on:
-  pull_request_target:
+  pull_request:
     types: [opened, synchronize]
-    branches:
-      -'chore/**'
-      -'docs/**'
-      -'fix/**'
-      -'feat/**'
-      -'perf/**'
-      -'refactor/**'
-      -'revert/**'
-      -'style/**'
-      -'test/**'
+    branches: ['chore/**', 'docs/**', 'fix/**', 'feat/**', 'perf/**', 'refactor/**', 'revert/**', 'style/**', 'test/**']
 
 jobs:
   create-sync-database:
