@@ -1,5 +1,8 @@
 # for closing PRs and removing neon DB
-name: Create DB for PR Deployment
+name: Delete DB for PR Deployment
+env:
+  NEON_API_KEY: ${{ secrets.NEON_API_KEY }}
+  NEON_PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }}
 on:
   pull_request_target:
     types: [closed]
@@ -7,10 +10,23 @@ on:
 jobs:
   delete-database:
     runs-on: ubuntu-latest
+    if: |
+      (startsWith(github.head_ref, 'chore/') ||
+      startsWith(github.head_ref, 'docs/') ||
+      startsWith(github.head_ref, 'feat/') ||
+      startsWith(github.head_ref, 'fix/') ||
+      startsWith(github.head_ref, 'perf/') ||
+      startsWith(github.head_ref, 'refactor/') ||
+      startsWith(github.head_ref, 'revert/') ||
+      startsWith(github.head_ref, 'style/') ||
+      startsWith(github.head_ref, 'test/'))
     steps:
-      - name: Determine DB
-        run: echo 'Running against...'
-      - name: Create new DB in neon
-        run: echo 'Creating DB'
-      - name: Create deployment using vercel CI
-        run: echo 'Creating deployment'
+      - name: Determine DB Name
+        run: |
+          CURRENT_BRANCH=${{ github.event.pull_request.head.ref }}
+          echo "BRANCH_NAME=${BRANCH_NAME}" >> "$GITHUB_ENV"
+
+      - name: Delete DB
+        run: |
+          echo "Deleting DB: ${{ env.BRANCH_NAME }}"
+          npx neonctl databases delete ${{ env.BRANCH_NAME }} --project-id='${{ secrets.NEON_PROJECT_ID }}' --branch=main --api-key='${{ secrets.NEON_API_KEY }}'
