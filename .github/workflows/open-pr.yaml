@@ -79,6 +79,9 @@ jobs:
           echo "CURRENT_DB_URL=$CURRENT_DB_URL" >> "$GITHUB_ENV"
       - name: Pull env vars from Vercel
         run: |
+          echo "Init pull"
+          npx vercel --token="${{ secrets.VERCEL_TOKEN }}" --scope graveflex env pull --yes
+          echo "Env vars"
           npx vercel --token="${{ secrets.VERCEL_TOKEN }}" --scope graveflex env pull --yes --environment=development .env
       - name: Run Build
         run: |
