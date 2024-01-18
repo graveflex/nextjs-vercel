@@ -77,11 +77,11 @@ jobs:
           # elif [[ -z ${{ env.BASE_BRANCH }} == main ]]; then
           #   BASE_DB_URL=${{ secrets.MAIN_DB_URL }}
           # else
-          BASE_URL="${${{ env.BASE_BRANCH }}/\//%2F}"
+          BASE_URL={${{ env.BASE_BRANCH }}/\//%2F}
           BASE_DB_URL="${{ secrets.NEON_BASE_URL }}/${BASE_URL}"
           # fi
 
-          echo ${{ env.BASE_DB_URL }}
+          echo "${{ env.BASE_DB_URL }}"
           echo "::add-mask::$BASE_DB_URL" 
           echo "BASE_DB_URL=$BASE_DB_URL" >> "$GITHUB_OUTPUT"
       - name: Echo Secret
