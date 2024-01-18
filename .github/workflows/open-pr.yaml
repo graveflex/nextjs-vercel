@@ -77,8 +77,9 @@ jobs:
           # elif [[ -z ${{ env.BASE_BRANCH }} == main ]]; then
           #   BASE_DB_URL=${{ secrets.MAIN_DB_URL }}
           # else
-          BASE_URL="${${{ env.BASE_BRANCH }}/\//%2F}"
-          echo "$BASE_URL below: ${BASE_URL}"
+          BASE_BRANCH=${{ github.event.pull_request.base.ref }}
+          BASE_URL="${BASE_BRANCH/\//%2F}"
+          echo "BASE_URL: ${BASE_URL}"
           BASE_DB_URL="${{ secrets.NEON_BASE_URL }}/${BASE_URL}"
           # fi
 
@@ -113,7 +114,7 @@ jobs:
         run: |
           echo 'Current branch: ${{ github.event.pull_request.head.ref }}' 
           CURRENT_LABEL=${{ github.event.pull_request.head.ref }}
-          CURRENT_URL="${CURRENT_LABEL/\//%2F}}"
+          CURRENT_URL="${CURRENT_LABEL/\//%2F}"
           CURRENT_DB_URL="${{ secrets.NEON_BASE_URL }}/${CURRENT_URL}"
 
           echo $CURRENT_DB_URL
