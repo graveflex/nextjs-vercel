@@ -78,8 +78,7 @@ jobs:
       - name: Get DB URL
         run: |
           CURRENT_BRANCH=${{ github.event.pull_request.head.ref }}
-          DB_NAME="${CURRENT_BRANCH/\//%2F}"
-          CURRENT_DB_URL="${{ secrets.NEON_BASE_URL }}/${DB_NAME}"
+          CURRENT_DB_URL="${{ secrets.NEON_BASE_URL }}/${CURRENT_BRANCH}"
 
           echo "CURRENT_DB_URL=$CURRENT_DB_URL" >> "$GITHUB_ENV"
       - name: Pull env vars from Vercel
