@@ -16,9 +16,12 @@ export default defineConfig(async () => {
     NEXT_PORT: null,
     DOCS_PORT: null,
     LOCAL: 'false',
+    POSTGRES_URL: null,
+    PAYLOAD_SECRET: null,
     VERCEL_GIT_PULL_REQUEST_ID: null,
     VERCEL_GIT_COMMIT_REF: null,
     PORT: null,
+    BLOB_READ_WRITE_TOKEN: null,
     BLOB_ENDPOINT_URL: null,
     BLOB_STORE_ID: null
   });

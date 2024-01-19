@@ -4,6 +4,19 @@ import { LOCAL_DOMAIN, NEXT_PORT, PROJECT_NAME } from '../index';
 import { getWebUrl } from '../utils';
 
 describe('local urls', () => {
+  it('Should add sslmode=require in production environment when LOCAL is false', async () => {
+    process.env.NODE_ENV = 'production';
+    process.env.LOCAL = 'false';
+    process.env.POSTGRES_URL = 'postgres://localhost:5432/next-payload';
+
+    const { getPostgresUrl } = await import('../utils');
+    const POSTGRES_URL = getPostgresUrl();
+
+    const expectedUrl =
+      'postgres://localhost:5432/next-payload?sslmode=require';
+    expect(POSTGRES_URL).toEqual(expectedUrl);
+  });
+
   it('Returns Web url', () => {
     const result = getWebUrl({
       projectName: PROJECT_NAME,

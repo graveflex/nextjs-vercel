@@ -1,11 +1,10 @@
-import dotenv from 'dotenv';
 import { getPayload, type Payload } from 'payload/dist/payload';
+
+import { PAYLOAD_SECRET } from 'settings';
 
 import config from '../../payload.config';
 
-dotenv.config({ path: `${__dirname}/../../../.env` });
-
-if (!process.env.PAYLOAD_SECRET) {
+if (!PAYLOAD_SECRET) {
   throw new Error('PAYLOAD_SECRET environment variable is missing');
 }
 
@@ -34,7 +33,7 @@ const getPayloadClient = async (): Promise<Payload> => {
 
   if (!cached.promise) {
     cached.promise = getPayload({
-      secret: process.env.PAYLOAD_SECRET || '',
+      secret: PAYLOAD_SECRET || '',
       config
     });
   }
