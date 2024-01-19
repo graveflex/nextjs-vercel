@@ -69,7 +69,7 @@ jobs:
           CURRENT_DB_URL="${{ secrets.NEON_BASE_URL }}/${CURRENT_URL}"
 
           echo "CURRENT_DB_URL=${CURRENT_DB_URL}" >> "$GITHUB_ENV"
-          npx neonctl databases create --project-id='${{ secrets.NEON_PROJECT_ID }}' --branch=main --name='${BRANCH_NAME}' --api-key='${{ secrets.NEON_API_KEY }}'
+          npx neonctl databases create --project-id='${{ secrets.NEON_PROJECT_ID }}' --branch=main --name=${BRANCH_NAME} --api-key='${{ secrets.NEON_API_KEY }}'
       - name: Copy DB
         run: |
           pg_dump -Fc -v -d ${{ env.BASE_DB_URL }} | pg_restore -v -d "${{ env.CURRENT_DB_URL }}?sslmode=require"
