@@ -45,3 +45,9 @@ export const getWebUrl = ({
     BRANCH
   )}-${ORG}.vercel.app`;
 };
+
+export const getPostgresUrl = () => {
+  return process.env.NODE_ENV === 'production' && process.env.LOCAL === 'false'
+    ? `${process.env.POSTGRES_URL}?sslmode=require`
+    : process.env.POSTGRES_URL;
+};
