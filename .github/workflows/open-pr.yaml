@@ -61,7 +61,7 @@ jobs:
           npx neonctl databases create --project-id='${{ secrets.NEON_PROJECT_ID }}' --branch=main --name=${BRANCH_NAME} --api-key='${{ secrets.NEON_API_KEY }}'
       - name: Copy DB
         run: |
-          pg_dump -Fc -v -d -x ${{ env.BASE_DB_URL }} | pg_restore -v -d "${{ env.CURRENT_DB_URL }}?sslmode=require"
+          pg_dump -Fc -v -d ${{ env.BASE_DB_URL }} | pg_restore -v -d -x -O "${{ env.CURRENT_DB_URL }}?sslmode=require"
 
   build-and-deploy:
     runs-on: ubuntu-latest
