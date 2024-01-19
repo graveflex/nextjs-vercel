@@ -26,13 +26,11 @@ jobs:
       startsWith(github.head_ref, 'test/')) &&
       github.event.action == 'opened'
     steps:
-      - name: Set up PostgreSQL
-        run: |
-          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-          wget -qO- https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo tee /etc/apt/trusted.gpg.d/pgdg.asc &>/dev/null
-          sudo apt update
-          sudo apt-get install postgresql libpq-dev
-          sudo service postgresql start
+      - uses: actions/checkout@v4
+      - name: Setup PostgreSQL
+        uses: tj-actions/install-postgresql@v3
+        with:
+          postgresql-version: 15
       - name: Determine Base DB
         id: set-base-db
         run: |
