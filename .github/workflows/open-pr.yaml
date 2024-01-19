@@ -104,4 +104,4 @@ jobs:
           POSTGRES_URL=${{ env.CURRENT_DB_URL }} npx vercel --token=${{ secrets.VERCEL_TOKEN }} build
       - name: Deploy
         run: |
-          POSTGRES_URL=${{ env.CURRENT_DB_URL }} npx vercel --token=${{ secrets.VERCEL_TOKEN }} deploy --prebuilt
+          npx vercel --token=${{ secrets.VERCEL_TOKEN }} --build-env POSTGRES_URL=${{ env.CURRENT_DB_URL }} --env POSTGRES_URL=${{ env.CURRENT_DB_URL }} deploy --prebuilt
