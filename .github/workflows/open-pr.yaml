@@ -13,22 +13,6 @@ on:
 jobs:
   create-sync-database:
     runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres
-
-        env:
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_USER: postgres
-          POSTGRES_DB: postgres
-
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
 
     if: |
       (startsWith(github.head_ref, 'chore/') ||
@@ -42,6 +26,10 @@ jobs:
       startsWith(github.head_ref, 'test/')) &&
       github.event.action == 'opened'
     steps:
+      - name: Set up PostgreSQL
+        run: |
+          sudo apt-get install postgresql libpq-dev
+          sudo service postgresql start
       - name: Determine Base DB
         id: set-base-db
         run: |
