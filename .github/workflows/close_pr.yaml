@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Determine DB Name
         run: |
-          CURRENT_BRANCH=${{ github.event.pull_request.head.ref }}
+          BRANCH_NAME=${{ github.event.pull_request.head.ref }}
           echo "BRANCH_NAME=${BRANCH_NAME}" >> "$GITHUB_ENV"
 
       - name: Delete DB
