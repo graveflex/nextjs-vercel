@@ -70,6 +70,11 @@ jobs:
       startsWith(github.head_ref, 'style/') ||
       startsWith(github.head_ref, 'test/'))
     steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18.0.0
+
       - name: Get DB URL
         run: |
           CURRENT_BRANCH=${{ github.event.pull_request.head.ref }}
