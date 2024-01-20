@@ -1,5 +1,3 @@
-// @vitest-environment ../environments/local.ts
-
 import { LOCAL_DOMAIN, NEXT_PORT, PROJECT_NAME } from '../index';
 import { getWebUrl } from '../utils';
 

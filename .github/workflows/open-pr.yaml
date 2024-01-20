@@ -99,9 +99,6 @@ jobs:
           npx vercel --token="${{ secrets.VERCEL_TOKEN }}" pull --yes --environment=development
           echo "Env vars"
           npx vercel --token="${{ secrets.VERCEL_TOKEN }}" --scope graveflex env pull --yes --environment=development .env
-      - name: Run Build
-        run: |
-          POSTGRES_URL=${{ env.CURRENT_DB_URL }} npx vercel --token=${{ secrets.VERCEL_TOKEN }} build
       - name: Deploy
         run: |
-          npx vercel --token=${{ secrets.VERCEL_TOKEN }} --build-env POSTGRES_URL=${{ env.CURRENT_DB_URL }} --env POSTGRES_URL=${{ env.CURRENT_DB_URL }} deploy --prebuilt
+          npx vercel --token=${{ secrets.VERCEL_TOKEN }} deploy --build-env POSTGRES_URL=${{ env.CURRENT_DB_URL }} --build-env IS_PREVIEW=true --env POSTGRES_URL=${{ env.CURRENT_DB_URL }} --env IS_PREVIEW=true

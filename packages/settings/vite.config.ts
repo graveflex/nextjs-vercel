@@ -16,6 +16,8 @@ export default defineConfig(async () => {
     NEXT_PORT: null,
     DOCS_PORT: null,
     LOCAL: 'false',
+    IS_PREVIEW: 'false',
+    VERCEL_URL: null,
     VERCEL_GIT_PULL_REQUEST_ID: null,
     VERCEL_GIT_COMMIT_REF: null,
     PORT: null,
