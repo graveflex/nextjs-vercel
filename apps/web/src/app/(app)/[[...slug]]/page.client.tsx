@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { useLivePreview } from '@payloadcms/live-preview-react';
 
 import { WEB_URL } from 'settings';
 
 import BlocksRenderer from '@web/components/BlocksRenderer';
+import useLivePreview from '@web/hooks/useLivePreview';
 import type { Page } from '@web/payload/payload-types';
 
 function PageTemplate({ page }: { page: Page }) {
