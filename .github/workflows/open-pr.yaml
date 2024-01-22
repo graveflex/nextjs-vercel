@@ -111,5 +111,5 @@ jobs:
           message: |
             | Name | URL |
             | ---- | --- |
-            | Preview | ${{ env.deployment-url }} |
-            | Admin | ${{ env.deployment-url }}/admin |
+            | Preview | ${{ env.deploymentUrl }} |
+            | Admin | ${{ env.deploymentUrl }}/admin |
