@@ -101,7 +101,7 @@ jobs:
         id: deploy
         run: |
           npx vercel --token=${{ secrets.VERCEL_TOKEN }} deploy --build-env POSTGRES_URL=${{ env.CURRENT_DB_URL }} --build-env IS_PREVIEW=true --env POSTGRES_URL=${{ env.CURRENT_DB_URL }} --env IS_PREVIEW=true > deployment-url.txt
-          echo "deploymentUrl=$(cat deployment-url.txt)" >> $GITHUB_OUTPUT
+          echo "deploymentUrl=$(cat deployment-url.txt)" >> $GITHUB_ENV
       - name: Add URL to PR
         uses: marocchino/sticky-pull-request-comment@v2
         with:
