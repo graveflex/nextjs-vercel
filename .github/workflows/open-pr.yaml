@@ -97,12 +97,19 @@ jobs:
           CURRENT_DB_URL="${{ secrets.NEON_BASE_URL }}/${CURRENT_BRANCH}"
 
           echo "CURRENT_DB_URL=$CURRENT_DB_URL" >> "$GITHUB_ENV"
-      - name: Pull env vars from Vercel
-        run: |
-          echo "Init pull"
-          npx vercel --token="${{ secrets.VERCEL_TOKEN }}" pull --yes --environment=development
-          echo "Env vars"
-          npx vercel --token="${{ secrets.VERCEL_TOKEN }}" --scope graveflex env pull --yes --environment=development .env
       - name: Deploy
+        id: deploy
         run: |
-          npx vercel --token=${{ secrets.VERCEL_TOKEN }} deploy --build-env POSTGRES_URL=${{ env.CURRENT_DB_URL }} --build-env IS_PREVIEW=true --env POSTGRES_URL=${{ env.CURRENT_DB_URL }} --env IS_PREVIEW=true
+          npx vercel --token=${{ secrets.VERCEL_TOKEN }} deploy --build-env POSTGRES_URL=${{ env.CURRENT_DB_URL }} --build-env IS_PREVIEW=true --env POSTGRES_URL=${{ env.CURRENT_DB_URL }} --env IS_PREVIEW=true > deployment-url.txt
+          echo "deploymentUrl=$(cat deployment-url.txt)" >> $GITHUB_OUTPUT
+      - name: Add URL to PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ github.event.issue.number }}
+          header: pr-metadata
+          message: |
+            | Name | URL |
+            | ---- | --- |
+            | Preview | ${{ env.deployment-url }} |
+            | Admin | ${{ env.deployment-url }}/admin |
