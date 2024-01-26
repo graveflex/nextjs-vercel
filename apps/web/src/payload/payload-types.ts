@@ -38,6 +38,9 @@ export interface PageConfigType {
   slug: string;
 }
 export interface TextImageBlockT {
+  blockConfig?: {
+    layout?: ('bg' | 'imgRightFull' | 'imgLeftFull' | 'imgRight' | 'imgLeft') | null;
+  };
   title?: string | null;
   content?:
     | {
@@ -107,13 +110,26 @@ export interface Image {
   };
 }
 export interface HeroBlockT {
+  blockConfig?: {
+    layout?: ('bg' | 'imgRightFull' | 'imgLeftFull' | 'imgRight' | 'imgLeft') | null;
+  };
+  image?: number | Image | null;
+  eyebrow?: string | null;
   title?: string | null;
-  subTitle?: string | null;
+  subTitle?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
+  input?: InputType;
   cta: CTAType;
-  background?: number | Image | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroBlock';
+}
+export interface InputType {
+  placeholder?: string | null;
+  type?: 'text' | null;
 }
 export interface CTAType {
   label: string;
