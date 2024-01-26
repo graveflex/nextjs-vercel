@@ -16,7 +16,5 @@ export default meta;
 type Story = StoryObj<WrapperType>;
 
 export const Defaults: Story = {
-  args: {
-    placeholder: 'Enter text here'
-  }
+  args: {}
 };

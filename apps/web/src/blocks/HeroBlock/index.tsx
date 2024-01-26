@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import lens from '@refract-ui/sc/lens';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
 import RichText from '@web/components/RichText';
@@ -130,7 +130,6 @@ const ContentWrapper = styled.div`
 const SubTitle = styled(RichText)``;
 
 const InputWrapper = styled.div`
-  ${({ theme }) => console.log('@--> theme', theme)}
   display: flex;
   gap: 20px;
 `;

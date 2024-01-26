@@ -1,5 +1,6 @@
 'use client';
 
+import type { PropsWithChildren } from 'react';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -20,9 +21,7 @@ const Container = styled.section`
 // - [ ] margin
 // - [ ] change at breakpoints
 
-export type WrapperType = {
-  placeholder?: string;
-};
+export type WrapperType = PropsWithChildren;
 
 function Wrapper({ children, ...props }) {
   return <Container {...props}>{children}</Container>;

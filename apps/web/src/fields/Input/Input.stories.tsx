@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { InputType } from '.';
+import type { InputType } from '@web/payload/payload-types';
+
 import Input from '.';
 
 const meta: Meta<InputType> = {
