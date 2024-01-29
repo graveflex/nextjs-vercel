@@ -4,16 +4,12 @@ import { render } from '@testing-library/react';
 
 import projectAnnotations from 'ui/utils/testSetup';
 
-import * as stories from '../HeroBlock.stories';
+import * as stories from '../Wrapper.stories';
 
-const { Defaults, MissingProps } = composeStories(stories, projectAnnotations);
+const { Defaults } = composeStories(stories, projectAnnotations);
 
-describe('HeroBlock', () => {
+describe('Wrapper', () => {
   it('component mounts', () => {
     render(<Defaults />);
-  });
-
-  it('component mounts missing optional props', () => {
-    render(<MissingProps />);
   });
 });

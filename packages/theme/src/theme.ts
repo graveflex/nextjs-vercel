@@ -2,6 +2,9 @@ import { theme } from '@refract-ui/sc';
 
 import satoshi from '../fonts';
 
+import borders from './borders';
+import elements from './elements';
+
 const textSizes = {
   '-1': 0.75, // 12px
   '0': 0.875, // 14px
@@ -11,50 +14,145 @@ const textSizes = {
   '4': 2, // 32px
   '5': 2.5, // 40px
   '6': 3, // 48px
-  '7': 4
+  '7': 4,
+  display1: 4.0625, // 65px
+  h1: 2.875, // 46px
+  h2: 2, // 32px
+  h3: 1.5, // 24px
+  h4: 1.125, // 18px
+  h5: 1, // 16px
+  h6: 0.875 // 14px
 };
 
-const defaultTheme = theme({
-  fontStacks: {
-    sans: [satoshi.style.fontFamily]
+const textVariants = {
+  display1: {
+    stack: 'sans',
+    weight: '600',
+    size: 'display1'
   },
-  textSizes,
-  textVariants: {
-    menuLink: {
-      stack: 'sans',
-      color: 'white',
-      weight: '400',
-      size: 1
-    }
+  h1: {
+    stack: 'sans',
+    weight: '600',
+    size: 'h1'
   },
-  colors: {
-    yellow: '#FEF600',
-    gray: '#3A3A3A',
-    black: '#000',
-    white: '#FFF'
+  h2: {
+    stack: 'sans',
+    weight: '600',
+    size: 'h2'
   },
-  themeColors: ({ colors }) => ({
-    primary: colors.yellow
-  }),
-  fontVariants: {
-    heading1: {
-      fontSize: '5.75rem',
-      lineHeight: 5.689375
+  h3: {
+    stack: 'sans',
+    weight: '600',
+    size: 'h3'
+  },
+  h4: {
+    stack: 'sans',
+    weight: '600',
+    size: 'h4'
+  },
+  h5: {
+    stack: 'sans',
+    weight: '600',
+    size: 'h5'
+  },
+  h6: {
+    stack: 'sans',
+    weight: '600',
+    size: 'h6'
+  },
+  paragraphBigBold: {
+    stack: 'sans',
+    weight: '600',
+    height: '1.35',
+    size: 1
+  },
+  paragraphBig: {
+    stack: 'sans',
+    weight: '400',
+    height: '1.35',
+    size: 1
+  },
+  paragraphBold: {
+    stack: 'sans',
+    weight: '600',
+    height: '1.18',
+    size: 0
+  },
+  p: {
+    stack: 'sans',
+    weight: '400',
+    height: '1.18',
+    size: 0
+  },
+  paragraph: {
+    stack: 'sans',
+    weight: '400',
+    height: '1.18',
+    size: 0
+  },
+  paragraphSmallBold: {
+    stack: 'sans',
+    weight: '600',
+    height: '1.35',
+    size: -1
+  },
+  paragraphSmall: {
+    stack: 'sans',
+    weight: '400',
+    height: '1.35',
+    size: -1
+  },
+  menuLink: {
+    stack: 'sans',
+    weight: '400',
+    size: 1
+  }
+};
+
+const defaultTheme = theme(
+  {
+    fontStacks: {
+      sans: [satoshi.style.fontFamily]
     },
-    heading2: {
-      fontSize: '3.75rem',
-      lineHeight: 3
+    textSizes,
+    textVariants: ({ textVariants: defaultVariants }) => {
+      return {
+        ...defaultVariants,
+        ...textVariants
+      };
     },
-    heading3: {
-      fontSize: '2.8125rem',
-      lineHeight: 3
+    colors: {
+      yellow: '#FEF600',
+      gray: '#3A3A3A',
+      black: '#000',
+      white: '#FFF'
     },
-    body: {
-      fontSize: '1.5rem',
-      lineHeight: 1.5625
+    colorTokens: ({ colors }) => ({
+      bg: colors.white,
+      fg: colors.black
+    }),
+    themeColors: {
+      primary: '#3A41E3',
+      secondary: '#7A7A7A',
+      warning: '#F0AD00',
+      success: '#1AB96D',
+      danger: '#FD0505'
+    },
+    borders: ({ borders: defaultBorders }) => ({
+      ...defaultBorders,
+      ...borders
+    }),
+    elements: ({ elements: defaultElements }) => ({
+      ...defaultElements,
+      ...elements
+    })
+  },
+  {
+    sm: {
+      textVariants
     }
   }
-});
+);
 
 export type RefractTheme = typeof defaultTheme;
 

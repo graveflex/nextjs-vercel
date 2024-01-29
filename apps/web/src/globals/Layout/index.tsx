@@ -56,6 +56,9 @@ const Nav = styled.nav`
 
 const Logo = styled(ResponsivePayloadImage)`
   width: 0;
+  img {
+    object-fit: contain;
+  }
   ${({ theme: { mq } }) => mq.md`
     display: block;
     width: 200px;

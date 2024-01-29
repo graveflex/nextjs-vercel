@@ -7,7 +7,6 @@ describe.skip('preview urls', () => {
   const vercelUrl = 'nextjs-vercel-monorepo-test-graveflex.vercel.app';
   vi.stubEnv('VERCEL_URL', vercelUrl);
   vi.stubEnv('IS_PREVIEW', 'true');
-  console.log('@--> process', process.env.IS_PREVIEW);
   it('Returns Web URL when VERCEL_URL is specified', () => {
     const result = getWebUrl({
       projectName: PROJECT_NAME,
