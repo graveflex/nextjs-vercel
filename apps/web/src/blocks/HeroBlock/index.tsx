@@ -99,6 +99,7 @@ const ContentWrapper = styled.div`
 
   &.bg {
     padding: 120px 50px;
+    color: ${({ theme }) => theme.colorTokens.bg};
   }
 
   &.imgRight,
@@ -132,6 +133,7 @@ const SubTitle = styled(RichText)``;
 const InputWrapper = styled.div`
   display: flex;
   gap: 20px;
+  margin-top: 1rem;
 `;
 
 const Button = styled(Link)``;
@@ -155,14 +157,16 @@ function HeroBlock({
         {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
         {title && <Title>{title}</Title>}
         {subTitle && <SubTitle content={subTitle} />}
-        <InputWrapper>
-          {input?.type && <Input {...input} />}
-          {cta?.label && (
-            <Button href={cta?.href} className="button">
-              {cta?.label}
-            </Button>
-          )}
-        </InputWrapper>
+        {(input || cta) && (
+          <InputWrapper>
+            {input?.type && <Input {...input} />}
+            {cta?.label && (
+              <Button href={cta?.href} className="button">
+                {cta?.label}
+              </Button>
+            )}
+          </InputWrapper>
+        )}
       </ContentWrapper>
     </StyledWrapper>
   );

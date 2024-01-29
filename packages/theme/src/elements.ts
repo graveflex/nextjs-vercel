@@ -12,7 +12,9 @@ export const buttonHover = {
 export const textInput = {
   bg: 'bg',
   c: 'fg',
-  b: 'textInput'
+  b: 'textInput',
+  pv: 4,
+  ph: 6
 };
 
 export const textInputFocus = {
