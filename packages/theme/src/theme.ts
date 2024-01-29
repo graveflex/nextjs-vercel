@@ -122,8 +122,6 @@ const defaultTheme = theme(
       };
     },
     colors: {
-      yellow: '#FEF600',
-      gray: '#3A3A3A',
       black: '#000',
       white: '#FFF'
     },
@@ -155,5 +153,48 @@ const defaultTheme = theme(
 );
 
 export type RefractTheme = typeof defaultTheme;
+
+export const darkTheme = theme(
+  {
+    fontStacks: {
+      sans: [satoshi.style.fontFamily]
+    },
+    textSizes,
+    textVariants: ({ textVariants: defaultVariants }) => {
+      return {
+        ...defaultVariants,
+        ...textVariants
+      };
+    },
+    colors: {
+      black: '#000',
+      white: '#FFF'
+    },
+    colorTokens: ({ colors }) => ({
+      bg: colors.black,
+      fg: colors.white
+    }),
+    themeColors: {
+      primary: '#3A41E3',
+      secondary: '#7A7A7A',
+      warning: '#F0AD00',
+      success: '#1AB96D',
+      danger: '#FD0505'
+    },
+    borders: ({ borders: defaultBorders }) => ({
+      ...defaultBorders,
+      ...borders
+    }),
+    elements: ({ elements: defaultElements }) => ({
+      ...defaultElements,
+      ...elements
+    })
+  },
+  {
+    sm: {
+      textVariants
+    }
+  }
+);
 
 export default defaultTheme;

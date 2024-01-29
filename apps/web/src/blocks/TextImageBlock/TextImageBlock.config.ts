@@ -1,9 +1,12 @@
 import type { Block } from 'payload/types';
 
+import BlockConfig from '@web/payload/fields/BlockConfig';
+
 const TextImageBlock: Block = {
   slug: 'textImageBlock',
   interfaceName: 'TextImageBlockT',
   fields: [
+    BlockConfig(),
     {
       type: 'text',
       name: 'title',

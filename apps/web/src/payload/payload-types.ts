@@ -39,7 +39,7 @@ export interface PageConfigType {
 }
 export interface TextImageBlockT {
   blockConfig?: {
-    layout?: ('bg' | 'imgRightFull' | 'imgLeftFull' | 'imgRight' | 'imgLeft') | null;
+    theme?: ('light' | 'dark') | null;
   };
   title?: string | null;
   content?:
@@ -111,7 +111,8 @@ export interface Image {
 }
 export interface HeroBlockT {
   blockConfig?: {
-    layout?: ('bg' | 'imgRightFull' | 'imgLeftFull' | 'imgRight' | 'imgLeft') | null;
+    theme?: ('light' | 'dark') | null;
+    layout?: ('bg' | 'imgRight' | 'imgLeft' | 'imgRightFull' | 'imgLeftFull') | null;
   };
   image?: number | Image | null;
   eyebrow?: string | null;
