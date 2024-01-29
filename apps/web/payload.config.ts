@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { slateEditor } from '@payloadcms/richtext-slate';
@@ -56,6 +57,8 @@ export default buildConfig({
     user: Users.slug,
     livePreview: {
       url: ({ data }) => {
+        console.log('@--> slug', data?.pageConfig?.slug);
+        console.log('@--> WEB_URL', WEB_URL);
         return `${WEB_URL}${data?.pageConfig?.slug}`;
       },
       breakpoints: [
