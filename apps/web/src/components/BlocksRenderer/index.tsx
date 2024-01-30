@@ -1,6 +1,9 @@
 import type { ComponentType } from 'react';
 import React from 'react';
 import dynamic from 'next/dynamic';
+import { SubTheme } from '@refract-ui/sc/lens';
+
+import { themeList } from 'theme/src/theme';
 
 import type { Page } from '@web/payload/payload-types';
 
@@ -20,8 +23,18 @@ const blockList = {
 function BlocksRenderer({ blocks }: { blocks: NonNullable<Page['blocks']> }) {
   return blocks?.map(({ blockType, ...blockProps }) => {
     const Component = blockList[blockType] as ComponentType<typeof blockProps>;
+    const t = blockProps?.blockConfig?.theme;
+    const blockTheme = t && themeList?.[t];
 
     if (Component) {
+      if (blockTheme) {
+        return (
+          <SubTheme key={blockProps?.id || blockType} theme={blockTheme}>
+            <Component {...blockProps} />
+          </SubTheme>
+        );
+      }
+
       return <Component key={blockProps?.id || blockType} {...blockProps} />;
     }
 

@@ -1,16 +1,14 @@
 import type { Block } from 'payload/types';
 
 import Input from '@web/fields/Input/Input.config';
+import BlockConfig from '@web/payload/fields/BlockConfig';
 import CTA from '@web/payload/fields/CTA';
 
 const HeroBlock: Block = {
   slug: 'heroBlock',
   interfaceName: 'HeroBlockT',
   fields: [
-    {
-      name: 'blockConfig',
-      label: 'Block Configuration',
-      type: 'group',
+    BlockConfig({
       fields: [
         {
           name: 'layout',
@@ -41,7 +39,7 @@ const HeroBlock: Block = {
           ]
         }
       ]
-    },
+    }),
     {
       name: 'image',
       label: 'Image',

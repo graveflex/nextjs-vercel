@@ -9,13 +9,18 @@ import PageTemplate from './page.client';
 
 export const revalidate = 60;
 
-export default async function Page() {
+export default async function Page({
+  params: { slug }
+}: {
+  params: { slug: string[] | undefined };
+}) {
+  const pageSlug = slug ? slug.join('/') : '/';
   const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
     endpoint: '/api/payload/pages',
     params: {
       where: {
         'pageConfig.slug': {
-          equals: '/'
+          equals: pageSlug
         }
       },
       limit: 1

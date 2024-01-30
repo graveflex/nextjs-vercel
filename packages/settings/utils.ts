@@ -45,7 +45,7 @@ export const getWebUrl = ({
   const VERCEL_URL = process.env.VERCEL_URL || '';
 
   if (IS_PREVIEW && VERCEL_URL) {
-    return `https:${VERCEL_URL}`;
+    return `https://${VERCEL_URL}`;
   }
 
   return `https://${projectName}-${appName}-git-${slugify(

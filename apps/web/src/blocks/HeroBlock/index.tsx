@@ -99,7 +99,6 @@ const ContentWrapper = styled.div`
 
   &.bg {
     padding: 120px 50px;
-    color: ${({ theme }) => theme.colorTokens.bg};
   }
 
   &.imgRight,
