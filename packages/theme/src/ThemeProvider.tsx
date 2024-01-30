@@ -3,15 +3,9 @@
 import type { PropsWithChildren } from 'react';
 import React, { createContext, useMemo, useState } from 'react';
 import GlobalStyles from '@refract-ui/sc/components/GlobalStyles';
-import type { DefaultTheme } from 'styled-components';
 import { createGlobalStyle } from 'styled-components';
 
-import defaultTheme, { darkTheme } from './theme';
-
-const themeList: Record<string, DefaultTheme> = {
-  light: defaultTheme,
-  dark: darkTheme
-};
+import { themeList } from './theme';
 
 export type ThemeKey = keyof typeof themeList;
 
@@ -45,7 +39,7 @@ export const ThemeContext = createContext<{
   setTheme: (t: ThemeKey) => void;
 }>({
   theme: 'light',
-  setTheme: (t: ThemeKey) => {}
+  setTheme: () => {}
 });
 
 function ThemeProvider({
@@ -60,7 +54,7 @@ function ThemeProvider({
   };
 
   const globalTheme = useMemo(() => {
-    return themeList?.[themeName] || defaultTheme;
+    return themeList?.[themeName] || themeList.light;
   }, [themeName]);
 
   const providerValue = useMemo(() => {

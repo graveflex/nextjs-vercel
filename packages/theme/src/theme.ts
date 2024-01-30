@@ -198,3 +198,8 @@ export const darkTheme = theme(
 );
 
 export default defaultTheme;
+
+export const themeList: Record<string, RefractTheme> = {
+  light: defaultTheme,
+  dark: darkTheme
+};

@@ -4,8 +4,6 @@ import HeroBlock from '@web/blocks/HeroBlock/HeroBlock.config';
 // InsertBlockConfigs
 import TextImageBlock from '@web/blocks/TextImageBlock/TextImageBlock.config';
 
-/* import themeOptions from 'theme/src/themeOptions'; */
-
 const themeOptions = [
   { label: 'Light', value: 'light' },
   { label: 'Dark', value: 'dark' }

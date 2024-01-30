@@ -3,7 +3,7 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import { SubTheme } from '@refract-ui/sc/lens';
 
-import theme, { darkTheme } from 'theme/src/theme';
+import { themeList } from 'theme/src/theme';
 
 import type { Page } from '@web/payload/payload-types';
 
@@ -18,11 +18,6 @@ const blockList = {
     ...defaultOpts
   }),
   heroBlock: dynamic(() => import('@web/blocks/HeroBlock'), { ...defaultOpts })
-};
-
-const themeList = {
-  light: theme,
-  dark: darkTheme
 };
 
 function BlocksRenderer({ blocks }: { blocks: NonNullable<Page['blocks']> }) {
