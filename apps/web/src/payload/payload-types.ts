@@ -36,6 +36,7 @@ export interface Page {
 }
 export interface PageConfigType {
   slug: string;
+  theme?: ('light' | 'dark') | null;
 }
 export interface TextImageBlockT {
   blockConfig?: {
