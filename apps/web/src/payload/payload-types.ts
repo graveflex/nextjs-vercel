@@ -30,7 +30,7 @@ export interface Config {
 export interface Page {
   id: number;
   pageConfig: PageConfigType;
-  blocks?: (TextImageBlockT | HeroBlockT)[] | null;
+  blocks?: (FAQBlockT | TextImageBlockT | HeroBlockT)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -38,9 +38,36 @@ export interface PageConfigType {
   slug: string;
   theme?: ('light' | 'dark') | null;
 }
+export interface FAQBlockT {
+  blockConfig?: {
+    theme?: ('light' | 'dark') | null;
+    hidden?: boolean | null;
+  };
+  title?: string | null;
+  subTitle?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
+  items?:
+    | {
+        title?: string | null;
+        subTitle?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faqBlock';
+}
 export interface TextImageBlockT {
   blockConfig?: {
     theme?: ('light' | 'dark') | null;
+    hidden?: boolean | null;
     layout?: ('imgRight' | 'imgLeft') | null;
   };
   title?: string | null;
@@ -116,6 +143,7 @@ export interface CTAType {
 export interface HeroBlockT {
   blockConfig?: {
     theme?: ('light' | 'dark') | null;
+    hidden?: boolean | null;
     layout?: ('bg' | 'imgRight' | 'imgLeft' | 'imgRightFull' | 'imgLeftFull') | null;
   };
   image?: number | Image | null;

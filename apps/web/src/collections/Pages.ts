@@ -1,7 +1,8 @@
 import type { CollectionConfig, GroupField } from 'payload/types';
 
-import HeroBlock from '@web/blocks/HeroBlock/HeroBlock.config';
 // InsertBlockConfigs
+import FAQBlock from '@web/blocks/FAQBlock/FAQBlock.config';
+import HeroBlock from '@web/blocks/HeroBlock/HeroBlock.config';
 import TextImageBlock from '@web/blocks/TextImageBlock/TextImageBlock.config';
 
 const themeOptions = [
@@ -44,8 +45,8 @@ const Pages: CollectionConfig = {
       type: 'blocks',
       blocks: [
         // InsertBlockConfigFields
+        FAQBlock,
         TextImageBlock,
-
         HeroBlock
       ]
     }

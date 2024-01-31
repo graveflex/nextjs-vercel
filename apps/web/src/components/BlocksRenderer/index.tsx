@@ -14,6 +14,7 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
+  faqBlock: dynamic(() => import('@web/blocks/FAQBlock'), { ...defaultOpts }),
   textImageBlock: dynamic(() => import('@web/blocks/TextImageBlock'), {
     ...defaultOpts
   }),
@@ -22,6 +23,12 @@ const blockList = {
 
 function BlocksRenderer({ blocks }: { blocks: NonNullable<Page['blocks']> }) {
   return blocks?.map(({ blockType, ...blockProps }) => {
+    // don't render if block is hidden
+    const hide = blockProps?.blockConfig?.hidden || false;
+    if (hide) {
+      return null;
+    }
+
     const Component = blockList[blockType] as ComponentType<typeof blockProps>;
     const t = blockProps?.blockConfig?.theme;
     const blockTheme = t && themeList?.[t];

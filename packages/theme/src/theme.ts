@@ -106,7 +106,8 @@ const textVariants = {
   menuLink: {
     stack: 'sans',
     weight: '400',
-    size: 1
+    size: 1,
+    color: 'fg'
   }
 };
 
