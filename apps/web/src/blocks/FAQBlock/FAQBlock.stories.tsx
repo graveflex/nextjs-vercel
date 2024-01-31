@@ -17,6 +17,6 @@ type Story = StoryObj<FAQBlockType>;
 
 export const Defaults: Story = {
   args: {
-    placeholder: 'FAQBlock'
+    title: 'FAQBlock'
   }
 };
