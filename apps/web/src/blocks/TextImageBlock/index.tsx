@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
+import lens from '@refract-ui/sc/lens';
 import styled from 'styled-components';
 
 import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
@@ -27,36 +29,30 @@ const Wrapper = styled.section`
 
 const InnerWrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 42px 42px 1fr;
+  grid-template-columns: 1fr 50px 50px 1fr;
   row-gap: 1rem;
 
   & > div {
     grid-column: 1 / 5;
   }
 
-  &.reverse {
-    & > div:last-child {
-      grid-row: 1;
-    }
-  }
-
   ${({ theme: { mq } }) => mq.lg`
     & > div:first-child {
-      grid-column: 3 / 5;
+      grid-column: 1 / 3;
     }
 
     & > div:last-child {
-      grid-column: 1;
-      grid-row: 1;
+      grid-column: 4;
     }
 
-    &.reverse {
+    &.imgRight {
       & > div:first-child {
-        grid-column: 1 / 3;
+        grid-column: 3 / 5;
       }
 
       & > div:last-child {
-        grid-column: 4;
+        grid-column: 1;
+        grid-row: 1;
       }
     }
   `};
@@ -66,35 +62,50 @@ const ImageWrapper = styled(ResponsivePayloadImage)`
   aspect-ratio: 500 / 402;
 `;
 
-const Title = styled.h2`
-  margin: 0;
-  padding: 0;
-  && {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 65px;
-    letter-spacing: -0.04em;
-  }
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+  width: min(100%, 476px);
+`;
+
+const Title = lens.h3({ m: 0, p: 0 })``;
+
+const Button = styled(Link)`
+  text-align: center;
+  width: 100%;
+
+  ${({ theme: { mq } }) => mq.sm`
+    width: min(100%, 200px);
+  `};
 `;
 
 function TextImageBlock({
   title,
   content,
   image,
-  blockOptions
+  cta,
+  blockConfig
 }: TextImageBlockType) {
   const img = expandedDoc<Image>(image);
-  const reverse = blockOptions?.contentSide === 'left';
+  const layout = blockConfig?.layout || 'imgRight';
+  const className = genClassName([layout]);
   return (
     <Wrapper>
-      <InnerWrapper className={genClassName([reverse && 'reverse'])}>
+      <InnerWrapper className={className}>
         {img && (
           <ImageWrapper image={img} imageProps={{ objectFit: 'cover' }} />
         )}
-        <div>
+        <ContentWrapper>
           {title && <Title>{title}</Title>}
           {content && <RichText content={content} />}
-        </div>
+          {cta?.label && cta?.href && (
+            <Button href={cta?.href} className="button">
+              {cta?.label}
+            </Button>
+          )}
+        </ContentWrapper>
       </InnerWrapper>
     </Wrapper>
   );

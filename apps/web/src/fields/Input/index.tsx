@@ -7,6 +7,7 @@ import type { InputType } from '@web/payload/payload-types';
 
 const StyledInput = styled.input`
   all: unset;
+  box-sizing: border-box;
   text-align: left;
 `;
 

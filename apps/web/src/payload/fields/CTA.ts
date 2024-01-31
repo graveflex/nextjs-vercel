@@ -14,7 +14,7 @@ function CTA({
         name: 'label',
         label: 'Label',
         type: 'text',
-        required: true
+        required: false
       },
       {
         name: 'href',
@@ -23,7 +23,7 @@ function CTA({
           description: 'Route for link'
         },
         type: 'text',
-        required: true
+        required: false
       },
       ...fields
     ]

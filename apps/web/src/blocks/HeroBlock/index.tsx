@@ -19,6 +19,7 @@ import type {
 export type HeroBlockType = Omit<PayloadType, 'blockType'>;
 
 const StyledWrapper = styled(Wrapper)`
+  align-items: center;
   & > div:first-child {
     grid-column: 1 / 5;
   }
@@ -98,7 +99,7 @@ const ContentWrapper = styled.div`
   }
 
   &.bg {
-    padding: 120px 50px;
+    padding: 120px 25px;
   }
 
   &.imgRight,
@@ -131,11 +132,33 @@ const SubTitle = styled(RichText)``;
 
 const InputWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
   gap: 20px;
   margin-top: 1rem;
+
+  &.bg,
+  &.imgLeftFull,
+  &.imgRightFull {
+    justify-content: center;
+  }
+
+  input {
+    width: 100%;
+    ${({ theme: { mq } }) => mq.sm`
+      width: min(100%, 206px);
+    `};
+  }
 `;
 
-const Button = styled(Link)``;
+const Button = styled(Link)`
+  text-align: center;
+  width: 100%;
+
+  ${({ theme: { mq } }) => mq.sm`
+    width: min(100%, 206px);
+  `};
+`;
 
 function HeroBlock({
   eyebrow,
@@ -157,9 +180,9 @@ function HeroBlock({
         {title && <Title>{title}</Title>}
         {subTitle && <SubTitle content={subTitle} />}
         {(input || cta) && (
-          <InputWrapper>
+          <InputWrapper className={className}>
             {input?.type && <Input {...input} />}
-            {cta?.label && (
+            {cta?.label && cta?.href && (
               <Button href={cta?.href} className="button">
                 {cta?.label}
               </Button>

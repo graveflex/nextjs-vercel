@@ -41,6 +41,7 @@ export interface PageConfigType {
 export interface TextImageBlockT {
   blockConfig?: {
     theme?: ('light' | 'dark') | null;
+    layout?: ('imgRight' | 'imgLeft') | null;
   };
   title?: string | null;
   content?:
@@ -49,9 +50,7 @@ export interface TextImageBlockT {
       }[]
     | null;
   image?: number | Image | null;
-  blockOptions?: {
-    contentSide?: ('left' | 'right') | null;
-  };
+  cta?: CTAType;
   id?: string | null;
   blockName?: string | null;
   blockType: 'textImageBlock';
@@ -110,6 +109,10 @@ export interface Image {
     };
   };
 }
+export interface CTAType {
+  label?: string | null;
+  href?: string | null;
+}
 export interface HeroBlockT {
   blockConfig?: {
     theme?: ('light' | 'dark') | null;
@@ -124,7 +127,7 @@ export interface HeroBlockT {
       }[]
     | null;
   input?: InputType;
-  cta: CTAType;
+  cta?: CTAType;
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroBlock';
@@ -132,10 +135,6 @@ export interface HeroBlockT {
 export interface InputType {
   placeholder?: string | null;
   type?: 'text' | null;
-}
-export interface CTAType {
-  label: string;
-  href: string;
 }
 export interface User {
   id: number;
