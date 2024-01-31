@@ -17,6 +17,9 @@ type Story = StoryObj<TextImageBlockType>;
 
 export const Defaults: Story = {
   args: {
+    blockConfig: {
+      layout: 'imgLeft'
+    },
     title: 'TextImageBlock',
     content: [
       {
@@ -38,9 +41,6 @@ export const Defaults: Story = {
       filesize: 7144,
       width: 193,
       height: 17
-    },
-    blockOptions: {
-      contentSide: 'left'
     }
   }
 };
@@ -48,8 +48,19 @@ export const Defaults: Story = {
 export const RightSide: Story = {
   args: {
     ...Defaults.args,
-    blockOptions: {
-      contentSide: 'right'
+    blockConfig: {
+      layout: 'imgRight'
+    }
+  }
+};
+
+export const NoBlockConfig: Story = {
+  args: {
+    ...Defaults.args,
+    blockConfig: {},
+    cta: {
+      label: 'Test label',
+      href: '/'
     }
   }
 };

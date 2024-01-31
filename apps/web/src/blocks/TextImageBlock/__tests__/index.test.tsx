@@ -6,7 +6,10 @@ import projectAnnotations from 'ui/utils/testSetup';
 
 import * as stories from '../TextImageBlock.stories';
 
-const { Defaults, RightSide } = composeStories(stories, projectAnnotations);
+const { Defaults, RightSide, NoBlockConfig } = composeStories(
+  stories,
+  projectAnnotations
+);
 
 describe('TextImageBlock', () => {
   it('component mounts', () => {
@@ -15,5 +18,9 @@ describe('TextImageBlock', () => {
 
   it('mounts with other blockOptions', () => {
     render(<RightSide />);
+  });
+
+  it('mounts without blockConfig. add button', () => {
+    render(<NoBlockConfig />);
   });
 });
