@@ -4,6 +4,7 @@ import type { CollectionConfig, GroupField } from 'payload/types';
 import FAQBlock from '@web/blocks/FAQBlock/FAQBlock.config';
 import HeroBlock from '@web/blocks/HeroBlock/HeroBlock.config';
 import TextImageBlock from '@web/blocks/TextImageBlock/TextImageBlock.config';
+import SEOConfig from '@web/payload/fields/SEO';
 
 const themeOptions = [
   { label: 'Light', value: 'light' },
@@ -38,6 +39,7 @@ const Pages: CollectionConfig = {
     read: () => true
   },
   fields: [
+    SEOConfig(),
     PageConfig,
     {
       name: 'blocks',

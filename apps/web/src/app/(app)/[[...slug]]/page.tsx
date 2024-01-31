@@ -36,3 +36,30 @@ export default async function Page({
 
   return <PageTemplate page={page} />;
 }
+
+export async function generateMetadata({ params: { slug } }) {
+  const pageSlug = slug ? slug.join('/') : '/';
+  const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
+    endpoint: '/api/payload/pages',
+    params: {
+      where: {
+        'pageConfig.slug': {
+          equals: pageSlug
+        }
+      },
+      limit: 1
+    }
+  });
+
+  if ('error' in data) {
+    return {};
+  }
+
+  const seoData = data?.docs[0]?.seoConfig;
+
+  return {
+    title: seoData?.title || 'Default title',
+    description: seoData?.description || 'Default description',
+    keywords: seoData?.keywords
+  };
+}

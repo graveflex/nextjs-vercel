@@ -9,11 +9,6 @@ import expandedDoc from '@web/lib/isExpandedDoc';
 import StyledComponentsRegistry from '@web/lib/StyledComponentRegistry';
 import type { Nav, Page } from '@web/payload/payload-types';
 
-export const metadata = {
-  title: 'Homepage',
-  description: 'Homepage'
-};
-
 export const revalidate = 60;
 
 async function RootLayout({ children, params: { slug } }) {

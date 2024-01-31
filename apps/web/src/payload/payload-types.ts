@@ -29,6 +29,11 @@ export interface Config {
 }
 export interface Page {
   id: number;
+  seoConfig?: {
+    title?: string | null;
+    description?: string | null;
+    keywords?: string | null;
+  };
   pageConfig: PageConfigType;
   blocks?: (FAQBlockT | TextImageBlockT | HeroBlockT)[] | null;
   updatedAt: string;
