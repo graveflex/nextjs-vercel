@@ -1,12 +1,32 @@
 import type { Block } from 'payload/types';
 
 import BlockConfig from '@web/payload/fields/BlockConfig';
+import CTA from '@web/payload/fields/CTA';
 
 const TextImageBlock: Block = {
   slug: 'textImageBlock',
   interfaceName: 'TextImageBlockT',
   fields: [
-    BlockConfig(),
+    BlockConfig({
+      fields: [
+        {
+          name: 'layout',
+          label: 'Layout',
+          required: false,
+          type: 'select',
+          options: [
+            {
+              label: 'Image on Right',
+              value: 'imgRight'
+            },
+            {
+              label: 'Image on Left',
+              value: 'imgLeft'
+            }
+          ]
+        }
+      ]
+    }),
     {
       type: 'text',
       name: 'title',
@@ -26,29 +46,7 @@ const TextImageBlock: Block = {
       label: 'Image',
       required: false
     },
-    {
-      type: 'group',
-      name: 'blockOptions',
-      label: 'Block Options',
-      fields: [
-        {
-          type: 'select',
-          name: 'contentSide',
-          label: 'Which side should the content be on?',
-          options: [
-            {
-              label: 'Left',
-              value: 'left'
-            },
-            {
-              label: 'Right',
-              value: 'right'
-            }
-          ],
-          defaultValue: 'left'
-        }
-      ]
-    }
+    CTA()
   ]
 };
 

@@ -43,7 +43,8 @@ const textVariants = {
   h3: {
     stack: 'sans',
     weight: '600',
-    size: 'h3'
+    size: 'h3',
+    height: '1.35'
   },
   h4: {
     stack: 'sans',
