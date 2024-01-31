@@ -6,18 +6,19 @@ to: <%= app_name %>/blocks/<%= name %>/index.tsx
 import React from 'react';
 import styled from 'styled-components';
 
+import Wrapper from '@web/components/Wrapper';
 import type { <%= name %>T as PayloadType } from '@web/payload/payload-types';
 
 export type <%= name %>Type = Pick<PayloadType, 'title'>;
 
-const Wrapper = styled.section``;
+const Section = styled(Wrapper)``;
 
-function <%= name %>({ title }: <%= name %>Type) {
+function <%= name %>({ title, ...props }: <%= name %>Type) {
   return (
-    <Wrapper>
+    <Section>
       <h1><%= name %></h1>
-      <pre>{JSON.stringify({ title }, null, 2)}</pre>
-    </Wrapper>
+      <pre>{JSON.stringify({ title, ...props }, null, 2)}</pre>
+    </Section>
   );
 }
 

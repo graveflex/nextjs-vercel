@@ -22,6 +22,15 @@ function BlockConfig({
         required: false,
         options: themeOptions
       },
+      {
+        name: 'hidden',
+        label: 'Hide Block',
+        admin: {
+          description: 'Block will not appear on page'
+        },
+        type: 'checkbox',
+        defaultValue: false
+      },
       ...fields
     ]
   };
