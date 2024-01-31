@@ -41,8 +41,8 @@ type LinkNode = {
 
 export type SerializedText = (ExtendedText | TextNode | LinkNode)[];
 
-const serializeSlateText = (children: SerializedText) =>
-  children.map((node, i: number) => {
+const serializeSlateText = (children: SerializedText) => {
+  return children?.map((node, i: number) => {
     if (Text.isText(node)) {
       let text = (
         <span dangerouslySetInnerHTML={{ __html: escapeHTML(node.text) }} />
@@ -64,6 +64,10 @@ const serializeSlateText = (children: SerializedText) =>
       }
 
       return <Fragment key={i}>{text}</Fragment>;
+    }
+
+    if (!node) {
+      return null;
     }
 
     if (node.type === 'link') {
@@ -103,5 +107,6 @@ const serializeSlateText = (children: SerializedText) =>
         return <p key={i}>{serializeSlateText(node.children)}</p>;
     }
   });
+};
 
 export default serializeSlateText;

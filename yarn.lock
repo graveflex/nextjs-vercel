@@ -4845,6 +4845,11 @@
   dependencies:
     undici "5.28.2"
 
+"@vercel/speed-insights@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@vercel/speed-insights/-/speed-insights-1.0.9.tgz#ad748c238c4ed58b32cc8a398f28abe507dabd53"
+  integrity sha512-f+XFP0O+aZ4Olj9h+BitkB1b4NJQaxtyCb69wWuDxytJHY6Pa4QtZPdBUftHOcajUCHRVeq062fk3MKXKtjNVQ==
+
 "@vitest/coverage-v8@^0.34.6":
   version "0.34.6"
   resolved "https://registry.yarnpkg.com/@vitest/coverage-v8/-/coverage-v8-0.34.6.tgz#931d9223fa738474e00c08f52b84e0f39cedb6d1"
