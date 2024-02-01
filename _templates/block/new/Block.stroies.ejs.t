@@ -2,6 +2,7 @@
 to: <%= app_name %>/blocks/<%= name %>/<%= name %>.stories.tsx
 ---
 import type { Meta, StoryObj } from '@storybook/react';
+import { faker } from '@faker-js/faker';
 
 import type { <%= name %>Type } from '.';
 import <%= name %> from '.';
@@ -20,6 +21,6 @@ type Story = StoryObj<<%= name %>Type>;
 
 export const Defaults: Story = {
   args: {
-    placeholder: '<%= name %>'
+    title: faker.lorem.text()
   }
 };
