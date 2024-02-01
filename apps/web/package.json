@@ -41,6 +41,7 @@
     "vercel-blob-storage": "*"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.0",
     "@storybook/testing-react": "^2.0.1",
     "@testing-library/react": "^14.0.0",
     "@types/escape-html": "^1.0.4",

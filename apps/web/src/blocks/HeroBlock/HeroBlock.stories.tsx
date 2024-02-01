@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { HeroBlockType } from '.';
@@ -43,7 +44,7 @@ export const Defaults: Story = {
       alt: 'Myopic Logo',
       updatedAt: '2024-01-05T20:29:44.749Z',
       createdAt: '2024-01-05T20:29:44.749Z',
-      url: '/images/Logo.svg',
+      url: faker.image.abstract(1200),
       filename: 'Logo.svg',
       mimeType: 'image/svg+xml',
       filesize: 7144,
@@ -74,7 +75,7 @@ export const MissingProps: Story = {
       alt: 'Myopic Logo',
       updatedAt: '2024-01-05T20:29:44.749Z',
       createdAt: '2024-01-05T20:29:44.749Z',
-      url: '/images/Logo.svg',
+      url: faker.image.abstract(1200),
       filename: 'Logo.svg',
       mimeType: 'image/svg+xml',
       filesize: 7144,
