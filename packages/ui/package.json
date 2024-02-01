@@ -11,17 +11,20 @@
   "devDependencies": {
     "@storybook/react": "^7.4.6",
     "@storybook/testing-react": "^2.0.1",
+    "@testing-library/jest-dom": "^6.4.1",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.5",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
+    "docs": "*",
     "eslint": "^8.51.0",
     "eslint-config-custom": "*",
     "react": "^18.2.0",
     "theme": "*",
     "tsconfig": "*",
     "typescript": "^5.2.2",
-    "vitest": "^0.34.6"
+    "vitest": "^0.34.6",
+    "vitest-canvas-mock": "^0.3.3"
   },
   "dependencies": {
     "@refract-ui/sc": "1.0.1-alpha.31",

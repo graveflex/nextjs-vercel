@@ -1,9 +1,11 @@
-import type { Preview } from '@storybook/react';
+import { setProjectAnnotations } from '@storybook/react';
+import * as projectAnnotations from 'docs/.storybook/preview';
 import { vi } from 'vitest';
 
-/* eslint-disable */
-// @ts-ignore
-import projectAnnotations from '../../../apps/docs/.storybook/preview';
+import 'vitest-canvas-mock';
+import '@testing-library/jest-dom';
+
+setProjectAnnotations(projectAnnotations);
 
 vi.mock('next/font/local', async () => {
   return {
@@ -14,4 +16,4 @@ vi.mock('next/font/local', async () => {
   };
 });
 
-export default projectAnnotations as Preview;
+export default projectAnnotations;

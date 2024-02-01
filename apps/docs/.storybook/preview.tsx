@@ -1,5 +1,5 @@
 import React from 'react';
-import SubTheme from '@refract-ui/sc/components/SubTheme';
+import GlobalStyles from '@refract-ui/sc/components/GlobalStyles';
 import configureGlobalTypes from '@refract-ui/stories/configureGlobalTypes';
 import type { Args, Decorator } from '@storybook/react';
 
@@ -13,9 +13,12 @@ const withRefract: Decorator<Args> = (Story, c) => {
     c.globals.allRefractThemes.light;
 
   return (
-    <SubTheme theme={theme}>
+    <GlobalStyles
+      theme={theme}
+      style={{ display: 'grid', gridTemplateRows: '1fr', alignItems: 'start' }}
+    >
       <Story {...c} />
-    </SubTheme>
+    </GlobalStyles>
   );
 };
 
