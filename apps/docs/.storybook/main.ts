@@ -22,6 +22,7 @@ const config = {
     getAbsolutePath('@storybook/addon-onboarding'),
     getAbsolutePath('@storybook/addon-themes'),
     getAbsolutePath('@storybook/addon-actions'),
+    getAbsolutePath('@storybook/addon-a11y'),
     '@refract-ui/stories'
   ],
   features: {
