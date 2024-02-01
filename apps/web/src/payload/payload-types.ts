@@ -38,6 +38,7 @@ export interface Page {
   blocks?: (FAQBlockT | TextImageBlockT | HeroBlockT)[] | null;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 export interface PageConfigType {
   slug: string;
