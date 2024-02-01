@@ -178,7 +178,7 @@ export const darkTheme = theme(
       fg: colors.white
     }),
     themeColors: {
-      primary: '#3A41E3',
+      primary: '#A5A8F3',
       secondary: '#7A7A7A',
       warning: '#F0AD00',
       success: '#1AB96D',

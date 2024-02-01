@@ -128,7 +128,9 @@ const ContentWrapper = styled.div`
   `};
 `;
 
-const SubTitle = styled(RichText)``;
+const SubTitle = styled(RichText)`
+  width: min(100%, 600px);
+`;
 
 const InputWrapper = styled.div`
   display: flex;
