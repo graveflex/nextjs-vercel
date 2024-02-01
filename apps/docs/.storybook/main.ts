@@ -11,6 +11,7 @@ function getAbsolutePath(value) {
 /** @type { import('@storybook/nextjs').StorybookConfig } */
 const config = {
   stories: [
+    '../../../node_modules/@refract-ui/stories/**/*.stories.mdx',
     '../../../packages/ui/**/*.stories.tsx',
     '../../web/src/**/*.stories.tsx'
   ],
@@ -20,8 +21,13 @@ const config = {
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-onboarding'),
     getAbsolutePath('@storybook/addon-themes'),
-    getAbsolutePath('@storybook/addon-actions')
+    getAbsolutePath('@storybook/addon-actions'),
+    '@refract-ui/stories'
   ],
+  features: {
+    buildStoriesJson: true,
+    storyStoreV7: true
+  },
   framework: {
     name: getAbsolutePath('@storybook/nextjs'),
     options: {}

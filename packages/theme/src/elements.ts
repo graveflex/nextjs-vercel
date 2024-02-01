@@ -28,7 +28,12 @@ const elements = {
   'a.button': button,
   'a.button:hover': buttonHover,
   'input[type="text"]': textInput,
-  'input[type="text"]:focus': textInputFocus
+  'input[type="text"]:focus': textInputFocus,
+  '.sb-story': {
+    t: 'body',
+    bg: 'bg',
+    c: 'fg'
+  }
 };
 
 export default elements;

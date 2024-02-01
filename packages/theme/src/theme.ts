@@ -145,6 +145,7 @@ const defaultTheme = theme(
     elements: ({ elements: defaultElements }) => ({
       ...defaultElements,
       ...elements
+      // '.sb-story': defaultElements.body
     })
   },
   {
