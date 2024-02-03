@@ -38,7 +38,7 @@ function Wrapper({ children, blockConfig, ...props }) {
     return mediaQueries;
   }, [theme]);
   const responsiveStyles = useMemo(() => {
-    if (!blockConfig.responsiveStyles) {
+    if (!blockConfig?.responsiveStyles) {
       return null;
     }
     const styleEntries = blockConfig.responsiveStyles;
@@ -61,7 +61,7 @@ function Wrapper({ children, blockConfig, ...props }) {
         return mq[bp]`${cssValue}`;
       })
       .filter((x) => !!x);
-  }, [blockConfig.responsiveStyles, mq]);
+  }, [blockConfig?.responsiveStyles, mq]);
   return (
     <Container {...props} $responsiveStyles={responsiveStyles}>
       {children}
