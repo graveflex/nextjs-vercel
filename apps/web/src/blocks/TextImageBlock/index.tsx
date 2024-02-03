@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
 import RichText from '@web/components/RichText';
+import Wrapper from '@web/components/Wrapper';
 import genClassName from '@web/lib/genClassname';
 import expandedDoc from '@web/lib/isExpandedDoc';
 import type {
@@ -16,7 +17,7 @@ import type {
 
 export type TextImageBlockType = Omit<PayloadType, 'blockType'>;
 
-const Wrapper = styled.section`
+const StyledWrapper = styled(Wrapper)`
   display: grid;
   grid-column-gap: 2rem;
   grid-template-columns: 1fr min(1052px, calc(100% - 4rem)) 1fr;
@@ -92,7 +93,7 @@ function TextImageBlock({
   const layout = blockConfig?.layout || 'imgRight';
   const className = genClassName([layout]);
   return (
-    <Wrapper>
+    <StyledWrapper blockConfig={blockConfig}>
       <InnerWrapper className={className}>
         {img && (
           <ImageWrapper image={img} imageProps={{ objectFit: 'cover' }} />
@@ -107,7 +108,7 @@ function TextImageBlock({
           )}
         </ContentWrapper>
       </InnerWrapper>
-    </Wrapper>
+    </StyledWrapper>
   );
 }
 

@@ -175,7 +175,7 @@ function HeroBlock({
   const img = expandedDoc<Image>(image);
   const className = genClassName([layout]);
   return (
-    <StyledWrapper className={className}>
+    <StyledWrapper className={className} blockConfig={blockConfig}>
       {img && <ImageWrapper image={img} classOverride={className} />}
       <ContentWrapper className={className}>
         {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}

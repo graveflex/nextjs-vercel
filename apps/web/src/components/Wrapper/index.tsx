@@ -1,10 +1,11 @@
 'use client';
 
 import type { PropsWithChildren } from 'react';
-import React from 'react';
-import styled from 'styled-components';
+import React, { useMemo } from 'react';
+import styled, { useTheme } from 'styled-components';
 
-const Container = styled.section`
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Container = styled.section<{ $responsiveStyles: any[] | null }>`
   --maxWidth: 1024px;
   --margin: 25px;
   --column: min(calc(var(--maxWidth) / 2), calc(50% - var(--margin)));
@@ -14,17 +15,58 @@ const Container = styled.section`
   & > * {
     grid-column: 2 / 4;
   }
+
+  ${({ $responsiveStyles }) => $responsiveStyles}
 `;
 
 // TODO:
-// - [ ] padding
+// - [x] padding
 // - [ ] margin
-// - [ ] change at breakpoints
+// - [x] change at breakpoints
 
 export type WrapperType = PropsWithChildren;
 
-function Wrapper({ children, ...props }) {
-  return <Container {...props}>{children}</Container>;
+const responsiveStyleDict = {
+  paddingTop: 'padding-top',
+  paddingBottom: 'padding-bottom'
+};
+
+function Wrapper({ children, blockConfig, ...props }) {
+  const theme = useTheme();
+  const mq = useMemo(() => {
+    const { mq: mediaQueries } = theme;
+    return mediaQueries;
+  }, [theme]);
+  const responsiveStyles = useMemo(() => {
+    if (!blockConfig.responsiveStyles) {
+      return null;
+    }
+    const styleEntries = blockConfig.responsiveStyles;
+    return Object.entries(mq)
+      .map(([bp]) => {
+        if (!styleEntries[bp]) {
+          return null;
+        }
+
+        const entryValueAtBp = styleEntries[bp];
+        const cssEntries = Object.entries(entryValueAtBp).filter(
+          ([, v]) => !!v
+        );
+        if (!cssEntries.length) {
+          return null;
+        }
+        const cssValue = cssEntries.map(
+          ([k, v]) => `${responsiveStyleDict[k]}: ${v};`
+        );
+        return mq[bp]`${cssValue}`;
+      })
+      .filter((x) => !!x);
+  }, [blockConfig.responsiveStyles, mq]);
+  return (
+    <Container {...props} $responsiveStyles={responsiveStyles}>
+      {children}
+    </Container>
+  );
 }
 
 export default Wrapper;
