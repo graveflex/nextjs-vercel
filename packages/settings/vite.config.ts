@@ -42,7 +42,8 @@ export default defineConfig(async () => {
       coverage: {
         provider: 'v8',
         clean: true,
-        reporter: ['text', 'html', 'clover', 'json', 'cobertura']
+        reporter: ['text', 'html', 'clover', 'json', 'cobertura'],
+        exclude: ['apps/docs/.storybook/**']
       },
       environment: 'jsdom'
     },

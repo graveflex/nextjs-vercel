@@ -257,3 +257,13 @@ export const Defaults: Story = {
     ]
   }
 };
+
+export const NoChildren: Story = {
+  args: {
+    content: [
+      {
+        children: []
+      }
+    ]
+  }
+};

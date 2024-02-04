@@ -66,10 +66,6 @@ const serializeSlateText = (children: SerializedText) => {
       return <Fragment key={i}>{text}</Fragment>;
     }
 
-    if (!node) {
-      return null;
-    }
-
     if (node.type === 'link') {
       return (
         <a href={escapeHTML(node.url)} key={i}>

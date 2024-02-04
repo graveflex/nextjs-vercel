@@ -31,7 +31,7 @@ const Summary = lens.summary({ t: 'h3' })`
   list-style: none;
 `;
 
-function FAQBlock({ title, subTitle, items }: FAQBlockType) {
+function FAQBlock({ title, subTitle, items, blockConfig }: FAQBlockType) {
   const Items = useMemo(() => {
     if (!items || !items.length) {
       return null;
@@ -50,7 +50,7 @@ function FAQBlock({ title, subTitle, items }: FAQBlockType) {
     });
   }, [items]);
   return (
-    <Section>
+    <Section blockConfig={blockConfig}>
       <Header>
         {title && <Title>{title}</Title>}
         {subTitle && <SubTitle content={subTitle} />}
