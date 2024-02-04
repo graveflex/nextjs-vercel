@@ -18,3 +18,15 @@ type Story = StoryObj<WrapperType>;
 export const Defaults: Story = {
   args: {}
 };
+
+export const BlockConfig: Story = {
+  args: {
+    blockConfig: {
+      responsiveStyles: {
+        xs: { paddingTop: '60px' },
+        sm: { paddingTop: undefined },
+        md: { paddingTop: '0px', paddingBottom: '100px' }
+      }
+    }
+  }
+};

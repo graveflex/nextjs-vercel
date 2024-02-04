@@ -66,6 +66,7 @@ const responsiveStyles: CollapsibleField = {
     {
       name: 'responsiveStyles',
       type: 'group',
+      interfaceName: 'WrapperResponsiveStyles',
       fields: breakpointFields
     }
   ]

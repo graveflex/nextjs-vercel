@@ -4,6 +4,8 @@ import type { PropsWithChildren } from 'react';
 import React, { useMemo } from 'react';
 import styled, { useTheme } from 'styled-components';
 
+import type { WrapperResponsiveStyles } from '@web/payload/payload-types';
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Container = styled.section<{ $responsiveStyles: any[] | null }>`
   --maxWidth: 1024px;
@@ -24,14 +26,16 @@ const Container = styled.section<{ $responsiveStyles: any[] | null }>`
 // - [ ] margin
 // - [x] change at breakpoints
 
-export type WrapperType = PropsWithChildren;
+export type WrapperType = PropsWithChildren<{
+  blockConfig?: { responsiveStyles?: WrapperResponsiveStyles };
+}>;
 
 const responsiveStyleDict = {
   paddingTop: 'padding-top',
   paddingBottom: 'padding-bottom'
 };
 
-function Wrapper({ children, blockConfig, ...props }) {
+function Wrapper({ children, blockConfig, ...props }: WrapperType) {
   const theme = useTheme();
   const mq = useMemo(() => {
     const { mq: mediaQueries } = theme;

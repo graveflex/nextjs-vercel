@@ -6,10 +6,14 @@ import projectAnnotations from 'ui/utils/testSetup';
 
 import * as stories from '../RichText.stories';
 
-const { Defaults } = composeStories(stories, projectAnnotations);
+const { Defaults, NoChildren } = composeStories(stories, projectAnnotations);
 
 describe('RichText', () => {
   it('component mounts', () => {
     render(<Defaults />);
+  });
+
+  it('component returns null on empty arrays', () => {
+    render(<NoChildren />);
   });
 });

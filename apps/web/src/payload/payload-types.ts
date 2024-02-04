@@ -48,6 +48,7 @@ export interface FAQBlockT {
   blockConfig?: {
     theme?: ('light' | 'dark') | null;
     hidden?: boolean | null;
+    responsiveStyles?: WrapperResponsiveStyles;
   };
   title?: string | null;
   subTitle?:
@@ -70,10 +71,41 @@ export interface FAQBlockT {
   blockName?: string | null;
   blockType: 'faqBlock';
 }
+export interface WrapperResponsiveStyles {
+  xxs?: {
+    paddingTop?: ('0px' | '10px' | '20px' | '40px' | '60px' | '80px' | '100px') | null;
+    paddingBottom?: ('0px' | '10px' | '20px' | '40px' | '60px' | '80px' | '100px') | null;
+  };
+  xs?: {
+    paddingTop?: ('0px' | '10px' | '20px' | '40px' | '60px' | '80px' | '100px') | null;
+    paddingBottom?: ('0px' | '10px' | '20px' | '40px' | '60px' | '80px' | '100px') | null;
+  };
+  sm?: {
+    paddingTop?: ('0px' | '10px' | '20px' | '40px' | '60px' | '80px' | '100px') | null;
+    paddingBottom?: ('0px' | '10px' | '20px' | '40px' | '60px' | '80px' | '100px') | null;
+  };
+  md?: {
+    paddingTop?: ('0px' | '10px' | '20px' | '40px' | '60px' | '80px' | '100px') | null;
+    paddingBottom?: ('0px' | '10px' | '20px' | '40px' | '60px' | '80px' | '100px') | null;
+  };
+  lg?: {
+    paddingTop?: ('0px' | '10px' | '20px' | '40px' | '60px' | '80px' | '100px') | null;
+    paddingBottom?: ('0px' | '10px' | '20px' | '40px' | '60px' | '80px' | '100px') | null;
+  };
+  xl?: {
+    paddingTop?: ('0px' | '10px' | '20px' | '40px' | '60px' | '80px' | '100px') | null;
+    paddingBottom?: ('0px' | '10px' | '20px' | '40px' | '60px' | '80px' | '100px') | null;
+  };
+  xxl?: {
+    paddingTop?: ('0px' | '10px' | '20px' | '40px' | '60px' | '80px' | '100px') | null;
+    paddingBottom?: ('0px' | '10px' | '20px' | '40px' | '60px' | '80px' | '100px') | null;
+  };
+}
 export interface TextImageBlockT {
   blockConfig?: {
     theme?: ('light' | 'dark') | null;
     hidden?: boolean | null;
+    responsiveStyles?: WrapperResponsiveStyles;
     layout?: ('imgRight' | 'imgLeft') | null;
   };
   title?: string | null;
@@ -150,6 +182,7 @@ export interface HeroBlockT {
   blockConfig?: {
     theme?: ('light' | 'dark') | null;
     hidden?: boolean | null;
+    responsiveStyles?: WrapperResponsiveStyles;
     layout?: ('bg' | 'imgRight' | 'imgLeft' | 'imgRightFull' | 'imgLeftFull') | null;
   };
   image?: number | Image | null;
