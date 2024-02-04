@@ -27,6 +27,7 @@ const Container = styled.section<{ $responsiveStyles: any[] | null }>`
 // - [x] change at breakpoints
 
 export type WrapperType = PropsWithChildren<{
+  className?: string;
   blockConfig?: { responsiveStyles?: WrapperResponsiveStyles };
 }>;
 
