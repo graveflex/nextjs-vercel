@@ -35,7 +35,7 @@ export interface Page {
     keywords?: string | null;
   };
   pageConfig: PageConfigType;
-  blocks?: (FAQBlockT | TextImageBlockT | HeroBlockT)[] | null;
+  blocks?: (HeroRevealBlockT | FAQBlockT | TextImageBlockT | HeroBlockT)[] | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -43,6 +43,16 @@ export interface Page {
 export interface PageConfigType {
   slug: string;
   theme?: ('light' | 'dark') | null;
+}
+export interface HeroRevealBlockT {
+  blockConfig?: {
+    theme?: ('light' | 'dark') | null;
+    hidden?: boolean | null;
+  };
+  title?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroRevealBlock';
 }
 export interface FAQBlockT {
   blockConfig?: {
