@@ -13,6 +13,7 @@ export type ResponsivePayloadImageType = {
   imageProps?: Partial<ImageProps>;
   className?: string;
   classOverride?: string;
+  innerRef?: React.MutableRefObject<HTMLElement>;
 };
 
 const ImageWrapper = styled.div`
@@ -28,7 +29,8 @@ function ResponsivePayloadImage({
   image,
   imageProps,
   className,
-  classOverride
+  classOverride,
+  innerRef
 }: ResponsivePayloadImageType) {
   const { alt, url: imageUrl } = image;
 
@@ -37,7 +39,10 @@ function ResponsivePayloadImage({
   }
 
   return (
-    <ImageWrapper className={genClassName([className, classOverride])}>
+    <ImageWrapper
+      className={genClassName([className, classOverride])}
+      ref={innerRef as React.LegacyRef<HTMLDivElement>}
+    >
       <Image
         {...{ fill: true, ...imageProps }}
         src={imageUrl}

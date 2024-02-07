@@ -5,7 +5,7 @@ import type { Args, Decorator } from '@storybook/react';
 
 import { themeList } from 'theme/src/theme';
 
-const { light, dark } = themeList;
+const { light, dark, machete, unicorn, supreme } = themeList;
 
 const withRefract: Decorator<Args> = (Story, c) => {
   const theme =
@@ -24,7 +24,10 @@ const withRefract: Decorator<Args> = (Story, c) => {
 
 const themes = [
   { title: 'light', value: light },
-  { title: 'dark', value: dark }
+  { title: 'dark', value: dark },
+  { title: 'machete', value: machete },
+  { title: 'unicorn', value: unicorn },
+  { title: 'supreme', value: supreme }
 ];
 
 export const globalTypes = {

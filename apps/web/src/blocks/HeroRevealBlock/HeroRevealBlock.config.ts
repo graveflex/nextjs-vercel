@@ -8,10 +8,30 @@ const HeroRevealBlock: Block = {
   fields: [
     BlockConfig(),
     {
+      type: 'upload',
+      relationTo: 'images',
+      name: 'background',
+      label: 'Background',
+      required: true
+    },
+    {
+      type: 'upload',
+      relationTo: 'images',
+      name: 'productDetail',
+      label: 'Product Detail Image',
+      required: true
+    },
+    {
       type: 'text',
       name: 'title',
       label: 'Title',
-      required: false
+      required: true
+    },
+    {
+      type: 'richText',
+      name: 'body',
+      label: 'Content',
+      required: true
     }
   ]
 };

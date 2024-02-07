@@ -22,6 +22,7 @@
     "lint": "turbo run lint",
     "migrations:create": "turbo run migrations:create",
     "migrations:run": "turbo run migrations:run",
+    "schema:sync": "turbo run schema:sync",
     "cicd": "yarn lint && yarn test:coverage --force && yarn build --force"
   },
   "devDependencies": {

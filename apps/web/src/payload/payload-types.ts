@@ -49,54 +49,15 @@ export interface HeroRevealBlockT {
     theme?: ('light' | 'dark') | null;
     hidden?: boolean | null;
   };
-  title?: string | null;
+  background: number | Image;
+  productDetail: number | Image;
+  title: string;
+  body: {
+    [k: string]: unknown;
+  }[];
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroRevealBlock';
-}
-export interface FAQBlockT {
-  blockConfig?: {
-    theme?: ('light' | 'dark') | null;
-    hidden?: boolean | null;
-  };
-  title?: string | null;
-  subTitle?:
-    | {
-        [k: string]: unknown;
-      }[]
-    | null;
-  items?:
-    | {
-        title?: string | null;
-        subTitle?:
-          | {
-              [k: string]: unknown;
-            }[]
-          | null;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'faqBlock';
-}
-export interface TextImageBlockT {
-  blockConfig?: {
-    theme?: ('light' | 'dark') | null;
-    hidden?: boolean | null;
-    layout?: ('imgRight' | 'imgLeft') | null;
-  };
-  title?: string | null;
-  content?:
-    | {
-        [k: string]: unknown;
-      }[]
-    | null;
-  image?: number | Image | null;
-  cta?: CTAType;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'textImageBlock';
 }
 export interface Image {
   id: number;
@@ -151,6 +112,50 @@ export interface Image {
       filename?: string | null;
     };
   };
+}
+export interface FAQBlockT {
+  blockConfig?: {
+    theme?: ('light' | 'dark') | null;
+    hidden?: boolean | null;
+  };
+  title?: string | null;
+  subTitle?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
+  items?:
+    | {
+        title?: string | null;
+        subTitle?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faqBlock';
+}
+export interface TextImageBlockT {
+  blockConfig?: {
+    theme?: ('light' | 'dark') | null;
+    hidden?: boolean | null;
+    layout?: ('imgRight' | 'imgLeft') | null;
+  };
+  title?: string | null;
+  content?:
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
+  image?: number | Image | null;
+  cta?: CTAType;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'textImageBlock';
 }
 export interface CTAType {
   label?: string | null;

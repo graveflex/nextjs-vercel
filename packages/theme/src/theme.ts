@@ -135,7 +135,9 @@ const defaultTheme = theme({
   },
   colorTokens: ({ colors }) => ({
     bg: colors.white,
-    fg: colors.black
+    fg: colors.black,
+    displayOutline: colors.red,
+    displayFill: colors.blue
   }),
   themeColors: {
     primary: '#3A41E3',
@@ -170,7 +172,9 @@ export const darkTheme = theme({
   },
   colorTokens: ({ colors }) => ({
     bg: colors.black,
-    fg: colors.white
+    fg: colors.white,
+    displayFill: colors.blue,
+    displayOutline: colors.red
   }),
   themeColors: {
     primary: '#A5A8F3',
@@ -202,7 +206,79 @@ export const unicornTheme = theme({
   },
   colorTokens: ({ colors }) => ({
     bg: colors.black,
-    fg: colors.white
+    fg: colors.white,
+    displayFill: colors.black,
+    displayOutline: colors.red
+  }),
+  themeColors: {
+    primary: '#A5A8F3',
+    secondary: '#7A7A7A',
+    warning: '#F0AD00',
+    success: '#1AB96D',
+    danger: '#FD0505'
+  },
+  borders: ({ borders: defaultBorders }) => ({
+    ...defaultBorders,
+    ...borders
+  }),
+  elements: ({ elements: defaultElements }) => ({
+    ...defaultElements,
+    ...elements
+  })
+});
+
+export const macheteTheme = theme({
+  fontStacks: {
+    product: [flashback.style.fontFamily],
+    sans: [satoshi.style.fontFamily]
+  },
+  textSizes,
+  textVariants,
+  colors: {
+    black: '#000',
+    white: '#FFF'
+  },
+  colorTokens: ({ colors }) => ({
+    bg: colors.black,
+    fg: colors.white,
+    displayFill: '#666',
+    displayOutline: '#666'
+  }),
+  themeColors: {
+    primary: '#A5A8F3',
+    secondary: '#7A7A7A',
+    warning: '#F0AD00',
+    success: '#1AB96D',
+    danger: '#FD0505'
+  },
+  borders: ({ borders: defaultBorders }) => ({
+    ...defaultBorders,
+    ...borders
+  }),
+  elements: ({ elements: defaultElements }) => ({
+    ...defaultElements,
+    ...elements
+  })
+});
+
+export const supremeTheme = theme({
+  fontStacks: {
+    product: [flashback.style.fontFamily],
+    sans: [satoshi.style.fontFamily]
+  },
+  textSizes,
+  textVariants,
+  colors: {
+    black: '#000',
+    blue: '#1f196b',
+    white: '#FFF',
+    pink: '#F8D5F1'
+  },
+  colorTokens: ({ colors }) => ({
+    bg: colors.blue,
+    fg: colors.pink,
+    displayFill: '#d9e58f',
+    displayOutline: '#433e7b'
   }),
   themeColors: {
     primary: '#A5A8F3',
@@ -225,5 +301,8 @@ export default defaultTheme;
 
 export const themeList: Record<string, RefractTheme> = {
   light: defaultTheme,
-  dark: darkTheme
+  dark: darkTheme,
+  unicorn: unicornTheme,
+  machete: macheteTheme,
+  supreme: supremeTheme
 };

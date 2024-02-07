@@ -6,11 +6,7 @@ import HeroBlock from '@web/blocks/HeroBlock/HeroBlock.config';
 import HeroRevealBlock from '@web/blocks/HeroRevealBlock/HeroRevealBlock.config';
 import TextImageBlock from '@web/blocks/TextImageBlock/TextImageBlock.config';
 import SEOConfig from '@web/payload/fields/SEO';
-
-const themeOptions = [
-  { label: 'Light', value: 'light' },
-  { label: 'Dark', value: 'dark' }
-];
+import { themeOptions } from '../payload/fields/BlockConfig';
 
 const PageConfig: GroupField = {
   name: 'pageConfig',
