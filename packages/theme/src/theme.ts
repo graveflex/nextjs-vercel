@@ -88,31 +88,31 @@ const textVariants = {
     stack: 'sans',
     weight: '600',
     height: '1.18',
-    size: 0
+    size: 3
   },
   p: {
     stack: 'sans',
     weight: '400',
     height: '1.18',
-    size: 0
+    size: 3
   },
   paragraph: {
     stack: 'sans',
     weight: '400',
     height: '1.18',
-    size: 0
+    size: 3
   },
   paragraphSmallBold: {
     stack: 'sans',
     weight: '600',
     height: '1.35',
-    size: -1
+    size: 3
   },
   paragraphSmall: {
     stack: 'sans',
     weight: '400',
     height: '1.35',
-    size: -1
+    size: 3
   },
   menuLink: {
     stack: 'sans',
@@ -202,13 +202,14 @@ export const unicornTheme = theme({
   textVariants,
   colors: {
     black: '#000',
-    white: '#FFF'
+    white: '#FFF',
+    red: '#ee2e2f'
   },
   colorTokens: ({ colors }) => ({
-    bg: colors.black,
-    fg: colors.white,
-    displayFill: colors.black,
-    displayOutline: colors.red
+    bg: colors.red,
+    fg: '#CBF4FD',
+    displayFill: colors.white,
+    displayOutline: colors.black
   }),
   themeColors: {
     primary: '#A5A8F3',
@@ -236,13 +237,14 @@ export const macheteTheme = theme({
   textVariants,
   colors: {
     black: '#000',
-    white: '#FFF'
+    white: '#FFF',
+    yellow: '#eae408'
   },
   colorTokens: ({ colors }) => ({
     bg: colors.black,
-    fg: colors.white,
-    displayFill: '#666',
-    displayOutline: '#666'
+    fg: colors.yellow,
+    displayFill: colors.yellow,
+    displayOutline: '#4e534f'
   }),
   themeColors: {
     primary: '#A5A8F3',

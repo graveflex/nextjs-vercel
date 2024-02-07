@@ -3,9 +3,9 @@ import type { GroupField } from 'payload/types';
 export const themeOptions = [
   { label: 'Light', value: 'light' },
   { label: 'Dark', value: 'dark' },
-  { label: 'Dark', value: 'unicorn' },
-  { label: 'Dark', value: 'machete' },
-  { label: 'Dark', value: 'supreme' }
+  { label: 'Unicorn', value: 'unicorn' },
+  { label: 'Machete', value: 'machete' },
+  { label: 'Supreme', value: 'supreme' }
 ];
 
 function BlockConfig({

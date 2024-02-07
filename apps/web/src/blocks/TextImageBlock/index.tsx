@@ -20,7 +20,11 @@ const Wrapper = styled.section`
   display: grid;
   grid-column-gap: 2rem;
   grid-template-columns: 1fr min(1052px, calc(100% - 4rem)) 1fr;
-  padding: 180px 0;
+  padding: 2rem 0;
+
+  p {
+    font-size: 1.5rem;
+  }
 
   & > * {
     grid-column: 2;
@@ -31,6 +35,13 @@ const InnerWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 50px 50px 1fr;
   row-gap: 1rem;
+  max-width: 478px;
+  margin: 0 auto;
+
+  ${({ theme: { mq } }) => mq.lg`
+    margin: unset;
+    max-width: unset;
+  `}
 
   & > div {
     grid-column: 1 / 5;

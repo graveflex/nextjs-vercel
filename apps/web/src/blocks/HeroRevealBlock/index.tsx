@@ -28,31 +28,37 @@ const ProductDetail = lens()(ResponsivePayloadImage)`
     object-fit: contain;
   }
 
-  ${({ theme: { mq } }) => mq.md`
+  ${({ theme: { mq } }) => mq.lg`
     top: -320px;
     width: 580px;
     height: 930px;
   `}
 `;
 
+const Container = lens.div()`
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+`;
+
 const Section = lens()(Wrapper)`
   position: relative;
   padding-top: 520px;
 
-  ${({ theme: { mq } }) => mq.md`
+  ${({ theme: { mq } }) => mq.lg`
     padding-top: 480px;
+    padding-bottom: 100px;
   `}
 `;
 
 const Background = lens.div()<{ background: string }>`
   position: absolute;
-  width: 300%;
+  width: 100%;
   height: 350px;
-  right: -111px;
   z-index: 0;
+  left: 0;
 
-  ${({ theme: { mq } }) => mq.md`
-    width: 100%;
+  ${({ theme: { mq } }) => mq.lg`
     height: 480px;
     right: unset;
   `}
@@ -62,14 +68,25 @@ const Background = lens.div()<{ background: string }>`
     css`
       background-image: url(${background});
       background-size: cover;
-      background-repeat: no-repeat;
+      background-repeat: repeat-x;
     `}
 `;
 
 const Title = lens.h1({ p: 0, m: 0, t: 'display1' })`
   position: relative;
-  line-height: 1;
+  line-height: 0.8;
   color: ${({ theme: { allColors } }) => allColors.displayFill};
+  text-align: left;
+
+  ${({ theme: { mq } }) => css`
+    ${mq.sm`
+      font-size: 4.0625rem;
+    `}
+
+    ${mq.lg`
+      font-size: 7.361418135512773rem;
+    `}
+  `}
 
   span {
     position: relative;
@@ -79,7 +96,7 @@ const Title = lens.h1({ p: 0, m: 0, t: 'display1' })`
       ${({ theme: { allColors, mq } }) => css`
         -webkit-text-stroke: ${allColors.displayOutline} 18px;
 
-        ${mq.md`
+        ${mq.lg`
           -webkit-text-stroke-width: 24px;
         `}
       `}
@@ -99,13 +116,21 @@ const Title = lens.h1({ p: 0, m: 0, t: 'display1' })`
 const Body = lens({ p: 0, m: 0 })(RichText)`
   font-size: 1.5rem;
 
-  ${({ theme: { mq } }) => mq.md`
+  ${({ theme: { mq } }) => mq.lg`
     max-width: 40%;
   `}
 `;
 
 const Content = lens.div()`
+  max-width: 478px;
+  margin: 0 auto;
   z-index: 1;
+
+  ${({ theme: { mq } }) => mq.lg`
+    max-width: unset;
+    min-height: 415px;
+    margin: unset;
+  `}
 `;
 
 function HeroRevealBlock({
@@ -147,21 +172,23 @@ function HeroRevealBlock({
   }, []);
 
   return (
-    <Section background={background}>
+    <Container>
       {bgImage && bgImage.url && (
         <Background ref={bgRef} background={bgImage.url} />
       )}
-      <Content>
-        {title && (
-          <Title className="display1">
-            {pdImage && <ProductDetail innerRef={mgRef} image={pdImage} />}
-            <span>{title}</span>
-            <span>{title}</span>
-          </Title>
-        )}
-        {body && <Body content={body} />}
-      </Content>
-    </Section>
+      <Section background={background}>
+        <Content>
+          {title && (
+            <Title className="display1">
+              {pdImage && <ProductDetail innerRef={mgRef} image={pdImage} />}
+              <span>{title}</span>
+              <span>{title}</span>
+            </Title>
+          )}
+          {body && <Body content={body} />}
+        </Content>
+      </Section>
+    </Container>
   );
 }
 
