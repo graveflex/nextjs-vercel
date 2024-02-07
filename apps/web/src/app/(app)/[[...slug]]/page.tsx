@@ -14,7 +14,7 @@ export default async function Page({
 }: {
   params: { slug: string[] | undefined };
 }) {
-  const pageSlug = slug ? slug.join('/') : '/';
+  const pageSlug = slug ? `/${slug.join('/')}` : '/';
   const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
     endpoint: '/api/payload/pages',
     params: {
