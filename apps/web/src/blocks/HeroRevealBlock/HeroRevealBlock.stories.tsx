@@ -1,10 +1,9 @@
 import React from 'react';
-import { faker } from '@faker-js/faker';
 import type { Meta, StoryObj } from '@storybook/react';
 import styled from 'styled-components';
+
 import bgImgUrl from './img/blue.svg';
 import pdImgUrl from './img/product-detail.png';
-
 import type { HeroRevealBlockType } from '.';
 import HeroRevealBlock from '.';
 
