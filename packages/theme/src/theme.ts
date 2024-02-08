@@ -1,6 +1,6 @@
 import { theme } from '@refract-ui/sc';
 
-import { flashback, satoshi, generalSans } from '../fonts';
+import { flashback, generalSans, satoshi } from '../fonts';
 
 import borders from './borders';
 import elements from './elements';
