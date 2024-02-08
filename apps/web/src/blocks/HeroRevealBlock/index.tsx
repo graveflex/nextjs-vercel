@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import lens from '@refract-ui/sc/lens';
-import Rellax from 'rellax';
 import { css } from 'styled-components';
 
 import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
 import RichText from '@web/components/RichText';
 import Wrapper from '@web/components/Wrapper';
+import useParallax from '@web/hooks/useParallax';
 import expandedDoc from '@web/lib/isExpandedDoc';
 import type {
   HeroRevealBlockT as PayloadType,
@@ -39,6 +39,10 @@ const Container = lens.div()`
   position: relative;
   width: 100%;
   margin: 0 auto;
+
+  ${({ theme: { mq } }) => mq.lg`
+    margin: 0 auto 6rem;
+  `}
 `;
 
 const Section = lens()(Wrapper)`
@@ -72,7 +76,7 @@ const Background = lens.div()<{ background: string }>`
     `}
 `;
 
-const Title = lens.h1({ p: 0, m: 0, t: 'display1' })`
+const Title = lens.h1({ p: 0, m: 0, pb: 4, t: 'display1' })`
   position: relative;
   line-height: 0.8;
   color: ${({ theme: { allColors } }) => allColors.displayFill};
@@ -139,37 +143,11 @@ function HeroRevealBlock({
   body,
   productDetail
 }: PayloadType) {
-  const bgRef = useRef() as React.MutableRefObject<HTMLDivElement>;
-  const mgRef = useRef() as React.MutableRefObject<HTMLDivElement>;
   const pdImage = expandedDoc<Image>(productDetail);
   const bgImage = expandedDoc<Image>(background);
 
-  useEffect(() => {
-    if (bgRef.current && mgRef.current) {
-      const bgRellax = new Rellax(bgRef.current, {
-        speed: -4,
-        center: false,
-        round: false,
-        vertical: true,
-        horizontal: false
-      });
-
-      const mgRellax = new Rellax(mgRef.current, {
-        speed: -2,
-        center: false,
-        round: false,
-        vertical: true,
-        horizontal: false
-      });
-
-      return () => {
-        bgRellax.destroy();
-        mgRellax.destroy();
-      };
-    }
-
-    return () => {};
-  }, []);
+  const bgRef = useParallax({ speed: -4 });
+  const mgRef = useParallax({ speed: -2 });
 
   return (
     <Container>

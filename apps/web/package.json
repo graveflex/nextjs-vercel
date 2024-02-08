@@ -12,7 +12,7 @@
     "generate:types": "payload generate:types",
     "migrations:create": "payload migrate:create",
     "migrations:run": "payload migrate",
-    "schema:sync": "payload generate:types && payload migrate:create && payload migrate",
+    "schema:sync": "payload generate:types && yes | payload migrate:create && yes | payload migrate",
     "setup": "./bin/init_db.sh"
   },
   "dependencies": {

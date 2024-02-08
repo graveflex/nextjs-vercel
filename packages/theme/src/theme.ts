@@ -1,6 +1,6 @@
 import { theme } from '@refract-ui/sc';
 
-import { flashback, satoshi } from '../fonts';
+import { flashback, satoshi, generalSans } from '../fonts';
 
 import borders from './borders';
 import elements from './elements';
@@ -196,7 +196,7 @@ export const darkTheme = theme({
 export const unicornTheme = theme({
   fontStacks: {
     product: [flashback.style.fontFamily],
-    sans: [satoshi.style.fontFamily]
+    sans: [generalSans.style.fontFamily]
   },
   textSizes,
   textVariants,
@@ -231,7 +231,7 @@ export const unicornTheme = theme({
 export const macheteTheme = theme({
   fontStacks: {
     product: [flashback.style.fontFamily],
-    sans: [satoshi.style.fontFamily]
+    sans: [generalSans.style.fontFamily]
   },
   textSizes,
   textVariants,
@@ -266,7 +266,7 @@ export const macheteTheme = theme({
 export const supremeTheme = theme({
   fontStacks: {
     product: [flashback.style.fontFamily],
-    sans: [satoshi.style.fontFamily]
+    sans: [generalSans.style.fontFamily]
   },
   textSizes,
   textVariants,

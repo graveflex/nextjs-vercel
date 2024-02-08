@@ -35,29 +35,25 @@ export interface Page {
     keywords?: string | null;
   };
   pageConfig: PageConfigType;
-  blocks?: (HeroRevealBlockT | FAQBlockT | TextImageBlockT | HeroBlockT)[] | null;
+  blocks?: (ParallaxBackgroundT | HeroRevealBlockT | FAQBlockT | TextImageBlockT | HeroBlockT)[] | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
 }
 export interface PageConfigType {
   slug: string;
-  theme?: ('light' | 'dark') | null;
+  theme?: ('light' | 'dark' | 'unicorn' | 'machete' | 'supreme') | null;
 }
-export interface HeroRevealBlockT {
+export interface ParallaxBackgroundT {
   blockConfig?: {
-    theme?: ('light' | 'dark') | null;
+    theme?: ('light' | 'dark' | 'unicorn' | 'machete' | 'supreme') | null;
     hidden?: boolean | null;
   };
   background: number | Image;
-  productDetail: number | Image;
-  title: string;
-  body: {
-    [k: string]: unknown;
-  }[];
+  content: string;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'heroRevealBlock';
+  blockType: 'parallaxBackground';
 }
 export interface Image {
   id: number;
@@ -113,9 +109,24 @@ export interface Image {
     };
   };
 }
+export interface HeroRevealBlockT {
+  blockConfig?: {
+    theme?: ('light' | 'dark' | 'unicorn' | 'machete' | 'supreme') | null;
+    hidden?: boolean | null;
+  };
+  background: number | Image;
+  productDetail: number | Image;
+  title: string;
+  body: {
+    [k: string]: unknown;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroRevealBlock';
+}
 export interface FAQBlockT {
   blockConfig?: {
-    theme?: ('light' | 'dark') | null;
+    theme?: ('light' | 'dark' | 'unicorn' | 'machete' | 'supreme') | null;
     hidden?: boolean | null;
   };
   title?: string | null;
@@ -141,7 +152,7 @@ export interface FAQBlockT {
 }
 export interface TextImageBlockT {
   blockConfig?: {
-    theme?: ('light' | 'dark') | null;
+    theme?: ('light' | 'dark' | 'unicorn' | 'machete' | 'supreme') | null;
     hidden?: boolean | null;
     layout?: ('imgRight' | 'imgLeft') | null;
   };
@@ -163,7 +174,7 @@ export interface CTAType {
 }
 export interface HeroBlockT {
   blockConfig?: {
-    theme?: ('light' | 'dark') | null;
+    theme?: ('light' | 'dark' | 'unicorn' | 'machete' | 'supreme') | null;
     hidden?: boolean | null;
     layout?: ('bg' | 'imgRight' | 'imgLeft' | 'imgRightFull' | 'imgLeftFull') | null;
   };

@@ -14,6 +14,10 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
+  parallaxBackground: dynamic(() => import('@web/blocks/ParallaxBackground'), {
+    ...defaultOpts
+  }),
+
   heroRevealBlock: dynamic(() => import('@web/blocks/HeroRevealBlock'), {
     ...defaultOpts
   }),

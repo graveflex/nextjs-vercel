@@ -8,6 +8,14 @@ export const satoshi = localFont({
   ]
 });
 
+export const generalSans = localFont({
+  src: [
+    {
+      path: './GeneralSans-Medium.ttf'
+    }
+  ]
+});
+
 export const flashback = localFont({
   src: [
     {
