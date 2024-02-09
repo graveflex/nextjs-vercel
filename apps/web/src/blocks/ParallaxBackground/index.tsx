@@ -68,20 +68,21 @@ const Filter = lens.div()`
   backdrop-filter: brightness(30%);
 `;
 
-const Body = lens.div({ pv: 4, ph: 8, m: 0 })`
+const Body = lens.div({ pv: 4, ph: 8, m: 0, t: 'display2' })`
   text-align: center;
   font-size: 2rem;
   z-index: 1;
   margin: 0 auto;
+  font-size: 2rem;
 
   span {
-    max-width: 400px;
     padding: 0.3rem 1rem;
     line-height: 1.3;
   }
 
-  ${({ theme: { mq } }) => mq.lg`
-    max-width: 50%;
+  ${({ theme: { mq } }) => mq.sm`
+    font-size: 2.5rem;
+    max-width: 70%;
   `}
 `;
 

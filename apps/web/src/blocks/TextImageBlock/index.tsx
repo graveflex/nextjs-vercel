@@ -20,7 +20,7 @@ const Wrapper = styled.section`
   display: grid;
   grid-column-gap: 2rem;
   grid-template-columns: 1fr min(1052px, calc(100% - 4rem)) 1fr;
-  padding: 2rem 0;
+  padding: 2rem 0 8rem;
 
   p {
     font-size: 1.5rem;

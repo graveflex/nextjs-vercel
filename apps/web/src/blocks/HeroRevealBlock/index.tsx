@@ -157,7 +157,7 @@ function HeroRevealBlock({
       <Section background={background}>
         <Content>
           {title && (
-            <Title className="display1">
+            <Title>
               {pdImage && <ProductDetail innerRef={mgRef} image={pdImage} />}
               <span>{title}</span>
               <span>{title}</span>

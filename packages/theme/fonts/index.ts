@@ -1,5 +1,13 @@
 import localFont from 'next/font/local';
 
+export const sharpGrotesk = localFont({
+  src: [
+    {
+      path: './SharpGroteskBold22.ttf'
+    }
+  ]
+});
+
 export const satoshi = localFont({
   src: [
     {

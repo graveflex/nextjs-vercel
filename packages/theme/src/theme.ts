@@ -1,6 +1,6 @@
 import { theme } from '@refract-ui/sc';
 
-import { flashback, generalSans, satoshi } from '../fonts';
+import { flashback, generalSans, satoshi, sharpGrotesk } from '../fonts';
 
 import borders from './borders';
 import elements from './elements';
@@ -16,6 +16,7 @@ const textSizes = {
   '6': 3, // 48px
   '7': 4,
   display1: 4.0625, // 65px
+  display2: 2, // 65px
   product: 4.0625, // 65px
   h1: 2.875, // 46px
   h2: 2, // 32px
@@ -32,7 +33,7 @@ const textVariants = {
     size: 'display1'
   },
   display2: {
-    stack: 'product',
+    stack: 'aside',
     weight: '600',
     size: 'display2'
   },
@@ -125,6 +126,7 @@ const textVariants = {
 const defaultTheme = theme({
   fontStacks: {
     product: [flashback.style.fontFamily],
+    aside: [sharpGrotesk.style.fontFamily],
     sans: [satoshi.style.fontFamily]
   },
   textSizes,
@@ -162,6 +164,7 @@ export type RefractTheme = typeof defaultTheme;
 export const darkTheme = theme({
   fontStacks: {
     product: [flashback.style.fontFamily],
+    aside: [sharpGrotesk.style.fontFamily],
     sans: [satoshi.style.fontFamily]
   },
   textSizes,
@@ -196,6 +199,7 @@ export const darkTheme = theme({
 export const unicornTheme = theme({
   fontStacks: {
     product: [flashback.style.fontFamily],
+    aside: [sharpGrotesk.style.fontFamily],
     sans: [generalSans.style.fontFamily]
   },
   textSizes,
@@ -231,6 +235,7 @@ export const unicornTheme = theme({
 export const macheteTheme = theme({
   fontStacks: {
     product: [flashback.style.fontFamily],
+    aside: [sharpGrotesk.style.fontFamily],
     sans: [generalSans.style.fontFamily]
   },
   textSizes,
@@ -266,6 +271,7 @@ export const macheteTheme = theme({
 export const supremeTheme = theme({
   fontStacks: {
     product: [flashback.style.fontFamily],
+    aside: [sharpGrotesk.style.fontFamily],
     sans: [generalSans.style.fontFamily]
   },
   textSizes,
