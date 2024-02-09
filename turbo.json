@@ -52,6 +52,7 @@
     "start": {
       "dependsOn": ["^start"],
       "outputs": []
-    }
+    },
+    "schema:sync": {}
   }
 }

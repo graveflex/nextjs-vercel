@@ -9,7 +9,7 @@ This stack is a NextJS project backed by a PayloadCMS server. It is directly dep
 The repo is divided into two base apps:
 
 - `docs`: A StorybookJS instance
-- `web`: A Next JS project that holds the Payload CMS and the web application. 
+- `web`: A Next JS project that holds the Payload CMS and the web application.
 
 The repo also includes a few packages:
 
@@ -23,7 +23,7 @@ The repo also includes a few packages:
 
 1. copy the `.env.example` into `.env`
 2. update `PROJECT_NAME` to be the dash-cased name of the project. additionally, update the `name` in the root `package.json`.
-3. local postgres database creation: 
+3. local postgres database creation:
     1. If not already done, install postgres onto your local machine by running `brew install postgresql` and then start postgres by running `brew services start postgresql`
     2. Get into the Postgres shell by running `psql postgres`
     3. Run this query to create a new database `CREATE DATABASE [DATABASE_NAME];`
@@ -39,7 +39,7 @@ The repo also includes a few packages:
 1. Go to `http://localhost:3000`. By default, this page should return a 404. This is because we're trying to fetch data from the CMS when the CMS has not been initialized
 2. Go to `http://localhost:3000/admin` to get to the Payload admin. Create the first user
 3. Once you've created a user, you will be sent to the Payload CMS dashboard
-4. Return to the index page. You'll see some data about the user you've created, signalling that `web` can request data from the Payload CMS server. 
+4. Return to the index page. You'll see some data about the user you've created, signalling that `web` can request data from the Payload CMS server.
 
 ### General Commands
 

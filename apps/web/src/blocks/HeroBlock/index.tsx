@@ -45,7 +45,7 @@ const StyledWrapper = styled(Wrapper)`
     &.imgLeft {
       & > div:first-child {
         grid-column: 2;
-      } 
+      }
       & > div:last-child {
         grid-column: 3;
       }
@@ -53,7 +53,7 @@ const StyledWrapper = styled(Wrapper)`
     &.imgRightFull {
       & > div:first-child {
         grid-column: 3 / 5;
-      } 
+      }
       & > div:last-child {
         grid-column: 1 / 3;
       }

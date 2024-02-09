@@ -14,14 +14,23 @@ import type {
 } from '@web/payload/payload-types';
 
 const Header = styled.header`
-  padding: 1.625rem 1rem;
-  height: 96px;
+  padding: 1rem 1rem;
+  min-height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+
+  ${({ theme: { box } }) => css`
+    z-index: 999;
+    ${box.bg('bg')}
+    ${box.c('fg')}
+  `}
 
   ${({ theme: { mq } }) => mq.md`
-    padding: 1.625rem 2rem;
+    min-height: 80px;
+    padding: 1rem 1rem;
   `};
 `;
 
@@ -49,6 +58,7 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   gap: 1rem;
+
   ${({ theme: { mq } }) => mq.md`
     gap: 1.75rem;
   `};
@@ -58,6 +68,7 @@ const Logo = styled(ResponsivePayloadImage)`
   width: 0;
   img {
     object-fit: contain;
+    object-position: center left;
   }
   ${({ theme: { mq } }) => mq.md`
     display: block;
