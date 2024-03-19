@@ -4,6 +4,9 @@ set -a
 source ../../.env
 set +a
 
+# create the tmp folder if it doesn't exist
+mkdir -p tmp
+
 parse_url() {
     echo "$1" | python3 -c "from urllib.parse import urlparse; import sys; print(urlparse(sys.stdin.readline()).$2)"
 }
@@ -32,18 +35,15 @@ CONN_STR="-h $DB_HOST"
 [ -n "$DB_PORT" ] && CONN_STR+=" -p $DB_PORT"
 [ -n "$DB_USER" ] && CONN_STR+=" -U $DB_USER"
 
-# Command to check if the database exists
-DB_EXISTS=$(psql $POSTGRES_URL -tAc "SELECT 1 FROM pg_database WHERE datname='$DB_NAME'" 2>/dev/null)
+# drop the database
+dropdb $DB_NAME
 
-# Check if the database exists
-if [ -z "$DB_EXISTS" ]; then
-    echo "Database does not exist. Creating database..."
-    # Command to create database
-    createdb $CONN_STR $DB_NAME
-    echo "Database $DB_NAME created."
-else
-    echo "Database $DB_NAME already exists."
-fi
+# re-initialize the database
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+"${dir}/init_db.sh"
 
-# Unset PGPASSWORD to avoid leaking it in the environment
-unset PGPASSWORD
+# export the remote database to a local file
+pg_dump -Fc -v $REMOTE_POSTGRES_URL > tmp/latest.dump
+
+# import the remote database into our local postgres
+pg_restore -v -d $POSTGRES_URL tmp/latest.dump
