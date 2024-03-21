@@ -19,7 +19,7 @@ const ImageWrapper = styled.div`
 
 /* If there is no height or width then the image will fill the container */
 const isFill = ({ width, height }: IsFillProps): boolean => {
-  if (width !== undefined && height !== undefined) {
+  if (width && height) {
     return false;
   }
   return true;
