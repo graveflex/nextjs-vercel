@@ -10177,11 +10177,6 @@ image-size@^1.0.0:
   dependencies:
     queue "6.0.2"
 
-immer@^10.0.3:
-  version "10.0.3"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-10.0.3.tgz#a8de42065e964aa3edf6afc282dfc7f7f34ae3c9"
-  integrity sha512-pwupu3eWfouuaowscykeckFmVTpqbzW+rXFCX8rQLkZzM9ftBmU/++Ra+o+L27mz03zJTlyV4UUr+fdKNffo4A==
-
 immutable@^4.0.0:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.3.1.tgz#17988b356097ab0719e2f741d56f3ec6c317f9dc"
@@ -14898,15 +14893,6 @@ slash@^4.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-4.0.0.tgz#2422372176c4c6c5addb5e2ada885af984b396a7"
   integrity sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==
 
-slate@^0.101.5:
-  version "0.101.5"
-  resolved "https://registry.yarnpkg.com/slate/-/slate-0.101.5.tgz#72bd94312c3aa4240ce43e500f5d3062c692dc57"
-  integrity sha512-ZZt1ia8ayRqxtpILRMi2a4MfdvwdTu64CorxTVq9vNSd0GQ/t3YDkze6wKjdeUtENmBlq5wNIDInZbx38Hfu5Q==
-  dependencies:
-    immer "^10.0.3"
-    is-plain-object "^5.0.0"
-    tiny-warning "^1.0.3"
-
 smart-buffer@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.2.0.tgz#6e1d71fa4f18c05f7d0ff216dd16a481d0e8d9ae"
@@ -15587,7 +15573,7 @@ tiny-invariant@^1.0.2, tiny-invariant@^1.3.1:
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.3.1.tgz#8560808c916ef02ecfd55e66090df23a4b7aa642"
   integrity sha512-AD5ih2NlSssTCwsMznbvwMZpJ1cbhkGd2uueNxzv2jDlEeZdU04JQfRnggJQ8DrcVBGjAsCKwFBbDlVNtEMlzw==
 
-tiny-warning@^1.0.0, tiny-warning@^1.0.3:
+tiny-warning@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
   integrity sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==

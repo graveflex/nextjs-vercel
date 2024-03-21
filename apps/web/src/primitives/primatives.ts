@@ -35,9 +35,21 @@ export type PayloadLinkT = {
   isNewTab?: boolean;
 };
 
+/* /apps/web/src/components/RichText */
+export type PayloadRichTextT = {
+  content: {
+    [key: string]: unknown;
+  }[];
+  className?: string;
+};
+
 export type PayloadDateTimeT = {
   date: string;
   time?: string;
   format?: string;
   className?: string;
+};
+
+export type PayloadNumberT = {
+  number: number;
 };

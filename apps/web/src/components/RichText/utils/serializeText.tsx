@@ -2,8 +2,10 @@
 /* eslint-disable react/no-danger */
 import React, { Fragment } from 'react';
 import escapeHTML from 'escape-html';
-import type { BaseText } from 'slate';
-import { Text } from 'slate';
+
+type BaseText = {
+  text: string;
+};
 
 type ExtendedText = BaseText & {
   bold: true | undefined;
@@ -41,9 +43,9 @@ type LinkNode = {
 
 export type SerializedText = (ExtendedText | TextNode | LinkNode)[];
 
-const serializeSlateText = (children: SerializedText) => {
+const serializeText = (children: SerializedText) => {
   return children?.map((node, i: number) => {
-    if (Text.isText(node)) {
+    if ('text' in node) {
       let text = (
         <span dangerouslySetInnerHTML={{ __html: escapeHTML(node.text) }} />
       );
@@ -73,40 +75,38 @@ const serializeSlateText = (children: SerializedText) => {
     if (node.type === 'link') {
       return (
         <a href={escapeHTML(node.url)} key={i}>
-          {serializeSlateText(node.children)}
+          {serializeText(node.children)}
         </a>
       );
     }
 
     switch (node.type) {
       case 'h1':
-        return <h1 key={i}>{serializeSlateText(node.children)}</h1>;
+        return <h1 key={i}>{serializeText(node.children)}</h1>;
       case 'h2':
-        return <h2 key={i}>{serializeSlateText(node.children)}</h2>;
+        return <h2 key={i}>{serializeText(node.children)}</h2>;
       case 'h3':
-        return <h3 key={i}>{serializeSlateText(node.children)}</h3>;
+        return <h3 key={i}>{serializeText(node.children)}</h3>;
       case 'h4':
-        return <h4 key={i}>{serializeSlateText(node.children)}</h4>;
+        return <h4 key={i}>{serializeText(node.children)}</h4>;
       case 'h5':
-        return <h5 key={i}>{serializeSlateText(node.children)}</h5>;
+        return <h5 key={i}>{serializeText(node.children)}</h5>;
       case 'h6':
-        return <h6 key={i}>{serializeSlateText(node.children)}</h6>;
+        return <h6 key={i}>{serializeText(node.children)}</h6>;
       case 'blockquote':
-        return (
-          <blockquote key={i}>{serializeSlateText(node.children)}</blockquote>
-        );
+        return <blockquote key={i}>{serializeText(node.children)}</blockquote>;
       case 'ul':
-        return <ul key={i}>{serializeSlateText(node.children)}</ul>;
+        return <ul key={i}>{serializeText(node.children)}</ul>;
       case 'ol':
-        return <ol key={i}>{serializeSlateText(node.children)}</ol>;
+        return <ol key={i}>{serializeText(node.children)}</ol>;
       case 'li':
-        return <li key={i}>{serializeSlateText(node.children)}</li>;
+        return <li key={i}>{serializeText(node.children)}</li>;
       case 'indent':
-        return <span key={i}>{serializeSlateText(node.children)}</span>;
+        return <span key={i}>{serializeText(node.children)}</span>;
       default:
-        return <p key={i}>{serializeSlateText(node.children)}</p>;
+        return <p key={i}>{serializeText(node.children)}</p>;
     }
   });
 };
 
-export default serializeSlateText;
+export default serializeText;

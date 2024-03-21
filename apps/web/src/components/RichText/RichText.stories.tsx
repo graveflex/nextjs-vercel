@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { RichTextType } from '.';
+import type { PayloadRichTextT } from '@web/primitives/primatives';
+
 import RichText from '.';
 
-const meta: Meta<RichTextType> = {
+const meta: Meta<PayloadRichTextT> = {
   title: 'web/RichText',
   component: RichText,
   parameters: {
@@ -13,7 +14,7 @@ const meta: Meta<RichTextType> = {
 };
 
 export default meta;
-type Story = StoryObj<RichTextType>;
+type Story = StoryObj<PayloadRichTextT>;
 
 export const Defaults: Story = {
   args: {

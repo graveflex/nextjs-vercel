@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import get from 'lodash/get';
 import styled from 'styled-components';
 
 import genClassName from '@web/lib/genClassname';
@@ -32,21 +33,22 @@ function ResponsivePayloadImage({
   className,
   classOverride
 }: PayloadImageT) {
-  const { alt, url } = image;
+  const alt = get(image, 'alt', '');
+  const url = get(image, 'url');
+  const height = get(image, 'height');
+  const width = get(image, 'width');
 
   /* Additional props for the image */
-  const { style, quality, priority } = imageProps ?? {
-    style: { objectFit: 'cover' },
-    quality: 75,
-    priority: false
-  };
+  const style = get(imageProps, 'style', { objectFit: 'cover' });
+  const quality = get(imageProps, 'quality', 75);
+  const priority = get(imageProps, 'priority', false);
 
   if (!url) {
     return null;
   }
 
   const imageStyles = {
-    ...style,
+    style,
     borderRadius: isRounded ? '36px' : 'initial',
     aspectRatio
   };
@@ -56,8 +58,8 @@ function ResponsivePayloadImage({
   const isSVG = containsSVG.test(url);
 
   const dimensions = {
-    height: image?.height,
-    width: image?.width
+    height,
+    width
   } as Dimensions;
 
   return (
