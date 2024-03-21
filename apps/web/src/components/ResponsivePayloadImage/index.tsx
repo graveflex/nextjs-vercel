@@ -19,10 +19,10 @@ const ImageWrapper = styled.div`
 
 /* If there is no height or width then the image will fill the container */
 const isFill = ({ width, height }: IsFillProps): boolean => {
-  if (width && height) {
-    return false;
-  }
+  if (width === undefined && height === undefined) {
   return true;
+  }
+  return false;
 };
 
 function ResponsivePayloadImage({
@@ -60,7 +60,8 @@ function ResponsivePayloadImage({
     <ImageWrapper className={genClassName([className, classOverride])}>
       <Image
         {...{
-          fill: isFill(image)
+          fill: isFill(imageProps as IsFillProps),
+          ...imageProps
         }}
         src={url}
         alt={alt ?? ''}
