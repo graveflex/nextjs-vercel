@@ -1,6 +1,10 @@
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
-import { slateEditor } from '@payloadcms/richtext-slate';
+import {
+  BlocksFeature,
+  lexicalEditor,
+  UploadFeature
+} from '@payloadcms/richtext-lexical';
 import dotenv from 'dotenv';
 import path from 'path';
 import { buildConfig } from 'payload/config';
@@ -32,7 +36,29 @@ export default buildConfig({
       connectionString: POSTGRES_URL
     }
   }),
-  editor: slateEditor({}),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [
+      ...defaultFeatures,
+      UploadFeature({
+        collections: {
+          uploads: {
+            fields: [
+              {
+                name: 'caption',
+                type: 'richText',
+                editor: lexicalEditor()
+              }
+            ]
+          }
+        }
+      }),
+      BlocksFeature({
+        blocks: [
+          /* Add custom blocks here. Example being FAQ List. */
+        ]
+      })
+    ]
+  }),
   collections: [Pages, Users, Images],
   globals: [Nav],
   routes: {
