@@ -7,20 +7,19 @@ import styled from 'styled-components';
 import genClassName from '@web/lib/genClassname';
 import type { PayloadImageT } from '@web/primitives/primatives';
 
-type IsFillProps = {
-  width?: number | null;
-  height?: number | null;
-};
-
 const ImageWrapper = styled.div`
   container-type: inline-size;
   position: relative;
 `;
 
+type Dimensions = {
+  height?: number;
+  width?: number;
+};
 /* If there is no height or width then the image will fill the container */
-const isFill = ({ width, height }: IsFillProps): boolean => {
+const isFill = ({ width, height }: Dimensions): boolean => {
   if (width === undefined && height === undefined) {
-  return true;
+    return true;
   }
   return false;
 };
@@ -56,12 +55,17 @@ function ResponsivePayloadImage({
   const containsSVG = /\.svg$/;
   const isSVG = containsSVG.test(url);
 
+  const dimensions = {
+    height: image?.height,
+    width: image?.width
+  } as Dimensions;
+
   return (
     <ImageWrapper className={genClassName([className, classOverride])}>
       <Image
         {...{
-          fill: isFill(imageProps as IsFillProps),
-          ...imageProps
+          fill: isFill(dimensions),
+          ...dimensions
         }}
         src={url}
         alt={alt ?? ''}
