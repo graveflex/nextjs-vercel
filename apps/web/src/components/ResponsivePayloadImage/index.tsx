@@ -42,6 +42,7 @@ function ResponsivePayloadImage({
   const style = get(imageProps, 'style', { objectFit: 'cover' });
   const quality = get(imageProps, 'quality', 75);
   const priority = get(imageProps, 'priority', false);
+  const fill = get(imageProps, 'fill', isFill({ height, width } as Dimensions));
 
   if (!url) {
     return null;
@@ -53,20 +54,22 @@ function ResponsivePayloadImage({
     aspectRatio
   };
 
+  const dimensions = fill
+    ? ({
+        height,
+        width
+      } as Dimensions)
+    : {};
+
   /* We do not want to optimize SVGs */
   const containsSVG = /\.svg$/;
   const isSVG = containsSVG.test(url);
-
-  const dimensions = {
-    height,
-    width
-  } as Dimensions;
 
   return (
     <ImageWrapper className={genClassName([className, classOverride])}>
       <Image
         {...{
-          fill: isFill(dimensions),
+          fill,
           ...dimensions
         }}
         src={url}
