@@ -1,13 +1,11 @@
 'use client';
 
 import React from 'react';
-
 import Image from 'next/image';
 import styled from 'styled-components';
 
 import genClassName from '@web/lib/genClassname';
 import type { PayloadImageT } from '@web/primitives/primatives';
-
 
 type IsFillProps = {
   width?: number | null;

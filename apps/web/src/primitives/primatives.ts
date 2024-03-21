@@ -23,6 +23,7 @@ export type PayloadIconT = {
 export type PayloadButtonT = {
   color: 'primary' | 'secondary' | 'bg' | 'fg';
   icon?: Partial<PayloadIconT>;
+  size?: 'sm' | 'md' | 'lg';
   variant?: 'solid' | 'outlined' | 'link';
 };
 
@@ -32,4 +33,11 @@ export type PayloadLinkT = {
   text: string;
   style?: Partial<PayloadButtonT>;
   isNewTab?: boolean;
+};
+
+export type PayloadDateTimeT = {
+  date: string;
+  time?: string;
+  format?: string;
+  className?: string;
 };

@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { ResponsivePayloadImageType } from '.';
+import type { PayloadImageT } from '@web/primitives/primatives';
+
 import ResponsivePayloadImage from '.';
 
-const meta: Meta<ResponsivePayloadImageType> = {
+const meta: Meta<PayloadImageT> = {
   title: 'web/ResponsivePayloadImage',
   component: ResponsivePayloadImage,
   parameters: {
@@ -13,7 +14,7 @@ const meta: Meta<ResponsivePayloadImageType> = {
 };
 
 export default meta;
-type Story = StoryObj<ResponsivePayloadImageType>;
+type Story = StoryObj<PayloadImageT>;
 
 const randomImage = 'https://source.unsplash.com/random';
 
