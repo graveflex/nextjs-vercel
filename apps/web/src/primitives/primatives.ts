@@ -8,6 +8,7 @@ export type PayloadImageT = {
   imageProps?: Partial<ImageProps>;
   aspectRatio?: '6/7' | '7/6' | '1/1' | '3/2' | '16/9' | 'initial';
   isRounded?: boolean;
+  style?: React.CSSProperties;
   className?: string;
   classOverride?: string;
 };

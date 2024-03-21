@@ -118,7 +118,9 @@ function Layout({ children, header, footer }: LayoutType) {
   return (
     <>
       <Header>
-        {logo?.url && <Logo image={logo} imageProps={{ loading: 'eager' }} />}
+        {logo?.url && (
+          <Logo image={logo} imageProps={{ loading: 'eager', fill: true }} />
+        )}
         {HeaderMenu}
       </Header>
       <main>{children}</main>

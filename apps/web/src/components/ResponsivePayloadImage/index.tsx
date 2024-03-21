@@ -31,7 +31,8 @@ function ResponsivePayloadImage({
   aspectRatio = 'initial',
   isRounded = false,
   className,
-  classOverride
+  classOverride,
+  style
 }: PayloadImageT) {
   const alt = get(image, 'alt', '');
   const url = get(image, 'url');
@@ -39,9 +40,6 @@ function ResponsivePayloadImage({
   const width = get(image, 'width');
 
   /* Additional props for the image */
-  const style = get(imageProps, 'style', { objectFit: 'cover' });
-  const quality = get(imageProps, 'quality', 75);
-  const priority = get(imageProps, 'priority', false);
   const fill = get(imageProps, 'fill', isFill({ height, width } as Dimensions));
 
   if (!url) {
@@ -70,14 +68,13 @@ function ResponsivePayloadImage({
       <Image
         {...{
           fill,
-          ...dimensions
+          ...dimensions,
+          ...imageProps
         }}
         src={url}
         alt={alt ?? ''}
-        quality={quality}
         unoptimized={isSVG}
         style={imageStyles}
-        priority={priority}
         placeholder="blur"
         blurDataURL={url}
       />

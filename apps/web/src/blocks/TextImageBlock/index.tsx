@@ -91,11 +91,18 @@ function TextImageBlock({
   const img = expandedDoc<Image>(image);
   const layout = blockConfig?.layout || 'imgRight';
   const className = genClassName([layout]);
+  const imageProps = {
+    fill: true
+  };
   return (
     <Wrapper>
       <InnerWrapper className={className}>
         {img && (
-          <ImageWrapper image={img} imageProps={{ objectFit: 'cover' }} />
+          <ImageWrapper
+            image={img}
+            imageProps={imageProps}
+            style={{ objectFit: 'cover' }}
+          />
         )}
         <ContentWrapper>
           {title && <Title>{title}</Title>}

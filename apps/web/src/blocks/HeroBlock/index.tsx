@@ -174,9 +174,19 @@ function HeroBlock({
   const layout = blockConfig?.layout || 'imgRight';
   const img = expandedDoc<Image>(image);
   const className = genClassName([layout]);
+  const imageProps = {
+    fill: true,
+    priority: true
+  };
   return (
     <StyledWrapper className={className}>
-      {img && <ImageWrapper image={img} classOverride={className} />}
+      {img && (
+        <ImageWrapper
+          image={img}
+          imageProps={imageProps}
+          classOverride={className}
+        />
+      )}
       <ContentWrapper className={className}>
         {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
         {title && <Title>{title}</Title>}
