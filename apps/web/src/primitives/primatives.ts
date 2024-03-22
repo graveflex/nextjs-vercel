@@ -1,10 +1,10 @@
 import type { ImageProps } from 'next/image';
 
-import type { Image as ImageT } from '@web/payload/payload-types';
+import type { Image } from '@web/payload/payload-types';
 
 /* /apps/web/src/components/ResponsivePayloadImage */
 export type PayloadImageT = {
-  image: ImageT;
+  image: Image;
   imageProps?: Partial<ImageProps>;
   aspectRatio?: '6/7' | '7/6' | '1/1' | '3/2' | '16/9' | 'initial';
   isRounded?: boolean;
@@ -28,12 +28,26 @@ export type PayloadButtonT = {
   variant?: 'solid' | 'outlined' | 'link';
 };
 
+export type PayloadNumberT = {
+  number: number;
+};
+
+export type PayloadTextT = {
+  text: string;
+};
+
+export type PayloadBridgeTextT = {
+  text: string;
+  className?: string;
+};
+
 /* /apps/web/src/components/PayloadLink */
 export type PayloadLinkT = {
-  href: string;
-  text: string;
+  href?: string;
+  text: Partial<PayloadTextT> | string;
   style?: Partial<PayloadButtonT>;
-  isNewTab?: boolean;
+  newTab?: boolean;
+  linkType?: string;
 };
 
 /* /apps/web/src/components/RichText */
@@ -51,6 +65,9 @@ export type PayloadDateTimeT = {
   className?: string;
 };
 
-export type PayloadNumberT = {
-  number: number;
+export type PayloadFileUploadT = {
+  label?: string;
+  accept?: string;
+  multiple?: boolean;
+  className?: string;
 };

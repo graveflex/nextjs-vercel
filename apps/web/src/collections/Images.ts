@@ -11,6 +11,80 @@ const Images: CollectionConfig = {
       label: 'Alt Text',
       type: 'text',
       required: false
+    },
+
+    {
+      name: 'imageProps',
+      label: 'Image Properties',
+      type: 'group',
+      fields: [
+        {
+          name: 'fill',
+          label: 'Fill Container',
+          type: 'checkbox',
+          defaultValue: false
+        },
+        {
+          name: 'priority',
+          label: 'Load Priority',
+          type: 'checkbox',
+          defaultValue: false
+        },
+        {
+          name: 'quality',
+          label: 'Image Quality',
+          type: 'number',
+          required: false,
+          defaultValue: 75
+        },
+        {
+          name: 'styles',
+          label: 'Styles',
+          type: 'code',
+          required: false,
+          defaultValue: `{
+              objectFit: 'cover',
+            }`
+        },
+        {
+          name: 'isBorderRadius',
+          label: 'Border Radius',
+          type: 'checkbox',
+          defaultValue: false
+        },
+        {
+          name: 'aspectRatio',
+          label: 'Aspect Ratio',
+          type: 'select',
+          options: [
+            {
+              label: '6:7',
+              value: '6/7'
+            },
+            {
+              label: '7:6',
+              value: '7/6'
+            },
+            {
+              label: '1:1',
+              value: '1/1'
+            },
+            {
+              label: '3:2',
+              value: '3/2'
+            },
+            {
+              label: '16:9',
+              value: '16/9'
+            },
+            {
+              label: 'Initial',
+              value: 'initial'
+            }
+          ],
+          defaultValue: 'initial'
+        }
+      ]
     }
   ],
   upload: {

@@ -176,7 +176,13 @@ function HeroBlock({
   const className = genClassName([layout]);
   const imageProps = {
     fill: true,
-    priority: true
+    priority: true,
+    quality: 75,
+    styles: {
+      objectFit: 'cover'
+    },
+    isRounded: true,
+    aspectRatio: '6/7'
   };
   return (
     <StyledWrapper className={className}>
