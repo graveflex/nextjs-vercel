@@ -5,10 +5,12 @@ import type { Image } from '@web/payload/payload-types';
 /* /apps/web/src/components/ResponsivePayloadImage */
 export type PayloadImageT = {
   image: Image;
-  imageProps?: Partial<ImageProps>;
-  aspectRatio?: '6/7' | '7/6' | '1/1' | '3/2' | '16/9' | 'initial';
-  isRounded?: boolean;
-  style?: React.CSSProperties;
+  imageProps?: Partial<ImageProps> | null;
+  additionalProps?: {
+    style?: React.CSSProperties;
+    isRounded?: boolean;
+    aspectRatio?: '6/7' | '7/6' | '1/1' | '3/2' | '16/9' | 'initial';
+  } | null;
   className?: string;
   classOverride?: string;
 };
@@ -51,12 +53,24 @@ export type PayloadLinkT = {
 };
 
 /* /apps/web/src/components/RichText */
-export type PayloadRichTextT = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type PayloadRichTextT = any; /* {
   content: {
-    [key: string]: unknown;
-  }[];
+    root: {
+      children: {
+        [k: string]: unknown;
+        type: string;
+        version: number;
+      }[];
+      direction: 'ltr' | 'rtl' | null;
+      format: '' | 'center' | 'end' | 'start' | 'left' | 'right' | 'justify';
+      indent: number;
+      type: string;
+      version: number;
+    };
+  };
   className?: string;
-};
+}; */
 
 export type PayloadDateTimeT = {
   date: string;

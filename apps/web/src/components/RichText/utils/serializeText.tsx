@@ -41,10 +41,11 @@ type LinkNode = {
   linkType?: string;
 };
 
-export type SerializedText = (ExtendedText | TextNode | LinkNode)[];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type SerializedText = any;
 
-const serializeText = (children: SerializedText) => {
-  return children?.map((node, i: number) => {
+const serializeText = (content: SerializedText) => {
+  return content?.map((node, i: number) => {
     if ('text' in node) {
       let text = (
         <span dangerouslySetInnerHTML={{ __html: escapeHTML(node.text) }} />

@@ -50,19 +50,39 @@ export interface FAQBlockT {
     hidden?: boolean | null;
   };
   title?: string | null;
-  subTitle?:
-    | {
+  subTitle?: {
+    root: {
+      children: {
+        type: string;
+        version: number;
         [k: string]: unknown;
-      }[]
-    | null;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      type: string;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   items?:
     | {
         title?: string | null;
-        subTitle?:
-          | {
+        subTitle?: {
+          root: {
+            children: {
+              type: string;
+              version: number;
               [k: string]: unknown;
-            }[]
-          | null;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            type: string;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
         id?: string | null;
       }[]
     | null;
@@ -77,11 +97,21 @@ export interface TextImageBlockT {
     layout?: ('imgRight' | 'imgLeft') | null;
   };
   title?: string | null;
-  content?:
-    | {
+  content?: {
+    root: {
+      children: {
+        type: string;
+        version: number;
         [k: string]: unknown;
-      }[]
-    | null;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      type: string;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   image?: number | Image | null;
   cta?: CTAType;
   id?: string | null;
@@ -91,6 +121,16 @@ export interface TextImageBlockT {
 export interface Image {
   id: number;
   alt?: string | null;
+  imageProps?: {
+    fill?: boolean | null;
+    priority?: boolean | null;
+    quality?: number | null;
+  };
+  additionalProps?: {
+    style?: string | null;
+    isRounded?: boolean | null;
+    aspectRatio?: ('6/7' | '7/6' | '1/1' | '3/2' | '16/9' | 'initial') | null;
+  };
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -155,11 +195,21 @@ export interface HeroBlockT {
   image?: number | Image | null;
   eyebrow?: string | null;
   title?: string | null;
-  subTitle?:
-    | {
+  subTitle?: {
+    root: {
+      children: {
+        type: string;
+        version: number;
         [k: string]: unknown;
-      }[]
-    | null;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      type: string;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   input?: InputType;
   cta?: CTAType;
   id?: string | null;

@@ -97,13 +97,7 @@ function TextImageBlock({
   return (
     <Wrapper>
       <InnerWrapper className={className}>
-        {img && (
-          <ImageWrapper
-            image={img}
-            imageProps={imageProps}
-            style={{ objectFit: 'cover' }}
-          />
-        )}
+        {img && <ImageWrapper image={img} imageProps={imageProps} />}
         <ContentWrapper>
           {title && <Title>{title}</Title>}
           {content && <RichText content={content} />}

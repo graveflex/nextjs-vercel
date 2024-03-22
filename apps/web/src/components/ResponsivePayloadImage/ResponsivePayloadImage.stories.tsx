@@ -64,6 +64,16 @@ export const Defaults: Story = {
       createdAt: '2023-09-13T16:32:11.202Z',
       updatedAt: '2023-09-13T16:32:11.202Z',
       url: randomImage
+    },
+    imageProps: {
+      fill: true
+    },
+    additionalProps: {
+      isRounded: true,
+      aspectRatio: '16/9',
+      style: {
+        objectFit: 'cover'
+      }
     }
   }
 };

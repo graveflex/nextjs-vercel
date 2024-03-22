@@ -36,10 +36,17 @@ const Images: CollectionConfig = {
           type: 'number',
           required: false,
           defaultValue: 75
-        },
+        }
+      ]
+    },
+    {
+      name: 'additionalProps',
+      label: 'Additional Properties',
+      type: 'group',
+      fields: [
         {
-          name: 'styles',
-          label: 'Styles',
+          name: 'style',
+          label: 'Style',
           type: 'code',
           required: false,
           defaultValue: `{
@@ -47,7 +54,7 @@ const Images: CollectionConfig = {
             }`
         },
         {
-          name: 'isBorderRadius',
+          name: 'isRounded',
           label: 'Border Radius',
           type: 'checkbox',
           defaultValue: false

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { faker } from '@faker-js/faker';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -30,7 +31,7 @@ export const Defaults: Story = {
           }
         ]
       }
-    ],
+    ] as any,
     image: {
       id: 1,
       alt: 'Myopic Logo',

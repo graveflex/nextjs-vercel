@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { faker } from '@faker-js/faker';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -24,13 +25,15 @@ export const Defaults: Story = {
     title: 'Hero block',
     subTitle: [
       {
-        children: [
-          {
-            text: 'Here is some text'
-          }
-        ]
+        root: {
+          children: [
+            {
+              text: 'Here is some text'
+            }
+          ]
+        }
       }
-    ],
+    ] as any,
     eyebrow: 'Eyebrow',
     cta: {
       href: 'https://google.com',
@@ -49,7 +52,17 @@ export const Defaults: Story = {
       mimeType: 'image/svg+xml',
       filesize: 7144,
       width: 193,
-      height: 17
+      height: 17,
+      imageProps: {
+        fill: true
+      },
+      additionalProps: {
+        isRounded: true,
+        aspectRatio: '16/9',
+        style: `{
+          objectFit: 'cover'
+        }`
+      }
     }
   }
 };
@@ -59,13 +72,15 @@ export const MissingProps: Story = {
     title: 'Hero block',
     subTitle: [
       {
-        children: [
-          {
-            text: 'Here is some text'
-          }
-        ]
+        root: {
+          children: [
+            {
+              text: 'Here is some text'
+            }
+          ]
+        }
       }
-    ],
+    ] as any,
     cta: {
       href: 'https://google.com',
       label: 'Test'

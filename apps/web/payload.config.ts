@@ -1,10 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
-import {
-  BlocksFeature,
-  lexicalEditor,
-  UploadFeature
-} from '@payloadcms/richtext-lexical';
+import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import dotenv from 'dotenv';
 import path from 'path';
 import { buildConfig } from 'payload/config';
@@ -37,27 +33,7 @@ export default buildConfig({
     }
   }),
   editor: lexicalEditor({
-    features: ({ defaultFeatures }) => [
-      ...defaultFeatures,
-      UploadFeature({
-        collections: {
-          uploads: {
-            fields: [
-              {
-                name: 'caption',
-                type: 'richText',
-                editor: lexicalEditor()
-              }
-            ]
-          }
-        }
-      }),
-      BlocksFeature({
-        blocks: [
-          /* Add custom blocks here. Example being FAQ List. */
-        ]
-      })
-    ]
+    features: ({ defaultFeatures }) => [...defaultFeatures]
   }),
   collections: [Pages, Users, Images],
   globals: [Nav],

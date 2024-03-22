@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import lens from '@refract-ui/sc/lens';
+import get from 'lodash/get';
 import styled from 'styled-components';
 
 import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
@@ -11,10 +12,8 @@ import Wrapper from '@web/components/Wrapper';
 import Input from '@web/fields/Input';
 import genClassName from '@web/lib/genClassname';
 import expandedDoc from '@web/lib/isExpandedDoc';
-import type {
-  HeroBlockT as PayloadType,
-  Image
-} from '@web/payload/payload-types';
+import type { HeroBlockT as PayloadType } from '@web/payload/payload-types';
+import type { PayloadImageT } from '@web/primitives/primatives';
 
 export type HeroBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -172,25 +171,18 @@ function HeroBlock({
   blockConfig
 }: HeroBlockType) {
   const layout = blockConfig?.layout || 'imgRight';
-  const img = expandedDoc<Image>(image);
+  const img = expandedDoc<PayloadImageT['image']>(image);
   const className = genClassName([layout]);
-  const imageProps = {
-    fill: true,
-    priority: true,
-    quality: 75,
-    styles: {
-      objectFit: 'cover'
-    },
-    isRounded: true,
-    aspectRatio: '6/7'
-  };
+  const imageProps = get(image, 'imageProps');
+  const additionalProps = get(image, 'additionalProps');
   return (
     <StyledWrapper className={className}>
       {img && (
         <ImageWrapper
           image={img}
-          imageProps={imageProps}
           classOverride={className}
+          imageProps={imageProps}
+          additionalProps={additionalProps}
         />
       )}
       <ContentWrapper className={className}>
