@@ -17,6 +17,13 @@ type Dimensions = {
   height?: number;
   width?: number;
 };
+/* If there is no height or width then the image will fill the container */
+const isFill = ({ width, height }: Dimensions): boolean => {
+  if (width === undefined && height === undefined) {
+    return true;
+  }
+  return false;
+};
 
 function ResponsivePayloadImage({
   image,
@@ -30,7 +37,7 @@ function ResponsivePayloadImage({
   const width = get(image, 'width');
 
   /* Additional props for the image */
-  const fill = get(imageProps, 'fill', false);
+  const fill = get(imageProps, 'fill', isFill({ height, width } as Dimensions));
   const isRounded = get(imageProps, 'isRounded', false);
   const aspectRatio = get(imageProps, 'aspectRatio', 'initial');
   const styles = get(imageProps, 'style', {});
@@ -45,10 +52,12 @@ function ResponsivePayloadImage({
     aspectRatio
   };
 
-  const dimensions = {
-    height,
-    width
-  } as Dimensions;
+  const dimensions = !fill
+    ? ({
+        height,
+        width
+      } as Dimensions)
+    : {};
 
   /* We do not want to optimize SVGs */
   const containsSVG = /\.svg$/;
