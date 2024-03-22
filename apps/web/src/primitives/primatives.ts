@@ -53,9 +53,9 @@ export type PayloadLinkT = {
 };
 
 /* /apps/web/src/components/RichText */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type PayloadRichTextT = any; /* {
+export type PayloadRichTextT = {
   content: {
+    [k: string]: unknown;
     root: {
       children: {
         [k: string]: unknown;
@@ -69,9 +69,7 @@ export type PayloadRichTextT = any; /* {
       version: number;
     };
   };
-  className?: string;
-}; */
-
+};
 export type PayloadDateTimeT = {
   date: string;
   time?: string;

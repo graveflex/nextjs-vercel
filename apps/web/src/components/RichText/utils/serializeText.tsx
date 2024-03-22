@@ -1,113 +1,111 @@
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable react/no-danger */
-import React, { Fragment } from 'react';
-import escapeHTML from 'escape-html';
+import React from 'react';
+import get from 'lodash/get';
 
-type BaseText = {
-  text: string;
-};
-
-type ExtendedText = BaseText & {
-  bold: true | undefined;
-  italic: true | undefined;
-  code: true | undefined;
-  underline: true | undefined;
-  strikethrough: true | undefined;
-};
+import type { PayloadRichTextT } from '@web/primitives/primatives';
 
 type TextNodeTypes =
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'h6'
+  | 'heading'
   | 'blockquote'
+  | 'paragraph'
+  | 'list'
   | 'ul'
   | 'ol'
   | 'li'
+  | 'listitem'
+  | 'code'
+  | 'link'
+  | 'quote'
   | 'indent';
 
+type BaseText = {
+  mode: string;
+  text: string;
+  format: 0 | 1 | 2 | 3 | 4;
+  children: BaseText[];
+};
+
 type TextNode = {
+  tag?: string;
   type?: TextNodeTypes;
-  children: (ExtendedText | TextNode | LinkNode)[];
+  children?: BaseText[];
 };
 
-type LinkNode = {
-  type?: 'link';
-  children: (ExtendedText | TextNode)[];
-  url?: string;
-  newTab?: boolean;
-  linkType?: string;
-};
+const serializeText = (content: PayloadRichTextT) => {
+  const root = get(content, 'content.root');
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type SerializedText = any;
+  if (!root || !root.children) {
+    return null;
+  }
 
-const serializeText = (content: SerializedText) => {
-  return content?.map((node, i: number) => {
-    if ('text' in node) {
-      let text = (
-        <span dangerouslySetInnerHTML={{ __html: escapeHTML(node.text) }} />
-      );
-      if (node.bold) {
-        text = <strong key={i}>{text}</strong>;
-      }
-      if (node.code) {
-        text = <code key={i}>{text}</code>;
-      }
-      if (node.italic) {
-        text = <em key={i}>{text}</em>;
-      }
-      if (node.underline) {
-        text = <u key={i}>{text}</u>;
-      }
-      if (node.strikethrough) {
-        text = <s key={i}>{text}</s>;
-      }
-
-      return <Fragment key={i}>{text}</Fragment>;
+  const renderText = (text: BaseText, index: number) => {
+    if (text.format === 1) {
+      return <strong key={index}>{text.text}</strong>;
     }
+    if (text.format === 2) {
+      return <em key={index}>{text.text}</em>;
+    }
+    if (text.format === 3) {
+      return <u key={index}>{text.text}</u>;
+    }
+    if (text.format === 4) {
+      return <s key={index}>{text.text}</s>;
+    }
+    return <span key={index}>{text.text}</span>;
+  };
 
-    if (!node) {
+  const renderNode = (node: TextNode, index: number) => {
+    if (!node.children) {
       return null;
     }
-
-    if (node.type === 'link') {
-      return (
-        <a href={escapeHTML(node.url)} key={i}>
-          {serializeText(node.children)}
-        </a>
-      );
-    }
-
     switch (node.type) {
-      case 'h1':
-        return <h1 key={i}>{serializeText(node.children)}</h1>;
-      case 'h2':
-        return <h2 key={i}>{serializeText(node.children)}</h2>;
-      case 'h3':
-        return <h3 key={i}>{serializeText(node.children)}</h3>;
-      case 'h4':
-        return <h4 key={i}>{serializeText(node.children)}</h4>;
-      case 'h5':
-        return <h5 key={i}>{serializeText(node.children)}</h5>;
-      case 'h6':
-        return <h6 key={i}>{serializeText(node.children)}</h6>;
-      case 'blockquote':
-        return <blockquote key={i}>{serializeText(node.children)}</blockquote>;
-      case 'ul':
-        return <ul key={i}>{serializeText(node.children)}</ul>;
-      case 'ol':
-        return <ol key={i}>{serializeText(node.children)}</ol>;
-      case 'li':
-        return <li key={i}>{serializeText(node.children)}</li>;
-      case 'indent':
-        return <span key={i}>{serializeText(node.children)}</span>;
+      case 'heading':
+        return React.createElement(
+          `${node.tag}`,
+          { key: index },
+          node.children.map((text, i) => renderText(text, i))
+        );
+      case 'paragraph':
+        return (
+          <p key={index}>
+            {node.children.map((text, i) => renderText(text, i))}
+          </p>
+        );
+      case 'list':
+        return node.tag === 'ol' ? (
+          <ol key={index}>
+            {node.children.map((listItem, i) => renderNode(listItem, i))}
+          </ol>
+        ) : (
+          <ul key={index}>
+            {node.children.map((listItem, i) => renderNode(listItem, i))}
+          </ul>
+        );
+      case 'listitem':
+        return (
+          <li key={index}>
+            {node.children.map((text, i) => renderText(text, i))}
+          </li>
+        );
+      case 'link':
+        return (
+          <a key={index} href={node.tag}>
+            {node.children.map((text, i) => renderText(text, i))}
+          </a>
+        );
+      case 'quote':
+        return (
+          <blockquote key={index}>
+            {node.children.map((text, i) => renderText(text, i))}
+          </blockquote>
+        );
       default:
-        return <p key={i}>{serializeText(node.children)}</p>;
+        return null;
     }
-  });
+  };
+
+  return root.children.map((node, index) =>
+    renderNode(node as TextNode, index)
+  );
 };
 
 export default serializeText;

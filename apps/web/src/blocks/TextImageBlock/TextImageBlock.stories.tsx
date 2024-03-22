@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { faker } from '@faker-js/faker';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -23,15 +22,153 @@ export const Defaults: Story = {
       layout: 'imgLeft'
     },
     title: 'TextImageBlock',
-    content: [
-      {
+    content: {
+      root: {
+        type: 'root',
+        format: '',
+        indent: 0,
+        version: 1,
+        direction: 'ltr',
         children: [
           {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+            type: 'paragraph',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                mode: 'normal',
+                text: 'Okay new editor without any ',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
+              },
+              {
+                mode: 'normal',
+                text: 'bold',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 1,
+                version: 1
+              },
+              {
+                mode: 'normal',
+                text: " OH it's bold nice.",
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
+              }
+            ],
+            direction: 'ltr'
+          },
+          {
+            tag: 'h1',
+            type: 'heading',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                mode: 'normal',
+                text: 'Oh neat',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
+              }
+            ],
+            direction: 'ltr'
+          },
+          {
+            tag: 'ol',
+            type: 'list',
+            start: 1,
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                type: 'listitem',
+                value: 1,
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [
+                  {
+                    mode: 'normal',
+                    text: 'so neat cool',
+                    type: 'text',
+                    style: '',
+                    detail: 0,
+                    format: 0,
+                    version: 1
+                  }
+                ],
+                direction: 'ltr'
+              }
+            ],
+            listType: 'number',
+            direction: 'ltr'
+          },
+          {
+            tag: 'ul',
+            type: 'list',
+            start: 1,
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                type: 'listitem',
+                value: 1,
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [
+                  {
+                    mode: 'normal',
+                    text: 'and markdown works',
+                    type: 'text',
+                    style: '',
+                    detail: 0,
+                    format: 0,
+                    version: 1
+                  }
+                ],
+                direction: 'ltr'
+              },
+              {
+                type: 'listitem',
+                value: 2,
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [
+                  {
+                    mode: 'normal',
+                    text: 'I like this ',
+                    type: 'text',
+                    style: '',
+                    detail: 0,
+                    format: 0,
+                    version: 1
+                  }
+                ],
+                direction: 'ltr'
+              }
+            ],
+            listType: 'bullet',
+            direction: 'ltr'
           }
         ]
       }
-    ] as any,
+    },
     image: {
       id: 1,
       alt: 'Myopic Logo',

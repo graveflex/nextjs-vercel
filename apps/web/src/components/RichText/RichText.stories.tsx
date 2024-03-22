@@ -18,243 +18,359 @@ type Story = StoryObj<PayloadRichTextT>;
 
 export const Defaults: Story = {
   args: {
-    content: [
-      {
+    content: {
+      root: {
+        type: 'root',
+        format: '',
+        indent: 0,
+        version: 1,
         children: [
           {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-          }
-        ]
-      },
-      {
-        children: [
-          {
-            text: ''
-          }
-        ]
-      },
-      {
-        type: 'h1',
-        children: [
-          {
-            text: 'H1'
-          }
-        ]
-      },
-      {
-        type: 'h2',
-        children: [
-          {
-            text: 'h2'
-          }
-        ]
-      },
-      {
-        type: 'h3',
-        children: [
-          {
-            text: 'h3'
-          }
-        ]
-      },
-      {
-        type: 'h4',
-        children: [
-          {
-            text: 'h4'
-          }
-        ]
-      },
-      {
-        type: 'h5',
-        children: [
-          {
-            text: 'h5'
-          }
-        ]
-      },
-      {
-        type: 'h6',
-        children: [
-          {
-            text: 'h6'
-          }
-        ]
-      },
-      {
-        type: 'ul',
-        children: [
-          {
-            type: 'li',
+            type: 'paragraph',
+            format: '',
+            indent: 0,
+            version: 1,
             children: [
               {
-                text: 'ul 1'
-              }
-            ]
-          },
-          {
-            type: 'li',
-            children: [
-              {
-                text: 'ul 2'
-              }
-            ]
-          },
-          {
-            type: 'li',
-            children: [
-              {
-                text: 'ul 3'
-              }
-            ]
-          }
-        ]
-      },
-      {
-        type: 'blockquote',
-        children: [
-          {
-            text: 'blockquote'
-          }
-        ]
-      },
-      {
-        type: 'ol',
-        children: [
-          {
-            type: 'li',
-            children: [
-              {
-                text: 'ol 1'
-              }
-            ]
-          },
-          {
-            type: 'li',
-            children: [
-              {
-                text: 'ol 2'
-              }
-            ]
-          },
-          {
-            type: 'li',
-            children: [
-              {
-                text: 'ol 3'
-              }
-            ]
-          }
-        ]
-      },
-      {
-        type: 'indent',
-        children: [
-          {
-            type: 'indent',
-            children: [
-              {
-                type: 'indent',
-                children: [
-                  {
-                    type: 'indent',
-                    children: [
-                      {
-                        type: 'indent',
-                        children: [
-                          {
-                            children: [
-                              {
-                                text: 'tabbed in?'
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        children: [
-          {
-            text: 'back to the beginning'
-          }
-        ]
-      },
-      {
-        children: [
-          {
-            bold: true,
-            text: 'bold text'
-          }
-        ]
-      },
-      {
-        children: [
-          {
-            text: 'italicized text',
-            italic: true
-          }
-        ]
-      },
-      {
-        children: [
-          {
-            text: 'underlined text',
-            underline: true
-          }
-        ]
-      },
-      {
-        children: [
-          {
-            text: 'crossed out text',
-            strikethrough: true
-          }
-        ]
-      },
-      {
-        children: [
-          {
-            code: true,
-            text: 'code text'
-          }
-        ]
-      },
-      {
-        children: [
-          {
-            code: true,
-            text: 'more code'
-          }
-        ]
-      },
-      {
-        children: [
-          {
-            text: ''
-          },
-          {
-            url: 'https://google.com',
-            type: 'link',
-            newTab: true,
-            children: [
-              {
-                text: 'Link to google'
+                mode: 'normal',
+                text: 'Regular paragraph',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
               }
             ],
-            linkType: 'custom'
+            direction: 'ltr'
           },
           {
-            text: ''
+            tag: 'h1',
+            type: 'heading',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                mode: 'normal',
+                text: 'Heading 1',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
+              }
+            ],
+            direction: 'ltr'
+          },
+          {
+            tag: 'h2',
+            type: 'heading',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                mode: 'normal',
+                text: 'Heading 2',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
+              }
+            ],
+            direction: 'ltr'
+          },
+          {
+            tag: 'h3',
+            type: 'heading',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                mode: 'normal',
+                text: 'Heading 3',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
+              }
+            ],
+            direction: 'ltr'
+          },
+          {
+            tag: 'h4',
+            type: 'heading',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                mode: 'normal',
+                text: 'Heading 4',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
+              }
+            ],
+            direction: 'ltr'
+          },
+          {
+            tag: 'h5',
+            type: 'heading',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                mode: 'normal',
+                text: 'Heading 5',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
+              }
+            ],
+            direction: 'ltr'
+          },
+          {
+            type: 'paragraph',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [],
+            direction: null
+          },
+          {
+            tag: 'ul',
+            type: 'list',
+            start: 1,
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                type: 'listitem',
+                value: 1,
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [
+                  {
+                    mode: 'normal',
+                    text: 'Unordered',
+                    type: 'text',
+                    style: '',
+                    detail: 0,
+                    format: 0,
+                    version: 1
+                  }
+                ],
+                direction: 'ltr'
+              },
+              {
+                type: 'listitem',
+                value: 2,
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [
+                  {
+                    mode: 'normal',
+                    text: 'List',
+                    type: 'text',
+                    style: '',
+                    detail: 0,
+                    format: 0,
+                    version: 1
+                  }
+                ],
+                direction: 'ltr'
+              },
+              {
+                type: 'listitem',
+                value: 3,
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [
+                  {
+                    mode: 'normal',
+                    text: 'List',
+                    type: 'text',
+                    style: '',
+                    detail: 0,
+                    format: 0,
+                    version: 1
+                  }
+                ],
+                direction: 'ltr'
+              }
+            ],
+            listType: 'bullet',
+            direction: 'ltr'
+          },
+          {
+            tag: 'ol',
+            type: 'list',
+            start: 1,
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                type: 'listitem',
+                value: 1,
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [
+                  {
+                    mode: 'normal',
+                    text: 'Ordered List',
+                    type: 'text',
+                    style: '',
+                    detail: 0,
+                    format: 0,
+                    version: 1
+                  }
+                ],
+                direction: 'ltr'
+              },
+              {
+                type: 'listitem',
+                value: 2,
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [
+                  {
+                    mode: 'normal',
+                    text: 'Here',
+                    type: 'text',
+                    style: '',
+                    detail: 0,
+                    format: 0,
+                    version: 1
+                  }
+                ],
+                direction: 'ltr'
+              },
+              {
+                type: 'listitem',
+                value: 3,
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [
+                  {
+                    mode: 'normal',
+                    text: 'List',
+                    type: 'text',
+                    style: '',
+                    detail: 0,
+                    format: 0,
+                    version: 1
+                  }
+                ],
+                direction: 'ltr'
+              }
+            ],
+            listType: 'number',
+            direction: 'ltr'
+          },
+          {
+            tag: 'ul',
+            type: 'list',
+            start: 1,
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                type: 'listitem',
+                value: 1,
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [
+                  {
+                    mode: 'normal',
+                    text: 'A checkbox ',
+                    type: 'text',
+                    style: '',
+                    detail: 0,
+                    format: 0,
+                    version: 1
+                  }
+                ],
+                direction: 'ltr'
+              },
+              {
+                type: 'listitem',
+                value: 2,
+                format: '',
+                indent: 0,
+                version: 1,
+                children: [
+                  {
+                    mode: 'normal',
+                    text: ' Another checkbox',
+                    type: 'text',
+                    style: '',
+                    detail: 0,
+                    format: 0,
+                    version: 1
+                  }
+                ],
+                direction: 'ltr'
+              }
+            ],
+            listType: 'check',
+            direction: 'ltr'
+          },
+          {
+            type: 'quote',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                mode: 'normal',
+                text: 'Blocked quoted',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
+              }
+            ],
+            direction: 'ltr'
+          },
+          {
+            type: 'paragraph',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [],
+            direction: null
+          },
+          {
+            type: 'paragraph',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [],
+            direction: 'ltr'
           }
-        ]
+        ],
+        direction: 'ltr'
       }
-    ]
+    }
   }
 };

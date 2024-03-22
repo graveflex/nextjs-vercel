@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { faker } from '@faker-js/faker';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -23,17 +22,35 @@ export const Defaults: Story = {
       layout: 'imgLeftFull'
     },
     title: 'Hero block',
-    subTitle: [
-      {
-        root: {
-          children: [
-            {
-              text: 'Here is some text'
-            }
-          ]
-        }
+    subTitle: {
+      root: {
+        type: 'root',
+        format: '',
+        indent: 0,
+        version: 1,
+        children: [
+          {
+            type: 'paragraph',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                mode: 'normal',
+                text: 'Regular paragraph',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
+              }
+            ],
+            direction: 'ltr'
+          }
+        ],
+        direction: 'ltr'
       }
-    ] as any,
+    },
     eyebrow: 'Eyebrow',
     cta: {
       href: 'https://google.com',
@@ -70,17 +87,35 @@ export const Defaults: Story = {
 export const MissingProps: Story = {
   args: {
     title: 'Hero block',
-    subTitle: [
-      {
-        root: {
-          children: [
-            {
-              text: 'Here is some text'
-            }
-          ]
-        }
+    subTitle: {
+      root: {
+        type: 'root',
+        format: '',
+        indent: 0,
+        version: 1,
+        children: [
+          {
+            type: 'paragraph',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                mode: 'normal',
+                text: 'Regular paragraph',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
+              }
+            ],
+            direction: 'ltr'
+          }
+        ],
+        direction: 'ltr'
       }
-    ] as any,
+    },
     cta: {
       href: 'https://google.com',
       label: 'Test'
