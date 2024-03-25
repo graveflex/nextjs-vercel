@@ -39,7 +39,7 @@ function ResponsivePayloadImage({
 
   /* Additional props for the image */
   const fill = get(imageProps, 'fill', isFill({ height, width } as Dimensions));
-  const style = get(additionalProps, 'style', {});
+  const objectFit = get(additionalProps, 'objectFit', 'cover');
   const isRounded = get(additionalProps, 'isRounded', false);
   const aspectRatio = get(additionalProps, 'aspectRatio', 'initial');
 
@@ -48,11 +48,10 @@ function ResponsivePayloadImage({
   }
 
   const imageStyles = {
-    style,
+    objectFit,
     borderRadius: isRounded ? '36px' : 'initial',
     aspectRatio
   };
-
   const dimensions = !fill
     ? ({
         height,

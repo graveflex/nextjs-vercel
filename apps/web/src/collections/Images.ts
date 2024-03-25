@@ -53,6 +53,31 @@ const Images: CollectionConfig = {
           required: false
         },
         {
+          name: 'objectFit',
+          label: 'Object Fit',
+          type: 'select',
+          options: [
+            {
+              label: 'Cover',
+              value: 'cover'
+            },
+            {
+              label: 'Contain',
+              value: 'contain'
+            },
+            {
+              label: 'Fill',
+              value: 'fill'
+            },
+            {
+              label: 'Scale Down',
+              value: 'scale-down'
+            }
+          ],
+          defaultValue: 'cover',
+          required: false
+        },
+        {
           name: 'isRounded',
           label: 'Border Radius',
           type: 'checkbox',

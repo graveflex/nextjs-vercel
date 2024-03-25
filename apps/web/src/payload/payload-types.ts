@@ -128,6 +128,7 @@ export interface Image {
   };
   additionalProps?: {
     style?: string | null;
+    objectFit?: ('cover' | 'contain' | 'fill' | 'scale-down') | null;
     isRounded?: boolean | null;
     aspectRatio?: ('6/7' | '7/6' | '1/1' | '3/2' | '16/9' | 'initial') | null;
   };

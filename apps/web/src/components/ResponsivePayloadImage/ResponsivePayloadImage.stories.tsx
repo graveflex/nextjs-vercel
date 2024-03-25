@@ -71,9 +71,7 @@ export const Defaults: Story = {
     additionalProps: {
       isRounded: true,
       aspectRatio: '16/9',
-      style: {
-        objectFit: 'cover'
-      }
+      objectFit: 'cover'
     }
   }
 };
