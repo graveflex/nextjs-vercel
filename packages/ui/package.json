@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@refract-ui/sc": "1.0.1-alpha.31",
+    "react-paginate": "^8.2.0",
     "styled-components": "^6.0.0-beta.11"
   }
 }
