@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useMemo, useCallback, useState } from 'react';
-import styled, { css } from 'styled-components';
+import React, { useCallback, useMemo, useState } from 'react';
 import ReactPaginate from 'react-paginate';
+import styled, { css } from 'styled-components';
 
 const OuterContainer = styled.div`
   display: grid;
@@ -16,12 +16,11 @@ const OuterContainer = styled.div`
 `;
 
 const Container = styled.div`
-  ${({ theme: { box, themeColors, mq } }) => css`
+  ${({ theme: { themeColors, mq } }) => css`
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     overflow-x: hidden;
-
 
     ul {
       position: relative;
@@ -64,7 +63,8 @@ const Container = styled.div`
         `}
       }
 
-      &.previous.disabled, &.next.disabled {
+      &.previous.disabled,
+      &.next.disabled {
         color: ${themeColors.disabled};
         border-color: ${themeColors.disabled};
         pointer-events: none;
@@ -72,7 +72,8 @@ const Container = styled.div`
 
       &:hover {
         color: ${themeColors.secondary};
-        &.previous, &.next {
+        &.previous,
+        &.next {
           background-color: transparent;
           border-color: ${themeColors.secondary};
           border-radius: 2.25rem;
@@ -106,12 +107,14 @@ const JumpArrow = styled.div<{ disabled?: boolean }>`
         border-color: ${themeColors.secondary};
       }
 
-      ${disabled &&
-      css`
-        color: ${themeColors.disabled};
-        border-color: ${themeColors.disabled};
-        pointer-events: none;
-      `}
+      ${
+        disabled &&
+        css`
+          color: ${themeColors.disabled};
+          border-color: ${themeColors.disabled};
+          pointer-events: none;
+        `
+      }
     `}
   `}
 `;
@@ -122,11 +125,17 @@ export type PaginationType = {
   total?: number;
   range?: number;
   updatePage?: (page: number) => void;
-  className?: string;
   showJump?: boolean;
 };
 
-function Pagination({ skip = 0, limit = 10, total = 0, range = 5, updatePage, showJump= false }: PaginationType) {
+function Pagination({
+  skip = 0,
+  limit = 10,
+  total = 0,
+  range = 5,
+  updatePage,
+  showJump = false
+}: PaginationType) {
   const pageCount = Math.ceil(total / limit);
   const initialPage = useMemo(() => skip / limit, [skip, limit]);
   const [currentPage, setCurrentPage] = useState(initialPage);
@@ -144,28 +153,32 @@ function Pagination({ skip = 0, limit = 10, total = 0, range = 5, updatePage, sh
     <OuterContainer>
       <Container>
         {/* CUSTOMIZE: update labels to icons  */}
-        {showJump && <JumpArrow 
-          onClick={() => onPageChange({ selected: 0 })} 
-          disabled={currentPage === 0}
-        > 
-          {"<<"} 
-        </JumpArrow>}
+        {showJump && (
+          <JumpArrow
+            onClick={() => onPageChange({ selected: 0 })}
+            disabled={currentPage === 0}
+          >
+            {'<<'}
+          </JumpArrow>
+        )}
         <ReactPaginate
-          previousLabel={'<'}
-          nextLabel={'>'}
-          breakLabel={'...'}
+          previousLabel="<"
+          nextLabel=">"
+          breakLabel="..."
           pageCount={Math.ceil(pageCount)}
           onPageChange={onPageChange}
           marginPagesDisplayed={range}
           pageRangeDisplayed={range}
           forcePage={currentPage}
         />
-        {showJump && <JumpArrow 
-          onClick={() => onPageChange({selected: lastPage })}
-          disabled={currentPage === lastPage}
-        > 
-          {">>"}
-        </JumpArrow>}
+        {showJump && (
+          <JumpArrow
+            onClick={() => onPageChange({ selected: lastPage })}
+            disabled={currentPage === lastPage}
+          >
+            {'>>'}
+          </JumpArrow>
+        )}
       </Container>
     </OuterContainer>
   );

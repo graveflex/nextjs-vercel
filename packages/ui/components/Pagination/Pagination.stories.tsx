@@ -20,7 +20,7 @@ export const Defaults: Story = {
     skip: 0,
     limit: 10,
     total: 100,
-    range: 5,
+    range: 5
   }
 };
 
