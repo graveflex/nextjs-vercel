@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import lens from '@refract-ui/sc/lens';
+import get from 'lodash/get';
 import styled from 'styled-components';
 
 import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
@@ -91,13 +92,18 @@ function TextImageBlock({
   const img = expandedDoc<Image>(image);
   const layout = blockConfig?.layout || 'imgRight';
   const className = genClassName([layout]);
-  const imageProps = {
-    fill: true
-  };
+  const imageProps = get(image, 'imageProps');
+  const additionalProps = get(image, 'additionalProps');
   return (
     <Wrapper>
       <InnerWrapper className={className}>
-        {img && <ImageWrapper image={img} imageProps={imageProps} />}
+        {img && (
+          <ImageWrapper
+            image={img}
+            imageProps={imageProps}
+            additionalProps={additionalProps}
+          />
+        )}
         <ContentWrapper>
           {title && <Title>{title}</Title>}
           {content && <RichText content={content} />}
