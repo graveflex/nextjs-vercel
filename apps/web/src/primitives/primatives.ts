@@ -1,4 +1,5 @@
 import type { ImageProps } from 'next/image';
+import type { SerializedEditorState } from 'lexical';
 
 import type { Image } from '@web/payload/payload-types';
 
@@ -55,22 +56,21 @@ export type PayloadLinkT = {
 
 /* /apps/web/src/components/RichText */
 export type PayloadRichTextT = {
-  content: {
-    [k: string]: unknown;
-    root: {
-      children: {
-        [k: string]: unknown;
-        type: string;
-        version: number;
-      }[];
-      direction: 'ltr' | 'rtl' | null;
-      format: '' | 'center' | 'end' | 'start' | 'left' | 'right' | 'justify';
-      indent: number;
-      type: string;
-      version: number;
-    };
-  };
+  content: SerializedEditorState;
 };
+export type SerializedLexicalNode = {
+  children?: SerializedLexicalNode[];
+  direction: string;
+  format: number;
+  indent?: string | number;
+  type: string;
+  version: number;
+  style?: string;
+  mode?: string;
+  text?: string;
+  tag?: string;
+};
+
 export type PayloadDateTimeT = {
   date: string;
   time?: string;
