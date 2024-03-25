@@ -115,12 +115,16 @@ function Layout({ children, header, footer }: LayoutType) {
     () => Menu(footer?.secondary),
     [footer?.secondary]
   );
+
+  const imageProps = {
+    fill: true,
+    priority: true
+  };
+
   return (
     <>
       <Header>
-        {logo?.url && (
-          <Logo image={logo} imageProps={{ loading: 'eager', fill: true }} />
-        )}
+        {logo?.url && <Logo image={logo} imageProps={imageProps} />}
         {HeaderMenu}
       </Header>
       <main>{children}</main>
