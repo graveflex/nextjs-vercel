@@ -16,11 +16,7 @@ async function rewrites() {
 module.exports = withPayload(
   {
     reactStrictMode: true,
-    transpilePackages: [
-      'ui',
-      'settings',
-      'vercel-blob-storage'
-    ],
+    transpilePackages: ['ui', 'settings', 'vercel-blob-storage'],
     compiler: {
       styledComponents: true
     },
