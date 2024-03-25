@@ -20,15 +20,26 @@ export const Defaults: Story = {
     skip: 0,
     limit: 10,
     total: 100,
-    range: 5
+    range: 5,
   }
 };
 
-export const WithBreakLabel: Story = {
+export const BreakLabel: Story = {
   args: {
     skip: 0,
     limit: 5,
     total: 100,
-    range: 5
+    range: 5,
+    showJump: false
+  }
+};
+
+export const JumpArrows: Story = {
+  args: {
+    skip: 0,
+    limit: 5,
+    total: 100,
+    range: 5,
+    showJump: true
   }
 };

@@ -1,28 +1,27 @@
 'use client';
 
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo, useCallback, useState } from 'react';
 import styled, { css } from 'styled-components';
 import ReactPaginate from 'react-paginate';
 
 const OuterContainer = styled.div`
-  ${({ theme: { box, themeColors } }) => css`
-    display: grid;
-    margin: 1rem 0;
-    width: 100%;
+  display: grid;
+  margin: 1rem 0;
+  width: 100%;
 
-    .selected {
-      text-decoration: underline;
-      align-self: center;
-    }
-  `}
+  .selected {
+    text-decoration: underline;
+    align-self: center;
+  }
 `;
 
 const Container = styled.div`
-  ${({ theme: { box, themeColors } }) => css`
+  ${({ theme: { box, themeColors, mq } }) => css`
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     overflow-x: hidden;
+
 
     ul {
       position: relative;
@@ -37,25 +36,38 @@ const Container = styled.div`
     }
 
     li {
-      display: inline-flex;
+      display: flex;
       height: 1.625rem;
       width: 1.625rem;
       justify-content: center;
       color: ${themeColors.primary};
 
+      ${mq.md`
+        &.previous {
+          margin-right: 5rem;
+        }
+
+        &.next {
+          margin-left: 5rem;
+        }
+      `}
+
       &.previous, &.next {
         border: 1px solid ${themeColors.primary};
         border-radius: 2.25rem;
-        height: 3.8125rem;
-        width: 3.8125rem;
+        min-height: 1.8125rem;
+        min-width: 1.8125rem;
+
+        ${mq.md`
+          min-height: 3.8125rem;
+          min-width: 3.8125rem;
+        `}
       }
 
-      &.previous {
-        margin-right: 5rem;
-      }
-
-      &.next {
-        margin-left: 5rem;
+      &.previous.disabled, &.next.disabled {
+        color: ${themeColors.disabled};
+        border-color: ${themeColors.disabled};
+        pointer-events: none;
       }
 
       &:hover {
@@ -75,19 +87,32 @@ const Container = styled.div`
   `}
 `;
 
-const JumpArrow = styled.li`
-  ${({ theme: { themeColors } }) => css`
-    border: 1px solid ${themeColors.primary};
-    border-radius: 2.25rem;
-    min-height: 3.8125rem;
-    min-width: 3.8125rem;
-    display: flex;
-    align-items: center;
-    margin: 0 1.125rem;
+const JumpArrow = styled.div<{ disabled?: boolean }>`
+  ${({ theme: { themeColors, mq }, disabled }) => css`
+    display: none;
 
-    &:hover {
-      border-color: ${themeColors.secondary};
-    }
+    ${mq.md`
+      min-height: 3.8125rem;
+      min-width: 3.8125rem;
+      margin: 0 1.125rem;
+      border: 1px solid ${themeColors.primary};
+      color: ${themeColors.primary};
+      border-radius: 2.25rem;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+
+      &:hover {
+        border-color: ${themeColors.secondary};
+      }
+
+      ${disabled &&
+      css`
+        color: ${themeColors.disabled};
+        border-color: ${themeColors.disabled};
+        pointer-events: none;
+      `}
+    `}
   `}
 `;
 
@@ -98,32 +123,34 @@ export type PaginationType = {
   range?: number;
   updatePage?: (page: number) => void;
   className?: string;
+  showJump?: boolean;
 };
 
-function Pagination({ skip = 0, limit = 10, total = 0, range = 5, updatePage, className }: PaginationType) {
+function Pagination({ skip = 0, limit = 10, total = 0, range = 5, updatePage, showJump= false }: PaginationType) {
   const pageCount = Math.ceil(total / limit);
-  const currentPage = useMemo(() => skip / limit, [skip, limit]);
+  const initialPage = useMemo(() => skip / limit, [skip, limit]);
+  const [currentPage, setCurrentPage] = useState(initialPage);
+  const lastPage = pageCount - 1;
 
-   const onPageChange = useCallback(
+  const onPageChange = useCallback(
     ({ selected }: { selected: number }) => {
-      console.log('selected', selected)
       updatePage?.(selected);
+      setCurrentPage(selected);
     },
     [updatePage]
   );
 
-  console.log({skip, limit}, skip / limit)
-
-  console.log('currentPage', currentPage)
-
   return (
     <OuterContainer>
       <Container>
-        <JumpArrow
-          onClick={() => onPageChange({ selected: 0 })}
-        > back </JumpArrow>
+        {/* CUSTOMIZE: update labels to icons  */}
+        {showJump && <JumpArrow 
+          onClick={() => onPageChange({ selected: 0 })} 
+          disabled={currentPage === 0}
+        > 
+          {"<<"} 
+        </JumpArrow>}
         <ReactPaginate
-          // update labels to icons 
           previousLabel={'<'}
           nextLabel={'>'}
           breakLabel={'...'}
@@ -133,7 +160,12 @@ function Pagination({ skip = 0, limit = 10, total = 0, range = 5, updatePage, cl
           pageRangeDisplayed={range}
           forcePage={currentPage}
         />
-        <JumpArrow onClick={() => onPageChange({selected: pageCount })}> next </JumpArrow>
+        {showJump && <JumpArrow 
+          onClick={() => onPageChange({selected: lastPage })}
+          disabled={currentPage === lastPage}
+        > 
+          {">>"}
+        </JumpArrow>}
       </Container>
     </OuterContainer>
   );
