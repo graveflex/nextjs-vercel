@@ -1,9 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
-import {
-  lexicalEditor,
-  SlateToLexicalFeature
-} from '@payloadcms/richtext-lexical';
+import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import dotenv from 'dotenv';
 import path from 'path';
 import { buildConfig } from 'payload/config';
@@ -37,10 +34,7 @@ export default buildConfig({
   }),
   collections: [Pages, Users, Images],
   editor: lexicalEditor({
-    features: ({ defaultFeatures }) => [
-      ...defaultFeatures,
-      SlateToLexicalFeature({})
-    ]
+    features: ({ defaultFeatures }) => [...defaultFeatures]
   }),
   globals: [Nav],
   routes: {
