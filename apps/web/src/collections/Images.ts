@@ -22,20 +22,22 @@ const Images: CollectionConfig = {
           name: 'fill',
           label: 'Fill Container',
           type: 'checkbox',
-          defaultValue: false
+          defaultValue: false,
+          required: false
         },
         {
           name: 'priority',
           label: 'Load Priority',
           type: 'checkbox',
-          defaultValue: false
+          defaultValue: false,
+          required: false
         },
         {
           name: 'quality',
           label: 'Image Quality',
           type: 'number',
-          required: false,
-          defaultValue: 75
+          defaultValue: 75,
+          required: false
         }
       ]
     },
@@ -48,16 +50,14 @@ const Images: CollectionConfig = {
           name: 'style',
           label: 'Style',
           type: 'code',
-          required: false,
-          defaultValue: `{
-              objectFit: 'cover',
-            }`
+          required: false
         },
         {
           name: 'isRounded',
           label: 'Border Radius',
           type: 'checkbox',
-          defaultValue: false
+          defaultValue: false,
+          required: false
         },
         {
           name: 'aspectRatio',
@@ -89,7 +89,8 @@ const Images: CollectionConfig = {
               value: 'initial'
             }
           ],
-          defaultValue: 'initial'
+          defaultValue: 'initial',
+          required: false
         }
       ]
     }
