@@ -45,7 +45,9 @@ const config = {
         ...c.resolve,
         alias: {
           ...c.resolve.alias,
-          '@mono/web': resolve(__dirname, '../../web/src')
+          '@mono/web': resolve(__dirname, '../../web/src'),
+          '@mono/theme': resolve(__dirname, '../../../packages/theme'),
+          '@mono/ui': resolve(__dirname, '../../../packages/ui')
         }
       }
     };
