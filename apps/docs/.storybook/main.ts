@@ -17,11 +17,11 @@ const config = {
   ],
   addons: [
     getAbsolutePath('@storybook/addon-essentials'),
+    getAbsolutePath('@storybook/addon-actions'),
     getAbsolutePath('@storybook/addon-interactions'),
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-onboarding'),
     getAbsolutePath('@storybook/addon-themes'),
-    getAbsolutePath('@storybook/addon-actions'),
     getAbsolutePath('@storybook/addon-a11y'),
     '@refract-ui/stories'
   ],
