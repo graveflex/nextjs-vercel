@@ -7,10 +7,9 @@ import RichText from '@mono/web/components/RichText';
 import genClassName from '@mono/web/lib/genClassname';
 import expandedDoc from '@mono/web/lib/isExpandedDoc';
 import type { TextImageBlockT as PayloadType } from '@mono/web/payload/payload-types';
+import type { PayloadImageT } from '@mono/web/primitives/primitives';
 import styled from '@refract-ui/sc';
 import s from 'styled-components';
-
-import type { PayloadImageT } from '@web/primitives/primitives';
 
 export type TextImageBlockType = Omit<PayloadType, 'blockType'>;
 

@@ -3,9 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import genClassName from '@mono/web/lib/genClassname';
+import type { PayloadImageT } from '@mono/web/primitives/primitives';
 import styled from '@refract-ui/sc';
-
-import type { PayloadImageT } from '@web/primitives/primitives';
 
 const ImageWrapper = styled.div`
   container-type: inline-size;

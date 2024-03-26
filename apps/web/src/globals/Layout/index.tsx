@@ -8,10 +8,9 @@ import MaybeThemed from '@mono/web/components/MaybeThemed';
 import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
 import expandedDoc from '@mono/web/lib/isExpandedDoc';
 import type { MenuItems, Nav as NavT } from '@mono/web/payload/payload-types';
+import type { PayloadImageT } from '@mono/web/primitives/primitives';
 import styled, { css } from '@refract-ui/sc';
 import s from 'styled-components';
-
-import type { PayloadImageT } from '@web/primitives/primitives';
 
 const Header = styled.header`
   padding: 1.625rem 1rem;
