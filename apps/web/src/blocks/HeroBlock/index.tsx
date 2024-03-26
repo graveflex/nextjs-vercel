@@ -70,6 +70,11 @@ const StyledWrapper = styled(Wrapper)`
 const ImageWrapper = styled(ResponsivePayloadImage)`
   aspect-ratio: 500 / 402;
 
+  ${({ theme: { mq } }) => mq.md`
+    aspect-ratio: initial;
+    height: 100%;
+  `};
+
   &.bg {
     position: absolute;
     height: 100%;
