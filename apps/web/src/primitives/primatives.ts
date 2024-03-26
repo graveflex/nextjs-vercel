@@ -1,11 +1,12 @@
 import type { ImageProps } from 'next/image';
 import type { SerializedEditorState } from 'lexical';
 
-import type { Image } from '@web/payload/payload-types';
-
 /* /apps/web/src/components/ResponsivePayloadImage */
 export type PayloadImageT = {
-  image: Image;
+  url: string;
+  alt?: string;
+  height?: number;
+  width?: number;
   imageProps?: Partial<ImageProps> | null;
   additionalProps?: {
     style?: React.CSSProperties;

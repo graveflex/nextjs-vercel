@@ -3,7 +3,6 @@
 import React from 'react';
 import Link from 'next/link';
 import lens from '@refract-ui/sc/lens';
-import get from 'lodash/get';
 import styled from 'styled-components';
 
 import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
@@ -171,20 +170,11 @@ function HeroBlock({
   blockConfig
 }: HeroBlockType) {
   const layout = blockConfig?.layout || 'imgRight';
-  const img = expandedDoc<PayloadImageT['image']>(image);
+  const img = expandedDoc<PayloadImageT>(image);
   const className = genClassName([layout]);
-  const imageProps = get(image, 'imageProps');
-  const additionalProps = get(image, 'additionalProps');
   return (
     <StyledWrapper className={className}>
-      {img && (
-        <ImageWrapper
-          image={img}
-          classOverride={className}
-          imageProps={imageProps}
-          additionalProps={additionalProps}
-        />
-      )}
+      {img && <ImageWrapper {...img} />}
       <ContentWrapper className={className}>
         {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
         {title && <Title>{title}</Title>}

@@ -26,17 +26,15 @@ const isFill = ({ width, height }: Dimensions): boolean => {
 };
 
 function ResponsivePayloadImage({
-  image,
+  alt,
+  url,
+  height,
+  width,
   imageProps,
   additionalProps,
   className,
   classOverride
 }: PayloadImageT) {
-  const alt = get(image, 'alt', '');
-  const url = get(image, 'url');
-  const height = get(image, 'height');
-  const width = get(image, 'width');
-
   /* Additional props for the image */
   const fill = get(imageProps, 'fill', isFill({ height, width } as Dimensions));
   const objectFit = get(additionalProps, 'objectFit', 'cover');

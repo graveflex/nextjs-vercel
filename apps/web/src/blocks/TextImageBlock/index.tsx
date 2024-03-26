@@ -3,17 +3,14 @@
 import React from 'react';
 import Link from 'next/link';
 import lens from '@refract-ui/sc/lens';
-import get from 'lodash/get';
 import styled from 'styled-components';
 
 import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
 import RichText from '@web/components/RichText';
 import genClassName from '@web/lib/genClassname';
 import expandedDoc from '@web/lib/isExpandedDoc';
-import type {
-  Image,
-  TextImageBlockT as PayloadType
-} from '@web/payload/payload-types';
+import type { TextImageBlockT as PayloadType } from '@web/payload/payload-types';
+import type { PayloadImageT } from '@web/primitives/primatives';
 
 export type TextImageBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -89,21 +86,13 @@ function TextImageBlock({
   cta,
   blockConfig
 }: TextImageBlockType) {
-  const img = expandedDoc<Image>(image);
+  const img = expandedDoc<PayloadImageT>(image);
   const layout = blockConfig?.layout || 'imgRight';
   const className = genClassName([layout]);
-  const imageProps = get(image, 'imageProps');
-  const additionalProps = get(image, 'additionalProps');
   return (
     <Wrapper>
       <InnerWrapper className={className}>
-        {img && (
-          <ImageWrapper
-            image={img}
-            imageProps={imageProps}
-            additionalProps={additionalProps}
-          />
-        )}
+        {img && <ImageWrapper {...img} />}
         <ContentWrapper>
           {title && <Title>{title}</Title>}
           {content && <RichText content={content} />}

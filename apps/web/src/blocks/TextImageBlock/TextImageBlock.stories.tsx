@@ -179,7 +179,15 @@ export const Defaults: Story = {
       mimeType: 'image/svg+xml',
       filesize: 7144,
       width: 193,
-      height: 17
+      height: 17,
+      imageProps: {
+        fill: true
+      },
+      additionalProps: {
+        isRounded: true,
+        aspectRatio: '16/9',
+        objectFit: 'cover'
+      }
     }
   }
 };

@@ -7,11 +7,8 @@ import styled, { css } from 'styled-components';
 
 import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
 import expandedDoc from '@web/lib/isExpandedDoc';
-import type {
-  Image as ImageT,
-  MenuItems,
-  Nav as NavT
-} from '@web/payload/payload-types';
+import type { MenuItems, Nav as NavT } from '@web/payload/payload-types';
+import type { PayloadImageT } from '@web/primitives/primatives';
 
 const Header = styled.header`
   padding: 1.625rem 1rem;
@@ -109,22 +106,17 @@ function Menu(menuItems: MenuItems | undefined) {
 export type LayoutType = PropsWithChildren<NavT>;
 
 function Layout({ children, header, footer }: LayoutType) {
-  const logo = expandedDoc<ImageT>(header?.logo);
+  const logo = expandedDoc<PayloadImageT>(header?.logo);
   const HeaderMenu = useMemo(() => Menu(header?.main), [header?.main]);
   const FooterMenu = useMemo(
     () => Menu(footer?.secondary),
     [footer?.secondary]
   );
 
-  const imageProps = {
-    fill: true,
-    priority: true
-  };
-
   return (
     <>
       <Header>
-        {logo?.url && <Logo image={logo} imageProps={imageProps} />}
+        {logo?.url && <Logo {...logo} />}
         {HeaderMenu}
       </Header>
       <main>{children}</main>

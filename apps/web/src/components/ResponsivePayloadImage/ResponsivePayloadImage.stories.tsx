@@ -14,7 +14,7 @@ const meta: Meta<PayloadImageT> = {
 };
 
 export default meta;
-type Story = StoryObj<PayloadImageT>;
+type Story = StoryObj<unknown>;
 
 const randomImage = 'https://source.unsplash.com/random';
 
