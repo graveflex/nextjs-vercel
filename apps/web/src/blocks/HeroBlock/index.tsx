@@ -68,7 +68,7 @@ const StyledWrapper = styled(Wrapper)`
 `;
 
 const ImageWrapper = styled(ResponsivePayloadImage)`
-  aspect-ratio: 500 / 402;
+  height: 100%;
 
   &.bg {
     position: absolute;
