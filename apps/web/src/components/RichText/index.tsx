@@ -1,17 +1,12 @@
 import React from 'react';
 
-import type { SerializedText } from './utils/serializeSlateText';
-import serializeSlateText from './utils/serializeSlateText';
+import type { PayloadRichTextT } from '@web/primitives/primitives';
 
-export type RichTextType = {
-  content: {
-    [k: string]: unknown;
-  }[];
-};
+import serializeText from './utils/serializeText';
 
 // NOTE: intended coercion -- payload doesn't provide a specific type
-function RichText({ content, ...props }: RichTextType) {
-  return <div {...props}>{serializeSlateText(content as SerializedText)}</div>;
+function RichText(content: PayloadRichTextT): JSX.Element {
+  return <div>{serializeText(content)}</div>;
 }
 
 export default RichText;

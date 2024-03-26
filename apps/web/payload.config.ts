@@ -5,7 +5,7 @@ import Users from '@mono/web/collections/User';
 import Nav from '@mono/web/globals/Layout/Layout.config';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
-import { slateEditor } from '@payloadcms/richtext-slate';
+import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import dotenv from 'dotenv';
 import path from 'path';
 import { buildConfig } from 'payload/config';
@@ -30,7 +30,9 @@ export default buildConfig({
       connectionString: DATABASE_URL
     }
   }),
-  editor: slateEditor({}),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [...defaultFeatures]
+  }),
   collections: [Pages, Users, Images],
   globals: [Nav],
   routes: {
