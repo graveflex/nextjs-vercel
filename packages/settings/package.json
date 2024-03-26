@@ -1,12 +1,12 @@
 {
-  "name": "settings",
+  "name": "@mono/settings",
   "version": "0.0.0",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.umd.cjs",
   "module": "./dist/index.es.js",
   "scripts": {
-    "clean": "rm -rf -- ./.turbo ./dist ./coverage",
+    "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
     "buildSettings": "tsc && vite build",
     "dev": "tsc && vite build --watch",
     "lint": "eslint \"**/*.ts*\" --fix",
@@ -19,7 +19,7 @@
     "dotenv": "^16.3.1",
     "eslint-config-custom": "*",
     "jsdom": "^22.1.0",
-    "tsconfig": "*",
+    "@mono/tsconfig": "*",
     "typescript": "^5.2.2",
     "unplugin-auto-import": "^0.16.6",
     "vite-tsconfig-paths": "^4.2.1",

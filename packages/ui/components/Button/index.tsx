@@ -3,7 +3,7 @@
 'use client';
 
 import React from 'react';
-import { css, styled } from 'styled-components';
+import styled, { css } from '@refract-ui/sc';
 
 export type ButtonType = {
   type?: 'button' | 'submit';

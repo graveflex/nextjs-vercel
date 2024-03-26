@@ -1,5 +1,5 @@
 import { setProjectAnnotations } from '@storybook/react';
-import * as projectAnnotations from 'docs/.storybook/preview';
+import * as projectAnnotations from '../../../apps/docs/.storybook/preview';
 import { vi } from 'vitest';
 
 import 'vitest-canvas-mock';

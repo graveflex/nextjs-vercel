@@ -2,19 +2,17 @@
 
 import React from 'react';
 import Link from 'next/link';
-import lens from '@refract-ui/sc/lens';
-import styled from 'styled-components';
-
-import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
-import RichText from '@web/components/RichText';
-import Wrapper from '@web/components/Wrapper';
-import Input from '@web/fields/Input';
-import genClassName from '@web/lib/genClassname';
-import expandedDoc from '@web/lib/isExpandedDoc';
+import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
+import RichText from '@mono/web/components/RichText';
+import Wrapper from '@mono/web/components/Wrapper';
+import Input from '@mono/web/fields/Input';
+import genClassName from '@mono/web/lib/genClassname';
+import expandedDoc from '@mono/web/lib/isExpandedDoc';
 import type {
   HeroBlockT as PayloadType,
   Image
-} from '@web/payload/payload-types';
+} from '@mono/web/payload/payload-types';
+import styled from '@refract-ui/sc';
 
 export type HeroBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -83,7 +81,7 @@ const Eyebrow = styled.span`
   ${({ theme: { box } }) => box.t('h6')};
 `;
 
-const Title = lens.h1({ m: 0, p: 0 })``;
+const Title = styled.h1({ m: 0, p: 0 })``;
 
 const ContentWrapper = styled.div`
   z-index: 1;

@@ -1,3 +1,8 @@
+import { LOCAL, WEB_URL } from '@mono/settings';
+import Images from '@mono/web/collections/Images';
+import Pages from '@mono/web/collections/Pages';
+import Users from '@mono/web/collections/User';
+import Nav from '@mono/web/globals/Layout/Layout.config';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { slateEditor } from '@payloadcms/richtext-slate';
@@ -6,24 +11,17 @@ import path from 'path';
 import { buildConfig } from 'payload/config';
 import { vercelBlobAdapter } from 'vercel-blob-storage';
 
-import { LOCAL, WEB_URL } from 'settings';
-
-import Images from '@web/collections/Images';
-import Pages from '@web/collections/Pages';
-import Users from '@web/collections/User';
-import Nav from '@web/globals/Layout/Layout.config';
-
 dotenv.config({ path: `${__dirname}/../../.env` });
 
 const POSTGRES_URL =
   process.env.NODE_ENV === 'production' && LOCAL === 'false'
     ? `${process.env.POSTGRES_URL}?sslmode=require`
-    : process.env.POSTGRES_URL;
+    : process.env.POSTGRES_URL as string;
 
 const adapter = vercelBlobAdapter({
-  token: process.env.BLOB_READ_WRITE_TOKEN,
-  endpointUrl: process.env.BLOB_ENDPOINT_URL,
-  storeId: process.env.BLOB_STORE_ID
+  token: process.env.BLOB_READ_WRITE_TOKEN as string,
+  endpointUrl: process.env.BLOB_ENDPOINT_URL as string,
+  storeId: process.env.BLOB_STORE_ID as string
 });
 
 export default buildConfig({

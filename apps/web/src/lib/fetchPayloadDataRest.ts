@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
+import { WEB_URL } from '@mono/settings';
 import qs from 'qs';
-
-import { WEB_URL } from 'settings';
 
 export type FetchPayloadRequest = {
   endpoint: string;

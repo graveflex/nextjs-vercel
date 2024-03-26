@@ -2,7 +2,7 @@
 
 import type { PropsWithChildren } from 'react';
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@refract-ui/sc';
 
 const Container = styled.section`
   --maxWidth: 1024px;

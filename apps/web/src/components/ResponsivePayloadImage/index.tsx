@@ -3,10 +3,9 @@
 import React from 'react';
 import type { ImageProps } from 'next/image';
 import Image from 'next/image';
-import styled from 'styled-components';
-
-import genClassName from '@web/lib/genClassname';
-import type { Image as ImageT } from '@web/payload/payload-types';
+import genClassName from '@mono/web/lib/genClassname';
+import type { Image as ImageT } from '@mono/web/payload/payload-types';
+import styled from '@refract-ui/sc';
 
 export type ResponsivePayloadImageType = {
   image: ImageT;

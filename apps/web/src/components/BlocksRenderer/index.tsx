@@ -1,11 +1,9 @@
 import type { ComponentType } from 'react';
 import React from 'react';
 import dynamic from 'next/dynamic';
+import { themeList } from '@mono/theme/src/theme';
+import type { Page } from '@mono/web/payload/payload-types';
 import { SubTheme } from '@refract-ui/sc/lens';
-
-import { themeList } from 'theme/src/theme';
-
-import type { Page } from '@web/payload/payload-types';
 
 const defaultOpts = {
   suspense: true,
@@ -14,11 +12,15 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
-  faqBlock: dynamic(() => import('@web/blocks/FAQBlock'), { ...defaultOpts }),
-  textImageBlock: dynamic(() => import('@web/blocks/TextImageBlock'), {
+  faqBlock: dynamic(() => import('@mono/web/blocks/FAQBlock'), {
     ...defaultOpts
   }),
-  heroBlock: dynamic(() => import('@web/blocks/HeroBlock'), { ...defaultOpts })
+  textImageBlock: dynamic(() => import('@mono/web/blocks/TextImageBlock'), {
+    ...defaultOpts
+  }),
+  heroBlock: dynamic(() => import('@mono/web/blocks/HeroBlock'), {
+    ...defaultOpts
+  })
 };
 
 function BlocksRenderer({ blocks }: { blocks: NonNullable<Page['blocks']> }) {

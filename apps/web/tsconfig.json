@@ -1,5 +1,5 @@
 {
-  "extends": "tsconfig/nextjs.json",
+  "extends": "@mono/tsconfig/nextjs.json",
   "compilerOptions": {
     "plugins": [
       {
@@ -8,7 +8,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@web/*": ["./src/*"]
+      "@mono/web/*": ["./src/*"]
     },
     "strictNullChecks": true
   },

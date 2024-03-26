@@ -1,14 +1,12 @@
 'use client';
 
 import React, { useContext, useEffect, useMemo } from 'react';
-
-import { WEB_URL } from 'settings';
-import type { ThemeKey } from 'theme/src/ThemeProvider';
-import { ThemeContext } from 'theme/src/ThemeProvider';
-
-import BlocksRenderer from '@web/components/BlocksRenderer';
-import useLivePreview from '@web/hooks/useLivePreview';
-import type { Page } from '@web/payload/payload-types';
+import { WEB_URL } from '@mono/settings';
+import type { ThemeKey } from '@mono/theme/src/ThemeProvider';
+import { ThemeContext } from '@mono/theme/src/ThemeProvider';
+import BlocksRenderer from '@mono/web/components/BlocksRenderer';
+import useLivePreview from '@mono/web/hooks/useLivePreview';
+import type { Page } from '@mono/web/payload/payload-types';
 
 function PageTemplate({ page }: { page: Page }) {
   const { data } = useLivePreview<Page>({

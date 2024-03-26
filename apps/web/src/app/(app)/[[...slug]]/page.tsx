@@ -1,9 +1,8 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
+import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
+import type { Page } from '@mono/web/payload/payload-types';
 import type { PaginatedDocs } from 'payload/database';
-
-import fetchPayloadDataRest from '@web/lib/fetchPayloadDataRest';
-import type { Page } from '@web/payload/payload-types';
 
 import PageTemplate from './page.client';
 

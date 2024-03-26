@@ -12,6 +12,6 @@ to: packages/<%= name %>/package.json
   },
   "devDependencies": {
     "eslint-config-custom": "*",
-    "tsconfig": "*"
+    "@mono/tsconfig": "*"
   }
 }

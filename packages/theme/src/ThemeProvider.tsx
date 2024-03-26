@@ -2,7 +2,7 @@
 
 import type { PropsWithChildren } from 'react';
 import React, { createContext, useMemo, useState } from 'react';
-import GlobalStyles from '@refract-ui/sc/components/GlobalStyles';
+import { GlobalStyles } from '@refract-ui/sc';
 import { createGlobalStyle } from 'styled-components';
 
 import { themeList } from './theme';

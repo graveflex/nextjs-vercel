@@ -3,11 +3,11 @@ import dotenv from 'dotenv';
 import path from 'path';
 import EnvironmentPlugin from 'vite-plugin-environment';
 import tsConfigPaths from 'vite-tsconfig-paths';
-import { defineConfig } from 'vitest/config';
+import { defineConfig, type UserConfigFn } from 'vitest/config';
 
 import LogSettingsPlugin from './logSettingsPlugin';
 
-export default defineConfig(async () => {
+const configFn: UserConfigFn = async () => {
   const root = path.resolve(__dirname, '../..');
   dotenv.config({ path: `${__dirname}/../../.env` });
 
@@ -55,7 +55,7 @@ export default defineConfig(async () => {
       outDir: path.join(__dirname, 'dist'),
       lib: {
         entry: path.resolve(__dirname, 'index.ts'),
-        name: 'settings',
+        name: '@mono/settings',
         fileName: (format, fname) => {
           const suffix = format === 'umd' ? 'cjs' : 'js';
           return `${fname}.${format}.${suffix}`;
@@ -63,4 +63,6 @@ export default defineConfig(async () => {
       }
     }
   };
-});
+};
+
+export default defineConfig(configFn);

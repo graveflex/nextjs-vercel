@@ -24,185 +24,41 @@ const textSizes = {
   h6: 0.875 // 14px
 };
 
-const textVariants = {
-  display1: {
-    stack: 'sans',
-    weight: '600',
-    size: 'display1'
+const defaultTheme = theme({
+  fontStacks: {
+    sans: [satoshi.style.fontFamily]
   },
-  h1: {
-    stack: 'sans',
-    weight: '600',
-    size: 'h1'
+  textSizes,
+  colors: {
+    black: '#000',
+    white: '#FFF'
   },
-  h2: {
-    stack: 'sans',
-    weight: '600',
-    size: 'h2'
+  colorTokens: ({ colors }) => ({
+    bg: colors.white,
+    fg: colors.black
+  }),
+  themeColors: {
+    primary: '#3A41E3',
+    secondary: '#7A7A7A',
+    warning: '#F0AD00',
+    success: '#1AB96D',
+    danger: '#FD0505'
   },
-  h3: {
-    stack: 'sans',
-    weight: '600',
-    size: 'h3',
-    height: '1.35'
-  },
-  h4: {
-    stack: 'sans',
-    weight: '600',
-    size: 'h4'
-  },
-  h5: {
-    stack: 'sans',
-    weight: '600',
-    size: 'h5'
-  },
-  h6: {
-    stack: 'sans',
-    weight: '600',
-    size: 'h6'
-  },
-  paragraphBigBold: {
-    stack: 'sans',
-    weight: '600',
-    height: '1.35',
-    size: 1
-  },
-  paragraphBig: {
-    stack: 'sans',
-    weight: '400',
-    height: '1.35',
-    size: 1
-  },
-  paragraphBold: {
-    stack: 'sans',
-    weight: '600',
-    height: '1.18',
-    size: 0
-  },
-  p: {
-    stack: 'sans',
-    weight: '400',
-    height: '1.18',
-    size: 0
-  },
-  paragraph: {
-    stack: 'sans',
-    weight: '400',
-    height: '1.18',
-    size: 0
-  },
-  paragraphSmallBold: {
-    stack: 'sans',
-    weight: '600',
-    height: '1.35',
-    size: -1
-  },
-  paragraphSmall: {
-    stack: 'sans',
-    weight: '400',
-    height: '1.35',
-    size: -1
-  },
-  menuLink: {
-    stack: 'sans',
-    weight: '400',
-    size: 1,
-    color: 'fg'
-  }
-};
-
-const defaultTheme = theme(
-  {
-    fontStacks: {
-      sans: [satoshi.style.fontFamily]
-    },
-    textSizes,
-    textVariants: ({ textVariants: defaultVariants }) => {
-      return {
-        ...defaultVariants,
-        ...textVariants
-      };
-    },
-    colors: {
-      black: '#000',
-      white: '#FFF'
-    },
-    colorTokens: ({ colors }) => ({
-      bg: colors.white,
-      fg: colors.black
-    }),
-    themeColors: {
-      primary: '#3A41E3',
-      secondary: '#7A7A7A',
-      warning: '#F0AD00',
-      success: '#1AB96D',
-      danger: '#FD0505'
-    },
-    borders: ({ borders: defaultBorders }) => ({
-      ...defaultBorders,
-      ...borders
-    }),
-    elements: ({ elements: defaultElements }) => ({
-      ...defaultElements,
-      ...elements
-      // '.sb-story': defaultElements.body
-    })
-  },
-  {
-    sm: {
-      textVariants
-    }
-  }
-);
+  borders: ({ borders: defaultBorders }) => ({
+    ...defaultBorders,
+    ...borders
+  }),
+  elements: ({ elements: defaultElements }) => ({
+    ...defaultElements,
+    ...elements
+    // '.sb-story': defaultElements.body
+  })
+});
 
 export type RefractTheme = typeof defaultTheme;
-
-export const darkTheme = theme(
-  {
-    fontStacks: {
-      sans: [satoshi.style.fontFamily]
-    },
-    textSizes,
-    textVariants: ({ textVariants: defaultVariants }) => {
-      return {
-        ...defaultVariants,
-        ...textVariants
-      };
-    },
-    colors: {
-      black: '#000',
-      white: '#FFF'
-    },
-    colorTokens: ({ colors }) => ({
-      bg: colors.black,
-      fg: colors.white
-    }),
-    themeColors: {
-      primary: '#A5A8F3',
-      secondary: '#7A7A7A',
-      warning: '#F0AD00',
-      success: '#1AB96D',
-      danger: '#FD0505'
-    },
-    borders: ({ borders: defaultBorders }) => ({
-      ...defaultBorders,
-      ...borders
-    }),
-    elements: ({ elements: defaultElements }) => ({
-      ...defaultElements,
-      ...elements
-    })
-  },
-  {
-    sm: {
-      textVariants
-    }
-  }
-);
 
 export default defaultTheme;
 
 export const themeList: Record<string, RefractTheme> = {
-  light: defaultTheme,
-  dark: darkTheme
+  light: defaultTheme
 };

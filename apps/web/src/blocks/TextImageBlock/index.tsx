@@ -2,17 +2,15 @@
 
 import React from 'react';
 import Link from 'next/link';
-import lens from '@refract-ui/sc/lens';
-import styled from 'styled-components';
-
-import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
-import RichText from '@web/components/RichText';
-import genClassName from '@web/lib/genClassname';
-import expandedDoc from '@web/lib/isExpandedDoc';
+import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
+import RichText from '@mono/web/components/RichText';
+import genClassName from '@mono/web/lib/genClassname';
+import expandedDoc from '@mono/web/lib/isExpandedDoc';
 import type {
   Image,
   TextImageBlockT as PayloadType
-} from '@web/payload/payload-types';
+} from '@mono/web/payload/payload-types';
+import styled from '@refract-ui/sc';
 
 export type TextImageBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -70,7 +68,7 @@ const ContentWrapper = styled.div`
   width: min(100%, 476px);
 `;
 
-const Title = lens.h3({ m: 0, p: 0 })``;
+const Title = styled.h3({ m: 0, p: 0 })``;
 
 const Button = styled(Link)`
   text-align: center;

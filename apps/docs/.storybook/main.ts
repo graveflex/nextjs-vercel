@@ -1,40 +1,36 @@
-import { dirname, join, resolve } from 'path';
-
-/**
- * This function is used to resolve the absolute path of a package.
- * It is needed in projects that use Yarn PnP or are set up within a monorepo.
- */
-function getAbsolutePath(value) {
-  return dirname(require.resolve(join(value, 'package.json')));
-}
+import { resolve } from 'path';
 
 /** @type { import('@storybook/nextjs').StorybookConfig } */
 const config = {
   stories: [
-    '../../../node_modules/@refract-ui/stories/**/*.stories.mdx',
-    '../../../packages/ui/**/*.stories.tsx',
-    '../../web/src/**/*.stories.tsx'
+    '../../../node_modules/@refract-ui/stories/**/*.mdx'
+    // '../../../node_modules/@refract-ui/hook-fields/**/*.stories.tsx',
+    // '../../../packages/ui/**/*.stories.tsx',
+    // '../../web/src/**/*.stories.tsx'
   ],
   addons: [
-    getAbsolutePath('@storybook/addon-essentials'),
-    getAbsolutePath('@storybook/addon-interactions'),
-    getAbsolutePath('@storybook/addon-links'),
-    getAbsolutePath('@storybook/addon-onboarding'),
-    getAbsolutePath('@storybook/addon-themes'),
-    getAbsolutePath('@storybook/addon-actions'),
-    getAbsolutePath('@storybook/addon-a11y'),
+    // '@storybook/addon-actions',
+    '@storybook/addon-essentials',
+    // '@storybook/addon-interactions',
+    '@storybook/addon-links',
+    // '@storybook/addon-onboarding',
+    // '@storybook/addon-themes',
+    '@storybook/addon-a11y',
     '@refract-ui/stories'
   ],
   features: {
-    buildStoriesJson: true,
-    storyStoreV7: true
+    // buildStoriesJson: true,
+    // storyStoreV7: true
   },
   framework: {
-    name: getAbsolutePath('@storybook/nextjs'),
+    name: '@storybook/react-vite',
     options: {}
   },
+  core: {
+    builder: '@storybook/builder-vite'
+  },
   docs: {
-    autodocs: 'tag'
+    autodocs: true
   },
   staticDirs: [
     {
@@ -49,7 +45,7 @@ const config = {
         ...c.resolve,
         alias: {
           ...c.resolve.alias,
-          '@web': resolve(__dirname, '../../web/src')
+          '@mono/web': resolve(__dirname, '../../web/src')
         }
       }
     };

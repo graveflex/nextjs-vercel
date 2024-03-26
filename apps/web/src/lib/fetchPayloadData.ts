@@ -1,6 +1,5 @@
+import getPayloadClient from '@mono/web/payload/payloadClient';
 import type { Payload } from 'payload';
-
-import getPayloadClient from '@web/payload/payloadClient';
 
 async function fetchPayloadData<T>(
   fn: (arg0: Payload) => Promise<T>

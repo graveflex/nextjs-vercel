@@ -1,13 +1,11 @@
 import React from 'react';
+import ThemeProvider from '@mono/theme/src/ThemeProvider';
+import Layout from '@mono/web/globals/Layout';
+import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
+import expandedDoc from '@mono/web/lib/isExpandedDoc';
+import StyledComponentsRegistry from '@mono/web/lib/StyledComponentRegistry';
+import type { Nav, Page } from '@mono/web/payload/payload-types';
 import type { PaginatedDocs } from 'payload/database';
-
-import ThemeProvider from 'theme/src/ThemeProvider';
-
-import Layout from '@web/globals/Layout';
-import fetchPayloadDataRest from '@web/lib/fetchPayloadDataRest';
-import expandedDoc from '@web/lib/isExpandedDoc';
-import StyledComponentsRegistry from '@web/lib/StyledComponentRegistry';
-import type { Nav, Page } from '@web/payload/payload-types';
 
 export const revalidate = 60;
 

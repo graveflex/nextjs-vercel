@@ -1,6 +1,6 @@
 const path = require('path');
 const { withPayload } = require('@payloadcms/next-payload');
-const { BLOB_STORE_ID } = require('settings');
+const { BLOB_STORE_ID } = require('@mono/settings');
 
 const baseUrl = `https://${BLOB_STORE_ID}.public.blob.vercel-storage.com`;
 
@@ -16,7 +16,7 @@ async function rewrites() {
 module.exports = withPayload(
   {
     reactStrictMode: true,
-    transpilePackages: ['ui', 'settings', 'vercel-blob-storage'],
+    transpilePackages: ['@mono/ui', '@mono/settings', 'vercel-blob-storage'],
     compiler: {
       styledComponents: true
     },

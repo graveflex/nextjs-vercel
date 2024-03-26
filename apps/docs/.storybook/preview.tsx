@@ -1,9 +1,9 @@
 import React from 'react';
 import GlobalStyles from '@refract-ui/sc/components/GlobalStyles';
-import configureGlobalTypes from '@refract-ui/stories/configureGlobalTypes';
+import { configureGlobalTypes } from '@refract-ui/stories';
 import type { Args, Decorator } from '@storybook/react';
 
-import { themeList } from 'theme/src/theme';
+import { themeList } from '@mono/theme/src/theme';
 
 const { light, dark } = themeList;
 

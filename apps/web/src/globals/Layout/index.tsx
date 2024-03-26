@@ -3,15 +3,14 @@
 import type { PropsWithChildren } from 'react';
 import React, { useMemo } from 'react';
 import Link from 'next/link';
-import styled, { css } from 'styled-components';
-
-import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
-import expandedDoc from '@web/lib/isExpandedDoc';
+import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
+import expandedDoc from '@mono/web/lib/isExpandedDoc';
 import type {
   Image as ImageT,
   MenuItems,
   Nav as NavT
-} from '@web/payload/payload-types';
+} from '@mono/web/payload/payload-types';
+import styled, { css } from '@refract-ui/sc';
 
 const Header = styled.header`
   padding: 1.625rem 1rem;
