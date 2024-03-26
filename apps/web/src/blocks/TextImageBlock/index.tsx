@@ -9,10 +9,8 @@ import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
 import RichText from '@web/components/RichText';
 import genClassName from '@web/lib/genClassname';
 import expandedDoc from '@web/lib/isExpandedDoc';
-import type {
-  Image,
-  TextImageBlockT as PayloadType
-} from '@web/payload/payload-types';
+import type { TextImageBlockT as PayloadType } from '@web/payload/payload-types';
+import type { PayloadImageT } from '@web/primitives/primatives';
 
 export type TextImageBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -60,6 +58,11 @@ const InnerWrapper = styled.div`
 
 const ImageWrapper = styled(ResponsivePayloadImage)`
   aspect-ratio: 500 / 402;
+
+  ${({ theme: { mq } }) => mq.md`
+    aspect-ratio: initial;
+    height: 100%;
+  `};
 `;
 
 const ContentWrapper = styled.div`
@@ -88,15 +91,13 @@ function TextImageBlock({
   cta,
   blockConfig
 }: TextImageBlockType) {
-  const img = expandedDoc<Image>(image);
+  const img = expandedDoc<PayloadImageT>(image);
   const layout = blockConfig?.layout || 'imgRight';
   const className = genClassName([layout]);
   return (
     <Wrapper>
       <InnerWrapper className={className}>
-        {img && (
-          <ImageWrapper image={img} imageProps={{ objectFit: 'cover' }} />
-        )}
+        {img && <ImageWrapper {...img} />}
         <ContentWrapper>
           {title && <Title>{title}</Title>}
           {content && <RichText content={content} />}

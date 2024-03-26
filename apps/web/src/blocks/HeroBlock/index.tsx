@@ -11,10 +11,8 @@ import Wrapper from '@web/components/Wrapper';
 import Input from '@web/fields/Input';
 import genClassName from '@web/lib/genClassname';
 import expandedDoc from '@web/lib/isExpandedDoc';
-import type {
-  HeroBlockT as PayloadType,
-  Image
-} from '@web/payload/payload-types';
+import type { HeroBlockT as PayloadType } from '@web/payload/payload-types';
+import type { PayloadImageT } from '@web/primitives/primatives';
 
 export type HeroBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -71,6 +69,11 @@ const StyledWrapper = styled(Wrapper)`
 
 const ImageWrapper = styled(ResponsivePayloadImage)`
   aspect-ratio: 500 / 402;
+
+  ${({ theme: { mq } }) => mq.md`
+    aspect-ratio: initial;
+    height: 100%;
+  `};
 
   &.bg {
     position: absolute;
@@ -172,11 +175,11 @@ function HeroBlock({
   blockConfig
 }: HeroBlockType) {
   const layout = blockConfig?.layout || 'imgRight';
-  const img = expandedDoc<Image>(image);
+  const img = expandedDoc<PayloadImageT>(image);
   const className = genClassName([layout]);
   return (
     <StyledWrapper className={className}>
-      {img && <ImageWrapper image={img} classOverride={className} />}
+      {img && <ImageWrapper {...img} />}
       <ContentWrapper className={className}>
         {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
         {title && <Title>{title}</Title>}
