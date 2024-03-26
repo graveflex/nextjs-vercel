@@ -1,6 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
-import { slateEditor } from '@payloadcms/richtext-slate';
+import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import dotenv from 'dotenv';
 import path from 'path';
 import { buildConfig } from 'payload/config';
@@ -32,7 +32,9 @@ export default buildConfig({
       connectionString: POSTGRES_URL
     }
   }),
-  editor: slateEditor({}),
+  editor: lexicalEditor({
+    features: ({ defaultFeatures }) => [...defaultFeatures]
+  }),
   collections: [Pages, Users, Images],
   globals: [Nav],
   routes: {

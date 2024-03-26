@@ -22,15 +22,35 @@ export const Defaults: Story = {
       layout: 'imgLeftFull'
     },
     title: 'Hero block',
-    subTitle: [
-      {
+    subTitle: {
+      root: {
+        type: 'root',
+        format: '',
+        indent: 0,
+        version: 1,
         children: [
           {
-            text: 'Here is some text'
+            type: 'paragraph',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                mode: 'normal',
+                text: 'Regular paragraph',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
+              }
+            ],
+            direction: 'ltr'
           }
-        ]
+        ],
+        direction: 'ltr'
       }
-    ],
+    },
     eyebrow: 'Eyebrow',
     cta: {
       href: 'https://google.com',
@@ -57,15 +77,35 @@ export const Defaults: Story = {
 export const MissingProps: Story = {
   args: {
     title: 'Hero block',
-    subTitle: [
-      {
+    subTitle: {
+      root: {
+        type: 'root',
+        format: '',
+        indent: 0,
+        version: 1,
         children: [
           {
-            text: 'Here is some text'
+            type: 'paragraph',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                mode: 'normal',
+                text: 'Regular paragraph',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
+              }
+            ],
+            direction: 'ltr'
           }
-        ]
+        ],
+        direction: 'ltr'
       }
-    ],
+    },
     cta: {
       href: 'https://google.com',
       label: 'Test'
