@@ -120,12 +120,14 @@ function CarouselControls({
   isNextButtonEnabled = true,
   isPreviousButtonEnabled = false,
   showDots = false,
+  // ECF Variant - remove in other projects
   hasMargin = false,
   slideNext,
   slidePrevious
 }: CarouselControlsType) {
   return (
     <NavContainer $hasMargin={hasMargin}>
+      {/* CUSTOMIZE: Update Arrow Icons */}
       <ArrowsContainer>
         <Arrow
           onClick={slidePrevious}
