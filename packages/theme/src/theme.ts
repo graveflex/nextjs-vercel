@@ -137,7 +137,8 @@ const defaultTheme = theme(
       warning: '#F0AD00',
       success: '#1AB96D',
       danger: '#FD0505',
-      disabled: '#D1D1D1'
+      disabled: '#D1D1D1',
+      dark: '#0C0E0F',
     },
     borders: ({ borders: defaultBorders }) => ({
       ...defaultBorders,
@@ -184,7 +185,8 @@ export const darkTheme = theme(
       warning: '#F0AD00',
       success: '#1AB96D',
       danger: '#FD0505',
-      disabled: '#D1D1D1'
+      disabled: '#D1D1D1',
+      dark: '#0C0E0F',
     },
     borders: ({ borders: defaultBorders }) => ({
       ...defaultBorders,
