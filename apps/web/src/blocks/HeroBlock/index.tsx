@@ -13,10 +13,11 @@ import type {
   Image
 } from '@mono/web/payload/payload-types';
 import styled from '@refract-ui/sc';
+import s from 'styled-components';
 
 export type HeroBlockProps = Omit<PayloadType, 'blockType'>;
 
-const StyledWrapper = styled(Wrapper)`
+const StyledWrapper = s(Wrapper)`
   align-items: center;
   & > div:first-child {
     grid-column: 1 / 5;
@@ -67,7 +68,7 @@ const StyledWrapper = styled(Wrapper)`
   `};
 `;
 
-const ImageWrapper = styled(ResponsivePayloadImage)`
+const ImageWrapper = s(ResponsivePayloadImage)`
   aspect-ratio: 500 / 402;
 
   &.bg {
@@ -126,7 +127,7 @@ const ContentWrapper = styled.div`
   `};
 `;
 
-const SubTitle = styled(RichText)`
+const SubTitle = s(RichText)`
   width: min(100%, 600px);
 `;
 
@@ -151,7 +152,7 @@ const InputWrapper = styled.div`
   }
 `;
 
-const Button = styled(Link)`
+const Button = s(Link)`
   text-align: center;
   width: 100%;
 

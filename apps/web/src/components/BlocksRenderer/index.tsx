@@ -1,9 +1,8 @@
 import type { ComponentType } from 'react';
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { themeList } from '@mono/theme/src/theme';
+import MaybeThemed from '@mono/web/components/MaybeThemed';
 import type { Page } from '@mono/web/payload/payload-types';
-import { SubTheme } from '@refract-ui/sc/lens';
 
 const defaultOpts = {
   suspense: true,
@@ -25,26 +24,23 @@ const blockList = {
 
 function BlocksRenderer({ blocks }: { blocks: NonNullable<Page['blocks']> }) {
   return blocks?.map(({ blockType, ...blockProps }) => {
+    console.log('@-->blockType', blockType);
+
     // don't render if block is hidden
-    const hide = blockProps?.blockConfig?.hidden || false;
+    const hide = blockProps?.blockConfig?.hidden ?? false;
     if (hide) {
       return null;
     }
 
     const Component = blockList[blockType] as ComponentType<typeof blockProps>;
     const t = blockProps?.blockConfig?.theme;
-    const blockTheme = t && themeList?.[t];
 
     if (Component) {
-      if (blockTheme) {
-        return (
-          <SubTheme key={blockProps?.id || blockType} theme={blockTheme}>
-            <Component {...blockProps} />
-          </SubTheme>
-        );
-      }
-
-      return <Component key={blockProps?.id || blockType} {...blockProps} />;
+      return (
+        <MaybeThemed key={blockProps?.id} theme={t}>
+          <Component {...blockProps} />
+        </MaybeThemed>
+      );
     }
 
     return null;

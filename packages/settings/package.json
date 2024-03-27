@@ -7,7 +7,7 @@
   "module": "./dist/index.es.js",
   "scripts": {
     "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
-    "buildSettings": "tsc && vite build",
+    "setup-dev": "tsc && vite build",
     "dev": "tsc && vite build --watch",
     "lint": "eslint \"**/*.ts*\" --fix",
     "test": "vitest run",

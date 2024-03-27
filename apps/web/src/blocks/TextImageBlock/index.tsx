@@ -11,6 +11,7 @@ import type {
   TextImageBlockT as PayloadType
 } from '@mono/web/payload/payload-types';
 import styled from '@refract-ui/sc';
+import s from 'styled-components';
 
 export type TextImageBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -56,8 +57,9 @@ const InnerWrapper = styled.div`
   `};
 `;
 
-const ImageWrapper = styled(ResponsivePayloadImage)`
+const ImageWrapper = s(ResponsivePayloadImage)`
   aspect-ratio: 500 / 402;
+  object-fit: cover;
 `;
 
 const ContentWrapper = styled.div`
@@ -70,7 +72,7 @@ const ContentWrapper = styled.div`
 
 const Title = styled.h3({ m: 0, p: 0 })``;
 
-const Button = styled(Link)`
+const Button = s(Link)`
   text-align: center;
   width: 100%;
 
@@ -92,9 +94,7 @@ function TextImageBlock({
   return (
     <Wrapper>
       <InnerWrapper className={className}>
-        {img && (
-          <ImageWrapper image={img} imageProps={{ objectFit: 'cover' }} />
-        )}
+        {img && <ImageWrapper image={img} />}
         <ContentWrapper>
           {title && <Title>{title}</Title>}
           {content && <RichText content={content} />}

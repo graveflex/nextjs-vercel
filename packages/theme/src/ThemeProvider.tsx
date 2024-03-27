@@ -1,11 +1,11 @@
 'use client';
 
 import type { PropsWithChildren } from 'react';
-import React, { createContext, useMemo, useState } from 'react';
+import React from 'react';
 import { GlobalStyles } from '@refract-ui/sc';
 import { createGlobalStyle } from 'styled-components';
 
-import { themeList } from './theme';
+import * as themeList from './theme';
 
 export type ThemeKey = keyof typeof themeList;
 
@@ -34,44 +34,15 @@ const GlobalResets = createGlobalStyle`
   }
 `;
 
-export const ThemeContext = createContext<{
-  theme: keyof typeof themeList;
-  setTheme: (t: ThemeKey) => void;
-}>({
-  theme: 'light',
-  setTheme: () => {}
-});
-
 function ThemeProvider({
   children,
   theme
-}: PropsWithChildren<{ theme?: ThemeKey }>): JSX.Element {
-  const [themeName, setThemeName] = useState(theme || 'light');
-  const setTheme = (t: ThemeKey) => {
-    if (t !== themeName) {
-      setThemeName(t);
-    }
-  };
-
-  const globalTheme = useMemo(() => {
-    return themeList?.[themeName] || themeList.light;
-  }, [themeName]);
-
-  const providerValue = useMemo(() => {
-    return {
-      theme: themeName,
-      setTheme
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [themeName]);
-
+}: PropsWithChildren<{ theme: ThemeKey }>): JSX.Element {
   return (
-    <ThemeContext.Provider value={providerValue}>
-      <GlobalStyles theme={globalTheme} style={containerStyles}>
-        <GlobalResets />
-        {children}
-      </GlobalStyles>
-    </ThemeContext.Provider>
+    <GlobalStyles as="body" theme={themeList[theme]} style={containerStyles}>
+      <GlobalResets />
+      {children}
+    </GlobalStyles>
   );
 }
 

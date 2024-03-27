@@ -11,6 +11,7 @@ import type {
   Nav as NavT
 } from '@mono/web/payload/payload-types';
 import styled, { css } from '@refract-ui/sc';
+import s from 'styled-components';
 
 const Header = styled.header`
   padding: 1.625rem 1rem;
@@ -53,7 +54,7 @@ const Nav = styled.nav`
   `};
 `;
 
-const Logo = styled(ResponsivePayloadImage)`
+const Logo = s(ResponsivePayloadImage)`
   width: 0;
   img {
     object-fit: contain;
@@ -65,8 +66,7 @@ const Logo = styled(ResponsivePayloadImage)`
   `}
 `;
 
-const MenuLink = styled(Link)`
-  ${({ theme: { box } }) => box.t('menuLink')};
+const MenuLink = styled({ t: 'menuLink' })(Link)`
   text-decoration: none;
 
   &:hover,

@@ -5,10 +5,11 @@ import RichText from '@mono/web/components/RichText';
 import Wrapper from '@mono/web/components/Wrapper';
 import type { FAQBlockT as PayloadType } from '@mono/web/payload/payload-types';
 import styled from '@refract-ui/sc';
+import s from 'styled-components';
 
 export type FAQBlockType = Omit<PayloadType, 'blockType'>;
 
-const Section = styled(Wrapper)``;
+const Section = s(Wrapper)``;
 
 const Header = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ const Header = styled.div`
 
 const Title = styled.h2({ m: 0, p: 0 })``;
 
-const SubTitle = styled(RichText)``;
+const SubTitle = s(RichText)``;
 
 const Details = styled.details``;
 

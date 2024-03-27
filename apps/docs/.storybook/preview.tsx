@@ -1,4 +1,4 @@
-import { themeList } from '@mono/theme/src/theme';
+import * as themeList from '@mono/theme/src/theme';
 import { configureGlobalTypes, withRefract } from '@refract-ui/stories';
 
 const { light, dark } = themeList;

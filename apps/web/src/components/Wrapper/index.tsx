@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import styled from '@refract-ui/sc';
 
 const Container = styled.section`
@@ -20,12 +19,4 @@ const Container = styled.section`
 // - [ ] margin
 // - [ ] change at breakpoints
 
-export interface WrapperProps extends React.ComponentProps<'section'> {
-  className?: string;
-}
-
-function Wrapper({ children, ...props }: WrapperProps) {
-  return <Container {...props}>{children}</Container>;
-}
-
-export default Wrapper;
+export default Container;

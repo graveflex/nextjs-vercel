@@ -1,9 +1,8 @@
 import React from 'react';
-import ThemeProvider from '@mono/theme/src/ThemeProvider';
+import MaybeThemed from '@mono/web/components/MaybeThemed';
 import Layout from '@mono/web/globals/Layout';
 import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
 import expandedDoc from '@mono/web/lib/isExpandedDoc';
-import StyledComponentsRegistry from '@mono/web/lib/StyledComponentRegistry';
 import type { Nav, Page } from '@mono/web/payload/payload-types';
 import type { PaginatedDocs } from 'payload/database';
 
@@ -43,15 +42,9 @@ async function RootLayout({ children, params: { slug } }: RootLayoutProps) {
   const theme = page?.docs[0]?.pageConfig?.theme || 'light';
 
   return (
-    <html lang="en">
-      <body>
-        <StyledComponentsRegistry>
-          <ThemeProvider theme={theme}>
-            <Layout {...data}>{children}</Layout>
-          </ThemeProvider>
-        </StyledComponentsRegistry>
-      </body>
-    </html>
+    <MaybeThemed theme={theme}>
+      <Layout {...data}>{children}</Layout>
+    </MaybeThemed>
   );
 }
 

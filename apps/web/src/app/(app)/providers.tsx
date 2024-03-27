@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import HTSThemeProvider from '@mono/theme/src/ThemeProvider';
+import ThemeProvider from '@mono/theme/src/ThemeProvider';
 
 function Providers({ children }: React.PropsWithChildren) {
-  return <HTSThemeProvider>{children}</HTSThemeProvider>;
+  return <ThemeProvider>{children}</ThemeProvider>;
 }
 
 export default Providers;
