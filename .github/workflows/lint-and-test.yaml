@@ -59,16 +59,12 @@ jobs:
 
       - run: yarn install
 
-      - name: lint
-        id: lint
-        run: yarn lint
-
-      - name: test
-        if: steps.lint.outcome == 'success'
-        id: test
-        run: yarn test:coverage
+      - name: ci
+        id: ci
+        run: yarn ci
 
       - name: code coverage report
+        if: steps.ci.outcome == 'success'
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
           filename: coverage/cobertura-coverage.xml
