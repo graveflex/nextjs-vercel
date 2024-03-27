@@ -3,6 +3,7 @@
 import React from 'react';
 import { WEB_URL } from '@mono/settings';
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
+import MaybeThemed from '@mono/web/components/MaybeThemed';
 import useLivePreview from '@mono/web/hooks/useLivePreview';
 import type { Page } from '@mono/web/payload/payload-types';
 
@@ -19,7 +20,11 @@ function PageTemplate({ page }: { page: Page }) {
     return null;
   }
 
-  return <BlocksRenderer blocks={blocks} />;
+  return (
+    <MaybeThemed theme={data.pageConfig.theme}>
+      <BlocksRenderer blocks={blocks} />
+    </MaybeThemed>
+  );
 }
 
 export default PageTemplate;
