@@ -15,6 +15,7 @@
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "test:coverage": "turbo run test:coverage",
+    "types": "turbo run types",
     "build": "turbo run build",
     "buildSettings": "turbo run buildSettings",
     "start": "turbo run start --parallel",

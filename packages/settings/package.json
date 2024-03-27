@@ -8,11 +8,13 @@
   "scripts": {
     "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
     "setup-dev": "tsc && vite build",
+    "build": "tsc && vite build",
     "dev": "tsc && vite build --watch",
     "lint": "eslint \"**/*.ts*\" --fix",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "types": "tsc --noEmit --skipLibCheck"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^0.34.6",

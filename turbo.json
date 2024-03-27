@@ -9,6 +9,7 @@
     "clean": {},
     "lint": {},
     "test": {},
+    "types": {},
     "test:watch": {},
     "test:coverage": {
       "outputs": ["coverage/**"]

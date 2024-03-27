@@ -6,6 +6,8 @@
   "scripts": {
     "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
     "dev": "export $(grep -e '^DOCS_PORT' -- ../../.env) && storybook dev -p ${DOCS_PORT} --no-open",
+    "types": "tsc --noEmit --skipLibCheck",
+    "lint": "eslint \"**/*.ts*\"",
     "build": "storybook build"
   },
   "devDependencies": {

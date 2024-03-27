@@ -9,6 +9,9 @@
     "build": "export $(grep -e '^LOCAL' -- ../../.env) > /dev/null && if [ \"$LOCAL\" != \"true\" ]; then next build && payload migrate; else next build; fi",
     "start": "export $(grep -e '^NEXT_PORT' -- ../../.env) && next start -p ${NEXT_PORT}",
     "lint": "eslint . --ext js,jsx,ts,tsx --fix",
+    "types": "tsc --noEmit --skipLibCheck",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "generate:types": "payload generate:types",
     "migrations:create": "payload migrate:create",
     "migrations:run": "payload migrate",
@@ -45,12 +48,21 @@
   "devDependencies": {
     "@faker-js/faker": "^8.4.0",
     "@mono/tsconfig": "*",
+    "@storybook/react": "^8.0.4",
+    "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.0.0",
     "@types/escape-html": "^1.0.4",
     "@types/node": "^18.17.14",
     "@types/react": "18.2.70",
     "@types/react-dom": "^18.2.22",
+    "@vitejs/plugin-react": "^4.2.1",
+    "dotenv": "^16.4.5",
     "eslint-config-custom": "*",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.3",
+    "vite-plugin-svgr": "^4.2.0",
+    "vite-transform-stub": "^1.0.1",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^1.4.0",
+    "vitest-canvas-mock": "^0.3.3"
   }
 }

@@ -8,7 +8,6 @@ import { defineConfig, type UserConfigFn } from 'vitest/config';
 import LogSettingsPlugin from './logSettingsPlugin';
 
 const configFn: UserConfigFn = async () => {
-  const root = path.resolve(__dirname, '../..');
   dotenv.config({ path: `${__dirname}/../../.env` });
 
   const environmentPlugin = EnvironmentPlugin({
@@ -28,7 +27,6 @@ const configFn: UserConfigFn = async () => {
   const logSettingsPlugin = LogSettingsPlugin();
   // on build/test, this handles tsconfig paths
   const tsPaths = tsConfigPaths({
-    root,
     projects: [
       path.resolve(__dirname, '../ui/tsconfig.json'),
       path.resolve(__dirname, '../../apps/web/tsconfig.json')
@@ -38,7 +36,6 @@ const configFn: UserConfigFn = async () => {
   return {
     test: {
       globals: true,
-      root,
       coverage: {
         provider: 'v8',
         clean: true,
