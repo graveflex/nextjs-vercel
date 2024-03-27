@@ -4,16 +4,13 @@ import path from 'path';
 const config: StorybookConfig = {
   stories: [
     '../../../node_modules/@refract-ui/stories/**/*.mdx',
-    '../../../node_modules/@refract-ui/hook-fields/**/*.stories.tsx'
-    // '../../../packages/ui/**/*.stories.tsx',
-    // '../../web/src/**/*.stories.tsx'
+    '../../../node_modules/@refract-ui/hook-fields/**/*.stories.tsx',
+    '../../../packages/ui/**/*.stories.tsx'
   ],
   addons: [
-    '@storybook/addon-webpack5-compiler-swc',
+    // '@storybook/addon-webpack5-compiler-swc',
     '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
     '@storybook/addon-links',
-    // '@storybook/addon-onboarding',
     '@storybook/addon-a11y',
     '@refract-ui/stories'
   ],
@@ -24,14 +21,12 @@ const config: StorybookConfig = {
   docs: {
     autodocs: true
   },
-  /*
   staticDirs: [
     {
       from: '../../../packages/theme/fonts',
       to: path.resolve(__dirname, '../../../packages/theme/fonts')
     }
   ],
-  */
   webpackFinal: async (c) => {
     // ensure storybook entries in the @refract-ui package are transpiled
     (c.module?.rules ?? []).push({
@@ -40,8 +35,7 @@ const config: StorybookConfig = {
         {
           loader: require.resolve('swc-loader'),
           options: {
-            parseMap: true,
-            sourceMaps: 'inline',
+            sourceMap: true,
             jsc: {
               parser: {
                 syntax: 'typescript',
@@ -60,7 +54,10 @@ const config: StorybookConfig = {
           }
         }
       ],
-      include: path.resolve(__dirname, '../../../node_modules/@refract-ui')
+      include: [
+        path.resolve(__dirname, '../../../node_modules/@refract-ui/stories'),
+        path.resolve(__dirname, '../../../node_modules/@refract-ui/hook-fields')
+      ]
     });
 
     return c;
