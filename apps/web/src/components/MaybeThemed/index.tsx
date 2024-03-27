@@ -6,11 +6,11 @@ import { SubTheme } from '@refract-ui/sc';
 
 interface MaybeThemedProps {
   children: React.ReactNode;
-  theme?: null | keyof typeof themeList;
+  theme?: null | keyof typeof themeList | '_';
 }
 
 function MaybeThemed({ children, theme }: MaybeThemedProps) {
-  if (theme) {
+  if (theme && theme !== '_') {
     const pageTheme = themeList[theme];
     return <SubTheme theme={pageTheme}>{children}</SubTheme>;
   }

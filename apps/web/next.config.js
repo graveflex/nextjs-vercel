@@ -16,7 +16,7 @@ async function rewrites() {
 module.exports = withPayload(
   {
     reactStrictMode: true,
-    transpilePackages: ['@mono/ui', '@mono/settings', 'vercel-blob-storage'],
+    transpilePackages: ['@mono/ui', '@mono/theme', 'vercel-blob-storage'],
 
     compiler: {
       styledComponents: {

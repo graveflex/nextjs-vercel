@@ -11,6 +11,8 @@ dotenv.config({ path: '../../.env.local' });
 
 setProjectAnnotations(globalStorybookConfig);
 
+export default globalStorybookConfig;
+
 vi.mock('next/font/local', async () => {
   return {
     default: () => ({

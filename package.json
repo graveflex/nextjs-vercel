@@ -7,7 +7,8 @@
   "scripts": {
     "setup": "turbo run setup",
     "clean": "turbo run clean && rm -rf ./node_modules",
-    "reinstall": "rm -rf -- ./node_modules/ ./**/node_modules && yarn install",
+    "reinstall": "yarn clean && yarn install",
+    "ci": "yarn build && yarn types && yarn lint && yarn test:coverage",
     "create:block": "npx hygen block new --with-prompt && yarn generate:types && yarn lint",
     "create:component": "npx hygen component new --with-prompt",
     "create:package": "npx hygen package new --with-prompt",
