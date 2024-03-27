@@ -1,2 +1,7 @@
+import lightTheme from './light';
+
 export { default as dark } from './dark';
-export { default as light } from './light';
+
+export const light = lightTheme;
+
+export type RefractTheme = typeof lightTheme;

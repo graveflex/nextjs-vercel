@@ -62,7 +62,7 @@ export interface PageConfigType {
  */
 export interface FAQBlockT {
   blockConfig?: {
-    theme?: ('light' | 'dark') | null;
+    theme?: ('_' | 'light' | 'dark') | null;
     hidden?: boolean | null;
   };
   title?: string | null;
@@ -92,7 +92,7 @@ export interface FAQBlockT {
  */
 export interface TextImageBlockT {
   blockConfig?: {
-    theme?: ('light' | 'dark') | null;
+    theme?: ('_' | 'light' | 'dark') | null;
     hidden?: boolean | null;
     layout?: ('imgRight' | 'imgLeft') | null;
   };
@@ -180,7 +180,7 @@ export interface CTAType {
  */
 export interface HeroBlockT {
   blockConfig?: {
-    theme?: ('light' | 'dark') | null;
+    theme?: ('_' | 'light' | 'dark') | null;
     hidden?: boolean | null;
     layout?: ('bg' | 'imgRight' | 'imgLeft' | 'imgRightFull' | 'imgLeftFull') | null;
   };

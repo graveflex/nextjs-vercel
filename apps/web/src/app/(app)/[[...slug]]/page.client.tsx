@@ -3,11 +3,11 @@
 import React from 'react';
 import { WEB_URL } from '@mono/settings';
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
-import MaybeThemed from '@mono/web/components/MaybeThemed';
+import Layout from '@mono/web/globals/Layout';
 import useLivePreview from '@mono/web/hooks/useLivePreview';
-import type { Page } from '@mono/web/payload/payload-types';
+import type { Nav, Page } from '@mono/web/payload/payload-types';
 
-function PageTemplate({ page }: { page: Page }) {
+function PageTemplate({ page, nav }: { page: Page; nav: Nav }) {
   const { data } = useLivePreview<Page>({
     initialData: page,
     serverURL: WEB_URL,
@@ -16,14 +16,16 @@ function PageTemplate({ page }: { page: Page }) {
 
   const blocks = data?.blocks;
 
+  const { theme } = data.pageConfig;
+
   if (!blocks) {
     return null;
   }
 
   return (
-    <MaybeThemed theme={data.pageConfig.theme}>
+    <Layout theme={theme} {...nav}>
       <BlocksRenderer blocks={blocks} />
-    </MaybeThemed>
+    </Layout>
   );
 }
 

@@ -3,6 +3,8 @@
 import type { PropsWithChildren } from 'react';
 import React, { useMemo } from 'react';
 import Link from 'next/link';
+import type * as themeList from '@mono/theme/src/theme';
+import MaybeThemed from '@mono/web/components/MaybeThemed';
 import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
 import expandedDoc from '@mono/web/lib/isExpandedDoc';
 import type {
@@ -77,7 +79,7 @@ const MenuLink = styled({ t: 'menuLink' })(Link)`
 
   &.button {
     ${({ theme }) => css`
-      color: ${theme.colors.black};
+      color: ${theme.allColors.fg};
       background: ${theme.themeColors.primary};
       padding: 0.625rem 1.5rem;
       border-radius: 62px;
@@ -105,9 +107,11 @@ function Menu(menuItems: MenuItems | undefined) {
   );
 }
 
-export type LayoutType = PropsWithChildren<NavT>;
+export interface LayoutType extends PropsWithChildren<NavT> {
+  theme?: keyof typeof themeList | null;
+}
 
-function Layout({ children, header, footer }: LayoutType) {
+function Layout({ children, header, footer, theme }: LayoutType) {
   const logo = expandedDoc<ImageT>(header?.logo);
   const HeaderMenu = useMemo(() => Menu(header?.main), [header?.main]);
   const FooterMenu = useMemo(
@@ -115,7 +119,7 @@ function Layout({ children, header, footer }: LayoutType) {
     [footer?.secondary]
   );
   return (
-    <>
+    <MaybeThemed theme={theme}>
       <Header>
         {logo?.url && <Logo image={logo} imageProps={{ loading: 'eager' }} />}
         {HeaderMenu}
@@ -125,7 +129,7 @@ function Layout({ children, header, footer }: LayoutType) {
         {FooterMenu}
         {footer?.copyright && <Copyright>{footer.copyright}</Copyright>}
       </Footer>
-    </>
+    </MaybeThemed>
   );
 }
 

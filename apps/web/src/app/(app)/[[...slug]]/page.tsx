@@ -1,7 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
-import type { Page } from '@mono/web/payload/payload-types';
+import type { Nav, Page } from '@mono/web/payload/payload-types';
 import type { PaginatedDocs } from 'payload/database';
 
 import PageTemplate from './page.client';
@@ -16,6 +16,10 @@ interface RootLayoutProps {
 
 export default async function Page({ params: { slug } }: RootLayoutProps) {
   const pageSlug = slug ? slug.join('/') : '/';
+  const navData = await fetchPayloadDataRest<Nav>({
+    endpoint: '/api/payload/globals/nav'
+  });
+
   const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
     endpoint: '/api/payload/pages',
     params: {
@@ -29,13 +33,13 @@ export default async function Page({ params: { slug } }: RootLayoutProps) {
   });
 
   // if there's an error fetching data, 404
-  if ('error' in data || !data.docs[0]) {
+  if ('error' in data || !data.docs[0] || 'error' in navData) {
     return notFound();
   }
 
   const page = data.docs[0];
 
-  return <PageTemplate page={page} />;
+  return <PageTemplate page={page} nav={navData} />;
 }
 
 export async function generateMetadata({
