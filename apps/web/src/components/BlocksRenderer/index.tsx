@@ -24,8 +24,6 @@ const blockList = {
 
 function BlocksRenderer({ blocks }: { blocks: NonNullable<Page['blocks']> }) {
   return blocks?.map(({ blockType, ...blockProps }) => {
-    console.log('@-->blockType', blockType);
-
     // don't render if block is hidden
     const hide = blockProps?.blockConfig?.hidden ?? false;
     if (hide) {
