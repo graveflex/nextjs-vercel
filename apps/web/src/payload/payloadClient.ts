@@ -17,6 +17,14 @@ if (!process.env.PAYLOAD_SECRET) {
  * Source: https://github.com/vercel/next.js/blob/canary/examples/with-mongodb-mongoose/lib/dbConnect.js
  */
 
+declare global {
+  // eslint-disable-next-line
+  var payload: {
+    client: Payload | null;
+    promise: Promise<Payload> | null;
+  };
+}
+
 let cached: {
   client: Payload | null;
   promise: Promise<Payload> | null;

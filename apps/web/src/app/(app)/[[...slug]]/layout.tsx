@@ -9,7 +9,14 @@ import type { PaginatedDocs } from 'payload/database';
 
 export const revalidate = 60;
 
-async function RootLayout({ children, params: { slug } }) {
+interface RootLayoutProps {
+  children: React.ReactNode;
+  params: {
+    slug: string[];
+  };
+}
+
+async function RootLayout({ children, params: { slug } }: RootLayoutProps) {
   const data = await fetchPayloadDataRest<Nav>({
     endpoint: '/api/payload/globals/nav'
   });

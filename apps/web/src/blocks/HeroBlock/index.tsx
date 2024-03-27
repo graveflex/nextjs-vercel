@@ -14,7 +14,7 @@ import type {
 } from '@mono/web/payload/payload-types';
 import styled from '@refract-ui/sc';
 
-export type HeroBlockType = Omit<PayloadType, 'blockType'>;
+export type HeroBlockProps = Omit<PayloadType, 'blockType'>;
 
 const StyledWrapper = styled(Wrapper)`
   align-items: center;
@@ -43,7 +43,7 @@ const StyledWrapper = styled(Wrapper)`
     &.imgLeft {
       & > div:first-child {
         grid-column: 2;
-      } 
+      }
       & > div:last-child {
         grid-column: 3;
       }
@@ -51,7 +51,7 @@ const StyledWrapper = styled(Wrapper)`
     &.imgRightFull {
       & > div:first-child {
         grid-column: 3 / 5;
-      } 
+      }
       & > div:last-child {
         grid-column: 1 / 3;
       }
@@ -168,7 +168,7 @@ function HeroBlock({
   input,
   image,
   blockConfig
-}: HeroBlockType) {
+}: HeroBlockProps) {
   const layout = blockConfig?.layout || 'imgRight';
   const img = expandedDoc<Image>(image);
   const className = genClassName([layout]);

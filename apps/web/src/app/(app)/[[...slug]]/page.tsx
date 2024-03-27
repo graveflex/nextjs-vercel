@@ -8,11 +8,13 @@ import PageTemplate from './page.client';
 
 export const revalidate = 60;
 
-export default async function Page({
-  params: { slug }
-}: {
-  params: { slug: string[] | undefined };
-}) {
+interface RootLayoutProps {
+  params: {
+    slug: string[];
+  };
+}
+
+export default async function Page({ params: { slug } }: RootLayoutProps) {
   const pageSlug = slug ? slug.join('/') : '/';
   const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
     endpoint: '/api/payload/pages',
@@ -36,7 +38,11 @@ export default async function Page({
   return <PageTemplate page={page} />;
 }
 
-export async function generateMetadata({ params: { slug } }) {
+export async function generateMetadata({
+  params: { slug }
+}: {
+  params: { slug?: string[] };
+}) {
   const pageSlug = slug ? slug.join('/') : '/';
   const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
     endpoint: '/api/payload/pages',

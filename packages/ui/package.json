@@ -20,12 +20,12 @@
     "react": "^18.2.0",
     "@mono/theme": "*",
     "@mono/tsconfig": "*",
-    "typescript": "^5.2.2",
+    "typescript": "^5.4.3",
     "vitest": "^0.34.6",
     "vitest-canvas-mock": "^0.3.3"
   },
   "dependencies": {
-    "@refract-ui/sc": "1.0.1-alpha.37",
+    "@refract-ui/sc": "1.0.1-alpha.38",
     "styled-components": "^6.1.8"
   }
 }

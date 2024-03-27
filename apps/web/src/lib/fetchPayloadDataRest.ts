@@ -13,7 +13,7 @@ export type FetchPayloadRequest = {
   accessToken?: string;
 };
 
-export type FetchPayloadResponse<T> = Promise<T | { error: string }>;
+export type FetchPayloadResponse<T> = T | { error: string };
 
 // primarily used to fetch data
 async function fetchPayloadDataRest<T>({
@@ -21,7 +21,7 @@ async function fetchPayloadDataRest<T>({
   params,
   next,
   accessToken
-}: FetchPayloadRequest): FetchPayloadResponse<T> {
+}: FetchPayloadRequest): Promise<FetchPayloadResponse<T>> {
   const url = `${WEB_URL}${endpoint}${qs.stringify(params, {
     addQueryPrefix: true
   })}`;
@@ -41,7 +41,7 @@ async function fetchPayloadDataRest<T>({
 
     throw new Error(`Data from ${endpoint} not found`);
   } catch (err) {
-    return { error: err };
+    return { error: err as string };
   }
 }
 

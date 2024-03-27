@@ -1,56 +1,69 @@
-import { resolve } from 'path';
+import { type StorybookConfig } from '@storybook/nextjs';
+import path from 'path';
 
-/** @type { import('@storybook/nextjs').StorybookConfig } */
-const config = {
+const config: StorybookConfig = {
   stories: [
-    '../../../node_modules/@refract-ui/stories/**/*.mdx'
-    // '../../../node_modules/@refract-ui/hook-fields/**/*.stories.tsx',
+    '../../../node_modules/@refract-ui/stories/**/*.mdx',
+    '../../../node_modules/@refract-ui/hook-fields/**/*.stories.tsx'
     // '../../../packages/ui/**/*.stories.tsx',
     // '../../web/src/**/*.stories.tsx'
   ],
   addons: [
-    // '@storybook/addon-actions',
+    '@storybook/addon-webpack5-compiler-swc',
     '@storybook/addon-essentials',
-    // '@storybook/addon-interactions',
+    '@storybook/addon-interactions',
     '@storybook/addon-links',
     // '@storybook/addon-onboarding',
-    // '@storybook/addon-themes',
     '@storybook/addon-a11y',
     '@refract-ui/stories'
   ],
-  features: {
-    // buildStoriesJson: true,
-    // storyStoreV7: true
-  },
   framework: {
-    name: '@storybook/react-vite',
+    name: '@storybook/nextjs',
     options: {}
-  },
-  core: {
-    builder: '@storybook/builder-vite'
   },
   docs: {
     autodocs: true
   },
+  /*
   staticDirs: [
     {
       from: '../../../packages/theme/fonts',
-      to: resolve(__dirname, '../../../packages/theme/fonts')
+      to: path.resolve(__dirname, '../../../packages/theme/fonts')
     }
   ],
+  */
   webpackFinal: async (c) => {
-    return {
-      ...c,
-      resolve: {
-        ...c.resolve,
-        alias: {
-          ...c.resolve.alias,
-          '@mono/web': resolve(__dirname, '../../web/src'),
-          '@mono/theme': resolve(__dirname, '../../../packages/theme'),
-          '@mono/ui': resolve(__dirname, '../../../packages/ui')
+    // ensure storybook entries in the @refract-ui package are transpiled
+    (c.module?.rules ?? []).push({
+      test: /\.tsx?$/,
+      use: [
+        {
+          loader: require.resolve('swc-loader'),
+          options: {
+            parseMap: true,
+            sourceMaps: 'inline',
+            jsc: {
+              parser: {
+                syntax: 'typescript',
+                tsx: true
+              },
+              transform: {
+                react: {
+                  pragma: 'React.createElement',
+                  pragmaFrag: 'React.Fragment',
+                  throwIfNamespace: true,
+                  development: false,
+                  useBuiltins: false
+                }
+              }
+            }
+          }
         }
-      }
-    };
+      ],
+      include: path.resolve(__dirname, '../../../node_modules/@refract-ui')
+    });
+
+    return c;
   }
 };
 export default config;

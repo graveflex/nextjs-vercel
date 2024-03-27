@@ -8,7 +8,7 @@ describe('local urls', () => {
       localDomain: LOCAL_DOMAIN,
       appName: 'web',
       localPort: NEXT_PORT,
-      local: 'true'
+      local: true
     });
     expect(result).toEqual(`http://localhost:${NEXT_PORT}`);
   });
@@ -18,7 +18,7 @@ describe('local urls', () => {
     const result = getWebUrl({
       projectName: PROJECT_NAME,
       appName: 'web',
-      local: 'false'
+      local: false
     });
     expect(result).toEqual(`https://${PROJECT_NAME}-web.vercel.app`);
   });
@@ -28,7 +28,7 @@ describe('local urls', () => {
     const result = getWebUrl({
       projectName: PROJECT_NAME,
       appName: 'web',
-      local: 'false'
+      local: false
     });
     expect(result).toEqual(`https://${PROJECT_NAME}-web.vercel.app`);
   });
@@ -39,7 +39,7 @@ describe('local urls', () => {
     const result = getWebUrl({
       projectName: PROJECT_NAME,
       appName: 'web',
-      local: 'false'
+      local: false
     });
     expect(result).toEqual(
       `https://${PROJECT_NAME}-web-git-${branchName}-graveflex.vercel.app`

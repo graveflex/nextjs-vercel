@@ -9,7 +9,7 @@ async function fetchPayloadData<T>(
     const resp: T = await fn(payload);
     return resp;
   } catch (err) {
-    return { error: err };
+    return { error: err as string };
   }
 }
 

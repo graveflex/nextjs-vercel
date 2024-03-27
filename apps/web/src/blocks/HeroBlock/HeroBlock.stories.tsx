@@ -1,10 +1,10 @@
 import { faker } from '@faker-js/faker';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { HeroBlockType } from '.';
+import type { HeroBlockProps } from '.';
 import HeroBlock from '.';
 
-const meta: Meta<HeroBlockType> = {
+const meta: Meta<HeroBlockProps> = {
   title: 'block/HeroBlock',
   component: HeroBlock,
   parameters: {
@@ -14,7 +14,7 @@ const meta: Meta<HeroBlockType> = {
 };
 
 export default meta;
-type Story = StoryObj<HeroBlockType>;
+type Story = StoryObj<HeroBlockProps>;
 
 export const Defaults: Story = {
   args: {

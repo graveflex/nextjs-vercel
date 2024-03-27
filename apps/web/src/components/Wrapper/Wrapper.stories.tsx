@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { WrapperType } from '.';
+import type { WrapperProps } from '.';
 import Wrapper from '.';
 
-const meta: Meta<WrapperType> = {
+const meta: Meta<WrapperProps> = {
   title: 'web/Wrapper',
   component: Wrapper,
   parameters: {
@@ -13,7 +13,7 @@ const meta: Meta<WrapperType> = {
 };
 
 export default meta;
-type Story = StoryObj<WrapperType>;
+type Story = StoryObj<WrapperProps>;
 
 export const Defaults: Story = {
   args: {}

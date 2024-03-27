@@ -11,7 +11,7 @@
     "@mono/tsconfig": "*"
   },
   "dependencies": {
-    "@refract-ui/sc": "1.0.1-alpha.37"
+    "@refract-ui/sc": "1.0.1-alpha.38"
   },
   "peerDependencies": {
     "next": "*",

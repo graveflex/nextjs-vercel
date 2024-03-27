@@ -10,9 +10,11 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
-    "@refract-ui/hook-fields": "1.0.1-alpha.37",
-    "@refract-ui/sc": "1.0.1-alpha.37",
-    "@refract-ui/stories": "1.0.1-alpha.37",
+    "@mono/theme": "*",
+    "@mono/tsconfig": "*",
+    "@refract-ui/hook-fields": "1.0.1-alpha.38",
+    "@refract-ui/sc": "1.0.1-alpha.38",
+    "@refract-ui/stories": "1.0.1-alpha.38",
     "@storybook/addon-a11y": "^8.0.4",
     "@storybook/addon-actions": "^8.0.4",
     "@storybook/addon-essentials": "^8.0.4",
@@ -20,6 +22,7 @@
     "@storybook/addon-links": "^8.0.4",
     "@storybook/addon-onboarding": "^8.0.4",
     "@storybook/addon-themes": "^8.0.4",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.2",
     "@storybook/blocks": "^8.0.4",
     "@storybook/nextjs": "^8.0.4",
     "@storybook/react": "^8.0.4",
@@ -27,14 +30,14 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^8.0.4",
-    "styled-components": "^6.1.8",
-    "@mono/theme": "*"
+    "styled-components": "^6.1.8"
   },
   "dependencies": {
-    "@mono/web": "*",
     "@hookform/resolvers": "^3.3.4",
-    "@storybook/builder-vite": "^8.0.4",
-    "@storybook/react-vite": "^8.0.4",
-    "react-hook-form": "^7.51.1"
+    "@mono/web": "*",
+    "react-hook-form": "^7.51.1",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.3",
+    "zod": "^3.22.4"
   }
 }
