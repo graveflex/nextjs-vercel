@@ -23,7 +23,7 @@
     "jsdom": "^22.1.0",
     "@mono/tsconfig": "*",
     "typescript": "^5.4.3",
-    "unplugin-auto-import": "^0.16.6",
+    "unplugin-auto-import": "^0.17.0",
     "vite-tsconfig-paths": "^4.2.1",
     "vitest": "^0.34.6"
   },
