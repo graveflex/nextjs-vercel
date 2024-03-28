@@ -1,7 +1,8 @@
 import React from 'react';
-import ThemeProvider from '@mono/theme/src/ThemeProvider';
 import StyledComponentsRegistry from '@mono/web/lib/StyledComponentRegistry';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+
+import Providers from './providers';
 
 export const runtime = 'edge';
 
@@ -13,10 +14,10 @@ async function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <StyledComponentsRegistry>
-        <ThemeProvider theme="light">
+        <Providers>
           <SpeedInsights />
           {children}
-        </ThemeProvider>
+        </Providers>
       </StyledComponentsRegistry>
     </html>
   );
