@@ -3,25 +3,25 @@
 import type { SVGProps } from 'react';
 import React from 'react';
 
-function SvgPlusSign(props: SVGProps<SVGSVGElement>) {
+function SvgArrowDown(props: SVGProps<SVGSVGElement>) {
   const { color, width, height, viewBox } = props;
   return (
     <svg
       width={width || '25'}
       height={height || '25'}
       viewBox={viewBox || '0 0 35 35'}
-      {...props}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M18 4H17V17H4V18H17V31H18V18H31V17H18V4Z"
+        d="M16.9998 29.7921L6.85371 19.6463L6.14661 20.3534L17.1469 31.3534L17.854 31.3534L28.854 20.3534L28.1468 19.6463L17.9998 29.7934L17.9998 3.99976L16.9998 3.99976L16.9998 29.7921Z"
         fill={color || '#3E660A'}
       />
     </svg>
   );
 }
 
-export default SvgPlusSign;
+export default SvgArrowDown;

@@ -68,7 +68,7 @@ const Name = styled.p`
   font-size: 0.8rem;
 `;
 
-const StoryContainer: React.FC<T> = ({ icons, size, group, color }) => {
+function StoryContainer({ icons, size, group, color }: T) {
   let options = {};
   if (size) {
     options = {
@@ -83,6 +83,18 @@ const StoryContainer: React.FC<T> = ({ icons, size, group, color }) => {
     title += `: ${size}px`;
   }
 
+  //   <p>
+  //   They can also be used with the RenderIcon component. To use it, pass in
+  //   the icon name and group name as strings and the component will render
+  //   the corresponding icon, for example:
+  // </p>
+  // <Code>
+  //   {`import RenderIcon from '@mono/ui/components/RenderIcon';`}
+  //   <br />
+  //   ... <br />
+  //   {`<RenderIcon name='${Object.keys(icons)?.[0]}'/>`}
+  // </Code>
+
   return (
     <Container>
       <h3>{title}</h3>
@@ -95,6 +107,7 @@ const StoryContainer: React.FC<T> = ({ icons, size, group, color }) => {
         files via the @svgr/cli package. They can be imported & used just like
         normal React components.
       </p>
+      <br />
       <Code>
         -- Example Usage
         <br />
@@ -106,17 +119,7 @@ const StoryContainer: React.FC<T> = ({ icons, size, group, color }) => {
         <br />
         {"<Quote height='20' width='20' viewBox='0 0 20 20' color='red' />"}
       </Code>
-      <p>
-        They can also be used with the RenderIcon component. To use it, pass in
-        the icon name and group name as strings and the component will render
-        the corresponding icon, for example:
-      </p>
-      <Code>
-        {`import RenderIcon from '@mono/ui/components/RenderIcon';`}
-        <br />
-        ... <br />
-        {`<RenderIcon name='${Object.keys(icons)?.[0]}'/>`}
-      </Code>
+
       <Content>
         {Object.entries(icons).map(([key, val]) => (
           <Card key={`icon-${key}`}>
@@ -128,6 +131,6 @@ const StoryContainer: React.FC<T> = ({ icons, size, group, color }) => {
       </Content>
     </Container>
   );
-};
+}
 
 export default StoryContainer;

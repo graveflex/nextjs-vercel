@@ -3,9 +3,9 @@ import type { StoryObj } from '@storybook/react';
 
 import coreIcons from '../core/index';
 
-import StoryContainer from './util/IconStoryWrapper';
+import IconStoryWrapper from './util/IconStoryWrapper';
 
-type T = typeof StoryContainer;
+type T = typeof IconStoryWrapper;
 
 interface Meta {
   title: string;
@@ -16,7 +16,7 @@ interface Meta {
 const meta: Meta = {
   title: 'icons/Core',
   component: (props) => (
-    <StoryContainer icons={coreIcons} group="core" {...props} />
+    <IconStoryWrapper icons={coreIcons} group="core" {...props} />
   )
 };
 
