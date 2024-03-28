@@ -17,7 +17,7 @@ const IS_HIGHLIGHT = 8;
 
 function serializeText(content: PayloadRichTextT) {
   const root = get(content, 'content.root');
-  console.log('root', root);
+
   if (!root || !root.children) {
     return null;
   }
@@ -51,23 +51,29 @@ function serializeText(content: PayloadRichTextT) {
   };
 
   const renderNode = (node: SerializedLexicalNode, index: number) => {
-    if (!node.children) {
-      return null;
-    }
     switch (node.type) {
       case 'heading':
+        if (!node?.children) {
+          return null;
+        }
         return React.createElement(
           `${node?.tag}`,
           { key: index },
           node.children.map((text, i) => renderText(text, i))
         );
       case 'paragraph':
+        if (!node?.children) {
+          return null;
+        }
         return (
           <p key={index}>
             {node.children.map((text, i) => renderText(text, i))}
           </p>
         );
       case 'list':
+        if (!node?.children) {
+          return null;
+        }
         return node.tag === 'ol' ? (
           <ol key={index}>
             {node.children.map((listItem, i) => renderNode(listItem, i))}
@@ -78,25 +84,37 @@ function serializeText(content: PayloadRichTextT) {
           </ul>
         );
       case 'listitem':
+        if (!node?.children) {
+          return null;
+        }
         return (
           <li key={index}>
             {node.children.map((text, i) => renderText(text, i))}
           </li>
         );
       case 'link':
+        if (!node?.children) {
+          return null;
+        }
         return (
           <a key={index} href={node.tag}>
             {node.children.map((text, i) => renderText(text, i))}
           </a>
         );
       case 'quote':
+        if (!node?.children) {
+          return null;
+        }
         return (
           <blockquote key={index}>
             {node.children.map((text, i) => renderText(text, i))}
           </blockquote>
         );
       case 'upload':
-        return <ResponsivePayloadImage key={index} image={node?.value} />;
+        if (node?.value && typeof node?.value !== 'string') {
+          return <ResponsivePayloadImage key={index} image={node.value} />;
+        }
+        return null;
       default:
         return null;
     }

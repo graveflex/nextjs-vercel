@@ -17,8 +17,8 @@ export type PayloadRichTextT = {
 
 export type SerializedLexicalNode = {
   children?: SerializedLexicalNode[];
-  direction: string;
-  format: number;
+  direction?: string;
+  format?: number;
   indent?: string | number;
   type: string;
   version: number;
@@ -26,5 +26,5 @@ export type SerializedLexicalNode = {
   mode?: string;
   text?: string;
   tag?: string;
-  value?: string;
+  value?: string | Image;
 };

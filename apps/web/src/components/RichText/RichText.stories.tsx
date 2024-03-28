@@ -1,6 +1,5 @@
+import type { PayloadRichTextT } from '@mono/web/primitives/primitives';
 import type { Meta, StoryObj } from '@storybook/react';
-
-import type { PayloadRichTextT } from '@web/primitives/primitives';
 
 import RichText from '.';
 

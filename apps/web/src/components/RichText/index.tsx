@@ -1,6 +1,5 @@
 import React from 'react';
-
-import type { PayloadRichTextT } from '@web/primitives/primitives';
+import type { PayloadRichTextT } from '@mono/web/primitives/primitives';
 
 import serializeText from './utils/serializeText';
 
