@@ -26,4 +26,5 @@ export type SerializedLexicalNode = {
   mode?: string;
   text?: string;
   tag?: string;
+  value?: string;
 };
