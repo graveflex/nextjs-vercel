@@ -1,6 +1,7 @@
 import React from 'react';
 import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
 import type {
+  PayloadImageT,
   PayloadRichTextT,
   SerializedLexicalNode
 } from '@mono/web/primitives/primitives';
@@ -112,7 +113,11 @@ function serializeText(content: PayloadRichTextT) {
         );
       case 'upload':
         if (node?.value && typeof node?.value !== 'string') {
-          return <ResponsivePayloadImage key={index} image={node.value} />;
+          const img = {
+            ...node.value
+          } as PayloadImageT;
+
+          return <ResponsivePayloadImage key={index} {...img} />;
         }
         return null;
       default:
