@@ -15,6 +15,7 @@ type Dimensions = {
   height?: number;
   width?: number;
 };
+
 /* If there is no height or width then the image will fill the container */
 const isFill = ({ width, height }: Dimensions): boolean => {
   if (width === undefined && height === undefined) {
@@ -33,20 +34,8 @@ function ResponsivePayloadImage({
   className,
   classOverride
 }: PayloadImageT) {
-  /* Additional props for the image */
+  /* Nextjs Image properties. There cannot be a height and width if fill is true */
   const fill = imageProps?.fill ?? isFill({ height, width } as Dimensions);
-  const objectFit = additionalProps?.objectFit ?? 'cover';
-  const isRounded = additionalProps?.isRounded ?? false;
-  const aspectRatio = additionalProps?.aspectRatio ?? 'initial';
-  if (!url) {
-    return null;
-  }
-
-  const imageStyles = {
-    objectFit,
-    borderRadius: isRounded ? '36px' : 'initial',
-    aspectRatio
-  } as React.CSSProperties;
 
   const dimensions = !fill
     ? ({
@@ -55,12 +44,33 @@ function ResponsivePayloadImage({
       } as Dimensions)
     : {};
 
+  /* Additional styling props for the image & container */
+  const objectFit = additionalProps?.objectFit ?? 'cover';
+  const isRounded = additionalProps?.isRounded ?? false;
+  const aspectRatio = additionalProps?.aspectRatio ?? 'initial';
+
+  const imageStyles = {
+    objectFit,
+    borderRadius: isRounded ? '36px' : 'initial'
+  } as React.CSSProperties;
+
+  const containerStyles = {
+    aspectRatio
+  } as React.CSSProperties;
+
+  if (!url) {
+    return null;
+  }
+
   /* We do not want to optimize SVGs */
   const containsSVG = /\.svg$/;
   const isSVG = containsSVG.test(url);
 
   return (
-    <ImageWrapper className={genClassName([className, classOverride])}>
+    <ImageWrapper
+      className={genClassName([className, classOverride])}
+      style={containerStyles}
+    >
       <Image
         {...{
           fill,
