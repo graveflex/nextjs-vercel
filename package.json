@@ -31,7 +31,7 @@
     "@turbo/gen": "^1.10.15",
     "eslint-config-custom": "*",
     "hygen": "^6.2.11",
-    "prettier": "3.0.3",
+    "prettier": "3.2.5",
     "turbo": "^1.13.0"
   },
   "packageManager": "yarn@1.22.21",
