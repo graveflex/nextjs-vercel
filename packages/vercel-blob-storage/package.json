@@ -10,12 +10,12 @@
     "lint": "eslint . --ext js,jsx,ts,tsx"
   },
   "devDependencies": {
-    "@payloadcms/plugin-cloud-storage": "1.1.1",
+    "@payloadcms/plugin-cloud-storage": "1.1.2",
     "@vercel/blob": "0.16.1",
     "eslint-config-custom": "*"
   },
   "peerDependencies": {
-    "@payloadcms/plugin-cloud-storage": "1.1.1",
+    "@payloadcms/plugin-cloud-storage": "1.1.2",
     "@vercel/blob": "0.16.1"
   }
 }

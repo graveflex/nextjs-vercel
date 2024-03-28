@@ -2281,14 +2281,7 @@
     sass "^1.58.2"
     webpack-filter-warnings-plugin "^1.2.1"
 
-"@payloadcms/plugin-cloud-storage@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@payloadcms/plugin-cloud-storage/-/plugin-cloud-storage-1.1.1.tgz#823d0d8316ba11d2b212eec0778f6f6d282a8c0f"
-  integrity sha512-WFqfZcT7R1LD+FfKKKYNsJPDRE+0VlYEMxzGuPKeUQn9w9sqTy2UD01YCEl0Zcyuq8fD9mRUjeLitSo1aAUimQ==
-  dependencies:
-    range-parser "^1.2.1"
-
-"@payloadcms/plugin-cloud-storage@^1.1.1":
+"@payloadcms/plugin-cloud-storage@1.1.2", "@payloadcms/plugin-cloud-storage@^1.1.1":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@payloadcms/plugin-cloud-storage/-/plugin-cloud-storage-1.1.2.tgz#deb0f5131b34377c61ddd0cc70a0366e87e35c5a"
   integrity sha512-wBpEWv4VdfltBqEi5ECSrKQ/TtNvmBWT4DLCrTCOhpNuD8dYD2rp+0Eoj7cF8f6wU7DpS5rvdQ/8gxlqh0Armw==
