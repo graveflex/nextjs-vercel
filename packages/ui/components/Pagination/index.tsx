@@ -16,7 +16,7 @@ const OuterContainer = styled.div`
 `;
 
 const Container = styled.div`
-  ${({ theme: { themeColors, mq } }) => css`
+  ${({ theme: { allColors, mq } }) => css`
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -39,7 +39,7 @@ const Container = styled.div`
       height: 1.625rem;
       width: 1.625rem;
       justify-content: center;
-      color: ${themeColors.primary};
+      color: ${allColors.primary};
 
       ${mq.md`
         &.previous {
@@ -52,7 +52,7 @@ const Container = styled.div`
       `}
 
       &.previous, &.next {
-        border: 1px solid ${themeColors.primary};
+        border: 1px solid ${allColors.primary};
         border-radius: 2.25rem;
         min-height: 1.8125rem;
         min-width: 1.8125rem;
@@ -65,17 +65,17 @@ const Container = styled.div`
 
       &.previous.disabled,
       &.next.disabled {
-        color: ${themeColors.disabled};
-        border-color: ${themeColors.disabled};
+        color: ${allColors.inputSubtle};
+        border-color: ${allColors.inputBorder};
         pointer-events: none;
       }
 
       &:hover {
-        color: ${themeColors.secondary};
+        color: ${allColors.secondary};
         &.previous,
         &.next {
           background-color: transparent;
-          border-color: ${themeColors.secondary};
+          border-color: ${allColors.secondary};
           border-radius: 2.25rem;
         }
       }
@@ -89,29 +89,29 @@ const Container = styled.div`
 `;
 
 const JumpArrow = styled.div<{ disabled?: boolean }>`
-  ${({ theme: { themeColors, mq }, disabled }) => css`
+  ${({ theme: { allColors, mq }, disabled }) => css`
     display: none;
 
     ${mq.md`
       min-height: 3.8125rem;
       min-width: 3.8125rem;
       margin: 0 1.125rem;
-      border: 1px solid ${themeColors.primary};
-      color: ${themeColors.primary};
+      border: 1px solid ${allColors.primary};
+      color: ${allColors.primary};
       border-radius: 2.25rem;
       display: inline-flex;
       justify-content: center;
       align-items: center;
 
       &:hover {
-        border-color: ${themeColors.secondary};
+        border-color: ${allColors.secondary};
       }
 
       ${
         disabled &&
         css`
-          color: ${themeColors.disabled};
-          border-color: ${themeColors.disabled};
+          color: ${allColors.inputSubtle};
+          border-color: ${allColors.inputBorder};
           pointer-events: none;
         `
       }

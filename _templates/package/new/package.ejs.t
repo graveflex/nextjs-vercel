@@ -8,7 +8,7 @@ to: packages/<%= name %>/package.json
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf -- ./.turbo ./dist ./coverage",
-    "lint": "eslint \"**/*.ts*\" --fix"
+    "lint": "eslint . --ext js,jsx,ts,tsx"
   },
   "devDependencies": {
     "eslint-config-custom": "*",

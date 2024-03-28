@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
-    "lint": "eslint \"**/*.ts*\"",
+    "lint": "eslint . --ext js,jsx,ts,tsx",
     "types": "tsc --noEmit --skipLibCheck",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage"
@@ -15,6 +15,7 @@
     "@mono/theme": "*",
     "@mono/tsconfig": "*",
     "@storybook/react": "^8.0.4",
+    "@storybook/testing-react": "^2.0.1",
     "@testing-library/jest-dom": "^6.4.1",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.5",
@@ -34,7 +35,7 @@
   },
   "dependencies": {
     "@refract-ui/sc": "1.0.1-alpha.38",
-    "styled-components": "^6.1.8",
-    "react-paginate": "^8.2.0"
+    "react-paginate": "^8.2.0",
+    "styled-components": "^6.1.8"
   }
 }

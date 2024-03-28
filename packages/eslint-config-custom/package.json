@@ -4,8 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
-    "lint": "eslint . --fix"
+    "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^7.3.1",

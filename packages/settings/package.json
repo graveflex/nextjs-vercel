@@ -10,7 +10,7 @@
     "setup-dev": "tsc && vite build",
     "build": "tsc && vite build",
     "dev": "tsc && vite build --watch",
-    "lint": "eslint \"**/*.ts*\" --fix",
+    "lint": "eslint . --ext js,jsx,ts,tsx",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage",
