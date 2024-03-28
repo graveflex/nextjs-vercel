@@ -18,7 +18,8 @@ const Svg<%= name %> = (props: SVGProps<SVGSVGElement>) => {
       {...props} 
     >
       # Add the path here
-      <path fill={color || '#3E660A'} />
+      <path
+        fill={color || '#0C0E0F'}/>
     </svg>
   )
 };

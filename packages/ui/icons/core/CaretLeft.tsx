@@ -18,7 +18,7 @@ function SvgCaretLeft(props: SVGProps<SVGSVGElement>) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M8.14648 12.8536V12.1465L15.1465 5.14648L15.8536 5.85359L9.20714 12.5L15.8536 19.1465L15.1465 19.8536L8.14648 12.8536Z"
-        fill={color || '#3E660A'}
+        fill={color || '#0C0E0F'}
       />
     </svg>
   );

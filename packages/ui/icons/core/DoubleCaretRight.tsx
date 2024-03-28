@@ -18,7 +18,7 @@ function SvgDoubleCaretRight(props: SVGProps<SVGSVGElement>) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M13.8536 19.8536L20.8536 12.8536V12.1465L13.8536 5.14648L13.1464 5.85359L19.7929 12.5L13.1464 19.1465L13.8536 19.8536ZM12.8536 12.8536V12.1465L5.85359 5.14652L5.14648 5.85363L11.7929 12.5001L5.14648 19.1465L5.85359 19.8536L12.8536 12.8536Z"
-        fill={color || '#3E660A'}
+        fill={color || '#0C0E0F'}
       />
     </svg>
   );

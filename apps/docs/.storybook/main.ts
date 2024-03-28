@@ -5,7 +5,7 @@ const config: StorybookConfig = {
   stories: [
     '../../../node_modules/@refract-ui/stories/**/*.mdx',
     '../../../node_modules/@refract-ui/hook-fields/**/*.stories.tsx',
-    '../../../packages/ui/**/*.stories.tsx',
+    '../../../packages/ui/**/*.stories.tsx'
   ],
   addons: [
     // '@storybook/addon-webpack5-compiler-swc',

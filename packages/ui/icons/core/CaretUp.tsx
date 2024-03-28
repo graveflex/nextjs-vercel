@@ -18,7 +18,7 @@ function SvgCaretUp(props: SVGProps<SVGSVGElement>) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M12.1465 9H12.8536L19.8536 16L19.1465 16.7071L12.5 10.0607L5.85359 16.7071L5.14648 16L12.1465 9Z"
-        fill={color || '#3E660A'}
+        fill={color || '#0C0E0F'}
       />
     </svg>
   );

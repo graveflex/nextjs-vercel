@@ -14,7 +14,7 @@ function SvgMinusSign(props: SVGProps<SVGSVGElement>) {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <path d="M4 17H31V18H4V17Z" fill={color || '#3E660A'} />
+      <path d="M4 17H31V18H4V17Z" fill={color || '#0C0E0F'} />
     </svg>
   );
 }

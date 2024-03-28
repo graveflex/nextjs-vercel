@@ -18,7 +18,7 @@ function SvgPlusSign(props: SVGProps<SVGSVGElement>) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M18 4H17V17H4V18H17V31H18V18H31V17H18V4Z"
-        fill={color || '#3E660A'}
+        fill={color || '#0C0E0F'}
       />
     </svg>
   );

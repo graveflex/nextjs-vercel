@@ -18,7 +18,7 @@ function SvgArrowNesting(props: SVGProps<SVGSVGElement>) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M5 6H4V17V18H5H29.7934L19.6466 28.1467L20.3538 28.8538L31.3538 17.8538L31.3538 17.1467L20.3538 6.14648L19.6466 6.85358L29.7928 17H5V6Z"
-        fill={color || '#3E660A'}
+        fill={color || '#0C0E0F'}
       />
     </svg>
   );
