@@ -6,9 +6,9 @@
   },
   "scripts": {
     "setup": "turbo run setup",
-    "clean": "turbo run clean && rm -rf ./node_modules",
+    "clean": "turbo run clean && rm -rf ./node_modules && rm -rf ./coverage",
     "reinstall": "yarn clean && yarn install",
-    "merge-coverage": "yarn cobertura-merge -o coverage/coverage.xml web=apps/web/coverage/cobertura-coverage.xml settings=packages/settings/coverage/cobertura-coverage.xml ui=packages/ui/coverage/cobertura-coverage.xml",
+    "merge-coverage": "mkdir -p coverage && yarn cobertura-merge -o coverage/coverage.xml web=apps/web/coverage/cobertura-coverage.xml settings=packages/settings/coverage/cobertura-coverage.xml ui=packages/ui/coverage/cobertura-coverage.xml",
     "ci": "yarn build && yarn types && yarn lint && yarn test:coverage && yarn merge-coverage",
     "create:block": "npx hygen block new --with-prompt && yarn generate:types && yarn lint",
     "create:component": "npx hygen component new --with-prompt",
