@@ -1,51 +1,78 @@
 'use client';
 
 import React from 'react';
-import type { ImageProps } from 'next/image';
 import Image from 'next/image';
 import genClassName from '@mono/web/lib/genClassname';
-import type { Image as ImageT } from '@mono/web/payload/payload-types';
+import type { PayloadImageT } from '@mono/web/primitives/primitives';
 import styled from '@refract-ui/sc';
-
-export interface ResponsivePayloadImageType
-  extends React.ComponentProps<'div'> {
-  image: ImageT;
-  imageProps?: Partial<ImageProps>;
-  className?: string;
-  classOverride?: string;
-}
 
 const ImageWrapper = styled.div`
   container-type: inline-size;
   position: relative;
-
-  img {
-    object-fit: cover;
-  }
 `;
 
-function ResponsivePayloadImage({
-  image,
-  imageProps,
-  className,
-  classOverride,
-  ...props
-}: ResponsivePayloadImageType) {
-  const { alt, url: imageUrl } = image;
+type Dimensions = {
+  height?: number;
+  width?: number;
+};
+/* If there is no height or width then the image will fill the container */
+const isFill = ({ width, height }: Dimensions): boolean => {
+  if (width === undefined && height === undefined) {
+    return true;
+  }
+  return false;
+};
 
-  if (!imageUrl) {
+function ResponsivePayloadImage({
+  alt,
+  url,
+  height,
+  width,
+  imageProps,
+  additionalProps,
+  className,
+  classOverride
+}: PayloadImageT) {
+  /* Additional props for the image */
+  const fill = imageProps?.fill ?? isFill({ height, width } as Dimensions);
+  const objectFit = additionalProps?.objectFit ?? 'cover';
+  const isRounded = additionalProps?.isRounded ?? false;
+  const aspectRatio = additionalProps?.aspectRatio ?? 'initial';
+  if (!url) {
     return null;
   }
 
+  const imageStyles = {
+    objectFit,
+    borderRadius: isRounded ? '36px' : 'initial',
+    aspectRatio
+  } as React.CSSProperties;
+
+  const dimensions = !fill
+    ? ({
+        height,
+        width
+      } as Dimensions)
+    : {};
+
+  /* We do not want to optimize SVGs */
+  const containsSVG = /\.svg$/;
+  const isSVG = containsSVG.test(url);
+
   return (
-    <ImageWrapper
-      className={genClassName([className, classOverride])}
-      {...props}
-    >
+    <ImageWrapper className={genClassName([className, classOverride])}>
       <Image
-        {...{ fill: true, ...imageProps }}
-        src={imageUrl}
-        alt={alt || 'image'}
+        {...{
+          fill,
+          ...dimensions,
+          ...imageProps
+        }}
+        src={url}
+        alt={alt ?? ''}
+        unoptimized={isSVG}
+        style={imageStyles}
+        placeholder="blur"
+        blurDataURL={url}
       />
     </ImageWrapper>
   );

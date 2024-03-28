@@ -115,6 +115,17 @@ export interface TextImageBlockT {
 export interface Image {
   id: number;
   alt?: string | null;
+  imageProps?: {
+    fill?: boolean | null;
+    priority?: boolean | null;
+    quality?: number | null;
+  };
+  additionalProps?: {
+    style?: string | null;
+    objectFit?: ('cover' | 'contain' | 'fill' | 'scale-down') | null;
+    isRounded?: boolean | null;
+    aspectRatio?: ('6/7' | '7/6' | '1/1' | '3/2' | '16/9' | 'initial') | null;
+  };
   updatedAt: string;
   createdAt: string;
   url?: string | null;
