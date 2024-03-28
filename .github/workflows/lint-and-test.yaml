@@ -67,7 +67,7 @@ jobs:
         if: steps.ci.outcome == 'success'
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: coverage/cobertura-coverage.xml
+          filename: coverage/coverage.xml
           badge: true
           format: markdown
           hide_branch_rate: false
