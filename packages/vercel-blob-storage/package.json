@@ -11,11 +11,11 @@
   },
   "devDependencies": {
     "@payloadcms/plugin-cloud-storage": "1.1.1",
-    "@vercel/blob": "0.16.1",
+    "@vercel/blob": "0.22.1",
     "eslint-config-custom": "*"
   },
   "peerDependencies": {
     "@payloadcms/plugin-cloud-storage": "1.1.1",
-    "@vercel/blob": "0.16.1"
+    "@vercel/blob": "0.22.1"
   }
 }
