@@ -13,6 +13,7 @@
     "create:block": "npx hygen block new --with-prompt && yarn generate:types && yarn lint",
     "create:component": "npx hygen component new --with-prompt",
     "create:package": "npx hygen package new --with-prompt",
+    "create:icon": "npx hygen icon new --with-prompt",
     "generate:types": "turbo run generate:types",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
