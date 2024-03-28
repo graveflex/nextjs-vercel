@@ -9,7 +9,14 @@ module.exports = {
     {
       files: ['*.js', '*.jsx'],
       rules: {
-        '@typescript-eslint/no-var-requires': 'off'
+        '@typescript-eslint/no-var-requires': 'off',
+        'import/no-extraneous-dependencies': [
+          'error',
+          {
+            devDependencies: ['**/*.stories.*', '**/__tests__/**/*.*'],
+            peerDependencies: true
+          }
+        ]
       }
     }
   ]

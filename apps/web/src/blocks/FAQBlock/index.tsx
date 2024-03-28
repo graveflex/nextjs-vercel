@@ -1,16 +1,15 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import lens from '@refract-ui/sc/lens';
-import styled from 'styled-components';
-
-import RichText from '@web/components/RichText';
-import Wrapper from '@web/components/Wrapper';
-import type { FAQBlockT as PayloadType } from '@web/payload/payload-types';
+import RichText from '@mono/web/components/RichText';
+import Wrapper from '@mono/web/components/Wrapper';
+import type { FAQBlockT as PayloadType } from '@mono/web/payload/payload-types';
+import styled from '@refract-ui/sc';
+import s from 'styled-components';
 
 export type FAQBlockType = Omit<PayloadType, 'blockType'>;
 
-const Section = styled(Wrapper)``;
+const Section = s(Wrapper)``;
 
 const Header = styled.div`
   display: flex;
@@ -21,13 +20,13 @@ const Header = styled.div`
   margin: auto;
 `;
 
-const Title = lens.h2({ m: 0, p: 0 })``;
+const Title = styled.h2({ m: 0, p: 0 })``;
 
-const SubTitle = styled(RichText)``;
+const SubTitle = s(RichText)``;
 
 const Details = styled.details``;
 
-const Summary = lens.summary({ t: 'h3' })`
+const Summary = styled.summary({ t: 'h3' })`
   list-style: none;
 `;
 

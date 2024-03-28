@@ -10,7 +10,7 @@ describe('local urls', () => {
       localDomain: LOCAL_DOMAIN,
       appName: 'web',
       localPort: NEXT_PORT,
-      local: 'true',
+      local: true,
       forceUrl: 'https://google.com'
     });
     expect(result).toEqual('https://google.com');

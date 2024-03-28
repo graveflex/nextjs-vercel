@@ -2,17 +2,16 @@
 
 import React from 'react';
 import Link from 'next/link';
-import lens from '@refract-ui/sc/lens';
-import styled from 'styled-components';
-
-import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
-import RichText from '@web/components/RichText';
-import genClassName from '@web/lib/genClassname';
-import expandedDoc from '@web/lib/isExpandedDoc';
+import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
+import RichText from '@mono/web/components/RichText';
+import genClassName from '@mono/web/lib/genClassname';
+import expandedDoc from '@mono/web/lib/isExpandedDoc';
 import type {
   Image,
   TextImageBlockT as PayloadType
-} from '@web/payload/payload-types';
+} from '@mono/web/payload/payload-types';
+import styled from '@refract-ui/sc';
+import s from 'styled-components';
 
 export type TextImageBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -58,8 +57,9 @@ const InnerWrapper = styled.div`
   `};
 `;
 
-const ImageWrapper = styled(ResponsivePayloadImage)`
+const ImageWrapper = s(ResponsivePayloadImage)`
   aspect-ratio: 500 / 402;
+  object-fit: cover;
 `;
 
 const ContentWrapper = styled.div`
@@ -70,9 +70,9 @@ const ContentWrapper = styled.div`
   width: min(100%, 476px);
 `;
 
-const Title = lens.h3({ m: 0, p: 0 })``;
+const Title = styled.h3({ m: 0, p: 0 })``;
 
-const Button = styled(Link)`
+const Button = s(Link)`
   text-align: center;
   width: 100%;
 
@@ -94,9 +94,7 @@ function TextImageBlock({
   return (
     <Wrapper>
       <InnerWrapper className={className}>
-        {img && (
-          <ImageWrapper image={img} imageProps={{ objectFit: 'cover' }} />
-        )}
+        {img && <ImageWrapper image={img} />}
         <ContentWrapper>
           {title && <Title>{title}</Title>}
           {content && <RichText content={content} />}

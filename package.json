@@ -6,8 +6,10 @@
   },
   "scripts": {
     "setup": "turbo run setup",
-    "clean": "turbo run clean",
-    "reinstall": "rm -rf -- ./node_modules/ ./**/node_modules && yarn install",
+    "clean": "turbo run clean && rm -rf ./node_modules && rm -rf ./coverage",
+    "reinstall": "yarn clean && yarn install",
+    "merge-coverage": "mkdir -p coverage && yarn cobertura-merge -o coverage/coverage.xml web=apps/web/coverage/cobertura-coverage.xml settings=packages/settings/coverage/cobertura-coverage.xml ui=packages/ui/coverage/cobertura-coverage.xml",
+    "ci": "yarn build && yarn types && yarn lint && yarn test:coverage && yarn merge-coverage",
     "create:block": "npx hygen block new --with-prompt && yarn generate:types && yarn lint",
     "create:component": "npx hygen component new --with-prompt",
     "create:package": "npx hygen package new --with-prompt",
@@ -15,6 +17,7 @@
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "test:coverage": "turbo run test:coverage",
+    "types": "turbo run types",
     "build": "turbo run build",
     "buildSettings": "turbo run buildSettings",
     "start": "turbo run start --parallel",
@@ -29,11 +32,14 @@
     "eslint-config-custom": "*",
     "hygen": "^6.2.11",
     "prettier": "3.0.3",
-    "turbo": "1.10.15"
+    "turbo": "^1.13.0"
   },
   "packageManager": "yarn@1.22.21",
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "cobertura-merge": "^1.0.4"
+  }
 }

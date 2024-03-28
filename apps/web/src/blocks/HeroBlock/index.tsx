@@ -2,23 +2,22 @@
 
 import React from 'react';
 import Link from 'next/link';
-import lens from '@refract-ui/sc/lens';
-import styled from 'styled-components';
-
-import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
-import RichText from '@web/components/RichText';
-import Wrapper from '@web/components/Wrapper';
-import Input from '@web/fields/Input';
-import genClassName from '@web/lib/genClassname';
-import expandedDoc from '@web/lib/isExpandedDoc';
+import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
+import RichText from '@mono/web/components/RichText';
+import Wrapper from '@mono/web/components/Wrapper';
+import Input from '@mono/web/fields/Input';
+import genClassName from '@mono/web/lib/genClassname';
+import expandedDoc from '@mono/web/lib/isExpandedDoc';
 import type {
   HeroBlockT as PayloadType,
   Image
-} from '@web/payload/payload-types';
+} from '@mono/web/payload/payload-types';
+import styled from '@refract-ui/sc';
+import s from 'styled-components';
 
-export type HeroBlockType = Omit<PayloadType, 'blockType'>;
+export type HeroBlockProps = Omit<PayloadType, 'blockType'>;
 
-const StyledWrapper = styled(Wrapper)`
+const StyledWrapper = s(Wrapper)`
   align-items: center;
   & > div:first-child {
     grid-column: 1 / 5;
@@ -45,7 +44,7 @@ const StyledWrapper = styled(Wrapper)`
     &.imgLeft {
       & > div:first-child {
         grid-column: 2;
-      } 
+      }
       & > div:last-child {
         grid-column: 3;
       }
@@ -53,7 +52,7 @@ const StyledWrapper = styled(Wrapper)`
     &.imgRightFull {
       & > div:first-child {
         grid-column: 3 / 5;
-      } 
+      }
       & > div:last-child {
         grid-column: 1 / 3;
       }
@@ -69,7 +68,7 @@ const StyledWrapper = styled(Wrapper)`
   `};
 `;
 
-const ImageWrapper = styled(ResponsivePayloadImage)`
+const ImageWrapper = s(ResponsivePayloadImage)`
   aspect-ratio: 500 / 402;
 
   &.bg {
@@ -83,7 +82,7 @@ const Eyebrow = styled.span`
   ${({ theme: { box } }) => box.t('h6')};
 `;
 
-const Title = lens.h1({ m: 0, p: 0 })``;
+const Title = styled.h1({ m: 0, p: 0 })``;
 
 const ContentWrapper = styled.div`
   z-index: 1;
@@ -128,7 +127,7 @@ const ContentWrapper = styled.div`
   `};
 `;
 
-const SubTitle = styled(RichText)`
+const SubTitle = s(RichText)`
   width: min(100%, 600px);
 `;
 
@@ -153,7 +152,7 @@ const InputWrapper = styled.div`
   }
 `;
 
-const Button = styled(Link)`
+const Button = s(Link)`
   text-align: center;
   width: 100%;
 
@@ -170,7 +169,7 @@ function HeroBlock({
   input,
   image,
   blockConfig
-}: HeroBlockType) {
+}: HeroBlockProps) {
   const layout = blockConfig?.layout || 'imgRight';
   const img = expandedDoc<Image>(image);
   const className = genClassName([layout]);

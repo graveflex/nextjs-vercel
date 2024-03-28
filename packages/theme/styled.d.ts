@@ -1,4 +1,4 @@
-import { type RefractTheme } from '@mono/theme/src/theme';
+import { type RefractTheme } from './src/theme';
 
 declare module 'styled-components' {
   export interface DefaultTheme extends RefractTheme {

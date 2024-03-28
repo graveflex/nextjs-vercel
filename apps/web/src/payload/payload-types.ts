@@ -6,6 +6,10 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MenuItems".
+ */
 export type MenuItems =
   | {
       label: string;
@@ -27,6 +31,10 @@ export interface Config {
     nav: Nav;
   };
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
 export interface Page {
   id: number;
   seoConfig?: {
@@ -40,13 +48,21 @@ export interface Page {
   createdAt: string;
   _status?: ('draft' | 'published') | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pageConfigType".
+ */
 export interface PageConfigType {
   slug: string;
   theme?: ('light' | 'dark') | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlockT".
+ */
 export interface FAQBlockT {
   blockConfig?: {
-    theme?: ('light' | 'dark') | null;
+    theme?: ('_' | 'light' | 'dark') | null;
     hidden?: boolean | null;
   };
   title?: string | null;
@@ -70,9 +86,13 @@ export interface FAQBlockT {
   blockName?: string | null;
   blockType: 'faqBlock';
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextImageBlockT".
+ */
 export interface TextImageBlockT {
   blockConfig?: {
-    theme?: ('light' | 'dark') | null;
+    theme?: ('_' | 'light' | 'dark') | null;
     hidden?: boolean | null;
     layout?: ('imgRight' | 'imgLeft') | null;
   };
@@ -88,6 +108,10 @@ export interface TextImageBlockT {
   blockName?: string | null;
   blockType: 'textImageBlock';
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "images".
+ */
 export interface Image {
   id: number;
   alt?: string | null;
@@ -142,13 +166,21 @@ export interface Image {
     };
   };
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTAType".
+ */
 export interface CTAType {
   label?: string | null;
   href?: string | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBlockT".
+ */
 export interface HeroBlockT {
   blockConfig?: {
-    theme?: ('light' | 'dark') | null;
+    theme?: ('_' | 'light' | 'dark') | null;
     hidden?: boolean | null;
     layout?: ('bg' | 'imgRight' | 'imgLeft' | 'imgRightFull' | 'imgLeftFull') | null;
   };
@@ -166,10 +198,18 @@ export interface HeroBlockT {
   blockName?: string | null;
   blockType: 'heroBlock';
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InputType".
+ */
 export interface InputType {
   placeholder?: string | null;
   type?: 'text' | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
 export interface User {
   id: number;
   updatedAt: string;
@@ -183,6 +223,10 @@ export interface User {
   lockUntil?: string | null;
   password: string | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-preferences".
+ */
 export interface PayloadPreference {
   id: number;
   user: {
@@ -202,6 +246,10 @@ export interface PayloadPreference {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-migrations".
+ */
 export interface PayloadMigration {
   id: number;
   name?: string | null;
@@ -209,6 +257,10 @@ export interface PayloadMigration {
   updatedAt: string;
   createdAt: string;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav".
+ */
 export interface Nav {
   id: number;
   header?: {

@@ -4,10 +4,10 @@ to: <%= app_name %>/blocks/<%= name %>/index.tsx
 'use client';
 
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@refract-ui/sc';
 
-import Wrapper from '@web/components/Wrapper';
-import type { <%= name %>T as PayloadType } from '@web/payload/payload-types';
+import Wrapper from '@mono/web/components/Wrapper';
+import type { <%= name %>T as PayloadType } from '@mono/web/payload/payload-types';
 
 export type <%= name %>Type = Pick<PayloadType, 'title'>;
 

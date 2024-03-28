@@ -1,7 +1,6 @@
+import BlockConfig from '@mono/web/payload/fields/BlockConfig';
+import CTA from '@mono/web/payload/fields/CTA';
 import type { Block } from 'payload/types';
-
-import BlockConfig from '@web/payload/fields/BlockConfig';
-import CTA from '@web/payload/fields/CTA';
 
 const TextImageBlock: Block = {
   slug: 'textImageBlock',

@@ -1,14 +1,23 @@
-import type { PropsWithChildren } from 'react';
 import React from 'react';
+import ThemeProvider from '@mono/theme/src/ThemeProvider';
+import StyledComponentsRegistry from '@mono/web/lib/StyledComponentRegistry';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const runtime = 'edge';
 
-async function RootLayout({ children }: PropsWithChildren<object>) {
+interface RootLayoutProps {
+  children: React.ReactNode;
+}
+
+async function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <SpeedInsights />
-      <body>{children}</body>
+      <StyledComponentsRegistry>
+        <ThemeProvider theme="light">
+          <SpeedInsights />
+          {children}
+        </ThemeProvider>
+      </StyledComponentsRegistry>
     </html>
   );
 }

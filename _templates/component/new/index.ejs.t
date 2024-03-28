@@ -4,7 +4,7 @@ to: <%= app_name %>/<%= path %>/<%= name %>/index.tsx
 'use client';
 
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@refract-ui/sc';
 
 const Container = styled.div``;
 

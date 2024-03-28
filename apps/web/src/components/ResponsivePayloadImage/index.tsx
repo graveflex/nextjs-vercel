@@ -3,17 +3,17 @@
 import React from 'react';
 import type { ImageProps } from 'next/image';
 import Image from 'next/image';
-import styled from 'styled-components';
+import genClassName from '@mono/web/lib/genClassname';
+import type { Image as ImageT } from '@mono/web/payload/payload-types';
+import styled from '@refract-ui/sc';
 
-import genClassName from '@web/lib/genClassname';
-import type { Image as ImageT } from '@web/payload/payload-types';
-
-export type ResponsivePayloadImageType = {
+export interface ResponsivePayloadImageType
+  extends React.ComponentProps<'div'> {
   image: ImageT;
   imageProps?: Partial<ImageProps>;
   className?: string;
   classOverride?: string;
-};
+}
 
 const ImageWrapper = styled.div`
   container-type: inline-size;
@@ -28,7 +28,8 @@ function ResponsivePayloadImage({
   image,
   imageProps,
   className,
-  classOverride
+  classOverride,
+  ...props
 }: ResponsivePayloadImageType) {
   const { alt, url: imageUrl } = image;
 
@@ -37,7 +38,10 @@ function ResponsivePayloadImage({
   }
 
   return (
-    <ImageWrapper className={genClassName([className, classOverride])}>
+    <ImageWrapper
+      className={genClassName([className, classOverride])}
+      {...props}
+    >
       <Image
         {...{ fill: true, ...imageProps }}
         src={imageUrl}

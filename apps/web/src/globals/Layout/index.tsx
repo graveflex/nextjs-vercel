@@ -3,15 +3,17 @@
 import type { PropsWithChildren } from 'react';
 import React, { useMemo } from 'react';
 import Link from 'next/link';
-import styled, { css } from 'styled-components';
-
-import ResponsivePayloadImage from '@web/components/ResponsivePayloadImage';
-import expandedDoc from '@web/lib/isExpandedDoc';
+import type * as themeList from '@mono/theme/src/theme';
+import MaybeThemed from '@mono/web/components/MaybeThemed';
+import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
+import expandedDoc from '@mono/web/lib/isExpandedDoc';
 import type {
   Image as ImageT,
   MenuItems,
   Nav as NavT
-} from '@web/payload/payload-types';
+} from '@mono/web/payload/payload-types';
+import styled, { css } from '@refract-ui/sc';
+import s from 'styled-components';
 
 const Header = styled.header`
   padding: 1.625rem 1rem;
@@ -54,7 +56,7 @@ const Nav = styled.nav`
   `};
 `;
 
-const Logo = styled(ResponsivePayloadImage)`
+const Logo = s(ResponsivePayloadImage)`
   width: 0;
   img {
     object-fit: contain;
@@ -66,8 +68,7 @@ const Logo = styled(ResponsivePayloadImage)`
   `}
 `;
 
-const MenuLink = styled(Link)`
-  ${({ theme: { box } }) => box.t('menuLink')};
+const MenuLink = styled({ t: 'menuLink' })(Link)`
   text-decoration: none;
 
   &:hover,
@@ -78,7 +79,7 @@ const MenuLink = styled(Link)`
 
   &.button {
     ${({ theme }) => css`
-      color: ${theme.colors.black};
+      color: ${theme.allColors.fg};
       background: ${theme.themeColors.primary};
       padding: 0.625rem 1.5rem;
       border-radius: 62px;
@@ -106,9 +107,11 @@ function Menu(menuItems: MenuItems | undefined) {
   );
 }
 
-export type LayoutType = PropsWithChildren<NavT>;
+export interface LayoutType extends PropsWithChildren<NavT> {
+  theme?: keyof typeof themeList | null;
+}
 
-function Layout({ children, header, footer }: LayoutType) {
+function Layout({ children, header, footer, theme }: LayoutType) {
   const logo = expandedDoc<ImageT>(header?.logo);
   const HeaderMenu = useMemo(() => Menu(header?.main), [header?.main]);
   const FooterMenu = useMemo(
@@ -116,7 +119,7 @@ function Layout({ children, header, footer }: LayoutType) {
     [footer?.secondary]
   );
   return (
-    <>
+    <MaybeThemed theme={theme}>
       <Header>
         {logo?.url && <Logo image={logo} imageProps={{ loading: 'eager' }} />}
         {HeaderMenu}
@@ -126,7 +129,7 @@ function Layout({ children, header, footer }: LayoutType) {
         {FooterMenu}
         {footer?.copyright && <Copyright>{footer.copyright}</Copyright>}
       </Footer>
-    </>
+    </MaybeThemed>
   );
 }
 

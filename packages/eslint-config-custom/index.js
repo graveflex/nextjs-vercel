@@ -10,6 +10,7 @@ module.exports = {
     'plugin:storybook/recommended'
   ],
   plugins: ['@typescript-eslint', 'react', 'simple-import-sort'],
+  ignorePatterns: ['**/node_modules/**', '**/dist/**'],
   rules: {
     '@next/next/no-html-link-for-pages': 'off',
     'import/no-extraneous-dependencies': [

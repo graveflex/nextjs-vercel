@@ -3,7 +3,7 @@ export type GetUrl = {
   localDomain?: string;
   appName: 'web';
   localPort?: string;
-  local?: 'true' | 'false';
+  local?: boolean;
   forceUrl?: string;
 };
 
@@ -31,7 +31,7 @@ export const getWebUrl = ({
     return forceUrl;
   }
 
-  if (local === 'true') {
+  if (local) {
     return `http://${localDomain}:${localPort}`;
   }
 

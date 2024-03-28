@@ -1,10 +1,9 @@
-import type { CollectionConfig, GroupField } from 'payload/types';
-
 // InsertBlockConfigs
-import FAQBlock from '@web/blocks/FAQBlock/FAQBlock.config';
-import HeroBlock from '@web/blocks/HeroBlock/HeroBlock.config';
-import TextImageBlock from '@web/blocks/TextImageBlock/TextImageBlock.config';
-import SEOConfig from '@web/payload/fields/SEO';
+import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
+import HeroBlock from '@mono/web/blocks/HeroBlock/HeroBlock.config';
+import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
+import SEOConfig from '@mono/web/payload/fields/SEO';
+import type { CollectionConfig, GroupField } from 'payload/types';
 
 const themeOptions = [
   { label: 'Light', value: 'light' },

@@ -1,8 +1,6 @@
 'use client';
 
-import type { PropsWithChildren } from 'react';
-import React from 'react';
-import styled from 'styled-components';
+import styled from '@refract-ui/sc';
 
 const Container = styled.section`
   --maxWidth: 1024px;
@@ -21,10 +19,4 @@ const Container = styled.section`
 // - [ ] margin
 // - [ ] change at breakpoints
 
-export type WrapperType = PropsWithChildren;
-
-function Wrapper({ children, ...props }) {
-  return <Container {...props}>{children}</Container>;
-}
-
-export default Wrapper;
+export default Container;

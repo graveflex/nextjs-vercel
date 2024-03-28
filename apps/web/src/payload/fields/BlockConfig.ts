@@ -1,6 +1,7 @@
 import type { GroupField } from 'payload/types';
 
 const themeOptions = [
+  { label: 'Inherit', value: '_' },
   { label: 'Light', value: 'light' },
   { label: 'Dark', value: 'dark' }
 ];

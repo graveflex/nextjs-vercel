@@ -1,6 +1,6 @@
 const path = require('path');
 const { withPayload } = require('@payloadcms/next-payload');
-const { BLOB_STORE_ID } = require('settings');
+const { BLOB_STORE_ID } = require('@mono/settings');
 
 const baseUrl = `https://${BLOB_STORE_ID}.public.blob.vercel-storage.com`;
 
@@ -16,9 +16,38 @@ async function rewrites() {
 module.exports = withPayload(
   {
     reactStrictMode: true,
-    transpilePackages: ['ui', 'settings', 'vercel-blob-storage'],
+    transpilePackages: ['@mono/ui', '@mono/theme', 'vercel-blob-storage'],
+
     compiler: {
-      styledComponents: true
+      styledComponents: {
+        // Enabled by default in development, disabled in production to reduce file size,
+        // setting this will override the default for all environments.
+        displayName: true,
+        // Enabled by default.
+        ssr: true,
+        // Enabled by default.
+        fileName: true,
+
+        topLevelImportPaths: ['@refract-ui/sc', 'styled-components'],
+
+        // Defaults to ["index"].
+        meaninglessFileNames: ['index'],
+
+        // Enabled by default.
+        cssProp: true,
+
+        // Empty by default.
+        // namespace: '',
+
+        // Not supported yet.
+        minify: true,
+
+        // Not supported yet.
+        transpileTemplateLiterals: true,
+
+        // Not supported yet.
+        pure: true
+      }
     },
     rewrites
   },

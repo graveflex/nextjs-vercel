@@ -1,26 +1,7 @@
-import React from 'react';
-import GlobalStyles from '@refract-ui/sc/components/GlobalStyles';
-import configureGlobalTypes from '@refract-ui/stories/configureGlobalTypes';
-import type { Args, Decorator } from '@storybook/react';
-
-import { themeList } from 'theme/src/theme';
+import * as themeList from '@mono/theme/src/theme';
+import { configureGlobalTypes, withRefract } from '@refract-ui/stories';
 
 const { light, dark } = themeList;
-
-const withRefract: Decorator<Args> = (Story, c) => {
-  const theme =
-    c.globals.allRefractThemes[c.globals.currentRefractTheme] ||
-    c.globals.allRefractThemes.light;
-
-  return (
-    <GlobalStyles
-      theme={theme}
-      style={{ display: 'grid', gridTemplateRows: '1fr', alignItems: 'start' }}
-    >
-      <Story {...c} />
-    </GlobalStyles>
-  );
-};
 
 const themes = [
   { title: 'light', value: light },

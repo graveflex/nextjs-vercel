@@ -13,7 +13,7 @@ describe.skip('preview urls', () => {
       localDomain: LOCAL_DOMAIN,
       appName: 'web',
       localPort: NEXT_PORT,
-      local: 'true'
+      local: true
     });
     expect(result).toEqual(vercelUrl);
   });

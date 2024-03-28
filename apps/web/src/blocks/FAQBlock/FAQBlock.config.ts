@@ -1,6 +1,5 @@
+import BlockConfig from '@mono/web/payload/fields/BlockConfig';
 import type { Block } from 'payload/types';
-
-import BlockConfig from '@web/payload/fields/BlockConfig';
 
 const FAQBlock: Block = {
   slug: 'faqBlock',

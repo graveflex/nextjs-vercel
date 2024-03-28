@@ -5,9 +5,9 @@
   "types": "./index.js",
   "license": "MIT",
   "scripts": {
-    "clean": "rm -rf -- ./.turbo ./dist ./coverage",
+    "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
     "build": "tsc",
-    "lint": "eslint \"**/*.ts*\" --fix"
+    "lint": "eslint . --ext js,jsx,ts,tsx"
   },
   "devDependencies": {
     "@payloadcms/plugin-cloud-storage": "1.1.1",

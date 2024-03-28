@@ -1,8 +1,7 @@
+import Input from '@mono/web/fields/Input/Input.config';
+import BlockConfig from '@mono/web/payload/fields/BlockConfig';
+import CTA from '@mono/web/payload/fields/CTA';
 import type { Block } from 'payload/types';
-
-import Input from '@web/fields/Input/Input.config';
-import BlockConfig from '@web/payload/fields/BlockConfig';
-import CTA from '@web/payload/fields/CTA';
 
 const HeroBlock: Block = {
   slug: 'heroBlock',
