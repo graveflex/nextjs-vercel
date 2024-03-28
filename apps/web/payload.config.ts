@@ -13,10 +13,10 @@ import { vercelBlobAdapter } from 'vercel-blob-storage';
 
 dotenv.config({ path: `${__dirname}/../../.env` });
 
-const POSTGRES_URL =
+const DATABASE_URL =
   process.env.NODE_ENV === 'production' && LOCAL
-    ? `${process.env.POSTGRES_URL}?sslmode=require`
-    : (process.env.POSTGRES_URL as string);
+    ? `${process.env.DATABASE_URL}?sslmode=require`
+    : (process.env.DATABASE_URL as string);
 
 const adapter = vercelBlobAdapter({
   token: process.env.BLOB_READ_WRITE_TOKEN as string,
@@ -27,7 +27,7 @@ const adapter = vercelBlobAdapter({
 export default buildConfig({
   db: postgresAdapter({
     pool: {
-      connectionString: POSTGRES_URL
+      connectionString: DATABASE_URL
     }
   }),
   editor: slateEditor({}),

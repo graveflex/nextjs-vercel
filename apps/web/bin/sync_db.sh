@@ -11,12 +11,12 @@ parse_url() {
     echo "$1" | python3 -c "from urllib.parse import urlparse; import sys; print(urlparse(sys.stdin.readline()).$2)"
 }
 
-# Extracting components from POSTGRES_URL
-DB_USER=$(parse_url "$POSTGRES_URL" "username")
-DB_PASS=$(parse_url "$POSTGRES_URL" "password")
-DB_HOST=$(parse_url "$POSTGRES_URL" "hostname")
-DB_PORT=$(parse_url "$POSTGRES_URL" "port")
-DB_NAME=$(parse_url "$POSTGRES_URL" "path[1:]")
+# Extracting components from DATABASE_URL
+DB_USER=$(parse_url "$DATABASE_URL" "username")
+DB_PASS=$(parse_url "$DATABASE_URL" "password")
+DB_HOST=$(parse_url "$DATABASE_URL" "hostname")
+DB_PORT=$(parse_url "$DATABASE_URL" "port")
+DB_NAME=$(parse_url "$DATABASE_URL" "path[1:]")
 
 if [ "$DB_USER" == "None" ]; then
     DB_USER=""
@@ -43,7 +43,7 @@ dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 "${dir}/init_db.sh"
 
 # export the remote database to a local file
-pg_dump -Fc -v $REMOTE_POSTGRES_URL > tmp/latest.dump
+pg_dump -Fc -v $REMOTE_DATABASE_URL > tmp/latest.dump
 
 # import the remote database into our local postgres
-pg_restore -v -d $POSTGRES_URL tmp/latest.dump
+pg_restore -v -d $DATABASE_URL tmp/latest.dump

@@ -52,7 +52,7 @@
         "BLOB_ENDPOINT_URL",
         "BLOB_STORE_ID",
         "FORCE_WEB_URL",
-        "POSTGRES_URL",
+        "DATABASE_URL",
         "NODE_ENV"
       ],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
