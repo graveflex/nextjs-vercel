@@ -1,7 +1,7 @@
 import React from 'react';
 import type { StoryObj } from '@storybook/react';
 
-import coreIcons from '../core/index';
+import coreIcons from '../core';
 
 import IconStoryWrapper from './util/IconStoryWrapper';
 

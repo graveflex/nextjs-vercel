@@ -1,7 +1,10 @@
+'use client';
+
 import dynamic from 'next/dynamic';
 
 const core = {
   // InsertIconDict
+  Check: dynamic(() => import('./Check')),
   Search: dynamic(() => import('./Search')),
   Error: dynamic(() => import('./Error')),
   Quote: dynamic(() => import('./Quote')),

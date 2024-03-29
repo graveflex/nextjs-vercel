@@ -1,11 +1,33 @@
-// import coreIcons from '@mono/ui/icons/core';
 import type { GroupField } from 'payload/types';
 
 const coreIcons = {
+  // InsertIconName
+  Check: {},
   ArrowUp: {},
   ArrowLeft: {},
   ArrowRight: {},
-  Quote: {}
+  ArrowDown: {},
+  CaretDown: {},
+  CaretUp: {},
+  CaretRight: {},
+  CaretLeft: {},
+  Close: {},
+  DoubleCaretDown: {},
+  DoubleCaretUp: {},
+  DoubleCaretRight: {},
+  DoubleCaretLeft: {},
+  Error: {},
+  LinkOut: {},
+  MinusSign: {},
+  Person: {},
+  PlusSign: {},
+  Quote: {},
+  Search: {},
+  SolidArrowDown: {},
+  SolidArrowUp: {},
+  SolidArrowRight: {},
+  SolidArrowLeft: {},
+  ArrowNesting: {}
 };
 
 function IconSelect({
