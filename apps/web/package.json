@@ -33,7 +33,6 @@
     "@svgr/webpack": "^8.1.0",
     "@vercel/blob": "^0.16.1",
     "@vercel/speed-insights": "^1.0.9",
-    "dotenv": "^16.3.1",
     "drizzle-orm": "^0.29.1",
     "escape-html": "^1.0.3",
     "graphql-playground-middleware-express": "^1.7.23",
