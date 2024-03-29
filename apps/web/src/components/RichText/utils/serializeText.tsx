@@ -1,8 +1,8 @@
 import React from 'react';
 import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
 import type {
-  PayloadImageT,
-  PayloadRichTextT,
+  PayloadImageProps,
+  PayloadRichTextProps,
   SerializedLexicalNode
 } from '@mono/web/primitives/primitives';
 import get from 'lodash/get';
@@ -16,7 +16,7 @@ const IS_SUBSCRIPT = 6;
 const IS_SUPERSCRIPT = 7;
 const IS_HIGHLIGHT = 8;
 
-function serializeText(content: PayloadRichTextT) {
+function serializeText(content: PayloadRichTextProps) {
   const root = get(content, 'content.root');
 
   if (!root || !root.children) {
@@ -115,7 +115,7 @@ function serializeText(content: PayloadRichTextT) {
         if (node?.value && typeof node?.value !== 'string') {
           const img = {
             ...node.value
-          } as PayloadImageT;
+          } as PayloadImageProps;
 
           return <ResponsivePayloadImage key={index} {...img} />;
         }

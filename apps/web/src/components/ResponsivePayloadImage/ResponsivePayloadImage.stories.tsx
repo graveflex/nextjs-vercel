@@ -1,9 +1,9 @@
-import type { PayloadImageT } from '@mono/web/primitives/primitives';
+import type { PayloadImageProps } from '@mono/web/primitives/primitives';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import ResponsivePayloadImage from '.';
 
-const meta: Meta<PayloadImageT> = {
+const meta: Meta<PayloadImageProps> = {
   title: 'web/ResponsivePayloadImage',
   component: ResponsivePayloadImage,
   parameters: {

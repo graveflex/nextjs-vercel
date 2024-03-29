@@ -1,10 +1,10 @@
 import React from 'react';
-import type { PayloadRichTextT } from '@mono/web/primitives/primitives';
+import type { PayloadRichTextProps } from '@mono/web/primitives/primitives';
 
 import serializeText from './utils/serializeText';
 
 // NOTE: intended coercion -- payload doesn't provide a specific type
-function RichText(content: PayloadRichTextT): JSX.Element {
+function RichText(content: PayloadRichTextProps): JSX.Element {
   return <div>{serializeText(content)}</div>;
 }
 

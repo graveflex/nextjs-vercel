@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import genClassName from '@mono/web/lib/genClassname';
-import type { PayloadImageT } from '@mono/web/primitives/primitives';
+import type { PayloadImageProps } from '@mono/web/primitives/primitives';
 import styled from '@refract-ui/sc';
 
 const ImageWrapper = styled.div`
@@ -33,7 +33,7 @@ function ResponsivePayloadImage({
   additionalProps,
   className,
   classOverride
-}: PayloadImageT) {
+}: PayloadImageProps) {
   /* Nextjs Image properties. There cannot be a height and width if fill is true */
   const fill = imageProps?.fill ?? isFill({ height, width } as Dimensions);
 

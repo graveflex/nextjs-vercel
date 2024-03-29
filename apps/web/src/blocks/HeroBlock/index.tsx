@@ -9,7 +9,7 @@ import Input from '@mono/web/fields/Input';
 import genClassName from '@mono/web/lib/genClassname';
 import expandedDoc from '@mono/web/lib/isExpandedDoc';
 import type { HeroBlockT as PayloadType } from '@mono/web/payload/payload-types';
-import type { PayloadImageT } from '@mono/web/primitives/primitives';
+import type { PayloadImageProps } from '@mono/web/primitives/primitives';
 import styled from '@refract-ui/sc';
 import s from 'styled-components';
 
@@ -169,7 +169,7 @@ function HeroBlock({
   blockConfig
 }: HeroBlockProps) {
   const layout = blockConfig?.layout || 'imgRight';
-  const img = expandedDoc<PayloadImageT>(image);
+  const img = expandedDoc<PayloadImageProps>(image);
   const className = genClassName([layout]);
   return (
     <StyledWrapper className={className}>
