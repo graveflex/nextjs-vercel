@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
+import type { PayloadImageProps } from '@mono/ui/primitives/ResponsivePayloadImage';
 import genClassName from '@mono/web/lib/genClassname';
-import type { PayloadImageProps } from '@mono/web/primitives/primitives';
 import styled from '@refract-ui/sc';
 
 const ImageWrapper = styled.div`
@@ -34,6 +34,10 @@ function ResponsivePayloadImage({
   className,
   classOverride
 }: PayloadImageProps) {
+  if (!url) {
+    return null;
+  }
+
   /* Nextjs Image properties. There cannot be a height and width if fill is true */
   const fill = imageProps?.fill ?? isFill({ height, width } as Dimensions);
 
@@ -57,10 +61,6 @@ function ResponsivePayloadImage({
   const containerStyles = {
     aspectRatio
   } as React.CSSProperties;
-
-  if (!url) {
-    return null;
-  }
 
   /* We do not want to optimize SVGs */
   const containsSVG = /\.svg$/;

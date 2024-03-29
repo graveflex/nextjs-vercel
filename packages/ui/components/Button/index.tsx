@@ -3,8 +3,9 @@
 'use client';
 
 import React from 'react';
-import type { PayloadButtonProps } from '@mono/web/src/primitives/primitives';
 import styled, { css } from '@refract-ui/sc';
+
+import type { PayloadButtonProps } from '../../primitives/PayloadButton';
 
 const StyledButton = styled.button<{ color: PayloadButtonProps['color'] }>`
   ${({ theme: { themeColors }, color }) => css`

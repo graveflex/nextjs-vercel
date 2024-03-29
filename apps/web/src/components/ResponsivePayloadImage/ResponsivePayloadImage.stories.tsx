@@ -1,4 +1,4 @@
-import type { PayloadImageProps } from '@mono/web/primitives/primitives';
+import type { PayloadImageProps } from '@mono/ui/primitives/ResponsivePayloadImage';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import ResponsivePayloadImage from '.';

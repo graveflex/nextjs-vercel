@@ -1,11 +1,10 @@
 import React from 'react';
-import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
 import type {
-  PayloadImageProps,
   PayloadRichTextProps,
   SerializedLexicalNode
-} from '@mono/web/primitives/primitives';
-import get from 'lodash/get';
+} from '@mono/ui/primitives/PayloadRichText';
+import type { PayloadImageProps } from '@mono/ui/primitives/ResponsivePayloadImage';
+import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
 
 const IS_BOLD = 1;
 const IS_ITALIC = 2;
@@ -17,7 +16,7 @@ const IS_SUPERSCRIPT = 7;
 const IS_HIGHLIGHT = 8;
 
 function serializeText(content: PayloadRichTextProps) {
-  const root = get(content, 'content.root');
+  const root = content?.content?.root ?? {};
 
   if (!root || !root.children) {
     return null;

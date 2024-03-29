@@ -1,5 +1,6 @@
-import type { PayloadButtonProps } from '@mono/web/src/primitives/primitives';
 import type { Meta, StoryObj } from '@storybook/react';
+
+import type { PayloadButtonProps } from '../../primitives/PayloadButton';
 
 import Button from '.';
 

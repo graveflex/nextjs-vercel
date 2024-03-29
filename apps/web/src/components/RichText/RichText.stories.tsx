@@ -1,4 +1,4 @@
-import type { PayloadRichTextProps } from '@mono/web/primitives/primitives';
+import type { PayloadRichTextProps } from '@mono/ui/primitives/PayloadRichText';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import RichText from '.';

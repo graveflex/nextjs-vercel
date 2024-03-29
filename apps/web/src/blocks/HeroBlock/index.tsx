@@ -2,14 +2,13 @@
 
 import React from 'react';
 import Link from 'next/link';
+import type { PayloadImageProps } from '@mono/ui/primitives/ResponsivePayloadImage';
 import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
 import RichText from '@mono/web/components/RichText';
 import Wrapper from '@mono/web/components/Wrapper';
 import Input from '@mono/web/fields/Input';
 import genClassName from '@mono/web/lib/genClassname';
-import expandedDoc from '@mono/web/lib/isExpandedDoc';
 import type { HeroBlockT as PayloadType } from '@mono/web/payload/payload-types';
-import type { PayloadImageProps } from '@mono/web/primitives/primitives';
 import styled from '@refract-ui/sc';
 import s from 'styled-components';
 
@@ -169,11 +168,13 @@ function HeroBlock({
   blockConfig
 }: HeroBlockProps) {
   const layout = blockConfig?.layout || 'imgRight';
-  const img = expandedDoc<PayloadImageProps>(image);
+  const img = image as PayloadImageProps;
+
   const className = genClassName([layout]);
   return (
     <StyledWrapper className={className}>
       {img?.url && <ImageWrapper {...img} classOverride={className} />}
+
       <ContentWrapper className={className}>
         {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
         {title && <Title>{title}</Title>}
