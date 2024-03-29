@@ -5,16 +5,13 @@ const coreIcons = {
   ArrowUp: {},
   ArrowLeft: {},
   ArrowRight: {},
-  Quote: {},
-}
+  Quote: {}
+};
 
 function IconSelect({
   name,
-  interfaceName
-}: {
-  name?: string;
-  interfaceName?: string;
-}): GroupField {
+  interfaceName,
+}: Partial<GroupField> = {}): GroupField {
   return {
     name: name || 'icon',
     interfaceName: interfaceName || 'IconSelect',
