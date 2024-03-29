@@ -10,7 +10,7 @@ const coreIcons = {
 
 function IconSelect({
   name,
-  interfaceName,
+  interfaceName
 }: Partial<GroupField> = {}): GroupField {
   return {
     name: name || 'icon',
