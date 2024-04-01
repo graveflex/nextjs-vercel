@@ -8,7 +8,7 @@ import type { DefaultTheme } from 'styled-components';
 
 type colorProps = keyof DefaultTheme['themeColors'];
 
-export type PayloadButtonProps = {
+export type ButtonProps = {
   color: colorProps;
   size?: 'sm' | 'md' | 'lg';
   type?: 'button' | 'reset' | 'submit';
@@ -16,7 +16,7 @@ export type PayloadButtonProps = {
   onClick?: () => void;
 };
 
-const StyledButton = styled.button<PayloadButtonProps>`
+const StyledButton = styled.button<ButtonProps>`
   ${({ theme: { themeColors }, color }) => css`
     background-color: ${themeColors[color]};
   `}
@@ -28,7 +28,7 @@ function Button({
   size = 'md',
   variant = 'solid',
   onClick = () => console.log('@--> click')
-}: PayloadButtonProps) {
+}: ButtonProps) {
   return (
     // eslint-disable-next-line react/button-has-type
     <StyledButton

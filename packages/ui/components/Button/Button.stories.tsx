@@ -1,10 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { PayloadButtonProps } from '../../primitives/PayloadButton';
-
+import type { ButtonProps } from '.';
 import Button from '.';
 
-const meta: Meta<PayloadButtonProps> = {
+const meta: Meta<ButtonProps> = {
   title: 'ui/Button',
   component: Button,
   parameters: {
@@ -14,7 +13,7 @@ const meta: Meta<PayloadButtonProps> = {
 };
 
 export default meta;
-type Story = StoryObj<PayloadButtonProps>;
+type Story = StoryObj<ButtonProps>;
 
 export const Defaults: Story = {
   args: {}
