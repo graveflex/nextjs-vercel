@@ -50,7 +50,7 @@ function IconSelect({
         })),
         defaultValue: defaultValue || 'Check',
         admin: {
-          isClearable: true,
+          isClearable: true
         }
       },
       {
@@ -76,7 +76,7 @@ function IconSelect({
         admin: {
           // future enhancement- select field with theme colors
           placeholder: '#0C0E0F'
-        },
+        }
       }
     ]
   };
