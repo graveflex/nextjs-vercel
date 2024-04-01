@@ -32,7 +32,8 @@ const coreIcons = {
 
 function IconSelect({
   name,
-  interfaceName
+  interfaceName,
+  defaultValue
 }: Partial<GroupField> = {}): GroupField {
   return {
     name: name || 'icon',
@@ -47,28 +48,35 @@ function IconSelect({
           value: icon,
           label: icon
         })),
+        defaultValue: defaultValue || 'Check',
         admin: {
           isClearable: true,
-          isSortable: true
         }
       },
       {
         name: 'width',
         label: 'Width',
         type: 'text',
-        defaultValue: '35'
+        admin: {
+          placeholder: '35'
+        }
       },
       {
         name: 'height',
         label: 'Height',
         type: 'text',
-        defaultValue: '35'
+        admin: {
+          placeholder: '35'
+        }
       },
       {
         name: 'color',
         label: 'Color',
         type: 'text',
-        defaultValue: '#0C0E0F'
+        admin: {
+          // future enhancement- select field with theme colors
+          placeholder: '#0C0E0F'
+        },
       }
     ]
   };
