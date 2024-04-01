@@ -3,8 +3,8 @@ import React from 'react';
 import type {
   PayloadRichTextProps,
   SerializedLexicalNode
-} from '@ui/primitives/PayloadRichText';
-import type { PayloadImageProps } from '@ui/primitives/ResponsivePayloadImage';
+} from '../../../../primitives/PayloadRichText';
+import type { PayloadImageProps } from '../../../../primitives/ResponsivePayloadImage';
 import ResponsivePayloadImage from '../../ResponsivePayloadImage';
 
 const IS_BOLD = 1;

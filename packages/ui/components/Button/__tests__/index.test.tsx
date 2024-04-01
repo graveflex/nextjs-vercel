@@ -3,7 +3,7 @@ import { composeStories } from '@storybook/react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import projectAnnotations from '@ui/utils/testSetup';
+import projectAnnotations from '../../../utils/testSetup';
 import * as stories from '../Button.stories';
 
 const { Defaults, Submit } = composeStories(stories, projectAnnotations);

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import type { PayloadImageProps } from '@mono/ui/primitives/ResponsivePayloadImage';
 import styled from '@refract-ui/sc';
 
-import genClassName from '@ui/utils/genClassname';
+import genClassName from '../../../utils/genClassname';
 
 const ImageWrapper = styled.div`
   container-type: inline-size;
