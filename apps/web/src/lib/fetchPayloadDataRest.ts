@@ -5,6 +5,7 @@ import qs from 'qs';
 export type FetchPayloadRequest = {
   endpoint: string;
   params?: object;
+  showDraft?: boolean;
   next?: {
     revalidate?: false | 0 | number;
     tags?: string[];
@@ -19,12 +20,13 @@ export type FetchPayloadResponse<T> = T | { error: string };
 async function fetchPayloadDataRest<T>({
   endpoint,
   params,
+  showDraft,
   next,
   accessToken
 }: FetchPayloadRequest): Promise<FetchPayloadResponse<T>> {
   const url = `${WEB_URL}${endpoint}${qs.stringify(params, {
     addQueryPrefix: true
-  })}`;
+  })}?&draft=${showDraft}`;
 
   try {
     const res = await fetch(url, {
