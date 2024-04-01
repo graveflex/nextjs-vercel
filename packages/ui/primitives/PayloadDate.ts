@@ -1,1 +1,4 @@
-export type PayloadDateProps = string | null;
+export type PayloadDateProps = {
+  input: string;
+  format?: string;
+};

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import RichText from '@mono/web/components/RichText';
+import RichText from '@mono/ui/components/primitives/RichText';
 import Wrapper from '@mono/web/components/Wrapper';
 import type { FAQBlockT as PayloadType } from '@mono/web/payload/payload-types';
 import styled from '@refract-ui/sc';

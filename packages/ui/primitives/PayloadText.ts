@@ -1,1 +1,3 @@
-export type PayloadTextProps = string | number | null;
+export type PayloadTextProps = {
+  content: string;
+};

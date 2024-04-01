@@ -2,9 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
+import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
+import RichText from '@mono/ui/components/primitives/RichText';
 import type { PayloadImageProps } from '@mono/ui/primitives/ResponsivePayloadImage';
-import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
-import RichText from '@mono/web/components/RichText';
 import genClassName from '@mono/web/lib/genClassname';
 import type { TextImageBlockT as PayloadType } from '@mono/web/payload/payload-types';
 import styled from '@refract-ui/sc';
