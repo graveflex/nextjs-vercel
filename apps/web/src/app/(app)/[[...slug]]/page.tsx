@@ -14,10 +14,13 @@ interface RootLayoutProps {
   };
   searchParams: {
     draft: string;
-  }
+  };
 }
 
-export default async function Page({ params: { slug }, searchParams }: RootLayoutProps) {
+export default async function Page({
+  params: { slug },
+  searchParams
+}: RootLayoutProps) {
   const pageSlug = slug ? slug.join('/') : '/';
   const showDraft = searchParams.draft === 'true';
   const navData = await fetchPayloadDataRest<Nav>({

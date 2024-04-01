@@ -1,8 +1,8 @@
+import { WEB_URL } from '@mono/settings';
 // InsertBlockConfigs
 import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
 import HeroBlock from '@mono/web/blocks/HeroBlock/HeroBlock.config';
 import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
-import { WEB_URL } from '@mono/settings';
 import SEOConfig from '@mono/web/payload/fields/SEO';
 import type { CollectionConfig, GroupField } from 'payload/types';
 
@@ -36,15 +36,16 @@ const PageConfig: GroupField = {
 const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
-    preview: (doc, {locale, token}) => {
-      const { slug } = doc?.pageConfig as { slug: string } || '/'
+    preview: (doc, { locale }) => {
+      const { slug } = (doc?.pageConfig as { slug: string }) || '/';
 
       if (slug) {
+        // eslint-disable-next-line no-underscore-dangle
         const isDraft = !doc?._status || doc?._status === 'draft';
-        return `${WEB_URL}${slug}?locale=${locale}&draft=${isDraft}`
+        return `${WEB_URL}${slug}?locale=${locale}&draft=${isDraft}`;
       }
-      return null
-    },
+      return null;
+    }
   },
   access: {
     read: () => true
