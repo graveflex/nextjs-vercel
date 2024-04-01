@@ -1,9 +1,7 @@
-import type { PayloadButtonProps } from './PayloadButton';
+import type { LinkProps } from 'next/link';
 
-export type PayloadLinkProps = {
-  href?: string;
+export type PayloadLinkProps = LinkProps & {
   text: string;
-  style?: Partial<PayloadButtonProps>;
   newTab?: boolean;
   linkType?: string;
 };

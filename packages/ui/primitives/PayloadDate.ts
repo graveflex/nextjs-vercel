@@ -1,3 +1,1 @@
-export type PayloadDateProps = {
-  pickerAppearance: 'day' | 'month' | 'year';
-};
+export type PayloadDateProps = string | null;

@@ -29,29 +29,17 @@ function Link({
         required: false
       },
       {
-        name: 'style',
-        label: 'Style',
-        type: 'select',
-        options: [
-          {
-            label: 'Button',
-            value: 'button'
-          },
-          {
-            label: 'Link',
-            value: 'link'
-          }
-        ]
-      },
-      {
-        name: 'buttonStyle',
-        label: 'Button Style',
-        type: 'relationship',
-        relationTo: 'button',
-        hasMany: false,
+        name: 'replace',
+        label: 'Replace',
+        type: 'checkbox',
         required: false
       },
-
+      {
+        name: 'scroll',
+        label: 'Scroll',
+        type: 'checkbox',
+        required: false
+      },
       ...fields
     ]
   };

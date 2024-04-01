@@ -1,0 +1,1 @@
+export type PayloadNumberProps = number | string | null;
