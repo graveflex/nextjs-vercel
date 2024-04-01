@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import ResponsivePayloadImage from '.';
 
 const meta: Meta<PayloadImageProps> = {
-  title: 'web/ResponsivePayloadImage',
+  title: 'ui/ResponsivePayloadImage',
   component: ResponsivePayloadImage,
   parameters: {
     layout: 'centered'

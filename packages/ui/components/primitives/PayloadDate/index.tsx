@@ -10,7 +10,7 @@ function PayloadDate({ input, format }: PayloadDateProps) {
     return null;
   }
   return (
-    <span> {DateTime.fromISO(input).toFormat(format ?? 'dd LLL yyyy')}</span>
+    <span> {DateTime.fromISO(input).toFormat(format ?? 'dd mm yyyy')}</span>
   );
 }
 

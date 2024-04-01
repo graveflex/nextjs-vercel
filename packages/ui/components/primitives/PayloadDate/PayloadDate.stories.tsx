@@ -18,7 +18,7 @@ type Story = StoryObj<PayloadDateType>;
 
 export const Defaults: Story = {
   args: {
-    input: new Date().toString(),
-    format: 'dd LLL yyyy'
+    input: new Date().toISOString(),
+    format: 'dd mm yyyy'
   }
 };

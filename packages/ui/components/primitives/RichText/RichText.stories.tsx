@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import RichText from '.';
 
 const meta: Meta<PayloadRichTextProps> = {
-  title: 'web/RichText',
+  title: 'ui/RichText',
   component: RichText,
   parameters: {
     layout: 'centered'

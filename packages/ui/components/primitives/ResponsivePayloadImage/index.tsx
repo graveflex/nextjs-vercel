@@ -3,7 +3,6 @@
 import React from 'react';
 import Image from 'next/image';
 import type { PayloadImageProps } from '@mono/ui/primitives/ResponsivePayloadImage';
-import genClassName from '@mono/web/lib/genClassname';
 import styled from '@refract-ui/sc';
 
 const ImageWrapper = styled.div`
@@ -30,9 +29,7 @@ function ResponsivePayloadImage({
   height,
   width,
   imageProps,
-  additionalProps,
-  className,
-  classOverride
+  additionalProps
 }: PayloadImageProps) {
   if (!url) {
     return null;
@@ -67,10 +64,7 @@ function ResponsivePayloadImage({
   const isSVG = containsSVG.test(url);
 
   return (
-    <ImageWrapper
-      className={genClassName([className, classOverride])}
-      style={containerStyles}
-    >
+    <ImageWrapper style={containerStyles}>
       <Image
         {...{
           fill,
