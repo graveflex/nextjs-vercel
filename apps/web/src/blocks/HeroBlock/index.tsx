@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
-import type { PayloadImageProps } from '@mono/ui/primitives/ResponsivePayloadImage';
+import type { PayloadImageProps } from '@mono/ui/components/primitives/types/ResponsivePayloadImage';
 import genClassName from '@mono/ui/utils/genClassname';
 import Wrapper from '@mono/web/components/Wrapper';
 import Input from '@mono/web/fields/Input';

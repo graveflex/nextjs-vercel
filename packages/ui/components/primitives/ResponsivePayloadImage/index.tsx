@@ -2,10 +2,10 @@
 
 import React from 'react';
 import Image from 'next/image';
-import type { PayloadImageProps } from '@mono/ui/primitives/ResponsivePayloadImage';
 import styled from '@refract-ui/sc';
 
 import genClassName from '../../../utils/genClassname';
+import type { PayloadImageProps } from '../types/ResponsivePayloadImage';
 
 const ImageWrapper = styled.div`
   container-type: inline-size;

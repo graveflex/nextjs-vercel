@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { PayloadTextProps as PayloadTextType } from '@ui/primitives/PayloadText';
+import type { PayloadTextProps as PayloadTextType } from '../types/PayloadText';
 
 import PayloadText from '.';
 

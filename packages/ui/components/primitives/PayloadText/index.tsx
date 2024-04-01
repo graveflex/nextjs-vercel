@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import type { PayloadTextProps } from '@ui/primitives/PayloadText';
+import type { PayloadTextProps } from '../types/PayloadText';
 
 function PayloadText({ content }: PayloadTextProps) {
   if (!content) {

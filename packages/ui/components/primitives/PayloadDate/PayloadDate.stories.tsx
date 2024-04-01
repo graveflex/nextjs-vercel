@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { PayloadDateProps as PayloadDateType } from '@ui/primitives/PayloadDate';
+import type { PayloadDateProps as PayloadDateType } from '../types/PayloadDate';
 
 import PayloadDate from '.';
 

@@ -1,11 +1,11 @@
 import React from 'react';
 
+import ResponsivePayloadImage from '../../ResponsivePayloadImage';
 import type {
   PayloadRichTextProps,
   SerializedLexicalNode
-} from '../../../../primitives/PayloadRichText';
-import type { PayloadImageProps } from '../../../../primitives/ResponsivePayloadImage';
-import ResponsivePayloadImage from '../../ResponsivePayloadImage';
+} from '../../types/PayloadRichText';
+import type { PayloadImageProps } from '../../types/ResponsivePayloadImage';
 
 const IS_BOLD = 1;
 const IS_ITALIC = 2;

@@ -1,5 +1,6 @@
 import React from 'react';
-import type { PayloadRichTextProps } from '@mono/ui/primitives/PayloadRichText';
+
+import type { PayloadRichTextProps } from '../types/PayloadRichText';
 
 import serializeText from './utils/serializeText';
 

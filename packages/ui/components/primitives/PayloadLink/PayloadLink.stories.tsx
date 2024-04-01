@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { PayloadLinkProps as PayloadLinkType } from '@ui/primitives/PayloadLink';
+import type { PayloadLinkProps as PayloadLinkType } from '../types/PayloadLink';
 
 import PayloadLink from '.';
 

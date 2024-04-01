@@ -5,7 +5,7 @@ import React, { useMemo } from 'react';
 import Link from 'next/link';
 import type * as themeList from '@mono/theme/src/theme';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
-import type { PayloadImageProps } from '@mono/ui/primitives/ResponsivePayloadImage';
+import type { PayloadImageProps } from '@mono/ui/components/primitives/types/ResponsivePayloadImage';
 import MaybeThemed from '@mono/web/components/MaybeThemed';
 import type { MenuItems, Nav as NavT } from '@mono/web/payload/payload-types';
 import styled, { css } from '@refract-ui/sc';
