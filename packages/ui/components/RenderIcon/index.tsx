@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import {isNull} from 'lodash';
+import { isNull } from 'lodash';
 
 import coreIcons from '../../icons/core';
 
@@ -12,15 +12,16 @@ export type IconProps = {
   width?: string | null;
 };
 
-function CoreIcons({
-  name = 'Quote',
-  color,
-  height,
-  width,
-}: IconProps) {
+function CoreIcons({ name = 'Quote', color, height, width }: IconProps) {
   const Icon = !isNull(name) && coreIcons?.[name];
   if (Icon) {
-    return <Icon color={color ?? undefined} height={height ?? undefined} width={width ?? undefined} />;
+    return (
+      <Icon
+        color={color ?? undefined}
+        height={height ?? undefined}
+        width={width ?? undefined}
+      />
+    );
   }
   return null;
 }
