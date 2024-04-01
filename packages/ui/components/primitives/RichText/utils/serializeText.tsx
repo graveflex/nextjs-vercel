@@ -1,10 +1,11 @@
 import React from 'react';
-import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
+
 import type {
   PayloadRichTextProps,
   SerializedLexicalNode
-} from '@mono/ui/primitives/PayloadRichText';
-import type { PayloadImageProps } from '@mono/ui/primitives/ResponsivePayloadImage';
+} from '@ui/primitives/PayloadRichText';
+import type { PayloadImageProps } from '@ui/primitives/ResponsivePayloadImage';
+import ResponsivePayloadImage from '../../ResponsivePayloadImage';
 
 const IS_BOLD = 1;
 const IS_ITALIC = 2;

@@ -20,6 +20,7 @@
     "@testing-library/jest-dom": "^6.4.1",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.5",
+    "@types/luxon": "^3.4.2",
     "@types/react": "^18.2.70",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
@@ -40,6 +41,6 @@
     "next": "^14.1.4",
     "react-paginate": "^8.2.0",
     "styled-components": "^6.1.8",
-    "next": "14.1.4"
+    "luxon": "^3.4.4"
   }
-}
+

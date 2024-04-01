@@ -5,7 +5,7 @@ import Link from 'next/link';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
 import type { PayloadImageProps } from '@mono/ui/primitives/ResponsivePayloadImage';
-import genClassName from '@mono/web/lib/genClassname';
+import genClassName from '@mono/ui/utils/genClassname';
 import type { TextImageBlockT as PayloadType } from '@mono/web/payload/payload-types';
 import styled from '@refract-ui/sc';
 import s from 'styled-components';
