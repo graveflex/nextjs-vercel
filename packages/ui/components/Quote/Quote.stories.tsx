@@ -24,6 +24,11 @@ export const Defaults: Story = {
 export const LargeText: Story = {
   args: {
     copy: 'Lorem ipsum dolor sit amet consectetur the quick brown fox jumps over the lazy dog.',
-    isLarge: true
+    isLarge: true,
+    iconProps: {
+      width: '40',
+      height: '40',
+      color: '#3E660A'
+    }
   }
 };
