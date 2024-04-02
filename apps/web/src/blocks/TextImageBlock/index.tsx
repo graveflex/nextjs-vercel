@@ -2,11 +2,10 @@
 
 import React from 'react';
 import Link from 'next/link';
+import type { TextImageBlockT as PayloadType } from '@mono/types/payload-types';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
-import type { PayloadImageProps } from '@mono/ui/components/primitives/types/ResponsivePayloadImage';
 import genClassName from '@mono/ui/utils/genClassname';
-import type { TextImageBlockT as PayloadType } from '@mono/web/payload/payload-types';
 import styled from '@refract-ui/sc';
 import s from 'styled-components';
 
@@ -86,12 +85,11 @@ function TextImageBlock({
   blockConfig
 }: TextImageBlockType) {
   const layout = blockConfig?.layout || 'imgRight';
-  const img = image as PayloadImageProps;
   const className = genClassName([layout]);
   return (
     <Wrapper>
       <InnerWrapper className={className}>
-        {img?.url && <ImageWrapper {...img} />}
+        <ImageWrapper image={image} />
         <ContentWrapper>
           {title && <Title>{title}</Title>}
           {content && <RichText content={content} />}

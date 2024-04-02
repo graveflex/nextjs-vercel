@@ -1,6 +1,6 @@
-import type { ImageProps } from 'next/image';
+export { type Image as PayloadImageProps } from '@mono/types/payload-types';
 
-/* Payload generates image types that consist of `number | Image | null` */
+/* Payload generates image types that consist of `number | Image | null`
 export type PayloadImageProps = {
   url: string | null;
   alt?: string | null;
@@ -57,3 +57,4 @@ export type PayloadImageProps = {
   className?: string;
   classOverride?: string;
 };
+*/

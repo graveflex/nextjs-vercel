@@ -1,0 +1,8 @@
+{
+  "extends": "@mono/tsconfig/react-library.json",
+  "include": [
+    "payload.d.ts",
+    "."
+  ],
+  "exclude": ["dist", "build", "node_modules"]
+}

@@ -7,6 +7,12 @@ import styled from '@refract-ui/sc';
 import genClassName from '../../../utils/genClassname';
 import type { PayloadImageProps } from '../types/ResponsivePayloadImage';
 
+export interface ResponsivePayloadWrapperProps {
+  image?: number | PayloadImageProps | null | undefined;
+  className?: string;
+  classOverride?: string;
+}
+
 const ImageWrapper = styled.div`
   container-type: inline-size;
   position: relative;
@@ -26,16 +32,20 @@ const isFill = ({ width, height }: Dimensions): boolean => {
 };
 
 function ResponsivePayloadImage({
-  alt,
-  url,
-  height,
-  sizes,
-  width,
-  imageProps,
-  additionalProps,
+  image,
   className,
   classOverride
-}: PayloadImageProps) {
+}: ResponsivePayloadWrapperProps) {
+  if (typeof image === 'number') {
+    return null;
+  }
+
+  if (!image) {
+    return null;
+  }
+
+  const { alt, url, height, sizes, width, imageProps, additionalProps } = image;
+
   if (!url) {
     return null;
   }
@@ -85,10 +95,12 @@ function ResponsivePayloadImage({
     >
       <Image
         {...{
-          fill,
           ...dimensions,
           ...imageProps
         }}
+        quality={imageProps?.quality ?? 75}
+        priority={!!imageProps?.priority}
+        fill={!!fill}
         src={url}
         sizes={fill ? fillSizes : '100vw'}
         alt={alt ?? ''}

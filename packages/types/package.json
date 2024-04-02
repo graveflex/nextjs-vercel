@@ -1,0 +1,17 @@
+{
+  "name": "@mono/types",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
+    "lint": "eslint . --ext js,jsx,ts,tsx",
+    "types": "tsc --noEmit --skipLibCheck"
+  },
+  "devDependencies": {
+    "@mono/tsconfig": "*",
+    "eslint-config-custom": "*",
+    "payload": "^2.11.2"
+  },
+  "dependencies": {},
+  "peerDependencies": {}
+}

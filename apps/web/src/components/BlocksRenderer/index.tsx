@@ -1,8 +1,8 @@
 import type { ComponentType } from 'react';
 import React from 'react';
 import dynamic from 'next/dynamic';
+import type { Page } from '@mono/types/payload-types';
 import MaybeThemed from '@mono/web/components/MaybeThemed';
-import type { Page } from '@mono/web/payload/payload-types';
 
 const defaultOpts = {
   suspense: true,
