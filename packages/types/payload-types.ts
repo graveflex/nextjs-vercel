@@ -48,12 +48,24 @@ export interface Page {
   createdAt: string;
   _status?: ('draft' | 'published') | null;
 }
+
+export interface PageVersion {
+  version: {
+  pageConfig: PageConfigType;
+  seoConfig?: {
+    title?: string | null;
+    description?: string | null;
+    keywords?: string | null;
+  };
+  }
+}
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pageConfigType".
  */
 export interface PageConfigType {
   slug: string;
+  publishedAt?: string | null;
   theme?: ('light' | 'dark') | null;
 }
 /**

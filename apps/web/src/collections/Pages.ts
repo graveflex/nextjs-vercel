@@ -24,6 +24,20 @@ const PageConfig: GroupField = {
       required: true
     },
     {
+      name: 'publishedAt',
+      type: 'date',
+      label: 'Published At',
+      required: true,
+      admin: {
+        description:
+          'If the current time is before this date, the page will not render',
+        date: {
+          pickerAppearance: 'dayAndTime'
+        }
+      },
+      defaultValue: () => new Date().toJSON()
+    },
+    {
       name: 'theme',
       label: 'Theme',
       type: 'select',
