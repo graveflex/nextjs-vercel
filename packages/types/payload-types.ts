@@ -43,21 +43,11 @@ export interface Page {
     keywords?: string | null;
   };
   pageConfig: PageConfigType;
+  publishedAt?: string | null;
   blocks?: (FAQBlockT | TextImageBlockT | HeroBlockT)[] | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-
-export interface PageVersion {
-  version: {
-  pageConfig: PageConfigType;
-  seoConfig?: {
-    title?: string | null;
-    description?: string | null;
-    keywords?: string | null;
-  };
-  }
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -65,7 +55,6 @@ export interface PageVersion {
  */
 export interface PageConfigType {
   slug: string;
-  publishedAt?: string | null;
   theme?: ('light' | 'dark') | null;
 }
 /**

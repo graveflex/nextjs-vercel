@@ -24,20 +24,6 @@ const PageConfig: GroupField = {
       required: true
     },
     {
-      name: 'publishedAt',
-      type: 'date',
-      label: 'Published At',
-      required: true,
-      admin: {
-        description:
-          'If the current time is before this date, the page will not render',
-        date: {
-          pickerAppearance: 'dayAndTime'
-        }
-      },
-      defaultValue: () => new Date().toJSON()
-    },
-    {
       name: 'theme',
       label: 'Theme',
       type: 'select',
@@ -62,7 +48,23 @@ const Pages: CollectionConfig = {
     }
   },
   access: {
-    read: () => true
+    read: ({ req }) => {
+      if (req.user) {
+        return true;
+      }
+      return {
+        and: [
+          {
+            publishedAt: {
+              less_than: new Date().toJSON()
+            },
+            _status: {
+              equals: 'published'
+            }
+          }
+        ]
+      };
+    }
   },
   versions: {
     drafts: true
@@ -70,6 +72,20 @@ const Pages: CollectionConfig = {
   fields: [
     SEOConfig(),
     PageConfig,
+    {
+      name: 'publishedAt',
+      type: 'date',
+      label: 'Published At',
+      admin: {
+        description:
+          'If the current time is before this date, the page will not render',
+        date: {
+          pickerAppearance: 'dayAndTime'
+        },
+        position: 'sidebar'
+      },
+      defaultValue: () => new Date().toJSON()
+    },
     {
       name: 'blocks',
       label: 'Blocks',

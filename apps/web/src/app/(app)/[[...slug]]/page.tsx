@@ -45,45 +45,9 @@ export default async function Page({
     return notFound();
   }
 
-  const versionData = await fetchPayloadDataRest<PaginatedDocs<PageVersion>>({
-    endpoint: '/api/payload/pages/versions',
-    params: {
-      where: {
-        'pageConfig.slug': {
-          equals: pageSlug
-        }
-      },
-      sort: '-pageConfig.publishedAt',
-      limit: 10
-    }
-  });
-
-  if ('error' in versionData || !versionData.docs[0]) {
-    return notFound();
-  }
-
-  const currentDate = new Date();
-
-  const recentPublishedVersion = versionData.docs.find(
-    (versionedPages: PageVersion) => {
-      if (!versionedPages.version.pageConfig.publishedAt) {
-        return false;
-      }
-      const publishedAt = new Date(
-        versionedPages.version.pageConfig.publishedAt
-      );
-      return publishedAt <= currentDate;
-    }
-  );
-
-  if (!recentPublishedVersion) {
-    return notFound();
-  }
-
-  const pageVersion = recentPublishedVersion.version;
   const page = data.docs[0];
 
-  return <PageTemplate page={pageVersion} nav={navData} />;
+  return <PageTemplate page={page} nav={navData} />;
 }
 
 export async function generateMetadata({
