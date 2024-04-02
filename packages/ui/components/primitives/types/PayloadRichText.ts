@@ -1,5 +1,6 @@
-import type { Image } from '@mono/web/src/payload/payload-types';
 import type { SerializedEditorState } from 'lexical';
+
+import type { PayloadImageProps } from './ResponsivePayloadImage';
 
 export type PayloadRichTextProps = {
   content: SerializedEditorState;
@@ -16,5 +17,5 @@ export type SerializedLexicalNode = {
   mode?: string;
   text?: string;
   tag?: string;
-  value?: string | Image;
+  value?: string | PayloadImageProps;
 };
