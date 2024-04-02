@@ -12,6 +12,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.4.0",
     "@mono/theme": "*",
     "@mono/tsconfig": "*",
     "@storybook/react": "^8.0.4",
@@ -36,6 +37,7 @@
   "dependencies": {
     "@refract-ui/sc": "1.0.1-alpha.38",
     "react-paginate": "^8.2.0",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "next/image": "14.1.4"
   }
 }

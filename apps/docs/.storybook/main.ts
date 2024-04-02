@@ -1,6 +1,8 @@
 import { type StorybookConfig } from '@storybook/nextjs';
 import path from 'path';
 
+const nextConfigPath = path.resolve(__dirname, '../../web/next.config.js');
+
 const config: StorybookConfig = {
   stories: [
     '../../../node_modules/@refract-ui/stories/**/*.mdx',
@@ -16,7 +18,12 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: '@storybook/nextjs',
-    options: {}
+    options: {
+      image: {
+        loading: 'eager'
+      },
+      nextConfigPath
+    }
   },
   docs: {
     autodocs: true
