@@ -5,6 +5,7 @@ import HeroBlock from '@mono/web/blocks/HeroBlock/HeroBlock.config';
 import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
 import SEOConfig from '@mono/web/payload/fields/SEO';
 import type { CollectionConfig, GroupField } from 'payload/types';
+import { populatePublishedDate } from "../hooks/populatePublishedDate";
 
 const themeOptions = [
   { label: 'Light', value: 'light' },
@@ -97,7 +98,11 @@ const Pages: CollectionConfig = {
         HeroBlock
       ]
     }
-  ]
+  ],
+  hooks: {
+    // afterRead: [populateArchiveBlock],
+    beforeChange: [populatePublishedDate]
+  }
 };
 
 export default Pages;

@@ -22,6 +22,7 @@ export default async function Page({
   searchParams
 }: RootLayoutProps) {
   const pageSlug = slug ? slug.join('/') : '/';
+  const today = new Date();
   const showDraft = searchParams.draft === 'true';
   const navData = await fetchPayloadDataRest<Nav>({
     endpoint: '/api/payload/globals/nav'
@@ -34,6 +35,9 @@ export default async function Page({
       where: {
         'pageConfig.slug': {
           equals: pageSlug
+        },
+        'publishedAt': {
+          less_than: today
         }
       },
       limit: 1
