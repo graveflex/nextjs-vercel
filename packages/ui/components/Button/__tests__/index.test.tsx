@@ -1,9 +1,9 @@
 import React from 'react';
+import projectAnnotations from '@mono/ui/utils/testSetup';
 import { composeStories } from '@storybook/react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
-import projectAnnotations from '../../../utils/testSetup';
 import * as stories from '../Button.stories';
 
 const { Defaults, Submit } = composeStories(stories, projectAnnotations);

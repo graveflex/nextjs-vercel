@@ -5,7 +5,7 @@ import React from 'react';
 import { composeStories } from '@storybook/react';
 import { render } from '@testing-library/react';
 
-import projectAnnotations from '<%= app_name === `apps/web/src` ? `ui` : `@ui` %>/utils/testSetup';
+import projectAnnotations from @mono/ui/utils/testSetup';
 import * as stories from '../<%= name %>.stories';
 
 const { Defaults } = composeStories(stories, projectAnnotations);

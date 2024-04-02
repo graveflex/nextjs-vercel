@@ -1,8 +1,8 @@
 import React from 'react';
+import projectAnnotations from '@mono/ui/utils/testSetup';
 import { composeStories } from '@storybook/testing-react';
 import { render } from '@testing-library/react';
 
-import projectAnnotations from '../../../utils/testSetup';
 import * as stories from '../Pagination.stories';
 
 const { Defaults } = composeStories(stories, projectAnnotations);
