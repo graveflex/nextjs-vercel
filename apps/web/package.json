@@ -31,7 +31,7 @@
     "@refract-ui/sc": "1.0.1-alpha.38",
     "@storybook/react": "^8.0.4",
     "@svgr/webpack": "^8.1.0",
-    "@vercel/blob": "^0.16.1",
+    "@vercel/blob": "^0.22.0",
     "@vercel/speed-insights": "^1.0.9",
     "drizzle-orm": "^0.29.1",
     "escape-html": "^1.0.3",
