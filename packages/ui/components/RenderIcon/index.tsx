@@ -12,7 +12,12 @@ export type IconProps = {
   width?: string | null;
 };
 
-function CoreIcons({ name = 'Quote', color, height, width }: IconProps) {
+function CoreIcons({
+  name = 'Quote',
+  color,
+  height = '25',
+  width = '25'
+}: IconProps) {
   const Icon = !isNull(name) && coreIcons?.[name];
   if (Icon) {
     return (
