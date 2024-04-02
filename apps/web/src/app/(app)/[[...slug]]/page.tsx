@@ -12,16 +12,24 @@ interface RootLayoutProps {
   params: {
     slug: string[];
   };
+  searchParams: {
+    draft: string;
+  };
 }
 
-export default async function Page({ params: { slug } }: RootLayoutProps) {
+export default async function Page({
+  params: { slug },
+  searchParams
+}: RootLayoutProps) {
   const pageSlug = slug ? slug.join('/') : '/';
+  const showDraft = searchParams.draft === 'true';
   const navData = await fetchPayloadDataRest<Nav>({
     endpoint: '/api/payload/globals/nav'
   });
 
   const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
     endpoint: '/api/payload/pages',
+    showDraft,
     params: {
       where: {
         'pageConfig.slug': {

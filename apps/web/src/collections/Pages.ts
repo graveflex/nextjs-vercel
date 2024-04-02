@@ -1,3 +1,4 @@
+import { WEB_URL } from '@mono/settings';
 // InsertBlockConfigs
 import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
 import HeroBlock from '@mono/web/blocks/HeroBlock/HeroBlock.config';
@@ -34,6 +35,18 @@ const PageConfig: GroupField = {
 
 const Pages: CollectionConfig = {
   slug: 'pages',
+  admin: {
+    preview: (doc, { locale }) => {
+      const { slug } = (doc?.pageConfig as { slug: string }) || '/';
+
+      if (slug) {
+        // eslint-disable-next-line no-underscore-dangle
+        const isDraft = !doc?._status || doc?._status === 'draft';
+        return `${WEB_URL}${slug}?locale=${locale}&draft=${isDraft}`;
+      }
+      return null;
+    }
+  },
   access: {
     read: () => true
   },
