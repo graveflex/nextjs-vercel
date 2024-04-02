@@ -2,7 +2,9 @@
 
 import React from 'react';
 
-import type { PayloadTextProps } from '../types/PayloadText';
+export type PayloadTextProps = {
+  content: string;
+};
 
 function PayloadText({ content }: PayloadTextProps) {
   if (!content) {

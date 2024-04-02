@@ -2,10 +2,9 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { type Image as PayloadImageProps } from '@mono/types/payload-types';
+import genClassName from '@mono/ui/utils/genClassname';
 import styled from '@refract-ui/sc';
-
-import genClassName from '../../../utils/genClassname';
-import type { PayloadImageProps } from '../types/ResponsivePayloadImage';
 
 export interface ResponsivePayloadWrapperProps {
   image?: number | PayloadImageProps | null | undefined;

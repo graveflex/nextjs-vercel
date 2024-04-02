@@ -3,7 +3,10 @@
 import React from 'react';
 import { DateTime } from 'luxon';
 
-import type { PayloadDateProps } from '../types/PayloadDate';
+export type PayloadDateProps = {
+  input: string;
+  format?: string;
+};
 
 function PayloadDate({ input, format }: PayloadDateProps) {
   if (!input) {

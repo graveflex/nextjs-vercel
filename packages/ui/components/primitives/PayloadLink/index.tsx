@@ -1,9 +1,13 @@
 'use client';
 
 import React from 'react';
+import type { LinkProps } from 'next/link';
 import Link from 'next/link';
 
-import type { PayloadLinkProps } from '../types/PayloadLink';
+export type PayloadLinkProps = LinkProps & {
+  text: string;
+  newTab?: boolean;
+};
 
 function PayloadLink({ href, text, scroll, newTab }: PayloadLinkProps) {
   return (

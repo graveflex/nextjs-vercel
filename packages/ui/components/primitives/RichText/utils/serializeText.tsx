@@ -1,11 +1,7 @@
 import React from 'react';
 
 import ResponsivePayloadImage from '../../ResponsivePayloadImage';
-import type {
-  PayloadRichTextProps,
-  SerializedLexicalNode
-} from '../../types/PayloadRichText';
-import type { PayloadImageProps } from '../../types/ResponsivePayloadImage';
+import type { PayloadRichTextProps, SerializedLexicalNode } from '..';
 
 const IS_BOLD = 1;
 const IS_ITALIC = 2;
@@ -115,7 +111,7 @@ function serializeText(content: PayloadRichTextProps) {
         if (node?.value && typeof node?.value !== 'string') {
           const img = {
             ...node.value
-          } as PayloadImageProps;
+          };
 
           return <ResponsivePayloadImage key={index} {...img} />;
         }

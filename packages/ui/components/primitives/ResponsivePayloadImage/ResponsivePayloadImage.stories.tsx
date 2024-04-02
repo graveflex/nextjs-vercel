@@ -13,7 +13,7 @@ const meta: Meta<ResponsivePayloadWrapperProps> = {
 };
 
 export default meta;
-type Story = StoryObj<unknown>;
+type Story = StoryObj<ResponsivePayloadWrapperProps>;
 
 const randomImage = 'https://source.unsplash.com/random';
 
