@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import type { InputType } from '@mono/web/payload/payload-types';
+import type { InputType } from '@mono/types/payload-types';
 import styled from '@refract-ui/sc';
 
 const StyledInput = styled.input`

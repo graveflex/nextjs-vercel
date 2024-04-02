@@ -2,9 +2,15 @@
 
 import React from 'react';
 import Image from 'next/image';
-import genClassName from '@mono/web/lib/genClassname';
-import type { PayloadImageT } from '@mono/web/primitives/primitives';
+import { type Image as PayloadImageProps } from '@mono/types/payload-types';
+import genClassName from '@mono/ui/utils/genClassname';
 import styled from '@refract-ui/sc';
+
+export interface ResponsivePayloadWrapperProps {
+  image?: number | PayloadImageProps | null | undefined;
+  className?: string;
+  classOverride?: string;
+}
 
 const ImageWrapper = styled.div`
   container-type: inline-size;
@@ -25,17 +31,36 @@ const isFill = ({ width, height }: Dimensions): boolean => {
 };
 
 function ResponsivePayloadImage({
-  alt,
-  url,
-  height,
-  width,
-  imageProps,
-  additionalProps,
+  image,
   className,
   classOverride
-}: PayloadImageT) {
+}: ResponsivePayloadWrapperProps) {
+  if (typeof image === 'number') {
+    return null;
+  }
+
+  if (!image) {
+    return null;
+  }
+
+  const { alt, url, height, sizes, width, imageProps, additionalProps } = image;
+
+  if (!url) {
+    return null;
+  }
+
   /* Nextjs Image properties. There cannot be a height and width if fill is true */
   const fill = imageProps?.fill ?? isFill({ height, width } as Dimensions);
+
+  const { thumbnail, mobile, tablet, desktop, ultrawide } = sizes ?? {};
+
+  const fillSizes = [
+    `(max-width: 480px) ${thumbnail?.width}px`,
+    `(max-width: 768px) ${mobile?.width}px`,
+    `(max-width: 1024px) ${tablet?.width}px`,
+    `(max-width: 2048px) ${desktop?.width}px`,
+    `${ultrawide?.width}px`
+  ].join(', ');
 
   const dimensions = !fill
     ? ({
@@ -58,26 +83,25 @@ function ResponsivePayloadImage({
     aspectRatio
   } as React.CSSProperties;
 
-  if (!url) {
-    return null;
-  }
-
   /* We do not want to optimize SVGs */
   const containsSVG = /\.svg$/;
   const isSVG = containsSVG.test(url);
 
   return (
     <ImageWrapper
-      className={genClassName([className, classOverride])}
       style={containerStyles}
+      className={genClassName([className, classOverride])}
     >
       <Image
         {...{
-          fill,
           ...dimensions,
           ...imageProps
         }}
+        quality={imageProps?.quality ?? 75}
+        priority={!!imageProps?.priority}
+        fill={!!fill}
         src={url}
+        sizes={fill ? fillSizes : '100vw'}
         alt={alt ?? ''}
         unoptimized={isSVG}
         style={imageStyles}

@@ -7,7 +7,7 @@ import React from 'react';
 import styled from '@refract-ui/sc';
 
 import Wrapper from '@mono/web/components/Wrapper';
-import type { <%= name %>T as PayloadType } from '@mono/web/payload/payload-types';
+import type { <%= name %>T as PayloadType } from '@mono/types/payload-types';
 
 export type <%= name %>Type = Pick<PayloadType, 'title'>;
 

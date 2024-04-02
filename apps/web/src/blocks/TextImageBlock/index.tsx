@@ -2,12 +2,10 @@
 
 import React from 'react';
 import Link from 'next/link';
-import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
-import RichText from '@mono/web/components/RichText';
-import genClassName from '@mono/web/lib/genClassname';
-import expandedDoc from '@mono/web/lib/isExpandedDoc';
-import type { TextImageBlockT as PayloadType } from '@mono/web/payload/payload-types';
-import type { PayloadImageT } from '@mono/web/primitives/primitives';
+import type { TextImageBlockT as PayloadType } from '@mono/types/payload-types';
+import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
+import RichText from '@mono/ui/components/primitives/RichText';
+import genClassName from '@mono/ui/utils/genClassname';
 import styled from '@refract-ui/sc';
 import s from 'styled-components';
 
@@ -86,13 +84,12 @@ function TextImageBlock({
   cta,
   blockConfig
 }: TextImageBlockType) {
-  const img = expandedDoc<PayloadImageT>(image);
   const layout = blockConfig?.layout || 'imgRight';
   const className = genClassName([layout]);
   return (
     <Wrapper>
       <InnerWrapper className={className}>
-        {img?.url && <ImageWrapper {...img} />}
+        <ImageWrapper image={image} />
         <ContentWrapper>
           {title && <Title>{title}</Title>}
           {content && <RichText content={content} />}

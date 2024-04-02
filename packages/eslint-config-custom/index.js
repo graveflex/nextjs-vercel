@@ -29,6 +29,7 @@ module.exports = {
     ],
     curly: ['error', 'all'],
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.ts'] }],
+    'import/prefer-default-export': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
     'react/prop-types': 'off',

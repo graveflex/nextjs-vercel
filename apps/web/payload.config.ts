@@ -88,7 +88,7 @@ export default buildConfig({
     }
   },
   typescript: {
-    outputFile: path.resolve(__dirname, './src/payload/payload-types.ts')
+    outputFile: path.resolve(__dirname, '../../packages/types/payload-types.ts')
   },
   graphQL: {
     schemaOutputFile: path.resolve(

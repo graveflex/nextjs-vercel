@@ -1,10 +1,10 @@
-import type { PayloadRichTextT } from '@mono/web/primitives/primitives';
 import type { Meta, StoryObj } from '@storybook/react';
 
+import type { PayloadRichTextProps } from '.';
 import RichText from '.';
 
-const meta: Meta<PayloadRichTextT> = {
-  title: 'web/RichText',
+const meta: Meta<PayloadRichTextProps> = {
+  title: 'ui/RichText',
   component: RichText,
   parameters: {
     layout: 'centered'

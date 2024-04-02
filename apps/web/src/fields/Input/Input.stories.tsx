@@ -1,4 +1,4 @@
-import type { InputType } from '@mono/web/payload/payload-types';
+import type { InputType } from '@mono/types/payload-types';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import Input from '.';

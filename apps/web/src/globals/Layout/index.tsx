@@ -4,11 +4,9 @@ import type { PropsWithChildren } from 'react';
 import React, { useMemo } from 'react';
 import Link from 'next/link';
 import type * as themeList from '@mono/theme/src/theme';
+import type { MenuItems, Nav as NavT } from '@mono/types/payload-types';
+import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import MaybeThemed from '@mono/web/components/MaybeThemed';
-import ResponsivePayloadImage from '@mono/web/components/ResponsivePayloadImage';
-import expandedDoc from '@mono/web/lib/isExpandedDoc';
-import type { MenuItems, Nav as NavT } from '@mono/web/payload/payload-types';
-import type { PayloadImageT } from '@mono/web/primitives/primitives';
 import styled, { css } from '@refract-ui/sc';
 import s from 'styled-components';
 
@@ -109,7 +107,7 @@ export interface LayoutType extends PropsWithChildren<NavT> {
 }
 
 function Layout({ children, header, footer, theme }: LayoutType) {
-  const logo = expandedDoc<PayloadImageT>(header?.logo);
+  const logo = header?.logo;
   const HeaderMenu = useMemo(() => Menu(header?.main), [header?.main]);
   const FooterMenu = useMemo(
     () => Menu(footer?.secondary),
@@ -118,7 +116,7 @@ function Layout({ children, header, footer, theme }: LayoutType) {
   return (
     <MaybeThemed theme={theme}>
       <Header>
-        {logo?.url && <Logo {...logo} />}
+        <Logo image={logo} />
         {HeaderMenu}
       </Header>
       <main>{children}</main>
