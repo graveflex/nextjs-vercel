@@ -24,9 +24,7 @@ async function fetchPayloadDataRest<T>({
   next,
   accessToken
 }: FetchPayloadRequest): Promise<FetchPayloadResponse<T>> {
-  const url = `${WEB_URL}${endpoint}${qs.stringify(params, {
-    addQueryPrefix: true
-  })}?&draft=${showDraft}`;
+  const url = `${WEB_URL}${endpoint}?${qs.stringify({ ...params, draft: showDraft }, { addQueryPrefix: true })}`;
 
   try {
     const res = await fetch(url, {
