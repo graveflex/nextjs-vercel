@@ -71,8 +71,6 @@ const imgUrl = faker.image.urlLoremFlickr({
   height: 1440
 });
 
-console.log('@-->imgUrl', imgUrl);
-
 export const BackgroundImage: Story = {
   args: {
     ...sharedArgs,

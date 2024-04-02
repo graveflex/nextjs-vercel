@@ -104,8 +104,6 @@ function Wrapper({ children, backgroundImage, ...props }: WrapperProps) {
     );
   }, [props]);
 
-  console.log('@-->backgroundImage', backgroundImage);
-
   return (
     <Container {...componentProps}>
       {!!backgroundImage && (
