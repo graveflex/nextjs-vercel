@@ -16,7 +16,9 @@ export default meta;
 type Story = StoryObj<IconProps>;
 
 export const Defaults: Story = {
-  args: {}
+  args: {
+    name: 'Quote'
+  }
 };
 
 export const ArrowNesting: Story = {
