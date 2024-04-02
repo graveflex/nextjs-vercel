@@ -5,7 +5,12 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "@mono/web/*": [
+        "../web/src/*"
+      ]
+    },
   },
   "include": [
     "next-env.d.ts",
