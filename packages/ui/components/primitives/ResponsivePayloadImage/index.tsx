@@ -29,6 +29,7 @@ function ResponsivePayloadImage({
   alt,
   url,
   height,
+  sizes,
   width,
   imageProps,
   additionalProps,
@@ -41,6 +42,16 @@ function ResponsivePayloadImage({
 
   /* Nextjs Image properties. There cannot be a height and width if fill is true */
   const fill = imageProps?.fill ?? isFill({ height, width } as Dimensions);
+
+  const { thumbnail, mobile, tablet, desktop, ultrawide } = sizes ?? {};
+
+  const fillSizes = [
+    `(max-width: 480px) ${thumbnail?.width}px`,
+    `(max-width: 768px) ${mobile?.width}px`,
+    `(max-width: 1024px) ${tablet?.width}px`,
+    `(max-width: 2048px) ${desktop?.width}px`,
+    `${ultrawide?.width}px`
+  ].join(', ');
 
   const dimensions = !fill
     ? ({
@@ -79,6 +90,7 @@ function ResponsivePayloadImage({
           ...imageProps
         }}
         src={url}
+        sizes={fill ? fillSizes : '100vw'}
         alt={alt ?? ''}
         unoptimized={isSVG}
         style={imageStyles}
