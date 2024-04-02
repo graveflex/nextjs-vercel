@@ -40,6 +40,7 @@ export default async function Page({
     }
   });
 
+  // if there's an error fetching data, 404
   if ('error' in data || !data.docs[0] || 'error' in navData) {
     return notFound();
   }
