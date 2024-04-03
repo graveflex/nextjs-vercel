@@ -16,7 +16,7 @@ function PageTemplate({ page, nav }: { page: Page; nav: Nav }) {
 
   const blocks = data?.blocks;
 
-  const { theme } = data.pageConfig;
+  const { theme } = data;
 
   if (!blocks) {
     return null;

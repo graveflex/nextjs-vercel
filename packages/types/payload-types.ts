@@ -37,24 +37,18 @@ export interface Config {
  */
 export interface Page {
   id: number;
+  pageTitle: string;
+  slug?: string | null;
+  theme?: ('light' | 'dark') | null;
   seoConfig?: {
     title?: string | null;
     description?: string | null;
     keywords?: string | null;
   };
-  pageConfig: PageConfigType;
   blocks?: (FAQBlockT | TextImageBlockT | HeroBlockT)[] | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pageConfigType".
- */
-export interface PageConfigType {
-  slug: string;
-  theme?: ('light' | 'dark') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -325,6 +319,7 @@ export interface Nav {
   updatedAt?: string | null;
   createdAt?: string | null;
 }
+
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

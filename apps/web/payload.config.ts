@@ -56,7 +56,7 @@ export default buildConfig({
     user: Users.slug,
     livePreview: {
       url: ({ data }) => {
-        return `${WEB_URL}${data?.pageConfig?.slug}`;
+        return `${WEB_URL}${data?.slug}`;
       },
       breakpoints: [
         {
