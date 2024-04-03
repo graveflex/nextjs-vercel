@@ -45,6 +45,7 @@ export interface Page {
     description?: string | null;
     keywords?: string | null;
   };
+  publishedAt?: string | null;
   blocks?: (FAQBlockT | TextImageBlockT | HeroBlockT)[] | null;
   updatedAt: string;
   createdAt: string;

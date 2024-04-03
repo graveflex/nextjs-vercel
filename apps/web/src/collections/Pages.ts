@@ -7,6 +7,8 @@ import SEOConfig from '@mono/web/payload/fields/SEO';
 import formatSlug from '@mono/web/payload/utils/formatSlug';
 import type { CollectionConfig } from 'payload/types';
 
+import { publishBeforeRead } from '../hooks/publishBeforeRead';
+
 const themeOptions = [
   { label: 'Light', value: 'light' },
   { label: 'Dark', value: 'dark' }
@@ -68,6 +70,20 @@ const Pages: CollectionConfig = {
     },
     SEOConfig(),
     {
+      name: 'publishedAt',
+      type: 'date',
+      label: 'Published At',
+      admin: {
+        description:
+          'If the current time is before this date, the page will not render',
+        date: {
+          pickerAppearance: 'dayAndTime'
+        },
+        position: 'sidebar'
+      },
+      defaultValue: () => new Date().toJSON()
+    },
+    {
       name: 'blocks',
       label: 'Blocks',
       type: 'blocks',
@@ -78,7 +94,10 @@ const Pages: CollectionConfig = {
         HeroBlock
       ]
     }
-  ]
+  ],
+  hooks: {
+    beforeRead: [publishBeforeRead]
+  }
 };
 
 export default Pages;

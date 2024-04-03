@@ -37,3 +37,9 @@ yarn-error.log*
 
 # storybook
 storybook-static
+
+# db dumps, etc
+tmp/
+
+# ts build artifacts
+*.tsbuildinfo
