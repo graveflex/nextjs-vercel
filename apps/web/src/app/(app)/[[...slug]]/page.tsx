@@ -45,7 +45,38 @@ export default async function Page({
     return notFound();
   }
 
-  const page = data.docs[0];
+  const versionData = await fetchPayloadDataRest<PaginatedDocs<Page>>({
+    endpoint: '/api/payload/pages/versions',
+    params: {
+      where: {
+        'pageConfig.slug': {
+          equals: pageSlug
+        }
+      },
+      sort: '-createdAt',
+      limit: 10
+    }
+  });
+
+  if ('error' in versionData || !versionData.docs[0]) {
+    console.log('no version data');
+  }
+
+  const now = new Date();
+
+  const recentPublishedVersion = versionData.docs.find(
+    (versionedPages: Page) => {
+      if (!versionedPages.version.publishedAt) {
+        return false;
+      }
+      const publishedAt = new Date(versionedPages.version.publishedAt);
+      return publishedAt <= now;
+    }
+  );
+
+  console.log('logging recent published', recentPublishedVersion);
+
+  const page = data.docs[0] || recentPublishedVersion.version;
 
   return <PageTemplate page={page} nav={navData} />;
 }

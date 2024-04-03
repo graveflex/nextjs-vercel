@@ -6,6 +6,8 @@ import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.confi
 import SEOConfig from '@mono/web/payload/fields/SEO';
 import type { CollectionConfig, GroupField } from 'payload/types';
 
+import { populatePublishedDate } from '../hooks/populatePublishedDate';
+
 const themeOptions = [
   { label: 'Light', value: 'light' },
   { label: 'Dark', value: 'dark' }
@@ -48,23 +50,7 @@ const Pages: CollectionConfig = {
     }
   },
   access: {
-    read: ({ req }) => {
-      if (req.user) {
-        return true;
-      }
-      return {
-        and: [
-          {
-            publishedAt: {
-              less_than: new Date().toJSON()
-            },
-            _status: {
-              equals: 'published'
-            }
-          }
-        ]
-      };
-    }
+    read: () => true
   },
   versions: {
     drafts: true
