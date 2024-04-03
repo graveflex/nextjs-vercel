@@ -1,38 +1,41 @@
 import type { BeforeReadHook } from 'payload/dist/collections/config/types';
 
-export const publishBeforeRead: BeforeReadHook = async ({
-  doc,
-  req,
-  query,
-  ...props
-}) => {
+import type Pages from '../collections/Pages';
+
+export const publishBeforeRead: BeforeReadHook = async ({ doc, req }) => {
   const now = new Date();
 
-  if (new Date(doc.publishedAt) <= now) {
+  if (req.user) {
     return doc;
   }
 
-  const results = await req.payload.findVersions({
-    collection: 'pages',
-    limit: 100,
-    sort: '-version.createdAt'
-  });
-
-  const publishedDocs = results.docs.filter(
-    (versionData) =>
-      versionData.version.publishedAt &&
-      new Date(doc.version.publishedAt) <= now
-  );
-
-  console.log('version results log', publishedDocs[0].version);
-  console.log('docs log', doc);
-
-  if (publishedDocs.length !== 0) {
-    return {
-      ...publishedDocs[0],
-      ...publishedDocs[0].version
-    };
+  // eslint-disable-next-line
+  if (doc._status === 'published' && new Date(doc?.publishedAt) <= now) {
+    return doc;
   }
 
-  return doc;
+  const results = await req.payload.db.findVersions<typeof Pages>({
+    collection: 'pages',
+    limit: 1,
+    req,
+    sort: '-version.createdAt',
+    where: {
+      or: [
+        {
+          'version.pageConfig.slug': { equals: doc.pageConfig.slug },
+          'version._status': { equals: 'published' },
+          'version.publishedAt': { less_than: now }
+        },
+        {
+          'version.pageConfig.slug': { equals: doc.pageConfig.slug },
+          'version._status': { equals: 'published' },
+          'version.publishedAt': { equals: null }
+        }
+      ]
+    }
+  });
+
+  const latestPublishedVersion = results?.docs?.[0];
+
+  return latestPublishedVersion;
 };
