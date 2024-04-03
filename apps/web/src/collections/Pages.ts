@@ -36,6 +36,8 @@ const PageConfig: GroupField = {
 const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
+    useAsTitle: 'pageTitle',
+    defaultColumns: ['createdAt', 'pageTitle', 'slug', '_status'],
     preview: (doc, { locale }) => {
       const { slug } = (doc?.pageConfig as { slug: string }) || '/';
 
