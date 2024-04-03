@@ -16,6 +16,12 @@ EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
+ALTER TYPE "enum_pages_blocks_faq_block_block_config_theme" ADD VALUE '_';
+ALTER TYPE "enum_pages_blocks_text_image_block_block_config_theme" ADD VALUE '_';
+ALTER TYPE "enum_pages_blocks_hero_block_block_config_theme" ADD VALUE '_';
+ALTER TYPE "enum__pages_v_blocks_faq_block_block_config_theme" ADD VALUE '_';
+ALTER TYPE "enum__pages_v_blocks_text_image_block_block_config_theme" ADD VALUE '_';
+ALTER TYPE "enum__pages_v_blocks_hero_block_block_config_theme" ADD VALUE '_';
 ALTER TABLE "pages" ADD COLUMN "page_title" varchar;
 ALTER TABLE "pages" ADD COLUMN "slug" varchar;
 ALTER TABLE "pages" ADD COLUMN "theme" "enum_pages_theme";
