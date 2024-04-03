@@ -32,7 +32,7 @@ export default async function Page({
     showDraft,
     params: {
       where: {
-        'pageConfig.slug': {
+        slug: {
           equals: pageSlug
         }
       },
@@ -60,7 +60,7 @@ export async function generateMetadata({
     endpoint: '/api/payload/pages',
     params: {
       where: {
-        'pageConfig.slug': {
+        slug: {
           equals: pageSlug
         }
       },

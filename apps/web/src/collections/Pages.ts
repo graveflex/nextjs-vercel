@@ -4,40 +4,21 @@ import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
 import HeroBlock from '@mono/web/blocks/HeroBlock/HeroBlock.config';
 import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
 import SEOConfig from '@mono/web/payload/fields/SEO';
-import type { CollectionConfig, GroupField } from 'payload/types';
+import formatSlug from '@mono/web/payload/utils/formatSlug';
+import type { CollectionConfig } from 'payload/types';
 
 const themeOptions = [
   { label: 'Light', value: 'light' },
   { label: 'Dark', value: 'dark' }
 ];
 
-const PageConfig: GroupField = {
-  name: 'pageConfig',
-  label: 'Page Configuration',
-  interfaceName: 'pageConfigType',
-  type: 'group',
-  fields: [
-    {
-      type: 'text',
-      name: 'slug',
-      label: 'Slug',
-      required: true
-    },
-    {
-      name: 'theme',
-      label: 'Theme',
-      type: 'select',
-      required: false,
-      options: themeOptions
-    }
-  ]
-};
-
 const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
+    useAsTitle: 'pageTitle',
+    defaultColumns: ['createdAt', 'pageTitle', 'slug', '_status'],
     preview: (doc, { locale }) => {
-      const { slug } = (doc?.pageConfig as { slug: string }) || '/';
+      const { slug } = (doc as { slug: string }) || '/';
 
       if (slug) {
         // eslint-disable-next-line no-underscore-dangle
@@ -54,8 +35,38 @@ const Pages: CollectionConfig = {
     drafts: true
   },
   fields: [
+    {
+      name: 'pageTitle',
+      label: 'Page Title',
+      type: 'text',
+      admin: {
+        position: 'sidebar'
+      },
+      required: true
+    },
+    {
+      name: 'slug',
+      label: 'Page Slug',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+        description: 'Will be auto-generated to title if left blank.'
+      },
+      hooks: {
+        beforeValidate: [formatSlug('pageTitle')]
+      }
+    },
+    {
+      name: 'theme',
+      label: 'Theme',
+      type: 'select',
+      admin: {
+        position: 'sidebar'
+      },
+      required: false,
+      options: themeOptions
+    },
     SEOConfig(),
-    PageConfig,
     {
       name: 'blocks',
       label: 'Blocks',
