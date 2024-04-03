@@ -6,7 +6,7 @@ import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.confi
 import SEOConfig from '@mono/web/payload/fields/SEO';
 import type { CollectionConfig, GroupField } from 'payload/types';
 
-import { populatePublishedDate } from '../hooks/populatePublishedDate';
+import { publishBeforeRead } from '../hooks/publishBeforeRead';
 
 const themeOptions = [
   { label: 'Light', value: 'light' },
@@ -83,7 +83,10 @@ const Pages: CollectionConfig = {
         HeroBlock
       ]
     }
-  ]
+  ],
+  hooks: {
+    beforeRead: [publishBeforeRead]
+  }
 };
 
 export default Pages;

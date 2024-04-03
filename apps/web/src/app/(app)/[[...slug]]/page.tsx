@@ -74,9 +74,7 @@ export default async function Page({
     }
   );
 
-  console.log('logging recent published', recentPublishedVersion);
-
-  const page = data.docs[0] || recentPublishedVersion.version;
+  const page = data.docs[0];
 
   return <PageTemplate page={page} nav={navData} />;
 }
