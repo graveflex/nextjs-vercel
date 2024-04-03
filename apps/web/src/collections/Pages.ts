@@ -16,7 +16,7 @@ const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
     useAsTitle: 'pageTitle',
-    defaultColumns: ['createdAt', 'pageTitle', 'slug'],
+    defaultColumns: ['createdAt', 'pageTitle', 'slug', '_status'],
     preview: (doc, { locale }) => {
       const { slug } = (doc as { slug: string }) || '/';
 
