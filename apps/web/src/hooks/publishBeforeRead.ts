@@ -20,16 +20,20 @@ export const publishBeforeRead: BeforeReadHook = async ({ doc, req }) => {
     req,
     sort: '-version.createdAt',
     where: {
-      or: [
+      and: [
         {
           'version.pageConfig.slug': { equals: doc.pageConfig.slug },
-          'version._status': { equals: 'published' },
-          'version.publishedAt': { less_than: now }
+          'version._status': { equals: 'published' }
         },
         {
-          'version.pageConfig.slug': { equals: doc.pageConfig.slug },
-          'version._status': { equals: 'published' },
-          'version.publishedAt': { equals: null }
+          or: [
+            {
+              'version.publishedAt': { less_than: now }
+            },
+            {
+              'version.publishedAt': { equals: null }
+            }
+          ]
         }
       ]
     }
