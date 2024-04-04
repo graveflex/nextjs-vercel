@@ -22,7 +22,7 @@ export const publishBeforeRead: BeforeReadHook = async ({ doc, req }) => {
     where: {
       and: [
         {
-          'version.pageConfig.slug': { equals: doc.pageConfig.slug },
+          'version.slug': { equals: doc.slug },
           'version._status': { equals: 'published' }
         },
         {
