@@ -35,16 +35,15 @@ export const getWebUrl = ({
     return `http://${localDomain}:${localPort}`;
   }
 
-  const BRANCH = process.env.VERCEL_GIT_COMMIT_REF || 'main';
-
-  if (BRANCH === 'main') {
-    return `https://${projectName}-${appName}.vercel.app`;
-  }
-
   const VERCEL_URL = process.env.VERCEL_URL || '';
 
   if (VERCEL_URL) {
     return `https://${VERCEL_URL}`;
+  }
+
+  const BRANCH = process.env.VERCEL_GIT_COMMIT_REF || 'main';
+  if (BRANCH === 'main') {
+    return `https://${projectName}-${appName}.vercel.app`;
   }
 
   return `https://${projectName}-${appName}-git-${slugify(
