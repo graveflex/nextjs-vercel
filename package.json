@@ -42,5 +42,21 @@
   ],
   "dependencies": {
     "cobertura-merge": "^1.0.4"
+  },
+  "resolutions": {
+    "@payloadcms/db-postgres": "3.0.0-beta.9",
+    "@payloadcms/live-preview": "0.2.2",
+    "@payloadcms/richtext-lexical": "3.0.0-beta.9",
+    "@payloadcms/plugin-cloud-storage": "3.0.0-beta.9",
+    "@payloadcms/next": "3.0.0-beta.9",
+    "@payloadcms/ui": "3.0.0-beta.9",
+    "@refract-ui/core": "1.0.1-alpha.42",
+    "@refract-ui/sc": "1.0.1-alpha.42",
+    "@refract-ui/stories": "1.0.1-alpha.42",
+    "@refract-ui/hook-fields": "1.0.1-alpha.42",
+    "payload": "3.0.0-beta.9",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@types/react": "^18.2.74"
   }
 }

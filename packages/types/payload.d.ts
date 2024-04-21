@@ -1,4 +1,4 @@
-import { type Payload } from 'payload/dist/payload';
+import { type Payload } from 'payload';
 
 declare global {
   // eslint-disable-next-line

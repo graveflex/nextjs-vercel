@@ -1,5 +1,5 @@
 {
-  "id": "0f751480-1bc8-4aa9-ba85-6883779ab3a6",
+  "id": "ca654966-1a2b-44ea-a7b0-1d84104c4e80",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -40,15 +40,15 @@
         }
       },
       "indexes": {
-        "_order_idx": {
-          "name": "_order_idx",
+        "pages_blocks_faq_block_items_order_idx": {
+          "name": "pages_blocks_faq_block_items_order_idx",
           "columns": [
             "_order"
           ],
           "isUnique": false
         },
-        "_parent_id_idx": {
-          "name": "_parent_id_idx",
+        "pages_blocks_faq_block_items_parent_id_idx": {
+          "name": "pages_blocks_faq_block_items_parent_id_idx",
           "columns": [
             "_parent_id"
           ],
@@ -133,22 +133,22 @@
         }
       },
       "indexes": {
-        "order_idx": {
-          "name": "order_idx",
+        "pages_blocks_faq_block_order_idx": {
+          "name": "pages_blocks_faq_block_order_idx",
           "columns": [
             "_order"
           ],
           "isUnique": false
         },
-        "parent_id_idx": {
-          "name": "parent_id_idx",
+        "pages_blocks_faq_block_parent_id_idx": {
+          "name": "pages_blocks_faq_block_parent_id_idx",
           "columns": [
             "_parent_id"
           ],
           "isUnique": false
         },
-        "path_idx": {
-          "name": "path_idx",
+        "pages_blocks_faq_block_path_idx": {
+          "name": "pages_blocks_faq_block_path_idx",
           "columns": [
             "_path"
           ],
@@ -251,22 +251,22 @@
         }
       },
       "indexes": {
-        "order_idx": {
-          "name": "order_idx",
+        "pages_blocks_text_image_block_order_idx": {
+          "name": "pages_blocks_text_image_block_order_idx",
           "columns": [
             "_order"
           ],
           "isUnique": false
         },
-        "parent_id_idx": {
-          "name": "parent_id_idx",
+        "pages_blocks_text_image_block_parent_id_idx": {
+          "name": "pages_blocks_text_image_block_parent_id_idx",
           "columns": [
             "_parent_id"
           ],
           "isUnique": false
         },
-        "path_idx": {
-          "name": "path_idx",
+        "pages_blocks_text_image_block_path_idx": {
+          "name": "pages_blocks_text_image_block_path_idx",
           "columns": [
             "_path"
           ],
@@ -387,22 +387,22 @@
         }
       },
       "indexes": {
-        "order_idx": {
-          "name": "order_idx",
+        "pages_blocks_hero_block_order_idx": {
+          "name": "pages_blocks_hero_block_order_idx",
           "columns": [
             "_order"
           ],
           "isUnique": false
         },
-        "parent_id_idx": {
-          "name": "parent_id_idx",
+        "pages_blocks_hero_block_parent_id_idx": {
+          "name": "pages_blocks_hero_block_parent_id_idx",
           "columns": [
             "_parent_id"
           ],
           "isUnique": false
         },
-        "path_idx": {
-          "name": "path_idx",
+        "pages_blocks_hero_block_path_idx": {
+          "name": "pages_blocks_hero_block_path_idx",
           "columns": [
             "_path"
           ],
@@ -437,6 +437,24 @@
           "primaryKey": true,
           "notNull": true
         },
+        "page_title": {
+          "name": "page_title",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "slug": {
+          "name": "slug",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "theme": {
+          "name": "theme",
+          "type": "enum_pages_theme",
+          "primaryKey": false,
+          "notNull": false
+        },
         "seo_config_title": {
           "name": "seo_config_title",
           "type": "varchar",
@@ -455,15 +473,9 @@
           "primaryKey": false,
           "notNull": false
         },
-        "page_config_slug": {
-          "name": "page_config_slug",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "pageConfig_theme": {
-          "name": "pageConfig_theme",
-          "type": "enum_pages_page_config_theme",
+        "published_at": {
+          "name": "published_at",
+          "type": "timestamp(3) with time zone",
           "primaryKey": false,
           "notNull": false
         },
@@ -489,8 +501,8 @@
         }
       },
       "indexes": {
-        "created_at_idx": {
-          "name": "created_at_idx",
+        "pages_created_at_idx": {
+          "name": "pages_created_at_idx",
           "columns": [
             "created_at"
           ],
@@ -537,22 +549,22 @@
         }
       },
       "indexes": {
-        "order_idx": {
-          "name": "order_idx",
+        "pages_rels_order_idx": {
+          "name": "pages_rels_order_idx",
           "columns": [
             "order"
           ],
           "isUnique": false
         },
-        "parent_idx": {
-          "name": "parent_idx",
+        "pages_rels_parent_idx": {
+          "name": "pages_rels_parent_idx",
           "columns": [
             "parent_id"
           ],
           "isUnique": false
         },
-        "path_idx": {
-          "name": "path_idx",
+        "pages_rels_path_idx": {
+          "name": "pages_rels_path_idx",
           "columns": [
             "path"
           ],
@@ -632,15 +644,15 @@
         }
       },
       "indexes": {
-        "_order_idx": {
-          "name": "_order_idx",
+        "_pages_v_blocks_faq_block_items_order_idx": {
+          "name": "_pages_v_blocks_faq_block_items_order_idx",
           "columns": [
             "_order"
           ],
           "isUnique": false
         },
-        "_parent_id_idx": {
-          "name": "_parent_id_idx",
+        "_pages_v_blocks_faq_block_items_parent_id_idx": {
+          "name": "_pages_v_blocks_faq_block_items_parent_id_idx",
           "columns": [
             "_parent_id"
           ],
@@ -695,7 +707,7 @@
         },
         "blockConfig_theme": {
           "name": "blockConfig_theme",
-          "type": "enum__pages_v_blocks_faq_block_block_config_theme",
+          "type": "_enum__pages_v_blocks_faq_block_block_config_theme_v",
           "primaryKey": false,
           "notNull": false
         },
@@ -731,22 +743,22 @@
         }
       },
       "indexes": {
-        "order_idx": {
-          "name": "order_idx",
+        "_pages_v_blocks_faq_block_order_idx": {
+          "name": "_pages_v_blocks_faq_block_order_idx",
           "columns": [
             "_order"
           ],
           "isUnique": false
         },
-        "parent_id_idx": {
-          "name": "parent_id_idx",
+        "_pages_v_blocks_faq_block_parent_id_idx": {
+          "name": "_pages_v_blocks_faq_block_parent_id_idx",
           "columns": [
             "_parent_id"
           ],
           "isUnique": false
         },
-        "path_idx": {
-          "name": "path_idx",
+        "_pages_v_blocks_faq_block_path_idx": {
+          "name": "_pages_v_blocks_faq_block_path_idx",
           "columns": [
             "_path"
           ],
@@ -801,7 +813,7 @@
         },
         "blockConfig_theme": {
           "name": "blockConfig_theme",
-          "type": "enum__pages_v_blocks_text_image_block_block_config_theme",
+          "type": "_enum__pages_v_blocks_text_image_block_block_config_theme_v",
           "primaryKey": false,
           "notNull": false
         },
@@ -813,7 +825,7 @@
         },
         "blockConfig_layout": {
           "name": "blockConfig_layout",
-          "type": "enum__pages_v_blocks_text_image_block_block_config_layout",
+          "type": "_enum__pages_v_blocks_text_image_block_block_config_layout_v",
           "primaryKey": false,
           "notNull": false
         },
@@ -855,22 +867,22 @@
         }
       },
       "indexes": {
-        "order_idx": {
-          "name": "order_idx",
+        "_pages_v_blocks_text_image_block_order_idx": {
+          "name": "_pages_v_blocks_text_image_block_order_idx",
           "columns": [
             "_order"
           ],
           "isUnique": false
         },
-        "parent_id_idx": {
-          "name": "parent_id_idx",
+        "_pages_v_blocks_text_image_block_parent_id_idx": {
+          "name": "_pages_v_blocks_text_image_block_parent_id_idx",
           "columns": [
             "_parent_id"
           ],
           "isUnique": false
         },
-        "path_idx": {
-          "name": "path_idx",
+        "_pages_v_blocks_text_image_block_path_idx": {
+          "name": "_pages_v_blocks_text_image_block_path_idx",
           "columns": [
             "_path"
           ],
@@ -925,7 +937,7 @@
         },
         "blockConfig_theme": {
           "name": "blockConfig_theme",
-          "type": "enum__pages_v_blocks_hero_block_block_config_theme",
+          "type": "_enum__pages_v_blocks_hero_block_block_config_theme_v",
           "primaryKey": false,
           "notNull": false
         },
@@ -937,7 +949,7 @@
         },
         "blockConfig_layout": {
           "name": "blockConfig_layout",
-          "type": "enum__pages_v_blocks_hero_block_block_config_layout",
+          "type": "_enum__pages_v_blocks_hero_block_block_config_layout_v",
           "primaryKey": false,
           "notNull": false
         },
@@ -967,7 +979,7 @@
         },
         "input_type": {
           "name": "input_type",
-          "type": "enum__pages_v_blocks_hero_block_input_type",
+          "type": "_enum__pages_v_blocks_hero_block_input_type_v",
           "primaryKey": false,
           "notNull": false
         },
@@ -997,22 +1009,22 @@
         }
       },
       "indexes": {
-        "order_idx": {
-          "name": "order_idx",
+        "_pages_v_blocks_hero_block_order_idx": {
+          "name": "_pages_v_blocks_hero_block_order_idx",
           "columns": [
             "_order"
           ],
           "isUnique": false
         },
-        "parent_id_idx": {
-          "name": "parent_id_idx",
+        "_pages_v_blocks_hero_block_parent_id_idx": {
+          "name": "_pages_v_blocks_hero_block_parent_id_idx",
           "columns": [
             "_parent_id"
           ],
           "isUnique": false
         },
-        "path_idx": {
-          "name": "path_idx",
+        "_pages_v_blocks_hero_block_path_idx": {
+          "name": "_pages_v_blocks_hero_block_path_idx",
           "columns": [
             "_path"
           ],
@@ -1047,6 +1059,24 @@
           "primaryKey": true,
           "notNull": true
         },
+        "version_page_title": {
+          "name": "version_page_title",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version_slug": {
+          "name": "version_slug",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version_theme": {
+          "name": "version_theme",
+          "type": "_enum__pages_v_version_theme_v",
+          "primaryKey": false,
+          "notNull": false
+        },
         "version_seo_config_title": {
           "name": "version_seo_config_title",
           "type": "varchar",
@@ -1065,15 +1095,9 @@
           "primaryKey": false,
           "notNull": false
         },
-        "version_page_config_slug": {
-          "name": "version_page_config_slug",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "version_pageConfig_theme": {
-          "name": "version_pageConfig_theme",
-          "type": "enum__pages_v_version_page_config_theme",
+        "version_published_at": {
+          "name": "version_published_at",
+          "type": "timestamp(3) with time zone",
           "primaryKey": false,
           "notNull": false
         },
@@ -1091,7 +1115,7 @@
         },
         "version__status": {
           "name": "version__status",
-          "type": "enum__pages_v_version_status",
+          "type": "_enum__pages_v_version_status_v",
           "primaryKey": false,
           "notNull": false
         },
@@ -1117,22 +1141,29 @@
         }
       },
       "indexes": {
-        "created_at_idx": {
-          "name": "created_at_idx",
+        "_pages_v_version_version_created_at_idx": {
+          "name": "_pages_v_version_version_created_at_idx",
+          "columns": [
+            "version_created_at"
+          ],
+          "isUnique": false
+        },
+        "_pages_v_created_at_idx": {
+          "name": "_pages_v_created_at_idx",
           "columns": [
             "created_at"
           ],
           "isUnique": false
         },
-        "updated_at_idx": {
-          "name": "updated_at_idx",
+        "_pages_v_updated_at_idx": {
+          "name": "_pages_v_updated_at_idx",
           "columns": [
             "updated_at"
           ],
           "isUnique": false
         },
-        "latest_idx": {
-          "name": "latest_idx",
+        "_pages_v_latest_idx": {
+          "name": "_pages_v_latest_idx",
           "columns": [
             "latest"
           ],
@@ -1185,22 +1216,22 @@
         }
       },
       "indexes": {
-        "order_idx": {
-          "name": "order_idx",
+        "_pages_v_rels_order_idx": {
+          "name": "_pages_v_rels_order_idx",
           "columns": [
             "order"
           ],
           "isUnique": false
         },
-        "parent_idx": {
-          "name": "parent_idx",
+        "_pages_v_rels_parent_idx": {
+          "name": "_pages_v_rels_parent_idx",
           "columns": [
             "parent_id"
           ],
           "isUnique": false
         },
-        "path_idx": {
-          "name": "path_idx",
+        "_pages_v_rels_path_idx": {
+          "name": "_pages_v_rels_path_idx",
           "columns": [
             "path"
           ],
@@ -1319,15 +1350,15 @@
         }
       },
       "indexes": {
-        "created_at_idx": {
-          "name": "created_at_idx",
+        "users_created_at_idx": {
+          "name": "users_created_at_idx",
           "columns": [
             "created_at"
           ],
           "isUnique": false
         },
-        "email_idx": {
-          "name": "email_idx",
+        "users_email_idx": {
+          "name": "users_email_idx",
           "columns": [
             "email"
           ],
@@ -1354,6 +1385,48 @@
           "primaryKey": false,
           "notNull": false
         },
+        "image_props_fill": {
+          "name": "image_props_fill",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_props_priority": {
+          "name": "image_props_priority",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_props_quality": {
+          "name": "image_props_quality",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "additional_props_style": {
+          "name": "additional_props_style",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "additionalProps_objectFit": {
+          "name": "additionalProps_objectFit",
+          "type": "enum_images_additional_props_object_fit",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "additional_props_is_rounded": {
+          "name": "additional_props_is_rounded",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "additionalProps_aspectRatio": {
+          "name": "additionalProps_aspectRatio",
+          "type": "enum_images_additional_props_aspect_ratio",
+          "primaryKey": false,
+          "notNull": false
+        },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp(3) with time zone",
@@ -1370,6 +1443,12 @@
         },
         "url": {
           "name": "url",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "thumbnail_u_r_l": {
+          "name": "thumbnail_u_r_l",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
@@ -1586,15 +1665,50 @@
         }
       },
       "indexes": {
-        "created_at_idx": {
-          "name": "created_at_idx",
+        "images_created_at_idx": {
+          "name": "images_created_at_idx",
           "columns": [
             "created_at"
           ],
           "isUnique": false
         },
-        "sizes_ultrawide_filename_idx": {
-          "name": "sizes_ultrawide_filename_idx",
+        "images_filename_idx": {
+          "name": "images_filename_idx",
+          "columns": [
+            "filename"
+          ],
+          "isUnique": true
+        },
+        "images_sizes_thumbnail_sizes_thumbnail_filename_idx": {
+          "name": "images_sizes_thumbnail_sizes_thumbnail_filename_idx",
+          "columns": [
+            "sizes_thumbnail_filename"
+          ],
+          "isUnique": false
+        },
+        "images_sizes_mobile_sizes_mobile_filename_idx": {
+          "name": "images_sizes_mobile_sizes_mobile_filename_idx",
+          "columns": [
+            "sizes_mobile_filename"
+          ],
+          "isUnique": false
+        },
+        "images_sizes_tablet_sizes_tablet_filename_idx": {
+          "name": "images_sizes_tablet_sizes_tablet_filename_idx",
+          "columns": [
+            "sizes_tablet_filename"
+          ],
+          "isUnique": false
+        },
+        "images_sizes_desktop_sizes_desktop_filename_idx": {
+          "name": "images_sizes_desktop_sizes_desktop_filename_idx",
+          "columns": [
+            "sizes_desktop_filename"
+          ],
+          "isUnique": false
+        },
+        "images_sizes_ultrawide_sizes_ultrawide_filename_idx": {
+          "name": "images_sizes_ultrawide_sizes_ultrawide_filename_idx",
           "columns": [
             "sizes_ultrawide_filename"
           ],
@@ -1643,8 +1757,15 @@
         }
       },
       "indexes": {
-        "created_at_idx": {
-          "name": "created_at_idx",
+        "payload_preferences_key_idx": {
+          "name": "payload_preferences_key_idx",
+          "columns": [
+            "key"
+          ],
+          "isUnique": false
+        },
+        "payload_preferences_created_at_idx": {
+          "name": "payload_preferences_created_at_idx",
           "columns": [
             "created_at"
           ],
@@ -1691,22 +1812,22 @@
         }
       },
       "indexes": {
-        "order_idx": {
-          "name": "order_idx",
+        "payload_preferences_rels_order_idx": {
+          "name": "payload_preferences_rels_order_idx",
           "columns": [
             "order"
           ],
           "isUnique": false
         },
-        "parent_idx": {
-          "name": "parent_idx",
+        "payload_preferences_rels_parent_idx": {
+          "name": "payload_preferences_rels_parent_idx",
           "columns": [
             "parent_id"
           ],
           "isUnique": false
         },
-        "path_idx": {
-          "name": "path_idx",
+        "payload_preferences_rels_path_idx": {
+          "name": "payload_preferences_rels_path_idx",
           "columns": [
             "path"
           ],
@@ -1782,8 +1903,8 @@
         }
       },
       "indexes": {
-        "created_at_idx": {
-          "name": "created_at_idx",
+        "payload_migrations_created_at_idx": {
+          "name": "payload_migrations_created_at_idx",
           "columns": [
             "created_at"
           ],
@@ -1836,15 +1957,15 @@
         }
       },
       "indexes": {
-        "_order_idx": {
-          "name": "_order_idx",
+        "nav_header_main_order_idx": {
+          "name": "nav_header_main_order_idx",
           "columns": [
             "_order"
           ],
           "isUnique": false
         },
-        "_parent_id_idx": {
-          "name": "_parent_id_idx",
+        "nav_header_main_parent_id_idx": {
+          "name": "nav_header_main_parent_id_idx",
           "columns": [
             "_parent_id"
           ],
@@ -1911,15 +2032,15 @@
         }
       },
       "indexes": {
-        "_order_idx": {
-          "name": "_order_idx",
+        "nav_footer_secondary_order_idx": {
+          "name": "nav_footer_secondary_order_idx",
           "columns": [
             "_order"
           ],
           "isUnique": false
         },
-        "_parent_id_idx": {
-          "name": "_parent_id_idx",
+        "nav_footer_secondary_parent_id_idx": {
+          "name": "nav_footer_secondary_parent_id_idx",
           "columns": [
             "_parent_id"
           ],
@@ -2014,22 +2135,22 @@
         }
       },
       "indexes": {
-        "order_idx": {
-          "name": "order_idx",
+        "nav_rels_order_idx": {
+          "name": "nav_rels_order_idx",
           "columns": [
             "order"
           ],
           "isUnique": false
         },
-        "parent_idx": {
-          "name": "parent_idx",
+        "nav_rels_parent_idx": {
+          "name": "nav_rels_parent_idx",
           "columns": [
             "parent_id"
           ],
           "isUnique": false
         },
-        "path_idx": {
-          "name": "path_idx",
+        "nav_rels_path_idx": {
+          "name": "nav_rels_path_idx",
           "columns": [
             "path"
           ],
@@ -2069,8 +2190,8 @@
     }
   },
   "enums": {
-    "enum_pages_page_config_theme": {
-      "name": "enum_pages_page_config_theme",
+    "enum_pages_theme": {
+      "name": "enum_pages_theme",
       "values": {
         "light": "light",
         "dark": "dark"
@@ -2079,6 +2200,7 @@
     "enum_pages_blocks_faq_block_block_config_theme": {
       "name": "enum_pages_blocks_faq_block_block_config_theme",
       "values": {
+        "_": "_",
         "light": "light",
         "dark": "dark"
       }
@@ -2086,6 +2208,7 @@
     "enum_pages_blocks_text_image_block_block_config_theme": {
       "name": "enum_pages_blocks_text_image_block_block_config_theme",
       "values": {
+        "_": "_",
         "light": "light",
         "dark": "dark"
       }
@@ -2100,6 +2223,7 @@
     "enum_pages_blocks_hero_block_block_config_theme": {
       "name": "enum_pages_blocks_hero_block_block_config_theme",
       "values": {
+        "_": "_",
         "light": "light",
         "dark": "dark"
       }
@@ -2127,43 +2251,46 @@
         "published": "published"
       }
     },
-    "enum__pages_v_version_page_config_theme": {
-      "name": "enum__pages_v_version_page_config_theme",
+    "_enum__pages_v_version_theme_v": {
+      "name": "_enum__pages_v_version_theme_v",
       "values": {
         "light": "light",
         "dark": "dark"
       }
     },
-    "enum__pages_v_blocks_faq_block_block_config_theme": {
-      "name": "enum__pages_v_blocks_faq_block_block_config_theme",
+    "_enum__pages_v_blocks_faq_block_block_config_theme_v": {
+      "name": "_enum__pages_v_blocks_faq_block_block_config_theme_v",
       "values": {
+        "_": "_",
         "light": "light",
         "dark": "dark"
       }
     },
-    "enum__pages_v_blocks_text_image_block_block_config_theme": {
-      "name": "enum__pages_v_blocks_text_image_block_block_config_theme",
+    "_enum__pages_v_blocks_text_image_block_block_config_theme_v": {
+      "name": "_enum__pages_v_blocks_text_image_block_block_config_theme_v",
       "values": {
+        "_": "_",
         "light": "light",
         "dark": "dark"
       }
     },
-    "enum__pages_v_blocks_text_image_block_block_config_layout": {
-      "name": "enum__pages_v_blocks_text_image_block_block_config_layout",
+    "_enum__pages_v_blocks_text_image_block_block_config_layout_v": {
+      "name": "_enum__pages_v_blocks_text_image_block_block_config_layout_v",
       "values": {
         "imgRight": "imgRight",
         "imgLeft": "imgLeft"
       }
     },
-    "enum__pages_v_blocks_hero_block_block_config_theme": {
-      "name": "enum__pages_v_blocks_hero_block_block_config_theme",
+    "_enum__pages_v_blocks_hero_block_block_config_theme_v": {
+      "name": "_enum__pages_v_blocks_hero_block_block_config_theme_v",
       "values": {
+        "_": "_",
         "light": "light",
         "dark": "dark"
       }
     },
-    "enum__pages_v_blocks_hero_block_block_config_layout": {
-      "name": "enum__pages_v_blocks_hero_block_block_config_layout",
+    "_enum__pages_v_blocks_hero_block_block_config_layout_v": {
+      "name": "_enum__pages_v_blocks_hero_block_block_config_layout_v",
       "values": {
         "bg": "bg",
         "imgRight": "imgRight",
@@ -2172,17 +2299,37 @@
         "imgLeftFull": "imgLeftFull"
       }
     },
-    "enum__pages_v_blocks_hero_block_input_type": {
-      "name": "enum__pages_v_blocks_hero_block_input_type",
+    "_enum__pages_v_blocks_hero_block_input_type_v": {
+      "name": "_enum__pages_v_blocks_hero_block_input_type_v",
       "values": {
         "text": "text"
       }
     },
-    "enum__pages_v_version_status": {
-      "name": "enum__pages_v_version_status",
+    "_enum__pages_v_version_status_v": {
+      "name": "_enum__pages_v_version_status_v",
       "values": {
         "draft": "draft",
         "published": "published"
+      }
+    },
+    "enum_images_additional_props_object_fit": {
+      "name": "enum_images_additional_props_object_fit",
+      "values": {
+        "cover": "cover",
+        "contain": "contain",
+        "fill": "fill",
+        "scale-down": "scale-down"
+      }
+    },
+    "enum_images_additional_props_aspect_ratio": {
+      "name": "enum_images_additional_props_aspect_ratio",
+      "values": {
+        "6/7": "6/7",
+        "7/6": "7/6",
+        "1/1": "1/1",
+        "3/2": "3/2",
+        "16/9": "16/9",
+        "initial": "initial"
       }
     },
     "enum_nav_header_main_type": {

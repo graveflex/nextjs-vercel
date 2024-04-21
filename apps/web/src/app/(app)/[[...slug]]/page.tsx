@@ -24,11 +24,11 @@ export default async function Page({
   const pageSlug = slug ? slug.join('/') : '/';
   const showDraft = searchParams.draft === 'true';
   const navData = await fetchPayloadDataRest<Nav>({
-    endpoint: '/api/payload/globals/nav'
+    endpoint: '/api/globals/nav'
   });
 
   const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
-    endpoint: '/api/payload/pages',
+    endpoint: '/api/pages',
     showDraft,
     params: {
       where: {
@@ -57,7 +57,7 @@ export async function generateMetadata({
 }) {
   const pageSlug = slug ? slug.join('/') : '/';
   const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
-    endpoint: '/api/payload/pages',
+    endpoint: '/api/pages',
     params: {
       where: {
         slug: {

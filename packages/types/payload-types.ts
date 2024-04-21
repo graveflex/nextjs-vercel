@@ -30,6 +30,10 @@ export interface Config {
   globals: {
     nav: Nav;
   };
+  locale: null;
+  user: User & {
+    collection: 'users';
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -63,6 +67,7 @@ export interface FAQBlockT {
   title?: string | null;
   subTitle?: {
     root: {
+      type: string;
       children: {
         type: string;
         version: number;
@@ -71,7 +76,6 @@ export interface FAQBlockT {
       direction: ('ltr' | 'rtl') | null;
       format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
       indent: number;
-      type: string;
       version: number;
     };
     [k: string]: unknown;
@@ -81,6 +85,7 @@ export interface FAQBlockT {
         title?: string | null;
         subTitle?: {
           root: {
+            type: string;
             children: {
               type: string;
               version: number;
@@ -89,7 +94,6 @@ export interface FAQBlockT {
             direction: ('ltr' | 'rtl') | null;
             format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
             indent: number;
-            type: string;
             version: number;
           };
           [k: string]: unknown;
@@ -114,6 +118,7 @@ export interface TextImageBlockT {
   title?: string | null;
   content?: {
     root: {
+      type: string;
       children: {
         type: string;
         version: number;
@@ -122,7 +127,6 @@ export interface TextImageBlockT {
       direction: ('ltr' | 'rtl') | null;
       format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
       indent: number;
-      type: string;
       version: number;
     };
     [k: string]: unknown;
@@ -154,6 +158,7 @@ export interface Image {
   updatedAt: string;
   createdAt: string;
   url?: string | null;
+  thumbnailURL?: string | null;
   filename?: string | null;
   mimeType?: string | null;
   filesize?: number | null;
@@ -225,6 +230,7 @@ export interface HeroBlockT {
   title?: string | null;
   subTitle?: {
     root: {
+      type: string;
       children: {
         type: string;
         version: number;
@@ -233,7 +239,6 @@ export interface HeroBlockT {
       direction: ('ltr' | 'rtl') | null;
       format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
       indent: number;
-      type: string;
       version: number;
     };
     [k: string]: unknown;
@@ -267,7 +272,7 @@ export interface User {
   hash?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
-  password: string | null;
+  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -1,6 +1,9 @@
-const path = require('path');
-const { withPayload } = require('@payloadcms/next-payload');
-const { BLOB_STORE_ID } = require('@mono/settings');
+import { BLOB_STORE_ID } from '@mono/settings';
+import { withPayload } from '@payloadcms/next/withPayload';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const baseUrl = `https://${BLOB_STORE_ID}.public.blob.vercel-storage.com`;
 
@@ -13,7 +16,7 @@ async function rewrites() {
   ];
 }
 
-module.exports = withPayload(
+export default withPayload(
   {
     reactStrictMode: true,
     transpilePackages: ['@mono/ui', '@mono/theme', 'vercel-blob-storage'],
@@ -51,6 +54,7 @@ module.exports = withPayload(
     },
     rewrites,
     webpack: (config) => {
+      /*
       config.module.rules.push(
         {
           test: /\.svg$/i,
@@ -60,20 +64,30 @@ module.exports = withPayload(
         {
           test: /\.svg$/i,
           issuer: /\.[jt]sx?$/,
-          resourceQuery: { not: [/url/] }, // exclude react component if *.svg?url
+          resourceQuery: { not: [/(url|payloadcms)/] }, // exclude react component if *.svg?url
           use: ['@svgr/webpack']
         }
       );
+      */
 
       return config;
     },
     images: {
-      disableStaticImages: true
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: '**.unsplash.com'
+        },
+        {
+          protocol: 'https',
+          hostname: 'loremflickr.com'
+        }
+      ]
     }
   },
   {
-    configPath: path.resolve(__dirname, `./payload.config.ts`),
-    payloadPath: path.resolve(__dirname, `./src/payload/payloadClient.ts`),
+    configPath: path.resolve(dirname, `./payload.config.ts`),
+    payloadPath: path.resolve(dirname, `./src/payload/payloadClient.ts`),
     adminRoute: '/admin'
   }
 );

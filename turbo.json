@@ -4,7 +4,7 @@
   "pipeline": {
     "setup": {
       "cache": false,
-      "dependsOn": ["@mono/settings#buildSettings", "vercel-blob-storage#build"]
+      "dependsOn": ["@mono/settings#buildSettings"]
     },
     "clean": {},
     "lint": {},
@@ -22,11 +22,10 @@
     },
     "generate:types": {
       "cache": false,
-      "dependsOn": ["vercel-blob-storage#build", "@mono/settings#setup-dev"]
+      "dependsOn": ["@mono/settings#setup-dev"]
     },
     "@mono/settings#setup-dev": {
-      "cache": false,
-      "dependsOn": ["vercel-blob-storage#build"]
+      "cache": false
     },
     "dev": {
       "cache": false,
@@ -37,6 +36,7 @@
       "dependsOn": ["^build"],
       "env": [
         "PROJECT_NAME",
+        "AUTO_LOGIN",
         "NEXT_PORT",
         "DOCS_PORT",
         "LOCAL",

@@ -1,6 +1,7 @@
 /* eslint-disable turbo/no-undeclared-env-vars */
 import dotenv from 'dotenv';
 import path from 'path';
+import dts from 'vite-plugin-dts';
 import EnvironmentPlugin from 'vite-plugin-environment';
 import tsConfigPaths from 'vite-tsconfig-paths';
 import { defineConfig, type UserConfigFn } from 'vitest/config';
@@ -46,7 +47,8 @@ const configFn: UserConfigFn = async () => {
     plugins: [
       !process.env.VITEST && environmentPlugin,
       logSettingsPlugin,
-      tsPaths
+      tsPaths,
+      dts()
     ],
     build: {
       outDir: path.join(__dirname, 'dist'),
