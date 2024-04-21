@@ -61,6 +61,9 @@ jobs:
 
       - name: ci
         id: ci
+        env:
+          BLOB_READ_WRITE_TOKEN: vercel_blob_rw_xxxxxxxxxxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+          BLOB_STORE_ID: "xxxxxxxxxxxxxxxx"
         run: yarn ci
 
       - name: code coverage report
