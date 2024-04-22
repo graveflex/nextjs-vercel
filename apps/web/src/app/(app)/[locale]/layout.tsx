@@ -1,4 +1,5 @@
 import React from 'react';
+import type { LanguageLocale } from '@mono/settings';
 import StyledComponentsRegistry from '@mono/web/lib/StyledComponentRegistry';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
@@ -8,11 +9,14 @@ export const runtime = 'edge';
 
 interface RootLayoutProps {
   children: React.ReactNode;
+  params: {
+    locale: LanguageLocale;
+  };
 }
 
-async function RootLayout({ children }: RootLayoutProps) {
+async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html lang={locale}>
       <StyledComponentsRegistry>
         <Providers>
           <SpeedInsights />

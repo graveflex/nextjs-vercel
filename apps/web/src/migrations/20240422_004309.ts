@@ -4,6 +4,12 @@ export async function up({ payload }: MigrateUpArgs): Promise<void> {
 await payload.db.drizzle.execute(sql`
 
 DO $$ BEGIN
+ CREATE TYPE "_locales" AS ENUM('en-US', 'es-US');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  CREATE TYPE "enum_pages_theme" AS ENUM('light', 'dark');
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -126,9 +132,16 @@ END $$;
 CREATE TABLE IF NOT EXISTS "pages_blocks_faq_block_items" (
 	"_order" integer NOT NULL,
 	"_parent_id" varchar NOT NULL,
-	"id" varchar PRIMARY KEY NOT NULL,
+	"id" varchar PRIMARY KEY NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "pages_blocks_faq_block_items_locales" (
 	"title" varchar,
-	"sub_title" jsonb
+	"sub_title" jsonb,
+	"id" serial PRIMARY KEY NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"_parent_id" varchar NOT NULL,
+	CONSTRAINT "pages_blocks_faq_block_items_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
 );
 
 CREATE TABLE IF NOT EXISTS "pages_blocks_faq_block" (
@@ -138,9 +151,16 @@ CREATE TABLE IF NOT EXISTS "pages_blocks_faq_block" (
 	"id" varchar PRIMARY KEY NOT NULL,
 	"blockConfig_theme" "enum_pages_blocks_faq_block_block_config_theme",
 	"block_config_hidden" boolean,
+	"block_name" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "pages_blocks_faq_block_locales" (
 	"title" varchar,
 	"sub_title" jsonb,
-	"block_name" varchar
+	"id" serial PRIMARY KEY NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"_parent_id" varchar NOT NULL,
+	CONSTRAINT "pages_blocks_faq_block_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
 );
 
 CREATE TABLE IF NOT EXISTS "pages_blocks_text_image_block" (
@@ -151,11 +171,18 @@ CREATE TABLE IF NOT EXISTS "pages_blocks_text_image_block" (
 	"blockConfig_theme" "enum_pages_blocks_text_image_block_block_config_theme",
 	"block_config_hidden" boolean,
 	"blockConfig_layout" "enum_pages_blocks_text_image_block_block_config_layout",
-	"title" varchar,
-	"content" jsonb,
 	"cta_label" varchar,
 	"cta_href" varchar,
 	"block_name" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "pages_blocks_text_image_block_locales" (
+	"title" varchar,
+	"content" jsonb,
+	"id" serial PRIMARY KEY NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"_parent_id" varchar NOT NULL,
+	CONSTRAINT "pages_blocks_text_image_block_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
 );
 
 CREATE TABLE IF NOT EXISTS "pages_blocks_hero_block" (
@@ -166,14 +193,21 @@ CREATE TABLE IF NOT EXISTS "pages_blocks_hero_block" (
 	"blockConfig_theme" "enum_pages_blocks_hero_block_block_config_theme",
 	"block_config_hidden" boolean,
 	"blockConfig_layout" "enum_pages_blocks_hero_block_block_config_layout",
-	"eyebrow" varchar,
-	"title" varchar,
-	"sub_title" jsonb,
 	"input_placeholder" varchar,
 	"input_type" "enum_pages_blocks_hero_block_input_type",
 	"cta_label" varchar,
 	"cta_href" varchar,
 	"block_name" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "pages_blocks_hero_block_locales" (
+	"eyebrow" varchar,
+	"title" varchar,
+	"sub_title" jsonb,
+	"id" serial PRIMARY KEY NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"_parent_id" varchar NOT NULL,
+	CONSTRAINT "pages_blocks_hero_block_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
 );
 
 CREATE TABLE IF NOT EXISTS "pages" (
@@ -202,9 +236,16 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_faq_block_items" (
 	"_order" integer NOT NULL,
 	"_parent_id" integer NOT NULL,
 	"id" serial PRIMARY KEY NOT NULL,
+	"_uuid" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "_pages_v_blocks_faq_block_items_locales" (
 	"title" varchar,
 	"sub_title" jsonb,
-	"_uuid" varchar
+	"id" serial PRIMARY KEY NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"_parent_id" integer NOT NULL,
+	CONSTRAINT "_pages_v_blocks_faq_block_items_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
 );
 
 CREATE TABLE IF NOT EXISTS "_pages_v_blocks_faq_block" (
@@ -214,10 +255,17 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_faq_block" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"blockConfig_theme" "_enum__pages_v_blocks_faq_block_block_config_theme_v",
 	"block_config_hidden" boolean,
-	"title" varchar,
-	"sub_title" jsonb,
 	"_uuid" varchar,
 	"block_name" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "_pages_v_blocks_faq_block_locales" (
+	"title" varchar,
+	"sub_title" jsonb,
+	"id" serial PRIMARY KEY NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"_parent_id" integer NOT NULL,
+	CONSTRAINT "_pages_v_blocks_faq_block_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
 );
 
 CREATE TABLE IF NOT EXISTS "_pages_v_blocks_text_image_block" (
@@ -228,12 +276,19 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_text_image_block" (
 	"blockConfig_theme" "_enum__pages_v_blocks_text_image_block_block_config_theme_v",
 	"block_config_hidden" boolean,
 	"blockConfig_layout" "_enum__pages_v_blocks_text_image_block_block_config_layout_v",
-	"title" varchar,
-	"content" jsonb,
 	"cta_label" varchar,
 	"cta_href" varchar,
 	"_uuid" varchar,
 	"block_name" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "_pages_v_blocks_text_image_block_locales" (
+	"title" varchar,
+	"content" jsonb,
+	"id" serial PRIMARY KEY NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"_parent_id" integer NOT NULL,
+	CONSTRAINT "_pages_v_blocks_text_image_block_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
 );
 
 CREATE TABLE IF NOT EXISTS "_pages_v_blocks_hero_block" (
@@ -244,15 +299,22 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_hero_block" (
 	"blockConfig_theme" "_enum__pages_v_blocks_hero_block_block_config_theme_v",
 	"block_config_hidden" boolean,
 	"blockConfig_layout" "_enum__pages_v_blocks_hero_block_block_config_layout_v",
-	"eyebrow" varchar,
-	"title" varchar,
-	"sub_title" jsonb,
 	"input_placeholder" varchar,
 	"input_type" "_enum__pages_v_blocks_hero_block_input_type_v",
 	"cta_label" varchar,
 	"cta_href" varchar,
 	"_uuid" varchar,
 	"block_name" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "_pages_v_blocks_hero_block_locales" (
+	"eyebrow" varchar,
+	"title" varchar,
+	"sub_title" jsonb,
+	"id" serial PRIMARY KEY NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"_parent_id" integer NOT NULL,
+	CONSTRAINT "_pages_v_blocks_hero_block_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
 );
 
 CREATE TABLE IF NOT EXISTS "_pages_v" (
@@ -296,7 +358,6 @@ CREATE TABLE IF NOT EXISTS "users" (
 
 CREATE TABLE IF NOT EXISTS "images" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"alt" varchar,
 	"image_props_fill" boolean,
 	"image_props_priority" boolean,
 	"image_props_quality" numeric,
@@ -345,6 +406,14 @@ CREATE TABLE IF NOT EXISTS "images" (
 	"sizes_ultrawide_filename" varchar
 );
 
+CREATE TABLE IF NOT EXISTS "images_locales" (
+	"alt" varchar,
+	"id" serial PRIMARY KEY NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"_parent_id" integer NOT NULL,
+	CONSTRAINT "images_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
+);
+
 CREATE TABLE IF NOT EXISTS "payload_preferences" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"key" varchar,
@@ -373,18 +442,32 @@ CREATE TABLE IF NOT EXISTS "nav_header_main" (
 	"_order" integer NOT NULL,
 	"_parent_id" integer NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
-	"label" varchar NOT NULL,
 	"slug" varchar NOT NULL,
 	"type" "enum_nav_header_main_type"
+);
+
+CREATE TABLE IF NOT EXISTS "nav_header_main_locales" (
+	"label" varchar NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"_parent_id" varchar NOT NULL,
+	CONSTRAINT "nav_header_main_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
 );
 
 CREATE TABLE IF NOT EXISTS "nav_footer_secondary" (
 	"_order" integer NOT NULL,
 	"_parent_id" integer NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
-	"label" varchar NOT NULL,
 	"slug" varchar NOT NULL,
 	"type" "enum_nav_footer_secondary_type"
+);
+
+CREATE TABLE IF NOT EXISTS "nav_footer_secondary_locales" (
+	"label" varchar NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"_parent_id" varchar NOT NULL,
+	CONSTRAINT "nav_footer_secondary_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
 );
 
 CREATE TABLE IF NOT EXISTS "nav" (
@@ -464,7 +547,19 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ ALTER TABLE "pages_blocks_faq_block_items_locales" ADD CONSTRAINT "pages_blocks_faq_block_items_locales__parent_id_pages_blocks_faq_block_items_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_faq_block_items"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  ALTER TABLE "pages_blocks_faq_block" ADD CONSTRAINT "pages_blocks_faq_block__parent_id_pages_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "pages_blocks_faq_block_locales" ADD CONSTRAINT "pages_blocks_faq_block_locales__parent_id_pages_blocks_faq_block_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_faq_block"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -476,7 +571,19 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ ALTER TABLE "pages_blocks_text_image_block_locales" ADD CONSTRAINT "pages_blocks_text_image_block_locales__parent_id_pages_blocks_text_image_block_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_text_image_block"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  ALTER TABLE "pages_blocks_hero_block" ADD CONSTRAINT "pages_blocks_hero_block__parent_id_pages_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "pages_blocks_hero_block_locales" ADD CONSTRAINT "pages_blocks_hero_block_locales__parent_id_pages_blocks_hero_block_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_hero_block"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -500,7 +607,19 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ ALTER TABLE "_pages_v_blocks_faq_block_items_locales" ADD CONSTRAINT "_pages_v_blocks_faq_block_items_locales__parent_id__pages_v_blocks_faq_block_items_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_faq_block_items"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  ALTER TABLE "_pages_v_blocks_faq_block" ADD CONSTRAINT "_pages_v_blocks_faq_block__parent_id__pages_v_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "_pages_v_blocks_faq_block_locales" ADD CONSTRAINT "_pages_v_blocks_faq_block_locales__parent_id__pages_v_blocks_faq_block_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_faq_block"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -512,7 +631,19 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ ALTER TABLE "_pages_v_blocks_text_image_block_locales" ADD CONSTRAINT "_pages_v_blocks_text_image_block_locales__parent_id__pages_v_blocks_text_image_block_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_text_image_block"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  ALTER TABLE "_pages_v_blocks_hero_block" ADD CONSTRAINT "_pages_v_blocks_hero_block__parent_id__pages_v_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "_pages_v_blocks_hero_block_locales" ADD CONSTRAINT "_pages_v_blocks_hero_block_locales__parent_id__pages_v_blocks_hero_block_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_hero_block"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -536,6 +667,12 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ ALTER TABLE "images_locales" ADD CONSTRAINT "images_locales__parent_id_images_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "images"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  ALTER TABLE "payload_preferences_rels" ADD CONSTRAINT "payload_preferences_rels_parent_id_payload_preferences_id_fk" FOREIGN KEY ("parent_id") REFERENCES "payload_preferences"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -554,7 +691,19 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ ALTER TABLE "nav_header_main_locales" ADD CONSTRAINT "nav_header_main_locales__parent_id_nav_header_main_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav_header_main"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  ALTER TABLE "nav_footer_secondary" ADD CONSTRAINT "nav_footer_secondary__parent_id_nav_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "nav_footer_secondary_locales" ADD CONSTRAINT "nav_footer_secondary_locales__parent_id_nav_footer_secondary_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav_footer_secondary"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -578,24 +727,35 @@ export async function down({ payload }: MigrateDownArgs): Promise<void> {
 await payload.db.drizzle.execute(sql`
 
 DROP TABLE "pages_blocks_faq_block_items";
+DROP TABLE "pages_blocks_faq_block_items_locales";
 DROP TABLE "pages_blocks_faq_block";
+DROP TABLE "pages_blocks_faq_block_locales";
 DROP TABLE "pages_blocks_text_image_block";
+DROP TABLE "pages_blocks_text_image_block_locales";
 DROP TABLE "pages_blocks_hero_block";
+DROP TABLE "pages_blocks_hero_block_locales";
 DROP TABLE "pages";
 DROP TABLE "pages_rels";
 DROP TABLE "_pages_v_blocks_faq_block_items";
+DROP TABLE "_pages_v_blocks_faq_block_items_locales";
 DROP TABLE "_pages_v_blocks_faq_block";
+DROP TABLE "_pages_v_blocks_faq_block_locales";
 DROP TABLE "_pages_v_blocks_text_image_block";
+DROP TABLE "_pages_v_blocks_text_image_block_locales";
 DROP TABLE "_pages_v_blocks_hero_block";
+DROP TABLE "_pages_v_blocks_hero_block_locales";
 DROP TABLE "_pages_v";
 DROP TABLE "_pages_v_rels";
 DROP TABLE "users";
 DROP TABLE "images";
+DROP TABLE "images_locales";
 DROP TABLE "payload_preferences";
 DROP TABLE "payload_preferences_rels";
 DROP TABLE "payload_migrations";
 DROP TABLE "nav_header_main";
+DROP TABLE "nav_header_main_locales";
 DROP TABLE "nav_footer_secondary";
+DROP TABLE "nav_footer_secondary_locales";
 DROP TABLE "nav";
 DROP TABLE "nav_rels";`);
 

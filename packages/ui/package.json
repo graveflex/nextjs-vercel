@@ -29,10 +29,9 @@
     "eslint": "^8.51.0",
     "eslint-config-custom": "*",
     "luxon": "^3.4.4",
-    "next": "^14.1.4",
     "payload": "^2.11.2",
-    "react": "^18.2.0",
-    "typescript": "^5.4.3",
+    "react": "latest",
+    "typescript": "latest",
     "vite-plugin-svgr": "^4.2.0",
     "vite-transform-stub": "^1.0.1",
     "vite-tsconfig-paths": "^4.3.2",
@@ -40,11 +39,11 @@
     "vitest-canvas-mock": "^0.3.3"
   },
   "dependencies": {
-    "@refract-ui/sc": "1.0.1-alpha.38",
+    "@refract-ui/sc": "latest",
     "lodash": "^4.17.21",
-    "next": "^14.1.4",
+    "next": "latest",
     "react-paginate": "^8.2.0",
-    "styled-components": "^6.1.8",
+    "styled-components": "latest",
     "luxon": "^3.4.4"
   }
 }

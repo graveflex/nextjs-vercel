@@ -9,10 +9,10 @@ const Images: CollectionConfig = {
     {
       name: 'alt',
       label: 'Alt Text',
+      localized: true,
       type: 'text',
       required: false
     },
-
     {
       name: 'imageProps',
       label: 'Image Properties',

@@ -29,12 +29,14 @@ const TextImageBlock: Block = {
     {
       type: 'text',
       name: 'title',
+      localized: true,
       label: 'Title',
       required: false
     },
     {
       type: 'richText',
       name: 'content',
+      localized: true,
       label: 'Content',
       required: false
     },

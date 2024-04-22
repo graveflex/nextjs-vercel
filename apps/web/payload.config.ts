@@ -1,4 +1,9 @@
-import { LOCAL, WEB_URL } from '@mono/settings';
+import {
+  DEFAULT_LOCALE,
+  LOCAL,
+  LOCALE_SETTINGS,
+  WEB_URL
+} from '@mono/settings';
 import Images from '@mono/web/collections/Images';
 import Pages from '@mono/web/collections/Pages';
 import Users from '@mono/web/collections/User';
@@ -37,6 +42,14 @@ export default buildConfig({
     features: ({ defaultFeatures }) => [...defaultFeatures]
   }),
   collections: [Pages, Users, Images],
+  i18n: {
+    fallbackLanguage: DEFAULT_LOCALE
+  },
+  localization: {
+    locales: LOCALE_SETTINGS,
+    defaultLocale: DEFAULT_LOCALE,
+    fallback: true
+  },
   globals: [Nav],
   routes: {
     api: '/api'

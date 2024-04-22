@@ -9,12 +9,14 @@ const FAQBlock: Block = {
     {
       type: 'text',
       name: 'title',
+      localized: true,
       label: 'Title',
       required: false
     },
     {
       type: 'richText',
       name: 'subTitle',
+      localized: true,
       label: 'Sub Title',
       required: false
     },
@@ -31,11 +33,13 @@ const FAQBlock: Block = {
         {
           type: 'text',
           name: 'title',
+          localized: true,
           label: 'Title'
         },
         {
           type: 'richText',
           name: 'subTitle',
+          localized: true,
           label: 'Sub Title'
         }
       ]

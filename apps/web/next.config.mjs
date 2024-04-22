@@ -1,9 +1,12 @@
+import createNextIntlPlugin from 'next-intl/plugin';
 import { BLOB_STORE_ID } from '@mono/settings';
 import { withPayload } from '@payloadcms/next/withPayload';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const withNextIntl = createNextIntlPlugin();
 
 const baseUrl = `https://${BLOB_STORE_ID}.public.blob.vercel-storage.com`;
 
@@ -17,7 +20,7 @@ async function rewrites() {
 }
 
 export default withPayload(
-  {
+  withNextIntl({
     reactStrictMode: true,
     transpilePackages: ['@mono/ui', '@mono/theme', 'vercel-blob-storage'],
 
@@ -84,7 +87,7 @@ export default withPayload(
         }
       ]
     }
-  },
+  }),
   {
     configPath: path.resolve(dirname, `./payload.config.ts`),
     payloadPath: path.resolve(dirname, `./src/payload/payloadClient.ts`),
