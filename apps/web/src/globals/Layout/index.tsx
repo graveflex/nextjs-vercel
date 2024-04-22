@@ -4,6 +4,7 @@ import type { PropsWithChildren } from 'react';
 import React, { useMemo } from 'react';
 import Link from 'next/link';
 import type * as themeList from '@mono/theme/src/theme';
+import { containerStyles } from '@mono/theme/src/ThemeProvider';
 import type { MenuItems, Nav as NavT } from '@mono/types/payload-types';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import MaybeThemed from '@mono/web/components/MaybeThemed';
@@ -11,22 +12,22 @@ import styled, { css } from '@refract-ui/sc';
 import s from 'styled-components';
 
 const Header = styled.header`
-  padding: 1.625rem 1rem;
-  height: 96px;
+  padding: 0.5rem 1rem;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   ${({ theme: { mq } }) => mq.md`
-    padding: 1.625rem 2rem;
+    padding: 0.5rem 2rem;
   `};
 `;
 
 const Footer = styled.footer`
-  padding: 0.75rem 2rem;
+  padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
 
   nav {
@@ -46,16 +47,21 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   gap: 1rem;
+
   ${({ theme: { mq } }) => mq.md`
     gap: 1.75rem;
   `};
 `;
 
 const Logo = s(ResponsivePayloadImage)`
-  width: 0;
+  width: 40px;
+  height: 100%;
+
   img {
     object-fit: contain;
+    object-position: left center;
   }
+
   ${({ theme: { mq } }) => mq.md`
     display: block;
     width: 200px;
@@ -66,11 +72,16 @@ const Logo = s(ResponsivePayloadImage)`
 const MenuLink = styled({ t: 'menuLink' })(Link)`
   text-decoration: none;
 
-  &:hover,
-  &:active,
-  &:focus {
-    opacity: 0.8;
-  }
+  ${({ theme: { box } }) => css`
+    ${box.c('fg')};
+
+    &:hover,
+    &:active,
+    &:focus {
+      ${box.c('plainHover')};
+    }
+  `}
+
 
   &.button {
     ${({ theme }) => css`
@@ -84,7 +95,6 @@ const MenuLink = styled({ t: 'menuLink' })(Link)`
 
 const Copyright = styled.p`
   opacity: 66%;
-  ${({ theme: { box } }) => box.t('menuLink')};
 `;
 
 function Menu(menuItems: MenuItems | undefined) {
@@ -113,8 +123,9 @@ function Layout({ children, header, footer, theme }: LayoutType) {
     () => Menu(footer?.secondary),
     [footer?.secondary]
   );
+
   return (
-    <MaybeThemed theme={theme}>
+    <MaybeThemed theme={theme} style={containerStyles}>
       <Header>
         <Logo image={logo} />
         {HeaderMenu}

@@ -29,7 +29,6 @@
     "@payloadcms/ui": "latest",
     "@refract-ui/hook-fields": "latest",
     "@refract-ui/sc": "latest",
-    "@refract-ui/sc": "latest",
     "@storybook/react": "^8.0.4",
     "@svgr/webpack": "^8.1.0",
     "@vercel/blob": "^0.16.1",
@@ -45,7 +44,8 @@
     "react": "latest",
     "react-dom": "latest",
     "sharp": "0.32.6",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "tinycolor2": "^1.6.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.0",

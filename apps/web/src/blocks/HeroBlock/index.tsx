@@ -5,83 +5,58 @@ import Link from 'next/link';
 import type { HeroBlockT as PayloadType } from '@mono/types/payload-types';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
+import Wrapper from '@mono/ui/components/Wrapper';
 import genClassName from '@mono/ui/utils/genClassname';
-import Wrapper from '@mono/web/components/Wrapper';
 import Input from '@mono/web/fields/Input';
-import styled from '@refract-ui/sc';
+import styled, { css } from '@refract-ui/sc';
 import s from 'styled-components';
+import tc from 'tinycolor2';
 
 export type HeroBlockProps = Omit<PayloadType, 'blockType'>;
 
 const StyledWrapper = s(Wrapper)`
   align-items: center;
-  & > div:first-child {
-    grid-column: 1 / 5;
-  }
-  &.bg {
-    position: relative;
-    & > * {
-      grid-column: 1 / 5;
-    }
-  }
+  overflow: hidden;
+  min-height: 40svh;
+  position: relative;
 
   ${({ theme: { mq } }) => mq.md`
-    & > div {
-      grid-row: 1;
-    }
-    &.imgRight {
-      & > div:first-child {
-        grid-column: 3;
-      }
-      & > div:last-child {
-        grid-column: 2;
-      }
-    }
-    &.imgLeft {
-      & > div:first-child {
-        grid-column: 2;
-      }
-      & > div:last-child {
-        grid-column: 3;
-      }
-    }
-    &.imgRightFull {
-      & > div:first-child {
-        grid-column: 3 / 5;
-      }
-      & > div:last-child {
-        grid-column: 1 / 3;
-      }
-    }
-    &.imgLeftFull {
-      & > div:first-child {
-        grid-column: 1 / 3;
-      }
-      & > div:last-child {
-        grid-column: 3/ 5;
-      }
-    }
   `};
 `;
 
-const ImageWrapper = s(ResponsivePayloadImage)`
-  aspect-ratio: 500 / 402;
+const ImageWrapper = s(ResponsivePayloadImage)<{
+  $layout: 'bg' | 'imgRight' | 'imgLeft' | 'imgRightFull' | 'imgLeftFull';
+}>`
+  ${({ $layout }) =>
+    $layout === 'bg' &&
+    css`
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    `})}
 
-  &.bg {
-    position: absolute;
-    height: 100%;
+  img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
+
 `;
 
-const Eyebrow = styled.span`
-  ${({ theme: { box } }) => box.t('h6')};
+const Eyebrow = styled.span({ t: 'h6', c: 'fg' })`
+  width: 100%;
 `;
 
-const Title = styled.h1({ m: 0, p: 0 })``;
+const Title = styled.h1({ m: 0, p: 0, c: 'fg' })`
+  width: 100%;
+`;
 
 const ContentWrapper = styled.div`
   z-index: 1;
+  overflow: hidden;
+  background: ${({ theme: { allColors } }) =>
+    tc(allColors.bg).setAlpha(0.4).toString()};
+
   &.bg,
   &.imgRightFull,
   &.imgLeftFull {
@@ -148,7 +123,7 @@ const InputWrapper = styled.div`
   }
 `;
 
-const Button = s(Link)`
+const Button = styled.button`
   text-align: center;
   width: 100%;
 
@@ -170,8 +145,8 @@ function HeroBlock({
 
   const className = genClassName([layout]);
   return (
-    <StyledWrapper className={className}>
-      <ImageWrapper image={image} classOverride={className} />
+    <StyledWrapper className={className} gutter={false} fullBleed>
+      <ImageWrapper image={image} $layout={layout} />
 
       <ContentWrapper className={className}>
         {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
@@ -181,9 +156,9 @@ function HeroBlock({
           <InputWrapper className={className}>
             {input?.type && <Input {...input} />}
             {cta?.label && cta?.href && (
-              <Button href={cta?.href} className="button">
-                {cta?.label}
-              </Button>
+              <Link href={cta?.href}>
+                <Button>{cta?.label}</Button>
+              </Link>
             )}
           </InputWrapper>
         )}

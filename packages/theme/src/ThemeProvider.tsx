@@ -9,10 +9,10 @@ import * as themeList from './theme';
 
 export type ThemeKey = keyof typeof themeList;
 
-const containerStyles = {
+export const containerStyles = {
   display: 'grid',
   minHeight: '100svh',
-  gridTemplateRows: 'min-content 1fr min-content'
+  gridTemplateRows: 'max-content 1fr max-content'
 };
 
 const GlobalResets = createGlobalStyle`
