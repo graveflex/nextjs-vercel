@@ -29,7 +29,7 @@ const useLivePreview = <T>(props: {
       depth,
       initialData,
       serverURL,
-      apiRoute: '/api/payload'
+      apiRoute: '/api'
     });
 
     // Once subscribed, send a `ready` message back up to the Admin panel

@@ -9,9 +9,13 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import dotenv from 'dotenv';
 import path from 'path';
 import { buildConfig } from 'payload/config';
-import { vercelBlobAdapter } from 'vercel-blob-storage';
+import { vercelBlobAdapter } from 'payload-cloud-storage-vercel-adapter';
+import { fileURLToPath } from 'url';
 
-dotenv.config({ path: `${__dirname}/../../.env` });
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+
+dotenv.config({ path: `${dirname}/../../.env` });
 
 const DATABASE_URL =
   process.env.NODE_ENV === 'production' && LOCAL
@@ -20,7 +24,6 @@ const DATABASE_URL =
 
 const adapter = vercelBlobAdapter({
   token: process.env.BLOB_READ_WRITE_TOKEN as string,
-  endpointUrl: process.env.BLOB_ENDPOINT_URL as string,
   storeId: process.env.BLOB_STORE_ID as string
 });
 
@@ -36,7 +39,7 @@ export default buildConfig({
   collections: [Pages, Users, Images],
   globals: [Nav],
   routes: {
-    api: '/api/payload'
+    api: '/api'
   },
   plugins: [
     cloudStorage({
@@ -87,13 +90,8 @@ export default buildConfig({
       collections: ['pages']
     }
   },
+  secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
-    outputFile: path.resolve(__dirname, '../../packages/types/payload-types.ts')
-  },
-  graphQL: {
-    schemaOutputFile: path.resolve(
-      __dirname,
-      './src/payload/generated-schema.graphql'
-    )
+    outputFile: path.resolve(dirname, '../../packages/types/payload-types.ts')
   }
 });

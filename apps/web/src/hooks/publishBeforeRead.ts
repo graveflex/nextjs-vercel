@@ -1,8 +1,11 @@
-import type { BeforeReadHook } from 'payload/dist/collections/config/types';
+import type { CollectionBeforeReadHook } from 'payload/types';
 
 import type Pages from '../collections/Pages';
 
-export const publishBeforeRead: BeforeReadHook = async ({ doc, req }) => {
+export const publishBeforeRead: CollectionBeforeReadHook = async ({
+  doc,
+  req
+}) => {
   const now = new Date();
 
   if (req.user) {

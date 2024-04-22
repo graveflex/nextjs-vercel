@@ -2,6 +2,7 @@ import { getWebUrl } from './utils';
 
 export const LOCAL_DOMAIN = 'localhost';
 export const PROJECT_NAME = process.env.PROJECT_NAME;
+export const AUTO_LOGIN = process.env.AUTO_LOGIN === 'true';
 
 export const NEXT_PORT = process.env.NEXT_PORT;
 export const DOCS_PORT = process.env.DOCS_PORT;

@@ -121,7 +121,6 @@ const Images: CollectionConfig = {
     }
   ],
   upload: {
-    staticURL: '/images',
     staticDir: 'images',
     imageSizes: [
       {

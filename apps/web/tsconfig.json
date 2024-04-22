@@ -10,7 +10,8 @@
     "paths": {
       "@mono/web/*": [
         "./src/*"
-      ]
+      ],
+      "@payload-config": ["./payload.config.ts"]
     },
     "strictNullChecks": true,
     "lib": [

@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   extends: ['custom'],
-  ignorePatterns: ['src/migrations/*.ts'],
+  ignorePatterns: ['src/migrations/*.ts', 'src/app/(payload)/'],
   rules: {
     'react/require-default-props': 'off'
   },
