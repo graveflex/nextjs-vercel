@@ -1,5 +1,6 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
+import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/settings';
 import type { Nav, Page } from '@mono/types/payload-types';
 import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
 import type { PaginatedDocs } from 'payload/database';
@@ -11,6 +12,7 @@ export const revalidate = 60;
 interface RootLayoutProps {
   params: {
     slug: string[];
+    locale: LanguageLocale;
   };
   searchParams: {
     draft: string;
@@ -18,19 +20,23 @@ interface RootLayoutProps {
 }
 
 export default async function Page({
-  params: { slug },
+  params: { slug, locale = DEFAULT_LOCALE },
   searchParams
 }: RootLayoutProps) {
   const pageSlug = slug ? slug.join('/') : '/';
   const showDraft = searchParams.draft === 'true';
   const navData = await fetchPayloadDataRest<Nav>({
-    endpoint: '/api/globals/nav'
+    endpoint: '/api/globals/nav',
+    params: {
+      locale
+    }
   });
 
   const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
     endpoint: '/api/pages',
     showDraft,
     params: {
+      locale,
       where: {
         slug: {
           equals: pageSlug
@@ -51,14 +57,15 @@ export default async function Page({
 }
 
 export async function generateMetadata({
-  params: { slug }
+  params: { slug, locale }
 }: {
-  params: { slug?: string[] };
+  params: { slug?: string[]; locale: LanguageLocale };
 }) {
   const pageSlug = slug ? slug.join('/') : '/';
   const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
     endpoint: '/api/pages',
     params: {
+      locale,
       where: {
         slug: {
           equals: pageSlug

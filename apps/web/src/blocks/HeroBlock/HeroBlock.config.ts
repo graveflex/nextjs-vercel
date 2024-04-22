@@ -49,18 +49,21 @@ const HeroBlock: Block = {
     {
       type: 'text',
       name: 'eyebrow',
+      localized: true,
       label: 'Eyebrow',
       required: false
     },
     {
       type: 'text',
       name: 'title',
+      localized: true,
       label: 'Title',
       required: false
     },
     {
       type: 'richText',
       name: 'subTitle',
+      localized: true,
       label: 'Sub Title',
       required: false
     },

@@ -13,6 +13,20 @@ export const BLOB_STORE_ID = process.env.BLOB_STORE_ID;
 export const LOCAL = process.env.LOCAL === 'true';
 const FORCE_WEB_URL = process.env.FORCE_WEB_URL;
 
+export const DEFAULT_LOCALE = 'en-US' as const;
+export const LOCALE_SETTINGS = [
+  {
+    label: 'US English',
+    code: DEFAULT_LOCALE
+  },
+  {
+    label: 'US Spanish',
+    code: 'es-US' as const
+  }
+];
+export const LOCALES = LOCALE_SETTINGS.map(({ code }) => code);
+export type LanguageLocale = (typeof LOCALES)[number];
+
 export const WEB_URL = getWebUrl({
   projectName: PROJECT_NAME,
   localDomain: LOCAL_DOMAIN,
