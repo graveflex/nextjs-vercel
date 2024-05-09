@@ -9,7 +9,6 @@ import type { MenuItems, Nav as NavT } from '@mono/types/payload-types';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import MaybeThemed from '@mono/web/components/MaybeThemed';
 import styled, { css } from '@refract-ui/sc';
-import s from 'styled-components';
 
 const Header = styled.header`
   padding: 0.5rem 1rem;
@@ -53,7 +52,7 @@ const Nav = styled.nav`
   `};
 `;
 
-const Logo = s(ResponsivePayloadImage)`
+const Logo = styled(ResponsivePayloadImage)`
   width: 40px;
   height: 100%;
 

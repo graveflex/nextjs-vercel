@@ -1,6 +1,6 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/settings';
+import { DEFAULT_LOCALE, type LanguageLocale, LOCALES } from '@mono/settings';
 import type { Nav, Page } from '@mono/types/payload-types';
 import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
 import type { PaginatedDocs } from 'payload/database';
@@ -9,7 +9,7 @@ import PageTemplate from './page.client';
 
 export const revalidate = 60;
 
-interface RootLayoutProps {
+interface CatchallRouteProps {
   params: {
     slug: string[];
     locale: LanguageLocale;
@@ -22,8 +22,12 @@ interface RootLayoutProps {
 export default async function Page({
   params: { slug, locale = DEFAULT_LOCALE },
   searchParams
-}: RootLayoutProps) {
-  const pageSlug = slug ? slug.join('/') : '/';
+}: CatchallRouteProps) {
+  let pageSlug = slug ? slug.join('/') : '/';
+  if (LOCALES.includes(pageSlug as LanguageLocale)) {
+    pageSlug = '/';
+  }
+
   const showDraft = searchParams.draft === 'true';
   const navData = await fetchPayloadDataRest<Nav>({
     endpoint: '/api/globals/nav',

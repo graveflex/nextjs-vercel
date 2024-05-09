@@ -11,7 +11,7 @@ export type ThemeKey = keyof typeof themeList;
 
 export const containerStyles = {
   display: 'grid',
-  minHeight: '100svh',
+  minHeight: '100lvh',
   gridTemplateRows: 'max-content 1fr max-content'
 };
 

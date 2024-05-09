@@ -11,7 +11,9 @@
       "@mono/web/*": [
         "./src/*"
       ],
-      "@payload-config": ["./payload.config.ts"]
+      "@payload-config": [
+        "./payload.config.ts"
+      ]
     },
     "strictNullChecks": true,
     "lib": [
@@ -20,7 +22,8 @@
       "esnext"
     ],
     "incremental": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "target": "ES2017"
   },
   "include": [
     "next-env.d.ts",

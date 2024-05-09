@@ -9,12 +9,11 @@ import Pages from '@mono/web/collections/Pages';
 import Users from '@mono/web/collections/User';
 import Nav from '@mono/web/globals/Layout/Layout.config';
 import { postgresAdapter } from '@payloadcms/db-postgres';
-import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import dotenv from 'dotenv';
 import path from 'path';
 import { buildConfig } from 'payload/config';
-import { vercelBlobAdapter } from 'payload-cloud-storage-vercel-adapter';
 import { fileURLToPath } from 'url';
 
 const filename = fileURLToPath(import.meta.url);
@@ -27,16 +26,12 @@ const DATABASE_URL =
     ? `${process.env.DATABASE_URL}?sslmode=require`
     : (process.env.DATABASE_URL as string);
 
-const adapter = vercelBlobAdapter({
-  token: process.env.BLOB_READ_WRITE_TOKEN as string,
-  storeId: process.env.BLOB_STORE_ID as string
-});
-
 export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: DATABASE_URL
-    }
+    },
+    push: false
   }),
   editor: lexicalEditor({
     features: ({ defaultFeatures }) => [...defaultFeatures]
@@ -54,13 +49,14 @@ export default buildConfig({
   routes: {
     api: '/api'
   },
+
   plugins: [
-    cloudStorage({
+    vercelBlobStorage({
+      enabled: true,
       collections: {
-        images: {
-          adapter
-        }
-      }
+        [Images.slug]: true
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN as string
     })
   ],
   upload: {
@@ -106,5 +102,5 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, '../../packages/types/payload-types.ts')
-  }
+  },
 });

@@ -5,8 +5,8 @@ const nextConfigPath = path.resolve(__dirname, '../../web/next.config.js');
 
 const config: StorybookConfig = {
   stories: [
-    '../../../node_modules/@refract-ui/stories/**/*.mdx',
-    '../../../node_modules/@refract-ui/hook-fields/**/*.stories.tsx',
+    '../node_modules/@refract-ui/stories/**/*.mdx',
+    '../node_modules/@refract-ui/hook-fields/**/*.stories.tsx',
     '../../../packages/ui/**/*.stories.tsx'
   ],
   addons: [
@@ -62,8 +62,7 @@ const config: StorybookConfig = {
         }
       ],
       include: [
-        path.resolve(__dirname, '../../../node_modules/@refract-ui/stories'),
-        path.resolve(__dirname, '../../../node_modules/@refract-ui/hook-fields')
+        /refract-ui\/(stories|hook-fields)/
       ]
     });
 
