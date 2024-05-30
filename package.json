@@ -38,7 +38,14 @@
   },
   "packageManager": "pnpm@9.1.4+sha256.30a1801ac4e723779efed13a21f4c39f9eb6c9fbb4ced101bce06b422593d7c9",
   "dependencies": {
-    "cobertura-merge": "^1.0.4"
+    "@vitest/coverage-v8": "latest",
+    "@vitejs/plugin-react": "latest",
+    "vitest": "latest",
+    "vite-plugin-svgr": "latest",
+    "vite-transform-stub": "latest",
+    "vite-tsconfig-paths": "latest",
+    "vite-plugin-dts": "latest",
+    "vite-plugin-environment": "latest"
   },
   "resolutions": {
     "@payloadcms/db-postgres": "3.0.0-beta.19",
@@ -51,13 +58,23 @@
     "@refract-ui/sc": "1.0.1-alpha.42",
     "@refract-ui/stories": "1.0.1-alpha.42",
     "@refract-ui/hook-fields": "1.0.1-alpha.42",
+    "@types/react": "^18.2.74",
+    "@types/react-dom": "^18.2.22",
+    "@vitest/coverage-v8": "^0.34.6",
+    "@vitejs/plugin-react": "^4.2.1",
     "next": "14.3.0-canary.28",
     "payload": "3.0.0-beta.19",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "@types/react": "^18.2.74",
-    "@types/react-dom": "^18.2.22",
     "styled-components": "^6.1.8",
-    "typescript": "^5.4.3"
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.4.3",
+    "vitest": "^1.5.0",
+    "vitest-canvas-mock": "^0.3.3",
+    "vite-plugin-svgr": "^4.2.0",
+    "vite-transform-stub": "^1.0.1",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vite-plugin-dts": "^3.8.3",
+    "vite-plugin-environment": "^1.1.3"
   }
 }

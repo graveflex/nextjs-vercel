@@ -5,9 +5,11 @@ const nextConfigPath = path.resolve(__dirname, '../../web/next.config.js');
 
 const config: StorybookConfig = {
   stories: [
-    '../../../node_modules/@refract-ui/stories/**/*.mdx',
-    '../../../node_modules/@refract-ui/hook-fields/**/*.stories.tsx',
-    '../../../packages/ui/**/*.stories.tsx'
+    '../node_modules/@refract-ui/stories/**/*.mdx',
+    '../node_modules/@refract-ui/hook-fields/**/*.stories.tsx',
+    '../../../packages/ui/**/*.stories.tsx',
+    '../../../apps/web/**/*.stories.tsx',
+    '../../../apps/web/**/**/*.stories.tsx'
   ],
   addons: [
     // '@storybook/addon-webpack5-compiler-swc',
@@ -62,10 +64,20 @@ const config: StorybookConfig = {
         }
       ],
       include: [
-        path.resolve(__dirname, '../../../node_modules/@refract-ui/stories'),
-        path.resolve(__dirname, '../../../node_modules/@refract-ui/hook-fields')
+        /refract-ui\/(stories|hook-fields)/
+        // path.resolve(__dirname, '../../../node_modules/@refract-ui/stories'),
+        // path.resolve(__dirname, '../../../node_modules/@refract-ui/hook-fields')
       ]
     });
+    const monoDir = path.resolve(__dirname, '../../web/src');
+
+    if (c?.resolve?.alias) {
+      // eslint-disable-next-line
+      c.resolve.alias = {
+        ...(c.resolve.alias ?? {}),
+        '@mono/web': monoDir
+      };
+    }
 
     return c;
   }
