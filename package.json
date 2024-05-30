@@ -10,6 +10,10 @@
     "clean": "turbo run clean && rm -rf ./node_modules && rm -rf ./coverage",
     "reinstall": "pnpm clean && pnpm install",
     "merge-coverage": "mkdir -p coverage && pnpm cobertura-merge -o coverage/coverage.xml web=apps/web/coverage/cobertura-coverage.xml settings=packages/settings/coverage/cobertura-coverage.xml ui=packages/ui/coverage/cobertura-coverage.xml",
+<<<<<<< HEAD
+=======
+    "ci": "pnpm build && pnpm types && pnpm lint && pnpm test:coverage && pnpm merge-coverage",
+>>>>>>> 81d6b1d (feat(pckMangaer): yarn -> pnpm)
     "create:block": "npx hygen block new --with-prompt && pnpm generate:types && pnpm lint",
     "create:component": "npx hygen component new --with-prompt",
     "create:package": "npx hygen package new --with-prompt",
@@ -26,7 +30,11 @@
     "lint": "turbo run lint",
     "migrations:create": "turbo run migrations:create",
     "migrations:run": "turbo run migrations:run",
+<<<<<<< HEAD
     "cicd": "pnpm build && pnpm types && pnpm lint && pnpm test:coverage"
+=======
+    "cicd": "pnpm lint && pnpm test:coverage --force && pnpm build --force"
+>>>>>>> 81d6b1d (feat(pckMangaer): yarn -> pnpm)
   },
   "devDependencies": {
     "@turbo/gen": "^1.10.15",
