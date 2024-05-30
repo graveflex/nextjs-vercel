@@ -22,7 +22,7 @@ async function rewrites() {
 export default withPayload(
   withNextIntl({
     reactStrictMode: true,
-    transpilePackages: ['@mono/ui', '@mono/theme', 'vercel-blob-storage'],
+    transpilePackages: ['@mono/ui', '@mono/theme', '@mono/types'],
 
     compiler: {
       styledComponents: {
