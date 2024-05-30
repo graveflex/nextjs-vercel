@@ -55,16 +55,16 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'yarn'
+          cache: 'pnpm'
 
-      - run: yarn install
+      - run: pnpm install
 
       - name: ci
         id: ci
         env:
           BLOB_READ_WRITE_TOKEN: vercel_blob_rw_xxxxxxxxxxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
           BLOB_STORE_ID: "xxxxxxxxxxxxxxxx"
-        run: yarn ci
+        run: pnpm ci
 
       - name: code coverage report
         if: steps.ci.outcome == 'success'

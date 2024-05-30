@@ -8,10 +8,10 @@ monorepo for gfx projects that includes nextjs, payload cms, storybook, and refr
 
 - clone the repo by clicking the 'one-click' deploy button above.
 - copy `.env.example` into `.env` and get copy of development environmental variables
-- `yarn` to install dependencies
-- `yarn dev` to run all apps in dev mode
-- `yarn test` to run test
-- `yarn test:coverage` to generate a new coverage report
+- `pnpm` to install dependencies
+- `pnpm dev` to run all apps in dev mode
+- `pnpm test` to run test
+- `pnpm test:coverage` to generate a new coverage report
 
 ### helpful scripts
 

@@ -8,8 +8,8 @@
     "types": "tsc --noEmit --skipLibCheck"
   },
   "devDependencies": {
-    "@mono/tsconfig": "*",
-    "eslint-config-custom": "*",
+    "@mono/tsconfig": "workspace:*",
+    "eslint-config-custom": "workspace:*",
     "payload": "latest"
   },
   "dependencies": {},
