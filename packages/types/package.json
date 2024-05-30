@@ -10,7 +10,7 @@
   "devDependencies": {
     "@mono/tsconfig": "*",
     "eslint-config-custom": "*",
-    "payload": "^2.11.2"
+    "payload": "latest"
   },
   "dependencies": {},
   "peerDependencies": {}

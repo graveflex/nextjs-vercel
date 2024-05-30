@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx,ts,tsx",
     "build": "storybook build"
   },
-  "devDependencies": {
+  "dependencies": {
     "@babel/preset-env": "^7.24.3",
     "@babel/preset-react": "^7.24.1",
     "@next/eslint-plugin-next": "^14.1.1",
@@ -31,9 +31,7 @@
     "babel-core": "^6.26.3",
     "babel-preset-react": "^6.24.1",
     "storybook": "^8.0.4",
-    "swc-loader": "^0.2.6"
-  },
-  "dependencies": {
+    "swc-loader": "^0.2.6",
     "@hookform/resolvers": "^3.3.4",
     "@mono/web": "*",
     "@mono/ui": "*",
@@ -46,7 +44,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "^7.51.1",
-    "styled-components": "^6.1.8",
+    "styled-components": "latest",
     "ts-loader": "^9.5.1",
     "typescript": "latest",
     "zod": "^3.22.4"

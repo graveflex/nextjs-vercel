@@ -26,7 +26,8 @@
     "typescript": "latest",
     "unplugin-auto-import": "^0.16.6",
     "vite-tsconfig-paths": "^4.2.1",
-    "vitest": "^0.34.6"
+    "vitest": "^0.34.6",
+    "vite-plugin-dts": "^3.8.3"
   },
   "exports": {
     ".": {
@@ -36,7 +37,6 @@
     }
   },
   "dependencies": {
-    "vite-plugin-dts": "^3.8.3",
     "vite-plugin-environment": "^1.1.3"
   }
 }

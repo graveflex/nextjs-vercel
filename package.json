@@ -54,11 +54,13 @@
     "@refract-ui/sc": "1.0.1-alpha.42",
     "@refract-ui/stories": "1.0.1-alpha.42",
     "@refract-ui/hook-fields": "1.0.1-alpha.42",
-    "next": "14.3.0-canary.7",
+    "next": "14.3.0-canary.28",
     "payload": "3.0.0-beta.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "typescript": "^5.4.3",
-    "@types/react": "^18.2.74"
+    "@types/react": "^18.2.74",
+    "@types/react-dom": "^18.2.22",
+    "styled-components": "^6.1.8",
+    "typescript": "^5.4.3"
   }
 }
