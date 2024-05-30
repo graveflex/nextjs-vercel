@@ -8,10 +8,13 @@
     "types": "tsc --noEmit --skipLibCheck"
   },
   "dependencies": {
-    "eslint-config-custom": "workspace:*",
     "@mono/tsconfig": "workspace:*",
     "@refract-ui/core": "latest",
     "@refract-ui/sc": "latest",
+    "@types/lodash": "^4.17.0",
+    "@types/react": "latest",
+    "csstype": "^3.1.3",
+    "eslint-config-custom": "workspace:*",
     "lodash": "^4.17.21",
     "styled-components": "latest"
   },

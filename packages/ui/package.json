@@ -4,6 +4,9 @@
   "main": "./index.tsx",
   "types": "./index.tsx",
   "license": "MIT",
+  "files": [
+    "**"
+  ],
   "scripts": {
     "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
     "lint": "eslint . --ext js,jsx,ts,tsx",
@@ -13,10 +16,14 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.0",
+    "@hookform/error-message": "^2.0.1",
+    "@hookform/resolvers": "^3.3.4",
     "@mono/theme": "workspace:*",
     "@mono/tsconfig": "workspace:*",
     "@mono/types": "workspace:*",
     "@payloadcms/richtext-lexical": "latest",
+    "@refract-ui/hook-fields": "latest",
+    "@refract-ui/sc": "latest",
     "@storybook/react": "^8.0.8",
     "@storybook/testing-react": "^2.0.1",
     "@testing-library/jest-dom": "^6.4.1",
@@ -29,21 +36,23 @@
     "dotenv": "^16.4.5",
     "eslint": "^8.51.0",
     "eslint-config-custom": "workspace:*",
+    "lodash": "^4.17.21",
+    "luxon": "^3.4.4",
     "next": "latest",
     "payload": "latest",
     "react": "latest",
+    "react-hook-form": "^7.51.3",
+    "react-paginate": "^8.2.0",
+    "styled-components": "latest",
     "typescript": "latest",
     "vite-plugin-svgr": "^4.2.0",
     "vite-transform-stub": "^1.0.1",
     "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^1.5.0",
-    "vitest-canvas-mock": "^0.3.3",
-    "@refract-ui/hook-fields": "latest",
-    "@refract-ui/sc": "latest",
-    "lodash": "^4.17.21",
-    "luxon": "^3.4.4",
-    "react-paginate": "^8.2.0",
-    "styled-components": "latest"
+    "vitest-canvas-mock": "^0.3.3"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.17.0"
   }
 }
 
