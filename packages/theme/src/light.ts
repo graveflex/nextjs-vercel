@@ -1,6 +1,7 @@
 /// <reference types="csstype" />
 
 import { theme } from '@refract-ui/sc';
+
 import fontStacks from './fontStacks';
 import textVariants from './typography';
 
