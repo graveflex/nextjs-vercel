@@ -1,8 +1,9 @@
 import React from 'react';
+import s from '@refract-ui/sc';
 import { type DefaultTheme } from 'styled-components';
-import s, { css } from '@refract-ui/sc';
 
 import type { ResponsivePayloadWrapperProps } from '../ResponsivePayloadImage';
+
 import serializeText from './utils/serializeText';
 
 export type SerializedPayloadNode = {
@@ -71,8 +72,12 @@ const RichTextWrapper = s.div`
 function RichText({
   className,
   ...content
-}: PayloadRichTextProps): JSX.Element{
-  return <RichTextWrapper>{serializeText(content)}</RichTextWrapper>;
+}: PayloadRichTextProps): JSX.Element {
+  return (
+    <RichTextWrapper className={className}>
+      {serializeText(content)}
+    </RichTextWrapper>
+  );
 }
 
 export default RichText;

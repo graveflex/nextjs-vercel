@@ -1,6 +1,6 @@
 import { storybookThemes } from '@mono/theme/src/storybook';
-import { Decorator } from '@storybook/react';
 import { configureGlobalTypes, withRefract } from '@refract-ui/stories';
+import type { Decorator } from '@storybook/react';
 
 export const globalTypes = {
   ...configureGlobalTypes(storybookThemes)

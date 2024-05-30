@@ -1,6 +1,4 @@
-import {
-  satoshi
-} from '../fonts';
+import { satoshi } from '../fonts';
 
 export default {
   sans: [satoshi.style.fontFamily],
