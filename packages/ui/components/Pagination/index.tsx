@@ -65,18 +65,17 @@ const Container = styled.div`
 
       &.previous.disabled,
       &.next.disabled {
-        color: ${allColors.inputSubtle};
-        border-color: ${allColors.inputBorder};
+        opacity: 0.5;
         pointer-events: none;
       }
 
       &:hover {
-        color: ${allColors.secondary};
         &.previous,
         &.next {
-          background-color: transparent;
-          border-color: ${allColors.secondary};
-          border-radius: 2.25rem;
+          background-color: ${allColors.hover};
+          border: 2px solid ${allColors.hover};
+          color: ${allColors.info};
+          border-radius: 6px;
         }
       }
     }
@@ -93,7 +92,7 @@ const JumpArrow = styled.div<{ disabled?: boolean }>`
     display: none;
 
     ${mq.md`
-      min-height: 3.8125rem;
+      min-height: 3.8125rem; 
       min-width: 3.8125rem;
       margin: 0 1.125rem;
       border: 1px solid ${allColors.primary};

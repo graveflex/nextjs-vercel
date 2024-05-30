@@ -44,3 +44,7 @@ tmp/
 
 # ts build artifacts
 *.tsbuildinfo
+.env*.local
+
+# asdf config
+.tool-versions

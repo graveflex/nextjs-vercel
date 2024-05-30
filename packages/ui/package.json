@@ -4,6 +4,9 @@
   "main": "./index.tsx",
   "types": "./index.tsx",
   "license": "MIT",
+    "files": [
+    "**"
+  ],
   "scripts": {
     "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
     "lint": "eslint . --ext js,jsx,ts,tsx",
@@ -13,10 +16,10 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.0",
-    "@mono/theme": "*",
-    "@mono/tsconfig": "*",
-    "@mono/types": "*",
-    "@storybook/react": "^8.0.4",
+    "@mono/theme": "workspace:*",
+    "@mono/tsconfig": "workspace:*",
+    "@mono/types": "workspace:*",
+    "@storybook/react": "^8.0.8",
     "@storybook/testing-react": "^2.0.1",
     "@testing-library/jest-dom": "^6.4.1",
     "@testing-library/react": "^14.0.0",
@@ -24,19 +27,19 @@
     "@types/luxon": "^3.4.2",
     "@types/react": "^18.2.70",
     "@types/react-dom": "^18.2.22",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react": "latest",
     "dotenv": "^16.4.5",
     "eslint": "^8.51.0",
-    "eslint-config-custom": "*",
+    "eslint-config-custom": "workspace:*",
     "luxon": "^3.4.4",
-    "payload": "^2.11.2",
+    "payload": "latest",
     "react": "latest",
     "typescript": "latest",
-    "vite-plugin-svgr": "^4.2.0",
-    "vite-transform-stub": "^1.0.1",
-    "vite-tsconfig-paths": "^4.3.2",
-    "vitest": "^1.4.0",
-    "vitest-canvas-mock": "^0.3.3"
+    "vite-plugin-svgr": "latest",
+    "vite-transform-stub": "latest",
+    "vite-tsconfig-paths": "latest",
+    "vitest": "latest",
+    "vitest-canvas-mock": "latest"
   },
   "dependencies": {
     "@refract-ui/sc": "latest",

@@ -7,11 +7,12 @@
     "lint": "eslint . --ext js,jsx,ts,tsx",
     "types": "tsc --noEmit --skipLibCheck"
   },
-  "devDependencies": {
-    "@mono/tsconfig": "*",
-    "eslint-config-custom": "*",
-    "payload": "^2.11.2"
-  },
-  "dependencies": {},
-  "peerDependencies": {}
+  "dependencies": {
+    "@mono/tsconfig": "workspace:*",
+    "eslint-config-custom": "workspace:*",
+    "payload": "latest",
+    "@refract-ui/core": "latest",
+    "@refract-ui/sc": "latest",
+    "typescript": "latest"
+  }
 }
