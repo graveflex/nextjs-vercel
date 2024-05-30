@@ -101,7 +101,7 @@ function TextImageBlock({
         <ImageWrapper image={image} />
         <ContentWrapper>
           {title && <Title>{title}</Title>}
-          {content && <RichText content={content} />}
+          {content && <RichText {...content} />}
           {cta?.label && cta?.href && (
             <Button href={cta?.href} className="button">
               {cta?.label}

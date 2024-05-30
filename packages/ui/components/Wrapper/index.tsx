@@ -3,12 +3,32 @@ import Image from 'next/image';
 import styled, { css } from '@refract-ui/sc';
 import type { DefaultTheme } from 'styled-components';
 
+type paddingType = {
+  paddingTop?: string | null;
+  paddingBottom?: string | null;
+};
+
 export interface WrapperProps extends React.ComponentProps<'section'> {
-  backgroundColor?: keyof DefaultTheme['allColors'];
+  backgroundColor?:
+    | keyof DefaultTheme['allColors']
+    | keyof DefaultTheme['themeColors']
+    | keyof DefaultTheme['colorTokens']
+    | null;
   backgroundImage?: string;
-  contentWidth?: DefaultTheme['settings']['breakpointNames'][number];
+  contentWidth?:
+    | DefaultTheme['settings']['breakpointNames'][number]
+    | 'full'
+    | null;
   fullBleed?: boolean;
   gutter?: boolean | keyof DefaultTheme['spacingTokens'];
+  className?: string;
+  p?: {
+    xs?: paddingType;
+    sm?: paddingType;
+    md?: paddingType;
+    lg?: paddingType;
+    xl?: paddingType;
+  };
 }
 
 type WrapperContainerProps = {
@@ -23,20 +43,20 @@ const getBreakpointValueByName = (
   return settings.breakpointValues[idx];
 };
 
-export const BackgroundImage = styled(Image)`
+const BackgroundImage = styled(Image)`
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 0;
+  z-index: 10;
 `;
 
 export const Content = styled.div`
   display: grid;
   grid-area: block-content;
-  z-index: 1;
+  z-index: 20;
 `;
 
 const Container = styled.section<WrapperContainerProps>`
@@ -50,8 +70,49 @@ const Container = styled.section<WrapperContainerProps>`
     $backgroundColor,
     $fullBleed = true,
     $contentWidth,
-    theme: { spacingTokens, box, settings, spacing }
+    $p,
+    theme: { spacingTokens, box, settings, spacing, mq }
   }) => css`
+    ${$p?.xs &&
+    ($p?.xs?.paddingTop || $p?.xs?.paddingBottom) &&
+    css`
+      padding-top: ${$p?.xs?.paddingTop || 'initial'};
+      padding-bottom: ${$p?.xs?.paddingBottom || 'initial'};
+    `}
+
+    ${mq.md`
+      ${
+        $p?.md &&
+        ($p?.md?.paddingTop || $p?.md?.paddingBottom) &&
+        css`
+          padding-top: ${$p?.md?.paddingTop || 'initial'};
+          padding-bottom: ${$p?.md?.paddingBottom || 'initial'};
+        `
+      }
+    `}
+
+    ${mq.lg`
+      ${
+        $p?.lg &&
+        ($p?.lg?.paddingTop || $p?.lg?.paddingBottom) &&
+        css`
+          padding-top: ${$p?.lg?.paddingTop || 'initial'};
+          padding-bottom: ${$p?.lg?.paddingBottom || 'initial'};
+        `
+      }
+    `}
+
+    ${mq.xl`
+      ${
+        $p?.xl &&
+        ($p?.xl?.paddingTop || $p?.xl?.paddingBottom) &&
+        css`
+          padding-top: ${$p?.xl?.paddingTop || 'initial'};
+          padding-bottom: ${$p?.xl?.paddingBottom || 'initial'};
+        `
+      }
+    `}
+
     ${$backgroundColor && box.bg($backgroundColor)}
 
     ${typeof $gutter === 'string' &&
@@ -65,6 +126,7 @@ const Container = styled.section<WrapperContainerProps>`
     `}
 
     ${$contentWidth &&
+    $contentWidth !== 'full' &&
     css`
       grid-template-areas: '. block-content .';
       grid-auto-columns: 1fr
@@ -73,6 +135,15 @@ const Container = styled.section<WrapperContainerProps>`
       ${Content} {
         max-width: ${getBreakpointValueByName(settings, $contentWidth)}px;
       }
+    `}
+
+    ${$contentWidth &&
+    $contentWidth === 'full' &&
+    css`
+      grid-template-areas: 'block-content';
+      grid-auto-columns: 1fr;
+      padding-right: 0;
+      padding-left: 0;
     `}
 
     ${!$contentWidth &&
@@ -93,7 +164,12 @@ const Container = styled.section<WrapperContainerProps>`
   `}
 `;
 
-function Wrapper({ children, backgroundImage, ...props }: WrapperProps) {
+function Wrapper({
+  children,
+  backgroundImage,
+  className,
+  ...props
+}: WrapperProps) {
   const componentProps = useMemo(() => {
     return Object.keys(props).reduce<WrapperContainerProps>(
       (coll, key) => ({
@@ -105,7 +181,7 @@ function Wrapper({ children, backgroundImage, ...props }: WrapperProps) {
   }, [props]);
 
   return (
-    <Container {...componentProps}>
+    <Container className={className} {...componentProps}>
       {!!backgroundImage && (
         <BackgroundImage
           src={backgroundImage}
