@@ -1,8 +1,14 @@
 import React from 'react';
 import { type Image as PayloadImageProps } from '@mono/types/payload-types';
+<<<<<<< HEAD
 
 import ResponsivePayloadImage from '../../ResponsivePayloadImage';
 import type { PayloadRichTextProps, SerializedPayloadNode } from '..';
+=======
+import ResponsivePayloadImage from '../../ResponsivePayloadImage';
+import type { PayloadRichTextProps, SerializedPayloadNode } from '..';
+
+>>>>>>> bd04475 (fix(build): resolve type errors- richt updates)
 
 const IS_BOLD = 1;
 const IS_ITALIC = 2;

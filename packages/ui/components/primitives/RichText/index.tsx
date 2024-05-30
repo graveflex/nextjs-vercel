@@ -3,7 +3,6 @@ import s from '@refract-ui/sc';
 import { type DefaultTheme } from 'styled-components';
 
 import type { ResponsivePayloadWrapperProps } from '../ResponsivePayloadImage';
-
 import serializeText from './utils/serializeText';
 
 export type SerializedPayloadNode = {
