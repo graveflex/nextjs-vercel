@@ -14,7 +14,8 @@ export default defineConfig({
   test: {
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'html', 'cobertura']
+      reporter: ['text', 'html', 'cobertura'],
+      include: ['./src/**/*']
     },
     globals: true,
     setupFiles: ['./setup.ts'],

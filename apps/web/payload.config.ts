@@ -1,15 +1,9 @@
-import {
-  DEFAULT_LOCALE,
-  LOCAL,
-  LOCALE_SETTINGS,
-  WEB_URL
-} from '@mono/settings';
+import { DEFAULT_LOCALE, LOCALE_SETTINGS, WEB_URL } from '@mono/settings';
 import Images from '@mono/web/collections/Images';
 import Pages from '@mono/web/collections/Pages';
 import Users from '@mono/web/collections/User';
 import Nav from '@mono/web/globals/Layout/Layout.config';
 import { postgresAdapter } from '@payloadcms/db-postgres';
-import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import type { FeatureProviderServer } from '@payloadcms/richtext-lexical';
 import {
   AlignFeature,
@@ -29,11 +23,10 @@ import {
   UnorderedListFeature,
   UploadFeature
 } from '@payloadcms/richtext-lexical';
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import dotenv from 'dotenv';
 import path from 'path';
 import { buildConfig } from 'payload/config';
-import { vercelBlobAdapter } from 'payload-cloud-storage-vercel-adapter';
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { fileURLToPath } from 'url';
 
 const filename = fileURLToPath(import.meta.url);
@@ -41,15 +34,7 @@ const dirname = path.dirname(filename);
 
 dotenv.config({ path: `${dirname}/../../.env` });
 
-const DATABASE_URL =
-  process.env.NODE_ENV === 'production' && LOCAL
-    ? `${process.env.DATABASE_URL}?sslmode=require`
-    : (process.env.DATABASE_URL as string);
-
-const adapter = vercelBlobAdapter({
-  token: process.env.BLOB_READ_WRITE_TOKEN as string,
-  storeId: process.env.BLOB_STORE_ID as string
-});
+const DATABASE_URL = process.env.DATABASE_URL as string;
 
 export default buildConfig({
   db: postgresAdapter({
@@ -161,7 +146,7 @@ export default buildConfig({
     vercelBlobStorage({
       enabled: true,
       collections: {
-        [Images.slug]: true,
+        [Images.slug]: true
       },
       token: process.env.BLOB_READ_WRITE_TOKEN as string
     })
