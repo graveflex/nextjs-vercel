@@ -51,6 +51,7 @@
     "@payloadcms/live-preview": "0.2.2",
     "@payloadcms/richtext-lexical": "3.0.0-beta.19",
     "@payloadcms/plugin-cloud-storage": "3.0.0-beta.19",
+    "@payloadcms/storage-vercel-blob": "3.0.0-beta.19",
     "@payloadcms/next": "3.0.0-beta.19",
     "@payloadcms/ui": "3.0.0-beta.19",
     "@refract-ui/core": "1.0.1-alpha.42",

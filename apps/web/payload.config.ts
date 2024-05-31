@@ -33,6 +33,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { buildConfig } from 'payload/config';
 import { vercelBlobAdapter } from 'payload-cloud-storage-vercel-adapter';
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { fileURLToPath } from 'url';
 
 const filename = fileURLToPath(import.meta.url);
@@ -54,7 +55,8 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: DATABASE_URL
-    }
+    },
+    push: false
   }),
   editor: lexicalEditor({
     features: () =>
@@ -136,20 +138,6 @@ export default buildConfig({
               admin: {
                 condition: (_, siblingData) => siblingData.type === 'phone'
               }
-            },
-            {
-              name: 'file',
-              label: 'File',
-              type: 'upload',
-              relationTo: 'files',
-              admin: {
-                condition: (_, siblingData) => siblingData.type === 'file'
-              }
-            },
-            {
-              name: 'newTab',
-              label: 'Open in new tab',
-              type: 'checkbox'
             }
           ]
         }),
@@ -158,7 +146,7 @@ export default buildConfig({
   }),
   collections: [Pages, Users, Images],
   i18n: {
-    fallbackLanguage: DEFAULT_LOCALE
+    fallbackLanguage: 'en'
   },
   localization: {
     locales: LOCALE_SETTINGS,
@@ -170,12 +158,12 @@ export default buildConfig({
     api: '/api'
   },
   plugins: [
-    cloudStorage({
+    vercelBlobStorage({
+      enabled: true,
       collections: {
-        images: {
-          adapter
-        }
-      }
+        [Images.slug]: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN as string
     })
   ],
   upload: {

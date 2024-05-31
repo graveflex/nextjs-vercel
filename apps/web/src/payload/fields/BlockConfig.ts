@@ -1,4 +1,4 @@
-import type { GroupField } from 'payload/types';
+import type { Field, GroupField } from 'payload/types';
 
 const themeOptions = [
   { label: 'Inherit', value: '_' },
@@ -6,31 +6,171 @@ const themeOptions = [
   { label: 'Dark', value: 'dark' }
 ];
 
+const colorOptions = [
+  { label: 'Background', value: 'bg' },
+  { label: 'Foreground', value: 'fg' },
+  { label: 'Light Background', value: 'lightBg' },
+  { label: 'Headline Color', value: 'titleDefault' },
+  { label: 'Text Color', value: 'textDefault' },
+  { label: 'Accent', value: 'accent' }
+];
+
+const paddingValues = [
+  {
+    label: 'xl',
+    value: '9.375rem'
+  },
+  {
+    label: 'lg',
+    value: '7.5rem'
+  },
+  {
+    label: 'md',
+    value: '3.75rem'
+  },
+  {
+    label: 'sm',
+    value: '2.25rem'
+  },
+  {
+    label: 'xs',
+    value: '1.125rem'
+  },
+  { label: 'unset', value: 'unset' }
+];
+
+const contentWidthValues = [
+  { label: 'full', value: 'full' },
+  { label: 'xxl', value: 'xxl' },
+  { label: 'xl', value: 'xl' },
+  { label: 'lg', value: 'lg' },
+  { label: 'md', value: 'md' },
+  { label: 'sm', value: 'sm' },
+  { label: 'xs', value: 'xs' }
+];
+
+const paddingOptions: Array<Field> = [
+  {
+    name: 'paddingTop',
+    dbName: 't',
+    label: 'Padding Top',
+    required: false,
+    type: 'select',
+    options: paddingValues
+  },
+  {
+    name: 'paddingBottom',
+    dbName: 'b',
+    label: 'Padding Bottom',
+    required: false,
+    type: 'select',
+    options: paddingValues
+  }
+];
+
 function BlockConfig({
   name,
   label,
-  fields = []
-}: Partial<GroupField> = {}): GroupField {
+  fields = [],
+  defaultWidth,
+  defaultPadding
+}: Partial<GroupField> & {
+  defaultPadding?: {
+    paddingTop: string;
+    paddingBottom: string;
+  };
+  defaultWidth?: string;
+} = {}): GroupField {
   return {
     name: name || 'blockConfig',
     label: label || 'Block Configuration',
     type: 'group',
     fields: [
       {
-        name: 'theme',
-        label: 'Theme',
-        type: 'select',
-        required: false,
-        options: themeOptions
-      },
-      {
-        name: 'hidden',
-        label: 'Hide Block',
+        label: 'Block Settings',
+        type: 'collapsible',
         admin: {
-          description: 'Block will not appear on page'
+          initCollapsed: true
         },
-        type: 'checkbox',
-        defaultValue: false
+        fields: [
+          {
+            name: 'theme',
+            label: 'Theme',
+            type: 'select',
+            required: false,
+            options: themeOptions
+          },
+          {
+            name: 'backgroundColor',
+            dbName: 'bgColor',
+            label: 'Block Background Color',
+            type: 'select',
+            required: false,
+            options: colorOptions
+          },
+          {
+            name: 'hidden',
+            label: 'Hide Block',
+            admin: {
+              description: 'Block will not appear on page'
+            },
+            type: 'checkbox',
+            defaultValue: false
+          },
+          {
+            name: 'contentWidth',
+            dbName: 'cw',
+            label: 'Content Width',
+            type: 'select',
+            required: false,
+            options: contentWidthValues,
+            defaultValue: defaultWidth || 'xl'
+          },
+          {
+            name: 'p',
+            label: 'Padding',
+            type: 'group',
+            fields: [
+              {
+                label: 'Breakpoints',
+                type: 'collapsible',
+                admin: {
+                  initCollapsed: true
+                },
+                fields: [
+                  {
+                    name: 'xs',
+                    label: 'Mobile',
+                    type: 'group',
+                    fields: [...paddingOptions],
+                    defaultValue: defaultPadding || {
+                      paddingTop: '3.75rem',
+                      paddingBottom: '3.75rem'
+                    }
+                  },
+                  {
+                    name: 'md',
+                    label: 'Tablet',
+                    type: 'group',
+                    fields: [...paddingOptions]
+                  },
+                  {
+                    name: 'lg',
+                    label: 'Destkop',
+                    type: 'group',
+                    fields: [...paddingOptions]
+                  },
+                  {
+                    name: 'xl',
+                    label: 'XL Destkop',
+                    type: 'group',
+                    fields: [...paddingOptions]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       ...fields
     ]

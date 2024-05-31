@@ -9,6 +9,7 @@ overrides:
   '@payloadcms/live-preview': 0.2.2
   '@payloadcms/richtext-lexical': 3.0.0-beta.19
   '@payloadcms/plugin-cloud-storage': 3.0.0-beta.19
+  '@payloadcms/storage-vercel-blob': 3.0.0-beta.19
   '@payloadcms/next': 3.0.0-beta.19
   '@payloadcms/ui': 3.0.0-beta.19
   '@refract-ui/core': 1.0.1-alpha.42
@@ -231,6 +232,9 @@ importers:
       '@payloadcms/richtext-lexical':
         specifier: 3.0.0-beta.19
         version: 3.0.0-beta.19(@lexical/clipboard@0.13.1(lexical@0.13.1))(@payloadcms/next@3.0.0-beta.19(@types/react@18.2.79)(file-type@16.5.4)(graphql@16.8.1)(http-status@1.6.2)(monaco-editor@0.38.0)(next@14.3.0-canary.28(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(payload@3.0.0-beta.19(@swc/core@1.5.24(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.8.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2))(@payloadcms/translations@3.0.0-beta.19)(@payloadcms/ui@3.0.0-beta.19(@types/react@18.2.79)(monaco-editor@0.38.0)(next@14.3.0-canary.28(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(payload@3.0.0-beta.19(@swc/core@1.5.24(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.8.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2))(payload@3.0.0-beta.19(@swc/core@1.5.24(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.8.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.4.5)(yjs@13.6.15)
+      '@payloadcms/storage-vercel-blob':
+        specifier: 3.0.0-beta.19
+        version: 3.0.0-beta.19(payload@3.0.0-beta.19(@swc/core@1.5.24(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.8.1))
       '@payloadcms/ui':
         specifier: 3.0.0-beta.19
         version: 3.0.0-beta.19(@types/react@18.2.79)(monaco-editor@0.38.0)(next@14.3.0-canary.28(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(payload@3.0.0-beta.19(@swc/core@1.5.24(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.8.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)
@@ -2598,6 +2602,12 @@ packages:
       react: ^18.3.1
       react-dom: ^18.3.1
 
+  '@payloadcms/storage-vercel-blob@3.0.0-beta.19':
+    resolution: {integrity: sha512-rTLh/ImdJndozEWXq33OJNzZKTvb38EIiAOihOghC6aIWuO7c/bq8GnSEJpoWZNDEeLSHao2CE5XbnrAJQDVHw==}
+    engines: {node: '>=18.20.2'}
+    peerDependencies:
+      payload: 3.0.0-beta.19
+
   '@payloadcms/translations@3.0.0-beta.19':
     resolution: {integrity: sha512-io9LDjOHd8cMzdv63V3kQkyERJZJSG0edlYbVgRBJKzKkNOwJhNcw32duWZenyyHJmvqEuHHaTuri/S6d7ABpQ==}
 
@@ -3740,6 +3750,10 @@ packages:
     resolution: {integrity: sha512-5gknBHxnCg0BvTehqnodBLyDv8XOcNOayd+LOUa1RDhUZ++KSSzb1dGZ1vnqjsyciT/kyqgcYAMaSMQBcF7feA==}
     engines: {node: '>=16.14'}
 
+  '@vercel/blob@0.22.3':
+    resolution: {integrity: sha512-l0t2KhbOO/I8ZNOl9zypYf1NE0837aO4/CPQNGR/RAxtj8FpdYKjhyUADUXj2gERLQmnhun+teaVs/G7vZJ/TQ==}
+    engines: {node: '>=16.14'}
+
   '@vercel/speed-insights@1.0.10':
     resolution: {integrity: sha512-4uzdKB0RW6Ff2FkzshzjZ+RlJfLPxgm/00i0XXgxfMPhwnnsk92YgtqsxT9OcPLdJUyVU1DqFlSWWjIQMPkh0g==}
     peerDependencies:
@@ -4109,6 +4123,9 @@ packages:
   ast-types@0.16.1:
     resolution: {integrity: sha512-6t10qk83GOG8p0vKmaCr8eiilZwO171AvbROMtvvNiwrTly62t+7XkA8RdIIVbpMhCASAsxgAzdRSwh6nw/5Dg==}
     engines: {node: '>=4'}
+
+  async-retry@1.3.3:
+    resolution: {integrity: sha512-wfr/jstw9xNi/0teMHrRW7dsz3Lt5ARhYNZ2ewpadnhaIp5mbALhOAP+EAdsC7t4Z6wqsDVv9+W6gm1Dk9mEyw==}
 
   async@3.2.5:
     resolution: {integrity: sha512-baNZyqaaLhyLVKm/DlvdW051MSgO6b8eVfIezl9E5PqWxFgzLm/wQntEW4zOytVburDEr0JlALEpdOFwvErLsg==}
@@ -6324,6 +6341,10 @@ packages:
   is-buffer@1.1.6:
     resolution: {integrity: sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==}
 
+  is-buffer@2.0.5:
+    resolution: {integrity: sha512-i2R6zNFDwgEHJyQUtJEk0XFi1i0dPFn/oqjK3/vPCcDeJvW5NQ83V8QbicfF1SupOaB0h8ntgBC2YiE7dfyctQ==}
+    engines: {node: '>=4'}
+
   is-callable@1.2.7:
     resolution: {integrity: sha512-1BC0BVFhS/p0qtw6enp8e+8OD0UrK0oFLztSjNzhcKA3WDuJxxAPXzPuPtKkjEY9UUoEWlX/8fgKeu2S8i9JTA==}
     engines: {node: '>= 0.4'}
@@ -8073,6 +8094,10 @@ packages:
     resolution: {integrity: sha512-l+sSefzHpj5qimhFSE5a8nufZYAM3sBSVMAPtYkmC+4EH2anSGaEMXSD0izRQbu9nfyQ9y5JrVmp7E8oZrUjvA==}
     engines: {node: '>=8'}
 
+  retry@0.13.1:
+    resolution: {integrity: sha512-XQBQ3I8W1Cge0Seh+6gjj03LbmRFWuoszgK9ooCpwYIrhhoO80pfq4cUkU5DkknwfOfFteRwlZ56PYOGYyFWdg==}
+    engines: {node: '>= 4'}
+
   reusify@1.0.4:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
@@ -8977,6 +9002,10 @@ packages:
 
   undici@5.28.2:
     resolution: {integrity: sha512-wh1pHJHnUeQV5Xa8/kyQhO7WFa8M34l026L5P/+2TYiakvGy5Rdc8jWZVyG7ieht/0WgJLEd3kcU5gKx+6GC8w==}
+    engines: {node: '>=14.0'}
+
+  undici@5.28.4:
+    resolution: {integrity: sha512-72RFADWFqKmUb2hmmvNODKL3p9hcB6Gt2DOQMis1SEBaV6a4MH8soBvzg+95CYhCKPFedut2JY9bMfrDl9D23g==}
     engines: {node: '>=14.0'}
 
   unicode-canonical-property-names-ecmascript@2.0.0:
@@ -12120,6 +12149,14 @@ snapshots:
     optionalDependencies:
       '@vercel/blob': 0.16.2
 
+  '@payloadcms/plugin-cloud-storage@3.0.0-beta.19(@vercel/blob@0.22.3)(payload@3.0.0-beta.19(@swc/core@1.5.24(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.8.1))':
+    dependencies:
+      find-node-modules: 2.1.3
+      payload: 3.0.0-beta.19(@swc/core@1.5.24(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.8.1)
+      range-parser: 1.2.1
+    optionalDependencies:
+      '@vercel/blob': 0.22.3
+
   ? '@payloadcms/richtext-lexical@3.0.0-beta.19(@lexical/clipboard@0.13.1(lexical@0.13.1))(@payloadcms/next@3.0.0-beta.19(@types/react@18.2.79)(file-type@16.5.4)(graphql@16.8.1)(http-status@1.6.2)(monaco-editor@0.38.0)(next@14.3.0-canary.28(@babel/core@7.24.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(payload@3.0.0-beta.19(@swc/core@1.5.24(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.8.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2))(@payloadcms/translations@3.0.0-beta.19)(@payloadcms/ui@3.0.0-beta.19(@types/react@18.2.79)(monaco-editor@0.38.0)(next@14.3.0-canary.28(@babel/core@7.24.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(payload@3.0.0-beta.19(@swc/core@1.5.24(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.8.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2))(payload@3.0.0-beta.19(@swc/core@1.5.24(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.8.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.4.5)(yjs@13.6.15)'
   : dependencies:
       '@faceless-ui/modal': 2.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -12181,6 +12218,18 @@ snapshots:
       - '@lexical/clipboard'
       - typescript
       - yjs
+
+  '@payloadcms/storage-vercel-blob@3.0.0-beta.19(payload@3.0.0-beta.19(@swc/core@1.5.24(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.8.1))':
+    dependencies:
+      '@payloadcms/plugin-cloud-storage': 3.0.0-beta.19(@vercel/blob@0.22.3)(payload@3.0.0-beta.19(@swc/core@1.5.24(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.8.1))
+      '@vercel/blob': 0.22.3
+      payload: 3.0.0-beta.19(@swc/core@1.5.24(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.8.1)
+    transitivePeerDependencies:
+      - '@aws-sdk/client-s3'
+      - '@aws-sdk/lib-storage'
+      - '@azure/abort-controller'
+      - '@azure/storage-blob'
+      - '@google-cloud/storage'
 
   '@payloadcms/translations@3.0.0-beta.19': {}
 
@@ -14059,6 +14108,13 @@ snapshots:
     dependencies:
       undici: 5.28.2
 
+  '@vercel/blob@0.22.3':
+    dependencies:
+      async-retry: 1.3.3
+      bytes: 3.1.2
+      is-buffer: 2.0.5
+      undici: 5.28.4
+
   '@vercel/speed-insights@1.0.10(next@14.3.0-canary.28(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0))(react@18.3.1)':
     optionalDependencies:
       next: 14.3.0-canary.28(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0)
@@ -14533,6 +14589,10 @@ snapshots:
   ast-types@0.16.1:
     dependencies:
       tslib: 2.6.2
+
+  async-retry@1.3.3:
+    dependencies:
+      retry: 0.13.1
 
   async@3.2.5: {}
 
@@ -17258,6 +17318,8 @@ snapshots:
 
   is-buffer@1.1.6: {}
 
+  is-buffer@2.0.5: {}
+
   is-callable@1.2.7: {}
 
   is-core-module@2.13.1:
@@ -19239,6 +19301,8 @@ snapshots:
       onetime: 5.1.2
       signal-exit: 3.0.7
 
+  retry@0.13.1: {}
+
   reusify@1.0.4: {}
 
   rimraf@2.6.3:
@@ -20241,6 +20305,10 @@ snapshots:
   undici-types@5.26.5: {}
 
   undici@5.28.2:
+    dependencies:
+      '@fastify/busboy': 2.1.1
+
+  undici@5.28.4:
     dependencies:
       '@fastify/busboy': 2.1.1
 

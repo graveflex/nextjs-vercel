@@ -30,6 +30,7 @@
     "@payloadcms/next": "latest",
     "@payloadcms/plugin-cloud-storage": "latest",
     "@payloadcms/richtext-lexical": "latest",
+    "@payloadcms/storage-vercel-blob": "latest",
     "@payloadcms/ui": "latest",
     "@refract-ui/hook-fields": "latest",
     "@refract-ui/sc": "latest",
