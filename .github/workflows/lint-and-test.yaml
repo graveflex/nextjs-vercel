@@ -64,7 +64,7 @@ jobs:
         env:
           BLOB_READ_WRITE_TOKEN: vercel_blob_rw_xxxxxxxxxxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
           BLOB_STORE_ID: "xxxxxxxxxxxxxxxx"
-        run: pnpm ci
+        run: pnpm cicd
 
       - name: code coverage report
         if: steps.ci.outcome == 'success'
