@@ -261,7 +261,7 @@ importers:
         version: 6.4.2(@types/jest@29.5.12)(vitest@1.6.0(@types/node@18.19.26)(jsdom@22.1.0)(sass@1.75.0)(terser@5.29.2))
       '@testing-library/react':
         specifier: ^14.0.0
-        version: 14.2.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 14.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/escape-html':
         specifier: ^1.0.4
         version: 1.0.4
@@ -561,7 +561,7 @@ importers:
         version: 6.4.2(@types/jest@29.5.12)(vitest@1.6.0(@types/node@20.11.30)(jsdom@22.1.0)(sass@1.75.0)(terser@5.29.2))
       '@testing-library/react':
         specifier: ^14.0.0
-        version: 14.2.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 14.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/jest':
         specifier: ^29.5.5
         version: 29.5.12
@@ -3358,8 +3358,8 @@ packages:
       vitest:
         optional: true
 
-  '@testing-library/react@14.2.2':
-    resolution: {integrity: sha512-SOUuM2ysCvjUWBXTNfQ/ztmnKDmqaiPV3SvoIuyxMUca45rbSWWAT/qB8CUs/JQ/ux/8JFs9DNdFQ3f6jH3crA==}
+  '@testing-library/react@14.3.1':
+    resolution: {integrity: sha512-H99XjUhWQw0lTgyMN05W3xQG1Nh4lq574D8keFf1dDoNTJgp66VbJozRaczoF+wsiaPJNt/TcnfpLGufGxSrZQ==}
     engines: {node: '>=14'}
     peerDependencies:
       react: ^18.3.1
@@ -11004,7 +11004,7 @@ snapshots:
 
   '@babel/template@7.24.0':
     dependencies:
-      '@babel/code-frame': 7.24.2
+      '@babel/code-frame': 7.24.6
       '@babel/parser': 7.24.6
       '@babel/types': 7.24.6
 
@@ -11016,7 +11016,7 @@ snapshots:
 
   '@babel/traverse@7.24.1':
     dependencies:
-      '@babel/code-frame': 7.24.2
+      '@babel/code-frame': 7.24.6
       '@babel/generator': 7.24.6
       '@babel/helper-environment-visitor': 7.22.20
       '@babel/helper-function-name': 7.23.0
@@ -13635,7 +13635,7 @@ snapshots:
       '@types/jest': 29.5.12
       vitest: 1.6.0(@types/node@20.11.30)(jsdom@22.1.0)(sass@1.75.0)(terser@5.29.2)
 
-  '@testing-library/react@14.2.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@testing-library/react@14.3.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.1
       '@testing-library/dom': 9.3.4
@@ -16679,7 +16679,7 @@ snapshots:
 
   fork-ts-checker-webpack-plugin@8.0.0(typescript@5.4.5)(webpack@5.91.0(@swc/core@1.4.11(@swc/helpers@0.5.11))(esbuild@0.20.2)):
     dependencies:
-      '@babel/code-frame': 7.24.2
+      '@babel/code-frame': 7.24.6
       chalk: 4.1.2
       chokidar: 3.6.0
       cosmiconfig: 7.1.0

@@ -84,6 +84,10 @@ export default withPayload(
         {
           protocol: 'https',
           hostname: 'loremflickr.com'
+        },
+        {
+          protocol: 'https',
+          hostname: '*.vercel-storage.com'
         }
       ]
     }
