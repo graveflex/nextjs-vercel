@@ -12,7 +12,7 @@
     "lint": "eslint . --ext js,jsx,ts,tsx",
     "types": "tsc --noEmit --skipLibCheck",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage --coverage.reporter=cobertura"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.0",

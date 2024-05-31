@@ -14,7 +14,7 @@
     "lint": "eslint . --ext js,jsx,ts,tsx",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "test:coverage": "vitest run --coverage",
+    "test:coverage": "vitest run --coverage --coverage.reporter=cobertura",
     "types": "tsc --noEmit --skipLibCheck"
   },
   "exports": {
