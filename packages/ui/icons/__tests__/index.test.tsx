@@ -7,7 +7,7 @@ import * as stories from '../stories/Core.stories';
 
 const { Defaults } = composeStories(stories, projectAnnotations);
 
-describe('Pagination', () => {
+describe('Icons: ', () => {
   it('component mounts', () => {
     render(<Defaults />);
   });

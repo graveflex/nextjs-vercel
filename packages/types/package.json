@@ -10,8 +10,10 @@
   "devDependencies": {
     "@mono/tsconfig": "workspace:*",
     "eslint-config-custom": "workspace:*",
-    "payload": "latest"
+    "payload": "latest",
+    "@refract-ui/core": "latest",
+    "@refract-ui/sc": "latest",
+    "typescript": "latest"
   },
-  "dependencies": {},
   "peerDependencies": {}
 }
