@@ -483,7 +483,7 @@ importers:
         version: 4.17.21
       next:
         specifier: 14.3.0-canary.28
-        version: 14.3.0-canary.28(@babel/core@7.24.6)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0)
+        version: 14.3.0-canary.28(@babel/core@7.24.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.75.0)
       react:
         specifier: ^18.3.1
         version: 18.3.1
