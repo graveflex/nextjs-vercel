@@ -11,7 +11,7 @@
     "lint": "eslint . --ext js,jsx,ts,tsx",
     "types": "tsc --noEmit --skipLibCheck",
     "test": "vitest run",
-    "test:coverage": "vitest run --coverage",
+    "test:coverage": "vitest run --coverage --coverage.reporter=cobertura",
     "generate:types": "payload generate:types",
     "migrations:create": "payload migrate:create",
     "migrations:run": "if [ \"$CI\" != \"true\" ]; then payload migrate; fi",

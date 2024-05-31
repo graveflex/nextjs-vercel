@@ -17,7 +17,7 @@
     "generate:types": "turbo run generate:types",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
-    "test:coverage": "vitest run --coverage --coverage.reporter=cobertura",
+    "test:coverage": "turbo run test:coverage",
     "types": "turbo run types",
     "build": "turbo run build",
     "buildSettings": "turbo run buildSettings",
