@@ -4,6 +4,30 @@ export async function up({ payload }: MigrateUpArgs): Promise<void> {
 await payload.db.drizzle.execute(sql`
 
 DO $$ BEGIN
+ CREATE TYPE "bgColor" AS ENUM('bg', 'fg', 'lightBg', 'titleDefault', 'textDefault', 'accent');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "cw" AS ENUM('full', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "t" AS ENUM('9.375rem', '7.5rem', '3.75rem', '2.25rem', '1.125rem', 'unset');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "b" AS ENUM('9.375rem', '7.5rem', '3.75rem', '2.25rem', '1.125rem', 'unset');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  CREATE TYPE "enum__pages_v_version_theme" AS ENUM('light', 'dark');
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -111,14 +135,66 @@ ALTER TABLE "nav_rels" DROP CONSTRAINT "nav_rels_parent_id_nav_id_fk";
 
 ALTER TABLE "nav_rels" DROP CONSTRAINT "nav_rels_images_id_images_id_fk";
 
-ALTER TABLE "_pages_v_blocks_faq_block" ALTER COLUMN "blockConfig_theme" SET DATA TYPE enum__pages_v_blocks_faq_block_block_config_theme;
-ALTER TABLE "_pages_v_blocks_text_image_block" ALTER COLUMN "blockConfig_theme" SET DATA TYPE enum__pages_v_blocks_text_image_block_block_config_theme;
-ALTER TABLE "_pages_v_blocks_text_image_block" ALTER COLUMN "blockConfig_layout" SET DATA TYPE enum__pages_v_blocks_text_image_block_block_config_layout;
-ALTER TABLE "_pages_v_blocks_hero_block" ALTER COLUMN "blockConfig_theme" SET DATA TYPE enum__pages_v_blocks_hero_block_block_config_theme;
-ALTER TABLE "_pages_v_blocks_hero_block" ALTER COLUMN "blockConfig_layout" SET DATA TYPE enum__pages_v_blocks_hero_block_block_config_layout;
-ALTER TABLE "_pages_v_blocks_hero_block" ALTER COLUMN "input_type" SET DATA TYPE enum__pages_v_blocks_hero_block_input_type;
-ALTER TABLE "_pages_v" ALTER COLUMN "version_theme" SET DATA TYPE enum__pages_v_version_theme;
-ALTER TABLE "_pages_v" ALTER COLUMN "version__status" SET DATA TYPE enum__pages_v_version_status;
+ALTER TABLE "pages_blocks_faq_block" ADD COLUMN "blockConfig_backgroundColor" "bgColor";
+ALTER TABLE "pages_blocks_faq_block" ADD COLUMN "blockConfig_contentWidth" "cw";
+ALTER TABLE "pages_blocks_faq_block" ADD COLUMN "blockConfig_p_xs_paddingTop" "t";
+ALTER TABLE "pages_blocks_faq_block" ADD COLUMN "blockConfig_p_xs_paddingBottom" "b";
+ALTER TABLE "pages_blocks_faq_block" ADD COLUMN "blockConfig_p_md_paddingTop" "t";
+ALTER TABLE "pages_blocks_faq_block" ADD COLUMN "blockConfig_p_md_paddingBottom" "b";
+ALTER TABLE "pages_blocks_faq_block" ADD COLUMN "blockConfig_p_lg_paddingTop" "t";
+ALTER TABLE "pages_blocks_faq_block" ADD COLUMN "blockConfig_p_lg_paddingBottom" "b";
+ALTER TABLE "pages_blocks_faq_block" ADD COLUMN "blockConfig_p_xl_paddingTop" "t";
+ALTER TABLE "pages_blocks_faq_block" ADD COLUMN "blockConfig_p_xl_paddingBottom" "b";
+ALTER TABLE "pages_blocks_text_image_block" ADD COLUMN "blockConfig_backgroundColor" "bgColor";
+ALTER TABLE "pages_blocks_text_image_block" ADD COLUMN "blockConfig_contentWidth" "cw";
+ALTER TABLE "pages_blocks_text_image_block" ADD COLUMN "blockConfig_p_xs_paddingTop" "t";
+ALTER TABLE "pages_blocks_text_image_block" ADD COLUMN "blockConfig_p_xs_paddingBottom" "b";
+ALTER TABLE "pages_blocks_text_image_block" ADD COLUMN "blockConfig_p_md_paddingTop" "t";
+ALTER TABLE "pages_blocks_text_image_block" ADD COLUMN "blockConfig_p_md_paddingBottom" "b";
+ALTER TABLE "pages_blocks_text_image_block" ADD COLUMN "blockConfig_p_lg_paddingTop" "t";
+ALTER TABLE "pages_blocks_text_image_block" ADD COLUMN "blockConfig_p_lg_paddingBottom" "b";
+ALTER TABLE "pages_blocks_text_image_block" ADD COLUMN "blockConfig_p_xl_paddingTop" "t";
+ALTER TABLE "pages_blocks_text_image_block" ADD COLUMN "blockConfig_p_xl_paddingBottom" "b";
+ALTER TABLE "pages_blocks_hero_block" ADD COLUMN "blockConfig_backgroundColor" "bgColor";
+ALTER TABLE "pages_blocks_hero_block" ADD COLUMN "blockConfig_contentWidth" "cw";
+ALTER TABLE "pages_blocks_hero_block" ADD COLUMN "blockConfig_p_xs_paddingTop" "t";
+ALTER TABLE "pages_blocks_hero_block" ADD COLUMN "blockConfig_p_xs_paddingBottom" "b";
+ALTER TABLE "pages_blocks_hero_block" ADD COLUMN "blockConfig_p_md_paddingTop" "t";
+ALTER TABLE "pages_blocks_hero_block" ADD COLUMN "blockConfig_p_md_paddingBottom" "b";
+ALTER TABLE "pages_blocks_hero_block" ADD COLUMN "blockConfig_p_lg_paddingTop" "t";
+ALTER TABLE "pages_blocks_hero_block" ADD COLUMN "blockConfig_p_lg_paddingBottom" "b";
+ALTER TABLE "pages_blocks_hero_block" ADD COLUMN "blockConfig_p_xl_paddingTop" "t";
+ALTER TABLE "pages_blocks_hero_block" ADD COLUMN "blockConfig_p_xl_paddingBottom" "b";
+ALTER TABLE "_pages_v_blocks_faq_block" ADD COLUMN "blockConfig_backgroundColor" "bgColor";
+ALTER TABLE "_pages_v_blocks_faq_block" ADD COLUMN "blockConfig_contentWidth" "cw";
+ALTER TABLE "_pages_v_blocks_faq_block" ADD COLUMN "blockConfig_p_xs_paddingTop" "t";
+ALTER TABLE "_pages_v_blocks_faq_block" ADD COLUMN "blockConfig_p_xs_paddingBottom" "b";
+ALTER TABLE "_pages_v_blocks_faq_block" ADD COLUMN "blockConfig_p_md_paddingTop" "t";
+ALTER TABLE "_pages_v_blocks_faq_block" ADD COLUMN "blockConfig_p_md_paddingBottom" "b";
+ALTER TABLE "_pages_v_blocks_faq_block" ADD COLUMN "blockConfig_p_lg_paddingTop" "t";
+ALTER TABLE "_pages_v_blocks_faq_block" ADD COLUMN "blockConfig_p_lg_paddingBottom" "b";
+ALTER TABLE "_pages_v_blocks_faq_block" ADD COLUMN "blockConfig_p_xl_paddingTop" "t";
+ALTER TABLE "_pages_v_blocks_faq_block" ADD COLUMN "blockConfig_p_xl_paddingBottom" "b";
+ALTER TABLE "_pages_v_blocks_text_image_block" ADD COLUMN "blockConfig_backgroundColor" "bgColor";
+ALTER TABLE "_pages_v_blocks_text_image_block" ADD COLUMN "blockConfig_contentWidth" "cw";
+ALTER TABLE "_pages_v_blocks_text_image_block" ADD COLUMN "blockConfig_p_xs_paddingTop" "t";
+ALTER TABLE "_pages_v_blocks_text_image_block" ADD COLUMN "blockConfig_p_xs_paddingBottom" "b";
+ALTER TABLE "_pages_v_blocks_text_image_block" ADD COLUMN "blockConfig_p_md_paddingTop" "t";
+ALTER TABLE "_pages_v_blocks_text_image_block" ADD COLUMN "blockConfig_p_md_paddingBottom" "b";
+ALTER TABLE "_pages_v_blocks_text_image_block" ADD COLUMN "blockConfig_p_lg_paddingTop" "t";
+ALTER TABLE "_pages_v_blocks_text_image_block" ADD COLUMN "blockConfig_p_lg_paddingBottom" "b";
+ALTER TABLE "_pages_v_blocks_text_image_block" ADD COLUMN "blockConfig_p_xl_paddingTop" "t";
+ALTER TABLE "_pages_v_blocks_text_image_block" ADD COLUMN "blockConfig_p_xl_paddingBottom" "b";
+ALTER TABLE "_pages_v_blocks_hero_block" ADD COLUMN "blockConfig_backgroundColor" "bgColor";
+ALTER TABLE "_pages_v_blocks_hero_block" ADD COLUMN "blockConfig_contentWidth" "cw";
+ALTER TABLE "_pages_v_blocks_hero_block" ADD COLUMN "blockConfig_p_xs_paddingTop" "t";
+ALTER TABLE "_pages_v_blocks_hero_block" ADD COLUMN "blockConfig_p_xs_paddingBottom" "b";
+ALTER TABLE "_pages_v_blocks_hero_block" ADD COLUMN "blockConfig_p_md_paddingTop" "t";
+ALTER TABLE "_pages_v_blocks_hero_block" ADD COLUMN "blockConfig_p_md_paddingBottom" "b";
+ALTER TABLE "_pages_v_blocks_hero_block" ADD COLUMN "blockConfig_p_lg_paddingTop" "t";
+ALTER TABLE "_pages_v_blocks_hero_block" ADD COLUMN "blockConfig_p_lg_paddingBottom" "b";
+ALTER TABLE "_pages_v_blocks_hero_block" ADD COLUMN "blockConfig_p_xl_paddingTop" "t";
+ALTER TABLE "_pages_v_blocks_hero_block" ADD COLUMN "blockConfig_p_xl_paddingBottom" "b";
 DO $$ BEGIN
  ALTER TABLE "pages_blocks_faq_block_items" ADD CONSTRAINT "pages_blocks_faq_block_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_faq_block"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
@@ -600,6 +676,66 @@ DO $$ BEGIN
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
-`);
+
+ALTER TABLE "pages_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_backgroundColor";
+ALTER TABLE "pages_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_contentWidth";
+ALTER TABLE "pages_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_xs_paddingTop";
+ALTER TABLE "pages_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_xs_paddingBottom";
+ALTER TABLE "pages_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_md_paddingTop";
+ALTER TABLE "pages_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_md_paddingBottom";
+ALTER TABLE "pages_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_lg_paddingTop";
+ALTER TABLE "pages_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_lg_paddingBottom";
+ALTER TABLE "pages_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_xl_paddingTop";
+ALTER TABLE "pages_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_xl_paddingBottom";
+ALTER TABLE "pages_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_backgroundColor";
+ALTER TABLE "pages_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_contentWidth";
+ALTER TABLE "pages_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_xs_paddingTop";
+ALTER TABLE "pages_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_xs_paddingBottom";
+ALTER TABLE "pages_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_md_paddingTop";
+ALTER TABLE "pages_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_md_paddingBottom";
+ALTER TABLE "pages_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_lg_paddingTop";
+ALTER TABLE "pages_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_lg_paddingBottom";
+ALTER TABLE "pages_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_xl_paddingTop";
+ALTER TABLE "pages_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_xl_paddingBottom";
+ALTER TABLE "pages_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_backgroundColor";
+ALTER TABLE "pages_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_contentWidth";
+ALTER TABLE "pages_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_xs_paddingTop";
+ALTER TABLE "pages_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_xs_paddingBottom";
+ALTER TABLE "pages_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_md_paddingTop";
+ALTER TABLE "pages_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_md_paddingBottom";
+ALTER TABLE "pages_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_lg_paddingTop";
+ALTER TABLE "pages_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_lg_paddingBottom";
+ALTER TABLE "pages_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_xl_paddingTop";
+ALTER TABLE "pages_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_xl_paddingBottom";
+ALTER TABLE "_pages_v_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_backgroundColor";
+ALTER TABLE "_pages_v_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_contentWidth";
+ALTER TABLE "_pages_v_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_xs_paddingTop";
+ALTER TABLE "_pages_v_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_xs_paddingBottom";
+ALTER TABLE "_pages_v_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_md_paddingTop";
+ALTER TABLE "_pages_v_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_md_paddingBottom";
+ALTER TABLE "_pages_v_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_lg_paddingTop";
+ALTER TABLE "_pages_v_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_lg_paddingBottom";
+ALTER TABLE "_pages_v_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_xl_paddingTop";
+ALTER TABLE "_pages_v_blocks_faq_block" DROP COLUMN IF EXISTS "blockConfig_p_xl_paddingBottom";
+ALTER TABLE "_pages_v_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_backgroundColor";
+ALTER TABLE "_pages_v_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_contentWidth";
+ALTER TABLE "_pages_v_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_xs_paddingTop";
+ALTER TABLE "_pages_v_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_xs_paddingBottom";
+ALTER TABLE "_pages_v_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_md_paddingTop";
+ALTER TABLE "_pages_v_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_md_paddingBottom";
+ALTER TABLE "_pages_v_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_lg_paddingTop";
+ALTER TABLE "_pages_v_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_lg_paddingBottom";
+ALTER TABLE "_pages_v_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_xl_paddingTop";
+ALTER TABLE "_pages_v_blocks_text_image_block" DROP COLUMN IF EXISTS "blockConfig_p_xl_paddingBottom";
+ALTER TABLE "_pages_v_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_backgroundColor";
+ALTER TABLE "_pages_v_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_contentWidth";
+ALTER TABLE "_pages_v_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_xs_paddingTop";
+ALTER TABLE "_pages_v_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_xs_paddingBottom";
+ALTER TABLE "_pages_v_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_md_paddingTop";
+ALTER TABLE "_pages_v_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_md_paddingBottom";
+ALTER TABLE "_pages_v_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_lg_paddingTop";
+ALTER TABLE "_pages_v_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_lg_paddingBottom";
+ALTER TABLE "_pages_v_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_xl_paddingTop";
+ALTER TABLE "_pages_v_blocks_hero_block" DROP COLUMN IF EXISTS "blockConfig_p_xl_paddingBottom";`);
 
 };
