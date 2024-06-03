@@ -6,13 +6,13 @@ const themeOptions = [
   { label: 'Dark', value: 'dark' }
 ];
 
+// UPDATE WITH THEME COLORS
 const colorOptions = [
-  { label: 'Background', value: 'bg' },
   { label: 'Foreground', value: 'fg' },
-  { label: 'Light Background', value: 'lightBg' },
-  { label: 'Headline Color', value: 'titleDefault' },
-  { label: 'Text Color', value: 'textDefault' },
-  { label: 'Accent', value: 'accent' }
+  { label: 'Light Background', value: 'neutral' },
+  { label: 'Blue', value: 'blue' },
+  { label: 'Indigo', value: 'indigo' },
+  { label: 'Purple', value: 'purple' }
 ];
 
 const paddingValues = [
