@@ -50,10 +50,59 @@ export interface Page {
     keywords?: string | null;
   };
   publishedAt?: string | null;
-  blocks?: (FAQBlockT | TextImageBlockT | HeroBlockT)[] | null;
+  blocks?: (MarkdownBlockT | FAQBlockT | TextImageBlockT | HeroBlockT)[] | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MarkdownBlockT".
+ */
+export interface MarkdownBlockT {
+  blockConfig?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    hidden?: boolean | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    p?: {
+      xs?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      md?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      lg?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      xl?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+    };
+  };
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  maxWidth?: ('1440px' | '1280px' | '992px' | '768px' | '576px' | '320px' | 'unset') | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'markdownBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -62,7 +111,7 @@ export interface Page {
 export interface FAQBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('bg' | 'fg' | 'lightBg' | 'titleDefault' | 'textDefault' | 'accent') | null;
+    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -132,7 +181,7 @@ export interface FAQBlockT {
 export interface TextImageBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('bg' | 'fg' | 'lightBg' | 'titleDefault' | 'textDefault' | 'accent') | null;
+    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -262,7 +311,7 @@ export interface CTAType {
 export interface HeroBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('bg' | 'fg' | 'lightBg' | 'titleDefault' | 'textDefault' | 'accent') | null;
+    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
