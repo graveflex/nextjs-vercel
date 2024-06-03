@@ -22,6 +22,30 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ CREATE TYPE "bgColor" AS ENUM('bg', 'fg', 'lightBg', 'titleDefault', 'textDefault', 'accent');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "cw" AS ENUM('full', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "t" AS ENUM('9.375rem', '7.5rem', '3.75rem', '2.25rem', '1.125rem', 'unset');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "b" AS ENUM('9.375rem', '7.5rem', '3.75rem', '2.25rem', '1.125rem', 'unset');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  CREATE TYPE "enum_pages_blocks_text_image_block_block_config_theme" AS ENUM('_', 'light', 'dark');
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -58,49 +82,49 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "_enum__pages_v_version_theme_v" AS ENUM('light', 'dark');
+ CREATE TYPE "enum__pages_v_version_theme" AS ENUM('light', 'dark');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "_enum__pages_v_blocks_faq_block_block_config_theme_v" AS ENUM('_', 'light', 'dark');
+ CREATE TYPE "enum__pages_v_blocks_faq_block_block_config_theme" AS ENUM('_', 'light', 'dark');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "_enum__pages_v_blocks_text_image_block_block_config_theme_v" AS ENUM('_', 'light', 'dark');
+ CREATE TYPE "enum__pages_v_blocks_text_image_block_block_config_theme" AS ENUM('_', 'light', 'dark');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "_enum__pages_v_blocks_text_image_block_block_config_layout_v" AS ENUM('imgRight', 'imgLeft');
+ CREATE TYPE "enum__pages_v_blocks_text_image_block_block_config_layout" AS ENUM('imgRight', 'imgLeft');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "_enum__pages_v_blocks_hero_block_block_config_theme_v" AS ENUM('_', 'light', 'dark');
+ CREATE TYPE "enum__pages_v_blocks_hero_block_block_config_theme" AS ENUM('_', 'light', 'dark');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "_enum__pages_v_blocks_hero_block_block_config_layout_v" AS ENUM('bg', 'imgRight', 'imgLeft', 'imgRightFull', 'imgLeftFull');
+ CREATE TYPE "enum__pages_v_blocks_hero_block_block_config_layout" AS ENUM('bg', 'imgRight', 'imgLeft', 'imgRightFull', 'imgLeftFull');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "_enum__pages_v_blocks_hero_block_input_type_v" AS ENUM('text');
+ CREATE TYPE "enum__pages_v_blocks_hero_block_input_type" AS ENUM('text');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "_enum__pages_v_version_status_v" AS ENUM('draft', 'published');
+ CREATE TYPE "enum__pages_v_version_status" AS ENUM('draft', 'published');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -150,7 +174,17 @@ CREATE TABLE IF NOT EXISTS "pages_blocks_faq_block" (
 	"_path" text NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"blockConfig_theme" "enum_pages_blocks_faq_block_block_config_theme",
+	"blockConfig_backgroundColor" "bgColor",
 	"block_config_hidden" boolean,
+	"blockConfig_contentWidth" "cw",
+	"blockConfig_p_xs_paddingTop" "t",
+	"blockConfig_p_xs_paddingBottom" "b",
+	"blockConfig_p_md_paddingTop" "t",
+	"blockConfig_p_md_paddingBottom" "b",
+	"blockConfig_p_lg_paddingTop" "t",
+	"blockConfig_p_lg_paddingBottom" "b",
+	"blockConfig_p_xl_paddingTop" "t",
+	"blockConfig_p_xl_paddingBottom" "b",
 	"block_name" varchar
 );
 
@@ -169,7 +203,17 @@ CREATE TABLE IF NOT EXISTS "pages_blocks_text_image_block" (
 	"_path" text NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"blockConfig_theme" "enum_pages_blocks_text_image_block_block_config_theme",
+	"blockConfig_backgroundColor" "bgColor",
 	"block_config_hidden" boolean,
+	"blockConfig_contentWidth" "cw",
+	"blockConfig_p_xs_paddingTop" "t",
+	"blockConfig_p_xs_paddingBottom" "b",
+	"blockConfig_p_md_paddingTop" "t",
+	"blockConfig_p_md_paddingBottom" "b",
+	"blockConfig_p_lg_paddingTop" "t",
+	"blockConfig_p_lg_paddingBottom" "b",
+	"blockConfig_p_xl_paddingTop" "t",
+	"blockConfig_p_xl_paddingBottom" "b",
 	"blockConfig_layout" "enum_pages_blocks_text_image_block_block_config_layout",
 	"cta_label" varchar,
 	"cta_href" varchar,
@@ -191,7 +235,17 @@ CREATE TABLE IF NOT EXISTS "pages_blocks_hero_block" (
 	"_path" text NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"blockConfig_theme" "enum_pages_blocks_hero_block_block_config_theme",
+	"blockConfig_backgroundColor" "bgColor",
 	"block_config_hidden" boolean,
+	"blockConfig_contentWidth" "cw",
+	"blockConfig_p_xs_paddingTop" "t",
+	"blockConfig_p_xs_paddingBottom" "b",
+	"blockConfig_p_md_paddingTop" "t",
+	"blockConfig_p_md_paddingBottom" "b",
+	"blockConfig_p_lg_paddingTop" "t",
+	"blockConfig_p_lg_paddingBottom" "b",
+	"blockConfig_p_xl_paddingTop" "t",
+	"blockConfig_p_xl_paddingBottom" "b",
 	"blockConfig_layout" "enum_pages_blocks_hero_block_block_config_layout",
 	"input_placeholder" varchar,
 	"input_type" "enum_pages_blocks_hero_block_input_type",
@@ -253,8 +307,18 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_faq_block" (
 	"_parent_id" integer NOT NULL,
 	"_path" text NOT NULL,
 	"id" serial PRIMARY KEY NOT NULL,
-	"blockConfig_theme" "_enum__pages_v_blocks_faq_block_block_config_theme_v",
+	"blockConfig_theme" "enum__pages_v_blocks_faq_block_block_config_theme",
+	"blockConfig_backgroundColor" "bgColor",
 	"block_config_hidden" boolean,
+	"blockConfig_contentWidth" "cw",
+	"blockConfig_p_xs_paddingTop" "t",
+	"blockConfig_p_xs_paddingBottom" "b",
+	"blockConfig_p_md_paddingTop" "t",
+	"blockConfig_p_md_paddingBottom" "b",
+	"blockConfig_p_lg_paddingTop" "t",
+	"blockConfig_p_lg_paddingBottom" "b",
+	"blockConfig_p_xl_paddingTop" "t",
+	"blockConfig_p_xl_paddingBottom" "b",
 	"_uuid" varchar,
 	"block_name" varchar
 );
@@ -273,9 +337,19 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_text_image_block" (
 	"_parent_id" integer NOT NULL,
 	"_path" text NOT NULL,
 	"id" serial PRIMARY KEY NOT NULL,
-	"blockConfig_theme" "_enum__pages_v_blocks_text_image_block_block_config_theme_v",
+	"blockConfig_theme" "enum__pages_v_blocks_text_image_block_block_config_theme",
+	"blockConfig_backgroundColor" "bgColor",
 	"block_config_hidden" boolean,
-	"blockConfig_layout" "_enum__pages_v_blocks_text_image_block_block_config_layout_v",
+	"blockConfig_contentWidth" "cw",
+	"blockConfig_p_xs_paddingTop" "t",
+	"blockConfig_p_xs_paddingBottom" "b",
+	"blockConfig_p_md_paddingTop" "t",
+	"blockConfig_p_md_paddingBottom" "b",
+	"blockConfig_p_lg_paddingTop" "t",
+	"blockConfig_p_lg_paddingBottom" "b",
+	"blockConfig_p_xl_paddingTop" "t",
+	"blockConfig_p_xl_paddingBottom" "b",
+	"blockConfig_layout" "enum__pages_v_blocks_text_image_block_block_config_layout",
 	"cta_label" varchar,
 	"cta_href" varchar,
 	"_uuid" varchar,
@@ -296,11 +370,21 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_hero_block" (
 	"_parent_id" integer NOT NULL,
 	"_path" text NOT NULL,
 	"id" serial PRIMARY KEY NOT NULL,
-	"blockConfig_theme" "_enum__pages_v_blocks_hero_block_block_config_theme_v",
+	"blockConfig_theme" "enum__pages_v_blocks_hero_block_block_config_theme",
+	"blockConfig_backgroundColor" "bgColor",
 	"block_config_hidden" boolean,
-	"blockConfig_layout" "_enum__pages_v_blocks_hero_block_block_config_layout_v",
+	"blockConfig_contentWidth" "cw",
+	"blockConfig_p_xs_paddingTop" "t",
+	"blockConfig_p_xs_paddingBottom" "b",
+	"blockConfig_p_md_paddingTop" "t",
+	"blockConfig_p_md_paddingBottom" "b",
+	"blockConfig_p_lg_paddingTop" "t",
+	"blockConfig_p_lg_paddingBottom" "b",
+	"blockConfig_p_xl_paddingTop" "t",
+	"blockConfig_p_xl_paddingBottom" "b",
+	"blockConfig_layout" "enum__pages_v_blocks_hero_block_block_config_layout",
 	"input_placeholder" varchar,
-	"input_type" "_enum__pages_v_blocks_hero_block_input_type_v",
+	"input_type" "enum__pages_v_blocks_hero_block_input_type",
 	"cta_label" varchar,
 	"cta_href" varchar,
 	"_uuid" varchar,
@@ -321,14 +405,14 @@ CREATE TABLE IF NOT EXISTS "_pages_v" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"version_page_title" varchar,
 	"version_slug" varchar,
-	"version_theme" "_enum__pages_v_version_theme_v",
+	"version_theme" "enum__pages_v_version_theme",
 	"version_seo_config_title" varchar,
 	"version_seo_config_description" varchar,
 	"version_seo_config_keywords" varchar,
 	"version_published_at" timestamp(3) with time zone,
 	"version_updated_at" timestamp(3) with time zone,
 	"version_created_at" timestamp(3) with time zone,
-	"version__status" "_enum__pages_v_version_status_v",
+	"version__status" "enum__pages_v_version_status",
 	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
 	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
 	"latest" boolean
@@ -541,181 +625,181 @@ CREATE INDEX IF NOT EXISTS "nav_rels_order_idx" ON "nav_rels" ("order");
 CREATE INDEX IF NOT EXISTS "nav_rels_parent_idx" ON "nav_rels" ("parent_id");
 CREATE INDEX IF NOT EXISTS "nav_rels_path_idx" ON "nav_rels" ("path");
 DO $$ BEGIN
- ALTER TABLE "pages_blocks_faq_block_items" ADD CONSTRAINT "pages_blocks_faq_block_items__parent_id_pages_blocks_faq_block_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_faq_block"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "pages_blocks_faq_block_items" ADD CONSTRAINT "pages_blocks_faq_block_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_faq_block"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "pages_blocks_faq_block_items_locales" ADD CONSTRAINT "pages_blocks_faq_block_items_locales__parent_id_pages_blocks_faq_block_items_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_faq_block_items"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "pages_blocks_faq_block_items_locales" ADD CONSTRAINT "pages_blocks_faq_block_items_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_faq_block_items"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "pages_blocks_faq_block" ADD CONSTRAINT "pages_blocks_faq_block__parent_id_pages_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "pages_blocks_faq_block" ADD CONSTRAINT "pages_blocks_faq_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "pages_blocks_faq_block_locales" ADD CONSTRAINT "pages_blocks_faq_block_locales__parent_id_pages_blocks_faq_block_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_faq_block"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "pages_blocks_faq_block_locales" ADD CONSTRAINT "pages_blocks_faq_block_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_faq_block"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "pages_blocks_text_image_block" ADD CONSTRAINT "pages_blocks_text_image_block__parent_id_pages_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "pages_blocks_text_image_block" ADD CONSTRAINT "pages_blocks_text_image_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "pages_blocks_text_image_block_locales" ADD CONSTRAINT "pages_blocks_text_image_block_locales__parent_id_pages_blocks_text_image_block_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_text_image_block"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "pages_blocks_text_image_block_locales" ADD CONSTRAINT "pages_blocks_text_image_block_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_text_image_block"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "pages_blocks_hero_block" ADD CONSTRAINT "pages_blocks_hero_block__parent_id_pages_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "pages_blocks_hero_block" ADD CONSTRAINT "pages_blocks_hero_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "pages_blocks_hero_block_locales" ADD CONSTRAINT "pages_blocks_hero_block_locales__parent_id_pages_blocks_hero_block_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_hero_block"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "pages_blocks_hero_block_locales" ADD CONSTRAINT "pages_blocks_hero_block_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_hero_block"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "pages_rels" ADD CONSTRAINT "pages_rels_parent_id_pages_id_fk" FOREIGN KEY ("parent_id") REFERENCES "pages"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "pages_rels" ADD CONSTRAINT "pages_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "pages"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "pages_rels" ADD CONSTRAINT "pages_rels_images_id_images_id_fk" FOREIGN KEY ("images_id") REFERENCES "images"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "pages_rels" ADD CONSTRAINT "pages_rels_images_fk" FOREIGN KEY ("images_id") REFERENCES "images"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "_pages_v_blocks_faq_block_items" ADD CONSTRAINT "_pages_v_blocks_faq_block_items__parent_id__pages_v_blocks_faq_block_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_faq_block"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "_pages_v_blocks_faq_block_items" ADD CONSTRAINT "_pages_v_blocks_faq_block_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_faq_block"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "_pages_v_blocks_faq_block_items_locales" ADD CONSTRAINT "_pages_v_blocks_faq_block_items_locales__parent_id__pages_v_blocks_faq_block_items_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_faq_block_items"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "_pages_v_blocks_faq_block_items_locales" ADD CONSTRAINT "_pages_v_blocks_faq_block_items_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_faq_block_items"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "_pages_v_blocks_faq_block" ADD CONSTRAINT "_pages_v_blocks_faq_block__parent_id__pages_v_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "_pages_v_blocks_faq_block" ADD CONSTRAINT "_pages_v_blocks_faq_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "_pages_v_blocks_faq_block_locales" ADD CONSTRAINT "_pages_v_blocks_faq_block_locales__parent_id__pages_v_blocks_faq_block_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_faq_block"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "_pages_v_blocks_faq_block_locales" ADD CONSTRAINT "_pages_v_blocks_faq_block_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_faq_block"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "_pages_v_blocks_text_image_block" ADD CONSTRAINT "_pages_v_blocks_text_image_block__parent_id__pages_v_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "_pages_v_blocks_text_image_block" ADD CONSTRAINT "_pages_v_blocks_text_image_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "_pages_v_blocks_text_image_block_locales" ADD CONSTRAINT "_pages_v_blocks_text_image_block_locales__parent_id__pages_v_blocks_text_image_block_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_text_image_block"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "_pages_v_blocks_text_image_block_locales" ADD CONSTRAINT "_pages_v_blocks_text_image_block_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_text_image_block"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "_pages_v_blocks_hero_block" ADD CONSTRAINT "_pages_v_blocks_hero_block__parent_id__pages_v_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "_pages_v_blocks_hero_block" ADD CONSTRAINT "_pages_v_blocks_hero_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "_pages_v_blocks_hero_block_locales" ADD CONSTRAINT "_pages_v_blocks_hero_block_locales__parent_id__pages_v_blocks_hero_block_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_hero_block"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "_pages_v_blocks_hero_block_locales" ADD CONSTRAINT "_pages_v_blocks_hero_block_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_hero_block"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "_pages_v_rels" ADD CONSTRAINT "_pages_v_rels_parent_id__pages_v_id_fk" FOREIGN KEY ("parent_id") REFERENCES "_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "_pages_v_rels" ADD CONSTRAINT "_pages_v_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "_pages_v"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "_pages_v_rels" ADD CONSTRAINT "_pages_v_rels_pages_id_pages_id_fk" FOREIGN KEY ("pages_id") REFERENCES "pages"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "_pages_v_rels" ADD CONSTRAINT "_pages_v_rels_pages_fk" FOREIGN KEY ("pages_id") REFERENCES "pages"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "_pages_v_rels" ADD CONSTRAINT "_pages_v_rels_images_id_images_id_fk" FOREIGN KEY ("images_id") REFERENCES "images"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "_pages_v_rels" ADD CONSTRAINT "_pages_v_rels_images_fk" FOREIGN KEY ("images_id") REFERENCES "images"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "images_locales" ADD CONSTRAINT "images_locales__parent_id_images_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "images"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "images_locales" ADD CONSTRAINT "images_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "images"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "payload_preferences_rels" ADD CONSTRAINT "payload_preferences_rels_parent_id_payload_preferences_id_fk" FOREIGN KEY ("parent_id") REFERENCES "payload_preferences"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "payload_preferences_rels" ADD CONSTRAINT "payload_preferences_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "payload_preferences"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "payload_preferences_rels" ADD CONSTRAINT "payload_preferences_rels_users_id_users_id_fk" FOREIGN KEY ("users_id") REFERENCES "users"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "payload_preferences_rels" ADD CONSTRAINT "payload_preferences_rels_users_fk" FOREIGN KEY ("users_id") REFERENCES "users"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "nav_header_main" ADD CONSTRAINT "nav_header_main__parent_id_nav_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "nav_header_main" ADD CONSTRAINT "nav_header_main_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "nav_header_main_locales" ADD CONSTRAINT "nav_header_main_locales__parent_id_nav_header_main_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav_header_main"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "nav_header_main_locales" ADD CONSTRAINT "nav_header_main_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav_header_main"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "nav_footer_secondary" ADD CONSTRAINT "nav_footer_secondary__parent_id_nav_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "nav_footer_secondary" ADD CONSTRAINT "nav_footer_secondary_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "nav_footer_secondary_locales" ADD CONSTRAINT "nav_footer_secondary_locales__parent_id_nav_footer_secondary_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav_footer_secondary"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "nav_footer_secondary_locales" ADD CONSTRAINT "nav_footer_secondary_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav_footer_secondary"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "nav_rels" ADD CONSTRAINT "nav_rels_parent_id_nav_id_fk" FOREIGN KEY ("parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "nav_rels" ADD CONSTRAINT "nav_rels_parent_fk" FOREIGN KEY ("parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "nav_rels" ADD CONSTRAINT "nav_rels_images_id_images_id_fk" FOREIGN KEY ("images_id") REFERENCES "images"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "nav_rels" ADD CONSTRAINT "nav_rels_images_fk" FOREIGN KEY ("images_id") REFERENCES "images"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;

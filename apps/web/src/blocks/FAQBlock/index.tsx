@@ -43,7 +43,7 @@ function FAQBlock({ title, subTitle, items }: FAQBlockType) {
       return (
         <Details key={id}>
           <Summary>{t}</Summary>
-          <RichText content={st} />
+          <RichText {...st} />
         </Details>
       );
     });
@@ -52,7 +52,7 @@ function FAQBlock({ title, subTitle, items }: FAQBlockType) {
     <Section>
       <Header>
         {title && <Title>{title}</Title>}
-        {subTitle && <SubTitle content={subTitle} />}
+        {subTitle && <SubTitle {...subTitle} />}
       </Header>
       {Items}
     </Section>

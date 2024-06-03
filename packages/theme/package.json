@@ -7,17 +7,21 @@
     "lint": "eslint . --ext js,jsx,ts,tsx",
     "types": "tsc --noEmit --skipLibCheck"
   },
-  "devDependencies": {
-    "eslint-config-custom": "*",
-    "@mono/tsconfig": "*"
-  },
   "dependencies": {
-    "@refract-ui/sc": "latest"
+    "@mono/tsconfig": "workspace:*",
+    "@refract-ui/core": "latest",
+    "@refract-ui/sc": "latest",
+    "@types/lodash": "^4.17.0",
+    "@types/react": "latest",
+    "csstype": "^3.1.3",
+    "eslint-config-custom": "workspace:*",
+    "lodash": "^4.17.21",
+    "styled-components": "latest"
   },
   "peerDependencies": {
-    "next": "*",
-    "react": "*",
-    "react-dom": "*",
-    "styled-components": "*"
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "styled-components": "latest"
   }
 }

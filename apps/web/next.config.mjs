@@ -22,7 +22,7 @@ async function rewrites() {
 export default withPayload(
   withNextIntl({
     reactStrictMode: true,
-    transpilePackages: ['@mono/ui', '@mono/theme', 'vercel-blob-storage'],
+    transpilePackages: ['@mono/ui', '@mono/theme', '@mono/types'],
 
     compiler: {
       styledComponents: {
@@ -84,6 +84,10 @@ export default withPayload(
         {
           protocol: 'https',
           hostname: 'loremflickr.com'
+        },
+        {
+          protocol: 'https',
+          hostname: '*.vercel-storage.com'
         }
       ]
     }

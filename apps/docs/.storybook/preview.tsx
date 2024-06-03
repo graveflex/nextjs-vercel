@@ -1,15 +1,9 @@
-import * as themeList from '@mono/theme/src/theme';
+import { storybookThemes } from '@mono/theme/src/storybook';
 import { configureGlobalTypes, withRefract } from '@refract-ui/stories';
-
-const { light, dark } = themeList;
-
-const themes = [
-  { title: 'light', value: light },
-  { title: 'dark', value: dark }
-];
+import type { Decorator } from '@storybook/react';
 
 export const globalTypes = {
-  ...configureGlobalTypes(themes)
+  ...configureGlobalTypes(storybookThemes)
 };
 
 export const parameters = {
@@ -25,4 +19,4 @@ export const parameters = {
   }
 };
 
-export const decorators = [withRefract];
+export const decorators = [withRefract] as Decorator[];

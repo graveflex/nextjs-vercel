@@ -51,26 +51,30 @@ jobs:
           base=${{ github.base_ref }}
           echo "BRANCH=${base^^}" >> $GITHUB_ENV
 
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: corepack enable
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'yarn'
+          cache: 'pnpm'
 
-      - run: yarn install
+      - name: Install dependencies
+        run: pnpm install
 
       - name: ci
-        id: ci
         env:
           BLOB_READ_WRITE_TOKEN: vercel_blob_rw_xxxxxxxxxxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
           BLOB_STORE_ID: "xxxxxxxxxxxxxxxx"
-        run: yarn ci
+        id: ci
+        run: pnpm cicd
 
       - name: code coverage report
         if: steps.ci.outcome == 'success'
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: coverage/coverage.xml
+          filename: coverage/cobertura-coverage.xml
           badge: true
           format: markdown
           hide_branch_rate: false
@@ -107,4 +111,3 @@ jobs:
                 labels: ['tests passed']
               })
             }
-

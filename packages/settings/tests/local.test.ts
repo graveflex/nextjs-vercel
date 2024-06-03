@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { LOCAL_DOMAIN, NEXT_PORT, PROJECT_NAME } from '../index';
 import { getWebUrl } from '../utils';
 

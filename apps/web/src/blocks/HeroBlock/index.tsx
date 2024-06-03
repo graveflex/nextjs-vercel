@@ -151,7 +151,7 @@ function HeroBlock({
       <ContentWrapper className={className}>
         {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
         {title && <Title>{title}</Title>}
-        {subTitle && <SubTitle content={subTitle} />}
+        {subTitle && <SubTitle {...subTitle} />}
         {(input || cta) && (
           <InputWrapper className={className}>
             {input?.type && <Input {...input} />}

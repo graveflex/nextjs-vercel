@@ -1,4 +1,4 @@
-import { vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { LOCAL_DOMAIN, NEXT_PORT, PROJECT_NAME } from '../index';
 import { getWebUrl } from '../utils';
