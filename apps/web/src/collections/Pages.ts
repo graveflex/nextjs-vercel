@@ -1,7 +1,8 @@
 import { WEB_URL } from '@mono/settings';
-// InsertBlockConfigs
 import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
 import HeroBlock from '@mono/web/blocks/HeroBlock/HeroBlock.config';
+// InsertBlockConfigs
+import MarkdownBlock from '@mono/web/blocks/MarkdownBlock/MarkdownBlock.config';
 import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
 import SEOConfig from '@mono/web/payload/fields/SEO';
 import formatSlug from '@mono/web/payload/utils/formatSlug';
@@ -89,6 +90,8 @@ const Pages: CollectionConfig = {
       type: 'blocks',
       blocks: [
         // InsertBlockConfigFields
+        MarkdownBlock,
+
         FAQBlock,
         TextImageBlock,
         HeroBlock
