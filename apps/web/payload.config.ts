@@ -4,6 +4,7 @@ import Images from '@mono/web/collections/Images';
 import Pages from '@mono/web/collections/Pages';
 import Users from '@mono/web/collections/User';
 import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.config';
+import Videos from '@mono/web/collections/Videos';
 import Nav from '@mono/web/globals/Layout/Layout.config';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import type { FeatureProviderServer } from '@payloadcms/richtext-lexical';
@@ -140,7 +141,7 @@ export default buildConfig({
         UploadFeature()
       ] as FeatureProviderServer<unknown, unknown>[]
   }),
-  collections: [Pages, Users, Files, Images],
+  collections: [Pages, Users, Files, Images, Videos],
   i18n: {
     fallbackLanguage: 'en'
   },
@@ -158,7 +159,8 @@ export default buildConfig({
       enabled: true,
       collections: {
         [Images.slug]: true,
-        [Files.slug]: true
+        [Files.slug]: true,
+        [Videos.slug]: true
       },
       token: process.env.BLOB_READ_WRITE_TOKEN as string
     })
