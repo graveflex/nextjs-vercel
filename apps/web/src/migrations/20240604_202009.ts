@@ -440,6 +440,21 @@ CREATE TABLE IF NOT EXISTS "users" (
 	"lock_until" timestamp(3) with time zone
 );
 
+CREATE TABLE IF NOT EXISTS "files" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"title" varchar NOT NULL,
+	"description" varchar,
+	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
+	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
+	"url" varchar,
+	"thumbnail_u_r_l" varchar,
+	"filename" varchar,
+	"mime_type" varchar,
+	"filesize" numeric,
+	"width" numeric,
+	"height" numeric
+);
+
 CREATE TABLE IF NOT EXISTS "images" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"image_props_fill" boolean,
@@ -604,6 +619,8 @@ CREATE INDEX IF NOT EXISTS "_pages_v_rels_parent_idx" ON "_pages_v_rels" ("paren
 CREATE INDEX IF NOT EXISTS "_pages_v_rels_path_idx" ON "_pages_v_rels" ("path");
 CREATE INDEX IF NOT EXISTS "users_created_at_idx" ON "users" ("created_at");
 CREATE UNIQUE INDEX IF NOT EXISTS "users_email_idx" ON "users" ("email");
+CREATE INDEX IF NOT EXISTS "files_created_at_idx" ON "files" ("created_at");
+CREATE UNIQUE INDEX IF NOT EXISTS "files_filename_idx" ON "files" ("filename");
 CREATE INDEX IF NOT EXISTS "images_created_at_idx" ON "images" ("created_at");
 CREATE UNIQUE INDEX IF NOT EXISTS "images_filename_idx" ON "images" ("filename");
 CREATE INDEX IF NOT EXISTS "images_sizes_thumbnail_sizes_thumbnail_filename_idx" ON "images" ("sizes_thumbnail_filename");
@@ -831,6 +848,7 @@ DROP TABLE "_pages_v_blocks_hero_block_locales";
 DROP TABLE "_pages_v";
 DROP TABLE "_pages_v_rels";
 DROP TABLE "users";
+DROP TABLE "files";
 DROP TABLE "images";
 DROP TABLE "images_locales";
 DROP TABLE "payload_preferences";
