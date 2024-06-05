@@ -1,4 +1,5 @@
 import { DEFAULT_LOCALE, LOCALE_SETTINGS, WEB_URL } from '@mono/settings';
+import Files from '@mono/web/collections/Files';
 import Images from '@mono/web/collections/Images';
 import Pages from '@mono/web/collections/Pages';
 import Users from '@mono/web/collections/User';
@@ -124,13 +125,22 @@ export default buildConfig({
               admin: {
                 condition: (_, siblingData) => siblingData.type === 'phone'
               }
+            },
+            {
+              name: 'file',
+              label: 'File',
+              type: 'upload',
+              relationTo: 'files',
+              admin: {
+                condition: (_, siblingData) => siblingData.type === 'file'
+              }
             }
           ]
         }),
         UploadFeature()
       ] as FeatureProviderServer<unknown, unknown>[]
   }),
-  collections: [Pages, Users, Images],
+  collections: [Pages, Users, Files, Images],
   i18n: {
     fallbackLanguage: 'en'
   },
@@ -147,7 +157,8 @@ export default buildConfig({
     vercelBlobStorage({
       enabled: true,
       collections: {
-        [Images.slug]: true
+        [Images.slug]: true,
+        [Files.slug]: true
       },
       token: process.env.BLOB_READ_WRITE_TOKEN as string
     })
