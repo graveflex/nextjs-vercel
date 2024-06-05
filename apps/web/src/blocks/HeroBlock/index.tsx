@@ -123,15 +123,6 @@ const InputWrapper = styled.div`
   }
 `;
 
-const Button = styled.button`
-  text-align: center;
-  width: 100%;
-
-  ${({ theme: { mq } }) => mq.sm`
-    width: min(100%, 206px);
-  `};
-`;
-
 function HeroBlock({
   eyebrow,
   title,
