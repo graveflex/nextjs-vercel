@@ -128,10 +128,6 @@ function CTA({
               {
                 label: 'Link',
                 value: 'link'
-              },
-              {
-                label: 'Featured',
-                value: 'featured'
               }
             ],
             admin: {

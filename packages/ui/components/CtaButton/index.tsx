@@ -57,24 +57,6 @@ function CtaButton({ cta, color, linkType = 'button' }: CtaButtonType) {
     );
   }
 
-  if (cta.variant === 'featured') {
-    return (
-      <a
-        href={evalHref() as string}
-        target={cta?.newTab ? '_blank' : ''}
-        rel="noreferrer"
-      >
-        <Button
-          $color={color || 'secondary'}
-          $variant={cta?.variant || 'rounded-outline'}
-          icon={icon}
-        >
-          {cta?.label || 'Call to Action'}
-        </Button>
-      </a>
-    );
-  }
-
   return (
     <Button
       $color={color || 'secondary'}

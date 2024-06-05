@@ -312,7 +312,7 @@ export interface CTAType {
   phoneHref?: string | null;
   newTab?: boolean | null;
   fileHref?: number | File | null;
-  variant?: ('rounded-outline' | 'link' | 'featured') | null;
+  variant?: ('rounded-outline' | 'link') | null;
   icon?: IconSelect;
 }
 /**
