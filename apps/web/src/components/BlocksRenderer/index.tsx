@@ -11,6 +11,10 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
+  markdownBlock: dynamic(() => import('@mono/web/blocks/MarkdownBlock'), {
+    ...defaultOpts
+  }),
+
   faqBlock: dynamic(() => import('@mono/web/blocks/FAQBlock'), {
     ...defaultOpts
   }),

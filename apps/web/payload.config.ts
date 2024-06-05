@@ -2,6 +2,7 @@ import { DEFAULT_LOCALE, LOCALE_SETTINGS, WEB_URL } from '@mono/settings';
 import Images from '@mono/web/collections/Images';
 import Pages from '@mono/web/collections/Pages';
 import Users from '@mono/web/collections/User';
+import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.config';
 import Nav from '@mono/web/globals/Layout/Layout.config';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import type { FeatureProviderServer } from '@payloadcms/richtext-lexical';
@@ -138,7 +139,7 @@ export default buildConfig({
     defaultLocale: DEFAULT_LOCALE,
     fallback: true
   },
-  globals: [Nav],
+  globals: [Nav, FourOhFour],
   routes: {
     api: '/api'
   },
