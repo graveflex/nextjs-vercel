@@ -17,13 +17,10 @@ type Story = StoryObj<ButtonProps>;
 
 export const Defaults: Story = {
   args: {
-    icon: { name: 'ArrowRight', color: 'currentColor' }
-  }
-};
-
-export const Submit: Story = {
-  args: {
-    type: 'submit',
-    icon: { name: 'ArrowRight', color: 'currentColor' }
+    children: 'Call to Action',
+    icon: { name: 'ArrowRight', color: 'currentColor' },
+    $variant: 'rounded-outline',
+    $color: 'secondary',
+    type: 'button'
   }
 };

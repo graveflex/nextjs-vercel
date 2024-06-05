@@ -31,12 +31,11 @@ const coreIcons = {
 };
 
 function IconSelect({
-  name,
   interfaceName,
   defaultValue
 }: Partial<GroupField> = {}): GroupField {
   return {
-    name: name || 'icon',
+    name: 'icon',
     interfaceName: interfaceName || 'IconSelect',
     type: 'group',
     fields: [

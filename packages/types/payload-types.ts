@@ -23,6 +23,7 @@ export interface Config {
   collections: {
     pages: Page;
     users: User;
+    files: File;
     images: Image;
     videos: Video;
     'payload-preferences': PayloadPreference;
@@ -30,6 +31,7 @@ export interface Config {
   };
   globals: {
     nav: Nav;
+    'four-oh-four': FourOhFour;
   };
   locale: 'en-US' | 'es-US';
   user: User & {
@@ -302,8 +304,73 @@ export interface Image {
  * via the `definition` "CTAType".
  */
 export interface CTAType {
+  type?: ('internal' | 'external' | 'email' | 'phone' | 'file') | null;
   label?: string | null;
-  href?: string | null;
+  internalHref?: (number | null) | Page;
+  externalHref?: string | null;
+  emailHref?: string | null;
+  phoneHref?: string | null;
+  newTab?: boolean | null;
+  fileHref?: number | File | null;
+  variant?: ('rounded-outline' | 'link' | 'featured') | null;
+  icon?: IconSelect;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "files".
+ */
+export interface File {
+  id: number;
+  title: string;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconSelect".
+ */
+export interface IconSelect {
+  name?:
+    | (
+        | 'Check'
+        | 'ArrowUp'
+        | 'ArrowLeft'
+        | 'ArrowRight'
+        | 'ArrowDown'
+        | 'CaretDown'
+        | 'CaretUp'
+        | 'CaretRight'
+        | 'CaretLeft'
+        | 'Close'
+        | 'DoubleCaretDown'
+        | 'DoubleCaretUp'
+        | 'DoubleCaretRight'
+        | 'DoubleCaretLeft'
+        | 'Error'
+        | 'LinkOut'
+        | 'MinusSign'
+        | 'Person'
+        | 'PlusSign'
+        | 'Quote'
+        | 'Search'
+        | 'SolidArrowDown'
+        | 'SolidArrowUp'
+        | 'SolidArrowRight'
+        | 'SolidArrowLeft'
+        | 'ArrowNesting'
+      )
+    | null;
+  width?: string | null;
+  height?: string | null;
+  color?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -451,6 +518,30 @@ export interface Nav {
     copyright?: string | null;
     secondary?: MenuItems;
   };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "four-oh-four".
+ */
+export interface FourOhFour {
+  id: number;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
