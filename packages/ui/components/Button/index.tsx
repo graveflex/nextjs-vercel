@@ -3,6 +3,7 @@
 'use client';
 
 import React from 'react';
+import RenderIcon, { type IconProps } from '@mono/ui/components/RenderIcon';
 import styled, { css } from '@refract-ui/sc';
 import type { DefaultTheme } from 'styled-components';
 
@@ -12,7 +13,8 @@ export type ButtonProps = {
   color: colorProps;
   size?: 'sm' | 'md' | 'lg';
   type?: 'button' | 'reset' | 'submit';
-  variant?: 'solid' | 'outlined' | 'link';
+  variant?: 'rounded-outline' | 'link' | 'featured';
+  icon?: IconProps;
   onClick?: () => void;
 };
 
@@ -26,8 +28,9 @@ function Button({
   type = 'button',
   color = 'primary',
   size = 'md',
-  variant = 'solid',
-  onClick = () => console.log('@--> click')
+  variant = 'rounded-outline',
+  onClick = () => console.log('@--> click'),
+  icon
 }: ButtonProps) {
   return (
     // eslint-disable-next-line react/button-has-type
@@ -37,8 +40,10 @@ function Button({
       color={color}
       size={size}
       variant={variant}
+      icon={icon}
     >
       Boop
+      {icon && RenderIcon(icon)}
     </StyledButton>
   );
 }

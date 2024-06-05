@@ -16,11 +16,14 @@ export default meta;
 type Story = StoryObj<ButtonProps>;
 
 export const Defaults: Story = {
-  args: {}
+  args: {
+    icon: { name: 'ArrowRight', color: 'currentColor' }
+  }
 };
 
 export const Submit: Story = {
   args: {
-    type: 'submit'
+    type: 'submit',
+    icon: { name: 'ArrowRight', color: 'currentColor' }
   }
 };
