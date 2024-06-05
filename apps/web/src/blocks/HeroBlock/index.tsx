@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import type { HeroBlockT as PayloadType } from '@mono/types/payload-types';
+import CtaButton from '@mono/ui/components/CtaButton';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
 import Wrapper from '@mono/ui/components/Wrapper';
@@ -155,11 +155,7 @@ function HeroBlock({
         {(input || cta) && (
           <InputWrapper className={className}>
             {input?.type && <Input {...input} />}
-            {cta?.label && cta?.href && (
-              <Link href={cta?.href}>
-                <Button>{cta?.label}</Button>
-              </Link>
-            )}
+            {cta?.label && <CtaButton cta={cta} />}
           </InputWrapper>
         )}
       </ContentWrapper>

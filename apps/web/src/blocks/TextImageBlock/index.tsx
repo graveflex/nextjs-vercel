@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import type { TextImageBlockT as PayloadType } from '@mono/types/payload-types';
+import CtaButton from '@mono/ui/components/CtaButton';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
 import genClassName from '@mono/ui/utils/genClassname';
@@ -77,15 +77,6 @@ const ContentWrapper = styled.div`
 
 const Title = styled.h3({ m: 0, p: 0 })``;
 
-const Button = s(Link)`
-  text-align: center;
-  width: 100%;
-
-  ${({ theme: { mq } }) => mq.sm`
-    width: min(100%, 200px);
-  `};
-`;
-
 function TextImageBlock({
   title,
   content,
@@ -102,11 +93,7 @@ function TextImageBlock({
         <ContentWrapper>
           {title && <Title>{title}</Title>}
           {content && <RichText {...content} />}
-          {cta?.label && cta?.href && (
-            <Button href={cta?.href} className="button">
-              {cta?.label}
-            </Button>
-          )}
+          {cta?.label && <CtaButton cta={cta} />}
         </ContentWrapper>
       </InnerWrapper>
     </Wrapper>

@@ -53,8 +53,15 @@ export const Defaults: Story = {
     },
     eyebrow: 'Eyebrow',
     cta: {
-      href: 'https://google.com',
-      label: 'Test'
+      label: 'Test',
+      icon: { name: 'ArrowRight' },
+      internalHref: {
+        slug: '/',
+        id: 1,
+        pageTitle: 'Home',
+        updatedAt: '2024-01-05T20:29:44.749Z',
+        createdAt: '2024-01-05T20:29:44.749Z'
+      }
     },
     input: {
       type: 'text'
@@ -107,7 +114,13 @@ export const MissingProps: Story = {
       }
     },
     cta: {
-      href: 'https://google.com',
+      internalHref: {
+        slug: '/',
+        id: 1,
+        pageTitle: 'Home',
+        updatedAt: '2024-01-05T20:29:44.749Z',
+        createdAt: '2024-01-05T20:29:44.749Z'
+      },
       label: 'Test'
     },
     image: {
