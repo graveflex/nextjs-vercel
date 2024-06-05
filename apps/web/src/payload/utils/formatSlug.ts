@@ -3,7 +3,7 @@ import type { FieldHook } from 'payload/types';
 const format = (val: string): string =>
   val
     .replace(/ /g, '-')
-    .replace(/[^\w-]+/g, '')
+    .replace(/^[^\w-]+/, '')
     .toLowerCase();
 
 const formatSlug =
@@ -17,11 +17,11 @@ const formatSlug =
     }
 
     if (typeof value === 'string') {
-      return format(value);
+      return format(value.replace(/^\//, ''));
     }
 
     if (fallbackData && typeof fallbackData === 'string') {
-      return format(fallbackData);
+      return format(fallbackData.replace(/^\//, ''));
     }
 
     return value;

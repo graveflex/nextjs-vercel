@@ -14,6 +14,7 @@ export const LOCAL = process.env.LOCAL === 'true';
 const FORCE_WEB_URL = process.env.FORCE_WEB_URL;
 
 export const DEFAULT_LOCALE = 'en-US' as const;
+export const FALLBACK_LOCALE = 'en' as const;
 export const LOCALE_SETTINGS = [
   {
     label: 'US English',
