@@ -1,7 +1,6 @@
 import React from 'react';
 import { type Image as PayloadImageProps } from '@mono/types/payload-types';
 
-
 import ResponsivePayloadImage from '../../ResponsivePayloadImage';
 import type { PayloadRichTextProps, SerializedPayloadNode } from '..';
 
