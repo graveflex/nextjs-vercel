@@ -18,7 +18,7 @@ type Story = StoryObj<PayloadLinkType>;
 export const Defaults: Story = {
   args: {
     href: '/',
-    text: 'This is a link',
+    children: 'This is a link',
     scroll: true,
     newTab: false
   }
