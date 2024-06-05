@@ -53,7 +53,7 @@ export const Defaults: Story = {
     },
     eyebrow: 'Eyebrow',
     cta: {
-      label: 'Test',
+      label: 'Call to Action',
       icon: { name: 'ArrowRight' },
       internalHref: {
         slug: '/',
