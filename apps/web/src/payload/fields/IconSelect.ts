@@ -1,7 +1,12 @@
 import type { GroupField } from 'payload/types';
 
-const coreIcons = {
+export const coreIcons = {
   // InsertIconName
+  Login: {},
+  Menu: {},
+  Location: {},
+  Calendar: {},
+  PersonBust: {},
   Check: {},
   ArrowUp: {},
   ArrowLeft: {},
@@ -23,6 +28,9 @@ const coreIcons = {
   PlusSign: {},
   Quote: {},
   Search: {},
+  Phone: {},
+  Job: {},
+  Email: {},
   SolidArrowDown: {},
   SolidArrowUp: {},
   SolidArrowRight: {},
@@ -36,47 +44,64 @@ function IconSelect({
   defaultValue
 }: Partial<GroupField> = {}): GroupField {
   return {
-    name: name || 'icon',
+    name: 'icon',
     interfaceName: interfaceName || 'IconSelect',
     type: 'group',
     fields: [
       {
-        name: 'name',
-        label: 'Icon Name',
-        type: 'select',
-        options: Object.keys(coreIcons).map((icon) => ({
-          value: icon,
-          label: icon
-        })),
-        defaultValue: defaultValue || 'Check',
+        label: 'Icon Settings',
+        type: 'collapsible',
         admin: {
-          isClearable: true
-        }
-      },
-      {
-        name: 'width',
-        label: 'Width',
-        type: 'text',
-        admin: {
-          placeholder: '35'
-        }
-      },
-      {
-        name: 'height',
-        label: 'Height',
-        type: 'text',
-        admin: {
-          placeholder: '35'
-        }
-      },
-      {
-        name: 'color',
-        label: 'Color',
-        type: 'text',
-        admin: {
-          // future enhancement- select field with theme colors
-          placeholder: '#0C0E0F'
-        }
+          initCollapsed: true
+        },
+        fields: [
+          {
+            name: 'name',
+            dbName: `${name?.toLowerCase()}_ic`,
+            label: 'Icon Name',
+            type: 'select',
+            options: Object.keys(coreIcons).map((icon) => ({
+              value: icon,
+              label: icon
+            })),
+            defaultValue,
+            admin: {
+              isClearable: true
+            }
+          },
+          {
+            name: 'size',
+            label: 'Icon Size (width/height)',
+            type: 'select',
+            dbName: `${name?.toLowerCase()}_iw`,
+            options: [
+              { value: '35', label: 'x-large (35px)' },
+              { value: '30', label: 'large (30px)' },
+              { value: '25', label: 'medium (25px)' },
+              { value: '20', label: 'small (20px)' }
+            ],
+            defaultValue: '35',
+            admin: {
+              isClearable: false,
+              description: 'Icon height/width in pixels - x-large is default.',
+              condition: (siblingData) => {
+                if (siblingData?.name === null) {
+                  return false;
+                }
+                return true;
+              }
+            }
+          },
+          {
+            name: 'color',
+            label: 'Color',
+            type: 'text',
+            admin: {
+              // future enhancement- select field with theme colors
+              placeholder: '#0C0E0F'
+            }
+          }
+        ]
       }
     ]
   };

@@ -82,7 +82,13 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "enum_pages_blocks_text_image_block_cta_undefined_cta_name" AS ENUM('Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
+ CREATE TYPE "undefined_cta_ic" AS ENUM('Login', 'Menu', 'Location', 'Calendar', 'PersonBust', 'Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'Phone', 'Job', 'Email', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "undefined_cta_iw" AS ENUM('20', '25', '30', '35');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -101,12 +107,6 @@ END $$;
 
 DO $$ BEGIN
  CREATE TYPE "enum_pages_blocks_hero_block_input_type" AS ENUM('text');
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
- CREATE TYPE "enum_pages_blocks_hero_block_cta_undefined_cta_name" AS ENUM('Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -154,12 +154,6 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "enum__pages_v_blocks_text_image_block_cta_undefined_cta_name" AS ENUM('Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
  CREATE TYPE "enum__pages_v_blocks_hero_block_block_config_theme" AS ENUM('_', 'light', 'dark');
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -173,12 +167,6 @@ END $$;
 
 DO $$ BEGIN
  CREATE TYPE "enum__pages_v_blocks_hero_block_input_type" AS ENUM('text');
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
- CREATE TYPE "enum__pages_v_blocks_hero_block_cta_undefined_cta_name" AS ENUM('Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -311,10 +299,9 @@ CREATE TABLE IF NOT EXISTS "pages_blocks_text_image_block" (
 	"cta_phone_href" varchar,
 	"cta_new_tab" boolean,
 	"cta_variant" "undefined_cta_v",
-	"cta_undefined_cta_name" "enum_pages_blocks_text_image_block_cta_undefined_cta_name",
-	"cta_undefined_cta_width" varchar,
-	"cta_undefined_cta_height" varchar,
-	"cta_undefined_cta_color" varchar,
+	"cta_icon_name" "undefined_cta_ic",
+	"cta_icon_size" "undefined_cta_iw",
+	"cta_icon_color" varchar,
 	"block_name" varchar
 );
 
@@ -354,10 +341,9 @@ CREATE TABLE IF NOT EXISTS "pages_blocks_hero_block" (
 	"cta_phone_href" varchar,
 	"cta_new_tab" boolean,
 	"cta_variant" "undefined_cta_v",
-	"cta_undefined_cta_name" "enum_pages_blocks_hero_block_cta_undefined_cta_name",
-	"cta_undefined_cta_width" varchar,
-	"cta_undefined_cta_height" varchar,
-	"cta_undefined_cta_color" varchar,
+	"cta_icon_name" "undefined_cta_ic",
+	"cta_icon_size" "undefined_cta_iw",
+	"cta_icon_color" varchar,
 	"block_name" varchar
 );
 
@@ -496,10 +482,9 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_text_image_block" (
 	"cta_phone_href" varchar,
 	"cta_new_tab" boolean,
 	"cta_variant" "undefined_cta_v",
-	"cta_undefined_cta_name" "enum__pages_v_blocks_text_image_block_cta_undefined_cta_name",
-	"cta_undefined_cta_width" varchar,
-	"cta_undefined_cta_height" varchar,
-	"cta_undefined_cta_color" varchar,
+	"cta_icon_name" "undefined_cta_ic",
+	"cta_icon_size" "undefined_cta_iw",
+	"cta_icon_color" varchar,
 	"_uuid" varchar,
 	"block_name" varchar
 );
@@ -540,10 +525,9 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_hero_block" (
 	"cta_phone_href" varchar,
 	"cta_new_tab" boolean,
 	"cta_variant" "undefined_cta_v",
-	"cta_undefined_cta_name" "enum__pages_v_blocks_hero_block_cta_undefined_cta_name",
-	"cta_undefined_cta_width" varchar,
-	"cta_undefined_cta_height" varchar,
-	"cta_undefined_cta_color" varchar,
+	"cta_icon_name" "undefined_cta_ic",
+	"cta_icon_size" "undefined_cta_iw",
+	"cta_icon_color" varchar,
 	"_uuid" varchar,
 	"block_name" varchar
 );
