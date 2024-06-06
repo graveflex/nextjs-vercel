@@ -164,6 +164,8 @@ export interface Image {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
   sizes?: {
     thumbnail?: {
       url?: string | null;
@@ -240,6 +242,8 @@ export interface File {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -248,11 +252,6 @@ export interface File {
 export interface IconSelect {
   name?:
     | (
-        | 'Login'
-        | 'Menu'
-        | 'Location'
-        | 'Calendar'
-        | 'PersonBust'
         | 'Check'
         | 'ArrowUp'
         | 'ArrowLeft'
@@ -274,9 +273,6 @@ export interface IconSelect {
         | 'PlusSign'
         | 'Quote'
         | 'Search'
-        | 'Phone'
-        | 'Job'
-        | 'Email'
         | 'SolidArrowDown'
         | 'SolidArrowUp'
         | 'SolidArrowRight'
@@ -708,6 +704,8 @@ export interface Video {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

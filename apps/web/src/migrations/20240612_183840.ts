@@ -22,7 +22,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "card_cta_ic" AS ENUM('Login', 'Menu', 'Location', 'Calendar', 'PersonBust', 'Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'Phone', 'Job', 'Email', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
+ CREATE TYPE "card_cta_ic" AS ENUM('Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -218,6 +218,14 @@ END $$;
 export async function down({ payload }: MigrateDownArgs): Promise<void> {
 await payload.db.drizzle.execute(sql`
 
+ALTER TYPE "undefined_cta_ic" ADD VALUE 'Login';
+ALTER TYPE "undefined_cta_ic" ADD VALUE 'Menu';
+ALTER TYPE "undefined_cta_ic" ADD VALUE 'Location';
+ALTER TYPE "undefined_cta_ic" ADD VALUE 'Calendar';
+ALTER TYPE "undefined_cta_ic" ADD VALUE 'PersonBust';
+ALTER TYPE "undefined_cta_ic" ADD VALUE 'Phone';
+ALTER TYPE "undefined_cta_ic" ADD VALUE 'Job';
+ALTER TYPE "undefined_cta_ic" ADD VALUE 'Email';
 DROP TABLE "pages_blocks_card_grid_block_cards_card_ctas";
 DROP TABLE "pages_blocks_card_grid_block_cards";
 DROP TABLE "pages_blocks_card_grid_block";

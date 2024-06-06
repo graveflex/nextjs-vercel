@@ -1,5 +1,5 @@
 {
-  "id": "d8e7a232-06a3-46df-81c8-8e853587d7f8",
+  "id": "66d6b60b-b43a-40fc-b9e3-0e1901ad9adf",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -3717,6 +3717,18 @@
           "type": "numeric",
           "primaryKey": false,
           "notNull": false
+        },
+        "focal_x": {
+          "name": "focal_x",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "focal_y": {
+          "name": "focal_y",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {
@@ -3843,6 +3855,18 @@
         },
         "height": {
           "name": "height",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "focal_x": {
+          "name": "focal_x",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "focal_y": {
+          "name": "focal_y",
           "type": "numeric",
           "primaryKey": false,
           "notNull": false
@@ -4220,6 +4244,18 @@
         },
         "height": {
           "name": "height",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "focal_x": {
+          "name": "focal_x",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "focal_y": {
+          "name": "focal_y",
           "type": "numeric",
           "primaryKey": false,
           "notNull": false
@@ -4989,11 +5025,6 @@
     "card_cta_ic": {
       "name": "card_cta_ic",
       "values": {
-        "Login": "Login",
-        "Menu": "Menu",
-        "Location": "Location",
-        "Calendar": "Calendar",
-        "PersonBust": "PersonBust",
         "Check": "Check",
         "ArrowUp": "ArrowUp",
         "ArrowLeft": "ArrowLeft",
@@ -5015,9 +5046,6 @@
         "PlusSign": "PlusSign",
         "Quote": "Quote",
         "Search": "Search",
-        "Phone": "Phone",
-        "Job": "Job",
-        "Email": "Email",
         "SolidArrowDown": "SolidArrowDown",
         "SolidArrowUp": "SolidArrowUp",
         "SolidArrowRight": "SolidArrowRight",
@@ -5097,11 +5125,6 @@
     "undefined_cta_ic": {
       "name": "undefined_cta_ic",
       "values": {
-        "Login": "Login",
-        "Menu": "Menu",
-        "Location": "Location",
-        "Calendar": "Calendar",
-        "PersonBust": "PersonBust",
         "Check": "Check",
         "ArrowUp": "ArrowUp",
         "ArrowLeft": "ArrowLeft",
@@ -5123,9 +5146,6 @@
         "PlusSign": "PlusSign",
         "Quote": "Quote",
         "Search": "Search",
-        "Phone": "Phone",
-        "Job": "Job",
-        "Email": "Email",
         "SolidArrowDown": "SolidArrowDown",
         "SolidArrowUp": "SolidArrowUp",
         "SolidArrowRight": "SolidArrowRight",
