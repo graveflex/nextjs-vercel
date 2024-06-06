@@ -12,7 +12,7 @@ const Svg<%= name %> = (props: SVGProps<SVGSVGElement>) => {
     <svg 
       width={width || '25'}
       height={height || '25'}
-      viewBox={viewBox || '0 0 35 35'}
+      viewBox={viewBox || '0 0 25 25'}
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
       {...props} 
