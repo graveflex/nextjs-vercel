@@ -1,11 +1,11 @@
-import type { InputType } from '@mono/types/payload-types';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import Input from '.';
+import type { ErrorType } from '.';
+import Error from '.';
 
-const meta: Meta<InputType> = {
-  title: 'web/Input',
-  component: Input,
+const meta: Meta<ErrorType> = {
+  title: 'ui/Error',
+  component: Error,
   parameters: {
     layout: 'centered'
   },
@@ -13,7 +13,7 @@ const meta: Meta<InputType> = {
 };
 
 export default meta;
-type Story = StoryObj<InputType>;
+type Story = StoryObj<ErrorType>;
 
 export const Defaults: Story = {
   args: {
