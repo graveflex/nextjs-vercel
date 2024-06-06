@@ -14,6 +14,7 @@ import {
   HeadingFeature,
   HorizontalRuleFeature,
   InlineCodeFeature,
+  InlineToolbarFeature,
   ItalicFeature,
   lexicalEditor,
   LinkFeature,
@@ -138,7 +139,8 @@ export default buildConfig({
             }
           ]
         }),
-        UploadFeature()
+        UploadFeature(),
+        InlineToolbarFeature()
       ] as FeatureProviderServer<unknown, unknown>[]
   }),
   collections: [Pages, Users, Files, Images, Videos],
