@@ -344,11 +344,6 @@ export interface File {
 export interface IconSelect {
   name?:
     | (
-        | 'Login'
-        | 'Menu'
-        | 'Location'
-        | 'Calendar'
-        | 'PersonBust'
         | 'Check'
         | 'ArrowUp'
         | 'ArrowLeft'
@@ -370,9 +365,6 @@ export interface IconSelect {
         | 'PlusSign'
         | 'Quote'
         | 'Search'
-        | 'Phone'
-        | 'Job'
-        | 'Email'
         | 'SolidArrowDown'
         | 'SolidArrowUp'
         | 'SolidArrowRight'
