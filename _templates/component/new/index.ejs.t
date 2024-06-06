@@ -1,5 +1,5 @@
 ---
-to: <%= app_name %>/<%= path %>/<%= name %>/index.tsx
+to: packages/ui/<%= path %>/<%= name %>/index.tsx
 ---
 'use client';
 
@@ -8,7 +8,7 @@ import styled from '@refract-ui/sc';
 
 const Container = styled.div``;
 
-export type <%= name %>Type = {
+export type <%= name%>Type = {
   placeholder?: string;
 };
 

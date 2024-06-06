@@ -1,11 +1,11 @@
 ---
-to: <%= app_name %>/<%= path %>/<%= name %>/__tests__/index.test.tsx
+to: packages/ui/<%= path %>/<%= name %>/__tests__/index.test.tsx
 ---
 import React from 'react';
+import projectAnnotations from '@mono/ui/utils/testSetup';
 import { composeStories } from '@storybook/react';
 import { render } from '@testing-library/react';
 
-import projectAnnotations from @mono/ui/utils/testSetup';
 import * as stories from '../<%= name %>.stories';
 
 const { Defaults } = composeStories(stories, projectAnnotations);

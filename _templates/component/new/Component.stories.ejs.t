@@ -1,13 +1,13 @@
 ---
-to: <%= app_name %>/<%= path %>/<%= name %>/<%= name %>.stories.tsx
+to: packages/ui/<%= path %>/<%= name %>/<%= name %>.stories.tsx
 ---
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { <%= name %>Type } from '.';
+import type { <%= name%>Type } from '.';
 import <%= name %> from '.';
 
-const meta: Meta<<%= name %>Type> = {
-  title: '<%= app_name === `apps/web/src` ? `web` : `ui` %>/<%= name %>',
+const meta: Meta<<%= name%>Type> = {
+  title: 'ui/<%= name %>',
   component: <%= name %>,
   parameters: {
     layout: 'centered'
@@ -16,7 +16,7 @@ const meta: Meta<<%= name %>Type> = {
 };
 
 export default meta;
-type Story = StoryObj<<%= name %>Type>;
+type Story = StoryObj<<%= name%>Type>;
 
 export const Defaults: Story = {
   args: {
