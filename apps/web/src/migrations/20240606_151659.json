@@ -1,5 +1,5 @@
 {
-  "id": "b41aca2a-7a86-4931-86c9-62ed2098099a",
+  "id": "d38a72e8-8b1f-4c8e-8c3e-02f5397429f1",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -694,26 +694,26 @@
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_name": {
-          "name": "cta_icon_name",
-          "type": "enum_pages_blocks_text_image_block_cta_icon_name",
+        "cta_undefined_cta_name": {
+          "name": "cta_undefined_cta_name",
+          "type": "enum_pages_blocks_text_image_block_cta_undefined_cta_name",
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_width": {
-          "name": "cta_icon_width",
+        "cta_undefined_cta_width": {
+          "name": "cta_undefined_cta_width",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_height": {
-          "name": "cta_icon_height",
+        "cta_undefined_cta_height": {
+          "name": "cta_undefined_cta_height",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_color": {
-          "name": "cta_icon_color",
+        "cta_undefined_cta_color": {
+          "name": "cta_undefined_cta_color",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
@@ -989,26 +989,26 @@
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_name": {
-          "name": "cta_icon_name",
-          "type": "enum_pages_blocks_hero_block_cta_icon_name",
+        "cta_undefined_cta_name": {
+          "name": "cta_undefined_cta_name",
+          "type": "enum_pages_blocks_hero_block_cta_undefined_cta_name",
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_width": {
-          "name": "cta_icon_width",
+        "cta_undefined_cta_width": {
+          "name": "cta_undefined_cta_width",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_height": {
-          "name": "cta_icon_height",
+        "cta_undefined_cta_height": {
+          "name": "cta_undefined_cta_height",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_color": {
-          "name": "cta_icon_color",
+        "cta_undefined_cta_color": {
+          "name": "cta_undefined_cta_color",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
@@ -2051,26 +2051,26 @@
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_name": {
-          "name": "cta_icon_name",
-          "type": "enum__pages_v_blocks_text_image_block_cta_icon_name",
+        "cta_undefined_cta_name": {
+          "name": "cta_undefined_cta_name",
+          "type": "enum__pages_v_blocks_text_image_block_cta_undefined_cta_name",
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_width": {
-          "name": "cta_icon_width",
+        "cta_undefined_cta_width": {
+          "name": "cta_undefined_cta_width",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_height": {
-          "name": "cta_icon_height",
+        "cta_undefined_cta_height": {
+          "name": "cta_undefined_cta_height",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_color": {
-          "name": "cta_icon_color",
+        "cta_undefined_cta_color": {
+          "name": "cta_undefined_cta_color",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
@@ -2352,26 +2352,26 @@
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_name": {
-          "name": "cta_icon_name",
-          "type": "enum__pages_v_blocks_hero_block_cta_icon_name",
+        "cta_undefined_cta_name": {
+          "name": "cta_undefined_cta_name",
+          "type": "enum__pages_v_blocks_hero_block_cta_undefined_cta_name",
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_width": {
-          "name": "cta_icon_width",
+        "cta_undefined_cta_width": {
+          "name": "cta_undefined_cta_width",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_height": {
-          "name": "cta_icon_height",
+        "cta_undefined_cta_height": {
+          "name": "cta_undefined_cta_height",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "cta_icon_color": {
-          "name": "cta_icon_color",
+        "cta_undefined_cta_color": {
+          "name": "cta_undefined_cta_color",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
@@ -4216,12 +4216,11 @@
       "name": "undefined_cta_v",
       "values": {
         "rounded-outline": "rounded-outline",
-        "link": "link",
-        "featured": "featured"
+        "link": "link"
       }
     },
-    "enum_pages_blocks_text_image_block_cta_icon_name": {
-      "name": "enum_pages_blocks_text_image_block_cta_icon_name",
+    "enum_pages_blocks_text_image_block_cta_undefined_cta_name": {
+      "name": "enum_pages_blocks_text_image_block_cta_undefined_cta_name",
       "values": {
         "Check": "Check",
         "ArrowUp": "ArrowUp",
@@ -4275,8 +4274,8 @@
         "text": "text"
       }
     },
-    "enum_pages_blocks_hero_block_cta_icon_name": {
-      "name": "enum_pages_blocks_hero_block_cta_icon_name",
+    "enum_pages_blocks_hero_block_cta_undefined_cta_name": {
+      "name": "enum_pages_blocks_hero_block_cta_undefined_cta_name",
       "values": {
         "Check": "Check",
         "ArrowUp": "ArrowUp",
@@ -4363,8 +4362,8 @@
         "imgLeft": "imgLeft"
       }
     },
-    "enum__pages_v_blocks_text_image_block_cta_icon_name": {
-      "name": "enum__pages_v_blocks_text_image_block_cta_icon_name",
+    "enum__pages_v_blocks_text_image_block_cta_undefined_cta_name": {
+      "name": "enum__pages_v_blocks_text_image_block_cta_undefined_cta_name",
       "values": {
         "Check": "Check",
         "ArrowUp": "ArrowUp",
@@ -4418,8 +4417,8 @@
         "text": "text"
       }
     },
-    "enum__pages_v_blocks_hero_block_cta_icon_name": {
-      "name": "enum__pages_v_blocks_hero_block_cta_icon_name",
+    "enum__pages_v_blocks_hero_block_cta_undefined_cta_name": {
+      "name": "enum__pages_v_blocks_hero_block_cta_undefined_cta_name",
       "values": {
         "Check": "Check",
         "ArrowUp": "ArrowUp",
