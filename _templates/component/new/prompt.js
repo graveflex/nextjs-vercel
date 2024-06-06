@@ -9,12 +9,6 @@ module.exports = {
       },
       {
         type: 'select',
-        name: 'app_name',
-        message: 'Which app does this component belong to?',
-        choices: ['packages/ui', 'apps/web/src']
-      },
-      {
-        type: 'select',
         name: 'path',
         message: 'Where should this component be created?',
         choices: ['components', 'fields', 'providers']

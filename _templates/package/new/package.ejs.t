@@ -10,8 +10,8 @@ to: packages/<%= name %>/package.json
     "clean": "rm -rf -- ./.turbo ./dist ./coverage",
     "lint": "eslint . --ext js,jsx,ts,tsx"
   },
-  "devDependencies": {
-    "eslint-config-custom": "*",
-    "@mono/tsconfig": "*"
+  "dependencies": {
+    "eslint-config-custom": "workspace:*",
+    "@mono/tsconfig": "workspace:*"
   }
 }
