@@ -2,11 +2,6 @@ import type { GroupField } from 'payload/types';
 
 export const coreIcons = {
   // InsertIconName
-  Login: {},
-  Menu: {},
-  Location: {},
-  Calendar: {},
-  PersonBust: {},
   Check: {},
   ArrowUp: {},
   ArrowLeft: {},
@@ -28,9 +23,6 @@ export const coreIcons = {
   PlusSign: {},
   Quote: {},
   Search: {},
-  Phone: {},
-  Job: {},
-  Email: {},
   SolidArrowDown: {},
   SolidArrowUp: {},
   SolidArrowRight: {},
