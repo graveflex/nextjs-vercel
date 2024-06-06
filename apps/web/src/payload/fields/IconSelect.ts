@@ -2,15 +2,7 @@ import type { GroupField } from 'payload/types';
 
 export const coreIcons = {
   // InsertIconName
-<<<<<<< HEAD
   Hamburger: {},
-=======
-  Login: {},
-  Menu: {},
-  Location: {},
-  Calendar: {},
-  PersonBust: {},
->>>>>>> parent of 34c772c (Fix/live preview locales [DCH-12] (#105))
   Check: {},
   ArrowUp: {},
   ArrowLeft: {},
@@ -32,9 +24,6 @@ export const coreIcons = {
   PlusSign: {},
   Quote: {},
   Search: {},
-  Phone: {},
-  Job: {},
-  Email: {},
   SolidArrowDown: {},
   SolidArrowUp: {},
   SolidArrowRight: {},
