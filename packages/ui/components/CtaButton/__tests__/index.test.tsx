@@ -3,12 +3,12 @@ import projectAnnotations from '@mono/ui/utils/testSetup';
 import { composeStories } from '@storybook/react';
 import { render } from '@testing-library/react';
 
-import * as stories from '../Button.stories';
+import * as stories from '../CtaButton.stories';
 
 const { Defaults } = composeStories(stories, projectAnnotations);
 
-describe('Button', () => {
-  it('Component mounts', () => {
+describe('CtaButton', () => {
+  it('component mounts', () => {
     render(<Defaults />);
   });
 });

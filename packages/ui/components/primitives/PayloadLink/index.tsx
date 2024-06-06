@@ -3,17 +3,44 @@
 import React from 'react';
 import type { LinkProps } from 'next/link';
 import Link from 'next/link';
+import RenderIcon, { type IconProps } from '@mono/ui/components/RenderIcon';
+import styled from 'styled-components';
 
-export type PayloadLinkProps = LinkProps & {
-  text: string;
+export type PayloadLinkProps = Partial<LinkProps> & {
+  children?: React.ReactNode;
   newTab?: boolean;
+  icon?: IconProps;
+  ariaLabel?: string;
+  title?: string;
 };
 
-function PayloadLink({ href, text, scroll, newTab }: PayloadLinkProps) {
+const LinkStyled = styled(Link)`
+  width: fit-content;
+`;
+
+function PayloadLink({
+  href,
+  children,
+  ariaLabel,
+  icon,
+  scroll,
+  title,
+  newTab
+}: PayloadLinkProps) {
+  if (!href) {
+    return null;
+  }
   return (
-    <Link href={href} scroll={scroll} target={newTab ? '_blank' : undefined}>
-      {text}
-    </Link>
+    <LinkStyled
+      href={href}
+      scroll={scroll}
+      target={newTab ? '_blank' : undefined}
+      aria-label={ariaLabel}
+      title={title}
+    >
+      {children}
+      {icon && <RenderIcon {...icon} />}
+    </LinkStyled>
   );
 }
 

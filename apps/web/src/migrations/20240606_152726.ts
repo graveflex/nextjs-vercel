@@ -16,13 +16,13 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "enum_pages_blocks_faq_block_block_config_theme" AS ENUM('_', 'light', 'dark');
+ CREATE TYPE "enum_pages_blocks_markdown_block_block_config_theme" AS ENUM('_', 'light', 'dark');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "bgColor" AS ENUM('bg', 'fg', 'lightBg', 'titleDefault', 'textDefault', 'accent');
+ CREATE TYPE "bgColor" AS ENUM('fg', 'neutral', 'blue', 'indigo', 'purple');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -46,6 +46,18 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ CREATE TYPE "enum_pages_blocks_markdown_block_max_width" AS ENUM('1440px', '1280px', '992px', '768px', '576px', '320px', 'unset');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "enum_pages_blocks_faq_block_block_config_theme" AS ENUM('_', 'light', 'dark');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  CREATE TYPE "enum_pages_blocks_text_image_block_block_config_theme" AS ENUM('_', 'light', 'dark');
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -53,6 +65,30 @@ END $$;
 
 DO $$ BEGIN
  CREATE TYPE "enum_pages_blocks_text_image_block_block_config_layout" AS ENUM('imgRight', 'imgLeft');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "undefined_cta_t" AS ENUM('internal', 'external', 'email', 'phone', 'file');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "undefined_cta_v" AS ENUM('rounded-outline', 'link');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "undefined_cta_ic" AS ENUM('Login', 'Menu', 'Location', 'Calendar', 'PersonBust', 'Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'Phone', 'Job', 'Email', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "undefined_cta_iw" AS ENUM('20', '25', '30', '35');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -83,6 +119,18 @@ END $$;
 
 DO $$ BEGIN
  CREATE TYPE "enum__pages_v_version_theme" AS ENUM('light', 'dark');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "enum__pages_v_blocks_markdown_block_block_config_theme" AS ENUM('_', 'light', 'dark');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "enum__pages_v_blocks_markdown_block_max_width" AS ENUM('1440px', '1280px', '992px', '768px', '576px', '320px', 'unset');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -153,6 +201,35 @@ EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
+CREATE TABLE IF NOT EXISTS "pages_blocks_markdown_block" (
+	"_order" integer NOT NULL,
+	"_parent_id" integer NOT NULL,
+	"_path" text NOT NULL,
+	"id" varchar PRIMARY KEY NOT NULL,
+	"blockConfig_theme" "enum_pages_blocks_markdown_block_block_config_theme",
+	"blockConfig_backgroundColor" "bgColor",
+	"block_config_hidden" boolean,
+	"blockConfig_contentWidth" "cw",
+	"blockConfig_p_xs_paddingTop" "t",
+	"blockConfig_p_xs_paddingBottom" "b",
+	"blockConfig_p_md_paddingTop" "t",
+	"blockConfig_p_md_paddingBottom" "b",
+	"blockConfig_p_lg_paddingTop" "t",
+	"blockConfig_p_lg_paddingBottom" "b",
+	"blockConfig_p_xl_paddingTop" "t",
+	"blockConfig_p_xl_paddingBottom" "b",
+	"block_name" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "pages_blocks_markdown_block_locales" (
+	"content" jsonb,
+	"maxWidth" "enum_pages_blocks_markdown_block_max_width",
+	"id" serial PRIMARY KEY NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"_parent_id" varchar NOT NULL,
+	CONSTRAINT "pages_blocks_markdown_block_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
+);
+
 CREATE TABLE IF NOT EXISTS "pages_blocks_faq_block_items" (
 	"_order" integer NOT NULL,
 	"_parent_id" varchar NOT NULL,
@@ -215,8 +292,16 @@ CREATE TABLE IF NOT EXISTS "pages_blocks_text_image_block" (
 	"blockConfig_p_xl_paddingTop" "t",
 	"blockConfig_p_xl_paddingBottom" "b",
 	"blockConfig_layout" "enum_pages_blocks_text_image_block_block_config_layout",
+	"cta_type" "undefined_cta_t",
 	"cta_label" varchar,
-	"cta_href" varchar,
+	"cta_external_href" varchar,
+	"cta_email_href" varchar,
+	"cta_phone_href" varchar,
+	"cta_new_tab" boolean,
+	"cta_variant" "undefined_cta_v",
+	"cta_icon_name" "undefined_cta_ic",
+	"cta_icon_size" "undefined_cta_iw",
+	"cta_icon_color" varchar,
 	"block_name" varchar
 );
 
@@ -249,8 +334,16 @@ CREATE TABLE IF NOT EXISTS "pages_blocks_hero_block" (
 	"blockConfig_layout" "enum_pages_blocks_hero_block_block_config_layout",
 	"input_placeholder" varchar,
 	"input_type" "enum_pages_blocks_hero_block_input_type",
+	"cta_type" "undefined_cta_t",
 	"cta_label" varchar,
-	"cta_href" varchar,
+	"cta_external_href" varchar,
+	"cta_email_href" varchar,
+	"cta_phone_href" varchar,
+	"cta_new_tab" boolean,
+	"cta_variant" "undefined_cta_v",
+	"cta_icon_name" "undefined_cta_ic",
+	"cta_icon_size" "undefined_cta_iw",
+	"cta_icon_color" varchar,
 	"block_name" varchar
 );
 
@@ -283,7 +376,39 @@ CREATE TABLE IF NOT EXISTS "pages_rels" (
 	"order" integer,
 	"parent_id" integer NOT NULL,
 	"path" varchar NOT NULL,
-	"images_id" integer
+	"images_id" integer,
+	"pages_id" integer,
+	"files_id" integer
+);
+
+CREATE TABLE IF NOT EXISTS "_pages_v_blocks_markdown_block" (
+	"_order" integer NOT NULL,
+	"_parent_id" integer NOT NULL,
+	"_path" text NOT NULL,
+	"id" serial PRIMARY KEY NOT NULL,
+	"blockConfig_theme" "enum__pages_v_blocks_markdown_block_block_config_theme",
+	"blockConfig_backgroundColor" "bgColor",
+	"block_config_hidden" boolean,
+	"blockConfig_contentWidth" "cw",
+	"blockConfig_p_xs_paddingTop" "t",
+	"blockConfig_p_xs_paddingBottom" "b",
+	"blockConfig_p_md_paddingTop" "t",
+	"blockConfig_p_md_paddingBottom" "b",
+	"blockConfig_p_lg_paddingTop" "t",
+	"blockConfig_p_lg_paddingBottom" "b",
+	"blockConfig_p_xl_paddingTop" "t",
+	"blockConfig_p_xl_paddingBottom" "b",
+	"_uuid" varchar,
+	"block_name" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "_pages_v_blocks_markdown_block_locales" (
+	"content" jsonb,
+	"maxWidth" "enum__pages_v_blocks_markdown_block_max_width",
+	"id" serial PRIMARY KEY NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"_parent_id" integer NOT NULL,
+	CONSTRAINT "_pages_v_blocks_markdown_block_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
 );
 
 CREATE TABLE IF NOT EXISTS "_pages_v_blocks_faq_block_items" (
@@ -350,8 +475,16 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_text_image_block" (
 	"blockConfig_p_xl_paddingTop" "t",
 	"blockConfig_p_xl_paddingBottom" "b",
 	"blockConfig_layout" "enum__pages_v_blocks_text_image_block_block_config_layout",
+	"cta_type" "undefined_cta_t",
 	"cta_label" varchar,
-	"cta_href" varchar,
+	"cta_external_href" varchar,
+	"cta_email_href" varchar,
+	"cta_phone_href" varchar,
+	"cta_new_tab" boolean,
+	"cta_variant" "undefined_cta_v",
+	"cta_icon_name" "undefined_cta_ic",
+	"cta_icon_size" "undefined_cta_iw",
+	"cta_icon_color" varchar,
 	"_uuid" varchar,
 	"block_name" varchar
 );
@@ -385,8 +518,16 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_hero_block" (
 	"blockConfig_layout" "enum__pages_v_blocks_hero_block_block_config_layout",
 	"input_placeholder" varchar,
 	"input_type" "enum__pages_v_blocks_hero_block_input_type",
+	"cta_type" "undefined_cta_t",
 	"cta_label" varchar,
-	"cta_href" varchar,
+	"cta_external_href" varchar,
+	"cta_email_href" varchar,
+	"cta_phone_href" varchar,
+	"cta_new_tab" boolean,
+	"cta_variant" "undefined_cta_v",
+	"cta_icon_name" "undefined_cta_ic",
+	"cta_icon_size" "undefined_cta_iw",
+	"cta_icon_color" varchar,
 	"_uuid" varchar,
 	"block_name" varchar
 );
@@ -424,7 +565,8 @@ CREATE TABLE IF NOT EXISTS "_pages_v_rels" (
 	"parent_id" integer NOT NULL,
 	"path" varchar NOT NULL,
 	"pages_id" integer,
-	"images_id" integer
+	"images_id" integer,
+	"files_id" integer
 );
 
 CREATE TABLE IF NOT EXISTS "users" (
@@ -600,6 +742,23 @@ CREATE TABLE IF NOT EXISTS "nav_rels" (
 	"images_id" integer
 );
 
+CREATE TABLE IF NOT EXISTS "four_oh_four" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"updated_at" timestamp(3) with time zone,
+	"created_at" timestamp(3) with time zone
+);
+
+CREATE TABLE IF NOT EXISTS "four_oh_four_locales" (
+	"content" jsonb,
+	"id" serial PRIMARY KEY NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"_parent_id" integer NOT NULL,
+	CONSTRAINT "four_oh_four_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
+);
+
+CREATE INDEX IF NOT EXISTS "pages_blocks_markdown_block_order_idx" ON "pages_blocks_markdown_block" ("_order");
+CREATE INDEX IF NOT EXISTS "pages_blocks_markdown_block_parent_id_idx" ON "pages_blocks_markdown_block" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "pages_blocks_markdown_block_path_idx" ON "pages_blocks_markdown_block" ("_path");
 CREATE INDEX IF NOT EXISTS "pages_blocks_faq_block_items_order_idx" ON "pages_blocks_faq_block_items" ("_order");
 CREATE INDEX IF NOT EXISTS "pages_blocks_faq_block_items_parent_id_idx" ON "pages_blocks_faq_block_items" ("_parent_id");
 CREATE INDEX IF NOT EXISTS "pages_blocks_faq_block_order_idx" ON "pages_blocks_faq_block" ("_order");
@@ -615,6 +774,9 @@ CREATE INDEX IF NOT EXISTS "pages_created_at_idx" ON "pages" ("created_at");
 CREATE INDEX IF NOT EXISTS "pages_rels_order_idx" ON "pages_rels" ("order");
 CREATE INDEX IF NOT EXISTS "pages_rels_parent_idx" ON "pages_rels" ("parent_id");
 CREATE INDEX IF NOT EXISTS "pages_rels_path_idx" ON "pages_rels" ("path");
+CREATE INDEX IF NOT EXISTS "_pages_v_blocks_markdown_block_order_idx" ON "_pages_v_blocks_markdown_block" ("_order");
+CREATE INDEX IF NOT EXISTS "_pages_v_blocks_markdown_block_parent_id_idx" ON "_pages_v_blocks_markdown_block" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "_pages_v_blocks_markdown_block_path_idx" ON "_pages_v_blocks_markdown_block" ("_path");
 CREATE INDEX IF NOT EXISTS "_pages_v_blocks_faq_block_items_order_idx" ON "_pages_v_blocks_faq_block_items" ("_order");
 CREATE INDEX IF NOT EXISTS "_pages_v_blocks_faq_block_items_parent_id_idx" ON "_pages_v_blocks_faq_block_items" ("_parent_id");
 CREATE INDEX IF NOT EXISTS "_pages_v_blocks_faq_block_order_idx" ON "_pages_v_blocks_faq_block" ("_order");
@@ -659,6 +821,18 @@ CREATE INDEX IF NOT EXISTS "nav_footer_secondary_parent_id_idx" ON "nav_footer_s
 CREATE INDEX IF NOT EXISTS "nav_rels_order_idx" ON "nav_rels" ("order");
 CREATE INDEX IF NOT EXISTS "nav_rels_parent_idx" ON "nav_rels" ("parent_id");
 CREATE INDEX IF NOT EXISTS "nav_rels_path_idx" ON "nav_rels" ("path");
+DO $$ BEGIN
+ ALTER TABLE "pages_blocks_markdown_block" ADD CONSTRAINT "pages_blocks_markdown_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "pages_blocks_markdown_block_locales" ADD CONSTRAINT "pages_blocks_markdown_block_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_markdown_block"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
 DO $$ BEGIN
  ALTER TABLE "pages_blocks_faq_block_items" ADD CONSTRAINT "pages_blocks_faq_block_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_faq_block"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
@@ -715,6 +889,30 @@ END $$;
 
 DO $$ BEGIN
  ALTER TABLE "pages_rels" ADD CONSTRAINT "pages_rels_images_fk" FOREIGN KEY ("images_id") REFERENCES "images"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "pages_rels" ADD CONSTRAINT "pages_rels_pages_fk" FOREIGN KEY ("pages_id") REFERENCES "pages"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "pages_rels" ADD CONSTRAINT "pages_rels_files_fk" FOREIGN KEY ("files_id") REFERENCES "files"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "_pages_v_blocks_markdown_block" ADD CONSTRAINT "_pages_v_blocks_markdown_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "_pages_v_blocks_markdown_block_locales" ADD CONSTRAINT "_pages_v_blocks_markdown_block_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_markdown_block"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -786,6 +984,12 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ ALTER TABLE "_pages_v_rels" ADD CONSTRAINT "_pages_v_rels_files_fk" FOREIGN KEY ("files_id") REFERENCES "files"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  ALTER TABLE "images_locales" ADD CONSTRAINT "images_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "images"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -838,6 +1042,12 @@ DO $$ BEGIN
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "four_oh_four_locales" ADD CONSTRAINT "four_oh_four_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "four_oh_four"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
 `);
 
 };
@@ -845,6 +1055,8 @@ END $$;
 export async function down({ payload }: MigrateDownArgs): Promise<void> {
 await payload.db.drizzle.execute(sql`
 
+DROP TABLE "pages_blocks_markdown_block";
+DROP TABLE "pages_blocks_markdown_block_locales";
 DROP TABLE "pages_blocks_faq_block_items";
 DROP TABLE "pages_blocks_faq_block_items_locales";
 DROP TABLE "pages_blocks_faq_block";
@@ -855,6 +1067,8 @@ DROP TABLE "pages_blocks_hero_block";
 DROP TABLE "pages_blocks_hero_block_locales";
 DROP TABLE "pages";
 DROP TABLE "pages_rels";
+DROP TABLE "_pages_v_blocks_markdown_block";
+DROP TABLE "_pages_v_blocks_markdown_block_locales";
 DROP TABLE "_pages_v_blocks_faq_block_items";
 DROP TABLE "_pages_v_blocks_faq_block_items_locales";
 DROP TABLE "_pages_v_blocks_faq_block";
@@ -878,6 +1092,8 @@ DROP TABLE "nav_header_main_locales";
 DROP TABLE "nav_footer_secondary";
 DROP TABLE "nav_footer_secondary_locales";
 DROP TABLE "nav";
-DROP TABLE "nav_rels";`);
+DROP TABLE "nav_rels";
+DROP TABLE "four_oh_four";
+DROP TABLE "four_oh_four_locales";`);
 
 };
