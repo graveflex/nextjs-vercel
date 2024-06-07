@@ -1,0 +1,4 @@
+#storybook-root {
+  display: grid;
+  min-height: 100lvh;
+}

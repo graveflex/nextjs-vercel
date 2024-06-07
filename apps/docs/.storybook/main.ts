@@ -65,10 +65,11 @@ const config: StorybookConfig = {
       ],
       include: [
         /refract-ui\/(stories|hook-fields)/
-        // path.resolve(__dirname, '../../../node_modules/@refract-ui/stories'),
-        // path.resolve(__dirname, '../../../node_modules/@refract-ui/hook-fields')
+        // path.resolve(__dirname, '../node_modules/@refract-ui/stories'),
+        // path.resolve(__dirname, '../node_modules/@refract-ui/hook-fields')
       ]
     });
+
     const monoDir = path.resolve(__dirname, '../../web/src');
 
     if (c?.resolve?.alias) {

@@ -7,7 +7,7 @@ import styled, { css } from '@refract-ui/sc';
 
 export type TextInputType = {
   name: string;
-  placeholder?: string | null;
+  placeholder?: string;
   label?: string | null;
   required?: boolean;
   errorMessage?: string;
