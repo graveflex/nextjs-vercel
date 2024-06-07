@@ -87,7 +87,7 @@ function breakpointStyle(
         ${
           additionalProps?.isRounded
             ? css`
-                border-radius: 36px;
+                border-radius: 2.25rem;
               `
             : css`
                 border-radius: none;

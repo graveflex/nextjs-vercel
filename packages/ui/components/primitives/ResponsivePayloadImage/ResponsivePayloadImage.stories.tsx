@@ -1,3 +1,6 @@
+import { faker } from '@faker-js/faker';
+import type { Image } from '@mono/types/payload-types';
+import multipleImages from '@mono/ui/utils/multipleImages';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { ResponsivePayloadWrapperProps } from '.';
@@ -16,6 +19,106 @@ export default meta;
 type Story = StoryObj<ResponsivePayloadWrapperProps>;
 
 const randomImage = 'https://source.unsplash.com/random';
+
+const desktopImage: Image = {
+  id: 17,
+  alt: 'Students',
+  filename: 'module0.jpg',
+  mimeType: 'image/jpeg',
+  filesize: 3664901,
+  width: 1000,
+  height: 500,
+  sizes: {
+    thumbnail: {
+      width: 1000,
+      height: 500,
+      mimeType: 'image/jpeg',
+      filesize: 13968,
+      filename: 'module0-300x211.jpg',
+      url: randomImage
+    },
+    mobile: {
+      width: 1000,
+      height: 500,
+      mimeType: 'image/jpeg',
+      filesize: 101228,
+      filename: 'module0-1024x722.jpg',
+      url: randomImage
+    },
+    desktop: {
+      width: 1000,
+      height: 500,
+      mimeType: 'image/jpeg',
+      filesize: 376199,
+      filename: 'module0-2048x1445.jpg',
+      url: randomImage
+    },
+    ultrawide: {
+      width: 1000,
+      height: 500,
+      mimeType: 'image/jpeg',
+      filesize: 1557423,
+      url: randomImage
+    }
+  },
+  createdAt: '2023-09-13T16:32:11.202Z',
+  updatedAt: '2023-09-13T16:32:11.202Z',
+  url: randomImage,
+  imageProps: {
+    fill: false
+  }
+};
+
+const mobileImage: Image = {
+  id: 17,
+  alt: 'Students',
+  filename: 'module0.jpg',
+  mimeType: 'image/jpeg',
+  filesize: 3664901,
+  width: 100,
+  height: 100,
+  sizes: {
+    thumbnail: {
+      width: 100,
+      height: 100,
+      mimeType: 'image/jpeg',
+      filesize: 13968,
+      filename: 'module0-300x211.jpg',
+      url: randomImage
+    },
+    mobile: {
+      width: 100,
+      height: 100,
+      mimeType: 'image/jpeg',
+      filesize: 101228,
+      filename: 'module0-1024x722.jpg',
+      url: randomImage
+    },
+    desktop: {
+      width: 100,
+      height: 100,
+      mimeType: 'image/jpeg',
+      filesize: 376199,
+      filename: 'module0-2048x1445.jpg',
+      url: randomImage
+    },
+    ultrawide: {
+      width: 100,
+      height: 100,
+      mimeType: 'image/jpeg',
+      filesize: 1557423,
+      url: randomImage
+    }
+  },
+  createdAt: '2023-09-13T16:32:11.202Z',
+  updatedAt: '2023-09-13T16:32:11.202Z',
+  url: randomImage,
+  imageProps: {
+    fill: false
+  }
+};
+
+const responsiveImage = multipleImages(desktopImage, mobileImage, 'desktop');
 
 export const Defaults: Story = {
   args: {
@@ -226,5 +329,48 @@ export const SrcSet: Story = {
         }
       }
     }
+  }
+};
+
+export const MultipleAspectRatios: Story = {
+  args: {
+    image: {
+      id: 2,
+      alt: 'test',
+      updatedAt: '2024-01-09T21:42:47.363Z',
+      createdAt: '2024-01-09T21:42:47.363Z',
+      url: faker.image.abstract(600),
+      filename: 'small-image-2-1024x768.jpg',
+      mimeType: 'image/jpeg',
+      filesize: 77483,
+      width: 600,
+      height: 700,
+      imageProps: {
+        fill: true,
+        priority: false,
+        quality: 75
+      },
+      additionalProps: {
+        objectFit: 'contain',
+        isRounded: false,
+        aspectRatio: '6/7'
+      },
+      sizes: {
+        tablet: {
+          url: faker.image.abstract(300),
+          width: 300,
+          height: 200,
+          mimeType: 'image/jpeg',
+          filesize: 77509,
+          filename: 'small-image-2-1024x768-1024x768.jpg'
+        }
+      }
+    }
+  }
+};
+
+export const MobileImage: Story = {
+  args: {
+    image: responsiveImage
   }
 };

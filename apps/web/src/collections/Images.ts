@@ -90,20 +90,20 @@ const Images: CollectionConfig = {
           type: 'select',
           options: [
             {
-              label: '6:7',
-              value: '6/7'
-            },
-            {
-              label: '7:6',
-              value: '7/6'
-            },
-            {
               label: '1:1',
               value: '1/1'
             },
             {
               label: '3:2',
               value: '3/2'
+            },
+            {
+              label: '4:3',
+              value: '4/3'
+            },
+            {
+              label: '6:7',
+              value: '6/7'
             },
             {
               label: '16:9',
