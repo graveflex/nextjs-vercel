@@ -18,8 +18,12 @@ type Story = StoryObj<CtaButtonType>;
 export const Defaults: Story = {
   args: {
     cta: {
-      type: 'internal',
-      icon: { name: 'ArrowRight', color: 'currentColor' }
+      link: {
+        type: 'external',
+        externalHref: '/',
+        label: 'Click me',
+        icon: { name: 'ArrowRight', color: 'currentColor' }
+      },
     }
   }
 };

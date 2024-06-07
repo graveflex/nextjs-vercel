@@ -6,6 +6,29 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FlatMenu".
+ */
+export type FlatMenu =
+  | {
+      link: PayLoadLink;
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconNavItems".
+ */
+export type IconNavItems =
+  | {
+      href?: string | null;
+      newTab?: boolean | null;
+      icon?: IconSelect;
+      id?: string | null;
+    }[]
+  | null;
+
 export interface Config {
   collections: {
     pages: Page;
@@ -512,34 +535,9 @@ export interface Nav {
   header?: {
     logo?: number | Image | null;
     banner?: BannerContent;
-    collapsibleMenu?: {
-      sections?:
-        | {
-            label: string;
-            links?:
-              | {
-                  link: PayLoadLink;
-                  id?: string | null;
-                }[]
-              | null;
-            id?: string | null;
-          }[]
-        | null;
-    };
-    flatMenu?:
-      | {
-          link: PayLoadLink;
-          id?: string | null;
-        }[]
-      | null;
-    iconItems?:
-      | {
-          href?: string | null;
-          newTab?: boolean | null;
-          icon?: IconSelect;
-          id?: string | null;
-        }[]
-      | null;
+    collapsibleMenu?: CollapsibleMenu;
+    flatMenu?: FlatMenu;
+    iconItems?: IconNavItems;
     hasCta?: boolean | null;
     ctaButton?: {
       cta: CTAType;
@@ -577,12 +575,7 @@ export interface Nav {
       };
       [k: string]: unknown;
     } | null;
-    footerMenu?:
-      | {
-          link: PayLoadLink;
-          id?: string | null;
-        }[]
-      | null;
+    footerMenu?: FlatMenu;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -608,6 +601,24 @@ export interface BannerContent {
     [k: string]: unknown;
   } | null;
   background?: ('white' | 'black' | 'gray') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CollapsibleMenu".
+ */
+export interface CollapsibleMenu {
+  sections?:
+    | {
+        label: string;
+        links?:
+          | {
+              link: PayLoadLink;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

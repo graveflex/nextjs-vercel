@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 export type PayloadLinkProps = Partial<LinkProps> & {
   children?: React.ReactNode;
-  newTab?: boolean;
+  newTab?: boolean | null;
   icon?: IconProps;
   ariaLabel?: string;
   title?: string;

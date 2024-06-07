@@ -28,6 +28,7 @@ const collapsibleMenu: GroupField = {
   name: 'collapsibleMenu',
   label: 'Collapsible Menu',
   type: 'group',
+  interfaceName: 'CollapsibleMenu',
   fields: [
     {
       name: 'sections',
@@ -70,6 +71,7 @@ const flatMenu: ArrayField = {
   name: 'flatMenu',
   label: 'Flat Menu',
   type: 'array',
+  interfaceName: 'FlatMenu',
   admin: {
     description:
       'The pages that will be linked in this section will not have a dropdown',
@@ -86,6 +88,7 @@ const iconItems: ArrayField = {
   name: 'iconItems',
   label: 'Icon Items',
   type: 'array',
+  interfaceName: 'IconNavItems',
   admin: {
     description: 'Nav Items that are only displayed with an icon',
     components: {
