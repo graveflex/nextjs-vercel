@@ -9,19 +9,15 @@ const ContentStyles = s.div`
   padding-bottom: 1.125rem;
 `;
 
-const Content = s.div``;
+const Content = s.div`
+  overflow: hidden;
+  height: 0;
+  display: none;
 
-const IconText = s.span`
-opacity: 0;
-min-width: 4.125rem;
-text-align: right;
-position: relative;
-top: 0.125rem;
-transition: opacity 0.2s ease-in-out;
-
-${({ theme: { box } }) => css`
-  ${box.t('button')};
-`}
+  &.open {
+    height: auto;
+    display: block;
+  }
 `;
 
 const IconContainer = s.div`
@@ -30,39 +26,27 @@ const IconContainer = s.div`
   column-gap: 0.75rem;
 `;
 
-const Text = s.span<{ $isMenu: boolean }>`
+const Text = s.span`
   display: block;
-  transition: color 0.2s ease-in-out;
 
-  ${({ theme: { box, allColors }, $isMenu }) => css`
-    ${box.t('heading')};
-    color: ${allColors.secondary};
-
-    ${$isMenu &&
-    css`
-      ${box.t('h2')};
-      text-transform: uppercase;
-    `}
+  ${({ theme: { box, allColors } }) => css`
+    ${box.t('h3')};
+    color: ${allColors.plainFg};
   `}
 `;
 
 const hoverStyles = css`
-  ${({ theme: { themeColors } }) => css`
-    &:hover,
-    &:focus {
-      border-color: ${themeColors.secondary};
+  ${({ theme: { allColors } }) => css`
+    &:hover {
       outline: none;
 
       svg {
-        color: ${themeColors.secondary};
+        color: ${allColors.plainHover};
       }
 
       ${Text} {
-        color: currentColor;
+        color: ${allColors.plainHover};
         text-decoration: underline;
-      }
-      ${IconText} {
-        opacity: 1;
       }
     }
   `}
@@ -91,13 +75,12 @@ const InnerList = s.li`
   margin: 0;
   cursor: pointer;
   overflow: hidden;
-  transition: border-color 0.2s ease-in-out;
 
   ${({ theme: { allColors } }) => css`
-    border-top: 1px solid ${allColors.neutral600};
+    border-top: 1px solid ${allColors.plainFg};
 
     svg {
-      color: ${allColors.secondary};
+      color: ${allColors.plainFg};
     }
 
     ${hoverStyles};
@@ -107,7 +90,6 @@ const InnerList = s.li`
 const List = s.ul`
   margin: 0;
   padding: 0;
-
 `;
 
 export type AccordionProps = {
@@ -132,14 +114,12 @@ export type AccordionProps = {
     id?: string | null;
   }[];
   children?: React.ReactNode;
-  isMenu?: boolean;
 };
 
 function Accordion({
   items,
-  children,
-  isMenu = false
-}: AccordionProps & { children?: React.ReactNode; isMenu?: boolean }) {
+  children
+}: AccordionProps & { children?: React.ReactNode }) {
   const [openSections, setOpenSections] = useState<boolean[]>(
     Array(items?.length).fill(false)
   );
@@ -157,7 +137,6 @@ function Accordion({
   const accordionItems = useMemo(() => {
     return items?.map(({ text, content }, index) => {
       const key = `${text}-${index}`;
-      const expandedText = `${openSections[index] ? 'Close' : 'Expand'}`;
 
       return (
         <InnerList key={key}>
@@ -168,9 +147,8 @@ function Accordion({
             aria-expanded={openSections[index]}
             aria-controls={`section-${index}`}
           >
-            <Text $isMenu={isMenu}>{text}</Text>
+            <Text className={openSections[index] ? 'open' : ''}>{text}</Text>
             <IconContainer>
-              {expandedText && <IconText>{expandedText}</IconText>}
               {openSections[index] ? (
                 <Icon name="MinusSign" size="35" color="currentColor" />
               ) : (
