@@ -13,6 +13,7 @@ import CtaButton from '@mono/ui/components/CtaButton';
 import CtaLink from '@mono/ui/components/CtaLink';
 import Link from '@mono/ui/components/primitives/PayloadLink';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
+import RichText from '@mono/ui/components/primitives/RichText';
 import styled, { css } from '@refract-ui/sc';
 
 const OuterHeader = styled.header`
@@ -24,7 +25,7 @@ const OuterHeader = styled.header`
 `;
 
 const NavContainer = styled.div`
-  ${({ theme: { mq }}) => css`
+  ${({ theme: { mq } }) => css`
     display: grid;
     width: 100%;
     justify-content: space-between;
@@ -79,13 +80,13 @@ const DrawerButton = styled.button`
   `}
 `;
 
-const MobileColumn = styled.div<{$open: boolean}>`
+const MobileColumn = styled.div<{ $open: boolean }>`
   ${({ theme: { mq }, $open }) => css`
     grid-area: mobileButtons;
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: .5rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     background-color: white;
 
     ${$open &&
@@ -100,7 +101,7 @@ const MobileColumn = styled.div<{$open: boolean}>`
 `;
 
 const Nav = styled.nav`
-  padding: .5rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   display: flex;
   justify-content: space-between;
   grid-area: nav;
@@ -121,34 +122,55 @@ const NavContentWrapper = styled.div`
   `}
 `;
 
-export type HeaderType = {
-  logo?: Image | number | null;
-  banner?: BannerContent | null;
+const Banner = styled.div<{ $bgC: string }>`
+  background-color: ${({ $bgC }) => $bgC};
+  color: white;
+  padding: 0.5rem 1.5rem;
+  max-height: 2rem;
+`;
+
+type Buttons = {
   collapsibleMenu?: CollapsibleMenu | null;
   flatMenu?: FlatMenu | null;
   iconItems?: IconNavItems | null;
   ctaButton?: {
     cta: CTAType;
   };
+};
+
+export type HeaderType = {
+  logo?: Image | number | null;
+  banner?: BannerContent | null;
   open: boolean;
+  collapsibleMenu?: CollapsibleMenu | null;
+  flatMenu?: FlatMenu | null;
+  iconItems?: IconNavItems | null;
+  ctaButton?: {
+    cta: CTAType;
+  };
   setOpen: (open: boolean) => void;
 };
 
-function NavContent({ collapsibleMenu, flatMenu, iconItems, ctaButton}: HeaderType) {
+function NavContent({
+  collapsibleMenu,
+  flatMenu,
+  iconItems,
+  ctaButton
+}: Buttons) {
   return (
     <NavContentWrapper>
       {collapsibleMenu?.sections &&
-        collapsibleMenu.sections.map((item, index) => {
-          // console.log('COLLAPSIBLE MENU ITEM: ', item);
+        collapsibleMenu.sections.map((item) => {
+          console.log('COLLAPSIBLE MENU ITEM: ', item);
           return null; // Replace this with the desired ReactNode
         })}
       {flatMenu &&
-        flatMenu.map((item, index) => {
-          return <CtaLink key={`flatmenu-${index}`} link={item.link} />;
+        flatMenu.map((item) => {
+          return <CtaLink key={`flatmenu-${item.id}`} link={item.link} />;
         })}
       {iconItems &&
-        iconItems.map((item, index) => {
-          // console.log('ICON ITEM: ', item);
+        iconItems.map((item) => {
+          console.log('ICON ITEM: ', item);
           return null; // Replace this with the desired ReactNode
         })}
       {ctaButton && ctaButton.cta && <CtaButton cta={ctaButton.cta} />}
@@ -169,6 +191,11 @@ function Header({
   return (
     <OuterHeader>
       <NavContainer>
+        {banner?.content && (
+          <Banner $bgC={banner.background ?? 'currentColor'}>
+            <RichText {...banner.content} />
+          </Banner>
+        )}
         <Nav>
           {logo && (
             <LinkStyled href="/" title="Home">
@@ -176,7 +203,7 @@ function Header({
             </LinkStyled>
           )}
           <DrawerButton onClick={() => setOpen(!open)} aria-label="Open Menu">
-              {open ? "Close" : "Open"}
+            {open ? 'Close' : 'Open'}
           </DrawerButton>
         </Nav>
         <DesktopRow>
@@ -185,8 +212,6 @@ function Header({
             flatMenu={flatMenu}
             iconItems={iconItems}
             ctaButton={ctaButton}
-            open={open}
-            setOpen={setOpen}
           />
         </DesktopRow>
         <MobileColumn $open={open}>
@@ -196,8 +221,6 @@ function Header({
               flatMenu={flatMenu}
               iconItems={iconItems}
               ctaButton={ctaButton}
-              open={open}
-              setOpen={setOpen}
             />
           )}
         </MobileColumn>

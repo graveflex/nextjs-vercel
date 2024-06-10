@@ -22,6 +22,6 @@ export const Defaults: Story = {
       externalHref: '/',
       label: 'Click me',
       icon: { name: 'ArrowRight', color: 'currentColor' }
-    },
+    }
   }
 };

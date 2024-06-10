@@ -48,7 +48,7 @@ const collapsibleMenu: GroupField = {
             description: 'Label for menu item'
           },
           type: 'text',
-          required: true,
+          required: true
         },
         {
           name: 'links',
@@ -79,9 +79,7 @@ const flatMenu: ArrayField = {
       RowLabel: AdminRowLabel
     }
   },
-  fields: [
-    Link()
-  ]
+  fields: [Link()]
 };
 
 const iconItems: ArrayField = {
@@ -175,7 +173,7 @@ const Nav: GlobalConfig = {
         {
           name: 'hasCta',
           label: 'Has CTA Button',
-          type: 'checkbox',
+          type: 'checkbox'
         },
         {
           name: 'ctaButton',
@@ -193,9 +191,7 @@ const Nav: GlobalConfig = {
       name: 'footer',
       label: 'Footer',
       type: 'group',
-      fields: [
-        footerItems
-      ]
+      fields: [footerItems]
     }
   ]
 };

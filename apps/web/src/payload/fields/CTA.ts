@@ -8,7 +8,10 @@ function CTA({
   defaultVariant,
   fields = [],
   condition
-}: Partial<GroupField> & { defaultVariant?: string; condition?: any } = {}): GroupField {
+}: Partial<GroupField> & {
+  defaultVariant?: string;
+  condition?: () => boolean;
+} = {}): GroupField {
   return {
     name: 'cta',
     type: 'group',

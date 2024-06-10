@@ -1,18 +1,18 @@
 'use client';
 
 import React from 'react';
-import styled from '@refract-ui/sc';
-import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
-import RichText from "@mono/ui/components/primitives/RichText";
+import type { FooterItems } from '@mono/types/payload-types';
 import CtaLink from '@mono/ui/components/CtaLink';
-import { FooterItems } from "@mono/types/payload-types";
+import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
+import RichText from '@mono/ui/components/primitives/RichText';
+import styled from '@refract-ui/sc';
 
 const Container = styled.footer`
-    background: white;
-    width: 100%;
-    position: relative;
-    bottom: 0;
-    align-self: end;
+  background: white;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  align-self: end;
 `;
 
 const ContentWrapper = styled.div`
@@ -48,27 +48,38 @@ const FlatLinkSection = styled.div`
   gap: 1.5rem;
 `;
 
-export type FooterType = FooterItems
+export type FooterType = FooterItems;
 
-function Footer({ footerLogo, copyright, legalDisclaimer, footerMenu }: FooterItems) {
-  return <Container>
-    <ContentWrapper>
-      {footerLogo && <Logo image={footerLogo} />}
-      {footerMenu && <FlatLinkSection>
-        {footerMenu?.map((item, index) => {
-          return (
-            <CtaLink key={`footerLink-${index}`} {...item} />
-          );
-        })}
-      </FlatLinkSection>}
-      {copyright && <Copyright>
-        <RichText {...copyright} />
-      </Copyright>}
-      {legalDisclaimer && <div style={{ gridArea: 'copyright' }}>
-        <RichText {...legalDisclaimer} />
-      </div>}
-    </ContentWrapper>
-  </Container>;
+function Footer({
+  footerLogo,
+  copyright,
+  legalDisclaimer,
+  footerMenu
+}: FooterItems) {
+  return (
+    <Container>
+      <ContentWrapper>
+        {footerLogo && <Logo image={footerLogo} />}
+        {footerMenu && (
+          <FlatLinkSection>
+            {footerMenu?.map((item) => {
+              return <CtaLink key={`footerLink-${item.id}`} {...item} />;
+            })}
+          </FlatLinkSection>
+        )}
+        {copyright && (
+          <Copyright>
+            <RichText {...copyright} />
+          </Copyright>
+        )}
+        {legalDisclaimer && (
+          <div style={{ gridArea: 'copyright' }}>
+            <RichText {...legalDisclaimer} />
+          </div>
+        )}
+      </ContentWrapper>
+    </Container>
+  );
 }
 
 export default Footer;

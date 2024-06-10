@@ -21,7 +21,7 @@ const OuterGrid = styled.div`
 function OuterMaybeThemed({ children, theme, ...props }: OuterMaybeThemedType) {
   if (theme && theme !== '_') {
     return (
-      <SubTheme theme={themeList[theme]}>
+      <SubTheme theme={themeList[theme]} {...props}>
         <OuterGrid>{children}</OuterGrid>
       </SubTheme>
     );

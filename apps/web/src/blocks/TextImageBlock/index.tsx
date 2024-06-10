@@ -93,7 +93,7 @@ function TextImageBlock({
         <ContentWrapper>
           {title && <Title>{title}</Title>}
           {content && <RichText {...content} />}
-          {cta?.label && <CtaButton cta={cta} />}
+          {cta && <CtaButton cta={cta} />}
         </ContentWrapper>
       </InnerWrapper>
     </Wrapper>

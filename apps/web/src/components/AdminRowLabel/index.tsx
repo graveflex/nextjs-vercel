@@ -14,7 +14,6 @@ const AdminRowLabel: RowLabelComponent = function ArrayRowLabel() {
     label: string;
   }>();
   const linkLabel = data?.link?.label;
-  const {externalHref, internalHref} = data?.link || {};
   if (data?.name) {
     return (
       <div>

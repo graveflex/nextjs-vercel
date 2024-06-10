@@ -17,6 +17,31 @@ type Story = StoryObj<HeaderType>;
 
 export const Defaults: Story = {
   args: {
-    placeholder: 'Enter text here'
+    flatMenu: [
+      {
+        id: '1',
+        link: {
+          type: 'external',
+          label: 'Home',
+          externalHref: '/'
+        }
+      },
+      {
+        id: '1',
+        link: {
+          type: 'external',
+          label: 'About',
+          externalHref: '/'
+        }
+      },
+      {
+        id: '1',
+        link: {
+          type: 'external',
+          label: 'Learn More',
+          externalHref: '/'
+        }
+      },
+    ],
   }
 };
