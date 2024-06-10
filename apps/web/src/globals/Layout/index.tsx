@@ -6,6 +6,7 @@ import type * as themeList from '@mono/theme/src/theme';
 import { containerStyles } from '@mono/theme/src/ThemeProvider';
 import type { Nav as NavT } from '@mono/types/payload-types';
 import Header from '@mono/ui/components/Header';
+import Footer from '@mono/ui/components/Footer';
 import MaybeThemed from '@mono/web/components/MaybeThemed';
 import styled from '@refract-ui/sc'
 
@@ -22,6 +23,7 @@ function Layout({ children, header, footer, theme }: LayoutType) {
     <MaybeThemed theme={theme} style={containerStyles}>
       <Header {...header}/>
       <Main role="main">{children}</Main>
+      <Footer {...footer?.footerItems}/>
     </MaybeThemed>
   );
 }

@@ -111,6 +111,39 @@ const iconItems: ArrayField = {
   ]
 };
 
+const footerItems: GroupField = {
+  name: 'footerItems',
+  label: 'Footer Items',
+  interfaceName: 'FooterItems',
+  type: 'group',
+  fields: [
+    {
+      name: 'footerLogo',
+      label: 'Footer Logo',
+      type: 'upload',
+      relationTo: 'images',
+      admin: {
+        description: 'Logo for footer. Prefer `.svg`'
+      }
+    },
+    {
+      name: 'copyright',
+      label: 'Copyright',
+      type: 'richText'
+    },
+    {
+      name: 'legalDisclaimer',
+      label: 'Legal Disclaimer',
+      type: 'richText'
+    },
+    {
+      ...flatMenu,
+      name: 'footerMenu',
+      label: 'Footer Menu Links'
+    }
+  ]
+};
+
 const Nav: GlobalConfig = {
   slug: 'nav',
   label: 'Header and Footer',
@@ -161,30 +194,7 @@ const Nav: GlobalConfig = {
       label: 'Footer',
       type: 'group',
       fields: [
-        {
-          name: 'footerLogo',
-          label: 'Footer Logo',
-          type: 'upload',
-          relationTo: 'images',
-          admin: {
-            description: 'Logo for footer. Prefer `.svg`'
-          }
-        },
-        {
-          name: 'copyright',
-          label: 'Copyright',
-          type: 'richText'
-        },
-        {
-          name: 'legalDisclaimer',
-          label: 'Legal Disclaimer',
-          type: 'richText'
-        },
-        {
-          ...flatMenu,
-          name: 'footerMenu',
-          label: 'Footer Menu Links'
-        }
+        footerItems
       ]
     }
   ]
