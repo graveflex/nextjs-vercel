@@ -1,13 +1,14 @@
 'use client';
 
 import type { PropsWithChildren } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import type * as themeList from '@mono/theme/src/theme';
 import { containerStyles } from '@mono/theme/src/ThemeProvider';
 import type { Nav as NavT } from '@mono/types/payload-types';
+import useLockBodyScroll from '@mono/ui/lib/hooks/useLockBodyScroll';
 import Header from '@mono/ui/components/Header';
 import Footer from '@mono/ui/components/Footer';
-import MaybeThemed from '@mono/web/components/MaybeThemed';
+import OuterMaybeThemed from '@mono/ui/components/OuterMaybeThemed';
 import styled from '@refract-ui/sc'
 
 const Main = styled.main`
@@ -19,12 +20,14 @@ export interface LayoutType extends PropsWithChildren<NavT> {
 }
 
 function Layout({ children, header, footer, theme }: LayoutType) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  useLockBodyScroll(menuOpen);
   return (
-    <MaybeThemed theme={theme} style={containerStyles}>
-      <Header {...header}/>
+    <OuterMaybeThemed theme={theme} style={containerStyles}>
+      <Header {...header} open={menuOpen} setOpen={setMenuOpen} />
       <Main role="main">{children}</Main>
       <Footer {...footer?.footerItems}/>
-    </MaybeThemed>
+    </OuterMaybeThemed>
   );
 }
 
