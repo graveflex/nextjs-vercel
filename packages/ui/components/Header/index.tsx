@@ -16,6 +16,8 @@ import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePay
 import RichText from '@mono/ui/components/primitives/RichText';
 import RenderIcon from '@mono/ui/components/RenderIcon';
 import styled, { css } from '@refract-ui/sc';
+import type { MotionValue } from 'framer-motion';
+import { motion, useTransform, useSpring } from 'framer-motion';
 
 const OuterHeader = styled.header`
   position: sticky;
@@ -144,7 +146,7 @@ const Banner = styled.div<{ $bgC: string }>`
   background-color: ${({ $bgC }) => $bgC};
   color: white;
   padding: 0.5rem 1.5rem;
-  max-height: 2.5rem;
+  max-height: max-content;
   text-align: center;
 `;
 
@@ -222,8 +224,19 @@ function Header({
   iconItems,
   ctaButton,
   open,
-  setOpen
+  setOpen,
 }: HeaderType) {
+  const menuRevealProgress = useSpring(0, {
+    bounce: 0,
+    duration: 1000
+  });
+  // const headerXPercent = useTransform(revealProgress, [1, 0], [0, -100]);
+  // const headerXPos = useTransform(headerXPercent, (val) => `${val}%`);
+
+  const variants = {
+    open: { x: 300, opacity: 1},
+    closed: { x: 0, opacity: 0},
+  }
   return (
     <OuterHeader>
       {banner?.content && (
@@ -267,16 +280,22 @@ function Header({
             ctaButton={ctaButton}
           />
         </DesktopRow>
-        <MobileColumn $open={open}>
-          {open && (
-            <NavContent
-              collapsibleMenu={collapsibleMenu}
-              flatMenu={flatMenu}
-              iconItems={iconItems}
-              ctaButton={ctaButton}
-            />
-          )}
-        </MobileColumn>
+        <motion.div
+          initial="closed"
+          animate="open"
+          variants={variants}
+        >
+          <MobileColumn $open={open}>
+            {open && (
+              <NavContent
+                collapsibleMenu={collapsibleMenu}
+                flatMenu={flatMenu}
+                iconItems={iconItems}
+                ctaButton={ctaButton}
+              />
+            )}
+          </MobileColumn>
+        </motion.div>
       </NavContainer>
     </OuterHeader>
   );

@@ -57,6 +57,7 @@
     "drizzle-orm": "^0.29.1",
     "escape-html": "^1.0.3",
     "eslint-config-custom": "workspace:*",
+    "framer-motion": "latest",
     "graphql-playground-middleware-express": "^1.7.23",
     "md5": "^2.3.0",
     "next": "latest",
