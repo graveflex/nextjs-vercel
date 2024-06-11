@@ -14,6 +14,7 @@ import CtaLink from '@mono/ui/components/CtaLink';
 import Link from '@mono/ui/components/primitives/PayloadLink';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
+import RenderIcon from '@mono/ui/components/RenderIcon';
 import styled, { css } from '@refract-ui/sc';
 
 const OuterHeader = styled.header`
@@ -75,6 +76,16 @@ const DrawerButton = styled.button`
   font-size: 1.5rem;
   display: block;
 
+  &:hover {
+    cursor: pointer;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
   ${({ theme: { mq } }) => mq.md`
     display: none;
   `}
@@ -86,12 +97,12 @@ const MobileColumn = styled.div<{ $open: boolean }>`
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 0.5rem 1.5rem;
     background-color: white;
 
     ${$open &&
     css`
       height: 100vh;
+      padding-top: 3rem;
     `}
 
     ${mq.md`
@@ -115,10 +126,11 @@ const NavContentWrapper = styled.div`
   flex-direction: column;
   background-color: currentColor;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
 
   ${({ theme: { mq } }) => mq.md`
     flex-direction: row;
+    gap: 1rem;
   `}
 `;
 
@@ -203,7 +215,11 @@ function Header({
             </LinkStyled>
           )}
           <DrawerButton onClick={() => setOpen(!open)} aria-label="Open Menu">
-            {open ? 'Close' : 'Open'}
+            {open ? (
+              <RenderIcon name="Close" />
+            ) : (
+              <RenderIcon name="Hamburger" />
+            )}
           </DrawerButton>
         </Nav>
         <DesktopRow>

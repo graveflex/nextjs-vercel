@@ -41,7 +41,7 @@ export const Defaults: Story = {
           label: 'Learn More',
           externalHref: '/'
         }
-      },
-    ],
+      }
+    ]
   }
 };
