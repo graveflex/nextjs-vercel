@@ -16,8 +16,8 @@ import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePay
 import RichText from '@mono/ui/components/primitives/RichText';
 import RenderIcon from '@mono/ui/components/RenderIcon';
 import styled, { css } from '@refract-ui/sc';
-import s from 'styled-components';
 import { motion } from 'framer-motion';
+import s from 'styled-components';
 
 // UPDATE TO USE THEMECOLOR
 
@@ -27,9 +27,9 @@ const OuterHeader = styled.header`
   z-index: 50;
   max-height: 5rem;
   color: white;
-`
+`;
 
-const NavContainer = styled.div<{$open: boolean}>`
+const NavContainer = styled.div<{ $open: boolean }>`
   ${({ theme: { mq }, $open }) => css`
     display: grid;
     justify-content: space-between;
@@ -37,7 +37,7 @@ const NavContainer = styled.div<{$open: boolean}>`
     grid-template-areas: 'nav nav' '. mobileButtons';
 
     ${$open &&
-      css`
+    css`
       grid-template-areas: 'nav nav' 'mobileButtons mobileButtons';
     `}
 
@@ -225,13 +225,12 @@ function Header({
   iconItems,
   ctaButton,
   open,
-  setOpen,
+  setOpen
 }: HeaderType) {
-
   const openMenuVariants = {
     open: { x: 0 },
-    closed: { x: 400 },
-  }
+    closed: { x: 400 }
+  };
   return (
     <OuterHeader>
       {banner?.content && (
@@ -279,14 +278,14 @@ function Header({
           initial="closed"
           animate={open ? 'open' : 'closed'}
           variants={openMenuVariants}
-          transition={{ duration: 1}} 
+          transition={{ duration: 1 }}
         >
-            <NavContent
-              collapsibleMenu={collapsibleMenu}
-              flatMenu={flatMenu}
-              iconItems={iconItems}
-              ctaButton={ctaButton}
-            />
+          <NavContent
+            collapsibleMenu={collapsibleMenu}
+            flatMenu={flatMenu}
+            iconItems={iconItems}
+            ctaButton={ctaButton}
+          />
         </MobileColumn>
       </NavContainer>
     </OuterHeader>
