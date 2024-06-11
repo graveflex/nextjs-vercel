@@ -11,7 +11,7 @@ function PageTemplate({ page, nav }: { page: Page; nav: Nav }) {
   const { data } = useLivePreview<Page>({
     initialData: page,
     serverURL: WEB_URL,
-    depth: 2
+    depth: 1
   });
 
   const blocks = data?.blocks;

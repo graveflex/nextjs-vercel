@@ -72,7 +72,7 @@ const RichTextWrapper = s.div`
 function RichText({
   className,
   ...content
-}: PayloadRichTextProps): React.JSX.Element {
+}: PayloadRichTextProps): JSX.Element {
   return (
     <RichTextWrapper className={className}>
       {serializeText(content)}
