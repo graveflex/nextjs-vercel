@@ -57,6 +57,12 @@ const Logo = styled(ResponsivePayloadImage)`
   `}
 `;
 
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
 // UPDATE TO USE THEMECOLOR
 const DesktopRow = styled.div`
   display: none;
@@ -138,7 +144,22 @@ const Banner = styled.div<{ $bgC: string }>`
   background-color: ${({ $bgC }) => $bgC};
   color: white;
   padding: 0.5rem 1.5rem;
-  max-height: 2rem;
+  max-height: 2.5rem;
+  text-align: center;
+`;
+
+const DesktopIconLink = styled.a`
+  display: none;
+  ${({ theme: { mq } }) => mq.md`
+    display: flex;
+  `}
+`;
+
+const MobileIconLink = styled.a`
+  display: flex;
+  ${({ theme: { mq } }) => mq.md`
+    display: none;
+  `}
 `;
 
 type Buttons = {
@@ -180,12 +201,15 @@ function NavContent({
         flatMenu.map((item) => {
           return <CtaLink key={`flatmenu-${item.id}`} link={item.link} />;
         })}
+      {ctaButton && ctaButton.cta && <CtaButton cta={ctaButton.cta} />}
       {iconItems &&
         iconItems.map((item) => {
-          console.log('ICON ITEM: ', item);
-          return null; // Replace this with the desired ReactNode
+          return (
+            <DesktopIconLink href={item.href as string} key={`icon-${item.id}`}>
+              <RenderIcon {...item.icon} />
+            </DesktopIconLink>
+          );
         })}
-      {ctaButton && ctaButton.cta && <CtaButton cta={ctaButton.cta} />}
     </NavContentWrapper>
   );
 }
@@ -202,25 +226,38 @@ function Header({
 }: HeaderType) {
   return (
     <OuterHeader>
+      {banner?.content && (
+        <Banner $bgC={banner.background ?? 'currentColor'}>
+          <RichText {...banner.content} />
+        </Banner>
+      )}
       <NavContainer>
-        {banner?.content && (
-          <Banner $bgC={banner.background ?? 'currentColor'}>
-            <RichText {...banner.content} />
-          </Banner>
-        )}
         <Nav>
           {logo && (
             <LinkStyled href="/" title="Home">
               <Logo image={logo} />
             </LinkStyled>
           )}
-          <DrawerButton onClick={() => setOpen(!open)} aria-label="Open Menu">
-            {open ? (
-              <RenderIcon name="Close" />
-            ) : (
-              <RenderIcon name="Hamburger" />
-            )}
-          </DrawerButton>
+          <Row>
+            {iconItems &&
+              iconItems.map((item) => {
+                return (
+                  <MobileIconLink
+                    href={item.href as string}
+                    key={`icon-${item.id}`}
+                  >
+                    <RenderIcon {...item.icon} />
+                  </MobileIconLink>
+                );
+              })}
+            <DrawerButton onClick={() => setOpen(!open)} aria-label="Open Menu">
+              {open ? (
+                <RenderIcon name="Close" />
+              ) : (
+                <RenderIcon name="Hamburger" />
+              )}
+            </DrawerButton>
+          </Row>
         </Nav>
         <DesktopRow>
           <NavContent
