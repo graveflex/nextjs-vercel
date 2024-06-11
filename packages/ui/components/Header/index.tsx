@@ -16,8 +16,8 @@ import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePay
 import RichText from '@mono/ui/components/primitives/RichText';
 import RenderIcon from '@mono/ui/components/RenderIcon';
 import styled, { css } from '@refract-ui/sc';
-import type { MotionValue } from 'framer-motion';
-import { motion, useTransform, useSpring } from 'framer-motion';
+import s from 'styled-components';
+import { motion } from 'framer-motion';
 
 const OuterHeader = styled.header`
   position: sticky;
@@ -25,16 +25,19 @@ const OuterHeader = styled.header`
   z-index: 50;
   max-height: 5rem;
   color: white;
-`;
+`
 
-const NavContainer = styled.div`
-  ${({ theme: { mq } }) => css`
+const NavContainer = styled.div<{$open: boolean}>`
+  ${({ theme: { mq }, $open }) => css`
     display: grid;
-    width: 100%;
     justify-content: space-between;
     align-items: center;
-    grid-template-areas: 'nav nav' 'mobileButtons mobileButtons';
-    background-color: currentColor;
+    grid-template-areas: 'nav nav' '. mobileButtons';
+
+    ${$open &&
+      css`
+      grid-template-areas: 'nav nav' 'mobileButtons mobileButtons';
+    `}
 
     ${mq.md`
       grid-template-areas: "nav buttons";
@@ -99,19 +102,14 @@ const DrawerButton = styled.button`
   `}
 `;
 
-const MobileColumn = styled.div<{ $open: boolean }>`
-  ${({ theme: { mq }, $open }) => css`
+const MobileColumn = s(motion.div)`
+  ${({ theme: { mq } }) => css`
     grid-area: mobileButtons;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    height: 100lvh;
     background-color: white;
-
-    ${$open &&
-    css`
-      height: 100vh;
-      padding-top: 3rem;
-    `}
+    padding-top: 3rem;
 
     ${mq.md`
       display: none;
@@ -226,16 +224,10 @@ function Header({
   open,
   setOpen,
 }: HeaderType) {
-  const menuRevealProgress = useSpring(0, {
-    bounce: 0,
-    duration: 1000
-  });
-  // const headerXPercent = useTransform(revealProgress, [1, 0], [0, -100]);
-  // const headerXPos = useTransform(headerXPercent, (val) => `${val}%`);
 
-  const variants = {
-    open: { x: 300, opacity: 1},
-    closed: { x: 0, opacity: 0},
+  const openMenuVariants = {
+    open: { x: 0 },
+    closed: { x: 400 },
   }
   return (
     <OuterHeader>
@@ -244,7 +236,7 @@ function Header({
           <RichText {...banner.content} />
         </Banner>
       )}
-      <NavContainer>
+      <NavContainer $open={open}>
         <Nav>
           {logo && (
             <LinkStyled href="/" title="Home">
@@ -280,22 +272,19 @@ function Header({
             ctaButton={ctaButton}
           />
         </DesktopRow>
-        <motion.div
+        <MobileColumn
           initial="closed"
-          animate="open"
-          variants={variants}
+          animate={open ? 'open' : 'closed'}
+          variants={openMenuVariants}
+          transition={{ duration: 1}} 
         >
-          <MobileColumn $open={open}>
-            {open && (
-              <NavContent
-                collapsibleMenu={collapsibleMenu}
-                flatMenu={flatMenu}
-                iconItems={iconItems}
-                ctaButton={ctaButton}
-              />
-            )}
-          </MobileColumn>
-        </motion.div>
+            <NavContent
+              collapsibleMenu={collapsibleMenu}
+              flatMenu={flatMenu}
+              iconItems={iconItems}
+              ctaButton={ctaButton}
+            />
+        </MobileColumn>
       </NavContainer>
     </OuterHeader>
   );
