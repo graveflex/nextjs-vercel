@@ -18,7 +18,25 @@ const meta: Meta<ResponsivePayloadWrapperProps> = {
 export default meta;
 type Story = StoryObj<ResponsivePayloadWrapperProps>;
 
-const randomImage = 'https://source.unsplash.com/random';
+const mobileImage: Image = {
+  id: 17,
+  alt: 'Students',
+  filename: 'module0.jpg',
+  mimeType: 'image/jpeg',
+  filesize: 3664901,
+  width: 450,
+  height: 800,
+  createdAt: '2023-09-13T16:32:11.202Z',
+  updatedAt: '2023-09-13T16:32:11.202Z',
+  url: faker.image.abstract(450, 800),
+  imageProps: {
+    fill: true
+  },
+  additionalProps: {
+    objectFit: 'fill',
+    isRounded: false
+  }
+};
 
 const desktopImage: Image = {
   id: 17,
@@ -26,95 +44,17 @@ const desktopImage: Image = {
   filename: 'module0.jpg',
   mimeType: 'image/jpeg',
   filesize: 3664901,
-  width: 1000,
-  height: 500,
-  sizes: {
-    thumbnail: {
-      width: 1000,
-      height: 500,
-      mimeType: 'image/jpeg',
-      filesize: 13968,
-      filename: 'module0-300x211.jpg',
-      url: randomImage
-    },
-    mobile: {
-      width: 1000,
-      height: 500,
-      mimeType: 'image/jpeg',
-      filesize: 101228,
-      filename: 'module0-1024x722.jpg',
-      url: randomImage
-    },
-    desktop: {
-      width: 1000,
-      height: 500,
-      mimeType: 'image/jpeg',
-      filesize: 376199,
-      filename: 'module0-2048x1445.jpg',
-      url: randomImage
-    },
-    ultrawide: {
-      width: 1000,
-      height: 500,
-      mimeType: 'image/jpeg',
-      filesize: 1557423,
-      url: randomImage
-    }
-  },
+  width: 800,
+  height: 450,
   createdAt: '2023-09-13T16:32:11.202Z',
   updatedAt: '2023-09-13T16:32:11.202Z',
-  url: randomImage,
+  url: faker.image.abstract(800, 450),
   imageProps: {
-    fill: false
-  }
-};
-
-const mobileImage: Image = {
-  id: 17,
-  alt: 'Students',
-  filename: 'module0.jpg',
-  mimeType: 'image/jpeg',
-  filesize: 3664901,
-  width: 100,
-  height: 100,
-  sizes: {
-    thumbnail: {
-      width: 100,
-      height: 100,
-      mimeType: 'image/jpeg',
-      filesize: 13968,
-      filename: 'module0-300x211.jpg',
-      url: randomImage
-    },
-    mobile: {
-      width: 100,
-      height: 100,
-      mimeType: 'image/jpeg',
-      filesize: 101228,
-      filename: 'module0-1024x722.jpg',
-      url: randomImage
-    },
-    desktop: {
-      width: 100,
-      height: 100,
-      mimeType: 'image/jpeg',
-      filesize: 376199,
-      filename: 'module0-2048x1445.jpg',
-      url: randomImage
-    },
-    ultrawide: {
-      width: 100,
-      height: 100,
-      mimeType: 'image/jpeg',
-      filesize: 1557423,
-      url: randomImage
-    }
+    fill: true
   },
-  createdAt: '2023-09-13T16:32:11.202Z',
-  updatedAt: '2023-09-13T16:32:11.202Z',
-  url: randomImage,
-  imageProps: {
-    fill: false
+  additionalProps: {
+    objectFit: 'fill',
+    isRounded: false
   }
 };
 
@@ -128,8 +68,8 @@ export const Defaults: Story = {
       filename: 'module0.jpg',
       mimeType: 'image/jpeg',
       filesize: 3664901,
-      width: 5336,
-      height: 3766,
+      width: 800,
+      height: 450,
       sizes: {
         thumbnail: {
           width: 300,
@@ -137,7 +77,7 @@ export const Defaults: Story = {
           mimeType: 'image/jpeg',
           filesize: 13968,
           filename: 'module0-300x211.jpg',
-          url: randomImage
+          url: faker.image.abstract(300, 211)
         },
         mobile: {
           width: 1024,
@@ -145,7 +85,7 @@ export const Defaults: Story = {
           mimeType: 'image/jpeg',
           filesize: 101228,
           filename: 'module0-1024x722.jpg',
-          url: randomImage
+          url: faker.image.abstract(1024, 722)
         },
         desktop: {
           width: 2048,
@@ -153,19 +93,19 @@ export const Defaults: Story = {
           mimeType: 'image/jpeg',
           filesize: 376199,
           filename: 'module0-2048x1445.jpg',
-          url: randomImage
+          url: faker.image.abstract(2048, 1445)
         },
         ultrawide: {
           width: 4096,
           height: 2891,
           mimeType: 'image/jpeg',
           filesize: 1557423,
-          url: randomImage
+          url: faker.image.abstract(4096, 2891)
         }
       },
       createdAt: '2023-09-13T16:32:11.202Z',
       updatedAt: '2023-09-13T16:32:11.202Z',
-      url: randomImage,
+      url: faker.image.abstract(800, 450),
       imageProps: {
         fill: false
       },
@@ -186,11 +126,11 @@ export const NoSizes: Story = {
       filename: 'module0.jpg',
       mimeType: 'image/jpeg',
       filesize: 3664901,
-      width: 5336,
-      height: 3766,
+      width: 800,
+      height: 450,
       createdAt: '2023-09-13T16:32:11.202Z',
       updatedAt: '2023-09-13T16:32:11.202Z',
-      url: randomImage
+      url: faker.image.abstract(800, 450)
     }
   }
 };
@@ -202,11 +142,11 @@ export const NoSizesNoAlt: Story = {
       filename: 'module0.jpg',
       mimeType: 'image/jpeg',
       filesize: 3664901,
-      width: 5336,
-      height: 3766,
+      width: 1000,
+      height: 1000,
       createdAt: '2023-09-13T16:32:11.202Z',
       updatedAt: '2023-09-13T16:32:11.202Z',
-      url: randomImage
+      url: faker.image.abstract(1000, 1000)
     }
   }
 };
@@ -218,8 +158,8 @@ export const NoAlt: Story = {
       filename: 'module0.jpg',
       mimeType: 'image/jpeg',
       filesize: 3664901,
-      width: 5336,
-      height: 3766,
+      width: 800,
+      height: 450,
       sizes: {
         thumbnail: {
           width: 300,
@@ -227,29 +167,35 @@ export const NoAlt: Story = {
           mimeType: 'image/jpeg',
           filesize: 13968,
           filename: 'module0-300x211.jpg',
-          url: randomImage
+          url: faker.image.abstract(300, 211)
         },
-        mobile: {},
+        mobile: {
+          width: 1024,
+          height: 722,
+          mimeType: 'image/jpeg',
+          filesize: 101228,
+          filename: 'module0-1024x722.jpg',
+          url: faker.image.abstract(1024, 722)
+        },
         desktop: {
           width: 2048,
           height: 1445,
           mimeType: 'image/jpeg',
           filesize: 376199,
           filename: 'module0-2048x1445.jpg',
-          url: randomImage
+          url: faker.image.abstract(2048, 1445)
         },
         ultrawide: {
           width: 4096,
           height: 2891,
           mimeType: 'image/jpeg',
           filesize: 1557423,
-          filename: 'module0-4096x2891.jpg',
-          url: randomImage
+          url: faker.image.abstract(4096, 2891)
         }
       },
       createdAt: '2023-09-13T16:32:11.202Z',
       updatedAt: '2023-09-13T16:32:11.202Z',
-      url: randomImage
+      url: faker.image.abstract(800, 450)
     }
   }
 };
@@ -261,8 +207,8 @@ export const Null: Story = {
       filename: 'module0.jpg',
       mimeType: 'image/jpeg',
       filesize: 3664901,
-      width: 5336,
-      height: 3766,
+      width: 800,
+      height: 450,
       createdAt: '2023-09-13T16:32:11.202Z',
       updatedAt: '2023-09-13T16:32:11.202Z'
     }
