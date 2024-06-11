@@ -15,7 +15,8 @@
     "generate:types": "payload generate:types",
     "migrations:create": "payload migrate:create",
     "migrations:run": "if [ \"$CI\" != \"true\" ]; then payload migrate; fi",
-    "setup": "./bin/init_db.sh"
+    "setup": "./bin/init_db.sh",
+    "seed:nav": "tsx ./bin/seed-nav.ts"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.0",

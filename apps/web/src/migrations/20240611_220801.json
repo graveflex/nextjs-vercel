@@ -1,5 +1,5 @@
 {
-  "id": "3dc111e4-0322-42d5-895e-8e5a67022d10",
+  "id": "5962a4cb-5aac-40eb-8086-02c752d27f81",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -4644,6 +4644,7 @@
     "undefined_link_ic": {
       "name": "undefined_link_ic",
       "values": {
+        "Hamburger": "Hamburger",
         "Check": "Check",
         "ArrowUp": "ArrowUp",
         "ArrowLeft": "ArrowLeft",
@@ -4831,6 +4832,7 @@
     "iconnavitem_ic": {
       "name": "iconnavitem_ic",
       "values": {
+        "Hamburger": "Hamburger",
         "Check": "Check",
         "ArrowUp": "ArrowUp",
         "ArrowLeft": "ArrowLeft",

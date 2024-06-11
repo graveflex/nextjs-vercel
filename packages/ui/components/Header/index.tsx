@@ -19,6 +19,8 @@ import styled, { css } from '@refract-ui/sc';
 import s from 'styled-components';
 import { motion } from 'framer-motion';
 
+// UPDATE TO USE THEMECOLOR
+
 const OuterHeader = styled.header`
   position: sticky;
   top: 0;
@@ -43,6 +45,7 @@ const NavContainer = styled.div<{$open: boolean}>`
       grid-template-areas: "nav buttons";
       padding: .5rem 1.875rem;
       gap: 0;
+      background-color: currentColor;
     `}
   `}
 `;
@@ -108,7 +111,7 @@ const MobileColumn = s(motion.div)`
     display: flex;
     flex-direction: column;
     height: 100lvh;
-    background-color: white;
+    background-color: currentColor;
     padding-top: 3rem;
 
     ${mq.md`

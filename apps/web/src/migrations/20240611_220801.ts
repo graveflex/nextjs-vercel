@@ -76,7 +76,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "undefined_link_ic" AS ENUM('Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
+ CREATE TYPE "undefined_link_ic" AS ENUM('Hamburger', 'Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -196,7 +196,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "iconnavitem_ic" AS ENUM('Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
+ CREATE TYPE "iconnavitem_ic" AS ENUM('Hamburger', 'Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -756,7 +756,7 @@ CREATE TABLE IF NOT EXISTS "nav_header_icon_items" (
 	"icon_color" varchar
 );
 
-CREATE TABLE IF NOT EXISTS "nav_footer_footer_menu" (
+CREATE TABLE IF NOT EXISTS "nav_footer_footer_items_footer_menu" (
 	"_order" integer NOT NULL,
 	"_parent_id" integer NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
@@ -786,8 +786,8 @@ CREATE TABLE IF NOT EXISTS "nav" (
 	"header_ctaButton_cta_link_icon_size" "undefined_link_iw",
 	"header_cta_button_cta_link_icon_color" varchar,
 	"header_ctaButton_cta_variant" "undefined_cta_v",
-	"footer_copyright" jsonb,
-	"footer_legal_disclaimer" jsonb,
+	"footer_footer_items_copyright" jsonb,
+	"footer_footer_items_legal_disclaimer" jsonb,
 	"updated_at" timestamp(3) with time zone,
 	"created_at" timestamp(3) with time zone
 );
@@ -890,8 +890,8 @@ CREATE INDEX IF NOT EXISTS "nav_header_flat_menu_order_idx" ON "nav_header_flat_
 CREATE INDEX IF NOT EXISTS "nav_header_flat_menu_parent_id_idx" ON "nav_header_flat_menu" ("_parent_id");
 CREATE INDEX IF NOT EXISTS "nav_header_icon_items_order_idx" ON "nav_header_icon_items" ("_order");
 CREATE INDEX IF NOT EXISTS "nav_header_icon_items_parent_id_idx" ON "nav_header_icon_items" ("_parent_id");
-CREATE INDEX IF NOT EXISTS "nav_footer_footer_menu_order_idx" ON "nav_footer_footer_menu" ("_order");
-CREATE INDEX IF NOT EXISTS "nav_footer_footer_menu_parent_id_idx" ON "nav_footer_footer_menu" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "nav_footer_footer_items_footer_menu_order_idx" ON "nav_footer_footer_items_footer_menu" ("_order");
+CREATE INDEX IF NOT EXISTS "nav_footer_footer_items_footer_menu_parent_id_idx" ON "nav_footer_footer_items_footer_menu" ("_parent_id");
 CREATE INDEX IF NOT EXISTS "nav_rels_order_idx" ON "nav_rels" ("order");
 CREATE INDEX IF NOT EXISTS "nav_rels_parent_idx" ON "nav_rels" ("parent_id");
 CREATE INDEX IF NOT EXISTS "nav_rels_path_idx" ON "nav_rels" ("path");
@@ -1106,7 +1106,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "nav_footer_footer_menu" ADD CONSTRAINT "nav_footer_footer_menu_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "nav_footer_footer_items_footer_menu" ADD CONSTRAINT "nav_footer_footer_items_footer_menu_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -1189,7 +1189,7 @@ DROP TABLE "nav_header_collapsible_menu_sections_links";
 DROP TABLE "nav_header_collapsible_menu_sections";
 DROP TABLE "nav_header_flat_menu";
 DROP TABLE "nav_header_icon_items";
-DROP TABLE "nav_footer_footer_menu";
+DROP TABLE "nav_footer_footer_items_footer_menu";
 DROP TABLE "nav";
 DROP TABLE "nav_locales";
 DROP TABLE "nav_rels";
