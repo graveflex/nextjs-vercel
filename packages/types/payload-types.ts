@@ -115,14 +115,21 @@ export interface CardType {
   image?: number | Image | null;
   eyebrow?: string | null;
   headline: string;
-  subHead?: string | null;
-  iconItem?:
-    | {
-        text: string;
-        icon?: IconSelect;
-        id?: string | null;
-      }[]
-    | null;
+  subHead?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   ctas?:
     | {
         cta?: CTAType;
@@ -157,8 +164,6 @@ export interface Image {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
   sizes?: {
     thumbnail?: {
       url?: string | null;
@@ -204,44 +209,6 @@ export interface Image {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IconSelect".
- */
-export interface IconSelect {
-  name?:
-    | (
-        | 'Check'
-        | 'ArrowUp'
-        | 'ArrowLeft'
-        | 'ArrowRight'
-        | 'ArrowDown'
-        | 'CaretDown'
-        | 'CaretUp'
-        | 'CaretRight'
-        | 'CaretLeft'
-        | 'Close'
-        | 'DoubleCaretDown'
-        | 'DoubleCaretUp'
-        | 'DoubleCaretRight'
-        | 'DoubleCaretLeft'
-        | 'Error'
-        | 'LinkOut'
-        | 'MinusSign'
-        | 'Person'
-        | 'PlusSign'
-        | 'Quote'
-        | 'Search'
-        | 'SolidArrowDown'
-        | 'SolidArrowUp'
-        | 'SolidArrowRight'
-        | 'SolidArrowLeft'
-        | 'ArrowNesting'
-      )
-    | null;
-  size?: ('35' | '30' | '25' | '20') | null;
-  color?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "CTAType".
  */
 export interface CTAType {
@@ -273,8 +240,52 @@ export interface File {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconSelect".
+ */
+export interface IconSelect {
+  name?:
+    | (
+        | 'Login'
+        | 'Menu'
+        | 'Location'
+        | 'Calendar'
+        | 'PersonBust'
+        | 'Check'
+        | 'ArrowUp'
+        | 'ArrowLeft'
+        | 'ArrowRight'
+        | 'ArrowDown'
+        | 'CaretDown'
+        | 'CaretUp'
+        | 'CaretRight'
+        | 'CaretLeft'
+        | 'Close'
+        | 'DoubleCaretDown'
+        | 'DoubleCaretUp'
+        | 'DoubleCaretRight'
+        | 'DoubleCaretLeft'
+        | 'Error'
+        | 'LinkOut'
+        | 'MinusSign'
+        | 'Person'
+        | 'PlusSign'
+        | 'Quote'
+        | 'Search'
+        | 'Phone'
+        | 'Job'
+        | 'Email'
+        | 'SolidArrowDown'
+        | 'SolidArrowUp'
+        | 'SolidArrowRight'
+        | 'SolidArrowLeft'
+        | 'ArrowNesting'
+      )
+    | null;
+  size?: ('35' | '30' | '25' | '20') | null;
+  color?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -678,24 +689,6 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "files".
- */
-export interface File {
-  id: number;
-  title: string;
-  description?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

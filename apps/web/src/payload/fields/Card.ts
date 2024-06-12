@@ -52,7 +52,7 @@ function Card({
           {
             name: 'subHead',
             label: 'Subhead',
-            type: 'textarea',
+            type: 'richText',
             localized,
             required: false,
             admin: {

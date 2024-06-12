@@ -6,32 +6,29 @@ import CtaButton from '@mono/ui/components/CtaButton';
 import ResponsiveImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import styled, { css } from '@refract-ui/sc';
 
+import RichText from '../primitives/RichText';
+
 const Container = styled.div`
-  ${({ theme: { spacing, mq, allColors } }) => css`
+  ${({ theme: { spacing, allColors } }) => css`
     display: flex;
     flex-direction: column;
     border-radius: 1.13rem;
-    background-color: ${allColors.neutral10};
-    padding: ${spacing[5]}rem;
-
-    ${mq.md`
-      height: 100%;
-      max-width: 30rem;
-      padding: ${spacing[9]}rem;
-    `}
+    background-color: ${allColors.primaryBg};
+    max-width: 30rem;
+    padding: ${spacing[9]}rem;
   `}
 `;
 
 const ContentContainer = styled.div`
-  height: fill-available;
   display: grid;
+  gap: 1rem;
 `;
 
-const Eyebrow = styled.h1({ t: 'menuLinkLight' })`
+const Eyebrow = styled.h6`
   margin: 0rem;
 `;
 
-const Headline = styled.h1({ t: 'h4Serif', c: 'secondary' })`
+const Headline = styled.h1`
   margin: 0;
   -webkit-box-orient: vertical;
   display: -webkit-box;
@@ -43,24 +40,19 @@ const Headline = styled.h1({ t: 'h4Serif', c: 'secondary' })`
 
   ${({ theme: { box } }) => css`
     ${box.t('h3')};
+    ${box.c('primaryFg')};
   `}
 `;
 
-const SubHead = styled.p({ t: 'p2Serif' })`
-${({ theme: { spacing } }) => css`
-  margin-top: ${spacing[6]}rem;
-`}
+const SubHead = styled(RichText)`
+  ${({ theme: { spacing } }) => css`
+    margin-top: ${spacing[6]}rem;
+  `}
 `;
 
 const ImageContainer = styled.div`
-  aspect-ratio: 16/9;
-  border-radius: 6px;
+  border-radius: 0.375rem;
   overflow: hidden;
-
-  img {
-    height: 100%;
-    object-fit: cover;
-  }
 
   ${({ theme: { spacing } }) => css`
     margin-bottom: ${spacing[9]}rem;
@@ -120,7 +112,7 @@ function GeneralCard({
             <Headline>{headline}</Headline>
           </>
         )}
-        {subHead && <SubHead>{subHead}</SubHead>}
+        {subHead && <SubHead {...subHead} />}
         {ctas && (
           <ButtonsWrapper>
             {ctas?.map(({ cta }, index) => {
@@ -129,7 +121,7 @@ function GeneralCard({
                 return null;
               }
 
-              return <CtaButton key={key} cta={cta} color="secondary" />;
+              return <CtaButton key={key} cta={cta} />;
             })}
           </ButtonsWrapper>
         )}
