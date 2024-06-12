@@ -5,10 +5,10 @@ import { render } from '@testing-library/react';
 
 import * as stories from '../GeneralCard.stories';
 
-const { StoriesCard } = composeStories(stories, projectAnnotations);
+const { BasicCard } = composeStories(stories, projectAnnotations);
 
-describe('GeneralCard', () => {
+describe('BasicCard', () => {
   it('component mounts', () => {
-    render(<StoriesCard />);
+    render(<BasicCard />);
   });
 });
