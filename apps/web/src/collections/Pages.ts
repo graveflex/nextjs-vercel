@@ -1,7 +1,8 @@
 import { WEB_URL } from '@mono/settings';
+// InsertBlockConfigs
+import CardGridBlock from '@mono/web/blocks/CardGridBlock/CardGridBlock.config';
 import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
 import HeroBlock from '@mono/web/blocks/HeroBlock/HeroBlock.config';
-// InsertBlockConfigs
 import MarkdownBlock from '@mono/web/blocks/MarkdownBlock/MarkdownBlock.config';
 import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
 import SEOConfig from '@mono/web/payload/fields/SEO';
@@ -90,6 +91,7 @@ const Pages: CollectionConfig = {
       type: 'blocks',
       blocks: [
         // InsertBlockConfigFields
+        CardGridBlock,
         MarkdownBlock,
 
         FAQBlock,
