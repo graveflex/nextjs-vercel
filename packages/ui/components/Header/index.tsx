@@ -275,7 +275,7 @@ function Header({
           />
         </DesktopRow>
         <MobileColumn
-          initial="hidden"
+          initial={{display: 'none'}}
           animate={open ? 'open' : 'closed'}
           variants={openMenuVariants}
           transition={{ duration: 1 }}
