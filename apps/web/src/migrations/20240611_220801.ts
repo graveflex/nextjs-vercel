@@ -76,19 +76,19 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
+ CREATE TYPE "undefined_link_ic" AS ENUM('Hamburger', 'Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "undefined_link_iw" AS ENUM('20', '25', '30', '35');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
  CREATE TYPE "undefined_cta_v" AS ENUM('rounded-outline', 'link');
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
- CREATE TYPE "undefined_cta_ic" AS ENUM('Login', 'Menu', 'Location', 'Calendar', 'PersonBust', 'Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'Phone', 'Job', 'Email', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
- CREATE TYPE "undefined_cta_iw" AS ENUM('20', '25', '30', '35');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -190,13 +190,19 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "enum_nav_header_main_type" AS ENUM('link', 'button');
+ CREATE TYPE "enum_nav_header_banner_background" AS ENUM('white', 'black', 'gray');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "enum_nav_footer_secondary_type" AS ENUM('link', 'button');
+ CREATE TYPE "iconnavitem_ic" AS ENUM('Hamburger', 'Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ CREATE TYPE "iconnavitem_iw" AS ENUM('20', '25', '30', '35');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -292,16 +298,16 @@ CREATE TABLE IF NOT EXISTS "pages_blocks_text_image_block" (
 	"blockConfig_p_xl_paddingTop" "t",
 	"blockConfig_p_xl_paddingBottom" "b",
 	"blockConfig_layout" "enum_pages_blocks_text_image_block_block_config_layout",
-	"cta_type" "undefined_cta_t",
-	"cta_label" varchar,
-	"cta_external_href" varchar,
-	"cta_email_href" varchar,
-	"cta_phone_href" varchar,
-	"cta_new_tab" boolean,
+	"cta_link_type" "undefined_cta_t",
+	"cta_link_label" varchar,
+	"cta_link_external_href" varchar,
+	"cta_link_email_href" varchar,
+	"cta_link_phone_href" varchar,
+	"cta_link_new_tab" boolean,
+	"cta_link_icon_name" "undefined_link_ic",
+	"cta_link_icon_size" "undefined_link_iw",
+	"cta_link_icon_color" varchar,
 	"cta_variant" "undefined_cta_v",
-	"cta_icon_name" "undefined_cta_ic",
-	"cta_icon_size" "undefined_cta_iw",
-	"cta_icon_color" varchar,
 	"block_name" varchar
 );
 
@@ -334,16 +340,16 @@ CREATE TABLE IF NOT EXISTS "pages_blocks_hero_block" (
 	"blockConfig_layout" "enum_pages_blocks_hero_block_block_config_layout",
 	"input_placeholder" varchar,
 	"input_type" "enum_pages_blocks_hero_block_input_type",
-	"cta_type" "undefined_cta_t",
-	"cta_label" varchar,
-	"cta_external_href" varchar,
-	"cta_email_href" varchar,
-	"cta_phone_href" varchar,
-	"cta_new_tab" boolean,
+	"cta_link_type" "undefined_cta_t",
+	"cta_link_label" varchar,
+	"cta_link_external_href" varchar,
+	"cta_link_email_href" varchar,
+	"cta_link_phone_href" varchar,
+	"cta_link_new_tab" boolean,
+	"cta_link_icon_name" "undefined_link_ic",
+	"cta_link_icon_size" "undefined_link_iw",
+	"cta_link_icon_color" varchar,
 	"cta_variant" "undefined_cta_v",
-	"cta_icon_name" "undefined_cta_ic",
-	"cta_icon_size" "undefined_cta_iw",
-	"cta_icon_color" varchar,
 	"block_name" varchar
 );
 
@@ -475,16 +481,16 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_text_image_block" (
 	"blockConfig_p_xl_paddingTop" "t",
 	"blockConfig_p_xl_paddingBottom" "b",
 	"blockConfig_layout" "enum__pages_v_blocks_text_image_block_block_config_layout",
-	"cta_type" "undefined_cta_t",
-	"cta_label" varchar,
-	"cta_external_href" varchar,
-	"cta_email_href" varchar,
-	"cta_phone_href" varchar,
-	"cta_new_tab" boolean,
+	"cta_link_type" "undefined_cta_t",
+	"cta_link_label" varchar,
+	"cta_link_external_href" varchar,
+	"cta_link_email_href" varchar,
+	"cta_link_phone_href" varchar,
+	"cta_link_new_tab" boolean,
+	"cta_link_icon_name" "undefined_link_ic",
+	"cta_link_icon_size" "undefined_link_iw",
+	"cta_link_icon_color" varchar,
 	"cta_variant" "undefined_cta_v",
-	"cta_icon_name" "undefined_cta_ic",
-	"cta_icon_size" "undefined_cta_iw",
-	"cta_icon_color" varchar,
 	"_uuid" varchar,
 	"block_name" varchar
 );
@@ -518,16 +524,16 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_hero_block" (
 	"blockConfig_layout" "enum__pages_v_blocks_hero_block_block_config_layout",
 	"input_placeholder" varchar,
 	"input_type" "enum__pages_v_blocks_hero_block_input_type",
-	"cta_type" "undefined_cta_t",
-	"cta_label" varchar,
-	"cta_external_href" varchar,
-	"cta_email_href" varchar,
-	"cta_phone_href" varchar,
-	"cta_new_tab" boolean,
+	"cta_link_type" "undefined_cta_t",
+	"cta_link_label" varchar,
+	"cta_link_external_href" varchar,
+	"cta_link_email_href" varchar,
+	"cta_link_phone_href" varchar,
+	"cta_link_new_tab" boolean,
+	"cta_link_icon_name" "undefined_link_ic",
+	"cta_link_icon_size" "undefined_link_iw",
+	"cta_link_icon_color" varchar,
 	"cta_variant" "undefined_cta_v",
-	"cta_icon_name" "undefined_cta_ic",
-	"cta_icon_size" "undefined_cta_iw",
-	"cta_icon_color" varchar,
 	"_uuid" varchar,
 	"block_name" varchar
 );
@@ -594,7 +600,9 @@ CREATE TABLE IF NOT EXISTS "files" (
 	"mime_type" varchar,
 	"filesize" numeric,
 	"width" numeric,
-	"height" numeric
+	"height" numeric,
+	"focal_x" numeric,
+	"focal_y" numeric
 );
 
 CREATE TABLE IF NOT EXISTS "images" (
@@ -615,6 +623,8 @@ CREATE TABLE IF NOT EXISTS "images" (
 	"filesize" numeric,
 	"width" numeric,
 	"height" numeric,
+	"focal_x" numeric,
+	"focal_y" numeric,
 	"sizes_thumbnail_url" varchar,
 	"sizes_thumbnail_width" numeric,
 	"sizes_thumbnail_height" numeric,
@@ -668,7 +678,9 @@ CREATE TABLE IF NOT EXISTS "videos" (
 	"mime_type" varchar,
 	"filesize" numeric,
 	"width" numeric,
-	"height" numeric
+	"height" numeric,
+	"focal_x" numeric,
+	"focal_y" numeric
 );
 
 CREATE TABLE IF NOT EXISTS "payload_preferences" (
@@ -695,43 +707,96 @@ CREATE TABLE IF NOT EXISTS "payload_migrations" (
 	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS "nav_header_main" (
+CREATE TABLE IF NOT EXISTS "nav_header_collapsible_menu_sections_links" (
+	"_order" integer NOT NULL,
+	"_parent_id" varchar NOT NULL,
+	"id" varchar PRIMARY KEY NOT NULL,
+	"link_type" "undefined_cta_t",
+	"link_label" varchar NOT NULL,
+	"link_external_href" varchar,
+	"link_email_href" varchar,
+	"link_phone_href" varchar,
+	"link_new_tab" boolean,
+	"link_icon_name" "undefined_link_ic",
+	"link_icon_size" "undefined_link_iw",
+	"link_icon_color" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "nav_header_collapsible_menu_sections" (
+	"_order" integer NOT NULL,
+	"_parent_id" integer NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"id" varchar PRIMARY KEY NOT NULL,
+	"label" varchar NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS "nav_header_flat_menu" (
 	"_order" integer NOT NULL,
 	"_parent_id" integer NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
-	"slug" varchar NOT NULL,
-	"type" "enum_nav_header_main_type"
+	"link_type" "undefined_cta_t",
+	"link_label" varchar NOT NULL,
+	"link_external_href" varchar,
+	"link_email_href" varchar,
+	"link_phone_href" varchar,
+	"link_new_tab" boolean,
+	"link_icon_name" "undefined_link_ic",
+	"link_icon_size" "undefined_link_iw",
+	"link_icon_color" varchar
 );
 
-CREATE TABLE IF NOT EXISTS "nav_header_main_locales" (
-	"label" varchar NOT NULL,
-	"id" serial PRIMARY KEY NOT NULL,
-	"_locale" "_locales" NOT NULL,
-	"_parent_id" varchar NOT NULL,
-	CONSTRAINT "nav_header_main_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
-);
-
-CREATE TABLE IF NOT EXISTS "nav_footer_secondary" (
+CREATE TABLE IF NOT EXISTS "nav_header_icon_items" (
 	"_order" integer NOT NULL,
 	"_parent_id" integer NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
-	"slug" varchar NOT NULL,
-	"type" "enum_nav_footer_secondary_type"
+	"href" varchar,
+	"new_tab" boolean,
+	"icon_name" "iconnavitem_ic",
+	"icon_size" "iconnavitem_iw",
+	"icon_color" varchar
 );
 
-CREATE TABLE IF NOT EXISTS "nav_footer_secondary_locales" (
-	"label" varchar NOT NULL,
-	"id" serial PRIMARY KEY NOT NULL,
-	"_locale" "_locales" NOT NULL,
-	"_parent_id" varchar NOT NULL,
-	CONSTRAINT "nav_footer_secondary_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
+CREATE TABLE IF NOT EXISTS "nav_footer_footer_items_footer_menu" (
+	"_order" integer NOT NULL,
+	"_parent_id" integer NOT NULL,
+	"id" varchar PRIMARY KEY NOT NULL,
+	"link_type" "undefined_cta_t",
+	"link_label" varchar NOT NULL,
+	"link_external_href" varchar,
+	"link_email_href" varchar,
+	"link_phone_href" varchar,
+	"link_new_tab" boolean,
+	"link_icon_name" "undefined_link_ic",
+	"link_icon_size" "undefined_link_iw",
+	"link_icon_color" varchar
 );
 
 CREATE TABLE IF NOT EXISTS "nav" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"footer_copyright" varchar,
+	"header_banner_content" jsonb,
+	"header_banner_background" "enum_nav_header_banner_background",
+	"header_has_cta" boolean,
+	"header_ctaButton_cta_link_type" "undefined_cta_t",
+	"header_cta_button_cta_link_label" varchar,
+	"header_cta_button_cta_link_external_href" varchar,
+	"header_cta_button_cta_link_email_href" varchar,
+	"header_cta_button_cta_link_phone_href" varchar,
+	"header_cta_button_cta_link_new_tab" boolean,
+	"header_ctaButton_cta_link_icon_name" "undefined_link_ic",
+	"header_ctaButton_cta_link_icon_size" "undefined_link_iw",
+	"header_cta_button_cta_link_icon_color" varchar,
+	"header_ctaButton_cta_variant" "undefined_cta_v",
+	"footer_footer_items_copyright" jsonb,
+	"footer_footer_items_legal_disclaimer" jsonb,
 	"updated_at" timestamp(3) with time zone,
 	"created_at" timestamp(3) with time zone
+);
+
+CREATE TABLE IF NOT EXISTS "nav_locales" (
+	"id" serial PRIMARY KEY NOT NULL,
+	"_locale" "_locales" NOT NULL,
+	"_parent_id" integer NOT NULL,
+	CONSTRAINT "nav_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
 );
 
 CREATE TABLE IF NOT EXISTS "nav_rels" (
@@ -739,7 +804,9 @@ CREATE TABLE IF NOT EXISTS "nav_rels" (
 	"order" integer,
 	"parent_id" integer NOT NULL,
 	"path" varchar NOT NULL,
-	"images_id" integer
+	"images_id" integer,
+	"pages_id" integer,
+	"files_id" integer
 );
 
 CREATE TABLE IF NOT EXISTS "four_oh_four" (
@@ -814,10 +881,17 @@ CREATE INDEX IF NOT EXISTS "payload_preferences_rels_order_idx" ON "payload_pref
 CREATE INDEX IF NOT EXISTS "payload_preferences_rels_parent_idx" ON "payload_preferences_rels" ("parent_id");
 CREATE INDEX IF NOT EXISTS "payload_preferences_rels_path_idx" ON "payload_preferences_rels" ("path");
 CREATE INDEX IF NOT EXISTS "payload_migrations_created_at_idx" ON "payload_migrations" ("created_at");
-CREATE INDEX IF NOT EXISTS "nav_header_main_order_idx" ON "nav_header_main" ("_order");
-CREATE INDEX IF NOT EXISTS "nav_header_main_parent_id_idx" ON "nav_header_main" ("_parent_id");
-CREATE INDEX IF NOT EXISTS "nav_footer_secondary_order_idx" ON "nav_footer_secondary" ("_order");
-CREATE INDEX IF NOT EXISTS "nav_footer_secondary_parent_id_idx" ON "nav_footer_secondary" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "nav_header_collapsible_menu_sections_links_order_idx" ON "nav_header_collapsible_menu_sections_links" ("_order");
+CREATE INDEX IF NOT EXISTS "nav_header_collapsible_menu_sections_links_parent_id_idx" ON "nav_header_collapsible_menu_sections_links" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "nav_header_collapsible_menu_sections_order_idx" ON "nav_header_collapsible_menu_sections" ("_order");
+CREATE INDEX IF NOT EXISTS "nav_header_collapsible_menu_sections_parent_id_idx" ON "nav_header_collapsible_menu_sections" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "nav_header_collapsible_menu_sections_locale_idx" ON "nav_header_collapsible_menu_sections" ("_locale");
+CREATE INDEX IF NOT EXISTS "nav_header_flat_menu_order_idx" ON "nav_header_flat_menu" ("_order");
+CREATE INDEX IF NOT EXISTS "nav_header_flat_menu_parent_id_idx" ON "nav_header_flat_menu" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "nav_header_icon_items_order_idx" ON "nav_header_icon_items" ("_order");
+CREATE INDEX IF NOT EXISTS "nav_header_icon_items_parent_id_idx" ON "nav_header_icon_items" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "nav_footer_footer_items_footer_menu_order_idx" ON "nav_footer_footer_items_footer_menu" ("_order");
+CREATE INDEX IF NOT EXISTS "nav_footer_footer_items_footer_menu_parent_id_idx" ON "nav_footer_footer_items_footer_menu" ("_parent_id");
 CREATE INDEX IF NOT EXISTS "nav_rels_order_idx" ON "nav_rels" ("order");
 CREATE INDEX IF NOT EXISTS "nav_rels_parent_idx" ON "nav_rels" ("parent_id");
 CREATE INDEX IF NOT EXISTS "nav_rels_path_idx" ON "nav_rels" ("path");
@@ -1008,25 +1082,37 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "nav_header_main" ADD CONSTRAINT "nav_header_main_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "nav_header_collapsible_menu_sections_links" ADD CONSTRAINT "nav_header_collapsible_menu_sections_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav_header_collapsible_menu_sections"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "nav_header_main_locales" ADD CONSTRAINT "nav_header_main_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav_header_main"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "nav_header_collapsible_menu_sections" ADD CONSTRAINT "nav_header_collapsible_menu_sections_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "nav_footer_secondary" ADD CONSTRAINT "nav_footer_secondary_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "nav_header_flat_menu" ADD CONSTRAINT "nav_header_flat_menu_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "nav_footer_secondary_locales" ADD CONSTRAINT "nav_footer_secondary_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav_footer_secondary"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "nav_header_icon_items" ADD CONSTRAINT "nav_header_icon_items_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "nav_footer_footer_items_footer_menu" ADD CONSTRAINT "nav_footer_footer_items_footer_menu_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "nav_locales" ADD CONSTRAINT "nav_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "nav"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -1039,6 +1125,18 @@ END $$;
 
 DO $$ BEGIN
  ALTER TABLE "nav_rels" ADD CONSTRAINT "nav_rels_images_fk" FOREIGN KEY ("images_id") REFERENCES "images"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "nav_rels" ADD CONSTRAINT "nav_rels_pages_fk" FOREIGN KEY ("pages_id") REFERENCES "pages"("id") ON DELETE cascade ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+
+DO $$ BEGIN
+ ALTER TABLE "nav_rels" ADD CONSTRAINT "nav_rels_files_fk" FOREIGN KEY ("files_id") REFERENCES "files"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -1087,11 +1185,13 @@ DROP TABLE "videos";
 DROP TABLE "payload_preferences";
 DROP TABLE "payload_preferences_rels";
 DROP TABLE "payload_migrations";
-DROP TABLE "nav_header_main";
-DROP TABLE "nav_header_main_locales";
-DROP TABLE "nav_footer_secondary";
-DROP TABLE "nav_footer_secondary_locales";
+DROP TABLE "nav_header_collapsible_menu_sections_links";
+DROP TABLE "nav_header_collapsible_menu_sections";
+DROP TABLE "nav_header_flat_menu";
+DROP TABLE "nav_header_icon_items";
+DROP TABLE "nav_footer_footer_items_footer_menu";
 DROP TABLE "nav";
+DROP TABLE "nav_locales";
 DROP TABLE "nav_rels";
 DROP TABLE "four_oh_four";
 DROP TABLE "four_oh_four_locales";`);

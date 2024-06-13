@@ -36,6 +36,7 @@
     "dotenv": "^16.4.5",
     "eslint": "^8.51.0",
     "eslint-config-custom": "workspace:*",
+    "framer-motion": "latest",
     "lodash": "^4.17.21",
     "luxon": "^3.4.4",
     "next": "latest",

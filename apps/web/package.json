@@ -15,7 +15,8 @@
     "generate:types": "payload generate:types",
     "migrations:create": "payload migrate:create",
     "migrations:run": "if [ \"$CI\" != \"true\" ]; then payload migrate; fi",
-    "setup": "./bin/init_db.sh"
+    "setup": "./bin/init_db.sh",
+    "seed:nav": "tsx ./bin/seed-nav.ts"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.0",
@@ -57,6 +58,7 @@
     "drizzle-orm": "^0.29.1",
     "escape-html": "^1.0.3",
     "eslint-config-custom": "workspace:*",
+    "framer-motion": "latest",
     "graphql-playground-middleware-express": "^1.7.23",
     "md5": "^2.3.0",
     "next": "latest",

@@ -53,14 +53,16 @@ export const Defaults: Story = {
     },
     eyebrow: 'Eyebrow',
     cta: {
-      label: 'Call to Action',
-      icon: { name: 'ArrowRight' },
-      internalHref: {
-        slug: '/',
-        id: 1,
-        pageTitle: 'Home',
-        updatedAt: '2024-01-05T20:29:44.749Z',
-        createdAt: '2024-01-05T20:29:44.749Z'
+      link: {
+        label: 'Test',
+        icon: { name: 'ArrowRight' },
+        internalHref: {
+          slug: '/',
+          id: 1,
+          pageTitle: 'Home',
+          updatedAt: '2024-01-05T20:29:44.749Z',
+          createdAt: '2024-01-05T20:29:44.749Z'
+        }
       }
     },
     input: {
@@ -114,14 +116,16 @@ export const MissingProps: Story = {
       }
     },
     cta: {
-      internalHref: {
-        slug: '/',
-        id: 1,
-        pageTitle: 'Home',
-        updatedAt: '2024-01-05T20:29:44.749Z',
-        createdAt: '2024-01-05T20:29:44.749Z'
-      },
-      label: 'Test'
+      link: {
+        internalHref: {
+          slug: '/',
+          id: 1,
+          pageTitle: 'Home',
+          updatedAt: '2024-01-05T20:29:44.749Z',
+          createdAt: '2024-01-05T20:29:44.749Z'
+        },
+        label: 'Test'
+      }
     },
     image: {
       id: 1,

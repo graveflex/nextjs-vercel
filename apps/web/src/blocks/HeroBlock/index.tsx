@@ -146,7 +146,7 @@ function HeroBlock({
         {(input || cta) && (
           <InputWrapper className={className}>
             {input?.type && <Input {...input} />}
-            {cta?.label && <CtaButton cta={cta} />}
+            {cta && <CtaButton cta={cta} />}
           </InputWrapper>
         )}
       </ContentWrapper>

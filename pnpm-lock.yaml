@@ -22,6 +22,7 @@ overrides:
   '@vitest/coverage-v8': ^0.34.6
   '@vitejs/plugin-react': ^4.2.1
   babel-plugin-react-compiler: ^0.0.0-experimental-592953e-20240517
+  framer-motion: ^11.2.10
   next: 15.0.0-rc.0
   payload: 3.0.0-beta.36
   react: 19.0.0-rc-f994737d14-20240522
@@ -315,6 +316,9 @@ importers:
       eslint-config-custom:
         specifier: workspace:*
         version: link:../../packages/eslint-config-custom
+      framer-motion:
+        specifier: ^11.2.10
+        version: 11.2.10(@emotion/is-prop-valid@1.2.1)(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522)
       graphql-playground-middleware-express:
         specifier: ^1.7.23
         version: 1.7.23(express@4.19.2)
@@ -588,6 +592,9 @@ importers:
       eslint-config-custom:
         specifier: workspace:*
         version: link:../eslint-config-custom
+      framer-motion:
+        specifier: ^11.2.10
+        version: 11.2.10(@emotion/is-prop-valid@1.2.1)(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -5787,6 +5794,20 @@ packages:
 
   fp-ts@2.16.5:
     resolution: {integrity: sha512-N8T8PwMSeTKKtkm9lkj/zSTAnPC/aJIIrQhnHxxkL0KLsRCNUPANksJOlMXxcKKCo7H1ORP3No9EMD+fP0tsdA==}
+
+  framer-motion@11.2.10:
+    resolution: {integrity: sha512-/gr3PLZUVFCc86a9MqCUboVrALscrdluzTb3yew+2/qKBU8CX6nzs918/SRBRCqaPbx0TZP10CB6yFgK2C5cYQ==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: 19.0.0-rc-f994737d14-20240522
+      react-dom: 19.0.0-rc-f994737d14-20240522
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
 
   fresh@0.5.2:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
@@ -16700,6 +16721,14 @@ snapshots:
   forwarded@0.2.0: {}
 
   fp-ts@2.16.5: {}
+
+  framer-motion@11.2.10(@emotion/is-prop-valid@1.2.1)(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522):
+    dependencies:
+      tslib: 2.6.2
+    optionalDependencies:
+      '@emotion/is-prop-valid': 1.2.1
+      react: 19.0.0-rc-f994737d14-20240522
+      react-dom: 19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522)
 
   fresh@0.5.2: {}
 

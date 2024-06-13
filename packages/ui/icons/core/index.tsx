@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 
 const core = {
   // InsertIconDict
+  Hamburger: dynamic(() => import('./Hamburger')),
   Check: dynamic(() => import('./Check')),
   Search: dynamic(() => import('./Search')),
   Error: dynamic(() => import('./Error')),

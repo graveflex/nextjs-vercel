@@ -80,14 +80,16 @@ export const NoBlockConfig: Story = {
     ...Defaults.args,
     blockConfig: {},
     cta: {
-      label: 'Call to Action',
-      icon: { name: 'ArrowRight' },
-      internalHref: {
-        slug: '/',
-        id: 1,
-        pageTitle: 'Home',
-        updatedAt: '2024-01-05T20:29:44.749Z',
-        createdAt: '2024-01-05T20:29:44.749Z'
+      link: {
+        label: 'Call to Action',
+        icon: { name: 'ArrowRight' },
+        internalHref: {
+          slug: '/',
+          id: 1,
+          pageTitle: 'Home',
+          updatedAt: '2024-01-05T20:29:44.749Z',
+          createdAt: '2024-01-05T20:29:44.749Z'
+        }
       }
     }
   }

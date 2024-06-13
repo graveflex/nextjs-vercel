@@ -8,13 +8,23 @@
 
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MenuItems".
+ * via the `definition` "FlatMenu".
  */
-export type MenuItems =
+export type FlatMenu =
   | {
-      label: string;
-      slug: string;
-      type?: ('link' | 'button') | null;
+      link: PayLoadLink;
+      id?: string | null;
+    }[]
+  | null;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconNavItems".
+ */
+export type IconNavItems =
+  | {
+      href?: string | null;
+      newTab?: boolean | null;
+      icon?: IconSelect;
       id?: string | null;
     }[]
   | null;
@@ -224,7 +234,7 @@ export interface TextImageBlockT {
     [k: string]: unknown;
   } | null;
   image?: number | Image | null;
-  cta?: CTAType;
+  cta: CTAType;
   id?: string | null;
   blockName?: string | null;
   blockType: 'textImageBlock';
@@ -306,15 +316,22 @@ export interface Image {
  * via the `definition` "CTAType".
  */
 export interface CTAType {
+  link: PayLoadLink;
+  variant?: ('rounded-outline' | 'link') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payLoadLink".
+ */
+export interface PayLoadLink {
   type?: ('internal' | 'external' | 'email' | 'phone' | 'file') | null;
-  label?: string | null;
+  label: string;
   internalHref?: (number | null) | Page;
   externalHref?: string | null;
   emailHref?: string | null;
   phoneHref?: string | null;
-  newTab?: boolean | null;
   fileHref?: number | File | null;
-  variant?: ('rounded-outline' | 'link') | null;
+  newTab?: boolean | null;
   icon?: IconSelect;
 }
 /**
@@ -424,7 +441,7 @@ export interface HeroBlockT {
     [k: string]: unknown;
   } | null;
   input?: InputType;
-  cta?: CTAType;
+  cta: CTAType;
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroBlock';
@@ -517,14 +534,98 @@ export interface Nav {
   id: number;
   header?: {
     logo?: number | Image | null;
-    main?: MenuItems;
+    banner?: BannerContent;
+    collapsibleMenu?: CollapsibleMenu;
+    flatMenu?: FlatMenu;
+    iconItems?: IconNavItems;
+    hasCta?: boolean | null;
+    ctaButton?: {
+      cta: CTAType;
+    };
   };
   footer?: {
-    copyright?: string | null;
-    secondary?: MenuItems;
+    footerItems?: FooterItems;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BannerContent".
+ */
+export interface BannerContent {
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  background?: ('white' | 'black' | 'gray') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CollapsibleMenu".
+ */
+export interface CollapsibleMenu {
+  sections?:
+    | {
+        label: string;
+        links?:
+          | {
+              link: PayLoadLink;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FooterItems".
+ */
+export interface FooterItems {
+  footerLogo?: number | Image | null;
+  copyright?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  legalDisclaimer?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  footerMenu?: FlatMenu;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

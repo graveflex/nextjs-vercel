@@ -2,6 +2,7 @@ import type { GroupField } from 'payload/types';
 
 export const coreIcons = {
   // InsertIconName
+  Hamburger: {},
   Check: {},
   ArrowUp: {},
   ArrowLeft: {},
