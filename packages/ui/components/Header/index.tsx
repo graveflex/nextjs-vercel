@@ -89,7 +89,7 @@ const DrawerButton = styled.button`
   border: none;
   font-size: 1.5rem;
   display: block;
-  padding: .25rem;
+  padding: 0.25rem;
 
   &:hover {
     cursor: pointer;
@@ -228,8 +228,8 @@ function Header({
   setOpen
 }: HeaderType) {
   const openMenuVariants = {
-    open: { right: '0%'},
-    closed: { right: '-100%'}
+    open: { right: '0%' },
+    closed: { right: '-100%' }
   };
   return (
     <OuterHeader>
@@ -274,7 +274,7 @@ function Header({
             ctaButton={ctaButton}
           />
         </DesktopRow>
-        <MobileColumn 
+        <MobileColumn
           initial="closed"
           animate={open ? 'open' : 'closed'}
           variants={openMenuVariants}

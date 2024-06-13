@@ -12,11 +12,7 @@ interface MaybeThemedProps {
 function MaybeThemed({ children, theme }: MaybeThemedProps) {
   if (theme && theme !== '_') {
     const pageTheme = themeList[theme];
-    return (
-      <SubTheme theme={pageTheme}>
-        {children}
-      </SubTheme>
-    );
+    return <SubTheme theme={pageTheme}>{children}</SubTheme>;
   }
 
   return children;
