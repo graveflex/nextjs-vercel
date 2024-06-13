@@ -3,7 +3,8 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 export async function up({ payload }: MigrateUpArgs): Promise<void> {
 await payload.db.drizzle.execute(sql`
 
-ALTER TYPE "enum_images_additional_props_aspect_ratio" ADD VALUE '4/3';`);
+ALTER TYPE "enum_images_additional_props_aspect_ratio" ADD VALUE '4/3';
+ALTER TABLE "images" DROP COLUMN IF EXISTS "additional_props_style";`);
 
 };
 
@@ -18,6 +19,7 @@ ALTER TYPE "undefined_cta_ic" ADD VALUE 'PersonBust';
 ALTER TYPE "undefined_cta_ic" ADD VALUE 'Phone';
 ALTER TYPE "undefined_cta_ic" ADD VALUE 'Job';
 ALTER TYPE "undefined_cta_ic" ADD VALUE 'Email';
-ALTER TYPE "enum_images_additional_props_aspect_ratio" ADD VALUE '7/6';`);
+ALTER TYPE "enum_images_additional_props_aspect_ratio" ADD VALUE '7/6';
+ALTER TABLE "images" ADD COLUMN "additional_props_style" varchar;`);
 
 };

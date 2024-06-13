@@ -62,74 +62,28 @@ function Source({ image, breakpoints, bp }: SourceProps) {
   );
 }
 
-interface BuildMediaQueriesProps {
+const ResponsiveImage = styled.img<{
   $additionalProps: PayloadImageProps['additionalProps'];
-  $assets: {
-    image?: PayloadImageProps;
-    bp: keyof Breakpoints;
-  }[];
-}
+}>`
+  ${({ $additionalProps }) => css`
+    ${$additionalProps?.objectFit &&
+    css`
+      object-fit: ${$additionalProps?.objectFit};
+    `}
 
-function breakpointStyle(
-  additionalProps: PayloadImageProps['additionalProps'],
-  asset: { image?: PayloadImageProps; bp: keyof Breakpoints }
-) {
-  return css`
-    ${({ theme: { mq } }) => {
-      return mq[asset.bp]`
-        ${
-          additionalProps?.objectFit &&
-          css`
-            object-fit: ${additionalProps?.objectFit};
-          `
-        }
+    ${$additionalProps?.isRounded
+      ? css`
+          border-radius: 2.25rem;
+        `
+      : css`
+          border-radius: none;
+        `}
 
-        ${
-          additionalProps?.isRounded
-            ? css`
-                border-radius: 2.25rem;
-              `
-            : css`
-                border-radius: none;
-              `
-        }
-
-        ${
-          additionalProps?.aspectRatio &&
-          css`
-            aspect-ratio: ${additionalProps?.aspectRatio};
-          `
-        }
-      `;
-    }}
-  `;
-}
-
-const buildMediaQueries = ({
-  $additionalProps,
-  $assets
-}: BuildMediaQueriesProps) => {
-  return css`
-    ${$assets
-      .filter((a) => a?.image?.url)
-      .reduce<ReturnType<typeof css>[]>((coll, asset) => {
-        coll.push(
-          breakpointStyle(
-            {
-              ...$additionalProps,
-              ...(asset?.image?.additionalProps ?? {})
-            },
-            asset
-          )
-        );
-        return coll;
-      }, [])}
-  `;
-};
-
-const ResponsiveImage = styled.img<BuildMediaQueriesProps>`
-  ${({ $assets, $additionalProps }) =>
-    buildMediaQueries({ $additionalProps, $assets })}
+    ${$additionalProps?.aspectRatio &&
+    css`
+      aspect-ratio: ${$additionalProps?.aspectRatio};
+    `}
+  `}
 `;
 
 function ResponsivePayloadImage({
@@ -195,13 +149,6 @@ function ResponsivePayloadImage({
       <Source breakpoints={breakpoints} image={thumbnail} bp="xxs" />
       <ResponsiveImage
         $additionalProps={additionalProps}
-        $assets={[
-          { image: thumbnail as PayloadImageProps, bp: 'xxs' },
-          { image: mobile as PayloadImageProps, bp: 'sm' },
-          { image: tablet as PayloadImageProps, bp: 'md' },
-          { image: desktop as PayloadImageProps, bp: 'lg' },
-          { image: ultrawide as PayloadImageProps, bp: 'xxl' }
-        ]}
         {...{
           ...dimensions,
           ...props
@@ -218,6 +165,7 @@ function ResponsivePayloadImage({
         }
         sizes={fill ? fillSizes : '100vw'}
         alt={alt ?? ''}
+        style={{ width: fill ? '100%' : 'initial' }}
       />
     </Container>
   );

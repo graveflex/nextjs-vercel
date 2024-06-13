@@ -1,5 +1,5 @@
 {
-  "id": "28a3646f-7586-413d-8476-93c9fb27d50c",
+  "id": "6d64b77c-06f4-4152-a46f-382db24d2d6e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -2950,12 +2950,6 @@
         "image_props_quality": {
           "name": "image_props_quality",
           "type": "numeric",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "additional_props_style": {
-          "name": "additional_props_style",
-          "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
