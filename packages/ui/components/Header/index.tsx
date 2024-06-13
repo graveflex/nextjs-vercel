@@ -20,7 +20,6 @@ import { motion } from 'framer-motion';
 import s from 'styled-components';
 
 // UPDATE TO USE THEMECOLOR
-
 const OuterHeader = styled.header`
   position: sticky;
   top: 0;
@@ -69,6 +68,8 @@ const Row = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  align-self: end;
+  justify-self: end;
 `;
 
 // UPDATE TO USE THEMECOLOR
@@ -90,6 +91,11 @@ const DrawerButton = styled.button`
   font-size: 1.5rem;
   display: block;
   padding: 0.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     cursor: pointer;
@@ -114,6 +120,8 @@ const MobileColumn = s(motion.div)`
     background-color: currentColor;
     width: 100%;
     height: 100svh;
+    overflow-y: auto;
+
     ${mq.md`
       display: none;
     `}
@@ -122,11 +130,11 @@ const MobileColumn = s(motion.div)`
 
 const Nav = styled.nav`
   padding: 0.5rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
   grid-area: nav;
   background-color: currentColor;
   align-items: center;
+  grid-template-columns: min-content 1fr;
 `;
 
 const NavContentWrapper = styled.div`
@@ -259,9 +267,9 @@ function Header({
               })}
             <DrawerButton onClick={() => setOpen(!open)} aria-label="Open Menu">
               {open ? (
-                <RenderIcon name="Close" />
+                <RenderIcon name="Close" size="25" />
               ) : (
-                <RenderIcon name="Hamburger" />
+                <RenderIcon name="Hamburger" size="25" />
               )}
             </DrawerButton>
           </Row>
@@ -278,7 +286,7 @@ function Header({
           initial={{ display: 'none' }}
           animate={open ? 'open' : 'closed'}
           variants={openMenuVariants}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.25, ease: 'linear' }}
         >
           <NavContent
             collapsibleMenu={collapsibleMenu}
