@@ -9,7 +9,6 @@ import styled, { SubTheme } from '@refract-ui/sc';
 interface OuterMaybeThemedType {
   children: React.ReactNode;
   theme?: null | keyof typeof themeList | '_';
-  style?: React.CSSProperties;
 }
 
 const OuterGrid = styled.div`
@@ -18,10 +17,10 @@ const OuterGrid = styled.div`
   min-height: 100svh;
 `;
 
-function OuterMaybeThemed({ children, theme, ...props }: OuterMaybeThemedType) {
+function OuterMaybeThemed({ children, theme }: OuterMaybeThemedType) {
   if (theme && theme !== '_') {
     return (
-      <SubTheme theme={themeList[theme]} {...props}>
+      <SubTheme theme={themeList[theme]}>
         <OuterGrid>{children}</OuterGrid>
       </SubTheme>
     );

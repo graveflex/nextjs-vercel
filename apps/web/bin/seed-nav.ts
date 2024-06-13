@@ -1,13 +1,17 @@
+import { faker } from '@faker-js/faker';
 import type {
   CTAType,
   IconSelect,
+  MarkdownBlockT,
   PayLoadLink
 } from '@mono/types/payload-types';
 import genRichText from '@mono/ui/utils/genRichText';
+import fs from 'fs';
 import path from 'path';
 import type { BasePayload, GeneratedTypes } from 'payload';
 import { getPayload } from 'payload';
 import { importConfig } from 'payload/node';
+import tmp from 'tmp';
 
 interface SeedFnProps {
   payload: BasePayload<GeneratedTypes>;
@@ -113,8 +117,81 @@ const iconItems = [
   }
 ];
 
+async function downloadImage(url: string): Promise<string> {
+  try {
+    // Fetch the image
+    const response = await fetch(url);
+
+    // Check if response is ok
+    if (!response.ok) {
+      throw new Error(`Failed to fetch image. Status: ${response.status}`);
+    }
+
+    // Convert response body to buffer
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    // Create a temporary file
+    const tempFile = tmp.fileSync({ postfix: '.jpg' });
+
+    // Write image data to the temporary file
+    fs.writeFileSync(tempFile.name, buffer);
+
+    // Return the path to the temporary file
+    return tempFile.name;
+  } catch (error) {
+    console.error('Error downloading image:', error);
+    throw error;
+  }
+}
+
+const seedLogo = async ({ payload }: SeedFnProps) => {
+  console.info(`@-->seeding logo image`);
+
+  const image = await downloadImage(
+    faker.image.urlLoremFlickr({ category: 'business', width: 80, height: 42 })
+  );
+  console.log('image:', image);
+  await payload.create({
+    collection: 'images',
+    data: {
+      alt: 'faker placeholder logo'
+    },
+    filePath: image
+  });
+};
+
+const markdownBlock = {
+  id: '6669d7bd6d58e03f8e7c1077',
+  blockName: 'Markdown Hero Block',
+  blockType: 'markdownBlock',
+  content: {
+    ...genRichText([
+      {
+        type: 'paragraph',
+        text: 'Whether you are looking to advance your career, learn new skills, or connect with like-minded individuals, we got you covered. Join us on this journey and see where your potential can take you.'
+      }
+    ])
+  },
+  maxWidth: null
+};
+
+const seedHomePage = async ({ payload }: SeedFnProps) => {
+  console.info(`@-->seeding homepage!`);
+
+  await payload.create({
+    collection: 'pages',
+    data: {
+      pageTitle: 'Home',
+      slug: '/',
+      blocks: [markdownBlock as MarkdownBlockT]
+    }
+  });
+};
+
 const seedNavUsingPayload = async ({ payload }: SeedFnProps) => {
-  console.info(`@-->seeding nav using payload!`);
+  console.info(`@-->seeding nav!`);
+
   await payload.updateGlobal({
     slug: 'nav', // required
     data: {
@@ -153,8 +230,10 @@ const seed = async (): Promise<void> => {
   const configPath = path.resolve(__dirname, '../payload.config.ts');
   const config = await importConfig(configPath);
   const payload = await getPayload({ config });
+  await seedHomePage({ payload });
+  await seedLogo({ payload });
   await seedNavUsingPayload({ payload });
-  console.info('@-->successfully seeded the nav!');
+  console.info('@-->successfully seeded the nav and homepage!');
 
   process.exit(0);
 };

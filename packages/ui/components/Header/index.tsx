@@ -25,7 +25,6 @@ const OuterHeader = styled.header`
   position: sticky;
   top: 0;
   z-index: 50;
-  max-height: 5rem;
   color: white;
 `;
 
@@ -34,7 +33,8 @@ const NavContainer = styled.div<{ $open: boolean }>`
     display: grid;
     justify-content: space-between;
     align-items: center;
-    grid-template-areas: 'nav nav' '. mobileButtons';
+    grid-template-areas: 'nav nav';
+    overflow-x: hidden;
 
     ${$open &&
     css`
@@ -89,6 +89,7 @@ const DrawerButton = styled.button`
   border: none;
   font-size: 1.5rem;
   display: block;
+  padding: .25rem;
 
   &:hover {
     cursor: pointer;
@@ -107,13 +108,12 @@ const DrawerButton = styled.button`
 
 const MobileColumn = s(motion.div)`
   ${({ theme: { mq } }) => css`
-    grid-area: mobileButtons;
-    display: flex;
-    flex-direction: column;
-    height: 100lvh;
-    background-color: currentColor;
+    position: absolute;
+    top: 6rem;
     padding-top: 3rem;
-
+    background-color: currentColor;
+    width: 100%;
+    height: 100svh;
     ${mq.md`
       display: none;
     `}
@@ -228,8 +228,8 @@ function Header({
   setOpen
 }: HeaderType) {
   const openMenuVariants = {
-    open: { x: 0 },
-    closed: { x: 400 }
+    open: { right: '0%'},
+    closed: { right: '-100%'}
   };
   return (
     <OuterHeader>
@@ -274,7 +274,7 @@ function Header({
             ctaButton={ctaButton}
           />
         </DesktopRow>
-        <MobileColumn
+        <MobileColumn 
           initial="closed"
           animate={open ? 'open' : 'closed'}
           variants={openMenuVariants}

@@ -9,6 +9,7 @@ import styled from 'styled-components';
 // UPDATE TO USE THEMECOLOR
 const LinkStyled = styled(Link)`
   text-decoration: none;
+  width: max-content;
 `;
 
 export type CtaLinkType = {

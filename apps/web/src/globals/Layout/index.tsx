@@ -3,7 +3,6 @@
 import type { PropsWithChildren } from 'react';
 import React, { useState } from 'react';
 import type * as themeList from '@mono/theme/src/theme';
-import { containerStyles } from '@mono/theme/src/ThemeProvider';
 import type { Nav as NavT } from '@mono/types/payload-types';
 import Footer from '@mono/ui/components/Footer';
 import Header from '@mono/ui/components/Header';
@@ -23,7 +22,7 @@ function Layout({ children, header, footer, theme }: LayoutType) {
   const [menuOpen, setMenuOpen] = useState(false);
   useLockBodyScroll(menuOpen);
   return (
-    <OuterMaybeThemed theme={theme} style={containerStyles}>
+    <OuterMaybeThemed theme={theme}>
       <Header {...header} open={menuOpen} setOpen={setMenuOpen} />
       <Main role="main">{children}</Main>
       <Footer {...footer?.footerItems} />

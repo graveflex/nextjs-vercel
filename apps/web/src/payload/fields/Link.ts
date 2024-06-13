@@ -46,8 +46,7 @@ function Link({
         name: 'label',
         label: 'Link Label',
         type: 'text',
-        localized,
-        required: true
+        localized
       },
       {
         name: 'internalHref',
