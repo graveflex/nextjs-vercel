@@ -1,4 +1,4 @@
-import Input from '@mono/web/fields/Input/Input.config';
+import Input from '@mono/web/payload/fields/Input';
 import BlockConfig from '@mono/web/payload/fields/BlockConfig';
 import CTA from '@mono/web/payload/fields/CTA';
 import type { Block } from 'payload/types';

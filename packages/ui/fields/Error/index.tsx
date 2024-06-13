@@ -28,7 +28,6 @@ const FieldErrorsStyled = s(FieldErrors)`
 `;
 
 function Error({ errorMessage, id, label }: ErrorProps) {
-
   return (
     <FieldErrorsStyled
       id={id ?? `${label ?? ''}-error`}

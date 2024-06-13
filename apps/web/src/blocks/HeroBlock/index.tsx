@@ -7,7 +7,7 @@ import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePay
 import RichText from '@mono/ui/components/primitives/RichText';
 import Wrapper from '@mono/ui/components/Wrapper';
 import genClassName from '@mono/ui/utils/genClassname';
-// import Input from '@mono/web/fields/Input';
+import TextInput from '@mono/ui/fields/TextInput';
 import styled, { css } from '@refract-ui/sc';
 import s from 'styled-components';
 import tc from 'tinycolor2';
@@ -128,7 +128,9 @@ function HeroBlock({
   title,
   subTitle,
   image,
-  blockConfig
+  blockConfig,
+  input,
+  cta
 }: HeroBlockProps) {
   const layout = blockConfig?.layout || 'imgRight';
 
@@ -141,12 +143,12 @@ function HeroBlock({
         {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
         {title && <Title>{title}</Title>}
         {subTitle && <SubTitle {...subTitle} />}
-        {/* {(input || cta) && (
+        {(input || cta) && (
           <InputWrapper className={className}>
-            {input?.type && <Input {...input} />}
+            {input?.type === 'input' && <TextInput {...input} />}
             {cta?.label && <CtaButton cta={cta} />}
           </InputWrapper>
-        )} */}
+        )}
       </ContentWrapper>
     </StyledWrapper>
   );

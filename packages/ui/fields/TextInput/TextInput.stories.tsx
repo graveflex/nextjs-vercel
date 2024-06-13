@@ -37,7 +37,7 @@ export const TooMuchText: Story = {
   args: {
     placeholder: faker.lorem.words(14),
     label: faker.lorem.words(14),
-    required: true,
+    required: true
   }
 };
 
@@ -45,7 +45,7 @@ export const TooLittleText: Story = {
   args: {
     placeholder: faker.lorem.words(1),
     label: faker.lorem.words(1),
-    required: false,
+    required: false
   }
 };
 

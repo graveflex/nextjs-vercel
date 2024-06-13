@@ -423,7 +423,7 @@ export interface HeroBlockT {
     };
     [k: string]: unknown;
   } | null;
-  input?: InputType;
+  input: InputType;
   cta?: CTAType;
   id?: string | null;
   blockName?: string | null;
@@ -434,8 +434,21 @@ export interface HeroBlockT {
  * via the `definition` "InputType".
  */
 export interface InputType {
+  type?: ('input' | 'select' | 'radio' | 'checkbox') | null;
+  name: string;
+  label?: string | null;
   placeholder?: string | null;
-  type?: 'text' | null;
+  errorMessage?: string | null;
+  helpText?: string | null;
+  required: boolean;
+  options?:
+    | {
+        label: string;
+        value: string;
+        name?: string | null;
+        id?: string | null;
+      }[]
+    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
