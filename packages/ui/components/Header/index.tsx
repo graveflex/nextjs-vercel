@@ -228,8 +228,8 @@ function Header({
   setOpen
 }: HeaderType) {
   const openMenuVariants = {
-    open: { right: '0%' },
-    closed: { right: '-100%' }
+    open: { right: '0%', display: 'block' },
+    closed: { right: '-100%', display: 'none' }
   };
   return (
     <OuterHeader>
@@ -275,7 +275,7 @@ function Header({
           />
         </DesktopRow>
         <MobileColumn
-          initial="closed"
+          initial="hidden"
           animate={open ? 'open' : 'closed'}
           variants={openMenuVariants}
           transition={{ duration: 1 }}
