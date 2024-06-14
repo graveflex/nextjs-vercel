@@ -92,6 +92,8 @@ const List = s.ul`
   padding: 0;
 `;
 
+// Refactor this to instead use a payload type after the FAQBlock is updated
+
 export type AccordionProps = {
   title?: string;
   items?: {

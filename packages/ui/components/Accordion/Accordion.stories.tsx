@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import genRichText from '@mono/ui/utils/genRichText';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { AccordionProps } from '.';
@@ -23,97 +24,25 @@ export const Defaults: Story = {
       {
         text: faker.lorem.words(5),
         content: {
-          root: {
-            type: 'root',
-            format: '',
-            indent: 0,
-            version: 1,
-            children: [
-              {
-                type: 'paragraph',
-                format: '',
-                indent: 0,
-                version: 1,
-                children: [
-                  {
-                    mode: 'normal',
-                    text: faker.lorem.paragraphs(15),
-                    type: 'text',
-                    style: '',
-                    detail: 0,
-                    format: 0,
-                    version: 1
-                  }
-                ],
-                direction: 'ltr'
-              }
-            ],
-            direction: 'ltr'
-          }
+          ...genRichText([
+            { type: 'paragraph', text: faker.lorem.paragraph(15) }
+          ])
         }
       },
       {
         text: faker.lorem.words(2),
         content: {
-          root: {
-            type: 'root',
-            format: '',
-            indent: 0,
-            version: 1,
-            children: [
-              {
-                type: 'paragraph',
-                format: '',
-                indent: 0,
-                version: 1,
-                children: [
-                  {
-                    mode: 'normal',
-                    text: faker.lorem.paragraphs(15),
-                    type: 'text',
-                    style: '',
-                    detail: 0,
-                    format: 0,
-                    version: 1
-                  }
-                ],
-                direction: 'ltr'
-              }
-            ],
-            direction: 'ltr'
-          }
+          ...genRichText([
+            { type: 'paragraph', text: faker.lorem.paragraph(15) }
+          ])
         }
       },
       {
         text: faker.lorem.words(15),
         content: {
-          root: {
-            type: 'root',
-            format: '',
-            indent: 0,
-            version: 1,
-            children: [
-              {
-                type: 'paragraph',
-                format: '',
-                indent: 0,
-                version: 1,
-                children: [
-                  {
-                    mode: 'normal',
-                    text: faker.lorem.paragraphs(15),
-                    type: 'text',
-                    style: '',
-                    detail: 0,
-                    format: 0,
-                    version: 1
-                  }
-                ],
-                direction: 'ltr'
-              }
-            ],
-            direction: 'ltr'
-          }
+          ...genRichText([
+            { type: 'paragraph', text: faker.lorem.paragraph(15) }
+          ])
         }
       }
     ]
