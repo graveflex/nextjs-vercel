@@ -78,9 +78,6 @@ const DesktopRow = styled.div`
   ${({ theme: { mq } }) => mq.md`
     grid-area: buttons;
     display: flex;
-    a {
-      color: black;
-    }
   `}
 `;
 

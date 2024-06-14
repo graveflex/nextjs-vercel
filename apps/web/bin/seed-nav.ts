@@ -90,7 +90,7 @@ const cta = {
       label: 'Get a Demo',
       externalHref: '/demo'
     },
-    variant: 'rounded-outline' as variantEnum
+    variant: 'solid' as variantEnum
   }
 };
 

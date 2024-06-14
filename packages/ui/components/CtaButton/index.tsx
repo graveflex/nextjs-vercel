@@ -31,7 +31,7 @@ function CtaButton({ cta, color, linkType = 'button' }: CtaButtonType) {
           $variant={cta?.variant || 'link'}
           icon={icon}
         >
-          {cta?.link?.label || 'Call to Action'}
+          {cta?.link?.label ?? cta?.link?.label}
         </Button>
       </PayloadLink>
     );
@@ -43,7 +43,7 @@ function CtaButton({ cta, color, linkType = 'button' }: CtaButtonType) {
         href={link ? (ctaEvalHref(link) as string) : ''}
         newTab={cta?.link?.newTab as boolean}
       >
-        {cta?.link?.label || 'Call to Action'}
+        {cta?.link?.label ?? cta?.link?.label}
       </PayloadLink>
     );
   }
@@ -51,7 +51,7 @@ function CtaButton({ cta, color, linkType = 'button' }: CtaButtonType) {
   return (
     <Button
       $color={color || 'secondary'}
-      $variant={cta?.variant || 'rounded-outline'}
+      $variant={cta?.variant || 'solid'}
       icon={icon}
     >
       <a
@@ -59,7 +59,7 @@ function CtaButton({ cta, color, linkType = 'button' }: CtaButtonType) {
         target={cta?.link?.newTab ? '_blank' : ''}
         rel="noreferrer"
       >
-        {cta?.link?.label || 'Call to Action'}
+        {cta?.link?.label ? cta?.link?.label : undefined}
       </a>
     </Button>
   );

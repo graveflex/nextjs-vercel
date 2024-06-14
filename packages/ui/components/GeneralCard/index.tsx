@@ -66,10 +66,6 @@ const ButtonsWrapper = styled.div`
   ${({ theme: { spacing, mq } }) => css`
     margin-top: ${spacing[9]}rem;
     gap: ${spacing[6]}rem;
-
-    ${mq.md`
-      flex-wrap: initial;
-    `}
   `}
 `;
 

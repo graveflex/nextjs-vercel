@@ -29,12 +29,16 @@ function CTA({
             name: 'variant',
             label: 'Variant',
             type: 'select',
-            defaultValue: defaultVariant || 'rounded-outline',
+            defaultValue: defaultVariant || 'solid',
             dbName: `${name?.toLowerCase()}_cta_v`,
             options: [
               {
-                label: 'Rounded Outline',
-                value: 'rounded-outline'
+                label: 'Outline',
+                value: 'outline'
+              },
+              {
+                label: 'Solid',
+                value: 'solid'
               },
               {
                 label: 'Link',
