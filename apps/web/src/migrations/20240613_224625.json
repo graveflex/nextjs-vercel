@@ -1,5 +1,5 @@
 {
-  "id": "5962a4cb-5aac-40eb-8086-02c752d27f81",
+  "id": "377fc7a2-9f7a-4dac-88cc-cf6f881db0e4",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -2953,12 +2953,6 @@
           "primaryKey": false,
           "notNull": false
         },
-        "additional_props_style": {
-          "name": "additional_props_style",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
         "additionalProps_objectFit": {
           "name": "additionalProps_objectFit",
           "type": "enum_images_additional_props_object_fit",
@@ -3683,7 +3677,7 @@
           "name": "link_label",
           "type": "varchar",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "link_external_href": {
           "name": "link_external_href",
@@ -3870,7 +3864,7 @@
           "name": "link_label",
           "type": "varchar",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "link_external_href": {
           "name": "link_external_href",
@@ -4068,7 +4062,7 @@
           "name": "link_label",
           "type": "varchar",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "link_external_href": {
           "name": "link_external_href",
@@ -4645,6 +4639,11 @@
       "name": "undefined_link_ic",
       "values": {
         "Hamburger": "Hamburger",
+        "Login": "Login",
+        "Menu": "Menu",
+        "Location": "Location",
+        "Calendar": "Calendar",
+        "PersonBust": "PersonBust",
         "Check": "Check",
         "ArrowUp": "ArrowUp",
         "ArrowLeft": "ArrowLeft",
@@ -4813,10 +4812,10 @@
     "enum_images_additional_props_aspect_ratio": {
       "name": "enum_images_additional_props_aspect_ratio",
       "values": {
-        "6/7": "6/7",
-        "7/6": "7/6",
         "1/1": "1/1",
         "3/2": "3/2",
+        "4/3": "4/3",
+        "6/7": "6/7",
         "16/9": "16/9",
         "initial": "initial"
       }
@@ -4833,6 +4832,11 @@
       "name": "iconnavitem_ic",
       "values": {
         "Hamburger": "Hamburger",
+        "Login": "Login",
+        "Menu": "Menu",
+        "Location": "Location",
+        "Calendar": "Calendar",
+        "PersonBust": "PersonBust",
         "Check": "Check",
         "ArrowUp": "ArrowUp",
         "ArrowLeft": "ArrowLeft",

@@ -76,7 +76,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "undefined_link_ic" AS ENUM('Hamburger', 'Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
+ CREATE TYPE "undefined_link_ic" AS ENUM('Hamburger', 'Login', 'Menu', 'Location', 'Calendar', 'PersonBust', 'Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -184,7 +184,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "enum_images_additional_props_aspect_ratio" AS ENUM('6/7', '7/6', '1/1', '3/2', '16/9', 'initial');
+ CREATE TYPE "enum_images_additional_props_aspect_ratio" AS ENUM('1/1', '3/2', '4/3', '6/7', '16/9', 'initial');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -196,7 +196,7 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- CREATE TYPE "iconnavitem_ic" AS ENUM('Hamburger', 'Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
+ CREATE TYPE "iconnavitem_ic" AS ENUM('Hamburger', 'Login', 'Menu', 'Location', 'Calendar', 'PersonBust', 'Check', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'CaretDown', 'CaretUp', 'CaretRight', 'CaretLeft', 'Close', 'DoubleCaretDown', 'DoubleCaretUp', 'DoubleCaretRight', 'DoubleCaretLeft', 'Error', 'LinkOut', 'MinusSign', 'Person', 'PlusSign', 'Quote', 'Search', 'SolidArrowDown', 'SolidArrowUp', 'SolidArrowRight', 'SolidArrowLeft', 'ArrowNesting');
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -610,7 +610,6 @@ CREATE TABLE IF NOT EXISTS "images" (
 	"image_props_fill" boolean,
 	"image_props_priority" boolean,
 	"image_props_quality" numeric,
-	"additional_props_style" varchar,
 	"additionalProps_objectFit" "enum_images_additional_props_object_fit",
 	"additional_props_is_rounded" boolean,
 	"additionalProps_aspectRatio" "enum_images_additional_props_aspect_ratio",
@@ -712,7 +711,7 @@ CREATE TABLE IF NOT EXISTS "nav_header_collapsible_menu_sections_links" (
 	"_parent_id" varchar NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"link_type" "undefined_cta_t",
-	"link_label" varchar NOT NULL,
+	"link_label" varchar,
 	"link_external_href" varchar,
 	"link_email_href" varchar,
 	"link_phone_href" varchar,
@@ -735,7 +734,7 @@ CREATE TABLE IF NOT EXISTS "nav_header_flat_menu" (
 	"_parent_id" integer NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"link_type" "undefined_cta_t",
-	"link_label" varchar NOT NULL,
+	"link_label" varchar,
 	"link_external_href" varchar,
 	"link_email_href" varchar,
 	"link_phone_href" varchar,
@@ -761,7 +760,7 @@ CREATE TABLE IF NOT EXISTS "nav_footer_footer_items_footer_menu" (
 	"_parent_id" integer NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
 	"link_type" "undefined_cta_t",
-	"link_label" varchar NOT NULL,
+	"link_label" varchar,
 	"link_external_href" varchar,
 	"link_email_href" varchar,
 	"link_phone_href" varchar,

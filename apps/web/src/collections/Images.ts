@@ -9,8 +9,8 @@ const Images: CollectionConfig = {
     {
       name: 'alt',
       label: 'Alt Text',
-      localized: true,
       type: 'text',
+      localized: true,
       required: false
     },
     {
@@ -47,12 +47,6 @@ const Images: CollectionConfig = {
       type: 'group',
       fields: [
         {
-          name: 'style',
-          label: 'Style',
-          type: 'code',
-          required: false
-        },
-        {
           name: 'objectFit',
           label: 'Object Fit',
           type: 'select',
@@ -75,14 +69,22 @@ const Images: CollectionConfig = {
             }
           ],
           defaultValue: 'cover',
-          required: false
+          required: false,
+          admin: {
+            description:
+              'How the image should be resized to fit its container. "Cover": will make sure the image covers the container, cropping the image if needed. "Contain": will maintain the aspect ratio, will not crop but asset will be "letterboxed" if the container is a different aspect ratio than asset. "Fill": The entire asset will completely fill the container. Asset will be stretched to fit. "Scale Down": The content is sized as if none or contain were specified, whichever would result in a smaller concrete object size.'
+          }
         },
         {
           name: 'isRounded',
-          label: 'Border Radius',
+          label: 'Has rounded corners?',
           type: 'checkbox',
           defaultValue: false,
-          required: false
+          required: false,
+          admin: {
+            description:
+              'If this is checked, the image will have slightly rounded corners.'
+          }
         },
         {
           name: 'aspectRatio',
@@ -90,20 +92,20 @@ const Images: CollectionConfig = {
           type: 'select',
           options: [
             {
-              label: '6:7',
-              value: '6/7'
-            },
-            {
-              label: '7:6',
-              value: '7/6'
-            },
-            {
               label: '1:1',
               value: '1/1'
             },
             {
               label: '3:2',
               value: '3/2'
+            },
+            {
+              label: '4:3',
+              value: '4/3'
+            },
+            {
+              label: '6:7',
+              value: '6/7'
             },
             {
               label: '16:9',
