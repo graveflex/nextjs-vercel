@@ -13,18 +13,18 @@ const LinkStyled = styled(Link)`
 `;
 
 export type CtaLinkType = {
-  link: PayLoadLink;
+  link?: PayLoadLink;
   ariaLabel?: string;
 };
 
 function CtaLink({ link, ariaLabel }: CtaLinkType) {
   return (
     <LinkStyled
-      href={ctaEvalHref(link) as string}
+      href={link ? (ctaEvalHref(link) as string) : ''}
       aria-label={ariaLabel}
-      target={link.newTab ? '_blank' : undefined}
+      target={link?.newTab ? '_blank' : undefined}
     >
-      {link.label}
+      {link?.label}
     </LinkStyled>
   );
 }

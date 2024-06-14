@@ -1,0 +1,44 @@
+'use client';
+
+import React, { useMemo } from 'react';
+import type { CardGridBlockT as PayloadType } from '@mono/types/payload-types';
+import GeneralCard from '@mono/ui/components/GeneralCard';
+import Wrapper from '@mono/ui/components/Wrapper';
+import s from '@refract-ui/sc';
+
+export type CardGridBlockType = Omit<PayloadType, 'blockType'>;
+
+const CardsWrapper = s.div`
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: auto;
+  height: 100%;
+  gap: 2rem;
+`;
+
+function CardGridBlock({ cards, blockConfig }: CardGridBlockType) {
+  const Cards = useMemo(() => {
+    if (!cards || !cards.length) {
+      return null;
+    }
+
+    return cards.map(({ card: c, id }) => {
+      if (!c) {
+        return null;
+      }
+
+      return <GeneralCard key={id} {...c} />;
+    });
+  }, [cards]);
+
+  return (
+    <Wrapper {...blockConfig} hidden={blockConfig?.hidden ?? false}>
+      <CardsWrapper>{Cards}</CardsWrapper>
+    </Wrapper>
+  );
+}
+
+export default CardGridBlock;

@@ -11,6 +11,9 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
+  cardGridBlock: dynamic(() => import('@mono/web/blocks/CardGridBlock'), {
+    ...defaultOpts
+  }),
   markdownBlock: dynamic(() => import('@mono/web/blocks/MarkdownBlock'), {
     ...defaultOpts
   }),

@@ -3,11 +3,6 @@ import type { GroupField } from 'payload/types';
 export const coreIcons = {
   // InsertIconName
   Hamburger: {},
-  Login: {},
-  Menu: {},
-  Location: {},
-  Calendar: {},
-  PersonBust: {},
   Check: {},
   ArrowUp: {},
   ArrowLeft: {},
