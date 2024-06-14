@@ -178,7 +178,7 @@ type Buttons = {
   flatMenu?: FlatMenu | null;
   iconItems?: IconNavItems | null;
   ctaButton?: {
-    cta: CTAType;
+    cta?: CTAType;
   };
 };
 
@@ -190,7 +190,7 @@ export type HeaderType = {
   flatMenu?: FlatMenu | null;
   iconItems?: IconNavItems | null;
   ctaButton?: {
-    cta: CTAType;
+    cta?: CTAType;
   };
   setOpen: (open: boolean) => void;
 };
@@ -210,9 +210,9 @@ function NavContent({
         })}
       {flatMenu &&
         flatMenu.map((item) => {
-          return <CtaLink key={`flatmenu-${item.id}`} link={item.link} />;
+          return <CtaLink key={`flatmenu-${item.id}`} link={item?.link} />;
         })}
-      {ctaButton && ctaButton.cta && <CtaButton cta={ctaButton.cta} />}
+      {ctaButton && ctaButton?.cta && <CtaButton cta={ctaButton?.cta} />}
       {iconItems &&
         iconItems.map((item) => {
           return (

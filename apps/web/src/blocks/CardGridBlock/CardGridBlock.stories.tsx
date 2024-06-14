@@ -48,8 +48,10 @@ export const Defaults: Story = {
           ctas: [
             {
               cta: {
-                label: 'Action 1',
-                externalHref: '/'
+                link: {
+                  label: 'Action 1',
+                  externalHref: '/'
+                }
               }
             }
           ]
@@ -83,8 +85,10 @@ export const Defaults: Story = {
           ctas: [
             {
               cta: {
-                label: 'Action 2',
-                externalHref: '/'
+                link: {
+                  label: 'Action 2',
+                  externalHref: '/'
+                }
               }
             }
           ]
@@ -118,8 +122,10 @@ export const Defaults: Story = {
           ctas: [
             {
               cta: {
-                label: 'Action 3',
-                externalHref: '/'
+                link: {
+                  label: 'Action 3',
+                  externalHref: '/'
+                }
               }
             }
           ]
@@ -160,8 +166,10 @@ export const FourCards: Story = {
           ctas: [
             {
               cta: {
-                label: 'Action 1',
-                externalHref: '/'
+                link: {
+                  label: 'Action 1',
+                  externalHref: '/'
+                }
               }
             }
           ]
@@ -195,8 +203,10 @@ export const FourCards: Story = {
           ctas: [
             {
               cta: {
-                label: 'Action 2',
-                externalHref: '/'
+                link: {
+                  label: 'Action 2',
+                  externalHref: '/'
+                }
               }
             }
           ]
@@ -230,8 +240,10 @@ export const FourCards: Story = {
           ctas: [
             {
               cta: {
-                label: 'Action 3',
-                externalHref: '/'
+                link: {
+                  label: 'Action 3',
+                  externalHref: '/'
+                }
               }
             }
           ]
@@ -265,8 +277,10 @@ export const FourCards: Story = {
           ctas: [
             {
               cta: {
-                label: 'Action 3',
-                externalHref: '/'
+                link: {
+                  label: 'Action 4',
+                  externalHref: '/'
+                }
               }
             }
           ]

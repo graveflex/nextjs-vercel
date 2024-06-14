@@ -49,8 +49,10 @@ export const BasicCard: Story = {
     ctas: [
       {
         cta: {
-          label: 'Action 1',
-          externalHref: '/learn-more'
+          link: {
+            label: 'Action 1',
+            externalHref: '/learn-more'
+          }
         }
       }
     ]

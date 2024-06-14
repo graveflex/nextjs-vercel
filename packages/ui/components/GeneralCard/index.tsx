@@ -116,7 +116,7 @@ function GeneralCard({
         {ctas && (
           <ButtonsWrapper>
             {ctas?.map(({ cta }, index) => {
-              const key = `${cta?.label}-${index}`;
+              const key = `${cta?.link?.label}-${index}`;
               if (!cta) {
                 return null;
               }

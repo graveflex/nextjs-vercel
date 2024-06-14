@@ -1,18 +1,19 @@
 'use client';
 
 import React from 'react';
+import type { IconSelect } from '@mono/types/payload-types';
 import { isNull } from 'lodash';
 
 import coreIcons from '../../icons/core';
 
 export type IconProps = {
-  name?: keyof typeof coreIcons | null;
+  name?: IconSelect['name'] | null;
   color?: string | null;
   size?: string | null;
 };
 
-function CoreIcons({ name = 'Quote', color, size = '35' }: IconProps) {
-  const Icon = !isNull(name) && coreIcons?.[name];
+function CoreIcons({ name, color, size = '35' }: IconProps) {
+  const Icon = name && !isNull(name) && coreIcons?.[name];
   if (Icon) {
     return (
       <Icon

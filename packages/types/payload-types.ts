@@ -259,11 +259,6 @@ export interface IconSelect {
   name?:
     | (
         | 'Hamburger'
-        | 'Login'
-        | 'Menu'
-        | 'Location'
-        | 'Calendar'
-        | 'PersonBust'
         | 'Check'
         | 'ArrowUp'
         | 'ArrowLeft'
