@@ -35,8 +35,7 @@ export const getWebUrl = ({
     return `http://${localDomain}:${localPort}`;
   }
 
-  const VERCEL_URL =
-    process.env.VERCEL_DOMAIN_URL || process.env.VERCEL_BRANCH_URL || '';
+  const VERCEL_URL = process.env.VERCEL_URL || '';
 
   if (VERCEL_URL) {
     return `https://${VERCEL_URL}`;
