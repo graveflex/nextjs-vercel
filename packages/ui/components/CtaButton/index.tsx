@@ -27,7 +27,7 @@ function CtaButton({ cta, color, linkType = 'button' }: CtaButtonType) {
         newTab={cta?.link?.newTab as boolean}
       >
         <Button
-          $color={color || 'secondary'}
+          $color={color || 'primary'}
           $variant={cta?.variant || 'link'}
           icon={icon}
         >
@@ -50,9 +50,10 @@ function CtaButton({ cta, color, linkType = 'button' }: CtaButtonType) {
 
   return (
     <Button
-      $color={color || 'secondary'}
+      $color={color || 'primary'}
       $variant={cta?.variant || 'solid'}
       icon={icon}
+      element="button"
     >
       <a
         href={link ? (ctaEvalHref(link) as string) : ''}

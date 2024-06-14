@@ -24,7 +24,10 @@ const OuterHeader = styled.header`
   position: sticky;
   top: 0;
   z-index: 50;
-  color: white;
+  ${({ theme: { allColors } }) => css`
+    color: ${allColors.fg};
+    background-color: ${allColors.bg};
+  `}
 `;
 
 const NavContainer = styled.div<{ $open: boolean }>`
@@ -44,7 +47,6 @@ const NavContainer = styled.div<{ $open: boolean }>`
       grid-template-areas: "nav buttons";
       padding: .5rem 1.875rem;
       gap: 0;
-      background-color: currentColor;
     `}
   `}
 `;
@@ -110,14 +112,14 @@ const DrawerButton = styled.button`
 `;
 
 const MobileColumn = s(motion.div)`
-  ${({ theme: { mq } }) => css`
+  ${({ theme: { mq, allColors } }) => css`
     position: absolute;
     top: 6rem;
     padding-top: 3rem;
-    background-color: currentColor;
     width: 100%;
     height: 100svh;
     overflow-y: auto;
+    background-color: ${allColors.bg};
 
     ${mq.md`
       display: none;
@@ -129,22 +131,22 @@ const Nav = styled.nav`
   padding: 0.5rem 1.5rem;
   display: grid;
   grid-area: nav;
-  background-color: currentColor;
   align-items: center;
   grid-template-columns: min-content 1fr;
 `;
 
 const NavContentWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: currentColor;
-  align-items: center;
-  gap: 2rem;
+  ${({ theme: { mq } }) => css`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
 
-  ${({ theme: { mq } }) => mq.md`
-    flex-direction: row;
-    gap: 1rem;
+    ${mq.md`
+      flex-direction: row;
+      gap: 1rem;
+    `}
   `}
 `;
 
@@ -214,7 +216,10 @@ function NavContent({
         iconItems.map((item) => {
           return (
             <DesktopIconLink href={item.href as string} key={`icon-${item.id}`}>
-              <RenderIcon {...item.icon} />
+              <RenderIcon
+                {...item.icon}
+                color={item?.icon?.color || '#FFFFFF'}
+              />
             </DesktopIconLink>
           );
         })}
@@ -258,15 +263,18 @@ function Header({
                     href={item.href as string}
                     key={`icon-${item.id}`}
                   >
-                    <RenderIcon {...item.icon} />
+                    <RenderIcon
+                      {...item.icon}
+                      color={item?.icon?.color || '#FFFFFF'}
+                    />
                   </MobileIconLink>
                 );
               })}
             <DrawerButton onClick={() => setOpen(!open)} aria-label="Open Menu">
               {open ? (
-                <RenderIcon name="Close" size="25" />
+                <RenderIcon name="Close" size="25" color="#FFFFFF" />
               ) : (
-                <RenderIcon name="Hamburger" size="25" />
+                <RenderIcon name="Hamburger" size="25" color="#FFFFFF" />
               )}
             </DrawerButton>
           </Row>

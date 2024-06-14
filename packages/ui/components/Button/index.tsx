@@ -53,8 +53,10 @@ const getVariantStyles = (
         ${box.t('button')};
 
         &:hover {
-          color: ${allColors.fg};
-          border-color: ${allColors.fg};
+          color: ${allColors.bg};
+          border-color: ${allColors[color]};
+          background-color: ${allColors[color]};
+          opacity: 0.9;
         }
       `}
     `;
@@ -65,10 +67,14 @@ const getVariantStyles = (
       ${box.t('button')};
       background-color: ${allColors[color]};
       border-radius: 1rem;
+      border: 1px solid transparent;
+      color: ${allColors.bg};
 
       &:hover {
         opacity: 0.9;
-        outline: 1px solid ${allColors.fg};
+        background-color: transparent;
+        color: ${allColors[color]};
+        border: 1px solid ${allColors[color]};
       }
 
       &:disabled {
@@ -95,6 +101,7 @@ const constructButtonStyles = () => {
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      text-decoration: none;
       svg path {
         fill: currentColor;
       }
@@ -112,6 +119,14 @@ const constructButtonStyles = () => {
 
 const StyledButton = styled.button<ButtonProps>`
   ${constructButtonStyles()}
+  a {
+    color: inherit;
+    text-decoration: none;
+    &:hover {
+      box-shadow: none;
+      color: inherit;
+    }
+  }
 
   &:hover {
     box-shadow: none;
@@ -152,7 +167,7 @@ function Button({ element = 'span', icon, children, ...props }: ButtonProps) {
 
   /* styles & Invalid html attributes */
   const styleProps = {
-    $color: props?.$color ?? 'secondary',
+    $color: props?.$color ?? 'primary',
     $variant: props?.$variant ?? 'solid'
     // $invert: props?.$invert ?? false
   };

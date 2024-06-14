@@ -16,7 +16,7 @@ function SvgHamburger(props: SVGProps<SVGSVGElement>) {
     >
       <path
         d="M2.5 15H17.5"
-        stroke="black"
+        stroke={color || '#0C0E0F'}
         strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -24,7 +24,7 @@ function SvgHamburger(props: SVGProps<SVGSVGElement>) {
       />
       <path
         d="M2.5 10H17.5"
-        stroke="black"
+        stroke={color || '#0C0E0F'}
         strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -32,7 +32,7 @@ function SvgHamburger(props: SVGProps<SVGSVGElement>) {
       />
       <path
         d="M2.5 5H17.5"
-        stroke="black"
+        stroke={color || '#0C0E0F'}
         strokeWidth="1.6"
         strokeLinecap="round"
         strokeLinejoin="round"

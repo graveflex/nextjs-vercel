@@ -13,9 +13,10 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     border-radius: 1.13rem;
-    background-color: ${allColors.primaryBg};
+    background-color: ${allColors.fg};
     max-width: 30rem;
     padding: ${spacing[9]}rem;
+    color: ${allColors.bg};
   `}
 `;
 
@@ -40,7 +41,7 @@ const Headline = styled.h1`
 
   ${({ theme: { box } }) => css`
     ${box.t('h3')};
-    ${box.c('primaryFg')};
+    ${box.c('bg')};
   `}
 `;
 

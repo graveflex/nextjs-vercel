@@ -207,7 +207,7 @@ const seedNavUsingPayload = async ({ payload }: SeedFnProps) => {
               { type: 'paragraph', text: 'Welcome to our Demo Repo' }
             ])
           },
-          background: 'black'
+          background: 'gray'
         }
       },
       footer: {

@@ -11,8 +11,8 @@ const LinkStyled = styled(Link)`
   text-decoration: none;
   width: max-content;
   ${({ theme: { allColors } }) => css`
-    a {
-      color: ${allColors.primary};
+    && {
+      color: ${allColors.fg};
     }
   `}
 `;
