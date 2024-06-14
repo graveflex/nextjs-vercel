@@ -37,7 +37,7 @@ const GlobalResets = createGlobalStyle`
 function ThemeProvider({
   children,
   theme
-}: PropsWithChildren<{ theme: ThemeKey }>): React.JSX.Element {
+}: PropsWithChildren<{ theme: ThemeKey }>): JSX.Element {
   return (
     <GlobalStyles as="body" theme={themeList[theme]} style={containerStyles}>
       <GlobalResets />

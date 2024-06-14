@@ -463,6 +463,152 @@ export interface TextImageBlockT {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+<<<<<<< HEAD
+=======
+ * via the `definition` "images".
+ */
+export interface Image {
+  id: number;
+  alt?: string | null;
+  imageProps?: {
+    fill?: boolean | null;
+    priority?: boolean | null;
+    quality?: number | null;
+  };
+  additionalProps?: {
+    style?: string | null;
+    objectFit?: ('cover' | 'contain' | 'fill' | 'scale-down') | null;
+    isRounded?: boolean | null;
+    aspectRatio?: ('6/7' | '7/6' | '1/1' | '3/2' | '16/9' | 'initial') | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    mobile?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    tablet?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    desktop?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    ultrawide?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTAType".
+ */
+export interface CTAType {
+  type?: ('internal' | 'external' | 'email' | 'phone' | 'file') | null;
+  label?: string | null;
+  internalHref?: (number | null) | Page;
+  externalHref?: string | null;
+  emailHref?: string | null;
+  phoneHref?: string | null;
+  newTab?: boolean | null;
+  fileHref?: number | File | null;
+  variant?: ('rounded-outline' | 'link') | null;
+  icon?: IconSelect;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "files".
+ */
+export interface File {
+  id: number;
+  title: string;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconSelect".
+ */
+export interface IconSelect {
+  name?:
+    | (
+        | 'Check'
+        | 'ArrowUp'
+        | 'ArrowLeft'
+        | 'ArrowRight'
+        | 'ArrowDown'
+        | 'CaretDown'
+        | 'CaretUp'
+        | 'CaretRight'
+        | 'CaretLeft'
+        | 'Close'
+        | 'DoubleCaretDown'
+        | 'DoubleCaretUp'
+        | 'DoubleCaretRight'
+        | 'DoubleCaretLeft'
+        | 'Error'
+        | 'LinkOut'
+        | 'MinusSign'
+        | 'Person'
+        | 'PlusSign'
+        | 'Quote'
+        | 'Search'
+        | 'SolidArrowDown'
+        | 'SolidArrowUp'
+        | 'SolidArrowRight'
+        | 'SolidArrowLeft'
+        | 'ArrowNesting'
+      )
+    | null;
+  width?: string | null;
+  height?: string | null;
+  color?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+>>>>>>> parent of 34c772c (Fix/live preview locales [DCH-12] (#105))
  * via the `definition` "HeroBlockT".
  */
 export interface HeroBlockT {
@@ -542,6 +688,24 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "files".
+ */
+export interface File {
+  id: number;
+  title: string;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "videos".
  */
 export interface Video {
@@ -558,8 +722,6 @@ export interface Video {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
