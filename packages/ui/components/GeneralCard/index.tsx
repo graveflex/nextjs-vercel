@@ -13,9 +13,10 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     border-radius: 1.13rem;
-    background-color: ${allColors.primaryBg};
+    background-color: ${allColors.fg};
     max-width: 30rem;
     padding: ${spacing[9]}rem;
+    color: ${allColors.bg};
   `}
 `;
 
@@ -40,7 +41,7 @@ const Headline = styled.h1`
 
   ${({ theme: { box } }) => css`
     ${box.t('h3')};
-    ${box.c('primaryFg')};
+    ${box.c('bg')};
   `}
 `;
 
@@ -63,13 +64,9 @@ const ImageContainer = styled.div`
 const ButtonsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  ${({ theme: { spacing, mq } }) => css`
+  ${({ theme: { spacing } }) => css`
     margin-top: ${spacing[9]}rem;
     gap: ${spacing[6]}rem;
-
-    ${mq.md`
-      flex-wrap: initial;
-    `}
   `}
 `;
 

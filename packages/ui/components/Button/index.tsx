@@ -9,9 +9,9 @@ type colorProps = keyof DefaultTheme['allColors'];
 type colorTokenProps = keyof DefaultTheme['colorTokens'];
 
 export type ButtonProps = {
-  $variant?: 'rounded-outline' | 'link';
+  $variant?: 'solid' | 'outline' | 'link';
   $color: colorProps | colorTokenProps;
-  $invert?: boolean;
+  // $invert?: boolean; enable this for theme inversion for button text color
   icon?: IconProps;
   children?: React.ReactNode | string | number;
   element?: 'button' | 'span';
@@ -22,21 +22,8 @@ export type ButtonProps = {
 
 const getVariantStyles = (
   variant: ButtonProps['$variant'],
-  color: ButtonProps['$color'],
-  invert: ButtonProps['$invert']
+  color: ButtonProps['$color']
 ): ReturnType<typeof css> => {
-  const hoverLight = css`
-    ${({ theme: { allColors } }) => css`
-      ${invert ? allColors.bg : allColors.fg}
-    `}
-  `;
-
-  const hoverDark = css`
-    ${({ theme: { allColors } }) => css`
-      ${invert ? allColors.fg : allColors.bg}
-    `}
-  `;
-
   if (variant === 'link') {
     return css`
       ${({ theme: { allColors, box } }) => css`
@@ -45,13 +32,31 @@ const getVariantStyles = (
         border: 1px solid transparent;
         border-bottom-color: ${allColors[color]};
         border-radius: 0;
+        padding: 0;
         ${box.t('button')};
 
         &:hover {
-          color: ${hoverDark};
-          background-color: transparent;
-          /* box shadow to avoid content shifting */
-          box-shadow: inset 0 -3px 0 ${hoverDark};
+          color: ${allColors.fg};
+          border-bottom-color: ${allColors.fg};
+        }
+      `}
+    `;
+  }
+
+  if (variant === 'outline') {
+    return css`
+      ${({ theme: { allColors, box } }) => css`
+        color: ${allColors[color]};
+        background-color: transparent;
+        border: 1px solid ${allColors[color]};
+        border-radius: 1rem;
+        ${box.t('button')};
+
+        &:hover {
+          color: ${allColors.bg};
+          border-color: ${allColors[color]};
+          background-color: ${allColors[color]};
+          opacity: 0.9;
         }
       `}
     `;
@@ -59,52 +64,17 @@ const getVariantStyles = (
 
   return css`
     ${({ theme: { allColors, box } }) => css`
-      color: ${allColors[color]};
       ${box.t('button')};
-      background-color: transparent;
-      border: 1px solid currentColor;
-      border-radius: 36px;
-      transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        border-radius 0.2s ease,
-        border-color 0.2s ease;
-
-      &[type='reset'] {
-        background-color: transparent;
-        color: ${allColors.danger};
-
-        &:hover {
-          color: white;
-        }
-      }
-
-      &[type='submit'] {
-        background-color: transparent;
-        border-color: ${allColors[color]};
-
-        .button-text {
-          color: ${allColors[color]};
-        }
-
-        &:hover {
-          background-color: ${hoverDark};
-
-          svg {
-            fill: white;
-          }
-
-          .button-text {
-            color: ${hoverLight};
-          }
-        }
-      }
+      background-color: ${allColors[color]};
+      border-radius: 1rem;
+      border: 1px solid transparent;
+      color: ${allColors.bg};
 
       &:hover {
-        border-radius: 6px;
-        border-color: transparent;
-        background-color: ${hoverDark};
-        color: ${hoverLight};
+        opacity: 0.9;
+        background-color: transparent;
+        color: ${allColors[color]};
+        border: 1px solid ${allColors[color]};
       }
 
       &:disabled {
@@ -114,7 +84,7 @@ const getVariantStyles = (
         /* revert any hover / focus styles when disabled */
         background-color: transparent;
         border: 1px solid ${allColors[color]};
-        border-radius: 36px;
+        border-radius: 1rem;
       }
     `}
   `;
@@ -122,17 +92,16 @@ const getVariantStyles = (
 
 const constructButtonStyles = () => {
   return css<ButtonProps>`
-    ${({ $color, $variant, $invert }) => css`
+    ${({ $color, $variant }) => css`
       display: inline-flex;
-      padding: 0 1.125rem;
-      min-height: 3.8125rem;
-      min-width: 3.8125rem;
+      padding: 0.62rem 1rem 0.75rem;
+      min-height: 2.625rem;
       width: fit-content;
       column-gap: 0.75rem;
       align-items: center;
       justify-content: center;
-      text-transform: capitalize;
       cursor: pointer;
+      text-decoration: none;
       svg path {
         fill: currentColor;
       }
@@ -143,13 +112,21 @@ const constructButtonStyles = () => {
         top: 1px;
       }
 
-      ${getVariantStyles($variant, $color, $invert)}
+      ${getVariantStyles($variant, $color)}
     `}
   `;
 };
 
 const StyledButton = styled.button<ButtonProps>`
   ${constructButtonStyles()}
+  a {
+    color: inherit;
+    text-decoration: none;
+    &:hover {
+      box-shadow: none;
+      color: inherit;
+    }
+  }
 
   &:hover {
     box-shadow: none;
@@ -172,6 +149,13 @@ const StyleSpan = styled.span<ButtonProps>`
   }
 `;
 
+const InnerWrapper = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+`;
+
 function Button({ element = 'span', icon, children, ...props }: ButtonProps) {
   /* Props specific to button element & valid html attributes */
   const buttonProps = {
@@ -183,9 +167,9 @@ function Button({ element = 'span', icon, children, ...props }: ButtonProps) {
 
   /* styles & Invalid html attributes */
   const styleProps = {
-    $color: props?.$color ?? 'secondary',
-    $variant: props?.$variant ?? 'rounded-outline',
-    $invert: props?.$invert ?? false
+    $color: props?.$color ?? 'primary',
+    $variant: props?.$variant ?? 'solid'
+    // $invert: props?.$invert ?? false
   };
   const buttonClass = `button-${styleProps.$variant}`;
 
@@ -197,15 +181,21 @@ function Button({ element = 'span', icon, children, ...props }: ButtonProps) {
         {...styleProps}
         className={buttonClass}
       >
-        {children ? <span className="button-text">{children}</span> : null}
-        {icon && RenderIcon(icon)}
+        {children ? (
+          <InnerWrapper className="button-text">
+            {children} {icon && RenderIcon(icon)}
+          </InnerWrapper>
+        ) : null}
       </StyledButton>
     );
   }
   return (
     <StyleSpan {...styleProps} className={buttonClass}>
-      {children && <span className="button-text">{children}</span>}
-      {icon && RenderIcon(icon)}
+      {children && (
+        <InnerWrapper className="button-text">
+          {children} {icon && RenderIcon(icon)}
+        </InnerWrapper>
+      )}
     </StyleSpan>
   );
 }

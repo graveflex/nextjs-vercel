@@ -90,7 +90,7 @@ const cta = {
       label: 'Get a Demo',
       externalHref: '/demo'
     },
-    variant: 'rounded-outline' as variantEnum
+    variant: 'solid' as variantEnum
   }
 };
 
@@ -207,7 +207,7 @@ const seedNavUsingPayload = async ({ payload }: SeedFnProps) => {
               { type: 'paragraph', text: 'Welcome to our Demo Repo' }
             ])
           },
-          background: 'black'
+          background: 'gray'
         }
       },
       footer: {

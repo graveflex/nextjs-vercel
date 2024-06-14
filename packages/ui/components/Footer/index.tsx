@@ -5,14 +5,17 @@ import type { FooterItems } from '@mono/types/payload-types';
 import CtaLink from '@mono/ui/components/CtaLink';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
-import styled from '@refract-ui/sc';
+import styled, { css } from '@refract-ui/sc';
 
 const Container = styled.footer`
-  background: white;
-  width: 100%;
-  position: relative;
-  bottom: 0;
-  align-self: end;
+  ${({ theme: { allColors } }) => css`
+    color: ${allColors.fg};
+    background-color: ${allColors.bg};
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    align-self: end;
+  `}
 `;
 
 const ContentWrapper = styled.div`
@@ -38,8 +41,10 @@ const Logo = styled(ResponsivePayloadImage)`
 `;
 
 const Copyright = styled.div`
-  grid-area: copyright;
-  color: black;
+  ${({ theme: { allColors } }) => css`
+    grid-area: copyright;
+    color: ${allColors.fg};
+  `}
 `;
 
 const FlatLinkSection = styled.div`
