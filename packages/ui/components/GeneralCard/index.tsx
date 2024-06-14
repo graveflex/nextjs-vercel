@@ -63,7 +63,7 @@ const ImageContainer = styled.div`
 const ButtonsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  ${({ theme: { spacing, mq } }) => css`
+  ${({ theme: { spacing } }) => css`
     margin-top: ${spacing[9]}rem;
     gap: ${spacing[6]}rem;
   `}
