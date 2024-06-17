@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import React from 'react';
 import type { FieldValues, SubmitHandler } from 'react-hook-form';
-import { Form, useForm } from 'react-hook-form';
+import { Form, FormProvider, useForm } from 'react-hook-form';
 
 import type { ButtonProps } from '../Button';
 import Button from '../Button';
@@ -13,12 +13,15 @@ export interface FormWrapperProps {
 }
 
 function FormWrapper({ children, onSubmit, cta }: FormWrapperProps) {
-  const { control } = useForm();
+  const methods = useForm();
+
   return (
-    <Form onSubmit={onSubmit} control={control}>
-      {children}
-      <Button {...cta} type="submit" element="button" />
-    </Form>
+    <FormProvider {...methods}>
+      <Form onSubmit={onSubmit}>
+        {children}
+        <Button {...cta} type="submit" element="button" />
+      </Form>
+    </FormProvider>
   );
 }
 
