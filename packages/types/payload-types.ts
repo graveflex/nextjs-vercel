@@ -214,7 +214,7 @@ export interface Image {
  */
 export interface CTAType {
   link?: PayLoadLink;
-  variant?: ('outline' | 'solid' | 'link') | null;
+  variant?: ('rounded-outline' | 'link') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
