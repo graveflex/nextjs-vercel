@@ -54,7 +54,7 @@ function FormFields() {
       <Controller
         name="name"
         rules={{ required: true }}
-        render={({ field }) => <TextInput label="name" id="name" {...field} />}
+        render={({ field }) => <TextInput label="Name" id="name" {...field} />}
       />
       {errors.name && errors.name.type === 'required' && (
         <FieldErrors id="name-error" error="This is required" />
