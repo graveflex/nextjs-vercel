@@ -102,7 +102,7 @@ function FormFields() {
   );
 }
 
-export const Default: Story = {
+export const Defaults: Story = {
   render: (args) => (
     <FormWrapper {...args}>
       <FormFields />
