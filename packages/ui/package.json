@@ -24,8 +24,9 @@
     "@payloadcms/richtext-lexical": "latest",
     "@refract-ui/hook-fields": "latest",
     "@refract-ui/sc": "latest",
-    "@storybook/react": "^8.0.8",
-    "@storybook/testing-react": "^2.0.1",
+    "@refract-ui/stories": "latest",
+    "@storybook/react": "latest",
+    "@storybook/test": "latest",
     "@testing-library/jest-dom": "^6.4.1",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.5",
@@ -53,7 +54,7 @@
     "vitest-canvas-mock": "^0.3.3"
   },
   "dependencies": {
-    "@types/lodash": "^4.17.0"
+    "@types/lodash": "^4.17.0",
+    "@types/styled-components": "latest"
   }
 }
-

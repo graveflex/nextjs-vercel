@@ -1,12 +1,12 @@
 import { storybookThemes } from '@mono/theme/src/storybook';
 import { configureGlobalTypes, withRefract } from '@refract-ui/stories';
-import type { Decorator } from '@storybook/react';
+import type { Decorator, Preview } from '@storybook/react';
 
-export const globalTypes = {
+const globalTypes = {
   ...configureGlobalTypes(storybookThemes)
 };
 
-export const parameters = {
+const parameters = {
   backgrounds: {
     default: 'light'
   },
@@ -19,4 +19,12 @@ export const parameters = {
   }
 };
 
-export const decorators = [withRefract] as Decorator[];
+const decorators = [withRefract] as Decorator[];
+
+const preview: Preview = {
+  decorators,
+  parameters,
+  globalTypes
+};
+
+export default preview;
