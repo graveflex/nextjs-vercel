@@ -368,8 +368,7 @@ export interface FAQBlockT {
       };
     };
   };
-  title?: string | null;
-  subTitle?: {
+  header?: {
     root: {
       type: string;
       children: {
@@ -387,7 +386,7 @@ export interface FAQBlockT {
   items?:
     | {
         title?: string | null;
-        subTitle?: {
+        content?: {
           root: {
             type: string;
             children: {

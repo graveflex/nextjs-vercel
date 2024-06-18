@@ -19,10 +19,12 @@ type Story = StoryObj<AccordionProps>;
 
 export const Defaults: Story = {
   args: {
-    title: faker.lorem.words(3),
+    blockConfig: {
+      contentWidth: 'md'
+    },
     items: [
       {
-        text: faker.lorem.words(5),
+        title: faker.lorem.words(5),
         content: {
           ...genRichText([
             { type: 'paragraph', text: faker.lorem.paragraph(15) }
@@ -30,7 +32,7 @@ export const Defaults: Story = {
         }
       },
       {
-        text: faker.lorem.words(2),
+        title: faker.lorem.words(2),
         content: {
           ...genRichText([
             { type: 'paragraph', text: faker.lorem.paragraph(15) }
@@ -38,7 +40,7 @@ export const Defaults: Story = {
         }
       },
       {
-        text: faker.lorem.words(15),
+        title: faker.lorem.words(15),
         content: {
           ...genRichText([
             { type: 'paragraph', text: faker.lorem.paragraph(15) }
