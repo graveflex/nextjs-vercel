@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker';
+import genRichText from '@mono/ui/utils/genRichText';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { FAQBlockType } from '.';
@@ -17,6 +19,37 @@ type Story = StoryObj<FAQBlockType>;
 
 export const Defaults: Story = {
   args: {
-    title: 'FAQBlock'
+    header: {
+      ...genRichText([
+        { type: 'heading', format: 'center', tag: 'h1', text: 'FAQ Block' },
+        { type: 'paragraph', format: 'center', text: faker.lorem.paragraph(4) }
+      ])
+    },
+    items: [
+      {
+        title: faker.lorem.words(5),
+        content: {
+          ...genRichText([
+            { type: 'paragraph', text: faker.lorem.paragraph(15) }
+          ])
+        }
+      },
+      {
+        title: faker.lorem.words(2),
+        content: {
+          ...genRichText([
+            { type: 'paragraph', text: faker.lorem.paragraph(15) }
+          ])
+        }
+      },
+      {
+        title: faker.lorem.words(15),
+        content: {
+          ...genRichText([
+            { type: 'paragraph', text: faker.lorem.paragraph(15) }
+          ])
+        }
+      }
+    ]
   }
 };

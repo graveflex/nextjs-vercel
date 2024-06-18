@@ -1,62 +1,38 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React from 'react';
 import type { FAQBlockT as PayloadType } from '@mono/types/payload-types';
+import Accordion from '@mono/ui/components/Accordion';
 import RichText from '@mono/ui/components/primitives/RichText';
-import Wrapper from '@mono/web/components/Wrapper';
-import styled from '@refract-ui/sc';
-import s from 'styled-components';
+import Wrapper from '@mono/ui/components/Wrapper';
+import s from '@refract-ui/sc';
 
 export type FAQBlockType = Omit<PayloadType, 'blockType'>;
 
-const Section = s(Wrapper)``;
-
-const Header = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: min(100%, 600px);
-  margin: auto;
+const Header = s(RichText)`
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 0 1.25rem;
+  }
+  max-width: 30rem;
+  margin: 0 auto 3.125em;
 `;
 
-const Title = styled.h2({ m: 0, p: 0 })``;
+const AccordionContainer = s.div``;
 
-const SubTitle = s(RichText)``;
-
-const Details = styled.details``;
-
-const Summary = styled.summary({ t: 'h3' })`
-  list-style: none;
-`;
-
-function FAQBlock({ title, subTitle, items }: FAQBlockType) {
-  const Items = useMemo(() => {
-    if (!items || !items.length) {
-      return null;
-    }
-
-    return items.map(({ title: t, subTitle: st, id }) => {
-      if (!t || !st) {
-        return null;
-      }
-      return (
-        <Details key={id}>
-          <Summary>{t}</Summary>
-          <RichText {...st} />
-        </Details>
-      );
-    });
-  }, [items]);
+function AccordionBlock({ blockConfig, header, items }: FAQBlockType) {
   return (
-    <Section>
-      <Header>
-        {title && <Title>{title}</Title>}
-        {subTitle && <SubTitle {...subTitle} />}
-      </Header>
-      {Items}
-    </Section>
+    <Wrapper {...blockConfig} hidden={blockConfig?.hidden ?? false}>
+      {header && <Header {...header} />}
+      <AccordionContainer>
+        <Accordion items={items} />
+      </AccordionContainer>
+    </Wrapper>
   );
 }
 
-export default FAQBlock;
+export default AccordionBlock;

@@ -7,40 +7,44 @@ const FAQBlock: Block = {
   fields: [
     BlockConfig(),
     {
-      type: 'text',
-      name: 'title',
-      localized: true,
-      label: 'Title',
-      required: false
-    },
-    {
       type: 'richText',
-      name: 'subTitle',
+      name: 'header',
       localized: true,
-      label: 'Sub Title',
-      required: false
+      label: 'Header',
+      required: false,
+      admin: {
+        description: 'Header & subtitle content for FAQ Block.'
+      }
     },
     {
       type: 'array',
       name: 'items',
-      label: 'FAQ Items',
-      admin: {
-        description:
-          'Note: only items with both a title and subtitle will be displayed'
+      label: 'List of Accordion Items',
+      localized: true,
+      labels: {
+        singular: 'Accordion Item',
+        plural: 'Accordion Items'
       },
-      required: false,
       fields: [
         {
           type: 'text',
           name: 'title',
-          localized: true,
-          label: 'Title'
+          label: 'Title',
+          required: false,
+          admin: {
+            description:
+              'The text that will be displayed in the accordion item.'
+          }
         },
         {
           type: 'richText',
-          name: 'subTitle',
-          localized: true,
-          label: 'Sub Title'
+          name: 'content',
+          label: 'Content',
+          required: false,
+          admin: {
+            description:
+              'The content that will be displayed when the accordion item is expanded.'
+          }
         }
       ]
     }
