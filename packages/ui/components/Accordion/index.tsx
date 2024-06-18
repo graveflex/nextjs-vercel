@@ -70,7 +70,7 @@ const TextButton = s.button`
 
   &:focus {
     outline: none;
-    }
+  }
 
   ${hoverStyles};
 `;
