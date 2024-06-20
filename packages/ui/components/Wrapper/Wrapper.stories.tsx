@@ -65,12 +65,6 @@ export const MaxContentNoGutter: Story = {
   }
 };
 
-const imgUrl = faker.image.urlLoremFlickr({
-  category: 'abstract',
-  width: 1440,
-  height: 1440
-});
-
 export const BackgroundImage: Story = {
   args: {
     ...sharedArgs,

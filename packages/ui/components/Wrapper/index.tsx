@@ -45,20 +45,20 @@ const getBreakpointValueByName = (
 };
 
 const BackgroundImage = styled(ResponsivePayloadImage)`
-&&{
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 10;
-    img {
+&& {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 10;
+  img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
-}
+  }
 `;
 
 export const Content = styled.div`
