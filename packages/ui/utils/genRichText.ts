@@ -9,7 +9,7 @@ type RichTextContentProps = {
   tag?: string;
   listType?: string;
   value?: object;
-  format?: number;
+  format?: number | string;
   children?: SerializedPayloadNode[];
 }[];
 

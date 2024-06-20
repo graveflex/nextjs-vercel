@@ -1,62 +1,51 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React from 'react';
 import type { FAQBlockT as PayloadType } from '@mono/types/payload-types';
+import Accordion from '@mono/ui/components/Accordion';
 import RichText from '@mono/ui/components/primitives/RichText';
-import Wrapper from '@mono/web/components/Wrapper';
-import styled from '@refract-ui/sc';
-import s from 'styled-components';
+import Wrapper from '@mono/ui/components/Wrapper';
+import s from '@refract-ui/sc';
 
 export type FAQBlockType = Omit<PayloadType, 'blockType'>;
 
-const Section = s(Wrapper)``;
-
-const Header = styled.div`
+const HeaderContainer = s.div<{ $tAlign: string }>`
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  width: min(100%, 600px);
-  margin: auto;
+  ${({ $tAlign }) => $tAlign && `justify-content: ${$tAlign};`}
 `;
 
-const Title = styled.h2({ m: 0, p: 0 })``;
-
-const SubTitle = s(RichText)``;
-
-const Details = styled.details``;
-
-const Summary = styled.summary({ t: 'h3' })`
-  list-style: none;
+const Header = s(RichText)<{ $tAlign: string }>`
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 0 1.25rem;
+  }
+  max-width: 30rem;
+  ${({ $tAlign }) => $tAlign && `text-align: ${$tAlign};`}
 `;
 
-function FAQBlock({ title, subTitle, items }: FAQBlockType) {
-  const Items = useMemo(() => {
-    if (!items || !items.length) {
-      return null;
-    }
+const AccordionContainer = s.div``;
 
-    return items.map(({ title: t, subTitle: st, id }) => {
-      if (!t || !st) {
-        return null;
-      }
-      return (
-        <Details key={id}>
-          <Summary>{t}</Summary>
-          <RichText {...st} />
-        </Details>
-      );
-    });
-  }, [items]);
+function AccordionBlock({
+  blockConfig,
+  header,
+  textAlignment,
+  items
+}: FAQBlockType) {
   return (
-    <Section>
-      <Header>
-        {title && <Title>{title}</Title>}
-        {subTitle && <SubTitle {...subTitle} />}
-      </Header>
-      {Items}
-    </Section>
+    <Wrapper {...blockConfig} hidden={blockConfig?.hidden ?? false}>
+      <HeaderContainer $tAlign={textAlignment as string}>
+        {header && <Header {...header} $tAlign={textAlignment as string} />}
+      </HeaderContainer>
+      <AccordionContainer>
+        <Accordion items={items} />
+      </AccordionContainer>
+    </Wrapper>
   );
 }
 
-export default FAQBlock;
+export default AccordionBlock;

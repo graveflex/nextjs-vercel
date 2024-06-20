@@ -1,15 +1,18 @@
 'use client';
 
 import React, { useCallback, useMemo, useState } from 'react';
+import type { FAQBlockT } from '@mono/types/payload-types';
 import RichText from '@mono/ui/components/primitives/RichText';
 import Icon from '@mono/ui/components/RenderIcon';
 import s, { css } from '@refract-ui/sc';
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
 
 const ContentStyles = s.div`
   padding-bottom: 1.125rem;
 `;
 
-const Content = s.div`
+const Content = styled(motion.div)`
   overflow: hidden;
   height: 0;
   display: none;
@@ -46,7 +49,6 @@ const hoverStyles = css`
 
       ${Text} {
         color: ${allColors.plainHover};
-        text-decoration: underline;
       }
     }
   `}
@@ -67,6 +69,10 @@ const TextButton = s.button`
     box-shadow: none;
   }
 
+  &:focus {
+    outline: none;
+  }
+
   ${hoverStyles};
 `;
 
@@ -77,7 +83,7 @@ const InnerList = s.li`
   overflow: hidden;
 
   ${({ theme: { allColors } }) => css`
-    border-top: 1px solid ${allColors.plainFg};
+    border-bottom: 1px solid ${allColors.plainFg};
 
     svg {
       color: ${allColors.plainFg};
@@ -92,31 +98,7 @@ const List = s.ul`
   padding: 0;
 `;
 
-// Refactor this to instead use a payload type after the FAQBlock is updated
-
-export type AccordionProps = {
-  title?: string;
-  items?: {
-    text?: string | null;
-    content?: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: 'ltr' | 'rtl' | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    id?: string | null;
-  }[];
-  children?: React.ReactNode;
-};
+export type AccordionProps = Partial<FAQBlockT>;
 
 function Accordion({
   items,
@@ -137,30 +119,36 @@ function Accordion({
   );
 
   const accordionItems = useMemo(() => {
-    return items?.map(({ text, content }, index) => {
-      const key = `${text}-${index}`;
+    return items?.map(({ title, content }, index) => {
+      const key = `${title}-${index}`;
 
       return (
         <InnerList key={key}>
           <TextButton
-            aria-label={text ? `Toggle ${text}` : 'Toggle section'}
+            aria-label={title ? `Toggle ${title}` : 'Toggle section'}
             tab-index="0"
             onClick={() => toggleOpen(index)}
             aria-expanded={openSections[index]}
             aria-controls={`section-${index}`}
           >
-            <Text className={openSections[index] ? 'open' : ''}>{text}</Text>
+            <Text className={openSections[index] ? 'open' : ''}>{title}</Text>
             <IconContainer>
               {openSections[index] ? (
-                <Icon name="MinusSign" size="35" color="currentColor" />
+                <Icon name="CaretUp" size="20" color="currentColor" />
               ) : (
-                <Icon name="PlusSign" size="35" color="currentColor" />
+                <Icon name="CaretDown" size="20" color="currentColor" />
               )}
             </IconContainer>
           </TextButton>
           <Content
             id={`section-${index}`}
             className={openSections[index] ? 'open' : ''}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{
+              height: openSections[index] ? 'auto' : 0,
+              opacity: openSections[index] ? 1 : 0
+            }}
+            transition={{ duration: 0.2 }}
           >
             <ContentStyles>
               {content && <RichText {...content} />}

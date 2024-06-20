@@ -7,40 +7,67 @@ const FAQBlock: Block = {
   fields: [
     BlockConfig(),
     {
-      type: 'text',
-      name: 'title',
+      type: 'richText',
+      name: 'header',
       localized: true,
-      label: 'Title',
-      required: false
+      label: 'Header',
+      required: false,
+      admin: {
+        description: 'Header & subtitle content for FAQ Block.'
+      }
     },
     {
-      type: 'richText',
-      name: 'subTitle',
-      localized: true,
-      label: 'Sub Title',
-      required: false
+      type: 'select',
+      name: 'textAlignment',
+      label: 'Text Alignment',
+      defaultValue: 'left',
+      options: [
+        {
+          label: 'Left',
+          value: 'left'
+        },
+        {
+          label: 'Center',
+          value: 'center'
+        },
+        {
+          label: 'Right',
+          value: 'right'
+        }
+      ],
+      admin: {
+        description: 'The alignment of the Header text'
+      }
     },
     {
       type: 'array',
       name: 'items',
-      label: 'FAQ Items',
-      admin: {
-        description:
-          'Note: only items with both a title and subtitle will be displayed'
+      label: 'List of Accordion Items',
+      localized: true,
+      labels: {
+        singular: 'Accordion Item',
+        plural: 'Accordion Items'
       },
-      required: false,
       fields: [
         {
           type: 'text',
           name: 'title',
-          localized: true,
-          label: 'Title'
+          label: 'Title',
+          required: false,
+          admin: {
+            description:
+              'The text that will be displayed in the accordion item.'
+          }
         },
         {
           type: 'richText',
-          name: 'subTitle',
-          localized: true,
-          label: 'Sub Title'
+          name: 'content',
+          label: 'Content',
+          required: false,
+          admin: {
+            description:
+              'The content that will be displayed when the accordion item is expanded.'
+          }
         }
       ]
     }
