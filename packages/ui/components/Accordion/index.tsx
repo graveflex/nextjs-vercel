@@ -5,12 +5,14 @@ import type { FAQBlockT } from '@mono/types/payload-types';
 import RichText from '@mono/ui/components/primitives/RichText';
 import Icon from '@mono/ui/components/RenderIcon';
 import s, { css } from '@refract-ui/sc';
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
 
 const ContentStyles = s.div`
   padding-bottom: 1.125rem;
 `;
 
-const Content = s.div`
+const Content = styled(motion.div)`
   overflow: hidden;
   height: 0;
   display: none;
@@ -141,6 +143,12 @@ function Accordion({
           <Content
             id={`section-${index}`}
             className={openSections[index] ? 'open' : ''}
+            initial={{ height: 0, opacity: 0 }}
+            animate={{
+              height: openSections[index] ? 'auto' : 0,
+              opacity: openSections[index] ? 1 : 0
+            }}
+            transition={{ duration: 0.2 }}
           >
             <ContentStyles>
               {content && <RichText {...content} />}
