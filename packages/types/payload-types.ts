@@ -76,6 +76,7 @@ export interface CardGridBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundImage?: number | Image | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -106,36 +107,6 @@ export interface CardGridBlockT {
   id?: string | null;
   blockName?: string | null;
   blockType: 'cardGridBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CardType".
- */
-export interface CardType {
-  image?: number | Image | null;
-  eyebrow?: string | null;
-  headline: string;
-  subHead?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  ctas?:
-    | {
-        cta?: CTAType;
-        id?: string | null;
-      }[]
-    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -207,6 +178,36 @@ export interface Image {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardType".
+ */
+export interface CardType {
+  image?: number | Image | null;
+  eyebrow?: string | null;
+  headline: string;
+  subHead?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  ctas?:
+    | {
+        cta?: CTAType;
+        id?: string | null;
+      }[]
+    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -298,6 +299,7 @@ export interface MarkdownBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundImage?: number | Image | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -347,6 +349,7 @@ export interface FAQBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundImage?: number | Image | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -417,6 +420,7 @@ export interface TextImageBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundImage?: number | Image | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -508,6 +512,7 @@ export interface HeroBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundImage?: number | Image | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -528,10 +533,11 @@ export interface HeroBlockT {
         paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
       };
     };
-    layout?: ('bg' | 'imgRight' | 'imgLeft' | 'imgRightFull' | 'imgLeftFull') | null;
+    layout?: ('contentRight' | 'contentLeft' | 'contentCenter') | null;
   };
   image?: number | Image | null;
   eyebrow?: string | null;
+  contentAlign?: ('right' | 'left' | 'center') | null;
   title?: string | null;
   subTitle?: {
     root: {

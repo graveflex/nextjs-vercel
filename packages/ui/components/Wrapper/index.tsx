@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import Image from 'next/image';
+import { type Image as PayloadImageProps } from '@mono/types/payload-types';
+import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import styled, { css } from '@refract-ui/sc';
 import type { DefaultTheme } from 'styled-components';
 
@@ -14,7 +15,7 @@ export interface WrapperProps extends React.ComponentProps<'section'> {
     | keyof DefaultTheme['themeColors']
     | keyof DefaultTheme['colorTokens']
     | null;
-  backgroundImage?: string;
+  backgroundImage?: number | PayloadImageProps | null | undefined;
   contentWidth?:
     | DefaultTheme['settings']['breakpointNames'][number]
     | 'full'
@@ -43,14 +44,21 @@ const getBreakpointValueByName = (
   return settings.breakpointValues[idx];
 };
 
-const BackgroundImage = styled(Image)`
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 10;
+const BackgroundImage = styled(ResponsivePayloadImage)`
+&&{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 10;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+}
 `;
 
 export const Content = styled.div`
@@ -179,16 +187,10 @@ function Wrapper({
       {}
     );
   }, [props]);
-
   return (
     <Container className={className} {...componentProps}>
       {!!backgroundImage && (
-        <BackgroundImage
-          src={backgroundImage}
-          alt="background image"
-          fill
-          quality={80}
-        />
+        <BackgroundImage image={backgroundImage} className="backgroundImage" />
       )}
       <Content>{children}</Content>
     </Container>

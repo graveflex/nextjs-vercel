@@ -252,7 +252,7 @@ export const FourCards: Story = {
       {
         card: {
           eyebrow: 'Eyebrow',
-          headline: 'Card 3',
+          headline: 'Card 4',
           subHead: {
             ...genRichText([
               { type: 'paragraph', text: faker.lorem.paragraph(3) }

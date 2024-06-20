@@ -16,24 +16,16 @@ const HeroBlock: Block = {
           type: 'select',
           options: [
             {
-              label: 'Background Image',
-              value: 'bg'
+              label: 'Content on Right',
+              value: 'contentRight'
             },
             {
-              label: 'Image on Right',
-              value: 'imgRight'
+              label: 'Content on Left',
+              value: 'contentLeft'
             },
             {
-              label: 'Image on Left',
-              value: 'imgLeft'
-            },
-            {
-              label: 'Image Right -- Full Bleed',
-              value: 'imgRightFull'
-            },
-            {
-              label: 'Image Left -- Full Bleed',
-              value: 'imgLeftFull'
+              label: 'Content Centered',
+              value: 'contentCenter'
             }
           ]
         }
@@ -44,7 +36,10 @@ const HeroBlock: Block = {
       label: 'Image',
       type: 'upload',
       relationTo: 'images',
-      required: false
+      required: false,
+      admin: {
+        description: 'Set Fill to true to make the image full-bleed'
+      }
     },
     {
       type: 'text',
@@ -52,6 +47,29 @@ const HeroBlock: Block = {
       localized: true,
       label: 'Eyebrow',
       required: false
+    },
+    {
+      name: 'contentAlign',
+      label: 'Content Alignment',
+      required: false,
+      type: 'select',
+      admin: {
+        description: 'If content flows from left, right, or center.'
+      },
+      options: [
+        {
+          label: 'Align Right',
+          value: 'right'
+        },
+        {
+          label: 'Align Left',
+          value: 'left'
+        },
+        {
+          label: 'Align Center',
+          value: 'center'
+        }
+      ]
     },
     {
       type: 'text',

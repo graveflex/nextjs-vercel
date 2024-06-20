@@ -8,119 +8,101 @@ import RichText from '@mono/ui/components/primitives/RichText';
 import Wrapper from '@mono/ui/components/Wrapper';
 import genClassName from '@mono/ui/utils/genClassname';
 import Input from '@mono/web/fields/Input';
-import styled, { css } from '@refract-ui/sc';
-import s from 'styled-components';
-import tc from 'tinycolor2';
+import s from '@refract-ui/sc';
 
 export type HeroBlockProps = Omit<PayloadType, 'blockType'>;
 
-const StyledWrapper = s(Wrapper)`
+const StyledWrapper = s(Wrapper)``;
+
+const InnerWrapper = s.div<{ $isFullBleed: boolean }>`
+  display: grid;
+  grid-template-columns: 1fr;
   align-items: center;
-  overflow: hidden;
-  min-height: 40svh;
-  position: relative;
-
-  ${({ theme: { mq } }) => mq.md`
-  `};
-`;
-
-const ImageWrapper = s(ResponsivePayloadImage)<{
-  $layout: 'bg' | 'imgRight' | 'imgLeft' | 'imgRightFull' | 'imgLeftFull';
-}>`
-  ${({ $layout }) =>
-    $layout === 'bg' &&
-    css`
-      position: absolute;
-      height: 100%;
-      width: 100%;
-    `})}
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-`;
-
-const Eyebrow = styled.span({ t: 'h6', c: 'fg' })`
+  gap: 3rem;
   width: 100%;
-`;
-
-const Title = styled.h1({ m: 0, p: 0, c: 'fg' })`
-  width: 100%;
-`;
-
-const ContentWrapper = styled.div`
   z-index: 1;
   overflow: hidden;
-  background: ${({ theme: { allColors } }) =>
-    tc(allColors.bg).setAlpha(0.4).toString()};
+  margin: auto;
 
-  &.bg,
-  &.imgRightFull,
-  &.imgLeftFull {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 50px 0;
-    text-align: center;
-  }
-
-  &.bg {
-    padding: 120px 25px;
-  }
-
-  &.imgRight,
-  &.imgLeft {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
-
-  ${({ theme: { mq } }) => mq.md`
-    &.bg,
-    &.imgRightFull,
-    &.imgLeftFull {
-      padding: 100px 50px;
+  ${({ theme: { mq }, $isFullBleed }) => mq.lg`
+    padding: ${$isFullBleed ? '0' : '0 3.125rem'};
+    &.contentLeft, &.contentRight {
+      grid-template-columns: 1fr 1fr;
     }
-    &.imgLeft {
-      padding-left: 50px;
-    }
-
-    &.imgRight {
-      padding-right: 50px;
+    &.contentCenter {
+      grid-template-columns: 1fr;
     }
   `};
+`;
+
+const Eyebrow = s.span({ t: 'h6', c: 'fg' })`
+`;
+
+const Title = s.h1({ t: 'h1' })`
+  margin: 0 0 1.25rem;
 `;
 
 const SubTitle = s(RichText)`
-  width: min(100%, 600px);
 `;
 
-const InputWrapper = styled.div`
+const ContentWrapper = s.div<{ $isFullBleed: boolean; $contentAlign: string }>`
   display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  max-width: 33.75rem;
+  padding: 0 2rem;
+  align-items: ${({ $contentAlign }) => $contentAlign};
+  text-align: ${({ $contentAlign }) => $contentAlign};
+  order: 1;
+
+  ${({ theme: { mq }, $isFullBleed }) => mq.lg`
+    &.contentLeft {
+      order: 0;
+      margin: 0 0 0 auto;
+      padding: ${$isFullBleed ? '0 0 0 2rem' : '0'};
+    }
+
+    &.contentRight {
+      order: 1;
+      margin: 0 auto 0 0;
+      padding: ${$isFullBleed ? '0 2rem 0 0' : '0'};
+    }
+
+    &.contentCenter {
+      margin: 0 auto;
+      padding: ${$isFullBleed ? '0 2rem' : '0'};
+    }
+  `};
+`;
+
+const ImageWrapper = s(ResponsivePayloadImage)`
+  img {
+    max-width: 100%;
+    min-width: 100%;
+    height: auto;
+    }
+
+  margin: 0 auto;
+  min-width: 100%;
+
+  ${({ theme: { mq } }) => mq.lg`
+    min-width: unset;
+
+    &.contentLeft {
+    margin: 0 auto 0 0;
+    }
+
+    &.contentRight {
+    margin-left: 0 0 0 auto;
+    }
+  `};
+`;
+
+const InputWrapper = s.div`
+  display: flex;
   gap: 20px;
   margin-top: 1rem;
-
-  &.bg,
-  &.imgLeftFull,
-  &.imgRightFull {
-    justify-content: center;
-  }
-
-  input {
-    width: 100%;
-    ${({ theme: { mq } }) => mq.sm`
-      width: min(100%, 206px);
-    `};
-  }
 `;
 
 function HeroBlock({
@@ -130,26 +112,41 @@ function HeroBlock({
   cta,
   input,
   image,
-  blockConfig
+  blockConfig,
+  contentAlign
 }: HeroBlockProps) {
-  const layout = blockConfig?.layout || 'imgRight';
+  const layout = blockConfig?.layout || 'contentLeft';
 
   const className = genClassName([layout]);
-  return (
-    <StyledWrapper className={className} gutter={false} fullBleed>
-      <ImageWrapper image={image} $layout={layout} />
 
-      <ContentWrapper className={className}>
-        {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-        {title && <Title>{title}</Title>}
-        {subTitle && <SubTitle {...subTitle} />}
-        {(input || cta) && (
-          <InputWrapper className={className}>
-            {input?.type && <Input {...input} />}
-            {cta && <CtaButton cta={cta} />}
-          </InputWrapper>
-        )}
-      </ContentWrapper>
+  const isFullBleed =
+    typeof image === 'object' ? image?.imageProps?.fill : false;
+
+  return (
+    <StyledWrapper
+      className={className}
+      gutter={false}
+      {...blockConfig}
+      hidden={blockConfig?.hidden ?? false}
+    >
+      <InnerWrapper className={className} $isFullBleed={isFullBleed || false}>
+        <ContentWrapper
+          className={className}
+          $isFullBleed={isFullBleed || false}
+          $contentAlign={contentAlign || 'contentLeft'}
+        >
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+          {title && <Title>{title}</Title>}
+          {subTitle && <SubTitle {...subTitle} />}
+          {(input || cta) && (
+            <InputWrapper className={className}>
+              {input?.type && <Input {...input} />}
+              {cta && <CtaButton cta={cta} />}
+            </InputWrapper>
+          )}
+        </ContentWrapper>
+        <ImageWrapper image={image} />
+      </InnerWrapper>
     </StyledWrapper>
   );
 }
