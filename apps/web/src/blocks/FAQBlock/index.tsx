@@ -9,7 +9,13 @@ import s from '@refract-ui/sc';
 
 export type FAQBlockType = Omit<PayloadType, 'blockType'>;
 
-const Header = s(RichText)`
+const HeaderContainer = s.div<{ $tAlign: string }>`
+  width: 100%;
+  display: flex;
+  ${({ $tAlign }) => $tAlign && `justify-content: ${$tAlign};`}
+`;
+
+const Header = s(RichText)<{ $tAlign: string }>`
   h1,
   h2,
   h3,
@@ -19,15 +25,22 @@ const Header = s(RichText)`
     margin: 0 0 1.25rem;
   }
   max-width: 30rem;
-  margin: 0 auto 3.125em;
+  ${({ $tAlign }) => $tAlign && `text-align: ${$tAlign};`}
 `;
 
 const AccordionContainer = s.div``;
 
-function AccordionBlock({ blockConfig, header, items }: FAQBlockType) {
+function AccordionBlock({
+  blockConfig,
+  header,
+  textAlignment,
+  items
+}: FAQBlockType) {
   return (
     <Wrapper {...blockConfig} hidden={blockConfig?.hidden ?? false}>
-      {header && <Header {...header} />}
+      <HeaderContainer $tAlign={textAlignment as string}>
+        {header && <Header {...header} $tAlign={textAlignment as string} />}
+      </HeaderContainer>
       <AccordionContainer>
         <Accordion items={items} />
       </AccordionContainer>

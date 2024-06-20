@@ -17,6 +17,29 @@ const FAQBlock: Block = {
       }
     },
     {
+      type: 'select',
+      name: 'textAlignment',
+      label: 'Text Alignment',
+      defaultValue: 'left',
+      options: [
+        {
+          label: 'Left',
+          value: 'left'
+        },
+        {
+          label: 'Center',
+          value: 'center'
+        },
+        {
+          label: 'Right',
+          value: 'right'
+        }
+      ],
+      admin: {
+        description: 'The alignment of the Header text'
+      }
+    },
+    {
       type: 'array',
       name: 'items',
       label: 'List of Accordion Items',

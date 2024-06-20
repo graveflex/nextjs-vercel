@@ -383,6 +383,7 @@ export interface FAQBlockT {
     };
     [k: string]: unknown;
   } | null;
+  textAlignment?: ('left' | 'center' | 'right') | null;
   items?:
     | {
         title?: string | null;
