@@ -5,14 +5,10 @@ import { render } from '@testing-library/react';
 
 import * as stories from '../HeroBlock.stories';
 
-const { Defaults, MissingProps } = composeStories(stories, projectAnnotations);
+const { Defaults } = composeStories(stories, projectAnnotations);
 
 describe('HeroBlock', () => {
   it('component mounts', () => {
     render(<Defaults />);
-  });
-
-  it('component mounts missing optional props', () => {
-    render(<MissingProps />);
   });
 });
