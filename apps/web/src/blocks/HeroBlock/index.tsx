@@ -27,7 +27,7 @@ const InnerWrapper = s.div<{ $isFullBleed: boolean; $layout: string }>`
     ${mq.lg`
       padding: ${$isFullBleed ? '0' : '0 3.125rem'};
       ${
-        ($layout === 'contentLeft' || $layout == 'contentRight') &&
+        ($layout === 'contentLeft' || $layout === 'contentRight') &&
         css`
           grid-template-columns: 1fr 1fr;
         `
@@ -71,7 +71,7 @@ const ContentWrapper = s.div<{
       margin: 0 auto;
     `}
 
-    ${($contentAlign === 'left' || $contentAlign == 'right') &&
+    ${($contentAlign === 'left' || $contentAlign === 'right') &&
     css`
       margin: 0 auto 0 0;
     `}
