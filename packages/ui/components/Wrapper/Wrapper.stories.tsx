@@ -75,6 +75,17 @@ export const BackgroundImage: Story = {
   args: {
     ...sharedArgs,
     contentWidth: 'sm',
-    backgroundImage: imgUrl
+    backgroundImage: {
+      id: 1,
+      alt: 'Myopic Logo',
+      updatedAt: '2024-01-05T20:29:44.749Z',
+      createdAt: '2024-01-05T20:29:44.749Z',
+      url: faker.image.abstract(640, 447),
+      filename: 'Logo.svg',
+      mimeType: 'image/svg+xml',
+      filesize: 7144,
+      width: 640,
+      height: 447
+    }
   }
 };
