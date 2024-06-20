@@ -1,11 +1,10 @@
 'use client';
 
 import React, { useCallback, useMemo, useState } from 'react';
+import type { FAQBlockT } from '@mono/types/payload-types';
 import RichText from '@mono/ui/components/primitives/RichText';
 import Icon from '@mono/ui/components/RenderIcon';
 import s, { css } from '@refract-ui/sc';
-import type { FAQBlockT } from '@mono/types/payload-types';
-
 
 const ContentStyles = s.div`
   padding-bottom: 1.125rem;
