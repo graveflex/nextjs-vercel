@@ -533,10 +533,10 @@ export interface HeroBlockT {
         paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
       };
     };
-    layout?: ('contentRight' | 'contentLeft' | 'contentCenter') | null;
   };
   image?: number | Image | null;
   eyebrow?: string | null;
+  layout?: ('contentRight' | 'contentLeft' | 'contentCenter') | null;
   contentAlign?: ('right' | 'left' | 'center') | null;
   title?: string | null;
   subTitle?: {
@@ -554,7 +554,7 @@ export interface HeroBlockT {
     };
     [k: string]: unknown;
   } | null;
-  input?: InputType;
+  textinput?: TextInputType;
   cta?: CTAType;
   id?: string | null;
   blockName?: string | null;
@@ -562,11 +562,12 @@ export interface HeroBlockT {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "InputType".
+ * via the `definition` "TextInputType".
  */
-export interface InputType {
+export interface TextInputType {
   placeholder?: string | null;
-  type?: 'text' | null;
+  helpText?: string | null;
+  label?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

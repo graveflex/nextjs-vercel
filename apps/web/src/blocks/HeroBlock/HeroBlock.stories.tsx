@@ -20,9 +20,9 @@ type Story = StoryObj<HeroBlockProps>;
 export const Defaults: Story = {
   args: {
     blockConfig: {
-      layout: 'contentLeft',
       contentWidth: 'xxl'
     },
+    layout: 'contentLeft',
     title: 'This is a Heading',
     subTitle: {
       ...genRichText([
@@ -35,19 +35,12 @@ export const Defaults: Story = {
     eyebrow: 'SOME TAGLINE',
     cta: {
       link: {
-        label: 'Test',
-        icon: { name: 'ArrowRight' },
-        internalHref: {
-          slug: '/',
-          id: 1,
-          pageTitle: 'Home',
-          updatedAt: '2024-01-05T20:29:44.749Z',
-          createdAt: '2024-01-05T20:29:44.749Z'
-        }
+        label: 'Submit'
       }
     },
-    input: {
-      type: 'text'
+    textinput: {
+      placeholder: 'Email address',
+      label: 'Email'
     },
     image: {
       id: 1,
@@ -70,9 +63,9 @@ export const Defaults: Story = {
 export const ContentRight: Story = {
   args: {
     blockConfig: {
-      layout: 'contentRight',
       contentWidth: 'xxl'
     },
+    layout: 'contentRight',
     title: 'This is a Heading',
     subTitle: {
       ...genRichText([
@@ -85,19 +78,12 @@ export const ContentRight: Story = {
     eyebrow: 'SOME TAGLINE',
     cta: {
       link: {
-        label: 'Test',
-        icon: { name: 'ArrowRight' },
-        internalHref: {
-          slug: '/',
-          id: 1,
-          pageTitle: 'Home',
-          updatedAt: '2024-01-05T20:29:44.749Z',
-          createdAt: '2024-01-05T20:29:44.749Z'
-        }
+        label: 'Submit'
       }
     },
-    input: {
-      type: 'text'
+    textinput: {
+      placeholder: 'Email address',
+      label: 'Email'
     },
     image: {
       id: 1,
@@ -120,9 +106,9 @@ export const ContentRight: Story = {
 export const ContentCenter: Story = {
   args: {
     blockConfig: {
-      layout: 'contentCenter',
       contentWidth: 'xxl'
     },
+    layout: 'contentCenter',
     contentAlign: 'center',
     title: 'This is a Heading',
     subTitle: {
@@ -136,28 +122,19 @@ export const ContentCenter: Story = {
     eyebrow: 'SOME TAGLINE',
     cta: {
       link: {
-        label: 'Test',
-        icon: { name: 'ArrowRight' },
-        internalHref: {
-          slug: '/',
-          id: 1,
-          pageTitle: 'Home',
-          updatedAt: '2024-01-05T20:29:44.749Z',
-          createdAt: '2024-01-05T20:29:44.749Z'
-        }
+        label: 'Submit'
       }
     },
-    input: {
-      type: 'text'
+    textinput: {
+      placeholder: 'Email address',
+      label: 'Email'
     }
   }
 };
 
 export const FullBleed: Story = {
   args: {
-    blockConfig: {
-      layout: 'contentLeft'
-    },
+    layout: 'contentLeft',
     contentAlign: 'center',
     title: 'This is a Heading',
     subTitle: {
@@ -172,19 +149,12 @@ export const FullBleed: Story = {
     eyebrow: 'SOME TAGLINE',
     cta: {
       link: {
-        label: 'Test',
-        icon: { name: 'ArrowRight' },
-        internalHref: {
-          slug: '/',
-          id: 1,
-          pageTitle: 'Home',
-          updatedAt: '2024-01-05T20:29:44.749Z',
-          createdAt: '2024-01-05T20:29:44.749Z'
-        }
+        label: 'Submit'
       }
     },
-    input: {
-      type: 'text'
+    textinput: {
+      placeholder: 'Email address',
+      label: 'Email'
     },
     image: {
       id: 1,
@@ -207,7 +177,6 @@ export const FullBleed: Story = {
 export const BackgroundImage: Story = {
   args: {
     blockConfig: {
-      layout: 'contentLeft',
       contentWidth: 'xxl',
       backgroundImage: {
         id: 1,
@@ -222,6 +191,7 @@ export const BackgroundImage: Story = {
         height: 447
       }
     },
+    layout: 'contentLeft',
     title: 'This is a Heading',
     subTitle: {
       ...genRichText([
@@ -234,19 +204,12 @@ export const BackgroundImage: Story = {
     eyebrow: 'SOME TAGLINE',
     cta: {
       link: {
-        label: 'Test',
-        icon: { name: 'ArrowRight' },
-        internalHref: {
-          slug: '/',
-          id: 1,
-          pageTitle: 'Home',
-          updatedAt: '2024-01-05T20:29:44.749Z',
-          createdAt: '2024-01-05T20:29:44.749Z'
-        }
+        label: 'Submit'
       }
     },
-    input: {
-      type: 'text'
+    textinput: {
+      placeholder: 'Email address',
+      label: 'Email'
     }
   }
 };

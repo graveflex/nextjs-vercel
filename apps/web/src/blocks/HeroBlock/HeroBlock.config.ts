@@ -1,36 +1,13 @@
-import Input from '@mono/web/fields/Input/Input.config';
 import BlockConfig from '@mono/web/payload/fields/BlockConfig';
 import CTA from '@mono/web/payload/fields/CTA';
+import TextInput from '@mono/web/payload/fields/TextInput';
 import type { Block } from 'payload/types';
 
 const HeroBlock: Block = {
   slug: 'heroBlock',
   interfaceName: 'HeroBlockT',
   fields: [
-    BlockConfig({
-      fields: [
-        {
-          name: 'layout',
-          label: 'Layout',
-          required: false,
-          type: 'select',
-          options: [
-            {
-              label: 'Content on Right',
-              value: 'contentRight'
-            },
-            {
-              label: 'Content on Left',
-              value: 'contentLeft'
-            },
-            {
-              label: 'Content Centered',
-              value: 'contentCenter'
-            }
-          ]
-        }
-      ]
-    }),
+    BlockConfig(),
     {
       name: 'image',
       label: 'Image',
@@ -49,12 +26,32 @@ const HeroBlock: Block = {
       required: false
     },
     {
+      name: 'layout',
+      label: 'Layout',
+      required: false,
+      type: 'select',
+      options: [
+        {
+          label: 'Content on Right',
+          value: 'contentRight'
+        },
+        {
+          label: 'Content on Left',
+          value: 'contentLeft'
+        },
+        {
+          label: 'Content Centered',
+          value: 'contentCenter'
+        }
+      ]
+    },
+    {
       name: 'contentAlign',
       label: 'Content Alignment',
       required: false,
       type: 'select',
       admin: {
-        description: 'If content flows from left, right, or center.'
+        description: 'If copy flows from left, right, or center.'
       },
       options: [
         {
@@ -85,7 +82,7 @@ const HeroBlock: Block = {
       label: 'Sub Title',
       required: false
     },
-    Input(),
+    TextInput(),
     CTA()
   ]
 };
