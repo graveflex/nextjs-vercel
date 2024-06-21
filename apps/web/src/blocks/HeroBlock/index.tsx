@@ -157,7 +157,9 @@ function HeroBlock({
   layout
 }: HeroBlockProps) {
   const isFullBleed =
-    typeof image === 'object' ? image?.imageProps?.fill : false;
+    typeof image === 'object' && typeof image?.imageProps?.fill === 'boolean'
+      ? image?.imageProps?.fill
+      : false;
 
   const contentPosition = layout || 'contentLeft';
   const alignText = contentAlign || 'left';
@@ -168,13 +170,10 @@ function HeroBlock({
       {...blockConfig}
       hidden={blockConfig?.hidden ?? false}
     >
-      <InnerWrapper
-        $layout={contentPosition}
-        $isFullBleed={isFullBleed || false}
-      >
+      <InnerWrapper $layout={contentPosition} $isFullBleed={isFullBleed}>
         <ContentWrapper
           $layout={contentPosition}
-          $isFullBleed={isFullBleed || false}
+          $isFullBleed={isFullBleed}
           $contentAlign={alignText}
         >
           {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
