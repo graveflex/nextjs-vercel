@@ -9,6 +9,7 @@ import SEOConfig from '@mono/web/payload/fields/SEO';
 import formatSlug from '@mono/web/payload/utils/formatSlug';
 import type { CollectionConfig } from 'payload/types';
 
+import { invalidateCache } from '../hooks/invalidateCache';
 import { publishBeforeRead } from '../hooks/publishBeforeRead';
 
 const themeOptions = [
@@ -101,7 +102,8 @@ const Pages: CollectionConfig = {
     }
   ],
   hooks: {
-    beforeRead: [publishBeforeRead]
+    beforeRead: [publishBeforeRead],
+    afterChange: [invalidateCache]
   }
 };
 

@@ -31,7 +31,10 @@ export type IconNavItems =
 
 export interface Config {
   collections: {
+    authors: Author;
     pages: Page;
+    posts: Post;
+    tags: Tag;
     users: User;
     files: File;
     images: Image;
@@ -50,63 +53,31 @@ export interface Config {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages".
+ * via the `definition` "authors".
  */
-export interface Page {
+export interface Author {
   id: number;
-  pageTitle: string;
   slug?: string | null;
-  theme?: ('light' | 'dark') | null;
-  seoConfig?: {
-    title?: string | null;
-    description?: string | null;
-    keywords?: string | null;
-  };
-  publishedAt?: string | null;
-  blocks?: (CardGridBlockT | MarkdownBlockT | FAQBlockT | TextImageBlockT | HeroBlockT)[] | null;
+  fullName: string;
+  image?: number | Image | null;
+  jobTitle: string;
+  bio?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   updatedAt: string;
   createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CardGridBlockT".
- */
-export interface CardGridBlockT {
-  blockConfig?: {
-    theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: number | Image | null;
-    hidden?: boolean | null;
-    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    p?: {
-      xs?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      md?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      lg?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      xl?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-    };
-  };
-  cards?:
-    | {
-        card: CardType;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'cardGridBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -178,6 +149,66 @@ export interface Image {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  pageTitle: string;
+  slug?: string | null;
+  theme?: ('light' | 'dark') | null;
+  seoConfig?: {
+    title?: string | null;
+    description?: string | null;
+    keywords?: string | null;
+  };
+  publishedAt?: string | null;
+  blocks?: (CardGridBlockT | MarkdownBlockT | FAQBlockT | TextImageBlockT | HeroBlockT)[] | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardGridBlockT".
+ */
+export interface CardGridBlockT {
+  blockConfig?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundImage?: number | Image | null;
+    hidden?: boolean | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    p?: {
+      xs?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      md?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      lg?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      xl?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+    };
+  };
+  cards?:
+    | {
+        card: CardType;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cardGridBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -561,6 +592,63 @@ export interface HeroBlockT {
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts".
+ */
+export interface Post {
+  id: number;
+  title: string;
+  subTitle?: string | null;
+  date: string;
+  authors?: (number | Author)[] | null;
+  tags?: (number | Tag)[] | null;
+  ctas?:
+    | {
+        cta?: CTAType;
+        id?: string | null;
+      }[]
+    | null;
+  thumbnail: number | Image;
+  coverImage: number | Image;
+  content: {
+    content?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    id?: string | null;
+  }[];
+  seoConfig?: {
+    title?: string | null;
+    description?: string | null;
+    keywords?: string | null;
+  };
+  slug?: string | null;
+  publishedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags".
+ */
+export interface Tag {
+  id: number;
+  label: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
