@@ -20,8 +20,6 @@ const InnerWrapper = s.div<{ $isFullBleed: boolean; $layout: string }>`
     align-items: center;
     gap: 3rem;
     width: 100%;
-    z-index: 1;
-    overflow: hidden;
     margin: auto;
 
     ${mq.lg`
@@ -38,7 +36,7 @@ const InnerWrapper = s.div<{ $isFullBleed: boolean; $layout: string }>`
           grid-template-columns: 1fr;
         `
       }
-    `};
+    `}
   `}
 `;
 
@@ -76,7 +74,7 @@ const ContentWrapper = s.div<{
       margin: 0 auto 0 0;
     `}
 
-      ${mq.lg`
+    ${mq.lg`
       ${
         $layout === 'contentLeft' &&
         css`
@@ -102,7 +100,7 @@ const ContentWrapper = s.div<{
           padding: ${$isFullBleed ? '0 2rem' : '0'};
         `
       }
-    `};
+    `}
   `}
 `;
 
@@ -113,34 +111,33 @@ const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
       min-width: 100%;
       height: auto;
     }
-
     margin: 0 auto;
     min-width: 100%;
 
     ${mq.lg`
       min-width: unset;
-        ${
-          $layout === 'contentLeft' &&
-          css`
-            margin: 0 auto 0 0;
-          `
-        }
-        ${
-          $layout === 'contentLeft' &&
-          css`
-            margin: 0 0 0 auto;
-          `
-        }
-    `};
+      ${
+        $layout === 'contentLeft' &&
+        css`
+          margin: 0 auto 0 0;
+        `
+      }
+      ${
+        $layout === 'contentLeft' &&
+        css`
+          margin: 0 0 0 auto;
+        `
+      }
+    `}
   `}
 `;
 
-const InputWrapper = s.div<{ $contentAlign: string }>`
+const InputWrapper = s(FormWrapper)<{ $contentAlign: string }>`
   form {
-  display: flex;
-  justify-content: ${({ $contentAlign }) => ($contentAlign === 'center' ? 'center' : 'flex-start')};
-  gap: 20px;
-  margin-top: 1rem;
+    display: flex;
+    justify-content: ${({ $contentAlign }) => ($contentAlign === 'center' ? 'center' : 'flex-start')};
+    gap: 20px;
+    margin-top: 1rem;
     button { 
       height: fit-content;
       align-self: flex-end;
@@ -184,15 +181,17 @@ function HeroBlock({
           {title && <Title>{title}</Title>}
           {subTitle && <SubTitle {...subTitle} />}
           {textinput && cta && (
-            <InputWrapper $contentAlign={alignText}>
-              <FormWrapper onSubmit={(data) => console.log(data)} cta={cta}>
-                <TextInput
-                  {...textinput}
-                  name="TextInput"
-                  label="Label"
-                  placeholder="Placeholder"
-                />
-              </FormWrapper>
+            <InputWrapper
+              onSubmit={(data) => console.log(data)}
+              cta={cta}
+              $contentAlign={alignText}
+            >
+              <TextInput
+                {...textinput}
+                name="TextInput"
+                label="Label"
+                placeholder="Placeholder"
+              />
             </InputWrapper>
           )}
         </ContentWrapper>
