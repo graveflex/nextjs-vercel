@@ -462,8 +462,10 @@ export interface TextImageBlockT {
         id?: string | null;
       }[]
     | null;
-  textinput?: TextInputType;
-  cta?: CTAType;
+  form?: {
+    textinput?: TextInputType;
+    cta?: CTAType;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'textImageBlock';

@@ -66,12 +66,19 @@ const TextImageBlock: Block = {
       localized: true,
       fields: [CTA({ name: 'textImage' })]
     },
-    TextInput(),
-    CTA({
-      admin: {
-        description: 'Form Submit CTA.'
-      }
-    })
+    {
+      name: 'form',
+      label: 'Form Fields',
+      type: 'group',
+      fields: [
+        TextInput(),
+        CTA({
+          admin: {
+            description: 'Form Submit CTA.'
+          }
+        })
+      ]
+    }
   ]
 };
 

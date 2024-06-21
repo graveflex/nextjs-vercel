@@ -189,11 +189,10 @@ function TextImageBlock({
   image,
   items,
   blockConfig,
-  textinput,
-  cta,
+  form,
   video
 }: TextImageBlockType) {
-  const buttonLayout = !!items?.length || !!cta || false;
+  const buttonLayout = !!items?.length || !!form?.cta || false;
   const imgLayout = layout || 'imgRight';
 
   const Items = useMemo(() => {
@@ -218,10 +217,13 @@ function TextImageBlock({
         <ContentWrapper $hasButton={buttonLayout || false} $layout={imgLayout}>
           {content && <Content $layout={imgLayout} {...content} />}
           {items && <ButtonWrapper>{Items}</ButtonWrapper>}
-          {textinput && cta && (
-            <InputWrapper onSubmit={(data) => console.log(data)} cta={cta}>
+          {form?.textinput && form?.cta && (
+            <InputWrapper
+              onSubmit={(data) => console.log(data)}
+              cta={form?.cta}
+            >
               <TextInput
-                {...textinput}
+                {...form?.textinput}
                 name="TextInput"
                 label="Label"
                 placeholder="Placeholder"

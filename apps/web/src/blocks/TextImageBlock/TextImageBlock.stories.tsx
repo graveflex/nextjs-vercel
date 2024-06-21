@@ -186,14 +186,16 @@ export const LeftImageForm: Story = {
         { type: 'paragraph', text: faker.lorem.paragraph(3) }
       ])
     },
-    cta: {
-      link: {
-        label: 'Take Action'
+    form: {
+      cta: {
+        link: {
+          label: 'Take Action'
+        }
+      },
+      textinput: {
+        placeholder: 'Email address',
+        label: 'Email'
       }
-    },
-    textinput: {
-      placeholder: 'Email address',
-      label: 'Email'
     },
     image: {
       id: 1,
