@@ -111,8 +111,9 @@ export const Defaults: Story = {
   args: {
     onSubmit: (data) => console.log(data),
     cta: {
-      children: 'submit',
-      $color: 'primary'
+      link: {
+        label: 'Submit'
+      }
     }
   }
 };
