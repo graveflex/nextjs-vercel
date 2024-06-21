@@ -554,7 +554,10 @@ export interface HeroBlockT {
     };
     [k: string]: unknown;
   } | null;
-  textinput?: TextInputType;
+  form?: {
+    textinput?: TextInputType;
+    cta?: CTAType;
+  };
   cta?: CTAType;
   id?: string | null;
   blockName?: string | null;

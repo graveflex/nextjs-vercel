@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { HeroBlockT as PayloadType } from '@mono/types/payload-types';
+import CtaButton from '@mono/ui/components/CtaButton';
 import FormWrapper from '@mono/ui/components/FormWrapper';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
@@ -145,12 +146,17 @@ const InputWrapper = s(FormWrapper)<{ $contentAlign: string }>`
   }
 `;
 
+const ButtonWrapper = s.div`
+  gap: 1.25rem;
+  margin-top: 1rem;
+`;
+
 function HeroBlock({
   eyebrow,
   title,
   subTitle,
+  form,
   cta,
-  textinput,
   image,
   blockConfig,
   contentAlign,
@@ -179,19 +185,24 @@ function HeroBlock({
           {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
           {title && <Title>{title}</Title>}
           {subTitle && <SubTitle {...subTitle} />}
-          {textinput && cta && (
+          {form?.textinput && form?.cta && (
             <InputWrapper
               onSubmit={(data) => console.log(data)}
-              cta={cta}
+              cta={form?.cta}
               $contentAlign={alignText}
             >
               <TextInput
-                {...textinput}
+                {...form?.textinput}
                 name="TextInput"
                 label="Label"
                 placeholder="Placeholder"
               />
             </InputWrapper>
+          )}
+          {cta && (
+            <ButtonWrapper>
+              <CtaButton cta={cta} color="primary" />
+            </ButtonWrapper>
           )}
         </ContentWrapper>
         <ImageWrapper image={image} $layout={contentPosition} />

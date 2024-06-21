@@ -82,7 +82,19 @@ const HeroBlock: Block = {
       label: 'Sub Title',
       required: false
     },
-    TextInput(),
+    {
+      name: 'form',
+      label: 'Form Fields',
+      type: 'group',
+      fields: [
+        TextInput(),
+        CTA({
+          admin: {
+            description: 'Form Submit CTA.'
+          }
+        })
+      ]
+    },
     CTA()
   ]
 };

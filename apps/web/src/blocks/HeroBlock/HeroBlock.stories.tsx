@@ -33,14 +33,16 @@ export const Defaults: Story = {
       ])
     },
     eyebrow: 'SOME TAGLINE',
-    cta: {
-      link: {
-        label: 'Submit'
+    form: {
+      cta: {
+        link: {
+          label: 'Submit'
+        }
+      },
+      textinput: {
+        placeholder: 'Email address',
+        label: 'Email'
       }
-    },
-    textinput: {
-      placeholder: 'Email address',
-      label: 'Email'
     },
     image: {
       id: 1,
@@ -76,14 +78,16 @@ export const ContentRight: Story = {
       ])
     },
     eyebrow: 'SOME TAGLINE',
-    cta: {
-      link: {
-        label: 'Submit'
+    form: {
+      cta: {
+        link: {
+          label: 'Submit'
+        }
+      },
+      textinput: {
+        placeholder: 'Email address',
+        label: 'Email'
       }
-    },
-    textinput: {
-      placeholder: 'Email address',
-      label: 'Email'
     },
     image: {
       id: 1,
@@ -120,14 +124,16 @@ export const ContentCenter: Story = {
       ])
     },
     eyebrow: 'SOME TAGLINE',
-    cta: {
-      link: {
-        label: 'Submit'
+    form: {
+      cta: {
+        link: {
+          label: 'Submit'
+        }
+      },
+      textinput: {
+        placeholder: 'Email address',
+        label: 'Email'
       }
-    },
-    textinput: {
-      placeholder: 'Email address',
-      label: 'Email'
     }
   }
 };
@@ -147,14 +153,16 @@ export const FullBleed: Story = {
       ])
     },
     eyebrow: 'SOME TAGLINE',
-    cta: {
-      link: {
-        label: 'Submit'
+    form: {
+      cta: {
+        link: {
+          label: 'Submit'
+        }
+      },
+      textinput: {
+        placeholder: 'Email address',
+        label: 'Email'
       }
-    },
-    textinput: {
-      placeholder: 'Email address',
-      label: 'Email'
     },
     image: {
       id: 1,
@@ -202,14 +210,55 @@ export const BackgroundImage: Story = {
       ])
     },
     eyebrow: 'SOME TAGLINE',
+    form: {
+      cta: {
+        link: {
+          label: 'Submit'
+        }
+      },
+      textinput: {
+        placeholder: 'Email address',
+        label: 'Email'
+      }
+    }
+  }
+};
+
+export const CTANoForm: Story = {
+  args: {
+    blockConfig: {
+      contentWidth: 'xxl'
+    },
+    layout: 'contentLeft',
+    title: 'This is a Heading',
+    subTitle: {
+      ...genRichText([
+        {
+          type: 'paragraph',
+          text: faker.lorem.paragraph(3)
+        }
+      ])
+    },
+    eyebrow: 'SOME TAGLINE',
     cta: {
       link: {
         label: 'Submit'
       }
     },
-    textinput: {
-      placeholder: 'Email address',
-      label: 'Email'
+    image: {
+      id: 1,
+      alt: 'Myopic Logo',
+      updatedAt: '2024-01-05T20:29:44.749Z',
+      createdAt: '2024-01-05T20:29:44.749Z',
+      url: faker.image.abstract(640, 447),
+      filename: 'Logo.svg',
+      mimeType: 'image/svg+xml',
+      filesize: 7144,
+      width: 640,
+      height: 447,
+      imageProps: {
+        fill: false
+      }
     }
   }
 };
