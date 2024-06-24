@@ -15,8 +15,16 @@ const meta: Meta<StaticTagType> = {
 export default meta;
 type Story = StoryObj<StaticTagType>;
 
+
 export const Defaults: Story = {
   args: {
-    placeholder: 'Enter text here'
+    label: 'Education'
+  }
+};
+
+export const TagButton: Story = {
+  args: {
+    label: 'Education',
+    isButton: true
   }
 };

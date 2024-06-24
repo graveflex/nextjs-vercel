@@ -43,9 +43,7 @@ export const BasicCard: Story = {
     image,
     eyebrow: 'Eyebrow',
     headline: 'General Card',
-    subHead: {
-      ...genRichText([{ type: 'paragraph', text: faker.lorem.paragraph(3) }])
-    },
+    subHead: faker.lorem.paragraph(3),
     ctas: [
       {
         cta: {

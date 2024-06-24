@@ -16,7 +16,13 @@ export default meta;
 type Story = StoryObj<BlogIndexType>;
 
 export const Defaults: Story = {
-  args: {
-    placeholder: 'Enter text here'
+    args: {
+    posts: [],
+    paginationProps: {
+      total: 0,
+      currentPage: 1,
+      limit: 9
+    },
+    filters: []
   }
 };
