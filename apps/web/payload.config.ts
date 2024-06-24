@@ -173,7 +173,7 @@ export default buildConfig({
     }),
     translator({
       // collections with the enabled translator in the admin UI
-      collections: ['pages', 'images', 'files', 'videos'],
+      collections: ['pages', 'images', 'files', 'videos', 'posts', 'tags', 'authors'],
       // globals with the enabled translator in the admin UI
       globals: ['nav', 'four-oh-four'],
       // add resolvers that you want to include, examples on how to write your own in ./plugin/src/resolvers
