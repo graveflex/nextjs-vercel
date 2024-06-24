@@ -53,6 +53,7 @@
         "BLOB_READ_WRITE_TOKEN",
         "BLOB_ENDPOINT_URL",
         "BLOB_STORE_ID",
+        "GOOGLE_TRANSLATE_API_KEY",
         "FORCE_WEB_URL",
         "DATABASE_URL",
         "NODE_ENV"
