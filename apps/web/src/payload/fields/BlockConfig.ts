@@ -109,6 +109,13 @@ function BlockConfig({
             options: colorOptions
           },
           {
+            name: 'backgroundImage',
+            label: 'BackgroundImage',
+            type: 'upload',
+            relationTo: 'images',
+            required: false
+          },
+          {
             name: 'hidden',
             label: 'Hide Block',
             admin: {

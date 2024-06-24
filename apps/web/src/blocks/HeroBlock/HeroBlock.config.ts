@@ -1,50 +1,22 @@
-import Input from '@mono/web/fields/Input/Input.config';
 import BlockConfig from '@mono/web/payload/fields/BlockConfig';
 import CTA from '@mono/web/payload/fields/CTA';
+import TextInput from '@mono/web/payload/fields/TextInput';
 import type { Block } from 'payload/types';
 
 const HeroBlock: Block = {
   slug: 'heroBlock',
   interfaceName: 'HeroBlockT',
   fields: [
-    BlockConfig({
-      fields: [
-        {
-          name: 'layout',
-          label: 'Layout',
-          required: false,
-          type: 'select',
-          options: [
-            {
-              label: 'Background Image',
-              value: 'bg'
-            },
-            {
-              label: 'Image on Right',
-              value: 'imgRight'
-            },
-            {
-              label: 'Image on Left',
-              value: 'imgLeft'
-            },
-            {
-              label: 'Image Right -- Full Bleed',
-              value: 'imgRightFull'
-            },
-            {
-              label: 'Image Left -- Full Bleed',
-              value: 'imgLeftFull'
-            }
-          ]
-        }
-      ]
-    }),
+    BlockConfig(),
     {
       name: 'image',
       label: 'Image',
       type: 'upload',
       relationTo: 'images',
-      required: false
+      required: false,
+      admin: {
+        description: 'Set Fill to true to make the image full-bleed'
+      }
     },
     {
       type: 'text',
@@ -54,20 +26,68 @@ const HeroBlock: Block = {
       required: false
     },
     {
-      type: 'text',
-      name: 'title',
-      localized: true,
-      label: 'Title',
-      required: false
+      name: 'layout',
+      label: 'Layout',
+      required: false,
+      type: 'select',
+      options: [
+        {
+          label: 'Content on Right',
+          value: 'contentRight'
+        },
+        {
+          label: 'Content on Left',
+          value: 'contentLeft'
+        },
+        {
+          label: 'Content Centered',
+          value: 'contentCenter'
+        }
+      ]
+    },
+    {
+      name: 'contentAlign',
+      label: 'Content Alignment',
+      required: false,
+      type: 'select',
+      admin: {
+        description: 'If copy flows from left, right, or center.'
+      },
+      options: [
+        {
+          label: 'Align Right',
+          value: 'right'
+        },
+        {
+          label: 'Align Left',
+          value: 'left'
+        },
+        {
+          label: 'Align Center',
+          value: 'center'
+        }
+      ]
     },
     {
       type: 'richText',
-      name: 'subTitle',
+      name: 'content',
       localized: true,
-      label: 'Sub Title',
+      label: 'Content',
       required: false
     },
-    Input(),
+    {
+      name: 'form',
+      label: 'Form Fields',
+      type: 'group',
+      fields: [
+        TextInput(),
+        CTA({
+          admin: {
+            description: 'Form Submit CTA.'
+          }
+        })
+      ]
+    },
     CTA()
   ]
 };

@@ -3,153 +3,212 @@
 import React from 'react';
 import type { HeroBlockT as PayloadType } from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
+import FormWrapper from '@mono/ui/components/FormWrapper';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
 import Wrapper from '@mono/ui/components/Wrapper';
-import genClassName from '@mono/ui/utils/genClassname';
-import Input from '@mono/web/fields/Input';
-import styled, { css } from '@refract-ui/sc';
-import s from 'styled-components';
-import tc from 'tinycolor2';
+import TextInput from '@refract-ui/hook-fields/TextInput';
+import s, { css } from '@refract-ui/sc';
 
 export type HeroBlockProps = Omit<PayloadType, 'blockType'>;
 
-const StyledWrapper = s(Wrapper)`
-  align-items: center;
-  overflow: hidden;
-  min-height: 40svh;
-  position: relative;
+const StyledWrapper = s(Wrapper)``;
 
-  ${({ theme: { mq } }) => mq.md`
-  `};
-`;
-
-const ImageWrapper = s(ResponsivePayloadImage)<{
-  $layout: 'bg' | 'imgRight' | 'imgLeft' | 'imgRightFull' | 'imgLeftFull';
-}>`
-  ${({ $layout }) =>
-    $layout === 'bg' &&
-    css`
-      position: absolute;
-      height: 100%;
-      width: 100%;
-    `})}
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-`;
-
-const Eyebrow = styled.span({ t: 'h6', c: 'fg' })`
-  width: 100%;
-`;
-
-const Title = styled.h1({ m: 0, p: 0, c: 'fg' })`
-  width: 100%;
-`;
-
-const ContentWrapper = styled.div`
-  z-index: 1;
-  overflow: hidden;
-  background: ${({ theme: { allColors } }) =>
-    tc(allColors.bg).setAlpha(0.4).toString()};
-
-  &.bg,
-  &.imgRightFull,
-  &.imgLeftFull {
-    display: flex;
-    flex-direction: column;
+const InnerWrapper = s.div<{ $isFullBleed: boolean; $layout: string }>`
+  ${({ $layout, $isFullBleed, theme: { mq } }) => css`
+    display: grid;
+    grid-template-columns: 1fr;
     align-items: center;
-    justify-content: center;
-    padding: 50px 0;
-    text-align: center;
-  }
+    gap: 3rem;
+    width: 100%;
+    margin: auto;
 
-  &.bg {
-    padding: 120px 25px;
-  }
+    ${mq.lg`
+      padding: ${$isFullBleed ? '0' : '0 3.125rem'};
+      ${
+        ($layout === 'contentLeft' || $layout === 'contentRight') &&
+        css`
+          grid-template-columns: 1fr 1fr;
+        `
+      }
+      ${
+        $layout === 'contentCenter' &&
+        css`
+          grid-template-columns: 1fr;
+        `
+      }
+    `}
+  `}
+`;
 
-  &.imgRight,
-  &.imgLeft {
+const Eyebrow = s.span({ t: 'h6', c: 'fg' })`
+`;
+
+const Content = s(RichText)`
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 0 2rem 0;
+  }
+`;
+
+const ContentWrapper = s.div<{
+  $isFullBleed: boolean;
+  $contentAlign: string;
+  $layout: string;
+}>`
+  ${({ $contentAlign, $isFullBleed, $layout, theme: { mq } }) => css`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    max-width: 33.75rem;
+    padding: 0 2rem;
+    order: 1;
+
+    ${$contentAlign === 'center' &&
+    css`
+      text-align: center;
+      margin: 0 auto;
+    `}
+
+    ${($contentAlign === 'left' || $contentAlign === 'right') &&
+    css`
+      margin: 0 auto 0 0;
+    `}
+
+    ${mq.lg`
+      ${
+        $layout === 'contentLeft' &&
+        css`
+          order: 0;
+          margin: 0 0 0 auto;
+          padding: ${$isFullBleed ? '0 0 0 2rem' : '0'};
+        `
+      }
+
+      ${
+        $layout === 'contentRight' &&
+        css`
+          order: 1;
+          margin: 0 auto 0 0;
+          padding: ${$isFullBleed ? '0 2rem 0 0' : '0'};
+        `
+      }
+
+      ${
+        $layout === 'contentCenter' &&
+        css`
+          margin: 0 auto;
+          padding: ${$isFullBleed ? '0 2rem' : '0'};
+        `
+      }
+    `}
+  `}
+`;
+
+const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
+  ${({ $layout, theme: { mq } }) => css`
+    img {
+      max-width: 100%;
+      min-width: 100%;
+      height: auto;
+    }
+    margin: 0 auto;
+    min-width: 100%;
+
+    ${mq.lg`
+      min-width: unset;
+      ${
+        $layout === 'contentLeft' &&
+        css`
+          margin: 0 auto 0 0;
+        `
+      }
+      ${
+        $layout === 'contentLeft' &&
+        css`
+          margin: 0 0 0 auto;
+        `
+      }
+    `}
+  `}
+`;
+
+const InputWrapper = s(FormWrapper)<{ $contentAlign: string }>`
+  form {
+    display: flex;
+    justify-content: ${({ $contentAlign }) => ($contentAlign === 'center' ? 'center' : 'flex-start')};
+    gap: 20px;
+    margin-top: 1rem;
+    button { 
+      height: fit-content;
+      align-self: flex-end;
+    }
   }
-
-  ${({ theme: { mq } }) => mq.md`
-    &.bg,
-    &.imgRightFull,
-    &.imgLeftFull {
-      padding: 100px 50px;
-    }
-    &.imgLeft {
-      padding-left: 50px;
-    }
-
-    &.imgRight {
-      padding-right: 50px;
-    }
-  `};
 `;
 
-const SubTitle = s(RichText)`
-  width: min(100%, 600px);
-`;
-
-const InputWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  gap: 20px;
+const ButtonWrapper = s.div`
+  gap: 1.25rem;
   margin-top: 1rem;
-
-  &.bg,
-  &.imgLeftFull,
-  &.imgRightFull {
-    justify-content: center;
-  }
-
-  input {
-    width: 100%;
-    ${({ theme: { mq } }) => mq.sm`
-      width: min(100%, 206px);
-    `};
-  }
 `;
 
 function HeroBlock({
   eyebrow,
-  title,
-  subTitle,
+  content,
+  form,
   cta,
-  input,
   image,
-  blockConfig
+  blockConfig,
+  contentAlign,
+  layout
 }: HeroBlockProps) {
-  const layout = blockConfig?.layout || 'imgRight';
+  const isFullBleed =
+    typeof image === 'object' && typeof image?.imageProps?.fill === 'boolean'
+      ? image?.imageProps?.fill
+      : false;
 
-  const className = genClassName([layout]);
+  const contentPosition = layout || 'contentLeft';
+  const alignText = contentAlign || 'left';
+
   return (
-    <StyledWrapper className={className} gutter={false} fullBleed>
-      <ImageWrapper image={image} $layout={layout} />
-
-      <ContentWrapper className={className}>
-        {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-        {title && <Title>{title}</Title>}
-        {subTitle && <SubTitle {...subTitle} />}
-        {(input || cta) && (
-          <InputWrapper className={className}>
-            {input?.type && <Input {...input} />}
-            {cta && <CtaButton cta={cta} />}
-          </InputWrapper>
-        )}
-      </ContentWrapper>
+    <StyledWrapper
+      gutter={false}
+      {...blockConfig}
+      hidden={blockConfig?.hidden ?? false}
+    >
+      <InnerWrapper $layout={contentPosition} $isFullBleed={isFullBleed}>
+        <ContentWrapper
+          $layout={contentPosition}
+          $isFullBleed={isFullBleed}
+          $contentAlign={alignText}
+        >
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+          {content && <Content {...content} />}
+          {form?.textinput?.placeholder && form?.cta && (
+            <InputWrapper
+              onSubmit={(data) => console.log(data)}
+              cta={form?.cta}
+              $contentAlign={alignText}
+            >
+              <TextInput
+                {...form?.textinput}
+                name="TextInput"
+                label={form?.textinput?.label || undefined}
+                placeholder={form?.textinput?.placeholder || undefined}
+              />
+            </InputWrapper>
+          )}
+          {cta && (
+            <ButtonWrapper>
+              <CtaButton cta={cta} color="primary" />
+            </ButtonWrapper>
+          )}
+        </ContentWrapper>
+        <ImageWrapper image={image} $layout={contentPosition} />
+      </InnerWrapper>
     </StyledWrapper>
   );
 }
