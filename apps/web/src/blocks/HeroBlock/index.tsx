@@ -44,11 +44,15 @@ const InnerWrapper = s.div<{ $isFullBleed: boolean; $layout: string }>`
 const Eyebrow = s.span({ t: 'h6', c: 'fg' })`
 `;
 
-const Title = s.h1({ t: 'h1' })`
-  margin: 0 0 1.25rem;
-`;
-
-const SubTitle = s(RichText)`
+const Content = s(RichText)`
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 0 2rem 0;
+  }
 `;
 
 const ContentWrapper = s.div<{
@@ -153,8 +157,7 @@ const ButtonWrapper = s.div`
 
 function HeroBlock({
   eyebrow,
-  title,
-  subTitle,
+  content,
   form,
   cta,
   image,
@@ -183,9 +186,8 @@ function HeroBlock({
           $contentAlign={alignText}
         >
           {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-          {title && <Title>{title}</Title>}
-          {subTitle && <SubTitle {...subTitle} />}
-          {form?.textinput && form?.cta && (
+          {content && <Content {...content} />}
+          {form?.textinput?.placeholder && form?.cta && (
             <InputWrapper
               onSubmit={(data) => console.log(data)}
               cta={form?.cta}
@@ -194,8 +196,8 @@ function HeroBlock({
               <TextInput
                 {...form?.textinput}
                 name="TextInput"
-                label="Label"
-                placeholder="Placeholder"
+                label={form?.textinput?.label || undefined}
+                placeholder={form?.textinput?.placeholder || undefined}
               />
             </InputWrapper>
           )}

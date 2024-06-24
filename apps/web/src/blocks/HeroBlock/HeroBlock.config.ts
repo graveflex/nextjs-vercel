@@ -69,23 +69,19 @@ const HeroBlock: Block = {
       ]
     },
     {
-      type: 'text',
-      name: 'title',
-      localized: true,
-      label: 'Title',
-      required: false
-    },
-    {
       type: 'richText',
-      name: 'subTitle',
+      name: 'content',
       localized: true,
-      label: 'Sub Title',
+      label: 'Content',
       required: false
     },
     {
       name: 'form',
       label: 'Form Fields',
       type: 'group',
+      admin: {
+        initCollapsed: true
+      },
       fields: [
         TextInput(),
         CTA({

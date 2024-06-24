@@ -219,7 +219,7 @@ function TextImageBlock({
         <ContentWrapper $hasButton={buttonLayout || false} $layout={imgLayout}>
           {content && <Content $layout={imgLayout} {...content} />}
           {items && <ButtonWrapper>{Items}</ButtonWrapper>}
-          {form?.textinput?.label && form?.cta && (
+          {form?.textinput?.placeholder && form?.cta && (
             <InputWrapper
               onSubmit={(data) => console.log(data)}
               cta={form?.cta}
@@ -227,8 +227,8 @@ function TextImageBlock({
               <TextInput
                 {...form?.textinput}
                 name="TextInput"
-                label={form?.textinput?.label || ''}
-                placeholder={form?.textinput?.placeholder || ''}
+                label={form?.textinput?.label || undefined}
+                placeholder={form?.textinput?.placeholder || undefined}
               />
             </InputWrapper>
           )}

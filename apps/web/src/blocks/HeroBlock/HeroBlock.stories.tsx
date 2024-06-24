@@ -23,9 +23,9 @@ export const Defaults: Story = {
       contentWidth: 'xxl'
     },
     layout: 'contentLeft',
-    title: 'This is a Heading',
-    subTitle: {
+    content: {
       ...genRichText([
+        { type: 'heading', tag: 'h1', text: faker.lorem.words(2) },
         {
           type: 'paragraph',
           text: faker.lorem.paragraph(3)
@@ -68,9 +68,9 @@ export const ContentRight: Story = {
       contentWidth: 'xxl'
     },
     layout: 'contentRight',
-    title: 'This is a Heading',
-    subTitle: {
+    content: {
       ...genRichText([
+        { type: 'heading', tag: 'h1', text: faker.lorem.words(2) },
         {
           type: 'paragraph',
           text: faker.lorem.paragraph(3)
@@ -114,9 +114,9 @@ export const ContentCenter: Story = {
     },
     layout: 'contentCenter',
     contentAlign: 'center',
-    title: 'This is a Heading',
-    subTitle: {
+    content: {
       ...genRichText([
+        { type: 'heading', tag: 'h1', text: faker.lorem.words(2) },
         {
           type: 'paragraph',
           text: faker.lorem.paragraph(3)
@@ -142,13 +142,12 @@ export const FullBleed: Story = {
   args: {
     layout: 'contentLeft',
     contentAlign: 'center',
-    title: 'This is a Heading',
-    subTitle: {
+    content: {
       ...genRichText([
+        { type: 'heading', tag: 'h1', text: faker.lorem.words(2) },
         {
           type: 'paragraph',
-          text: faker.lorem.paragraph(3),
-          format: 'center'
+          text: faker.lorem.paragraph(3)
         }
       ])
     },
@@ -200,9 +199,9 @@ export const BackgroundImage: Story = {
       }
     },
     layout: 'contentLeft',
-    title: 'This is a Heading',
-    subTitle: {
+    content: {
       ...genRichText([
+        { type: 'heading', tag: 'h1', text: faker.lorem.words(2) },
         {
           type: 'paragraph',
           text: faker.lorem.paragraph(3)
@@ -230,9 +229,9 @@ export const CTANoForm: Story = {
       contentWidth: 'xxl'
     },
     layout: 'contentLeft',
-    title: 'This is a Heading',
-    subTitle: {
+    content: {
       ...genRichText([
+        { type: 'heading', tag: 'h1', text: faker.lorem.words(2) },
         {
           type: 'paragraph',
           text: faker.lorem.paragraph(3)

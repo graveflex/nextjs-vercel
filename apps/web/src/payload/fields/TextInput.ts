@@ -11,24 +11,33 @@ function TextInput({
     interfaceName: interfaceName || 'TextInputType',
     fields: [
       {
-        name: 'placeholder',
-        label: 'Placeholder',
-        type: 'text',
-        required: false
-      },
-      {
-        name: 'helpText',
-        label: 'Help Text',
-        type: 'text',
-        required: false
-      },
-      {
-        name: 'label',
-        label: 'Label',
-        type: 'text',
-        required: false
-      },
-      ...fields
+        label: 'CTA Settings',
+        type: 'collapsible',
+        admin: {
+          initCollapsed: true
+        },
+        fields: [
+          {
+            name: 'placeholder',
+            label: 'Placeholder',
+            type: 'text',
+            required: false
+          },
+          {
+            name: 'helpText',
+            label: 'Help Text',
+            type: 'text',
+            required: false
+          },
+          {
+            name: 'label',
+            label: 'Label',
+            type: 'text',
+            required: false
+          },
+          ...fields
+        ]
+      }
     ]
   };
 }

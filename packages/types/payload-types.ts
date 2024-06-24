@@ -538,8 +538,7 @@ export interface HeroBlockT {
   eyebrow?: string | null;
   layout?: ('contentRight' | 'contentLeft' | 'contentCenter') | null;
   contentAlign?: ('right' | 'left' | 'center') | null;
-  title?: string | null;
-  subTitle?: {
+  content?: {
     root: {
       type: string;
       children: {
@@ -562,15 +561,6 @@ export interface HeroBlockT {
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TextInputType".
- */
-export interface TextInputType {
-  placeholder?: string | null;
-  helpText?: string | null;
-  label?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
