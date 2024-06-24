@@ -79,9 +79,6 @@ const HeroBlock: Block = {
       name: 'form',
       label: 'Form Fields',
       type: 'group',
-      admin: {
-        initCollapsed: true
-      },
       fields: [
         TextInput(),
         CTA({
