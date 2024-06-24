@@ -16,7 +16,7 @@ export default meta;
 type Story = StoryObj<BlogIndexType>;
 
 export const Defaults: Story = {
-    args: {
+  args: {
     posts: [],
     paginationProps: {
       total: 0,

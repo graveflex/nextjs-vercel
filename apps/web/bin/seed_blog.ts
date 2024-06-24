@@ -58,8 +58,6 @@ const seedPage = async ({ payload }: SeedFnProps) => {
   });
 };
 
-
-
 const seedTags = async ({ payload, count = 5 }: SeedFnProps) => {
   console.info(`@-->seeding ${count} tags`);
 
@@ -69,7 +67,7 @@ const seedTags = async ({ payload, count = 5 }: SeedFnProps) => {
       payload.create({
         collection: 'tags',
         data: {
-          label: faker.lorem.word(),
+          label: faker.lorem.word()
         }
       })
     );
@@ -169,7 +167,7 @@ const seedPosts = async ({ payload, count = 10 }: SeedFnProps) => {
     height: 1000
   });
 
-  console.log('authors', authors)
+  console.log('authors', authors);
 
   console.info(`@-->seeding ${count} posts`);
   for (let i = 0; i < count; i += 1) {

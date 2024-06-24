@@ -15,7 +15,6 @@ const meta: Meta<StaticTagType> = {
 export default meta;
 type Story = StoryObj<StaticTagType>;
 
-
 export const Defaults: Story = {
   args: {
     label: 'Education'

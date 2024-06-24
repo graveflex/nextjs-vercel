@@ -93,7 +93,6 @@ function Pagination({
             onClick={() => onPageChange({ selected: 0 })}
             $variant="outline"
             $color="primary"
-            element="button"
             type="button"
             disabled={currentPage === 0}
             icon={{ name: 'DoubleCaretLeft' }}
@@ -104,21 +103,24 @@ function Pagination({
             <Button
               $variant="outline"
               $color="primary"
-              element="button"
               type="button"
+              isLeadingIcon
               disabled={currentPage === 0}
               icon={{ name: 'ArrowLeft' }}
-            />
+            >
+              Previous{' '}
+            </Button>
           }
           nextLabel={
             <Button
               $variant="outline"
               $color="primary"
-              element="button"
               type="button"
               disabled={currentPage === lastPage}
               icon={{ name: 'ArrowRight' }}
-            />
+            >
+              Next
+            </Button>
           }
           breakLabel="..."
           pageCount={Math.ceil(pageCount)}
@@ -132,7 +134,6 @@ function Pagination({
             onClick={() => onPageChange({ selected: lastPage })}
             $variant="outline"
             $color="primary"
-            element="button"
             type="button"
             disabled={currentPage === lastPage}
             icon={{ name: 'DoubleCaretRight' }}

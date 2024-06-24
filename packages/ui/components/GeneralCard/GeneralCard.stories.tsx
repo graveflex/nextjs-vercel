@@ -1,5 +1,4 @@
 import { faker } from '@faker-js/faker';
-import genRichText from '@mono/ui/utils/genRichText';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { GeneralCardType } from '.';

@@ -6,8 +6,6 @@ import CtaButton from '@mono/ui/components/CtaButton';
 import ResponsiveImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import styled, { css } from '@refract-ui/sc';
 
-import RichText from '../primitives/RichText';
-
 const Container = styled.div`
   ${({ theme: { spacing, allColors } }) => css`
     display: flex;

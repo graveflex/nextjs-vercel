@@ -6,8 +6,8 @@ import PayloadDate from '@mono/ui/components/primitives/PayloadDate';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
 import RenderIcon from '@mono/ui/components/RenderIcon';
+import StaticTag from '@mono/ui/components/StaticTag';
 import Wrapper from '@mono/ui/components/Wrapper';
-import StaticTag from "@mono/ui/components/StaticTag";
 import styled, { css } from '@refract-ui/sc';
 
 /* Figma 2/3 of container */
@@ -20,16 +20,6 @@ const commonWidth = css`
 const IconText = styled.div`
   display: grid;
   grid-auto-flow: column;
-  align-items: center;
-  line-height: 1;
-
-  ${({ theme: { spacing } }) => css`
-    gap: ${spacing[2]}rem;
-  `}
-`;
-
-const JobText = styled.div`
-  display: flex;
   align-items: center;
   line-height: 1;
 
@@ -175,36 +165,34 @@ function BlogDetail({ postData }: BlogDetailType) {
       return null;
     }
 
-    return content?.map(
-      ({ content: c, id }) => {
-        if (!c) {
-          return null;
-        }
-        return (
-          <div key={id}>
-            <RichText {...c} />
-          </div>
-        );
+    return content?.map(({ content: c, id }) => {
+      if (!c) {
+        return null;
       }
-    );
+      return (
+        <div key={id}>
+          <RichText {...c} />
+        </div>
+      );
+    });
   }
   const { title, subTitle, date, authors, tags, coverImage, content } =
-      (postData as Post) ?? {};
+    (postData as Post) ?? {};
 
-    return (
-      <Wrapper contentWidth="xxl">
-        <BlogHeader>
-          {title && <Title>{title}</Title>}
-          {subTitle && <SubTitle>{subTitle}</SubTitle>}
-          <InfoWrapper>
-            {authors && RowDateAuthor(date, authors)}
-            {tags && RowTags(tags)}
-          </InfoWrapper>
-        </BlogHeader>
-        {coverImage && <ImageStyled image={defaultImageProps(coverImage)} />}
-        <ContentWrapper>{Content(content)}</ContentWrapper>
-      </Wrapper>
-    );
+  return (
+    <Wrapper contentWidth="xxl">
+      <BlogHeader>
+        {title && <Title>{title}</Title>}
+        {subTitle && <SubTitle>{subTitle}</SubTitle>}
+        <InfoWrapper>
+          {authors && RowDateAuthor(date, authors)}
+          {tags && RowTags(tags)}
+        </InfoWrapper>
+      </BlogHeader>
+      {coverImage && <ImageStyled image={defaultImageProps(coverImage)} />}
+      <ContentWrapper>{Content(content)}</ContentWrapper>
+    </Wrapper>
+  );
 }
 
 export default BlogDetail;

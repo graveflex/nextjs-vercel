@@ -1,5 +1,4 @@
 import React from 'react';
-import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/settings';
 import type { Nav, Post } from '@mono/types/payload-types';
@@ -15,14 +14,10 @@ interface BlogLayoutProps {
     locale: LanguageLocale;
     slug: string[];
   };
-  searchParams: {
-    search: string;
-  };
 }
 
 export default async function Blog({
-  params: { locale = DEFAULT_LOCALE, slug },
-  searchParams
+  params: { locale = DEFAULT_LOCALE, slug }
 }: BlogLayoutProps) {
   const pageSlug = slug ? slug.join('/') : '/';
 
@@ -47,21 +42,11 @@ export default async function Blog({
   });
 
   // if there's an error fetching data, 404
-  if (
-    'error' in navData ||
-    'error' in postData ||
-    !postData.docs[0]
-  ) {
+  if ('error' in navData || 'error' in postData || !postData.docs[0]) {
     return notFound();
   }
 
-
-  return (
-    <PageTemplate
-      post={postData.docs[0]}
-      nav={navData}
-    />
-  );
+  return <PageTemplate post={postData.docs[0]} nav={navData} />;
 }
 
 export async function generateMetadata({

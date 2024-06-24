@@ -17,6 +17,7 @@ export type ButtonProps = {
   element?: 'button' | 'span';
   type?: 'button' | 'reset' | 'submit';
   disabled?: boolean;
+  isLeadingIcon?: boolean;
   onClick?: () => void;
 };
 
@@ -156,7 +157,13 @@ const InnerWrapper = styled.span`
   gap: 0.25rem;
 `;
 
-function Button({ element = 'span', icon, children, ...props }: ButtonProps) {
+function Button({
+  element = 'span',
+  icon,
+  children,
+  isLeadingIcon,
+  ...props
+}: ButtonProps) {
   /* Props specific to button element & valid html attributes */
   const buttonProps = {
     type: props.type ?? 'button',
@@ -183,7 +190,8 @@ function Button({ element = 'span', icon, children, ...props }: ButtonProps) {
       >
         {children ? (
           <InnerWrapper className="button-text">
-            {children} {icon && RenderIcon(icon)}
+            {icon && isLeadingIcon && RenderIcon(icon)} {children}{' '}
+            {icon && !isLeadingIcon && RenderIcon(icon)}
           </InnerWrapper>
         ) : null}
       </StyledButton>
@@ -193,7 +201,8 @@ function Button({ element = 'span', icon, children, ...props }: ButtonProps) {
     <StyleSpan {...styleProps} className={buttonClass}>
       {children && (
         <InnerWrapper className="button-text">
-          {children} {icon && RenderIcon(icon)}
+          {icon && isLeadingIcon && RenderIcon(icon)} {children}{' '}
+          {icon && !isLeadingIcon && RenderIcon(icon)}
         </InnerWrapper>
       )}
     </StyleSpan>

@@ -195,8 +195,6 @@ function TextImageBlock({
   const buttonLayout = !!items?.length || !!form?.cta || false;
   const imgLayout = layout || 'imgRight';
 
-  console.log('form', form);
-
   const Items = useMemo(() => {
     if (!items || !items.length) {
       return null;

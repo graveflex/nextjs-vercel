@@ -7,13 +7,7 @@ import BlogDetail from '@mono/ui/components/BlogDetail';
 import Layout from '@mono/web/globals/Layout';
 import useLivePreview from '@mono/web/hooks/useLivePreview';
 
-function PageTemplate({
-  post,
-  nav
-}: {
-  post: Post;
-  nav: Nav;
-}) {
+function PageTemplate({ post, nav }: { post: Post; nav: Nav }) {
   const { data } = useLivePreview<Post>({
     initialData: post,
     serverURL: WEB_URL,
@@ -22,7 +16,7 @@ function PageTemplate({
 
   return (
     <Layout {...nav}>
-      <BlogDetail postData={data} type="blog" />
+      <BlogDetail postData={data} />
     </Layout>
   );
 }

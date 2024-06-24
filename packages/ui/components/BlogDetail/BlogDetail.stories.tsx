@@ -40,7 +40,7 @@ const defaultImage = {
 };
 
 export const Defaults: Story = {
-    args: {
+  args: {
     postData: {
       authors: [
         {
@@ -48,7 +48,7 @@ export const Defaults: Story = {
           updatedAt: '2024-04-30T17:45:33.819Z',
           fullName: faker.person.fullName(),
           id: 2,
-          jobTitle: 'Copy Writer 2',
+          jobTitle: 'Copy Writer 2'
         }
       ],
       content: [
@@ -81,5 +81,4 @@ export const Defaults: Story = {
       title: 'BLOG POST 11'
     }
   }
-
 };

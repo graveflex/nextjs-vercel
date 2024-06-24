@@ -33,20 +33,20 @@ export default async function Blog({
   });
 
   const pagPage = searchParams.page ? searchParams.page : 1;
-  const sortRes = () => {
-    switch (searchParams.sort) {
-      case 'newest':
-        return '-publishedAt';
-      case 'oldest':
-        return 'publishedAt';
-      case 'asc':
-        return 'title';
-      case 'desc':
-        return '-title';
-      default:
-        return '-publishedAt';
-    }
-  };
+  // const sortRes = () => {
+  //   switch (searchParams.sort) {
+  //     case 'newest':
+  //       return '-publishedAt';
+  //     case 'oldest':
+  //       return 'publishedAt';
+  //     case 'asc':
+  //       return 'title';
+  //     case 'desc':
+  //       return '-title';
+  //     default:
+  //       return '-publishedAt';
+  //   }
+  // };
 
   const [pageData, postData, filterData] = await Promise.all([
     fetchPayloadDataRest<PaginatedDocs<Page>>({
@@ -90,9 +90,6 @@ export default async function Blog({
   }
 
   const page = pageData.docs[0];
-
-  console.log('page', page);
-  console.log('postData', postData);
 
   return <PageTemplate page={page} postData={postData} nav={navData} />;
 }
