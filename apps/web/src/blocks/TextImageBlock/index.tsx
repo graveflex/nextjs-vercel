@@ -1,101 +1,247 @@
 'use client';
 
-import React from 'react';
-import type { TextImageBlockT as PayloadType } from '@mono/types/payload-types';
+import React, { useMemo } from 'react';
+import type {
+  Image,
+  TextImageBlockT as PayloadType
+} from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
+import FormWrapper from '@mono/ui/components/FormWrapper';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
-import genClassName from '@mono/ui/utils/genClassname';
-import styled from '@refract-ui/sc';
-import s from 'styled-components';
+import Video from '@mono/ui/components/Video';
+import Wrapper from '@mono/ui/components/Wrapper';
+import TextInput from '@refract-ui/hook-fields/TextInput';
+import s, { css } from '@refract-ui/sc';
 
 export type TextImageBlockType = Omit<PayloadType, 'blockType'>;
 
-const Wrapper = styled.section`
-  display: grid;
-  grid-column-gap: 2rem;
-  grid-template-columns: 1fr min(1052px, calc(100% - 4rem)) 1fr;
-  padding: 2rem 0;
-  position: relative;
-  overflow: hidden;
+const BlockWrapper = s.div<{ $layout: string }>`
+  ${({ $layout, theme: { mq } }) => css`
+    display: grid;
+    justify-self: center;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'image'
+      'content';
+    gap: 2rem;
 
-  & > * {
-    grid-column: 2;
-  }
-`;
+    ${$layout === 'imgLeftCenter' &&
+    css`
+      gap: 0;
+    `}
 
-const InnerWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 50px 50px 1fr;
-  row-gap: 1rem;
+    ${mq.lg`
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
 
-  & > * {
-    grid-column: 1 / 5;
-  }
-
-  ${({ theme: { mq } }) => mq.sm`
-    & > :first-child {
-      grid-column: 1 / 3;
-    }
-
-    & > :last-child {
-      grid-column: 4;
-    }
-
-    &.imgRight {
-      & > :first-child {
-        grid-column: 3 / 5;
+      ${
+        $layout === 'imgLeft' &&
+        css`
+          grid-template-areas: 'image content';
+        `
       }
 
-      & > :last-child {
-        grid-column: 1;
-        grid-row: 1;
+      ${
+        $layout === 'imgRight' &&
+        css`
+          grid-template-areas: 'content image';
+        `
       }
-    }
+    `}
   `};
 `;
 
-const ImageWrapper = s(ResponsivePayloadImage)`
-  aspect-ratio: 500 / 402;
-  position: relative;
-
-  img {
-    position: absolute;
+const ContentWrapper = s.div<{ $hasButton: boolean; $layout: string }>`
+  ${({ $layout, $hasButton, theme: { mq } }) => css`
+    grid-area: content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+
+    ${!$hasButton && 'margin-top: auto; gap: 0;'}
+
+    ${$hasButton && 'align-self: center;'}
+
+    ${($layout === 'imgLeftCenter' || $layout === 'imgLeft') &&
+    css`
+      margin-right: auto;
+    `}
+
+    ${$layout === 'imgRight' &&
+    css`
+      margin-left: auto;
+    `}
+
+    ${mq.lg`
+      max-width: 70%
+    `}
+  `}
+`;
+
+const Content = s(RichText)<{ $layout: string }>`
+  ${({ $layout, theme: { mq } }) => css`
+    & > * {
+      margin: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin-bottom: 1rem;
+    }
+
+    ${$layout === 'imgLeftCenter' &&
+    css`
+      text-align: center;
+      margin: auto;
+      max-width: 24rem;
+
+      ${mq.lg`
+        text-align: left;
+        max-width: unset;
+      `}
+    `}
+
+    ${($layout === 'imgLeft' || $layout === 'imgRight') &&
+    css`
+      text-align: left;
+    `}
+  `}
+`;
+
+const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
+  ${({ $layout }) => css`
+    grid-area: image;
+    overflow: hidden;
+    align-self: center;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    ${($layout === 'imgLeftCenter' || $layout === 'imgLeft') &&
+    css`
+      margin-left: auto;
+    `}
+
+    ${$layout === 'imgRight' &&
+    css`
+      margin-right: auto;
+    `}
+  `}
+`;
+
+const VideoWrapper = s.div<{ $layout: string }>`
+  ${({ $layout }) => css`
+    display: flex;
+    grid-area: image;
+    overflow: hidden;
+    align-self: center;
+    ${($layout === 'imgLeftCenter' || $layout === 'imgLeft') &&
+    css`
+      margin-left: auto;
+    `}
+
+    ${$layout === 'imgRight' &&
+    css`
+      margin-right: auto;
+    `}
+  `}
+`;
+
+const ButtonWrapper = s.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+const InputWrapper = s(FormWrapper)`
+  form {
+    display: flex;
+    gap: 1rem;
+    button { 
+      height: fit-content;
+      align-self: flex-end;
+    }
   }
 `;
 
-const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1.25rem;
-  width: min(100%, 476px);
-`;
+const defaultImageProps = (image: Image | number) => {
+  if (typeof image === 'number') {
+    return image;
+  }
 
-const Title = styled.h3({ m: 0, p: 0 })``;
+  return {
+    ...image,
+    image,
+    imageProps: {
+      fill: false
+    }
+  };
+};
 
 function TextImageBlock({
-  title,
   content,
+  layout,
   image,
-  cta,
-  blockConfig
+  items,
+  blockConfig,
+  form,
+  video
 }: TextImageBlockType) {
-  const layout = blockConfig?.layout || 'imgRight';
-  const className = genClassName([layout]);
+  const buttonLayout = !!items?.length || !!form?.cta || false;
+  const imgLayout = layout || 'imgRight';
+
+  console.log('form', form);
+
+  const Items = useMemo(() => {
+    if (!items || !items.length) {
+      return null;
+    }
+
+    return items.map(({ cta: t, id }) => {
+      if (!t) {
+        return null;
+      }
+      return (
+        <span key={id}>
+          {t?.link?.label && <CtaButton cta={t} color="primary" />}
+        </span>
+      );
+    });
+  }, [items]);
   return (
-    <Wrapper>
-      <InnerWrapper className={className}>
-        <ImageWrapper image={image} />
-        <ContentWrapper>
-          {title && <Title>{title}</Title>}
-          {content && <RichText {...content} />}
-          {cta && <CtaButton cta={cta} />}
+    <Wrapper {...blockConfig} hidden={blockConfig?.hidden ?? false}>
+      <BlockWrapper $layout={imgLayout}>
+        <ContentWrapper $hasButton={buttonLayout || false} $layout={imgLayout}>
+          {content && <Content $layout={imgLayout} {...content} />}
+          {items && <ButtonWrapper>{Items}</ButtonWrapper>}
+          {form?.textinput?.label && form?.cta && (
+            <InputWrapper
+              onSubmit={(data) => console.log(data)}
+              cta={form?.cta}
+            >
+              <TextInput
+                {...form?.textinput}
+                name="TextInput"
+                label={form?.textinput?.label || ''}
+                placeholder={form?.textinput?.placeholder || ''}
+              />
+            </InputWrapper>
+          )}
         </ContentWrapper>
-      </InnerWrapper>
+        {image && !video && (
+          <ImageWrapper $layout={imgLayout} image={defaultImageProps(image)} />
+        )}
+        {video && (
+          <VideoWrapper $layout={imgLayout}>
+            <Video video={video} />
+          </VideoWrapper>
+        )}
+      </BlockWrapper>
     </Wrapper>
   );
 }

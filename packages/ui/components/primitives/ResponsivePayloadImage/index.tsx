@@ -6,7 +6,12 @@ import { type Image as PayloadImageProps } from '@mono/types/payload-types';
 import styled, { css } from '@refract-ui/sc';
 import { type DefaultTheme, useTheme } from 'styled-components';
 
-const Container = styled.picture``;
+const Container = styled.picture<{ $fill: boolean }>`
+  ${({ $fill }) => css`
+    width: ${$fill ? '100%' : 'fit-content'};
+    height: ${$fill ? '100%' : 'fit-content'};
+  `}
+`;
 
 export interface ResponsivePayloadWrapperProps
   extends React.ComponentProps<'img'> {
@@ -64,7 +69,11 @@ function Source({ image, breakpoints, bp }: SourceProps) {
 
 const ResponsiveImage = styled.img<{
   $additionalProps: PayloadImageProps['additionalProps'];
+  $fill: boolean;
+  $width?: number;
 }>`
+  width: ${({ $fill, $width }) =>
+    $fill ? '100%' : `${$width}px` || undefined};
   ${({ $additionalProps }) => css`
     ${$additionalProps?.objectFit &&
     css`
@@ -141,7 +150,7 @@ function ResponsivePayloadImage({
     : {};
 
   return (
-    <Container className={className}>
+    <Container className={className} $fill={fill}>
       <Source breakpoints={breakpoints} image={ultrawide} bp="xxl" />
       <Source breakpoints={breakpoints} image={desktop} bp="lg" />
       <Source breakpoints={breakpoints} image={tablet} bp="md" />
@@ -165,7 +174,8 @@ function ResponsivePayloadImage({
         }
         sizes={fill ? fillSizes : '100vw'}
         alt={alt ?? ''}
-        style={{ width: fill ? '100%' : 'initial' }}
+        $fill={fill}
+        $width={width || undefined}
       />
     </Container>
   );

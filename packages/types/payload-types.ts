@@ -437,9 +437,10 @@ export interface TextImageBlockT {
         paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
       };
     };
-    layout?: ('imgRight' | 'imgLeft') | null;
   };
-  title?: string | null;
+  layout?: ('imgRight' | 'imgLeft') | null;
+  image?: number | Image | null;
+  video?: number | Video | null;
   content?: {
     root: {
       type: string;
@@ -455,11 +456,49 @@ export interface TextImageBlockT {
     };
     [k: string]: unknown;
   } | null;
-  image?: number | Image | null;
-  cta?: CTAType;
+  items?:
+    | {
+        cta?: CTAType;
+        id?: string | null;
+      }[]
+    | null;
+  form?: {
+    textinput?: TextInputType;
+    cta?: CTAType;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'textImageBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos".
+ */
+export interface Video {
+  id: number;
+  title?: string | null;
+  description?: string | null;
+  publishedDate?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextInputType".
+ */
+export interface TextInputType {
+  placeholder?: string | null;
+  helpText?: string | null;
+  label?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -539,27 +578,6 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "videos".
- */
-export interface Video {
-  id: number;
-  title?: string | null;
-  description?: string | null;
-  publishedDate?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
