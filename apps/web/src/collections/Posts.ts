@@ -59,11 +59,6 @@ const Posts: CollectionConfig = {
       label: 'Tags',
       type: 'relationship',
       relationTo: 'tags',
-      filterOptions: () => {
-        return {
-          tagType: { equals: 'post' }
-        };
-      },
       hasMany: true
     },
     {

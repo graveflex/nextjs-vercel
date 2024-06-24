@@ -42,7 +42,7 @@ function Card({
           {
             name: 'headline',
             label: 'Headline',
-            type: 'text',
+            type: 'textarea',
             localized,
             required: true,
             admin: {
@@ -52,11 +52,21 @@ function Card({
           {
             name: 'subHead',
             label: 'Subhead',
-            type: 'richText',
+            type: 'textarea',
             localized,
             required: false,
             admin: {
               description: 'The subhead of the card.'
+            }
+          },
+          {
+            name: 'date',
+            label: 'Date',
+            type: 'text',
+            localized,
+            required: false,
+            admin: {
+              description: 'The date to be shown on the card.'
             }
           }
         ]

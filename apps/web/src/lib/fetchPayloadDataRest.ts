@@ -10,6 +10,7 @@ export type FetchPayloadRequest = {
     revalidate?: false | 0 | number;
     tags?: string[];
   };
+  page?: string;
   revalidate?: number;
   accessToken?: string;
 };
@@ -21,11 +22,12 @@ async function fetchPayloadDataRest<T>({
   endpoint,
   params,
   showDraft,
+  page,
   next,
   accessToken
 }: FetchPayloadRequest): Promise<FetchPayloadResponse<T>> {
   const url = `${WEB_URL}${endpoint}${qs.stringify(
-    { ...params, draft: showDraft },
+    { ...params, draft: showDraft, page },
     { addQueryPrefix: true }
   )}`;
 

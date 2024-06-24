@@ -1,10 +1,10 @@
 import { DEFAULT_LOCALE, LOCALES, WEB_URL } from '@mono/settings';
+import Authors from '@mono/web/collections/Authors';
 import Files from '@mono/web/collections/Files';
 import Images from '@mono/web/collections/Images';
 import Pages from '@mono/web/collections/Pages';
 import Posts from '@mono/web/collections/Posts';
-import Authors from "@mono/web/collections/Authors";
-import Tags from "@mono/web/collections/Tags";
+import Tags from '@mono/web/collections/Tags';
 import Users from '@mono/web/collections/User';
 import Videos from '@mono/web/collections/Videos';
 import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.config';
