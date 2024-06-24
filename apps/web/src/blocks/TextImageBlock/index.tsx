@@ -195,6 +195,8 @@ function TextImageBlock({
   const buttonLayout = !!items?.length || !!form?.cta || false;
   const imgLayout = layout || 'imgRight';
 
+  console.log('form', form);
+
   const Items = useMemo(() => {
     if (!items || !items.length) {
       return null;
@@ -217,7 +219,7 @@ function TextImageBlock({
         <ContentWrapper $hasButton={buttonLayout || false} $layout={imgLayout}>
           {content && <Content $layout={imgLayout} {...content} />}
           {items && <ButtonWrapper>{Items}</ButtonWrapper>}
-          {form?.textinput && form?.cta && (
+          {form?.textinput?.label && form?.cta && (
             <InputWrapper
               onSubmit={(data) => console.log(data)}
               cta={form?.cta}
@@ -225,8 +227,8 @@ function TextImageBlock({
               <TextInput
                 {...form?.textinput}
                 name="TextInput"
-                label="Label"
-                placeholder="Placeholder"
+                label={form?.textinput?.label || ''}
+                placeholder={form?.textinput?.placeholder || ''}
               />
             </InputWrapper>
           )}
