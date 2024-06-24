@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE, LOCALE_SETTINGS, WEB_URL } from '@mono/settings';
+import { DEFAULT_LOCALE, LOCALES, WEB_URL } from '@mono/settings';
 import Files from '@mono/web/collections/Files';
 import Images from '@mono/web/collections/Images';
 import Pages from '@mono/web/collections/Pages';
@@ -6,6 +6,8 @@ import Users from '@mono/web/collections/User';
 import Videos from '@mono/web/collections/Videos';
 import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.config';
 import Nav from '@mono/web/globals/Layout/Layout.config';
+import { translator } from '@payload-enchants/translator';
+import { googleResolver } from '@payload-enchants/translator/resolvers/google';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import type { FeatureProviderServer } from '@payloadcms/richtext-lexical';
 import {
@@ -148,7 +150,7 @@ export default buildConfig({
     fallbackLanguage: 'en'
   },
   localization: {
-    locales: LOCALE_SETTINGS,
+    locales: [...LOCALES],
     defaultLocale: DEFAULT_LOCALE,
     fallback: true
   },
@@ -165,6 +167,18 @@ export default buildConfig({
         [Videos.slug]: true
       },
       token: process.env.BLOB_READ_WRITE_TOKEN as string
+    }),
+    translator({
+      // collections with the enabled translator in the admin UI
+      collections: ['pages', 'images', 'files', 'videos'],
+      // globals with the enabled translator in the admin UI
+      globals: ['nav', 'four-oh-four'],
+      // add resolvers that you want to include, examples on how to write your own in ./plugin/src/resolvers
+      resolvers: [
+        googleResolver({
+          apiKey: process.env.GOOGLE_TRANSLATE_API_KEY as string
+        })
+      ]
     })
   ],
   upload: {
