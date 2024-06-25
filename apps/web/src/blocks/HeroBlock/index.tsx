@@ -14,8 +14,11 @@ export type HeroBlockProps = Omit<PayloadType, 'blockType'>;
 
 const StyledWrapper = s(Wrapper)``;
 
-const InnerWrapper = s.div<{ $isFullBleed: boolean; $layout: string }>`
-  ${({ $layout, $isFullBleed, theme: { mq } }) => css`
+const InnerWrapper = s.div<{
+  $hasImage: boolean;
+  $layout: string;
+}>`
+  ${({ $layout, $hasImage, theme: { mq } }) => css`
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
@@ -24,15 +27,16 @@ const InnerWrapper = s.div<{ $isFullBleed: boolean; $layout: string }>`
     margin: auto;
 
     ${mq.lg`
-      padding: ${$isFullBleed ? '0' : '0 3.125rem'};
       ${
         ($layout === 'contentLeft' || $layout === 'contentRight') &&
+        $hasImage &&
         css`
           grid-template-columns: 1fr 1fr;
         `
       }
       ${
         $layout === 'contentCenter' &&
+        !$hasImage &&
         css`
           grid-template-columns: 1fr;
         `
@@ -44,7 +48,7 @@ const InnerWrapper = s.div<{ $isFullBleed: boolean; $layout: string }>`
 const Eyebrow = s.span({ t: 'h6', c: 'fg' })`
 `;
 
-const Content = s(RichText)`
+const Content = s(RichText)<{ $hasImage: boolean }>`
   h1,
   h2,
   h3,
@@ -57,15 +61,15 @@ const Content = s(RichText)`
 
 const ContentWrapper = s.div<{
   $isFullBleed: boolean;
+  $hasImage: boolean;
   $contentAlign: string;
   $layout: string;
 }>`
-  ${({ $contentAlign, $isFullBleed, $layout, theme: { mq } }) => css`
+  ${({ $contentAlign, $isFullBleed, $hasImage, $layout, theme: { mq } }) => css`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 33.75rem;
-    padding: 0 2rem;
+    max-width: ${$hasImage ? 'unset' : '80%'};
     order: 1;
 
     ${$contentAlign === 'center' &&
@@ -84,7 +88,7 @@ const ContentWrapper = s.div<{
         $layout === 'contentLeft' &&
         css`
           order: 0;
-          margin: 0 0 0 auto;
+          margin: ${$hasImage ? '0 auto 0 0' : '0 auto 0 0'};
           padding: ${$isFullBleed ? '0 0 0 2rem' : '0'};
         `
       }
@@ -93,13 +97,13 @@ const ContentWrapper = s.div<{
         $layout === 'contentRight' &&
         css`
           order: 1;
-          margin: 0 auto 0 0;
+          margin: ${$hasImage ? '0 0 0 auto' : '0 0 0 auto'};
           padding: ${$isFullBleed ? '0 2rem 0 0' : '0'};
         `
       }
 
       ${
-        $layout === 'contentCenter' &&
+        ($layout === 'contentCenter' || $contentAlign === 'center') &&
         css`
           margin: 0 auto;
           padding: ${$isFullBleed ? '0 2rem' : '0'};
@@ -165,6 +169,8 @@ function HeroBlock({
   contentAlign,
   layout
 }: HeroBlockProps) {
+  const hasImage = typeof image !== 'undefined';
+
   const isFullBleed =
     typeof image === 'object' && typeof image?.imageProps?.fill === 'boolean'
       ? image?.imageProps?.fill
@@ -175,18 +181,19 @@ function HeroBlock({
 
   return (
     <StyledWrapper
-      gutter={false}
       {...blockConfig}
+      gutter={isFullBleed ? false : 'blockH'}
       hidden={blockConfig?.hidden ?? false}
     >
-      <InnerWrapper $layout={contentPosition} $isFullBleed={isFullBleed}>
+      <InnerWrapper $layout={contentPosition} $hasImage={hasImage}>
         <ContentWrapper
           $layout={contentPosition}
           $isFullBleed={isFullBleed}
           $contentAlign={alignText}
+          $hasImage={hasImage}
         >
           {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-          {content && <Content {...content} />}
+          {content && <Content $hasImage={hasImage} {...content} />}
           {form?.textinput?.placeholder && form?.cta && (
             <InputWrapper
               onSubmit={(data) => console.log(data)}
@@ -201,7 +208,7 @@ function HeroBlock({
               />
             </InputWrapper>
           )}
-          {cta && (
+          {cta?.link?.label && (
             <ButtonWrapper>
               <CtaButton cta={cta} color="primary" />
             </ButtonWrapper>

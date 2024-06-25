@@ -21,7 +21,8 @@ export const LeftImageButton: Story = {
   args: {
     blockConfig: {
       theme: 'light',
-      hidden: false
+      hidden: false,
+      contentWidth: 'xl'
     },
     layout: 'imgLeft',
     content: {
@@ -69,7 +70,8 @@ export const RightImageButton: Story = {
   args: {
     blockConfig: {
       theme: 'dark',
-      hidden: false
+      hidden: false,
+      contentWidth: 'xl'
     },
     layout: 'imgRight',
     content: {
@@ -117,7 +119,8 @@ export const LeftImage: Story = {
   args: {
     blockConfig: {
       theme: 'light',
-      hidden: false
+      hidden: false,
+      contentWidth: 'xl'
     },
     layout: 'imgLeft',
     content: {
@@ -147,7 +150,8 @@ export const RightImage: Story = {
   args: {
     blockConfig: {
       theme: 'dark',
-      hidden: false
+      hidden: false,
+      contentWidth: 'xl'
     },
     layout: 'imgRight',
     content: {
@@ -177,7 +181,8 @@ export const LeftImageForm: Story = {
   args: {
     blockConfig: {
       theme: 'light',
-      hidden: false
+      hidden: false,
+      contentWidth: 'xl'
     },
     layout: 'imgLeft',
     content: {
@@ -218,7 +223,8 @@ export const LeftImageVideo: Story = {
   args: {
     blockConfig: {
       theme: 'light',
-      hidden: false
+      hidden: false,
+      contentWidth: 'xl'
     },
     layout: 'imgLeft',
     content: {
