@@ -16,8 +16,10 @@
     "migrations:create": "payload migrate:create",
     "migrations:run": "if [ \"$CI\" != \"true\" ]; then payload migrate; fi",
     "setup": "./bin/init_db.sh",
+    "seed:kitchenSink": "tsx ./bin/seed_kitchen-sink.ts",
     "seed:nav": "tsx ./bin/seed-nav.ts",
-    "seed:blog": "tsx ./bin/seed_blog.ts"
+    "seed:blog": "tsx ./bin/seed_blog.ts",
+    "seed:all": "pnpm seed:nav && pnpm seed:blog && pnpm seed:kitchenSink"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.0",

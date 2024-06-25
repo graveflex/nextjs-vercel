@@ -167,8 +167,6 @@ const seedPosts = async ({ payload, count = 10 }: SeedFnProps) => {
     height: 1000
   });
 
-  console.log('authors', authors);
-
   console.info(`@-->seeding ${count} posts`);
   for (let i = 0; i < count; i += 1) {
     const title = faker.lorem.sentence();
