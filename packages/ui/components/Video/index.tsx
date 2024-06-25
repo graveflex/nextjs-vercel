@@ -22,7 +22,7 @@ function Video({ video }: VideoProps) {
     width: width ?? '100%',
     height: height ?? 'auto',
     title: title ?? '',
-    autoPlay: true,
+    autoPlay: false,
     loop: true,
     preload: 'auto',
     muted: true
