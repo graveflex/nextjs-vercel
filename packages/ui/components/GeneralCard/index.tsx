@@ -6,8 +6,6 @@ import CtaButton from '@mono/ui/components/CtaButton';
 import ResponsiveImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import styled, { css } from '@refract-ui/sc';
 
-import RichText from '../primitives/RichText';
-
 const Container = styled.div`
   ${({ theme: { spacing, allColors } }) => css`
     display: flex;
@@ -45,7 +43,7 @@ const Headline = styled.h1`
   `}
 `;
 
-const SubHead = styled(RichText)`
+const SubHead = styled.p`
   ${({ theme: { spacing } }) => css`
     margin-top: ${spacing[6]}rem;
   `}
@@ -109,7 +107,7 @@ function GeneralCard({
             <Headline>{headline}</Headline>
           </>
         )}
-        {subHead && <SubHead {...subHead} />}
+        {subHead && <SubHead>{subHead}</SubHead>}
         {ctas && (
           <ButtonsWrapper>
             {ctas?.map(({ cta }, index) => {

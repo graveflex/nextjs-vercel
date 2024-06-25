@@ -17,7 +17,6 @@ type Story = StoryObj<PaginationType>;
 
 export const Defaults: Story = {
   args: {
-    skip: 0,
     limit: 10,
     total: 100,
     range: 5
@@ -26,7 +25,6 @@ export const Defaults: Story = {
 
 export const BreakLabel: Story = {
   args: {
-    skip: 0,
     limit: 5,
     total: 100,
     range: 5,
@@ -36,7 +34,6 @@ export const BreakLabel: Story = {
 
 export const JumpArrows: Story = {
   args: {
-    skip: 0,
     limit: 5,
     total: 100,
     range: 5,

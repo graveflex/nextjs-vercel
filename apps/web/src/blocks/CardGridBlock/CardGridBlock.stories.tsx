@@ -1,5 +1,4 @@
 import { faker } from '@faker-js/faker';
-import genRichText from '@mono/ui/utils/genRichText';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { CardGridBlockType } from '.';
@@ -24,11 +23,7 @@ export const Defaults: Story = {
         card: {
           eyebrow: 'Eyebrow',
           headline: 'Card 1',
-          subHead: {
-            ...genRichText([
-              { type: 'paragraph', text: faker.lorem.paragraph(3) }
-            ])
-          },
+          subHead: faker.lorem.paragraph(3),
           image: {
             id: 1,
             alt: 'Card Image',
@@ -61,11 +56,7 @@ export const Defaults: Story = {
         card: {
           eyebrow: 'Eyebrow',
           headline: 'Card 2',
-          subHead: {
-            ...genRichText([
-              { type: 'paragraph', text: faker.lorem.paragraph(3) }
-            ])
-          },
+          subHead: faker.lorem.paragraph(3),
           image: {
             id: 1,
             alt: 'Card Image',
@@ -98,11 +89,7 @@ export const Defaults: Story = {
         card: {
           eyebrow: 'Eyebrow',
           headline: 'Card 3',
-          subHead: {
-            ...genRichText([
-              { type: 'paragraph', text: faker.lorem.paragraph(3) }
-            ])
-          },
+          subHead: faker.lorem.paragraph(3),
           image: {
             id: 1,
             alt: 'Card Image',
@@ -142,11 +129,7 @@ export const FourCards: Story = {
         card: {
           eyebrow: 'Eyebrow',
           headline: 'Card 1',
-          subHead: {
-            ...genRichText([
-              { type: 'paragraph', text: faker.lorem.paragraph(3) }
-            ])
-          },
+          subHead: faker.lorem.paragraph(3),
           image: {
             id: 1,
             alt: 'Card Image',
@@ -179,11 +162,7 @@ export const FourCards: Story = {
         card: {
           eyebrow: 'Eyebrow',
           headline: 'Card 2',
-          subHead: {
-            ...genRichText([
-              { type: 'paragraph', text: faker.lorem.paragraph(3) }
-            ])
-          },
+          subHead: faker.lorem.paragraph(3),
           image: {
             id: 1,
             alt: 'Card Image',
@@ -216,11 +195,7 @@ export const FourCards: Story = {
         card: {
           eyebrow: 'Eyebrow',
           headline: 'Card 3',
-          subHead: {
-            ...genRichText([
-              { type: 'paragraph', text: faker.lorem.paragraph(3) }
-            ])
-          },
+          subHead: faker.lorem.paragraph(3),
           image: {
             id: 1,
             alt: 'Card Image',
@@ -252,12 +227,8 @@ export const FourCards: Story = {
       {
         card: {
           eyebrow: 'Eyebrow',
-          headline: 'Card 4',
-          subHead: {
-            ...genRichText([
-              { type: 'paragraph', text: faker.lorem.paragraph(3) }
-            ])
-          },
+          headline: 'Card 3',
+          subHead: faker.lorem.paragraph(3),
           image: {
             id: 1,
             alt: 'Card Image',

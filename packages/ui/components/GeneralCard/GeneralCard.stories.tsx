@@ -1,5 +1,4 @@
 import { faker } from '@faker-js/faker';
-import genRichText from '@mono/ui/utils/genRichText';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { GeneralCardType } from '.';
@@ -43,9 +42,7 @@ export const BasicCard: Story = {
     image,
     eyebrow: 'Eyebrow',
     headline: 'General Card',
-    subHead: {
-      ...genRichText([{ type: 'paragraph', text: faker.lorem.paragraph(3) }])
-    },
+    subHead: faker.lorem.paragraph(3),
     ctas: [
       {
         cta: {
