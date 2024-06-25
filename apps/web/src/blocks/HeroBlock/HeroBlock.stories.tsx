@@ -20,7 +20,7 @@ type Story = StoryObj<HeroBlockProps>;
 export const Defaults: Story = {
   args: {
     blockConfig: {
-      contentWidth: 'xxl'
+      contentWidth: 'xl'
     },
     layout: 'contentLeft',
     content: {
@@ -65,7 +65,7 @@ export const Defaults: Story = {
 export const ContentRight: Story = {
   args: {
     blockConfig: {
-      contentWidth: 'xxl'
+      contentWidth: 'xl'
     },
     layout: 'contentRight',
     content: {
@@ -110,7 +110,7 @@ export const ContentRight: Story = {
 export const ContentCenter: Story = {
   args: {
     blockConfig: {
-      contentWidth: 'xxl'
+      contentWidth: 'xl'
     },
     layout: 'contentCenter',
     contentAlign: 'center',
@@ -184,7 +184,7 @@ export const FullBleed: Story = {
 export const BackgroundImage: Story = {
   args: {
     blockConfig: {
-      contentWidth: 'xxl',
+      contentWidth: 'xl',
       backgroundImage: {
         id: 1,
         alt: 'Myopic Logo',
@@ -226,7 +226,7 @@ export const BackgroundImage: Story = {
 export const CTANoForm: Story = {
   args: {
     blockConfig: {
-      contentWidth: 'xxl'
+      contentWidth: 'xl'
     },
     layout: 'contentLeft',
     content: {

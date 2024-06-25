@@ -11,7 +11,7 @@ function TextInput({
     interfaceName: interfaceName || 'TextInputType',
     fields: [
       {
-        label: 'CTA Settings',
+        label: 'Input Settings',
         type: 'collapsible',
         admin: {
           initCollapsed: true

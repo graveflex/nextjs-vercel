@@ -66,18 +66,21 @@ const ContentWrapper = s.div<{ $hasButton: boolean; $layout: string }>`
 
     ${$hasButton && 'align-self: center;'}
 
-    ${($layout === 'imgLeftCenter' || $layout === 'imgLeft') &&
-    css`
-      margin-right: auto;
-    `}
 
-    ${$layout === 'imgRight' &&
-    css`
-      margin-left: auto;
-    `}
+  ${mq.lg`
+      ${
+        ($layout === 'imgLeftCenter' || $layout === 'imgLeft') &&
+        css`
+          margin-left: auto;
+        `
+      }
 
-    ${mq.lg`
-      max-width: 70%
+      ${
+        $layout === 'imgRight' &&
+        css`
+          margin-right: auto;
+        `
+      }
     `}
   `}
 `;
@@ -114,7 +117,7 @@ const Content = s(RichText)<{ $layout: string }>`
 `;
 
 const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
-  ${({ $layout }) => css`
+  ${({ $layout, theme: { mq } }) => css`
     grid-area: image;
     overflow: hidden;
     align-self: center;
@@ -123,14 +126,20 @@ const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
       height: auto;
     }
 
-    ${($layout === 'imgLeftCenter' || $layout === 'imgLeft') &&
-    css`
-      margin-left: auto;
-    `}
+    ${mq.lg`
+    ${
+      ($layout === 'imgLeftCenter' || $layout === 'imgLeft') &&
+      css`
+        margin-right: auto;
+      `
+    }
 
-    ${$layout === 'imgRight' &&
-    css`
-      margin-right: auto;
+    ${
+      $layout === 'imgRight' &&
+      css`
+        margin-left: auto;
+      `
+    }
     `}
   `}
 `;
