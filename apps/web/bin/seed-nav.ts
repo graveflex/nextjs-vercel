@@ -1,6 +1,7 @@
 import { faker } from '@faker-js/faker';
 import type {
   CTAType,
+  HeroBlockT,
   IconSelect,
   MarkdownBlockT,
   PayLoadLink
@@ -15,6 +16,7 @@ import tmp from 'tmp';
 
 interface SeedFnProps {
   payload: BasePayload<GeneratedTypes>;
+  count?: number;
 }
 
 type linkEnum = PayLoadLink['type'];
@@ -145,20 +147,73 @@ async function downloadImage(url: string): Promise<string> {
   }
 }
 
-const seedLogo = async ({ payload }: SeedFnProps) => {
-  console.info(`@-->seeding logo image`);
+const downloadImages = ({
+  count = 10,
+  category = 'abstract',
+  width = 640,
+  height = 480
+}) => {
+  const promises = [];
+  for (let i = 0; i < count; i += 1) {
+    promises.push(
+      downloadImage(
+        faker.image.urlLoremFlickr({
+          category,
+          width,
+          height
+        })
+      )
+    );
+  }
 
-  const image = await downloadImage(
-    faker.image.urlLoremFlickr({ category: 'business', width: 80, height: 42 })
-  );
-  console.log('image:', image);
-  await payload.create({
-    collection: 'images',
-    data: {
-      alt: 'faker placeholder logo'
-    },
-    filePath: image
-  });
+  return Promise.all(promises);
+};
+
+const seedImages = async ({
+  payload,
+  count = 10,
+  category = 'abstract',
+  width = 640,
+  height = 480
+}: SeedFnProps & { category?: string; width?: number; height?: number }) => {
+  console.info(`@-->seeding ${count} ${category} images`);
+  const promises = [];
+
+  const images = await downloadImages({ count, category, width, height });
+
+  for (let i = 0; i < count; i += 1) {
+    promises.push(
+      payload.create({
+        collection: 'images',
+        data: {
+          alt: faker.lorem.sentence()
+        },
+        filePath: images[i]
+      })
+    );
+  }
+
+  return Promise.all(promises);
+};
+
+const heroBlock = {
+  id: '6669d7bd6d58e03f8e7c1078',
+  blockType: 'heroBlock',
+  layout: 'contentLeft',
+  eyebrow: 'SOME TAGLINE',
+  content: {
+    ...genRichText([
+      {
+        type: 'heading',
+        tag: 'h1',
+        text: 'Welcome to our Demo Repo'
+      },
+      {
+        type: 'paragraph',
+        text: faker.lorem.sentence()
+      }
+    ])
+  }
 };
 
 const markdownBlock = {
@@ -176,26 +231,44 @@ const markdownBlock = {
   maxWidth: null
 };
 
-const seedHomePage = async ({ payload }: SeedFnProps) => {
+const seedHomePage = async ({ payload, count = 1 }: SeedFnProps) => {
   console.info(`@-->seeding homepage!`);
+  const images = await seedImages({ payload, count, category: 'abstract' });
 
   await payload.create({
     collection: 'pages',
     data: {
       pageTitle: 'Home',
       slug: '/',
-      blocks: [markdownBlock as MarkdownBlockT]
+      blocks: [
+        {
+          ...(heroBlock as HeroBlockT),
+          blockConfig: {
+            contentWidth: 'xxl',
+            backgroundImage: images[0].id
+          }
+        },
+        markdownBlock as MarkdownBlockT
+      ]
     }
   });
 };
 
-const seedNavUsingPayload = async ({ payload }: SeedFnProps) => {
+const seedNavUsingPayload = async ({ payload, count = 2 }: SeedFnProps) => {
   console.info(`@-->seeding nav!`);
+  const images = await seedImages({
+    payload,
+    count,
+    category: 'abstract',
+    width: 80,
+    height: 42
+  });
 
   await payload.updateGlobal({
     slug: 'nav', // required
     data: {
       header: {
+        logo: images[0].id,
         flatMenu,
         hasCta: true,
         ctaButton: cta,
@@ -212,6 +285,7 @@ const seedNavUsingPayload = async ({ payload }: SeedFnProps) => {
       },
       footer: {
         footerItems: {
+          logo: images[1].id,
           // @ts-expect-error/false-flag
           copyright: {
             ...genRichText([
@@ -231,7 +305,6 @@ const seed = async (): Promise<void> => {
   const config = await importConfig(configPath);
   const payload = await getPayload({ config });
   await seedHomePage({ payload });
-  await seedLogo({ payload });
   await seedNavUsingPayload({ payload });
   console.info('@-->successfully seeded the nav and homepage!');
 
