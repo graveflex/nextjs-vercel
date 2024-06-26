@@ -1,9 +1,10 @@
 import React from 'react';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/settings';
 import type { Nav, Post } from '@mono/types/payload-types';
 import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
 import type { PaginatedDocs } from 'payload/database';
+import { redirectApi } from '@mono/web/lib/redirectApi';
 
 import PageTemplate from './page.client';
 
@@ -43,7 +44,12 @@ export default async function Blog({
 
   // if there's an error fetching data, 404
   if ('error' in navData || 'error' in postData || !postData.docs[0]) {
-    return notFound();
+    const redirectPath = await redirectApi(pageSlug);
+    if (!redirectPath || (typeof redirectPath === 'object' && 'error' in redirectPath)) {
+      return notFound();
+    } else {
+      redirect(redirectPath);
+    }
   }
 
   return <PageTemplate post={postData.docs[0]} nav={navData} />;
