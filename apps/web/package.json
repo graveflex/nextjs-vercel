@@ -35,6 +35,7 @@
     "@payloadcms/live-preview-react": "latest",
     "@payloadcms/next": "latest",
     "@payloadcms/plugin-cloud-storage": "latest",
+    "@payloadcms/plugin-form-builder": "3.0.0-beta.36",
     "@payloadcms/richtext-lexical": "latest",
     "@payloadcms/storage-vercel-blob": "latest",
     "@payloadcms/ui": "latest",

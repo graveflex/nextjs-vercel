@@ -12,6 +12,7 @@ import Nav from '@mono/web/globals/Layout/Layout.config';
 import { translator } from '@payload-enchants/translator';
 import { googleResolver } from '@payload-enchants/translator/resolvers/google';
 import { postgresAdapter } from '@payloadcms/db-postgres';
+import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 import type { FeatureProviderServer } from '@payloadcms/richtext-lexical';
 import {
@@ -38,6 +39,8 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { buildConfig } from 'payload/config';
 import { fileURLToPath } from 'url';
+
+import TextInputBlock from './src/payload/fields/Inputs/TextInput/TextInput.config';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -194,6 +197,11 @@ export default buildConfig({
           apiKey: process.env.GOOGLE_TRANSLATE_API_KEY as string
         })
       ]
+    }),
+    formBuilderPlugin({
+      fields: {
+        TextInputBlock
+      }
     })
   ],
   upload: {
