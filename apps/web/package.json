@@ -29,6 +29,7 @@
     "@mono/types": "workspace:*",
     "@mono/ui": "workspace:*",
     "@payload-enchants/translator": "^1.1.41",
+    "@payloadcms/plugin-redirects": "latest",
     "@payloadcms/db-postgres": "latest",
     "@payloadcms/live-preview": "latest",
     "@payloadcms/live-preview-react": "latest",
