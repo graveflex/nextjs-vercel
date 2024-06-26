@@ -1,13 +1,9 @@
 import { WEB_URL } from '@mono/settings';
+
 import getPayloadAccessToken from './getPayloadAccessToken';
 
-export async function redirectApi(path: string | string[]) {
+export async function redirectApi() {
   const payloadAccessToken = getPayloadAccessToken();
-
-  // compress into string if array
-  if (Array.isArray(path)) {
-    path = path.join('/');
-  }
 
   // make url friendly
   const q = `depth=1`;

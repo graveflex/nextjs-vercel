@@ -10,9 +10,9 @@ import Videos from '@mono/web/collections/Videos';
 import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.config';
 import Nav from '@mono/web/globals/Layout/Layout.config';
 import { translator } from '@payload-enchants/translator';
-import { redirectsPlugin }from '@payloadcms/plugin-redirects';
 import { googleResolver } from '@payload-enchants/translator/resolvers/google';
 import { postgresAdapter } from '@payloadcms/db-postgres';
+import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 import type { FeatureProviderServer } from '@payloadcms/richtext-lexical';
 import {
   AlignFeature,
@@ -164,7 +164,7 @@ export default buildConfig({
   },
   plugins: [
     redirectsPlugin({
-      collections: ['pages'],
+      collections: ['pages', 'posts']
     }),
     vercelBlobStorage({
       enabled: true,
