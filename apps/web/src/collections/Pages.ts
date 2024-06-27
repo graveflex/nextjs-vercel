@@ -3,8 +3,9 @@ import CardGridBlock from '@mono/web/blocks/CardGridBlock/CardGridBlock.config';
 import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
 import HeroBlock from '@mono/web/blocks/HeroBlock/HeroBlock.config';
 import MarkdownBlock from '@mono/web/blocks/MarkdownBlock/MarkdownBlock.config';
-import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
 // InsertBlockConfigs
+import SectionHeaderBlock from '@mono/web/blocks/SectionHeaderBlock/SectionHeaderBlock.config';
+import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
 import VideoBlock from '@mono/web/blocks/VideoBlock/VideoBlock.config';
 import SEOConfig from '@mono/web/payload/fields/SEO';
 import formatSlug from '@mono/web/payload/utils/formatSlug';
@@ -93,6 +94,7 @@ const Pages: CollectionConfig = {
       type: 'blocks',
       blocks: [
         // InsertBlockConfigFields
+        SectionHeaderBlock,
         VideoBlock,
         CardGridBlock,
         MarkdownBlock,
