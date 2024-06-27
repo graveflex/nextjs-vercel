@@ -4,13 +4,13 @@ import React from 'react';
 import type { SectionHeaderBlockT as PayloadType } from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
 import RichText from '@mono/ui/components/primitives/RichText';
-import Wrapper from '@mono/web/components/Wrapper';
+import Wrapper from '@mono/ui/components/Wrapper';
 import styled from '@refract-ui/sc';
 import s from 'styled-components';
 
 export type SectionHeaderBlockType = Omit<PayloadType, 'blockType'>;
 
-const Section = styled(Wrapper)<{
+const Section = styled.div<{
   $align?: 'center' | 'left' | 'right' | null;
 }>`
   text-align: ${({ $align }) => ($align === 'center' ? 'center' : $align)};
@@ -36,15 +36,17 @@ function SectionHeaderBlock({
   eyebrow,
   content,
   alignment,
-  cta
+  cta,
+  blockConfig
 }: SectionHeaderBlockType) {
-  console.log('SectionHeaderBlock', alignment);
   return (
-    <Section $align={alignment}>
-      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      {content && <StyledRichText {...content} />}
-      {cta && <CtaButton cta={cta} />}
-    </Section>
+    <Wrapper {...blockConfig} hidden={blockConfig?.hidden ?? false}>
+      <Section $align={alignment}>
+        {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+        {content && <StyledRichText {...content} />}
+        {cta?.link?.label && <CtaButton cta={cta} />}
+      </Section>
+    </Wrapper>
   );
 }
 

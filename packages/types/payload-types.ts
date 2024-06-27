@@ -165,10 +165,146 @@ export interface Page {
     keywords?: string | null;
   };
   publishedAt?: string | null;
-  blocks?: (VideoBlockT | CardGridBlockT | MarkdownBlockT | FAQBlockT | TextImageBlockT | HeroBlockT)[] | null;
+  blocks?:
+    | (SectionHeaderBlockT | VideoBlockT | CardGridBlockT | MarkdownBlockT | FAQBlockT | TextImageBlockT | HeroBlockT)[]
+    | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SectionHeaderBlockT".
+ */
+export interface SectionHeaderBlockT {
+  blockConfig?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundImage?: number | Image | null;
+    hidden?: boolean | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    p?: {
+      xs?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      md?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      lg?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      xl?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+    };
+  };
+  eyebrow?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  alignment?: ('center' | 'left' | 'right') | null;
+  cta?: CTAType;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'sectionHeaderBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTAType".
+ */
+export interface CTAType {
+  link?: PayLoadLink;
+  variant?: ('outline' | 'solid' | 'link') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payLoadLink".
+ */
+export interface PayLoadLink {
+  type?: ('internal' | 'external' | 'email' | 'phone' | 'file') | null;
+  label?: string | null;
+  internalHref?: (number | null) | Page;
+  externalHref?: string | null;
+  emailHref?: string | null;
+  phoneHref?: string | null;
+  fileHref?: number | File | null;
+  newTab?: boolean | null;
+  icon?: IconSelect;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "files".
+ */
+export interface File {
+  id: number;
+  title: string;
+  description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconSelect".
+ */
+export interface IconSelect {
+  name?:
+    | (
+        | 'Hamburger'
+        | 'Check'
+        | 'ArrowUp'
+        | 'ArrowLeft'
+        | 'ArrowRight'
+        | 'ArrowDown'
+        | 'CaretDown'
+        | 'CaretUp'
+        | 'CaretRight'
+        | 'CaretLeft'
+        | 'Close'
+        | 'DoubleCaretDown'
+        | 'DoubleCaretUp'
+        | 'DoubleCaretRight'
+        | 'DoubleCaretLeft'
+        | 'Error'
+        | 'LinkOut'
+        | 'MinusSign'
+        | 'Person'
+        | 'PlusSign'
+        | 'Quote'
+        | 'Search'
+        | 'SolidArrowDown'
+        | 'SolidArrowUp'
+        | 'SolidArrowRight'
+        | 'SolidArrowLeft'
+        | 'ArrowNesting'
+      )
+    | null;
+  size?: ('35' | '30' | '25' | '20') | null;
+  color?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -283,88 +419,6 @@ export interface CardType {
         id?: string | null;
       }[]
     | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CTAType".
- */
-export interface CTAType {
-  link?: PayLoadLink;
-  variant?: ('outline' | 'solid' | 'link') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "payLoadLink".
- */
-export interface PayLoadLink {
-  type?: ('internal' | 'external' | 'email' | 'phone' | 'file') | null;
-  label?: string | null;
-  internalHref?: (number | null) | Page;
-  externalHref?: string | null;
-  emailHref?: string | null;
-  phoneHref?: string | null;
-  fileHref?: number | File | null;
-  newTab?: boolean | null;
-  icon?: IconSelect;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "files".
- */
-export interface File {
-  id: number;
-  title: string;
-  description?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IconSelect".
- */
-export interface IconSelect {
-  name?:
-    | (
-        | 'Hamburger'
-        | 'Check'
-        | 'ArrowUp'
-        | 'ArrowLeft'
-        | 'ArrowRight'
-        | 'ArrowDown'
-        | 'CaretDown'
-        | 'CaretUp'
-        | 'CaretRight'
-        | 'CaretLeft'
-        | 'Close'
-        | 'DoubleCaretDown'
-        | 'DoubleCaretUp'
-        | 'DoubleCaretRight'
-        | 'DoubleCaretLeft'
-        | 'Error'
-        | 'LinkOut'
-        | 'MinusSign'
-        | 'Person'
-        | 'PlusSign'
-        | 'Quote'
-        | 'Search'
-        | 'SolidArrowDown'
-        | 'SolidArrowUp'
-        | 'SolidArrowRight'
-        | 'SolidArrowLeft'
-        | 'ArrowNesting'
-      )
-    | null;
-  size?: ('35' | '30' | '25' | '20') | null;
-  color?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
