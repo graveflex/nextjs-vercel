@@ -17,6 +17,9 @@ const blockList = {
       ...defaultOpts
     }
   ),
+  galleryGridBlock: dynamic(() => import('@mono/web/blocks/GalleryGridBlock'), {
+    ...defaultOpts
+  }),
   videoBlock: dynamic(() => import('@mono/web/blocks/VideoBlock'), {
     ...defaultOpts
   }),

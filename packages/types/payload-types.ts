@@ -166,7 +166,16 @@ export interface Page {
   };
   publishedAt?: string | null;
   blocks?:
-    | (SectionHeaderBlockT | VideoBlockT | CardGridBlockT | MarkdownBlockT | FAQBlockT | TextImageBlockT | HeroBlockT)[]
+    | (
+        | SectionHeaderBlockT
+        | GalleryGridBlockT
+        | VideoBlockT
+        | CardGridBlockT
+        | MarkdownBlockT
+        | FAQBlockT
+        | TextImageBlockT
+        | HeroBlockT
+      )[]
     | null;
   updatedAt: string;
   createdAt: string;
@@ -305,6 +314,47 @@ export interface IconSelect {
     | null;
   size?: ('35' | '30' | '25' | '20') | null;
   color?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GalleryGridBlockT".
+ */
+export interface GalleryGridBlockT {
+  blockConfig?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundImage?: number | Image | null;
+    hidden?: boolean | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    p?: {
+      xs?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      md?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      lg?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      xl?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+    };
+  };
+  galleryImages?:
+    | {
+        image?: number | Image | null;
+        id?: string | null;
+      }[]
+    | null;
+  cta?: CTAType;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'galleryGridBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
