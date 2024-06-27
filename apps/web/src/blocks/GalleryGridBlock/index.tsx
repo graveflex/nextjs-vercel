@@ -21,8 +21,8 @@ const Grid = styled.div`
   gap: 1rem;
   align-items: center;
   justify-items: center;
-  grid-template-columns: repeat(2, minmax(159px, 1fr));
-  grid-template-rows: repeat(auto, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(159px, 1fr));
+  width: 100%;
 
   img {
     width: 159px;
@@ -30,14 +30,8 @@ const Grid = styled.div`
   }
 
   ${({ theme: { mq } }) => css`
-    ${mq.md`
-      grid-template-columns: repeat(4, minmax(159px, 1fr));
-      grid-template-rows: repeat(2, 1fr);
-    `}
-
     ${mq.lg`
-      grid-template-columns: repeat(4, minmax(296px, 1fr));
-      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(296px, 1fr));
 
       img {
         width: 296px;
