@@ -140,8 +140,13 @@ const NavContentWrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
+    align-items: strart;
+    padding: 0 2rem;
+    gap: 2rem;
+
+    &:last-child {
+      align-self: center;
+    }
 
     ${mq.md`
       flex-direction: row;
@@ -178,10 +183,6 @@ const ItemWrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 0 1rem;
-  ${({ theme: { mq } }) => mq.md`
-    margin: 0;
-  `}
 `;
 
 const NavDropdownWrapper = styled.div`
@@ -210,7 +211,6 @@ const MobileNavDropdownWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  margin: 1rem;
   width: 100%;
 
   ${({ theme: { mq } }) => mq.md`
@@ -242,16 +242,31 @@ const ItemLabel = styled.div`
   `}
 `;
 
-const NavDropdownItem = styled.div`
+const NavDropdownItem = styled.div<{ $open: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin: 0 1rem;
   width: 100%;
+  ${({ $open }) => css`
+    ${$open &&
+    css`
+      ${ItemLabel} {
+        border-bottom: 1px solid transparent;
+        svg {
+          transform: rotate(180deg);
+          transition: transform 0.25s;
+        }
+      }
+
+      ${MobileNavDropdownWrapper} {
+        border-bottom: 1px solid currentColor;
+        padding-bottom: 1.5rem;
+      }
+    `}
+  `}
 
   ${({ theme: { mq } }) => mq.md`
     width: unset;
-    margin: 0;
     height: 100%;
     justify-content: center;
     &:hover ${NavDropdownWrapper} {
@@ -297,13 +312,17 @@ function NavContent({
 }: Buttons) {
   const [curr, setCurr] = useState<string | null | undefined>('');
   const [openDropdown, setOpenDropdown] = useState(false);
-
   return (
     <NavContentWrapper>
       {collapsibleMenu?.sections &&
         collapsibleMenu.sections.map((item) => {
+          const itemIsOpen = !!openDropdown && item.id === curr;
+
           return (
-            <NavDropdownItem key={`collapsible-${item.id}`}>
+            <NavDropdownItem
+              key={`collapsible-${item.id}`}
+              $open={!!itemIsOpen}
+            >
               <ItemWrapper>
                 <ItemLabel
                   onClick={() => {
@@ -326,7 +345,7 @@ function NavContent({
                       );
                     })}
                 </NavDropdownWrapper>
-                {!!openDropdown && item.id === curr && (
+                {!!itemIsOpen && (
                   <MobileNavDropdownWrapper>
                     {item?.links &&
                       item.links.map((link) => {

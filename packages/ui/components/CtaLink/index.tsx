@@ -26,7 +26,6 @@ const LinkStyled = styled(Link)<{ color: CtaLinkType['$color'] }>`
     border-bottom: 1px solid transparent;
     cursor: pointer;
 
-
     &:hover {
       && {
         color: ${color ? allColors[color] : allColors.fg};
