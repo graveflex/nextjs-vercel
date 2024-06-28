@@ -16,7 +16,7 @@ export type CtaButtonType = {
   submit?: boolean;
   linkType?: 'button' | 'link';
   color?: colorProps | colorTokenProps;
-  form?: number;
+  form?: string;
 };
 
 function CtaButton({

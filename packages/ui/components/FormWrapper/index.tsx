@@ -11,7 +11,7 @@ export interface FormWrapperProps {
   onSubmit: SubmitHandler<FieldValues>;
   cta: CTAType;
   className?: string;
-  id?: number;
+  id?: string;
 }
 
 const Container = s.div``;
