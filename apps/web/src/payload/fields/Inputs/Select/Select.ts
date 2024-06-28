@@ -1,14 +1,14 @@
 import type { GroupField } from 'payload/types';
 
-function TextInput({
+function Select({
   name,
   interfaceName,
   fields = []
 }: Partial<GroupField> = {}): GroupField {
   return {
-    name: name || 'textinput',
+    name: name || 'select',
     type: 'group',
-    interfaceName: interfaceName || 'TextInputType',
+    interfaceName: interfaceName || 'SelectType',
     fields: [
       {
         label: 'Input Settings',
@@ -48,6 +48,21 @@ function TextInput({
             defaultValue: false,
             required: false
           },
+          {
+            type: 'array',
+            name: 'selectOptions',
+            label: 'Options',
+            required: false,
+            localized: true,
+            fields: [
+              {
+                name: 'option',
+                label: 'Option',
+                type: 'text',
+                required: false
+              }
+            ]
+          },
           ...fields
         ]
       }
@@ -55,4 +70,4 @@ function TextInput({
   };
 }
 
-export default TextInput;
+export default Select;

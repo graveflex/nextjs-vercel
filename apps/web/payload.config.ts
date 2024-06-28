@@ -40,6 +40,9 @@ import path from 'path';
 import { buildConfig } from 'payload/config';
 import { fileURLToPath } from 'url';
 
+import CheckboxBlock from './src/payload/fields/Inputs/Checkbox/Checkbox.config';
+import SelectBlock from './src/payload/fields/Inputs/Select/Select.config';
+import TextAreaBlock from './src/payload/fields/Inputs/TextArea/TextArea.config';
 import TextInputBlock from './src/payload/fields/Inputs/TextInput/TextInput.config';
 
 const filename = fileURLToPath(import.meta.url);
@@ -200,7 +203,20 @@ export default buildConfig({
     }),
     formBuilderPlugin({
       fields: {
-        TextInputBlock
+        TextInputBlock,
+        TextAreaBlock,
+        SelectBlock,
+        CheckboxBlock,
+        text: false,
+        textarea: false,
+        select: false,
+        email: false,
+        state: false,
+        country: false,
+        checkbox: false,
+        number: false,
+        message: false,
+        payment: false
       }
     })
   ],

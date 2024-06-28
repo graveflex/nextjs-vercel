@@ -11,6 +11,7 @@ type colorTokenProps = keyof DefaultTheme['colorTokens'];
 export type ButtonProps = {
   $variant?: 'solid' | 'outline' | 'link';
   $color: colorProps | colorTokenProps;
+  $form?: number;
   // $invert?: boolean; enable this for theme inversion for button text color
   icon?: IconProps;
   children?: React.ReactNode | string | number;
@@ -187,6 +188,7 @@ function Button({
         {...buttonProps}
         {...styleProps}
         className={buttonClass}
+        form={props?.$form}
       >
         {children ? (
           <InnerWrapper className="button-text">

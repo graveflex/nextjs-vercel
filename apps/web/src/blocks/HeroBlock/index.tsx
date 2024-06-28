@@ -1,6 +1,8 @@
 'use client';
 
 import React from 'react';
+import type { UseControllerReturn } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 import type { HeroBlockT as PayloadType } from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
 import FormWrapper from '@mono/ui/components/FormWrapper';
@@ -200,11 +202,21 @@ function HeroBlock({
               cta={form?.cta}
               $contentAlign={alignText}
             >
-              <TextInput
-                {...form?.textinput}
-                name="TextInput"
-                label={form?.textinput?.label || undefined}
-                placeholder={form?.textinput?.placeholder || undefined}
+              <Controller
+                name={form?.textinput?.name}
+                rules={{ required: true }}
+                render={({
+                  field
+                }: UseControllerReturn<string, string>['field']) => (
+                  <TextInput
+                    label={form?.textinput?.label}
+                    placeholder={form?.textinput?.placeholder}
+                    helpText={form?.textinput?.helpText}
+                    name={form?.textinput?.name}
+                    id={form?.textinput?.name}
+                    {...field}
+                  />
+                )}
               />
             </InputWrapper>
           )}

@@ -1,5 +1,5 @@
 {
-  "id": "65b3359d-fb74-484c-ad75-3bf37e433727",
+  "id": "37350dc3-ac6f-4e5f-a49a-fde08ce06886",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -205,6 +205,211 @@
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
+    },
+    "pages_blocks_form_block": {
+      "name": "pages_blocks_form_block",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "blockConfig_theme": {
+          "name": "blockConfig_theme",
+          "type": "enum_pages_blocks_form_block_block_config_theme",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_backgroundColor": {
+          "name": "blockConfig_backgroundColor",
+          "type": "bgColor",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_config_hidden": {
+          "name": "block_config_hidden",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_contentWidth": {
+          "name": "blockConfig_contentWidth",
+          "type": "cw",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_xs_paddingTop": {
+          "name": "blockConfig_p_xs_paddingTop",
+          "type": "t",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_xs_paddingBottom": {
+          "name": "blockConfig_p_xs_paddingBottom",
+          "type": "b",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_md_paddingTop": {
+          "name": "blockConfig_p_md_paddingTop",
+          "type": "t",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_md_paddingBottom": {
+          "name": "blockConfig_p_md_paddingBottom",
+          "type": "b",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_lg_paddingTop": {
+          "name": "blockConfig_p_lg_paddingTop",
+          "type": "t",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_lg_paddingBottom": {
+          "name": "blockConfig_p_lg_paddingBottom",
+          "type": "b",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_xl_paddingTop": {
+          "name": "blockConfig_p_xl_paddingTop",
+          "type": "t",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_xl_paddingBottom": {
+          "name": "blockConfig_p_xl_paddingBottom",
+          "type": "b",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "pages_blocks_form_block_order_idx": {
+          "name": "pages_blocks_form_block_order_idx",
+          "columns": [
+            "_order"
+          ],
+          "isUnique": false
+        },
+        "pages_blocks_form_block_parent_id_idx": {
+          "name": "pages_blocks_form_block_parent_id_idx",
+          "columns": [
+            "_parent_id"
+          ],
+          "isUnique": false
+        },
+        "pages_blocks_form_block_path_idx": {
+          "name": "pages_blocks_form_block_path_idx",
+          "columns": [
+            "_path"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "pages_blocks_form_block_parent_id_fk": {
+          "name": "pages_blocks_form_block_parent_id_fk",
+          "tableFrom": "pages_blocks_form_block",
+          "tableTo": "pages",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "pages_blocks_form_block_locales": {
+      "name": "pages_blocks_form_block_locales",
+      "schema": "",
+      "columns": {
+        "content": {
+          "name": "content",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "_locale": {
+          "name": "_locale",
+          "type": "_locales",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "pages_blocks_form_block_locales_parent_id_fk": {
+          "name": "pages_blocks_form_block_locales_parent_id_fk",
+          "tableFrom": "pages_blocks_form_block_locales",
+          "tableTo": "pages_blocks_form_block",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "pages_blocks_form_block_locales_locale_parent_id_unique": {
+          "name": "pages_blocks_form_block_locales_locale_parent_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "_locale",
+            "_parent_id"
+          ]
+        }
+      }
     },
     "pages_blocks_card_grid_block_cards_card_ctas": {
       "name": "pages_blocks_card_grid_block_cards_card_ctas",
@@ -1356,6 +1561,12 @@
           "primaryKey": false,
           "notNull": false
         },
+        "form_textinput_name": {
+          "name": "form_textinput_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
         "form_textinput_placeholder": {
           "name": "form_textinput_placeholder",
           "type": "varchar",
@@ -1371,6 +1582,12 @@
         "form_textinput_label": {
           "name": "form_textinput_label",
           "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "form_textinput_required": {
+          "name": "form_textinput_required",
+          "type": "boolean",
           "primaryKey": false,
           "notNull": false
         },
@@ -1651,6 +1868,12 @@
           "primaryKey": false,
           "notNull": false
         },
+        "form_textinput_name": {
+          "name": "form_textinput_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
         "form_textinput_placeholder": {
           "name": "form_textinput_placeholder",
           "type": "varchar",
@@ -1666,6 +1889,12 @@
         "form_textinput_label": {
           "name": "form_textinput_label",
           "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "form_textinput_required": {
+          "name": "form_textinput_required",
+          "type": "boolean",
           "primaryKey": false,
           "notNull": false
         },
@@ -2020,6 +2249,12 @@
           "primaryKey": false,
           "notNull": false
         },
+        "forms_id": {
+          "name": "forms_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
         "pages_id": {
           "name": "pages_id",
           "type": "integer",
@@ -2089,6 +2324,19 @@
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
+        "pages_rels_forms_fk": {
+          "name": "pages_rels_forms_fk",
+          "tableFrom": "pages_rels",
+          "tableTo": "forms",
+          "columnsFrom": [
+            "forms_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
         "pages_rels_pages_fk": {
           "name": "pages_rels_pages_fk",
           "tableFrom": "pages_rels",
@@ -2131,6 +2379,217 @@
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
+    },
+    "_pages_v_blocks_form_block": {
+      "name": "_pages_v_blocks_form_block",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "blockConfig_theme": {
+          "name": "blockConfig_theme",
+          "type": "enum__pages_v_blocks_form_block_block_config_theme",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_backgroundColor": {
+          "name": "blockConfig_backgroundColor",
+          "type": "bgColor",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_config_hidden": {
+          "name": "block_config_hidden",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_contentWidth": {
+          "name": "blockConfig_contentWidth",
+          "type": "cw",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_xs_paddingTop": {
+          "name": "blockConfig_p_xs_paddingTop",
+          "type": "t",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_xs_paddingBottom": {
+          "name": "blockConfig_p_xs_paddingBottom",
+          "type": "b",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_md_paddingTop": {
+          "name": "blockConfig_p_md_paddingTop",
+          "type": "t",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_md_paddingBottom": {
+          "name": "blockConfig_p_md_paddingBottom",
+          "type": "b",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_lg_paddingTop": {
+          "name": "blockConfig_p_lg_paddingTop",
+          "type": "t",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_lg_paddingBottom": {
+          "name": "blockConfig_p_lg_paddingBottom",
+          "type": "b",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_xl_paddingTop": {
+          "name": "blockConfig_p_xl_paddingTop",
+          "type": "t",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "blockConfig_p_xl_paddingBottom": {
+          "name": "blockConfig_p_xl_paddingBottom",
+          "type": "b",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "_uuid": {
+          "name": "_uuid",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "_pages_v_blocks_form_block_order_idx": {
+          "name": "_pages_v_blocks_form_block_order_idx",
+          "columns": [
+            "_order"
+          ],
+          "isUnique": false
+        },
+        "_pages_v_blocks_form_block_parent_id_idx": {
+          "name": "_pages_v_blocks_form_block_parent_id_idx",
+          "columns": [
+            "_parent_id"
+          ],
+          "isUnique": false
+        },
+        "_pages_v_blocks_form_block_path_idx": {
+          "name": "_pages_v_blocks_form_block_path_idx",
+          "columns": [
+            "_path"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "_pages_v_blocks_form_block_parent_id_fk": {
+          "name": "_pages_v_blocks_form_block_parent_id_fk",
+          "tableFrom": "_pages_v_blocks_form_block",
+          "tableTo": "_pages_v",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "_pages_v_blocks_form_block_locales": {
+      "name": "_pages_v_blocks_form_block_locales",
+      "schema": "",
+      "columns": {
+        "content": {
+          "name": "content",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "_locale": {
+          "name": "_locale",
+          "type": "_locales",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "_pages_v_blocks_form_block_locales_parent_id_fk": {
+          "name": "_pages_v_blocks_form_block_locales_parent_id_fk",
+          "tableFrom": "_pages_v_blocks_form_block_locales",
+          "tableTo": "_pages_v_blocks_form_block",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "_pages_v_blocks_form_block_locales_locale_parent_id_unique": {
+          "name": "_pages_v_blocks_form_block_locales_locale_parent_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "_locale",
+            "_parent_id"
+          ]
+        }
+      }
     },
     "_pages_v_blocks_card_grid_block_cards_card_ctas": {
       "name": "_pages_v_blocks_card_grid_block_cards_card_ctas",
@@ -3324,6 +3783,12 @@
           "primaryKey": false,
           "notNull": false
         },
+        "form_textinput_name": {
+          "name": "form_textinput_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
         "form_textinput_placeholder": {
           "name": "form_textinput_placeholder",
           "type": "varchar",
@@ -3339,6 +3804,12 @@
         "form_textinput_label": {
           "name": "form_textinput_label",
           "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "form_textinput_required": {
+          "name": "form_textinput_required",
+          "type": "boolean",
           "primaryKey": false,
           "notNull": false
         },
@@ -3625,6 +4096,12 @@
           "primaryKey": false,
           "notNull": false
         },
+        "form_textinput_name": {
+          "name": "form_textinput_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
         "form_textinput_placeholder": {
           "name": "form_textinput_placeholder",
           "type": "varchar",
@@ -3640,6 +4117,12 @@
         "form_textinput_label": {
           "name": "form_textinput_label",
           "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "form_textinput_required": {
+          "name": "form_textinput_required",
+          "type": "boolean",
           "primaryKey": false,
           "notNull": false
         },
@@ -4045,6 +4528,12 @@
           "primaryKey": false,
           "notNull": false
         },
+        "forms_id": {
+          "name": "forms_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
         "files_id": {
           "name": "files_id",
           "type": "integer",
@@ -4114,6 +4603,19 @@
           "tableTo": "images",
           "columnsFrom": [
             "images_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "_pages_v_rels_forms_fk": {
+          "name": "_pages_v_rels_forms_fk",
+          "tableFrom": "_pages_v_rels",
+          "tableTo": "forms",
+          "columnsFrom": [
+            "forms_id"
           ],
           "columnsTo": [
             "id"
@@ -5501,8 +6003,114 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "forms_blocks_checkbox": {
-      "name": "forms_blocks_checkbox",
+    "forms_blocks_text_input": {
+      "name": "forms_blocks_text_input",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "textinput_name": {
+          "name": "textinput_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "textinput_placeholder": {
+          "name": "textinput_placeholder",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "textinput_help_text": {
+          "name": "textinput_help_text",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "textinput_label": {
+          "name": "textinput_label",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "textinput_required": {
+          "name": "textinput_required",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "forms_blocks_text_input_order_idx": {
+          "name": "forms_blocks_text_input_order_idx",
+          "columns": [
+            "_order"
+          ],
+          "isUnique": false
+        },
+        "forms_blocks_text_input_parent_id_idx": {
+          "name": "forms_blocks_text_input_parent_id_idx",
+          "columns": [
+            "_parent_id"
+          ],
+          "isUnique": false
+        },
+        "forms_blocks_text_input_path_idx": {
+          "name": "forms_blocks_text_input_path_idx",
+          "columns": [
+            "_path"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "forms_blocks_text_input_parent_id_fk": {
+          "name": "forms_blocks_text_input_parent_id_fk",
+          "tableFrom": "forms_blocks_text_input",
+          "tableTo": "forms",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "forms_blocks_text_area": {
+      "name": "forms_blocks_text_area",
       "schema": "",
       "columns": {
         "_order": {
@@ -5533,168 +6141,23 @@
           "name": "name",
           "type": "varchar",
           "primaryKey": false,
-          "notNull": true
-        },
-        "width": {
-          "name": "width",
-          "type": "numeric",
-          "primaryKey": false,
           "notNull": false
         },
-        "required": {
-          "name": "required",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "default_value": {
-          "name": "default_value",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "block_name": {
-          "name": "block_name",
+        "placeholder": {
+          "name": "placeholder",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
-        }
-      },
-      "indexes": {
-        "forms_blocks_checkbox_order_idx": {
-          "name": "forms_blocks_checkbox_order_idx",
-          "columns": [
-            "_order"
-          ],
-          "isUnique": false
         },
-        "forms_blocks_checkbox_parent_id_idx": {
-          "name": "forms_blocks_checkbox_parent_id_idx",
-          "columns": [
-            "_parent_id"
-          ],
-          "isUnique": false
+        "help_text": {
+          "name": "help_text",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
         },
-        "forms_blocks_checkbox_path_idx": {
-          "name": "forms_blocks_checkbox_path_idx",
-          "columns": [
-            "_path"
-          ],
-          "isUnique": false
-        }
-      },
-      "foreignKeys": {
-        "forms_blocks_checkbox_parent_id_fk": {
-          "name": "forms_blocks_checkbox_parent_id_fk",
-          "tableFrom": "forms_blocks_checkbox",
-          "tableTo": "forms",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "forms_blocks_checkbox_locales": {
-      "name": "forms_blocks_checkbox_locales",
-      "schema": "",
-      "columns": {
         "label": {
           "name": "label",
           "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "_locale": {
-          "name": "_locale",
-          "type": "_locales",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "forms_blocks_checkbox_locales_parent_id_fk": {
-          "name": "forms_blocks_checkbox_locales_parent_id_fk",
-          "tableFrom": "forms_blocks_checkbox_locales",
-          "tableTo": "forms_blocks_checkbox",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "forms_blocks_checkbox_locales_locale_parent_id_unique": {
-          "name": "forms_blocks_checkbox_locales_locale_parent_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "_locale",
-            "_parent_id"
-          ]
-        }
-      }
-    },
-    "forms_blocks_country": {
-      "name": "forms_blocks_country",
-      "schema": "",
-      "columns": {
-        "_order": {
-          "name": "_order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_path": {
-          "name": "_path",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "id": {
-          "name": "id",
-          "type": "varchar",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "name": {
-          "name": "name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "width": {
-          "name": "width",
-          "type": "numeric",
           "primaryKey": false,
           "notNull": false
         },
@@ -5712,22 +6175,22 @@
         }
       },
       "indexes": {
-        "forms_blocks_country_order_idx": {
-          "name": "forms_blocks_country_order_idx",
+        "forms_blocks_text_area_order_idx": {
+          "name": "forms_blocks_text_area_order_idx",
           "columns": [
             "_order"
           ],
           "isUnique": false
         },
-        "forms_blocks_country_parent_id_idx": {
-          "name": "forms_blocks_country_parent_id_idx",
+        "forms_blocks_text_area_parent_id_idx": {
+          "name": "forms_blocks_text_area_parent_id_idx",
           "columns": [
             "_parent_id"
           ],
           "isUnique": false
         },
-        "forms_blocks_country_path_idx": {
-          "name": "forms_blocks_country_path_idx",
+        "forms_blocks_text_area_path_idx": {
+          "name": "forms_blocks_text_area_path_idx",
           "columns": [
             "_path"
           ],
@@ -5735,9 +6198,9 @@
         }
       },
       "foreignKeys": {
-        "forms_blocks_country_parent_id_fk": {
-          "name": "forms_blocks_country_parent_id_fk",
-          "tableFrom": "forms_blocks_country",
+        "forms_blocks_text_area_parent_id_fk": {
+          "name": "forms_blocks_text_area_parent_id_fk",
+          "tableFrom": "forms_blocks_text_area",
           "tableTo": "forms",
           "columnsFrom": [
             "_parent_id"
@@ -5752,506 +6215,8 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "forms_blocks_country_locales": {
-      "name": "forms_blocks_country_locales",
-      "schema": "",
-      "columns": {
-        "label": {
-          "name": "label",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "_locale": {
-          "name": "_locale",
-          "type": "_locales",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "forms_blocks_country_locales_parent_id_fk": {
-          "name": "forms_blocks_country_locales_parent_id_fk",
-          "tableFrom": "forms_blocks_country_locales",
-          "tableTo": "forms_blocks_country",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "forms_blocks_country_locales_locale_parent_id_unique": {
-          "name": "forms_blocks_country_locales_locale_parent_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "_locale",
-            "_parent_id"
-          ]
-        }
-      }
-    },
-    "forms_blocks_email": {
-      "name": "forms_blocks_email",
-      "schema": "",
-      "columns": {
-        "_order": {
-          "name": "_order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_path": {
-          "name": "_path",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "id": {
-          "name": "id",
-          "type": "varchar",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "name": {
-          "name": "name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "width": {
-          "name": "width",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "required": {
-          "name": "required",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "block_name": {
-          "name": "block_name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {
-        "forms_blocks_email_order_idx": {
-          "name": "forms_blocks_email_order_idx",
-          "columns": [
-            "_order"
-          ],
-          "isUnique": false
-        },
-        "forms_blocks_email_parent_id_idx": {
-          "name": "forms_blocks_email_parent_id_idx",
-          "columns": [
-            "_parent_id"
-          ],
-          "isUnique": false
-        },
-        "forms_blocks_email_path_idx": {
-          "name": "forms_blocks_email_path_idx",
-          "columns": [
-            "_path"
-          ],
-          "isUnique": false
-        }
-      },
-      "foreignKeys": {
-        "forms_blocks_email_parent_id_fk": {
-          "name": "forms_blocks_email_parent_id_fk",
-          "tableFrom": "forms_blocks_email",
-          "tableTo": "forms",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "forms_blocks_email_locales": {
-      "name": "forms_blocks_email_locales",
-      "schema": "",
-      "columns": {
-        "label": {
-          "name": "label",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "_locale": {
-          "name": "_locale",
-          "type": "_locales",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "forms_blocks_email_locales_parent_id_fk": {
-          "name": "forms_blocks_email_locales_parent_id_fk",
-          "tableFrom": "forms_blocks_email_locales",
-          "tableTo": "forms_blocks_email",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "forms_blocks_email_locales_locale_parent_id_unique": {
-          "name": "forms_blocks_email_locales_locale_parent_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "_locale",
-            "_parent_id"
-          ]
-        }
-      }
-    },
-    "forms_blocks_message": {
-      "name": "forms_blocks_message",
-      "schema": "",
-      "columns": {
-        "_order": {
-          "name": "_order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_path": {
-          "name": "_path",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "id": {
-          "name": "id",
-          "type": "varchar",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "block_name": {
-          "name": "block_name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {
-        "forms_blocks_message_order_idx": {
-          "name": "forms_blocks_message_order_idx",
-          "columns": [
-            "_order"
-          ],
-          "isUnique": false
-        },
-        "forms_blocks_message_parent_id_idx": {
-          "name": "forms_blocks_message_parent_id_idx",
-          "columns": [
-            "_parent_id"
-          ],
-          "isUnique": false
-        },
-        "forms_blocks_message_path_idx": {
-          "name": "forms_blocks_message_path_idx",
-          "columns": [
-            "_path"
-          ],
-          "isUnique": false
-        }
-      },
-      "foreignKeys": {
-        "forms_blocks_message_parent_id_fk": {
-          "name": "forms_blocks_message_parent_id_fk",
-          "tableFrom": "forms_blocks_message",
-          "tableTo": "forms",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "forms_blocks_message_locales": {
-      "name": "forms_blocks_message_locales",
-      "schema": "",
-      "columns": {
-        "message": {
-          "name": "message",
-          "type": "jsonb",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "_locale": {
-          "name": "_locale",
-          "type": "_locales",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "forms_blocks_message_locales_parent_id_fk": {
-          "name": "forms_blocks_message_locales_parent_id_fk",
-          "tableFrom": "forms_blocks_message_locales",
-          "tableTo": "forms_blocks_message",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "forms_blocks_message_locales_locale_parent_id_unique": {
-          "name": "forms_blocks_message_locales_locale_parent_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "_locale",
-            "_parent_id"
-          ]
-        }
-      }
-    },
-    "forms_blocks_number": {
-      "name": "forms_blocks_number",
-      "schema": "",
-      "columns": {
-        "_order": {
-          "name": "_order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_path": {
-          "name": "_path",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "id": {
-          "name": "id",
-          "type": "varchar",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "name": {
-          "name": "name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "width": {
-          "name": "width",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "default_value": {
-          "name": "default_value",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "required": {
-          "name": "required",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "block_name": {
-          "name": "block_name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {
-        "forms_blocks_number_order_idx": {
-          "name": "forms_blocks_number_order_idx",
-          "columns": [
-            "_order"
-          ],
-          "isUnique": false
-        },
-        "forms_blocks_number_parent_id_idx": {
-          "name": "forms_blocks_number_parent_id_idx",
-          "columns": [
-            "_parent_id"
-          ],
-          "isUnique": false
-        },
-        "forms_blocks_number_path_idx": {
-          "name": "forms_blocks_number_path_idx",
-          "columns": [
-            "_path"
-          ],
-          "isUnique": false
-        }
-      },
-      "foreignKeys": {
-        "forms_blocks_number_parent_id_fk": {
-          "name": "forms_blocks_number_parent_id_fk",
-          "tableFrom": "forms_blocks_number",
-          "tableTo": "forms",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "forms_blocks_number_locales": {
-      "name": "forms_blocks_number_locales",
-      "schema": "",
-      "columns": {
-        "label": {
-          "name": "label",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "_locale": {
-          "name": "_locale",
-          "type": "_locales",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "forms_blocks_number_locales_parent_id_fk": {
-          "name": "forms_blocks_number_locales_parent_id_fk",
-          "tableFrom": "forms_blocks_number_locales",
-          "tableTo": "forms_blocks_number",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "forms_blocks_number_locales_locale_parent_id_unique": {
-          "name": "forms_blocks_number_locales_locale_parent_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "_locale",
-            "_parent_id"
-          ]
-        }
-      }
-    },
-    "forms_blocks_select_options": {
-      "name": "forms_blocks_select_options",
+    "forms_blocks_select_select_select_options": {
+      "name": "forms_blocks_select_select_select_options",
       "schema": "",
       "columns": {
         "_order": {
@@ -6266,39 +6231,52 @@
           "primaryKey": false,
           "notNull": true
         },
+        "_locale": {
+          "name": "_locale",
+          "type": "_locales",
+          "primaryKey": false,
+          "notNull": true
+        },
         "id": {
           "name": "id",
           "type": "varchar",
           "primaryKey": true,
           "notNull": true
         },
-        "value": {
-          "name": "value",
+        "option": {
+          "name": "option",
           "type": "varchar",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         }
       },
       "indexes": {
-        "forms_blocks_select_options_order_idx": {
-          "name": "forms_blocks_select_options_order_idx",
+        "forms_blocks_select_select_select_options_order_idx": {
+          "name": "forms_blocks_select_select_select_options_order_idx",
           "columns": [
             "_order"
           ],
           "isUnique": false
         },
-        "forms_blocks_select_options_parent_id_idx": {
-          "name": "forms_blocks_select_options_parent_id_idx",
+        "forms_blocks_select_select_select_options_parent_id_idx": {
+          "name": "forms_blocks_select_select_select_options_parent_id_idx",
           "columns": [
             "_parent_id"
+          ],
+          "isUnique": false
+        },
+        "forms_blocks_select_select_select_options_locale_idx": {
+          "name": "forms_blocks_select_select_select_options_locale_idx",
+          "columns": [
+            "_locale"
           ],
           "isUnique": false
         }
       },
       "foreignKeys": {
-        "forms_blocks_select_options_parent_id_fk": {
-          "name": "forms_blocks_select_options_parent_id_fk",
-          "tableFrom": "forms_blocks_select_options",
+        "forms_blocks_select_select_select_options_parent_id_fk": {
+          "name": "forms_blocks_select_select_select_options_parent_id_fk",
+          "tableFrom": "forms_blocks_select_select_select_options",
           "tableTo": "forms_blocks_select",
           "columnsFrom": [
             "_parent_id"
@@ -6312,63 +6290,6 @@
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
-    },
-    "forms_blocks_select_options_locales": {
-      "name": "forms_blocks_select_options_locales",
-      "schema": "",
-      "columns": {
-        "label": {
-          "name": "label",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "_locale": {
-          "name": "_locale",
-          "type": "_locales",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "forms_blocks_select_options_locales_parent_id_fk": {
-          "name": "forms_blocks_select_options_locales_parent_id_fk",
-          "tableFrom": "forms_blocks_select_options_locales",
-          "tableTo": "forms_blocks_select_options",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "forms_blocks_select_options_locales_locale_parent_id_unique": {
-          "name": "forms_blocks_select_options_locales_locale_parent_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "_locale",
-            "_parent_id"
-          ]
-        }
-      }
     },
     "forms_blocks_select": {
       "name": "forms_blocks_select",
@@ -6398,20 +6319,32 @@
           "primaryKey": true,
           "notNull": true
         },
-        "name": {
-          "name": "name",
+        "select_name": {
+          "name": "select_name",
           "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "width": {
-          "name": "width",
-          "type": "numeric",
           "primaryKey": false,
           "notNull": false
         },
-        "required": {
-          "name": "required",
+        "select_placeholder": {
+          "name": "select_placeholder",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "select_help_text": {
+          "name": "select_help_text",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "select_label": {
+          "name": "select_label",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "select_required": {
+          "name": "select_required",
           "type": "boolean",
           "primaryKey": false,
           "notNull": false
@@ -6468,18 +6401,6 @@
       "name": "forms_blocks_select_locales",
       "schema": "",
       "columns": {
-        "label": {
-          "name": "label",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "default_value": {
-          "name": "default_value",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
         "id": {
           "name": "id",
           "type": "serial",
@@ -6527,8 +6448,84 @@
         }
       }
     },
-    "forms_blocks_state": {
-      "name": "forms_blocks_state",
+    "forms_blocks_checkbox_checkbox_checkbox_options": {
+      "name": "forms_blocks_checkbox_checkbox_checkbox_options",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_locale": {
+          "name": "_locale",
+          "type": "_locales",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "option": {
+          "name": "option",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "forms_blocks_checkbox_checkbox_checkbox_options_order_idx": {
+          "name": "forms_blocks_checkbox_checkbox_checkbox_options_order_idx",
+          "columns": [
+            "_order"
+          ],
+          "isUnique": false
+        },
+        "forms_blocks_checkbox_checkbox_checkbox_options_parent_id_idx": {
+          "name": "forms_blocks_checkbox_checkbox_checkbox_options_parent_id_idx",
+          "columns": [
+            "_parent_id"
+          ],
+          "isUnique": false
+        },
+        "forms_blocks_checkbox_checkbox_checkbox_options_locale_idx": {
+          "name": "forms_blocks_checkbox_checkbox_checkbox_options_locale_idx",
+          "columns": [
+            "_locale"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "forms_blocks_checkbox_checkbox_checkbox_options_parent_id_fk": {
+          "name": "forms_blocks_checkbox_checkbox_checkbox_options_parent_id_fk",
+          "tableFrom": "forms_blocks_checkbox_checkbox_checkbox_options",
+          "tableTo": "forms_blocks_checkbox",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "forms_blocks_checkbox": {
+      "name": "forms_blocks_checkbox",
       "schema": "",
       "columns": {
         "_order": {
@@ -6555,20 +6552,32 @@
           "primaryKey": true,
           "notNull": true
         },
-        "name": {
-          "name": "name",
+        "checkbox_name": {
+          "name": "checkbox_name",
           "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "width": {
-          "name": "width",
-          "type": "numeric",
           "primaryKey": false,
           "notNull": false
         },
-        "required": {
-          "name": "required",
+        "checkbox_placeholder": {
+          "name": "checkbox_placeholder",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "checkbox_help_text": {
+          "name": "checkbox_help_text",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "checkbox_label": {
+          "name": "checkbox_label",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "checkbox_required": {
+          "name": "checkbox_required",
           "type": "boolean",
           "primaryKey": false,
           "notNull": false
@@ -6581,22 +6590,22 @@
         }
       },
       "indexes": {
-        "forms_blocks_state_order_idx": {
-          "name": "forms_blocks_state_order_idx",
+        "forms_blocks_checkbox_order_idx": {
+          "name": "forms_blocks_checkbox_order_idx",
           "columns": [
             "_order"
           ],
           "isUnique": false
         },
-        "forms_blocks_state_parent_id_idx": {
-          "name": "forms_blocks_state_parent_id_idx",
+        "forms_blocks_checkbox_parent_id_idx": {
+          "name": "forms_blocks_checkbox_parent_id_idx",
           "columns": [
             "_parent_id"
           ],
           "isUnique": false
         },
-        "forms_blocks_state_path_idx": {
-          "name": "forms_blocks_state_path_idx",
+        "forms_blocks_checkbox_path_idx": {
+          "name": "forms_blocks_checkbox_path_idx",
           "columns": [
             "_path"
           ],
@@ -6604,9 +6613,9 @@
         }
       },
       "foreignKeys": {
-        "forms_blocks_state_parent_id_fk": {
-          "name": "forms_blocks_state_parent_id_fk",
-          "tableFrom": "forms_blocks_state",
+        "forms_blocks_checkbox_parent_id_fk": {
+          "name": "forms_blocks_checkbox_parent_id_fk",
+          "tableFrom": "forms_blocks_checkbox",
           "tableTo": "forms",
           "columnsFrom": [
             "_parent_id"
@@ -6621,16 +6630,10 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "forms_blocks_state_locales": {
-      "name": "forms_blocks_state_locales",
+    "forms_blocks_checkbox_locales": {
+      "name": "forms_blocks_checkbox_locales",
       "schema": "",
       "columns": {
-        "label": {
-          "name": "label",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
         "id": {
           "name": "id",
           "type": "serial",
@@ -6652,10 +6655,10 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "forms_blocks_state_locales_parent_id_fk": {
-          "name": "forms_blocks_state_locales_parent_id_fk",
-          "tableFrom": "forms_blocks_state_locales",
-          "tableTo": "forms_blocks_state",
+        "forms_blocks_checkbox_locales_parent_id_fk": {
+          "name": "forms_blocks_checkbox_locales_parent_id_fk",
+          "tableFrom": "forms_blocks_checkbox_locales",
+          "tableTo": "forms_blocks_checkbox",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -6668,322 +6671,8 @@
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
-        "forms_blocks_state_locales_locale_parent_id_unique": {
-          "name": "forms_blocks_state_locales_locale_parent_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "_locale",
-            "_parent_id"
-          ]
-        }
-      }
-    },
-    "forms_blocks_text": {
-      "name": "forms_blocks_text",
-      "schema": "",
-      "columns": {
-        "_order": {
-          "name": "_order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_path": {
-          "name": "_path",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "id": {
-          "name": "id",
-          "type": "varchar",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "name": {
-          "name": "name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "width": {
-          "name": "width",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "required": {
-          "name": "required",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "block_name": {
-          "name": "block_name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {
-        "forms_blocks_text_order_idx": {
-          "name": "forms_blocks_text_order_idx",
-          "columns": [
-            "_order"
-          ],
-          "isUnique": false
-        },
-        "forms_blocks_text_parent_id_idx": {
-          "name": "forms_blocks_text_parent_id_idx",
-          "columns": [
-            "_parent_id"
-          ],
-          "isUnique": false
-        },
-        "forms_blocks_text_path_idx": {
-          "name": "forms_blocks_text_path_idx",
-          "columns": [
-            "_path"
-          ],
-          "isUnique": false
-        }
-      },
-      "foreignKeys": {
-        "forms_blocks_text_parent_id_fk": {
-          "name": "forms_blocks_text_parent_id_fk",
-          "tableFrom": "forms_blocks_text",
-          "tableTo": "forms",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "forms_blocks_text_locales": {
-      "name": "forms_blocks_text_locales",
-      "schema": "",
-      "columns": {
-        "label": {
-          "name": "label",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "default_value": {
-          "name": "default_value",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "_locale": {
-          "name": "_locale",
-          "type": "_locales",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "forms_blocks_text_locales_parent_id_fk": {
-          "name": "forms_blocks_text_locales_parent_id_fk",
-          "tableFrom": "forms_blocks_text_locales",
-          "tableTo": "forms_blocks_text",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "forms_blocks_text_locales_locale_parent_id_unique": {
-          "name": "forms_blocks_text_locales_locale_parent_id_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "_locale",
-            "_parent_id"
-          ]
-        }
-      }
-    },
-    "forms_blocks_textarea": {
-      "name": "forms_blocks_textarea",
-      "schema": "",
-      "columns": {
-        "_order": {
-          "name": "_order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_path": {
-          "name": "_path",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "id": {
-          "name": "id",
-          "type": "varchar",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "name": {
-          "name": "name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "width": {
-          "name": "width",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "required": {
-          "name": "required",
-          "type": "boolean",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "block_name": {
-          "name": "block_name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {
-        "forms_blocks_textarea_order_idx": {
-          "name": "forms_blocks_textarea_order_idx",
-          "columns": [
-            "_order"
-          ],
-          "isUnique": false
-        },
-        "forms_blocks_textarea_parent_id_idx": {
-          "name": "forms_blocks_textarea_parent_id_idx",
-          "columns": [
-            "_parent_id"
-          ],
-          "isUnique": false
-        },
-        "forms_blocks_textarea_path_idx": {
-          "name": "forms_blocks_textarea_path_idx",
-          "columns": [
-            "_path"
-          ],
-          "isUnique": false
-        }
-      },
-      "foreignKeys": {
-        "forms_blocks_textarea_parent_id_fk": {
-          "name": "forms_blocks_textarea_parent_id_fk",
-          "tableFrom": "forms_blocks_textarea",
-          "tableTo": "forms",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "forms_blocks_textarea_locales": {
-      "name": "forms_blocks_textarea_locales",
-      "schema": "",
-      "columns": {
-        "label": {
-          "name": "label",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "default_value": {
-          "name": "default_value",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "_locale": {
-          "name": "_locale",
-          "type": "_locales",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "forms_blocks_textarea_locales_parent_id_fk": {
-          "name": "forms_blocks_textarea_locales_parent_id_fk",
-          "tableFrom": "forms_blocks_textarea_locales",
-          "tableTo": "forms_blocks_textarea",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "forms_blocks_textarea_locales_locale_parent_id_unique": {
-          "name": "forms_blocks_textarea_locales_locale_parent_id_unique",
+        "forms_blocks_checkbox_locales_locale_parent_id_unique": {
+          "name": "forms_blocks_checkbox_locales_locale_parent_id_unique",
           "nullsNotDistinct": false,
           "columns": [
             "_locale",
@@ -8546,8 +8235,8 @@
         "dark": "dark"
       }
     },
-    "enum_pages_blocks_card_grid_block_block_config_theme": {
-      "name": "enum_pages_blocks_card_grid_block_block_config_theme",
+    "enum_pages_blocks_form_block_block_config_theme": {
+      "name": "enum_pages_blocks_form_block_block_config_theme",
       "values": {
         "_": "_",
         "light": "light",
@@ -8596,6 +8285,14 @@
         "2.25rem": "2.25rem",
         "1.125rem": "1.125rem",
         "unset": "unset"
+      }
+    },
+    "enum_pages_blocks_card_grid_block_block_config_theme": {
+      "name": "enum_pages_blocks_card_grid_block_block_config_theme",
+      "values": {
+        "_": "_",
+        "light": "light",
+        "dark": "dark"
       }
     },
     "undefined_cta_t": {
@@ -8758,6 +8455,14 @@
     "enum__pages_v_version_theme": {
       "name": "enum__pages_v_version_theme",
       "values": {
+        "light": "light",
+        "dark": "dark"
+      }
+    },
+    "enum__pages_v_blocks_form_block_block_config_theme": {
+      "name": "enum__pages_v_blocks_form_block_block_config_theme",
+      "values": {
+        "_": "_",
         "light": "light",
         "dark": "dark"
       }
