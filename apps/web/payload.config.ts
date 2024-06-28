@@ -12,6 +12,7 @@ import Nav from '@mono/web/globals/Layout/Layout.config';
 import { translator } from '@payload-enchants/translator';
 import { googleResolver } from '@payload-enchants/translator/resolvers/google';
 import { postgresAdapter } from '@payloadcms/db-postgres';
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 import type { FeatureProviderServer } from '@payloadcms/richtext-lexical';
@@ -45,6 +46,13 @@ import SelectBlock from './src/payload/fields/Inputs/Select/Select.config';
 import TextAreaBlock from './src/payload/fields/Inputs/TextArea/TextArea.config';
 import TextInputBlock from './src/payload/fields/Inputs/TextInput/TextInput.config';
 
+export const email = {
+  fromName: 'Admin',
+  fromAddress: 'admin@example.com',
+  logMockCredentials: true,
+
+  transport: {}
+};
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -261,6 +269,18 @@ export default buildConfig({
     }
   },
   secret: process.env.PAYLOAD_SECRET || '',
+  email: nodemailerAdapter({
+    defaultFromAddress: 'admin@graveflex.com',
+    defaultFromName: 'Payload',
+    transportOptions: {
+      host: process.env.SMTP_HOST,
+      port: 587,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS
+      }
+    }
+  }),
   typescript: {
     outputFile: path.resolve(dirname, '../../packages/types/payload-types.ts')
   },
