@@ -67,10 +67,10 @@ const TextArea = styled.textarea`
   `}
 `;
 
-function FormBlock({ form: formFromProps, content }: FormBlockProps) {
+function FormBlock({ form: formProps, content }: FormBlockProps) {
   function isFormValid(
     form: unknown
-  ): form is Exclude<typeof formFromProps, undefined | number> {
+  ): form is Exclude<typeof formProps, undefined | number> {
     return form !== undefined && typeof form !== 'number';
   }
   const {
@@ -79,7 +79,7 @@ function FormBlock({ form: formFromProps, content }: FormBlockProps) {
     confirmationType = '',
     redirect = undefined,
     confirmationMessage = ''
-  } = isFormValid(formFromProps) ? formFromProps : {};
+  } = isFormValid(formProps) ? formProps : {};
 
   const [isLoading, setIsLoading] = useState(false);
   const [hasSubmitted, setHasSubmitted] = useState<boolean>();
@@ -165,12 +165,8 @@ function FormBlock({ form: formFromProps, content }: FormBlockProps) {
   const [textLength, setTextLength] = useState(0);
 
   const memoizedInputs = useMemo(() => {
-    if (
-      formFromProps &&
-      typeof formFromProps !== 'number' &&
-      formFromProps.fields
-    ) {
-      return formFromProps.fields.map((input) => {
+    if (formProps && typeof formProps !== 'number' && formProps.fields) {
+      return formProps.fields.map((input) => {
         if (input?.blockType === 'textInput') {
           return (
             <Controller
@@ -299,7 +295,7 @@ function FormBlock({ form: formFromProps, content }: FormBlockProps) {
       });
     }
     return null;
-  }, [formFromProps]);
+  }, [formProps]);
 
   return (
     <Section>
