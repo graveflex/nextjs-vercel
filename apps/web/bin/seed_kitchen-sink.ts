@@ -2,6 +2,7 @@ import { faker } from '@faker-js/faker';
 import type {
   CardGridBlockT,
   FAQBlockT,
+  GalleryGridBlockT,
   HeroBlockT,
   MarkdownBlockT,
   SectionHeaderBlockT,
@@ -287,6 +288,12 @@ const faqBlock = {
   ]
 };
 
+const galleryGridBlock = {
+  id: '6669d7bd6d58e03f8e7c107c',
+  blockName: 'Gallery Grid Block',
+  blockType: 'galleryGridBlock'
+};
+
 const seedKitchenSinkPage = async ({ payload, count = 10 }: SeedFnProps) => {
   console.info(`@-->seeding the kitchenSink!`);
 
@@ -387,7 +394,20 @@ const seedKitchenSinkPage = async ({ payload, count = 10 }: SeedFnProps) => {
             }
           ]
         },
-        faqBlock as FAQBlockT
+        faqBlock as FAQBlockT,
+        {
+          ...(galleryGridBlock as GalleryGridBlockT),
+          blockName: 'Gallery Grid Block',
+          blockConfig: {
+            contentWidth: 'xxl'
+          },
+          galleryImages: [
+            { id: '0', image: images[0].id },
+            { id: '1', image: images[1].id },
+            { id: '2', image: images[3].id },
+            { id: '3', image: images[3].id }
+          ]
+        }
       ]
     }
   });
