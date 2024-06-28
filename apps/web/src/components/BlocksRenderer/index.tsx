@@ -21,6 +21,8 @@ const blockList = {
     ...defaultOpts
   }),
   videoBlock: dynamic(() => import('@mono/web/blocks/VideoBlock'), {
+    ...defaultOpts
+  }),
   formBlock: dynamic(() => import('@mono/web/blocks/FormBlock'), {
     ...defaultOpts
   }),
