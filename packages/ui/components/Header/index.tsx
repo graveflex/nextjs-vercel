@@ -140,16 +140,13 @@ const NavContentWrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: strart;
+    align-items: start;
     padding: 0 2rem;
     gap: 2rem;
 
-    &:last-child {
-      align-self: center;
-    }
-
     ${mq.md`
       flex-direction: row;
+      align-items: center;
       gap: 1rem;
     `}
   `}
