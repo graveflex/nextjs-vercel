@@ -193,11 +193,9 @@ function FormBlock({ form: formFromProps, content }: FormBlockProps) {
                   return (
                     <Controller
                       key={input?.textinput?.name}
-                      name={input?.textinput?.name}
+                      name={input?.textinput?.name || 'textInput'}
                       rules={{ required: true }}
-                      render={({
-                        field
-                      }: UseControllerReturn<string, string>['field']) => (
+                      render={({ field }) => (
                         <TextInput
                           label={
                             input?.textinput?.required &&
@@ -205,10 +203,11 @@ function FormBlock({ form: formFromProps, content }: FormBlockProps) {
                               ? `${input?.textinput?.label}*`
                               : input?.textinput?.label
                           }
-                          placeholder={input?.textinput?.placeholder}
+                          placeholder={
+                            input?.textinput?.placeholder || undefined
+                          }
                           helpText={input?.textinput?.helpText}
-                          name={input?.textinput?.name}
-                          id={input?.textinput?.name}
+                          id={input?.textinput?.name || undefined}
                           className="input"
                           {...field}
                         />
@@ -220,20 +219,17 @@ function FormBlock({ form: formFromProps, content }: FormBlockProps) {
                   return (
                     <Controller
                       key={input?.select?.name}
-                      name={input?.select?.name}
-                      render={({
-                        field
-                      }: UseControllerReturn<string, string>['field']) => (
+                      name={input?.select?.name || 'select'}
+                      render={({ field }) => (
                         <Select
                           label={
                             input?.select?.required && input?.select?.label
                               ? `${input?.select?.label}*`
                               : input?.select?.label
                           }
-                          id={input?.select?.name}
-                          {...field}
                           defaultValue=""
                           className="input"
+                          {...field}
                         >
                           {(input?.select?.selectOptions ?? []).map(
                             (option) => (
@@ -262,18 +258,16 @@ function FormBlock({ form: formFromProps, content }: FormBlockProps) {
                   return (
                     <Controller
                       key={input?.checkbox?.name}
-                      name={input?.checkbox?.name}
-                      render={({
-                        field
-                      }: UseControllerReturn<string, string>['field']) => (
+                      name={input?.checkbox?.name || 'checkbox'}
+                      render={({ field }) => (
                         <CheckboxGroup
                           label={
                             input?.checkbox?.required && input?.checkbox?.label
                               ? `${input?.checkbox?.label}*`
                               : input?.checkbox?.label
                           }
-                          {...field}
                           options={transformedOptions}
+                          {...field}
                         />
                       )}
                     />
@@ -283,38 +277,43 @@ function FormBlock({ form: formFromProps, content }: FormBlockProps) {
                   return (
                     <Controller
                       key={input?.id}
-                      name={input?.name}
+                      name={input?.name || 'textArea'}
                       rules={{ required: true }}
-                      id={input?.name}
-                      render={({
-                        field
-                      }: UseControllerReturn<string, string>['field']) => (
-                        <InputGroup>
-                          <label>
-                            {input?.required && input?.label
-                              ? `${input?.label}*`
-                              : input?.label}
-                          </label>
-                          <TextArea
-                            placeholder={input?.placeholder}
-                            name={input?.name}
-                            id={input?.name}
-                            maxLength={500}
-                            onChange={(e) => {
-                              setTextLength(e.target.value.length);
-                              field.onChange(e);
-                            }}
-                            className="input"
-                            {...field}
-                          />
-                          <span style={{ justifySelf: 'end' }}>
-                            {textLength}/500
-                          </span>
-                        </InputGroup>
-                      )}
+                      render={({ field }) => {
+                        const { onChange, ...restField } = field;
+
+                        const handleChange = (
+                          e: React.ChangeEvent<HTMLTextAreaElement>
+                        ) => {
+                          onChange(e);
+                          setTextLength(e.target.value.length);
+                        };
+
+                        return (
+                          <InputGroup>
+                            <label>
+                              {input?.required && input?.label
+                                ? `${input?.label}*`
+                                : input?.label}
+                            </label>
+                            <TextArea
+                              placeholder={input?.placeholder || undefined}
+                              id={input?.name || 'textArea'}
+                              maxLength={500}
+                              onChange={handleChange}
+                              className="input"
+                              {...restField}
+                            />
+                            <span style={{ justifySelf: 'end' }}>
+                              {textLength}/500
+                            </span>
+                          </InputGroup>
+                        );
+                      }}
                     />
                   );
                 }
+
                 return null;
               })}
           </InputWrapper>

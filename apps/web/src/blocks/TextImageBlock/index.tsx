@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import type { UseControllerReturn } from 'react-hook-form';
 import { Controller } from 'react-hook-form';
 import type {
   Image,
@@ -234,17 +233,13 @@ function TextImageBlock({
               cta={form?.cta}
             >
               <Controller
-                name={form?.textinput?.name}
+                name={form?.textinput?.name || 'textInput'}
                 rules={{ required: true }}
-                render={({
-                  field
-                }: UseControllerReturn<string, string>['field']) => (
+                render={({ field }) => (
                   <TextInput
-                    label={form?.textinput?.label}
-                    placeholder={form?.textinput?.placeholder}
+                    label={form?.textinput?.label || undefined}
+                    placeholder={form?.textinput?.placeholder || undefined}
                     helpText={form?.textinput?.helpText}
-                    name={form?.textinput?.name}
-                    id={form?.textinput?.name}
                     {...field}
                   />
                 )}
