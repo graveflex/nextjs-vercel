@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import type {
   BannerContent,
   CollapsibleMenu,
@@ -141,7 +141,7 @@ const NavContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 0.5rem;
 
     ${mq.md`
       flex-direction: row;
@@ -177,48 +177,94 @@ const ItemWrapper = styled.div`
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  margin: 0 1rem;
+  ${({ theme: { mq } }) => mq.md`
+    margin: 0;
+  `}
 `;
 
 const NavDropdownWrapper = styled.div`
   display: none;
+
+  ${({ theme: { mq } }) => mq.md`
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    background-color: white;
+    padding: 1.5rem 1.63rem;
+    align-items: center;
+    z-index: 5;
+    position: absolute;
+    top: 100px;
+
+    &:hover {
+      display: flex;
+    }
+  `}
+`;
+
+const MobileNavDropdownWrapper = styled.div`
+  display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  background-color: white;
-  padding: 1.5rem 1.63rem;
-  align-items: center;
-  z-index: 5;
-  position: absolute;
-  top: 100px;
+  margin: 1rem;
+  width: 100%;
+
+  ${({ theme: { mq } }) => mq.md`
+    display: none;
+  `}
 `;
 
 const ItemLabel = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  justify-content: center;
-
+  display: grid;
+  grid-template-columns: 1fr min-content;
+  width: 100%;
+  justify-content: space-around;
+  border-bottom: 1px solid currentColor;
+  padding: 1rem 0;
   &:hover {
     cursor: pointer;
-    .dropdown-content {
-      && {
-        display: flex;
-      }
-    }
-
     border-bottom: 1px solid currentColor;
-
-    svg {
-      transform: rotate(180deg);
-    }
+    opacity: 0.5;
   }
+  ${({ theme: { mq } }) => mq.md`
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-bottom: 1px solid transparent;
+    width: unset;
+
+  `}
 `;
 
 const NavDropdownItem = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  margin: 0 1rem;
+  width: 100%;
+
+  ${({ theme: { mq } }) => mq.md`
+    width: unset;
+    margin: 0;
+    height: 100%;
+    justify-content: center;
+    &:hover ${NavDropdownWrapper} {
+      display: flex;
+    }
+
+    &:hover ${ItemLabel} {
+      svg {
+        transform: rotate(180deg);
+        transition: transform 0.25s;
+      }
+    }
+  `}
 `;
 
 type Buttons = {
@@ -249,7 +295,9 @@ function NavContent({
   iconItems,
   ctaButton
 }: Buttons) {
-  // const [openDropdown, setOpenDropdown] = useState(false);
+  const [curr, setCurr] = useState<string | null | undefined>('');
+  const [openDropdown, setOpenDropdown] = useState(false);
+
   return (
     <NavContentWrapper>
       {collapsibleMenu?.sections &&
@@ -257,11 +305,14 @@ function NavContent({
           return (
             <NavDropdownItem key={`collapsible-${item.id}`}>
               <ItemWrapper>
-                <ItemLabel>
-                  <p>
-                    {item.label}
-                    <RenderIcon name="CaretDown" color="#FFFFFF" size="20" />
-                  </p>
+                <ItemLabel
+                  onClick={() => {
+                    setOpenDropdown(!openDropdown);
+                    setCurr(item.id);
+                  }}
+                >
+                  <p>{item.label}</p>
+                  <RenderIcon name="CaretDown" color="#FFFFFF" size="20" />
                 </ItemLabel>
                 <NavDropdownWrapper className="dropdown-content">
                   {item?.links &&
@@ -275,6 +326,20 @@ function NavContent({
                       );
                     })}
                 </NavDropdownWrapper>
+                {!!openDropdown && item.id === curr && (
+                  <MobileNavDropdownWrapper>
+                    {item?.links &&
+                      item.links.map((link) => {
+                        return (
+                          <CtaLink
+                            $color="fg"
+                            key={`link-${link.id}`}
+                            link={link.link}
+                          />
+                        );
+                      })}
+                  </MobileNavDropdownWrapper>
+                )}
               </ItemWrapper>
             </NavDropdownItem>
           );
