@@ -2,7 +2,7 @@
 
 'use client';
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import type { FormBlockT as PayloadType } from '@mono/types/payload-types';
@@ -164,6 +164,143 @@ function FormBlock({ form: formFromProps, content }: FormBlockProps) {
 
   const [textLength, setTextLength] = useState(0);
 
+  const memoizedInputs = useMemo(() => {
+    if (
+      formFromProps &&
+      typeof formFromProps !== 'number' &&
+      formFromProps.fields
+    ) {
+      return formFromProps.fields.map((input) => {
+        if (input?.blockType === 'textInput') {
+          return (
+            <Controller
+              key={input?.textinput?.name}
+              name={input?.textinput?.name || 'textInput'}
+              rules={{ required: true }}
+              render={({ field }) => (
+                <TextInput
+                  label={
+                    input?.textinput?.required && input?.textinput?.label
+                      ? `${input?.textinput?.label}*`
+                      : input?.textinput?.label
+                  }
+                  placeholder={input?.textinput?.placeholder || undefined}
+                  helpText={input?.textinput?.helpText}
+                  id={input?.textinput?.name || undefined}
+                  className="input"
+                  {...field}
+                />
+              )}
+            />
+          );
+        }
+        if (input?.blockType === 'select' && input?.select?.selectOptions) {
+          const selectOptions = [
+            { id: 0, value: '', option: '', disabled: true },
+            ...input.select.selectOptions
+          ];
+          return (
+            <Controller
+              key={input?.select?.name}
+              name={input?.select?.name || 'select'}
+              render={({ field }) => (
+                <Select
+                  label={
+                    input?.select?.required && input?.select?.label
+                      ? `${input?.select?.label}*`
+                      : input?.select?.label
+                  }
+                  defaultValue=""
+                  className="input"
+                  {...field}
+                >
+                  {(selectOptions ?? []).map((option) => (
+                    <option
+                      key={option?.id}
+                      value={option?.option || undefined}
+                      disabled={option?.option === ''}
+                    >
+                      {option.option}
+                    </option>
+                  ))}
+                </Select>
+              )}
+            />
+          );
+        }
+        if (
+          input?.blockType === 'checkbox' &&
+          input?.checkbox?.checkboxOptions
+        ) {
+          const transformedOptions = input?.checkbox?.checkboxOptions.map(
+            (option, index) => ({
+              value: (index + 1).toString(),
+              label: option.option
+            })
+          );
+          return (
+            <Controller
+              key={input?.checkbox?.name}
+              name={input?.checkbox?.name || 'checkbox'}
+              render={({ field }) => (
+                <CheckboxGroup
+                  label={
+                    input?.checkbox?.required && input?.checkbox?.label
+                      ? `${input?.checkbox?.label}*`
+                      : input?.checkbox?.label
+                  }
+                  options={transformedOptions}
+                  {...field}
+                />
+              )}
+            />
+          );
+        }
+        if (input?.blockType === 'textArea') {
+          return (
+            <Controller
+              key={input?.id}
+              name={input?.name || 'textArea'}
+              rules={{ required: true }}
+              render={({ field }) => {
+                const { onChange, ...restField } = field;
+
+                const handleChange = (
+                  e: React.ChangeEvent<HTMLTextAreaElement>
+                ) => {
+                  onChange(e);
+                  setTextLength(e.target.value.length);
+                };
+
+                return (
+                  <InputGroup>
+                    <label>
+                      {input?.required && input?.label
+                        ? `${input?.label}*`
+                        : input?.label}
+                    </label>
+                    <TextArea
+                      placeholder={input?.placeholder || undefined}
+                      id={input?.name || 'textArea'}
+                      maxLength={500}
+                      onChange={handleChange}
+                      className="input"
+                      {...restField}
+                    />
+                    <span style={{ justifySelf: 'end' }}>{textLength}/500</span>
+                  </InputGroup>
+                );
+              }}
+            />
+          );
+        }
+
+        return null;
+      });
+    }
+    return null;
+  }, [formFromProps]);
+
   return (
     <Section>
       <InnerWrapper>
@@ -186,143 +323,7 @@ function FormBlock({ form: formFromProps, content }: FormBlockProps) {
               }
             }}
           >
-            {formFromProps &&
-              typeof formFromProps !== 'number' &&
-              formFromProps.fields &&
-              formFromProps.fields.map((input) => {
-                if (input?.blockType === 'textInput') {
-                  return (
-                    <Controller
-                      key={input?.textinput?.name}
-                      name={input?.textinput?.name || 'textInput'}
-                      rules={{ required: true }}
-                      render={({ field }) => (
-                        <TextInput
-                          label={
-                            input?.textinput?.required &&
-                            input?.textinput?.label
-                              ? `${input?.textinput?.label}*`
-                              : input?.textinput?.label
-                          }
-                          placeholder={
-                            input?.textinput?.placeholder || undefined
-                          }
-                          helpText={input?.textinput?.helpText}
-                          id={input?.textinput?.name || undefined}
-                          className="input"
-                          {...field}
-                        />
-                      )}
-                    />
-                  );
-                }
-                if (
-                  input?.blockType === 'select' &&
-                  input?.select?.selectOptions
-                ) {
-                  const selectOptions = [
-                    { id: 0, value: '', option: '', disabled: true },
-                    ...input.select.selectOptions
-                  ];
-                  return (
-                    <Controller
-                      key={input?.select?.name}
-                      name={input?.select?.name || 'select'}
-                      render={({ field }) => (
-                        <Select
-                          label={
-                            input?.select?.required && input?.select?.label
-                              ? `${input?.select?.label}*`
-                              : input?.select?.label
-                          }
-                          defaultValue=""
-                          className="input"
-                          {...field}
-                        >
-                          {(selectOptions ?? []).map((option) => (
-                            <option
-                              key={option?.id}
-                              value={option?.option || undefined}
-                              disabled={option?.option === ''}
-                            >
-                              {option.option}
-                            </option>
-                          ))}
-                        </Select>
-                      )}
-                    />
-                  );
-                }
-                if (
-                  input?.blockType === 'checkbox' &&
-                  input?.checkbox?.checkboxOptions
-                ) {
-                  const transformedOptions =
-                    input?.checkbox?.checkboxOptions.map((option, index) => ({
-                      value: (index + 1).toString(),
-                      label: option.option
-                    }));
-                  return (
-                    <Controller
-                      key={input?.checkbox?.name}
-                      name={input?.checkbox?.name || 'checkbox'}
-                      render={({ field }) => (
-                        <CheckboxGroup
-                          label={
-                            input?.checkbox?.required && input?.checkbox?.label
-                              ? `${input?.checkbox?.label}*`
-                              : input?.checkbox?.label
-                          }
-                          options={transformedOptions}
-                          {...field}
-                        />
-                      )}
-                    />
-                  );
-                }
-                if (input?.blockType === 'textArea') {
-                  return (
-                    <Controller
-                      key={input?.id}
-                      name={input?.name || 'textArea'}
-                      rules={{ required: true }}
-                      render={({ field }) => {
-                        const { onChange, ...restField } = field;
-
-                        const handleChange = (
-                          e: React.ChangeEvent<HTMLTextAreaElement>
-                        ) => {
-                          onChange(e);
-                          setTextLength(e.target.value.length);
-                        };
-
-                        return (
-                          <InputGroup>
-                            <label>
-                              {input?.required && input?.label
-                                ? `${input?.label}*`
-                                : input?.label}
-                            </label>
-                            <TextArea
-                              placeholder={input?.placeholder || undefined}
-                              id={input?.name || 'textArea'}
-                              maxLength={500}
-                              onChange={handleChange}
-                              className="input"
-                              {...restField}
-                            />
-                            <span style={{ justifySelf: 'end' }}>
-                              {textLength}/500
-                            </span>
-                          </InputGroup>
-                        );
-                      }}
-                    />
-                  );
-                }
-
-                return null;
-              })}
+            {memoizedInputs}
           </InputWrapper>
         )}
       </InnerWrapper>
