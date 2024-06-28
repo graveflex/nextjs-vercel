@@ -172,6 +172,55 @@ const MobileIconLink = styled.a`
   `}
 `;
 
+const ItemWrapper = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+`;
+
+const NavDropdownWrapper = styled.div`
+  display: none;
+  flex-direction: column;
+  gap: 0.25rem;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  background-color: white;
+  padding: 1.5rem 1.63rem;
+  align-items: center;
+  z-index: 5;
+  position: absolute;
+  top: 100px;
+`;
+
+const ItemLabel = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    cursor: pointer;
+    .dropdown-content {
+      && {
+        display: flex;
+      }
+    }
+
+    border-bottom: 1px solid currentColor;
+
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+`;
+
+const NavDropdownItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
 type Buttons = {
   collapsibleMenu?: CollapsibleMenu | null;
   flatMenu?: FlatMenu | null;
@@ -200,12 +249,35 @@ function NavContent({
   iconItems,
   ctaButton
 }: Buttons) {
+  // const [openDropdown, setOpenDropdown] = useState(false);
   return (
     <NavContentWrapper>
       {collapsibleMenu?.sections &&
         collapsibleMenu.sections.map((item) => {
-          console.log('COLLAPSIBLE MENU ITEM: ', item);
-          return null; // Replace this with the desired ReactNode
+          return (
+            <NavDropdownItem key={`collapsible-${item.id}`}>
+              <ItemWrapper>
+                <ItemLabel>
+                  <p>
+                    {item.label}
+                    <RenderIcon name="CaretDown" color="#FFFFFF" size="20" />
+                  </p>
+                </ItemLabel>
+                <NavDropdownWrapper className="dropdown-content">
+                  {item?.links &&
+                    item.links.map((link) => {
+                      return (
+                        <CtaLink
+                          $color="bg"
+                          key={`link-${link.id}`}
+                          link={link.link}
+                        />
+                      );
+                    })}
+                </NavDropdownWrapper>
+              </ItemWrapper>
+            </NavDropdownItem>
+          );
         })}
       {flatMenu &&
         flatMenu.map((item) => {
