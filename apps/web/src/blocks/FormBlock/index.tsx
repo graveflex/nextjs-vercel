@@ -99,10 +99,12 @@ function FormBlock({ form: formFromProps, content }: FormBlockProps) {
           return;
         }
 
-        const dataToSend = Object.entries(data.data).map(([name, value]) => ({
-          field: name,
-          value
-        }));
+        const dataToSend = Object.entries(data.data)
+          .filter(([, value]) => value !== undefined && value !== '')
+          .map(([name, value]) => ({
+            field: name,
+            value
+          }));
 
         // delay loading indicator by 1s
         loadingTimerID = setTimeout(() => {
@@ -214,7 +216,14 @@ function FormBlock({ form: formFromProps, content }: FormBlockProps) {
                     />
                   );
                 }
-                if (input?.blockType === 'select') {
+                if (
+                  input?.blockType === 'select' &&
+                  input?.select?.selectOptions
+                ) {
+                  const selectOptions = [
+                    { id: 0, value: '', option: '', disabled: true },
+                    ...input.select.selectOptions
+                  ];
                   return (
                     <Controller
                       key={input?.select?.name}
@@ -230,16 +239,15 @@ function FormBlock({ form: formFromProps, content }: FormBlockProps) {
                           className="input"
                           {...field}
                         >
-                          {(input?.select?.selectOptions ?? []).map(
-                            (option) => (
-                              <option
-                                key={option?.id}
-                                value={option?.option || undefined}
-                              >
-                                {option.option}
-                              </option>
-                            )
-                          )}
+                          {(selectOptions ?? []).map((option) => (
+                            <option
+                              key={option?.id}
+                              value={option?.option || undefined}
+                              disabled={option?.option === ''}
+                            >
+                              {option.option}
+                            </option>
+                          ))}
                         </Select>
                       )}
                     />
