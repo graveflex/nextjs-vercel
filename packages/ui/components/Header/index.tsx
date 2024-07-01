@@ -196,7 +196,7 @@ const NavDropdownWrapper = styled.div`
     align-items: center;
     z-index: 5;
     position: absolute;
-    top: 100px;
+    top: 93px;
 
     &:hover {
       display: flex;
@@ -216,7 +216,25 @@ const MobileNavDropdownWrapper = styled.div`
 `;
 
 const ItemLabel = styled.div`
-  display: grid;
+  display: none;
+  ${({ theme: { mq } }) => mq.md`
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid transparent;
+    &:hover {
+      cursor: pointer;
+      border-bottom: 1px solid currentColor;
+      opacity: 0.5;
+    }
+  `}
+`;
+
+const MobileItemLabel = s(ItemLabel)`
+  && {
+    display: grid;
+  }
   grid-template-columns: 1fr min-content;
   width: 100%;
   justify-content: space-around;
@@ -228,14 +246,9 @@ const ItemLabel = styled.div`
     opacity: 0.5;
   }
   ${({ theme: { mq } }) => mq.md`
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    border-bottom: 1px solid transparent;
-    width: unset;
-
+    && {
+      display: none;
+    }
   `}
 `;
 
@@ -247,7 +260,8 @@ const NavDropdownItem = styled.div<{ $open: boolean }>`
   ${({ $open }) => css`
     ${$open &&
     css`
-      ${ItemLabel} {
+      ${MobileItemLabel} {
+        display: grid;
         border-bottom: 1px solid transparent;
         svg {
           transform: rotate(180deg);
@@ -309,6 +323,8 @@ function NavContent({
 }: Buttons) {
   const [curr, setCurr] = useState<string | null | undefined>('');
   const [openDropdown, setOpenDropdown] = useState(false);
+
+  console.log('open', openDropdown);
   return (
     <NavContentWrapper>
       {collapsibleMenu?.sections &&
@@ -321,7 +337,11 @@ function NavContent({
               $open={!!itemIsOpen}
             >
               <ItemWrapper>
-                <ItemLabel
+                <ItemLabel>
+                  <p>{item.label}</p>
+                  <RenderIcon name="CaretDown" color="#FFFFFF" size="20" />
+                </ItemLabel>
+                <MobileItemLabel
                   onClick={() => {
                     setOpenDropdown(!openDropdown);
                     setCurr(item.id);
@@ -329,7 +349,7 @@ function NavContent({
                 >
                   <p>{item.label}</p>
                   <RenderIcon name="CaretDown" color="#FFFFFF" size="20" />
-                </ItemLabel>
+                </MobileItemLabel>
                 <NavDropdownWrapper className="dropdown-content">
                   {item?.links &&
                     item.links.map((link) => {
