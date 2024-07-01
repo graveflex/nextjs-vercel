@@ -6,7 +6,7 @@ settings:
 
 overrides:
   '@payloadcms/db-postgres': 3.0.0-beta.36
-  '@payloadcms/live-preview': 3.0.0-beta.36
+  '@payloadcms/live-preview': 3.0.0-canary.f83d96a
   '@payloadcms/live-preview-react': 3.0.0-beta.36
   '@payloadcms/richtext-lexical': 3.0.0-beta.36
   '@payloadcms/plugin-cloud-storage': 3.0.0-beta.36
@@ -241,8 +241,8 @@ importers:
         specifier: 3.0.0-beta.36
         version: 3.0.0-beta.36(@types/react@18.3.3)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))(react@18.3.1)
       '@payloadcms/live-preview':
-        specifier: 3.0.0-beta.36
-        version: 3.0.0-beta.36
+        specifier: 3.0.0-canary.f83d96a
+        version: 3.0.0-canary.f83d96a
       '@payloadcms/live-preview-react':
         specifier: 3.0.0-beta.36
         version: 3.0.0-beta.36(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2562,8 +2562,8 @@ packages:
       react: 18.3.1
       react-dom: 18.3.1
 
-  '@payloadcms/live-preview@3.0.0-beta.36':
-    resolution: {integrity: sha512-rGD6uIp6oUPgmgtvTLZFTsPHKL/oUgfP9Dggh+jcQuypZkUIy2jQ1ZzLXBAiQTfsvGih84xwV9egiBhERFjPuA==}
+  '@payloadcms/live-preview@3.0.0-canary.f83d96a':
+    resolution: {integrity: sha512-s5r46l8/UZAhJPyEPvb/G7BczHGyi8cO1g8lTDa02hzl0QGWPCa+BTktncEvx+OE4uhDnoKQGUoixN3NHJISHw==}
 
   '@payloadcms/next@3.0.0-beta.36':
     resolution: {integrity: sha512-5582JVeMh55wYEsHAwHfqupaQcJZ995PE50s5KJqv+Rxz7ZWJlXEqxSD3h2sFJcyu39EQlcNxhkMtM9EnrEIVg==}
@@ -5931,8 +5931,8 @@ packages:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
     engines: {node: '>= 0.6'}
 
-  fp-ts@2.16.6:
-    resolution: {integrity: sha512-v7w209VPj4L6pPn/ftFRJu31Oa8QagwcVw7BZmLCUWU4AQoc954rX9ogSIahDf67Pg+GjPbkW/Kn9XWnlWJG0g==}
+  fp-ts@2.16.7:
+    resolution: {integrity: sha512-Xiux+4mHHPj32/mrqN3XIIqEKk/MousgoC2FIaCwehpPjBI4oDrLvQEyQ/2T1sbTe0s/YIQqF98z+uHJLVoS9Q==}
 
   framer-motion@11.2.10:
     resolution: {integrity: sha512-/gr3PLZUVFCc86a9MqCUboVrALscrdluzTb3yew+2/qKBU8CX6nzs918/SRBRCqaPbx0TZP10CB6yFgK2C5cYQ==}
@@ -6897,6 +6897,7 @@ packages:
 
   libsql@0.3.19:
     resolution: {integrity: sha512-Aj5cQ5uk/6fHdmeW0TiXK42FqUlwx7ytmMLPSaUQPin5HKKKuUPD62MAbN4OEweGBBI7q1BekoEN4gPUEL6MZA==}
+    cpu: [x64, arm64, wasm32]
     os: [darwin, linux, win32]
 
   lines-and-columns@1.2.4:
@@ -11593,11 +11594,11 @@ snapshots:
 
   '@payloadcms/live-preview-react@3.0.0-beta.36(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@payloadcms/live-preview': 3.0.0-beta.36
+      '@payloadcms/live-preview': 3.0.0-canary.f83d96a
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@payloadcms/live-preview@3.0.0-beta.36': {}
+  '@payloadcms/live-preview@3.0.0-canary.f83d96a': {}
 
   '@payloadcms/next@3.0.0-beta.36(@types/react@18.3.3)(graphql@16.8.2)(monaco-editor@0.38.0)(next@14.3.0-canary.28(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(typescript@5.4.5)':
     dependencies:
@@ -11900,7 +11901,7 @@ snapshots:
   '@refract-ui/core@1.0.1-alpha.43':
     dependencies:
       csstype: 3.1.3
-      fp-ts: 2.16.6
+      fp-ts: 2.16.7
       tinycolor2: 1.6.0
       type-fest: 4.20.1
       utility-types: 3.11.0
@@ -16083,7 +16084,7 @@ snapshots:
 
   forwarded@0.2.0: {}
 
-  fp-ts@2.16.6: {}
+  fp-ts@2.16.7: {}
 
   framer-motion@11.2.10(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
