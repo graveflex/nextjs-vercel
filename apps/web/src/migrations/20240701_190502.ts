@@ -109,7 +109,8 @@ CREATE TABLE IF NOT EXISTS "forms_blocks_select_select_select_options" (
 	"_parent_id" varchar NOT NULL,
 	"_locale" "_locales" NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
-	"option" varchar
+	"option" varchar,
+	"value" varchar
 );
 
 CREATE TABLE IF NOT EXISTS "forms_blocks_select" (
@@ -137,7 +138,8 @@ CREATE TABLE IF NOT EXISTS "forms_blocks_checkbox_checkbox_checkbox_options" (
 	"_parent_id" varchar NOT NULL,
 	"_locale" "_locales" NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
-	"option" varchar
+	"label" varchar,
+	"value" varchar
 );
 
 CREATE TABLE IF NOT EXISTS "forms_blocks_checkbox" (

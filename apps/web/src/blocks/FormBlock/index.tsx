@@ -213,8 +213,8 @@ function FormBlock({ form: formProps, content }: FormBlockProps) {
                   {(selectOptions ?? []).map((option) => (
                     <option
                       key={option?.id}
-                      value={option?.option || undefined}
-                      disabled={option?.option === ''}
+                      value={option?.value || undefined}
+                      disabled={option?.value === ''}
                     >
                       {option.option}
                     </option>
@@ -229,9 +229,9 @@ function FormBlock({ form: formProps, content }: FormBlockProps) {
           input?.checkbox?.checkboxOptions
         ) {
           const transformedOptions = input?.checkbox?.checkboxOptions.map(
-            (option, index) => ({
-              value: (index + 1).toString(),
-              label: option.option
+            (option) => ({
+              value: option.value,
+              label: option.label
             })
           );
           return (

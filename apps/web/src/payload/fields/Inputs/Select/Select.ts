@@ -60,7 +60,7 @@ function Select({
             localized: true,
             fields: [
               {
-                name: 'label',
+                name: 'option',
                 label: 'Option Label',
                 type: 'text',
                 required: false
