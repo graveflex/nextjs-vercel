@@ -46,13 +46,6 @@ import SelectBlock from './src/payload/fields/Inputs/Select/Select.config';
 import TextAreaBlock from './src/payload/fields/Inputs/TextArea/TextArea.config';
 import TextInputBlock from './src/payload/fields/Inputs/TextInput/TextInput.config';
 
-export const email = {
-  fromName: 'Admin',
-  fromAddress: 'admin@example.com',
-  logMockCredentials: true,
-
-  transport: {}
-};
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -270,8 +263,7 @@ export default buildConfig({
   },
   secret: process.env.PAYLOAD_SECRET || '',
   email: nodemailerAdapter({
-    // skipVerify should actually be true if we want to verify creds. This is a known Payload bug that hasn't been fixed yet.
-    skipVerify: process.env.NODE_ENV === 'production',
+    skipVerify: process.env.NODE_ENV !== 'production',
     defaultFromAddress: 'admin@graveflex.com',
     defaultFromName: 'Payload',
     transportOptions: {
