@@ -9,11 +9,11 @@ overrides:
   '@payloadcms/live-preview': 3.0.0-beta.36
   '@payloadcms/live-preview-react': 3.0.0-beta.36
   '@payloadcms/richtext-lexical': 3.0.0-beta.36
-  '@payloadcms/plugin-cloud-storage': 3.0.0-beta.36
+  '@payloadcms/plugin-cloud-storage': 3.0.0-canary.f83d96a
+  '@payloadcms/plugin-redirects': 3.0.0-beta.36
   '@payloadcms/storage-vercel-blob': 3.0.0-beta.36
   '@payloadcms/next': 3.0.0-beta.36
   '@payloadcms/ui': 3.0.0-beta.36
-  '@payloadcms/plugin-redirects': 3.0.0-beta.36
   '@refract-ui/core': 1.0.1-alpha.43
   '@refract-ui/sc': 1.0.1-alpha.43
   '@refract-ui/stories': 1.0.1-alpha.43
@@ -251,8 +251,8 @@ importers:
         specifier: 3.0.0-beta.36
         version: 3.0.0-beta.36(@types/react@18.3.3)(graphql@16.8.2)(monaco-editor@0.38.0)(next@14.3.0-canary.28(@babel/core@7.24.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.6))(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(scheduler@0.23.2)(typescript@5.4.5)
       '@payloadcms/plugin-cloud-storage':
-        specifier: 3.0.0-beta.36
-        version: 3.0.0-beta.36(@vercel/blob@0.16.2)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))
+        specifier: 3.0.0-canary.f83d96a
+        version: 3.0.0-canary.f83d96a(@vercel/blob@0.16.2)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))
       '@payloadcms/plugin-redirects':
         specifier: 3.0.0-beta.36
         version: 3.0.0-beta.36(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))
@@ -366,7 +366,7 @@ importers:
         version: 3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5)
       payload-cloud-storage-vercel-adapter:
         specifier: ^0.1.5
-        version: 0.1.5(@payloadcms/plugin-cloud-storage@3.0.0-beta.36(@vercel/blob@0.16.2)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5)))(@vercel/blob@0.16.2)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))
+        version: 0.1.5(@payloadcms/plugin-cloud-storage@3.0.0-canary.f83d96a(@vercel/blob@0.16.2)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5)))(@vercel/blob@0.16.2)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))
       qs:
         specifier: ^6.11.2
         version: 6.12.1
@@ -2577,8 +2577,8 @@ packages:
       next: 14.3.0-canary.28
       payload: 3.0.0-beta.36
 
-  '@payloadcms/plugin-cloud-storage@3.0.0-beta.36':
-    resolution: {integrity: sha512-vN62HeLCcnFkNu42knFoqSWFcQk4c78Jge94zuS3hHX0iB1GxdK17SqddOkyY4z3vDqaZIiG8IaOREw/THsGZg==}
+  '@payloadcms/plugin-cloud-storage@3.0.0-canary.f83d96a':
+    resolution: {integrity: sha512-Siw8IuG+AF8Bf8XtqaP2hqIXXv7AdbkveAhXoMlr/1/9YRv8zhGq3tCKSkFyG3Tq+PZvvCvDiej0z+HJMd3FjA==}
     peerDependencies:
       '@aws-sdk/client-s3': ^3.525.0
       '@aws-sdk/lib-storage': ^3.525.0
@@ -5940,8 +5940,8 @@ packages:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
     engines: {node: '>= 0.6'}
 
-  fp-ts@2.16.6:
-    resolution: {integrity: sha512-v7w209VPj4L6pPn/ftFRJu31Oa8QagwcVw7BZmLCUWU4AQoc954rX9ogSIahDf67Pg+GjPbkW/Kn9XWnlWJG0g==}
+  fp-ts@2.16.7:
+    resolution: {integrity: sha512-Xiux+4mHHPj32/mrqN3XIIqEKk/MousgoC2FIaCwehpPjBI4oDrLvQEyQ/2T1sbTe0s/YIQqF98z+uHJLVoS9Q==}
 
   framer-motion@11.2.10:
     resolution: {integrity: sha512-/gr3PLZUVFCc86a9MqCUboVrALscrdluzTb3yew+2/qKBU8CX6nzs918/SRBRCqaPbx0TZP10CB6yFgK2C5cYQ==}
@@ -6906,6 +6906,7 @@ packages:
 
   libsql@0.3.19:
     resolution: {integrity: sha512-Aj5cQ5uk/6fHdmeW0TiXK42FqUlwx7ytmMLPSaUQPin5HKKKuUPD62MAbN4OEweGBBI7q1BekoEN4gPUEL6MZA==}
+    cpu: [x64, arm64, wasm32]
     os: [darwin, linux, win32]
 
   lines-and-columns@1.2.4:
@@ -7582,7 +7583,7 @@ packages:
   payload-cloud-storage-vercel-adapter@0.1.5:
     resolution: {integrity: sha512-NpHuoPc4j+hhjvW08ExOv6djccqsSQqbbRjaPsGSYUunAfotD0YfK6XZrqJC95gGNfZnKI5fp2v18//LKeKJ2g==}
     peerDependencies:
-      '@payloadcms/plugin-cloud-storage': 3.0.0-beta.36
+      '@payloadcms/plugin-cloud-storage': 3.0.0-canary.f83d96a
       '@vercel/blob': ^0.22.1
       payload: 3.0.0-beta.36
 
@@ -11642,7 +11643,7 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@payloadcms/plugin-cloud-storage@3.0.0-beta.36(@vercel/blob@0.16.2)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))':
+  '@payloadcms/plugin-cloud-storage@3.0.0-canary.f83d96a(@vercel/blob@0.16.2)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))':
     dependencies:
       find-node-modules: 2.1.3
       payload: 3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5)
@@ -11650,7 +11651,7 @@ snapshots:
     optionalDependencies:
       '@vercel/blob': 0.16.2
 
-  '@payloadcms/plugin-cloud-storage@3.0.0-beta.36(@vercel/blob@0.22.3)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))':
+  '@payloadcms/plugin-cloud-storage@3.0.0-canary.f83d96a(@vercel/blob@0.22.3)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))':
     dependencies:
       find-node-modules: 2.1.3
       payload: 3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5)
@@ -11692,7 +11693,7 @@ snapshots:
 
   '@payloadcms/storage-vercel-blob@3.0.0-beta.36(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))':
     dependencies:
-      '@payloadcms/plugin-cloud-storage': 3.0.0-beta.36(@vercel/blob@0.22.3)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))
+      '@payloadcms/plugin-cloud-storage': 3.0.0-canary.f83d96a(@vercel/blob@0.22.3)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))
       '@vercel/blob': 0.22.3
       payload: 3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5)
     transitivePeerDependencies:
@@ -11913,7 +11914,7 @@ snapshots:
   '@refract-ui/core@1.0.1-alpha.43':
     dependencies:
       csstype: 3.1.3
-      fp-ts: 2.16.6
+      fp-ts: 2.16.7
       tinycolor2: 1.6.0
       type-fest: 4.20.1
       utility-types: 3.11.0
@@ -16096,7 +16097,7 @@ snapshots:
 
   forwarded@0.2.0: {}
 
-  fp-ts@2.16.6: {}
+  fp-ts@2.16.7: {}
 
   framer-motion@11.2.10(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
@@ -17893,9 +17894,9 @@ snapshots:
 
   pathval@1.1.1: {}
 
-  payload-cloud-storage-vercel-adapter@0.1.5(@payloadcms/plugin-cloud-storage@3.0.0-beta.36(@vercel/blob@0.16.2)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5)))(@vercel/blob@0.16.2)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5)):
+  payload-cloud-storage-vercel-adapter@0.1.5(@payloadcms/plugin-cloud-storage@3.0.0-canary.f83d96a(@vercel/blob@0.16.2)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5)))(@vercel/blob@0.16.2)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5)):
     dependencies:
-      '@payloadcms/plugin-cloud-storage': 3.0.0-beta.36(@vercel/blob@0.16.2)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))
+      '@payloadcms/plugin-cloud-storage': 3.0.0-canary.f83d96a(@vercel/blob@0.16.2)(payload@3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5))
       '@vercel/blob': 0.16.2
       payload: 3.0.0-beta.36(@swc/core@1.6.1(@swc/helpers@0.5.11))(@swc/types@0.1.8)(graphql@16.8.2)(typescript@5.4.5)
 
