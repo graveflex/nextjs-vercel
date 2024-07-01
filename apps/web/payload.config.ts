@@ -12,6 +12,7 @@ import Nav from '@mono/web/globals/Layout/Layout.config';
 import { translator } from '@payload-enchants/translator';
 import { googleResolver } from '@payload-enchants/translator/resolvers/google';
 import { postgresAdapter } from '@payloadcms/db-postgres';
+import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 import type { FeatureProviderServer } from '@payloadcms/richtext-lexical';
 import {
   AlignFeature,
@@ -148,7 +149,7 @@ export default buildConfig({
         InlineToolbarFeature()
       ] as FeatureProviderServer<unknown, unknown>[]
   }),
-  collections: [Authors, Pages, Posts, Tags, Users, Files, Images, Videos],
+  collections: [Pages, Posts, Authors, Tags, Files, Images, Videos, Users],
   i18n: {
     fallbackLanguage: 'en'
   },
@@ -162,6 +163,9 @@ export default buildConfig({
     api: '/api'
   },
   plugins: [
+    redirectsPlugin({
+      collections: ['pages', 'posts']
+    }),
     vercelBlobStorage({
       enabled: true,
       collections: {
