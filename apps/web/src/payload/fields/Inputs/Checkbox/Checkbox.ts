@@ -19,9 +19,13 @@ function Checkbox({
         fields: [
           {
             name: 'name',
-            label: 'Name',
+            label: 'Name ID',
             type: 'text',
-            required: false
+            required: false,
+            admin: {
+              description:
+                'The unique name that serves as the ID for the input.'
+            }
           },
           {
             name: 'placeholder',
@@ -56,10 +60,20 @@ function Checkbox({
             localized: true,
             fields: [
               {
-                name: 'option',
-                label: 'Option',
+                name: 'label',
+                label: 'Option Label',
                 type: 'text',
                 required: false
+              },
+              {
+                name: 'value',
+                label: 'Option Value',
+                type: 'text',
+                required: false,
+                admin: {
+                  description:
+                    'A unique value to represent the data that is collected.'
+                }
               }
             ]
           },

@@ -15,7 +15,10 @@ const TextAreaBlock: Block = {
           name: 'name',
           label: 'Name',
           type: 'text',
-          required: false
+          required: false,
+          admin: {
+            description: 'The unique name that serves as the ID for the input.'
+          }
         },
         {
           name: 'placeholder',

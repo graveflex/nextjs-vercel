@@ -270,6 +270,8 @@ export default buildConfig({
   },
   secret: process.env.PAYLOAD_SECRET || '',
   email: nodemailerAdapter({
+    // skipVerify should actually be true if we want to verify creds. This is a known Payload bug that hasn't been fixed yet.
+    skipVerify: process.env.NODE_ENV === 'production',
     defaultFromAddress: 'admin@graveflex.com',
     defaultFromName: 'Payload',
     transportOptions: {
