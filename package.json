@@ -55,7 +55,7 @@
     "@payloadcms/plugin-cloud-storage": "3.0.0-beta.36",
     "@payloadcms/plugin-redirects": "3.0.0-beta.36",
     "@payloadcms/storage-vercel-blob": "3.0.0-beta.36",
-    "@payloadcms/next": "3.0.0-beta.36",
+    "@payloadcms/next": "3.0.0-canary.f83d96a",
     "@payloadcms/ui": "3.0.0-beta.36",
     "@refract-ui/core": "1.0.1-alpha.43",
     "@refract-ui/sc": "1.0.1-alpha.43",
