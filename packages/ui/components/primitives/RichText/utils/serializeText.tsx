@@ -1,3 +1,4 @@
+/* eslint-disable no-bitwise */
 import React from 'react';
 import { type Image as PayloadImageProps } from '@mono/types/payload-types';
 
@@ -14,7 +15,6 @@ const IS_SUPERSCRIPT = 64;
 
 function serializeText(content: PayloadRichTextProps) {
   const { root } = content ?? {};
-
   if (!root || !root.children) {
     return null;
   }
@@ -25,25 +25,25 @@ function serializeText(content: PayloadRichTextProps) {
       if (text.format === undefined) {
         return null;
       }
-      if (text.format && IS_BOLD) {
+      if (text.format & IS_BOLD) {
         element = <strong key={`bold-${index}`}>{element}</strong>;
       }
-      if (text.format && IS_ITALIC) {
+      if (text.format & IS_ITALIC) {
         element = <em key={`italic-${index}`}>{element}</em>;
       }
-      if (text.format && IS_STRIKETHROUGH) {
+      if (text.format & IS_STRIKETHROUGH) {
         element = <s key={`strikethrough-${index}`}>{element}</s>;
       }
-      if (text.format && IS_UNDERLINE) {
+      if (text.format & IS_UNDERLINE) {
         element = <u key={`underline-${index}`}>{element}</u>;
       }
-      if (text.format && IS_CODE) {
+      if (text.format & IS_CODE) {
         element = <code key={`code-${index}`}>{element}</code>;
       }
-      if (text.format && IS_SUBSCRIPT) {
+      if (text.format & IS_SUBSCRIPT) {
         element = <sub key={`sub-${index}`}>{element}</sub>;
       }
-      if (text.format && IS_SUPERSCRIPT) {
+      if (text.format & IS_SUPERSCRIPT) {
         element = <sup key={`sup-${index}`}>{element}</sup>;
       }
     }
