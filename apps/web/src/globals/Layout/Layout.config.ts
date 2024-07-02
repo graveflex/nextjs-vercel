@@ -2,7 +2,7 @@ import AdminRowLabel from '@mono/web/components/AdminRowLabel';
 import CTA from '@mono/web/payload/fields/CTA';
 import IconSelect from '@mono/web/payload/fields/IconSelect';
 import Link from '@mono/web/payload/fields/Link';
-import type { ArrayField, GlobalConfig, GroupField } from 'payload/types';
+import type { ArrayField, GlobalConfig, GroupField } from 'payload';
 
 const banner: GroupField = {
   name: 'banner',

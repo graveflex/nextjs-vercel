@@ -4,7 +4,7 @@ import { DEFAULT_LOCALE, type LanguageLocale, LOCALES } from '@mono/settings';
 import type { Nav, Page } from '@mono/types/payload-types';
 import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
 import { redirectApi } from '@mono/web/lib/redirectApi';
-import type { PaginatedDocs } from 'payload/database';
+import type { PaginatedDocs } from 'payload';
 
 import PageTemplate from './page.client';
 

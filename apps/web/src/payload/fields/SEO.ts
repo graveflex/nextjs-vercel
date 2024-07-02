@@ -1,4 +1,4 @@
-import type { CollapsibleField, GroupField } from 'payload/types';
+import type { CollapsibleField, GroupField } from 'payload';
 
 function SEOConfig({
   name,

@@ -1,6 +1,6 @@
 import { revalidatePath } from 'next/cache';
 import { LOCALES } from '@mono/settings';
-import type { CollectionAfterChangeHook } from 'payload/types';
+import type { CollectionAfterChangeHook } from 'payload';
 
 function normalizePath(slug: string) {
   const normalized = `/${slug}`.replace(/\/+/g, '/');

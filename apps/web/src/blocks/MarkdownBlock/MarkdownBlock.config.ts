@@ -1,6 +1,6 @@
 import BlockConfig from '@mono/web/payload/fields/BlockConfig';
 import RichTextFields from '@mono/web/payload/fields/RichTextFields';
-import type { Block } from 'payload/types';
+import type { Block } from 'payload';
 
 const MarkdownBlock: Block = {
   slug: 'markdownBlock',

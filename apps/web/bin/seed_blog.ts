@@ -2,7 +2,7 @@ import { faker } from '@faker-js/faker';
 import genRichText from '@mono/ui/utils/genRichText';
 import fs from 'fs';
 import path from 'path';
-import type { BasePayload, GeneratedTypes } from 'payload';
+import type { BasePayload } from 'payload';
 import { getPayload } from 'payload';
 import { importConfig } from 'payload/node';
 import tmp from 'tmp';
@@ -14,7 +14,7 @@ const randomDoc = <T extends Array<object>>(arr: T) => {
 };
 
 interface SeedFnProps {
-  payload: BasePayload<GeneratedTypes>;
+  payload: BasePayload;
   count?: number;
 }
 

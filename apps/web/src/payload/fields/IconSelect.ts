@@ -1,4 +1,4 @@
-import type { GroupField } from 'payload/types';
+import type { GroupField } from 'payload';
 
 export const coreIcons = {
   // InsertIconName

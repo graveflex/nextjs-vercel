@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/settings';
 import type { Nav, Page, Post, Tag } from '@mono/types/payload-types';
 import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
-import type { PaginatedDocs } from 'payload/database';
+import type { PaginatedDocs } from 'payload';
 
 import PageTemplate from './page.client';
 

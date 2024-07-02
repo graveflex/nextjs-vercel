@@ -1,7 +1,7 @@
 import { WEB_URL } from '@mono/settings';
 import RichTextFields from '@mono/web/payload/fields/RichTextFields';
 import SEOConfig from '@mono/web/payload/fields/SEO';
-import type { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload';
 
 import { invalidateCache } from '../hooks/invalidateCache';
 import { publishBeforeRead } from '../hooks/publishBeforeRead';

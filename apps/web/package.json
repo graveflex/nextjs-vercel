@@ -28,7 +28,7 @@
     "@mono/tsconfig": "workspace:*",
     "@mono/types": "workspace:*",
     "@mono/ui": "workspace:*",
-    "@payload-enchants/translator": "^1.1.41",
+    "@payload-enchants/translator": "latest",
     "@payloadcms/plugin-redirects": "latest",
     "@payloadcms/db-postgres": "latest",
     "@payloadcms/email-nodemailer": "latest",
