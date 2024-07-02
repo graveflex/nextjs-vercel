@@ -64,7 +64,6 @@
     "@vitejs/plugin-react": "latest",
     "bson-objectid": "^2.0.4",
     "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.29.1",
     "escape-html": "^1.0.3",
     "eslint-config-custom": "workspace:*",
     "framer-motion": "latest",
