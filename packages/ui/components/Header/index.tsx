@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import type {
   BannerContent,
   CollapsibleMenu,
@@ -140,11 +140,13 @@ const NavContentWrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
+    padding: 0 2rem;
     gap: 2rem;
 
     ${mq.md`
       flex-direction: row;
+      align-items: center;
       gap: 1rem;
     `}
   `}
@@ -169,6 +171,125 @@ const MobileIconLink = styled.a`
   display: flex;
   ${({ theme: { mq } }) => mq.md`
     display: none;
+  `}
+`;
+
+const ItemWrapper = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+const NavDropdownWrapper = styled.div`
+  display: none;
+
+  ${({ theme: { mq } }) => mq.md`
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    background-color: white;
+    padding: 1.5rem 1.63rem;
+    align-items: center;
+    z-index: 5;
+    position: absolute;
+    top: 93px;
+
+    &:hover {
+      display: flex;
+    }
+  `}
+`;
+
+const MobileNavDropdownWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+
+  ${({ theme: { mq } }) => mq.md`
+    display: none;
+  `}
+`;
+
+const ItemLabel = styled.div`
+  display: none;
+  ${({ theme: { mq } }) => mq.md`
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid transparent;
+    &:hover {
+      cursor: pointer;
+      border-bottom: 1px solid currentColor;
+      opacity: 0.5;
+    }
+  `}
+`;
+
+const MobileItemLabel = s(ItemLabel)`
+  && {
+    display: grid;
+  }
+  grid-template-columns: 1fr min-content;
+  width: 100%;
+  justify-content: space-around;
+  border-bottom: 1px solid currentColor;
+  padding: 1rem 0;
+  &:hover {
+    cursor: pointer;
+    border-bottom: 1px solid currentColor;
+    opacity: 0.5;
+  }
+  ${({ theme: { mq } }) => mq.md`
+    && {
+      display: none;
+    }
+  `}
+`;
+
+const NavDropdownItem = styled.div<{ $open: boolean }>`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  ${({ $open }) => css`
+    ${$open &&
+    css`
+      ${MobileItemLabel} {
+        display: grid;
+        border-bottom: 1px solid transparent;
+        svg {
+          transform: rotate(180deg);
+          transition: transform 0.25s;
+        }
+      }
+
+      ${MobileNavDropdownWrapper} {
+        border-bottom: 1px solid currentColor;
+        padding-bottom: 1.5rem;
+      }
+    `}
+  `}
+
+  ${({ theme: { mq } }) => mq.md`
+    width: unset;
+    height: 100%;
+    justify-content: center;
+    &:hover ${NavDropdownWrapper} {
+      display: flex;
+    }
+
+    &:hover ${ItemLabel} {
+      svg {
+        transform: rotate(180deg);
+        transition: transform 0.25s;
+      }
+    }
   `}
 `;
 
@@ -200,12 +321,64 @@ function NavContent({
   iconItems,
   ctaButton
 }: Buttons) {
+  const [curr, setCurr] = useState<string | null | undefined>('');
+  const [openDropdown, setOpenDropdown] = useState(false);
+
+  console.log('open', openDropdown);
   return (
     <NavContentWrapper>
       {collapsibleMenu?.sections &&
         collapsibleMenu.sections.map((item) => {
-          console.log('COLLAPSIBLE MENU ITEM: ', item);
-          return null; // Replace this with the desired ReactNode
+          const itemIsOpen = !!openDropdown && item.id === curr;
+
+          return (
+            <NavDropdownItem
+              key={`collapsible-${item.id}`}
+              $open={!!itemIsOpen}
+            >
+              <ItemWrapper>
+                <ItemLabel>
+                  <p>{item.label}</p>
+                  <RenderIcon name="CaretDown" color="#FFFFFF" size="20" />
+                </ItemLabel>
+                <MobileItemLabel
+                  onClick={() => {
+                    setOpenDropdown(!openDropdown);
+                    setCurr(item.id);
+                  }}
+                >
+                  <p>{item.label}</p>
+                  <RenderIcon name="CaretDown" color="#FFFFFF" size="20" />
+                </MobileItemLabel>
+                <NavDropdownWrapper className="dropdown-content">
+                  {item?.links &&
+                    item.links.map((link) => {
+                      return (
+                        <CtaLink
+                          $color="bg"
+                          key={`link-${link.id}`}
+                          link={link.link}
+                        />
+                      );
+                    })}
+                </NavDropdownWrapper>
+                {!!itemIsOpen && (
+                  <MobileNavDropdownWrapper>
+                    {item?.links &&
+                      item.links.map((link) => {
+                        return (
+                          <CtaLink
+                            $color="fg"
+                            key={`link-${link.id}`}
+                            link={link.link}
+                          />
+                        );
+                      })}
+                  </MobileNavDropdownWrapper>
+                )}
+              </ItemWrapper>
+            </NavDropdownItem>
+          );
         })}
       {flatMenu &&
         flatMenu.map((item) => {

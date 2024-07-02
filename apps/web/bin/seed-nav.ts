@@ -58,6 +58,30 @@ const flatMenu = [
   }
 ];
 
+const sections = [
+  {
+    label: 'About Us',
+    links: [
+      {
+        id: '666726dc5d637954321c2673',
+        link: {
+          type: 'external' as linkEnum,
+          label: 'What we are',
+          externalHref: '/about'
+        }
+      },
+      {
+        id: '666726dc5d637951c382933',
+        link: {
+          type: 'external' as linkEnum,
+          label: 'Leadership',
+          externalHref: '/about'
+        }
+      }
+    ]
+  }
+];
+
 const footerItems = [
   {
     id: '6667294f5d637954321c267a',
@@ -270,6 +294,7 @@ const seedNavUsingPayload = async ({ payload, count = 2 }: SeedFnProps) => {
       header: {
         logo: images[0].id,
         flatMenu,
+        collapsibleMenu: { sections },
         hasCta: true,
         ctaButton: cta,
         iconItems,
