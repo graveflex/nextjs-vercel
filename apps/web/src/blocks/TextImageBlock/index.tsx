@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useMemo } from 'react';
+import { Controller } from 'react-hook-form';
 import type {
   Image,
   TextImageBlockT as PayloadType
@@ -231,11 +232,17 @@ function TextImageBlock({
               onSubmit={(data) => console.log(data)}
               cta={form?.cta}
             >
-              <TextInput
-                {...form?.textinput}
-                name="TextInput"
-                label={form?.textinput?.label || undefined}
-                placeholder={form?.textinput?.placeholder || undefined}
+              <Controller
+                name={form?.textinput?.name || 'textInput'}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <TextInput
+                    label={form?.textinput?.label || undefined}
+                    placeholder={form?.textinput?.placeholder || undefined}
+                    helpText={form?.textinput?.helpText}
+                    {...field}
+                  />
+                )}
               />
             </InputWrapper>
           )}

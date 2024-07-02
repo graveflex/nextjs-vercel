@@ -31,10 +31,12 @@
     "@payload-enchants/translator": "^1.1.41",
     "@payloadcms/plugin-redirects": "latest",
     "@payloadcms/db-postgres": "latest",
+    "@payloadcms/email-nodemailer": "3.0.0-beta.29",
     "@payloadcms/live-preview": "latest",
     "@payloadcms/live-preview-react": "latest",
     "@payloadcms/next": "latest",
     "@payloadcms/plugin-cloud-storage": "latest",
+    "@payloadcms/plugin-form-builder": "3.0.0-beta.36",
     "@payloadcms/richtext-lexical": "latest",
     "@payloadcms/storage-vercel-blob": "latest",
     "@payloadcms/ui": "latest",
@@ -70,12 +72,14 @@
     "md5": "^2.3.0",
     "next": "latest",
     "next-intl": "^3.11.1",
+    "nodemailer": "^6.9.14",
     "payload": "latest",
     "payload-cloud-storage-vercel-adapter": "^0.1.5",
     "qs": "^6.11.2",
     "ramda": "^0.30.0",
     "react": "latest",
     "react-dom": "latest",
+    "react-hook-form": "^7.51.3",
     "sharp": "0.33.3",
     "styled-components": "latest",
     "tinycolor2": "^1.6.0",
@@ -88,5 +92,8 @@
     "vitest": "latest",
     "vitest-canvas-mock": "latest",
     "voca": "^1.4.1"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^6.4.15"
   }
 }

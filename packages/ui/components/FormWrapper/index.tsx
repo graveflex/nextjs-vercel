@@ -11,11 +11,18 @@ export interface FormWrapperProps {
   onSubmit: SubmitHandler<FieldValues>;
   cta: CTAType;
   className?: string;
+  id?: string;
 }
 
 const Container = s.div``;
 
-function FormWrapper({ children, onSubmit, cta, className }: FormWrapperProps) {
+function FormWrapper({
+  id,
+  children,
+  onSubmit,
+  cta,
+  className
+}: FormWrapperProps) {
   const methods = useForm();
 
   return (
@@ -23,7 +30,7 @@ function FormWrapper({ children, onSubmit, cta, className }: FormWrapperProps) {
       <FormProvider {...methods}>
         <Form onSubmit={onSubmit}>
           {children}
-          {cta && <CTAButton cta={cta} submit />}
+          {cta && <CTAButton cta={cta} form={id} submit />}
         </Form>
       </FormProvider>
     </Container>
