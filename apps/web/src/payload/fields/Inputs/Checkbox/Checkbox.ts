@@ -57,7 +57,7 @@ function Checkbox({
             name: 'checkboxOptions',
             label: 'Options',
             required: false,
-            localized: true,
+            localized: false,
             fields: [
               {
                 name: 'label',

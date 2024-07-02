@@ -57,7 +57,7 @@ function Select({
             name: 'selectOptions',
             label: 'Options',
             required: false,
-            localized: true,
+            localized: false,
             fields: [
               {
                 name: 'option',
