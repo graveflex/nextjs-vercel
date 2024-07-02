@@ -7,6 +7,7 @@ import { redirectApi } from '@mono/web/lib/redirectApi';
 import type { PaginatedDocs } from 'payload/database';
 
 import PageTemplate from './page.client';
+import { pages } from "next/dist/build/templates/app-page";
 
 export const revalidate = 60;
 
@@ -52,7 +53,7 @@ export default async function Page({
 
   // if there's an error fetching data, 404
   if ('error' in data || !data.docs[0] || 'error' in navData) {
-    const redirectPath = await redirectApi();
+    const redirectPath = await redirectApi(pageSlug);
     if (
       !redirectPath ||
       (typeof redirectPath === 'object' && 'error' in redirectPath)
