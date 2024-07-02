@@ -9,6 +9,13 @@ import type {
   TextImageBlockT
 } from '@mono/types/payload-types';
 import genRichText from '@mono/ui/utils/genRichText';
+import { cardGridBlockSchema } from '@mono/web/blocks/CardGridBlock/CardGridBlockSeed';
+import { faqBlockSchema } from '@mono/web/blocks/FAQBlock/FAQBlockSeed';
+import { galleryGridBlockSchema } from '@mono/web/blocks/GalleryGridBlock/GalleryGridBlockSeed';
+import { heroBlockSchema } from '@mono/web/blocks/HeroBlock/HeroBlockSeed';
+import { markdownBlockSchema } from '@mono/web/blocks/MarkdownBlock/MarkdownBlockSeed';
+import { sectionHeaderBlockSchema } from '@mono/web/blocks/SectionHeaderBlock/SectionHeaderSeed';
+import { imageTextBlockSchema } from '@mono/web/blocks/TextImageBlock/TextImageBlockSeed';
 import fs from 'fs';
 import path from 'path';
 import type { BasePayload } from 'payload';
@@ -97,202 +104,6 @@ const seedImages = async ({
   return Promise.all(promises);
 };
 
-const markdownBlock = {
-  id: '6669d7bd6d58e03f8e7c1077',
-  blockName: 'Markdown Hero Block',
-  blockType: 'markdownBlock',
-  content: {
-    ...genRichText([
-      {
-        type: 'heading',
-        tag: 'h1',
-        text: 'Welcome to the Kitchen Sink (h1)'
-      },
-      {
-        type: 'paragraph',
-        text: faker.lorem.sentence()
-      },
-      {
-        type: 'heading',
-        tag: 'h2',
-        text: 'Welcome to the Kitchen Sink (h2)'
-      },
-      {
-        type: 'heading',
-        tag: 'h3',
-        format: 'center',
-        text: 'Welcome to the Kitchen Sink (h3 - center)'
-      },
-      {
-        type: 'heading',
-        tag: 'h4',
-        format: 'right',
-        text: 'Welcome to the Kitchen Sink (h4 - right)'
-      },
-      {
-        type: 'heading',
-        tag: 'h5',
-        format: 'strikethrough',
-        text: 'Welcome to the Kitchen Sink (h5 - strikethrough)'
-      },
-      {
-        type: 'heading',
-        tag: 'h6',
-        text: 'Welcome to the Kitchen Sink (h6)'
-      },
-      {
-        type: 'paragraph',
-        format: 'bold',
-        text: faker.lorem.sentence()
-      },
-      {
-        type: 'paragraph',
-        format: 'italic',
-        text: faker.lorem.sentence()
-      },
-      {
-        type: 'paragraph',
-        format: 'underline',
-        text: faker.lorem.sentence()
-      }
-    ])
-  },
-  maxWidth: null
-};
-
-const sectionHeaderBlock = {
-  id: '6669d7bd6d58e03f8e7c1076',
-  blockType: 'sectionHeaderBlock',
-  eyebrow: 'SOME TAGLINE',
-  content: {
-    ...genRichText([
-      {
-        type: 'heading',
-        tag: 'h1',
-        text: 'Test Section Header Block'
-      },
-      {
-        type: 'paragraph',
-        text: faker.lorem.paragraph(2)
-      }
-    ])
-  },
-  alignment: 'center',
-  cta: {
-    link: {
-      type: 'external',
-      label: 'Read More',
-      externalHref: '/blog'
-    }
-  }
-};
-
-const heroBlock = {
-  id: '6669d7bd6d58e03f8e7c1078',
-  blockType: 'heroBlock',
-  layout: 'contentLeft',
-  eyebrow: 'SOME TAGLINE',
-  content: {
-    ...genRichText([
-      {
-        type: 'heading',
-        tag: 'h1',
-        text: 'Test Hero Block'
-      },
-      {
-        type: 'paragraph',
-        text: faker.lorem.sentence()
-      }
-    ])
-  }
-};
-
-const imageTextBlock = {
-  id: '6669d7bd6d58e03f8e7c1079',
-  blockType: 'textImageBlock',
-  content: {
-    ...genRichText([
-      {
-        type: 'heading',
-        tag: 'h2',
-        text: 'Test Image Text Block'
-      },
-      {
-        type: 'paragraph',
-        text: faker.lorem.sentence()
-      }
-    ])
-  }
-};
-
-const cardGridBlock = {
-  id: '6669d7bd6d58e03f8e7c107a',
-  blockName: 'Card Grid Block',
-  blockType: 'cardGridBlock',
-  blockConfig: {
-    contentWidth: 'xxl'
-  }
-};
-
-const faqBlock = {
-  id: '6669d7bd6d58e03f8e7c107b',
-  blockName: 'FAQ Block',
-  blockType: 'faqBlock',
-  blockConfig: {
-    contentWidth: 'xl'
-  },
-  header: {
-    ...genRichText([
-      {
-        type: 'heading',
-        tag: 'h2',
-        text: 'Frequently Asked Questions'
-      }
-    ])
-  },
-  items: [
-    {
-      title: faker.lorem.sentence(),
-      content: {
-        ...genRichText([
-          {
-            type: 'paragraph',
-            text: faker.lorem.paragraph()
-          }
-        ])
-      }
-    },
-    {
-      title: faker.lorem.sentence(),
-      content: {
-        ...genRichText([
-          {
-            type: 'paragraph',
-            text: faker.lorem.paragraph()
-          }
-        ])
-      }
-    },
-    {
-      title: faker.lorem.sentence(),
-      content: {
-        ...genRichText([
-          {
-            type: 'paragraph',
-            text: faker.lorem.paragraph()
-          }
-        ])
-      }
-    }
-  ]
-};
-
-const galleryGridBlock = {
-  id: '6669d7bd6d58e03f8e7c107c',
-  blockName: 'Gallery Grid Block',
-  blockType: 'galleryGridBlock'
-};
-
 const seedKitchenSinkPage = async ({ payload, count = 10 }: SeedFnProps) => {
   console.info(`@-->seeding the kitchenSink!`);
 
@@ -305,7 +116,7 @@ const seedKitchenSinkPage = async ({ payload, count = 10 }: SeedFnProps) => {
       slug: 'kitchen-sink',
       blocks: [
         {
-          ...(heroBlock as HeroBlockT),
+          ...(heroBlockSchema as HeroBlockT),
           blockName: 'Hero Block Bacground Image',
           blockConfig: {
             contentWidth: 'xxl',
@@ -313,7 +124,7 @@ const seedKitchenSinkPage = async ({ payload, count = 10 }: SeedFnProps) => {
           }
         },
         {
-          ...(heroBlock as HeroBlockT),
+          ...(heroBlockSchema as HeroBlockT),
           blockName: 'Hero Block Image Right + CTA',
           blockConfig: {
             contentWidth: 'xl'
@@ -327,9 +138,9 @@ const seedKitchenSinkPage = async ({ payload, count = 10 }: SeedFnProps) => {
             }
           }
         },
-        sectionHeaderBlock as SectionHeaderBlockT,
+        sectionHeaderBlockSchema as SectionHeaderBlockT,
         {
-          ...(heroBlock as HeroBlockT),
+          ...(heroBlockSchema as HeroBlockT),
           blockName: 'Hero Block Image Left + Form',
           blockConfig: {
             contentWidth: 'xl'
@@ -352,20 +163,20 @@ const seedKitchenSinkPage = async ({ payload, count = 10 }: SeedFnProps) => {
           }
         },
         {
-          ...(imageTextBlock as TextImageBlockT),
+          ...(imageTextBlockSchema as TextImageBlockT),
           blockName: 'Text Image Block (image left)',
           layout: 'imgLeft',
           image: images[2].id
         },
-        markdownBlock as MarkdownBlockT,
+        markdownBlockSchema as MarkdownBlockT,
         {
-          ...(imageTextBlock as TextImageBlockT),
+          ...(imageTextBlockSchema as TextImageBlockT),
           blockName: 'Text Image Block (image right)',
           layout: 'imgRight',
           image: images[1].id
         },
         {
-          ...(cardGridBlock as CardGridBlockT),
+          ...(cardGridBlockSchema as CardGridBlockT),
           cards: [
             {
               id: '6669d7bd6d58e03f8e7c107b',
@@ -393,9 +204,9 @@ const seedKitchenSinkPage = async ({ payload, count = 10 }: SeedFnProps) => {
             }
           ]
         },
-        faqBlock as FAQBlockT,
+        faqBlockSchema as FAQBlockT,
         {
-          ...(galleryGridBlock as GalleryGridBlockT),
+          ...(galleryGridBlockSchema as GalleryGridBlockT),
           blockName: 'Gallery Grid Block',
           blockConfig: {
             contentWidth: 'xxl'
