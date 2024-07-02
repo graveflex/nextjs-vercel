@@ -7,7 +7,6 @@ import { redirectApi } from '@mono/web/lib/redirectApi';
 import type { PaginatedDocs } from 'payload/database';
 
 import PageTemplate from './page.client';
-import { pages } from "next/dist/build/templates/app-page";
 
 export const revalidate = 60;
 
