@@ -44,7 +44,7 @@ export default async function Blog({
 
   // if there's an error fetching data, 404
   if ('error' in navData || 'error' in postData || !postData.docs[0]) {
-    const redirectPath = await redirectApi();
+    const redirectPath = await redirectApi(pageSlug);
     if (
       !redirectPath ||
       (typeof redirectPath === 'object' && 'error' in redirectPath)

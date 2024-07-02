@@ -2,11 +2,11 @@ import { WEB_URL } from '@mono/settings';
 
 import getPayloadAccessToken from './getPayloadAccessToken';
 
-export async function redirectApi() {
+export async function redirectApi(path: string | string[]) {
   const payloadAccessToken = getPayloadAccessToken();
 
   // make url friendly
-  const q = `depth=1`;
+  const q = `depth=1&where[from][equals]=${path}`;
 
   const url = `${WEB_URL}/api/redirects?${q}`;
 
@@ -24,6 +24,14 @@ export async function redirectApi() {
     if (data && data.errors) {
       throw new Error('Database error');
     }
+    let subPath;
+    switch (docs?.[0]?.to?.reference?.relationTo) {
+      case 'posts':
+        subPath = 'blog/';
+        break;
+      default:
+        subPath = '';
+    }
 
     const redirectPath =
       docs?.[0]?.to?.url ||
@@ -34,7 +42,7 @@ export async function redirectApi() {
       throw new Error('No redirect found');
     }
 
-    return redirectPath;
+    return `${subPath}${redirectPath}`;
   } catch (err) {
     return { error: 'Unable to gather redirect path.' };
   }
