@@ -123,5 +123,21 @@ To run all three seeds:
   pnpm seed:all
   ```
 
+  ### Form Builder
+
+  A form can be created in the `forms` collection within the Payload CMS:
+  - Define the inputs to be used on the form (TextInput, Checkbox, Select, etc.)
+  - Optionally define an email to be sent when the form is submitted, using data from the form.
+    - Email credentials are defined in `payload.config.ts` under the `nodemailerAdapter` with the `SMTP_HOST`, `SMTP_USER`, and `SMTP_PASS` environment variables.
+    - SMTP is a universal protocol for email transfers. It can be integrated with many commonly used mailing services, such as SendGrid, GMail, and MailChimp.
+
+  After a form is created, it can be displayed on the front end with the `FormBlock`
+  - Create a page and place a `FormBlock`
+  - In the fields for the `FormBlock` one of the previously created forms can be selected.
+
+  When a form is submitted it will be sent to the `formSubmissions` collection
+  - Data from form submissions can be viewed & stored in the CMS
+  - Payload collection hooks can be injected in `formSubmissionOverrides` in the email adapter. This would allow the use of a `beforeChange` hook to further process the data/send to another endpoint after being submitted.
+
 
 

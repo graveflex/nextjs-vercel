@@ -56,7 +56,10 @@
         "GOOGLE_TRANSLATE_API_KEY",
         "FORCE_WEB_URL",
         "DATABASE_URL",
-        "NODE_ENV"
+        "NODE_ENV",
+        "SMTP_HOST",
+        "SMTP_USER",
+        "SMTP_PASS"
       ],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },

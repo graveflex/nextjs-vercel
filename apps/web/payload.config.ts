@@ -12,6 +12,8 @@ import Nav from '@mono/web/globals/Layout/Layout.config';
 import { translator } from '@payload-enchants/translator';
 import { googleResolver } from '@payload-enchants/translator/resolvers/google';
 import { postgresAdapter } from '@payloadcms/db-postgres';
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
+import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
 import type { FeatureProviderServer } from '@payloadcms/richtext-lexical';
 import {
@@ -38,6 +40,11 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { buildConfig } from 'payload/config';
 import { fileURLToPath } from 'url';
+
+import CheckboxBlock from './src/payload/fields/Inputs/Checkbox/Checkbox.config';
+import SelectBlock from './src/payload/fields/Inputs/Select/Select.config';
+import TextAreaBlock from './src/payload/fields/Inputs/TextArea/TextArea.config';
+import TextInputBlock from './src/payload/fields/Inputs/TextInput/TextInput.config';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -194,6 +201,24 @@ export default buildConfig({
           apiKey: process.env.GOOGLE_TRANSLATE_API_KEY as string
         })
       ]
+    }),
+    formBuilderPlugin({
+      fields: {
+        TextInputBlock,
+        TextAreaBlock,
+        SelectBlock,
+        CheckboxBlock,
+        text: false,
+        textarea: false,
+        select: false,
+        email: false,
+        state: false,
+        country: false,
+        checkbox: false,
+        number: false,
+        message: false,
+        payment: false
+      }
     })
   ],
   upload: {
@@ -237,6 +262,20 @@ export default buildConfig({
     }
   },
   secret: process.env.PAYLOAD_SECRET || '',
+  email: nodemailerAdapter({
+    // skipVerify should actually be true if we want to verify creds. This is a known Payload bug that hasn't been fixed yet.
+    skipVerify: process.env.NODE_ENV === 'production',
+    defaultFromAddress: 'admin@graveflex.com',
+    defaultFromName: 'Payload',
+    transportOptions: {
+      host: process.env.SMTP_HOST,
+      port: 587,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS
+      }
+    }
+  }),
   typescript: {
     outputFile: path.resolve(dirname, '../../packages/types/payload-types.ts')
   },

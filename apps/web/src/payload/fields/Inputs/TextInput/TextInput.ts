@@ -18,6 +18,16 @@ function TextInput({
         },
         fields: [
           {
+            name: 'name',
+            label: 'Name',
+            type: 'text',
+            required: false,
+            admin: {
+              description:
+                'The unique name that serves as the ID for the input.'
+            }
+          },
+          {
             name: 'placeholder',
             label: 'Placeholder',
             type: 'text',
@@ -33,6 +43,13 @@ function TextInput({
             name: 'label',
             label: 'Label',
             type: 'text',
+            required: false
+          },
+          {
+            name: 'required',
+            label: 'Required',
+            type: 'checkbox',
+            defaultValue: false,
             required: false
           },
           ...fields

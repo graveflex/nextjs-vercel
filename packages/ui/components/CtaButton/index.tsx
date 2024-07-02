@@ -16,9 +16,16 @@ export type CtaButtonType = {
   submit?: boolean;
   linkType?: 'button' | 'link';
   color?: colorProps | colorTokenProps;
+  form?: string;
 };
 
-function CtaButton({ cta, color, submit, linkType = 'button' }: CtaButtonType) {
+function CtaButton({
+  cta,
+  form,
+  color,
+  submit,
+  linkType = 'button'
+}: CtaButtonType) {
   const icon: IconProps = { ...cta?.link?.icon, color: 'currentColor' };
   const { link } = cta;
   if (cta.variant === 'link' && linkType === 'button') {
@@ -53,6 +60,7 @@ function CtaButton({ cta, color, submit, linkType = 'button' }: CtaButtonType) {
     <Button
       $color={color || 'primary'}
       $variant={cta?.variant || 'solid'}
+      $form={form}
       icon={icon}
       element="button"
       type={submit ? 'submit' : undefined}

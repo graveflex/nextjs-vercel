@@ -40,6 +40,8 @@ export interface Config {
     videos: Video;
     users: User;
     redirects: Redirect;
+    forms: Form;
+    'form-submissions': FormSubmission;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -72,6 +74,7 @@ export interface Page {
         | SectionHeaderBlockT
         | GalleryGridBlockT
         | VideoBlockT
+        | FormBlockT
         | CardGridBlockT
         | MarkdownBlockT
         | FAQBlockT
@@ -388,6 +391,204 @@ export interface Video {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FormBlockT".
+ */
+export interface FormBlockT {
+  blockConfig?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundImage?: number | Image | null;
+    hidden?: boolean | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    p?: {
+      xs?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      md?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      lg?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      xl?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+    };
+  };
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  form: number | Form;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'formBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "forms".
+ */
+export interface Form {
+  id: number;
+  title: string;
+  fields?: (TextInputT | TextAreaT | SelectT | CheckboxT)[] | null;
+  submitButtonLabel?: string | null;
+  confirmationType?: ('message' | 'redirect') | null;
+  confirmationMessage?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  redirect?: {
+    url: string;
+  };
+  emails?:
+    | {
+        emailTo?: string | null;
+        cc?: string | null;
+        bcc?: string | null;
+        replyTo?: string | null;
+        emailFrom?: string | null;
+        subject: string;
+        message?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextInputT".
+ */
+export interface TextInputT {
+  textinput?: TextInputType;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'textInput';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextInputType".
+ */
+export interface TextInputType {
+  name?: string | null;
+  placeholder?: string | null;
+  helpText?: string | null;
+  label?: string | null;
+  required?: boolean | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextAreaT".
+ */
+export interface TextAreaT {
+  name?: string | null;
+  placeholder?: string | null;
+  helpText?: string | null;
+  label?: string | null;
+  required?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'textArea';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SelectT".
+ */
+export interface SelectT {
+  select?: SelectType;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'select';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SelectType".
+ */
+export interface SelectType {
+  name?: string | null;
+  placeholder?: string | null;
+  helpText?: string | null;
+  label?: string | null;
+  required?: boolean | null;
+  selectOptions?:
+    | {
+        option?: string | null;
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CheckboxT".
+ */
+export interface CheckboxT {
+  checkbox?: CheckboxType;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'checkbox';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CheckboxType".
+ */
+export interface CheckboxType {
+  name?: string | null;
+  placeholder?: string | null;
+  helpText?: string | null;
+  label?: string | null;
+  required?: boolean | null;
+  checkboxOptions?:
+    | {
+        label?: string | null;
+        value?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "CardGridBlockT".
  */
 export interface CardGridBlockT {
@@ -628,15 +829,6 @@ export interface TextImageBlockT {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TextInputType".
- */
-export interface TextInputType {
-  placeholder?: string | null;
-  helpText?: string | null;
-  label?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "HeroBlockT".
  */
 export interface HeroBlockT {
@@ -815,6 +1007,23 @@ export interface Redirect {
         } | null);
     url?: string | null;
   };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions".
+ */
+export interface FormSubmission {
+  id: number;
+  form: number | Form;
+  submissionData?:
+    | {
+        field: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
