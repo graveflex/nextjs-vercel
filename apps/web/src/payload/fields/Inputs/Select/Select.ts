@@ -63,7 +63,8 @@ function Select({
                 name: 'option',
                 label: 'Option Label',
                 type: 'text',
-                required: false
+                required: false,
+                localized: true
               },
               {
                 name: 'value',

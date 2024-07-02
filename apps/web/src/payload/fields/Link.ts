@@ -5,7 +5,7 @@ import IconSelect from './IconSelect';
 function Link({
   name,
   interfaceName,
-  localized,
+  localized = true,
   fields = []
 }: Partial<GroupField> = {}): GroupField {
   return {
