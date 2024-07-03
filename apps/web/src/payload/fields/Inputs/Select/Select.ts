@@ -57,13 +57,14 @@ function Select({
             name: 'selectOptions',
             label: 'Options',
             required: false,
-            localized: true,
+            localized: false,
             fields: [
               {
                 name: 'option',
                 label: 'Option Label',
                 type: 'text',
-                required: false
+                required: false,
+                localized: true
               },
               {
                 name: 'value',

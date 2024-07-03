@@ -12,7 +12,7 @@ const CardGridBlock: Block = {
       name: 'cards',
       label: 'Cards',
       required: false,
-      localized: true,
+      localized: false,
       fields: [Card()]
     }
   ]
