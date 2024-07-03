@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import type { MarkdownBlockT } from '@mono/types/payload-types';
 import genRichText from '@mono/ui/utils/genRichText';
 
 export const markdownBlockSchema = {
@@ -62,4 +63,4 @@ export const markdownBlockSchema = {
     ])
   },
   maxWidth: null
-};
+} as MarkdownBlockT;
