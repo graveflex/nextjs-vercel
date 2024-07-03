@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import type { FAQBlockT } from '@mono/types/payload-types';
 import genRichText from '@mono/ui/utils/genRichText';
 
 export const faqBlockSchema = {
@@ -52,4 +53,4 @@ export const faqBlockSchema = {
       }
     }
   ]
-};
+} as FAQBlockT;

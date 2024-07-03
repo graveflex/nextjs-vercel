@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import type { SectionHeaderBlockT } from '@mono/types/payload-types';
 import genRichText from '@mono/ui/utils/genRichText';
 
 export const sectionHeaderBlockSchema = {
@@ -26,4 +27,4 @@ export const sectionHeaderBlockSchema = {
       externalHref: '/blog'
     }
   }
-};
+} as SectionHeaderBlockT;
