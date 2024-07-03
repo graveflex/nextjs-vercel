@@ -4,6 +4,7 @@ import { galleryGridBlockSchema } from '@mono/web/blocks/GalleryGridBlock/Galler
 import { heroBlockSchema } from '@mono/web/blocks/HeroBlock/HeroBlockSeed';
 import { markdownBlockSchema } from '@mono/web/blocks/MarkdownBlock/MarkdownBlockSeed';
 import { sectionHeaderBlockSchema } from '@mono/web/blocks/SectionHeaderBlock/SectionHeaderSeed';
+// ImportBlockSchema
 import { imageTextBlockSchema } from '@mono/web/blocks/TextImageBlock/TextImageBlockSeed';
 import path from 'path';
 import type { BasePayload } from 'payload';
@@ -68,12 +69,15 @@ const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {
     'Text Image Block (image right)'
   );
 
+  // ResolveBlockSchema
+
   await payload.create({
     collection: 'pages',
     data: {
       pageTitle: 'Kitchen Sink',
       slug: 'kitchen-sink',
       blocks: [
+        // AddBlock
         heroBlockBG,
         heroBlockCTA,
         sectionHeaderBlockSchema,

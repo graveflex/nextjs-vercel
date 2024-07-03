@@ -14,7 +14,7 @@ const Section = styled.div``;
 
 function <%= name %>({ title, blockConfig, ...props }: <%= name %>Type) {
   return (
-    <Wrapper{...blockConfig} hidden={blockConfig?.hidden ?? false}>
+    <Wrapper {...blockConfig} hidden={blockConfig?.hidden ?? false}>
       <Section>
         <h1><%= name %></h1>
         <pre>{JSON.stringify({ title, ...props }, null, 2)}</pre>
