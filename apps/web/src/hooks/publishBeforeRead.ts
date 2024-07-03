@@ -1,4 +1,4 @@
-import type { CollectionBeforeReadHook } from 'payload/types';
+import type { CollectionBeforeReadHook } from 'payload';
 
 import type Pages from '../collections/Pages';
 

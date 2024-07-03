@@ -1,4 +1,4 @@
-import type { GroupField } from 'payload/types';
+import type { GroupField } from 'payload';
 
 function Checkbox({
   name,
@@ -57,13 +57,14 @@ function Checkbox({
             name: 'checkboxOptions',
             label: 'Options',
             required: false,
-            localized: true,
+            localized: false,
             fields: [
               {
                 name: 'label',
                 label: 'Option Label',
                 type: 'text',
-                required: false
+                required: false,
+                localized: true
               },
               {
                 name: 'value',

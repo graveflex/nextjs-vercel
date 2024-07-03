@@ -10,7 +10,7 @@ import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.confi
 import VideoBlock from '@mono/web/blocks/VideoBlock/VideoBlock.config';
 import SEOConfig from '@mono/web/payload/fields/SEO';
 import formatSlug from '@mono/web/payload/utils/formatSlug';
-import type { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload';
 
 import { invalidateCache } from '../hooks/invalidateCache';
 import { publishBeforeRead } from '../hooks/publishBeforeRead';

@@ -1,6 +1,6 @@
 import BlockConfig from '@mono/web/payload/fields/BlockConfig';
 import CTA from '@mono/web/payload/fields/CTA';
-import type { Block } from 'payload/types';
+import type { Block } from 'payload';
 
 const GalleryGridBlock: Block = {
   slug: 'galleryGridBlock',

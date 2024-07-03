@@ -1,11 +1,11 @@
-import type { GroupField } from 'payload/types';
+import type { GroupField } from 'payload';
 
 import IconSelect from './IconSelect';
 
 function Link({
   name,
   interfaceName,
-  localized,
+  localized = true,
   fields = []
 }: Partial<GroupField> = {}): GroupField {
   return {

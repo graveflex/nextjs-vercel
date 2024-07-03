@@ -1,5 +1,5 @@
 import RichTextFields from '@mono/web/payload/fields/RichTextFields';
-import type { GlobalConfig } from 'payload/types';
+import type { GlobalConfig } from 'payload';
 
 const FourOhFour: GlobalConfig = {
   slug: 'four-oh-four',

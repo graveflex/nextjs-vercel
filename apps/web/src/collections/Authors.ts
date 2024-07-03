@@ -1,4 +1,4 @@
-import type { CollectionConfig, FieldHook } from 'payload/types';
+import type { CollectionConfig, FieldHook } from 'payload';
 
 const formatSlug: FieldHook = async ({ value, data }) => {
   return data?.fullName?.replace(/ /g, '-').toLowerCase() ?? value;

@@ -8,7 +8,7 @@ import useIndexControls from '@mono/ui/lib/hooks/useIndexControls';
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import Layout from '@mono/web/globals/Layout';
 import useLivePreview from '@mono/web/hooks/useLivePreview';
-import type { PaginatedDocs } from 'payload/database';
+import type { PaginatedDocs } from 'payload';
 
 function PageTemplate({
   page,

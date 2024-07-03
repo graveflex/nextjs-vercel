@@ -1,4 +1,4 @@
-import type { GroupField } from 'payload/types';
+import type { GroupField } from 'payload';
 
 // NOTE: setting up just the text input for now
 
