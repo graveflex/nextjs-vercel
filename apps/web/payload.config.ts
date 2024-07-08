@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE, LOCALES, WEB_URL } from '@mono/settings';
+import { DEFAULT_LOCALE, LOCALES, NODE_ENV, WEB_URL } from '@mono/settings';
 import Authors from '@mono/web/collections/Authors';
 import Files from '@mono/web/collections/Files';
 import Images from '@mono/web/collections/Images';
@@ -37,6 +37,7 @@ import {
 } from '@payloadcms/richtext-lexical';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import dotenv from 'dotenv';
+import nodeMailer from 'nodemailer';
 import path from 'path';
 import { buildConfig } from 'payload';
 import { fileURLToPath } from 'url';
@@ -52,6 +53,20 @@ const dirname = path.dirname(filename);
 dotenv.config({ path: `${dirname}/../../.env` });
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
+
+async function createTestTransport() {
+  const testAccount = await nodeMailer.createTestAccount();
+
+  return {
+    host: testAccount.smtp.host,
+    port: testAccount.smtp.port,
+    secure: testAccount.smtp.secure,
+    auth: {
+      user: testAccount.user,
+      pass: testAccount.pass
+    }
+  };
+}
 
 export default buildConfig({
   db: postgresAdapter({
@@ -264,17 +279,20 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
   email: nodemailerAdapter({
     // skipVerify should actually be true if we want to verify creds. This is a known Payload bug that hasn't been fixed yet.
-    skipVerify: process.env.NODE_ENV === 'production',
-    defaultFromAddress: 'admin@graveflex.com',
+    skipVerify: true,
+    defaultFromAddress: 'fake@teasdasdast.com',
     defaultFromName: 'Payload',
-    transportOptions: {
-      host: process.env.SMTP_HOST,
-      port: 587,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-      }
-    }
+    transportOptions:
+      NODE_ENV === 'production'
+        ? {
+            host: process.env.SMTP_HOST,
+            port: 587,
+            auth: {
+              user: process.env.SMTP_USER,
+              pass: process.env.SMTP_PASS
+            }
+          }
+        : await createTestTransport()
   }),
   typescript: {
     outputFile: path.resolve(dirname, '../../packages/types/payload-types.ts')
