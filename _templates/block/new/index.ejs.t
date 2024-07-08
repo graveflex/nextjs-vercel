@@ -7,17 +7,31 @@ import React from 'react';
 import type { <%= name %>T as PayloadType } from '@mono/types/payload-types';
 import Wrapper from '@mono/ui/components/Wrapper';
 import styled from '@refract-ui/sc';
+<% for (path of componentImportPaths) { -%>
+<%- path %>
+<% } -%>
 
 export type <%= name %>Type = Omit<PayloadType, 'blockType'>;
 
 const Section = styled.div``;
 
-function <%= name %>({ title, blockConfig, ...props }: <%= name %>Type) {
+function <%= name %>({ 
+  <% for (field of fields) { -%>
+    <%- field.fieldName -%>,
+  <% } -%>, 
+  blockConfig, 
+  ...props 
+  }: <%= name %>Type) {
   return (
     <Wrapper {...blockConfig} hidden={blockConfig?.hidden ?? false}>
       <Section>
         <h1><%= name %></h1>
-        <pre>{JSON.stringify({ title, ...props }, null, 2)}</pre>
+        <%_ for (field of fields) { -%>
+          <div>
+            <label><%- field.fieldName %>-</label>
+            <%- field.rendered %>
+          </div>
+        <%_ } -%>
       </Section>
     </Wrapper>
   );

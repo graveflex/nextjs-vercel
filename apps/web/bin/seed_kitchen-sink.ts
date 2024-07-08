@@ -12,7 +12,7 @@ import tmp from 'tmp';
 import { tsImport } from 'tsx/esm/api';
 
 interface SeedFnProps {
-  payload: BasePayload;
+  payload: BasePayload<GeneratedTypes>;
 }
 
 const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {
