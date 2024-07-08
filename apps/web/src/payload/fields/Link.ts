@@ -5,7 +5,6 @@ import IconSelect from './IconSelect';
 function Link({
   name,
   interfaceName,
-  localized = true,
   fields = []
 }: Partial<GroupField> = {}): GroupField {
   return {
@@ -45,8 +44,7 @@ function Link({
       {
         name: 'label',
         label: 'Link Label',
-        type: 'text',
-        localized
+        type: 'text'
       },
       {
         name: 'internalHref',
