@@ -38,8 +38,8 @@ function AccordionBlock({
 }: FAQBlockType) {
   return (
     <Wrapper {...blockConfig} hidden={blockConfig?.hidden ?? false}>
-      <HeaderContainer $tAlign={textAlignment as string}>
-        {header && <Header {...header} $tAlign={textAlignment as string} />}
+      <HeaderContainer $tAlign={textAlignment ?? 'left'}>
+        {header && <Header {...header} $tAlign={textAlignment ?? 'left'} />}
       </HeaderContainer>
       <AccordionContainer>
         <Accordion items={items} />

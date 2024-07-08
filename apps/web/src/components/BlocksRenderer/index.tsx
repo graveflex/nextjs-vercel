@@ -53,11 +53,11 @@ function BlocksRenderer({ blocks }: { blocks: NonNullable<Page['blocks']> }) {
     }
 
     const Component = blockList[blockType] as ComponentType<typeof blockProps>;
-    const t = blockProps?.blockConfig?.theme;
+    const theme = blockProps?.blockConfig?.theme;
 
     if (Component) {
       return (
-        <MaybeThemed key={blockProps?.id} theme={t}>
+        <MaybeThemed key={blockProps?.id} theme={theme}>
           <Component {...blockProps} />
         </MaybeThemed>
       );

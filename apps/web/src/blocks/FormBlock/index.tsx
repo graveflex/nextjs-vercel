@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import type { FormBlockT as PayloadType } from '@mono/types/payload-types';
 import FormWrapper from '@mono/ui/components/FormWrapper';
 import RichText from '@mono/ui/components/primitives/RichText';
-import Wrapper from '@mono/web/components/Wrapper';
+import Wrapper from '@mono/ui/components/Wrapper';
 import CheckboxGroup from '@refract-ui/hook-fields/CheckboxGroup';
 import InputGroup from '@refract-ui/hook-fields/InputGroup';
 import Select from '@refract-ui/hook-fields/Select';
