@@ -57,7 +57,7 @@
     "@payloadcms/plugin-form-builder": "3.0.0-beta.57",
     "@payloadcms/storage-vercel-blob": "3.0.0-beta.57",
     "@payloadcms/next": "3.0.0-beta.57",
-    "@payload-enchants/translator": "1.2.0-pre.0",
+    "@payload-enchants/translator": "1.2.0",
     "@payloadcms/ui": "3.0.0-beta.57",
     "@refract-ui/core": "1.0.1-alpha.43",
     "@refract-ui/sc": "1.0.1-alpha.43",
