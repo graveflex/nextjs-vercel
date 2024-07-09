@@ -109,7 +109,7 @@ export interface Page {
 export interface SectionHeaderBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundColor?: ('fg' | 'bg' | 'bgLight' | 'primary' | 'secondary') | null;
     backgroundImage?: number | Image | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
@@ -314,7 +314,7 @@ export interface IconSelect {
 export interface GalleryGridBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundColor?: ('fg' | 'bg' | 'bgLight' | 'primary' | 'secondary') | null;
     backgroundImage?: number | Image | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
@@ -355,7 +355,7 @@ export interface GalleryGridBlockT {
 export interface VideoBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundColor?: ('fg' | 'bg' | 'bgLight' | 'primary' | 'secondary') | null;
     backgroundImage?: number | Image | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
@@ -412,7 +412,7 @@ export interface Video {
 export interface FormBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundColor?: ('fg' | 'bg' | 'bgLight' | 'primary' | 'secondary') | null;
     backgroundImage?: number | Image | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
@@ -610,7 +610,7 @@ export interface CheckboxType {
 export interface CardGridBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundColor?: ('fg' | 'bg' | 'bgLight' | 'primary' | 'secondary') | null;
     backgroundImage?: number | Image | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
@@ -667,7 +667,7 @@ export interface CardType {
 export interface MarkdownBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundColor?: ('fg' | 'bg' | 'bgLight' | 'primary' | 'secondary') | null;
     backgroundImage?: number | Image | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
@@ -717,7 +717,7 @@ export interface MarkdownBlockT {
 export interface FAQBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundColor?: ('fg' | 'bg' | 'bgLight' | 'primary' | 'secondary') | null;
     backgroundImage?: number | Image | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
@@ -788,7 +788,7 @@ export interface FAQBlockT {
 export interface TextImageBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundColor?: ('fg' | 'bg' | 'bgLight' | 'primary' | 'secondary') | null;
     backgroundImage?: number | Image | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
@@ -850,7 +850,7 @@ export interface TextImageBlockT {
 export interface HeroBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundColor?: ('fg' | 'bg' | 'bgLight' | 'primary' | 'secondary') | null;
     backgroundImage?: number | Image | null;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;

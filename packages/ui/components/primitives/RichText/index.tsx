@@ -1,5 +1,5 @@
 import React from 'react';
-import s from '@refract-ui/sc';
+import s, { css } from '@refract-ui/sc';
 import { type DefaultTheme } from 'styled-components';
 
 import type { ResponsivePayloadWrapperProps } from '../ResponsivePayloadImage';
@@ -56,7 +56,32 @@ export type PayloadRichTextProps =
   | (null & BaseRichTextProps);
 
 const RichTextWrapper = s.div`
-  //  USE THE THEME TO STYLE THE SEMANTIC TAGS 
+  ${({ theme: { box } }) => css`
+    h1 {
+      ${box.t('h1')};
+    }
+
+    h2 {
+      ${box.t('h2')};
+    }
+
+    h3 {
+      ${box.t('h3')};
+    }
+
+    h4 {
+      ${box.t('h4')};
+    }
+
+    h5 {
+      ${box.t('h5')};
+    }
+
+    h6 {
+      ${box.t('h6')};
+    }
+  `}
+  
 
   //Picture scales with container maintaining aspect ratio
   picture {

@@ -217,7 +217,7 @@ function HeroBlock({
           )}
           {cta?.link?.label && (
             <ButtonWrapper>
-              <CtaButton cta={cta} color="primary" />
+              <CtaButton cta={cta} />
             </ButtonWrapper>
           )}
         </ContentWrapper>

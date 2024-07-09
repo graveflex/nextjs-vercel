@@ -11,12 +11,12 @@ dotenv.config({ path: '../../.env.local' });
 
 setProjectAnnotations(globalStorybookConfig);
 
-vi.mock('next/font/local', async () => {
+vi.mock('../../packages/theme/fonts/index.ts', async () => {
   return {
-    default: () => ({
+    PPFragment: {
       style: { fontFamily: 'xxx' },
       className: 'yyy'
-    })
+    }
   };
 });
 

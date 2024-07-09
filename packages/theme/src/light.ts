@@ -13,10 +13,10 @@ export default theme({
     range: [1.0, 0.9, 0.8, 0.1]
   },
   themeColors: {
-    primary: colors.blue,
-    primaryLight: colors.lightBlue,
-    secondary: colors.yellow,
-    secondaryLight: colors.lightYellow,
+    primary: '#F0C82D',
+    primaryLight: '#FBE386',
+    secondary: '#5164AD',
+    secondaryLight: '#7889C9',
     info: colors.blue,
     warning: colors.orange,
     danger: colors.red,
@@ -26,8 +26,10 @@ export default theme({
     light: colors.white
   },
   colorTokens: {
-    bg: ({ themeColors }) => themeColors.dark,
-    fg: ({ themeColors }) => themeColors.light,
+    bg: '#F5EDE2',
+    bgLight: '#FAF6F1',
+    fg: colors.black,
+    textSubtle: '#696969',
     color1: ({ themeColors }) => themeColors.dark,
     color2: ({ themeColors }) => themeColors.light,
     color3: colors.neutral,

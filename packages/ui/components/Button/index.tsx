@@ -65,30 +65,35 @@ const getVariantStyles = (
   }
 
   return css`
-    ${({ theme: { allColors, box } }) => css`
-      ${box.t('button')};
-      background-color: ${allColors[color]};
-      border-radius: 1rem;
-      border: 1px solid transparent;
-      color: ${allColors.bg};
-
-      &:hover {
-        opacity: 0.9;
-        background-color: transparent;
-        color: ${allColors[color]};
-        border: 1px solid ${allColors[color]};
-      }
-
-      &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-        pointer-events: none;
-        /* revert any hover / focus styles when disabled */
-        background-color: transparent;
-        border: 1px solid ${allColors[color]};
+    &.button-solid {
+      ${({ theme: { allColors, box } }) => css`
+        ${box.t('button')};
+        background-color: ${allColors[color]};
         border-radius: 1rem;
-      }
-    `}
+        border: 1px solid ${allColors.dark};
+        color: ${allColors.fg};
+
+        &:hover {
+          background-color: ${allColors.primaryLight};
+          border: 1px solid ${allColors.dark};
+        }
+
+        &:active {
+          background-color: ${allColors[color]};
+          border: 3px solid ${allColors.dark};
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+          pointer-events: none;
+          /* revert any hover / focus styles when disabled */
+          background-color: transparent;
+          border: 1px solid ${allColors[color]};
+          border-radius: 1rem;
+        }
+      `}
+    }
   `;
 };
 

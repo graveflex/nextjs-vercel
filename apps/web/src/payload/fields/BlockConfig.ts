@@ -9,10 +9,10 @@ const themeOptions = [
 // UPDATE WITH THEME COLORS
 const colorOptions = [
   { label: 'Foreground', value: 'fg' },
-  { label: 'Light Background', value: 'neutral' },
-  { label: 'Blue', value: 'blue' },
-  { label: 'Indigo', value: 'indigo' },
-  { label: 'Purple', value: 'purple' }
+  { label: 'Background', value: 'bg' },
+  { label: 'Light Background', value: 'bgLight' },
+  { label: 'Primary', value: 'primary' },
+  { label: 'Secondary', value: 'secondary' }
 ];
 
 const paddingValues = [

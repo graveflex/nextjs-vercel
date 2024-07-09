@@ -1,5 +1,6 @@
-// import { satoshi } from '../fonts';
+import { PPFragment } from '../fonts';
 
 export default {
-  serif: ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif']
+  serif: [PPFragment.style.fontFamily],
+  sans: ['Arial', 'Helvetica', 'sans-serif']
 };
