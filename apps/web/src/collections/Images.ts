@@ -124,6 +124,13 @@ const Images: CollectionConfig = {
   ],
   upload: {
     staticDir: 'images',
+    disableLocalStorage: true,
+    formatOptions: {
+      format: 'webp',
+      options: {
+        quality: 75
+      }
+    },
     imageSizes: [
       {
         name: 'thumbnail',
