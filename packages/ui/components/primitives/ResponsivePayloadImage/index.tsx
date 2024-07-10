@@ -104,12 +104,12 @@ function ResponsivePayloadImage({
 
   const breakpoints = useMemo(
     () =>
-      theme.settings.breakpointNames.reduce<Partial<Breakpoints>>(
-        (coll, name, idx) => ({
+      theme.settings.breakpointNames.reduce(
+        (coll: Partial<Breakpoints>, name: string, idx: number) => ({
           ...coll,
           [name]: theme.settings.breakpointValues[idx]
         }),
-        {}
+        {} as Partial<Breakpoints>
       ) as Breakpoints,
     [theme.settings.breakpointValues, theme.settings.breakpointNames]
   );
