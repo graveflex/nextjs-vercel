@@ -39,6 +39,7 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import dotenv from 'dotenv';
 import path from 'path';
 import { buildConfig } from 'payload';
+import sharp from 'sharp';
 import { fileURLToPath } from 'url';
 
 import CheckboxBlock from './src/payload/fields/Inputs/Checkbox/Checkbox.config';
@@ -294,5 +295,6 @@ export default buildConfig({
         }
       });
     }
-  }
+  },
+  sharp
 });
