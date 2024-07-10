@@ -124,6 +124,8 @@ const Images: CollectionConfig = {
   ],
   upload: {
     staticDir: 'images',
+    crop: false,
+    focalPoint: false,
     imageSizes: [
       {
         name: 'thumbnail',
