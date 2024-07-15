@@ -6,7 +6,8 @@ const cta = CTA({ name: 'card' });
 
 function Card({
   interfaceName,
-  fields = []
+  fields = [],
+  localized
 }: Partial<GroupField> = {}): GroupField {
   return {
     name: 'card',
@@ -35,14 +36,14 @@ function Card({
             name: 'eyebrow',
             label: 'Eyebrow',
             type: 'text',
-            localized: true,
+            localized,
             required: false
           },
           {
             name: 'headline',
             label: 'Headline',
             type: 'textarea',
-            localized: true,
+            localized,
             required: true,
             admin: {
               description: 'The main headline of the card.'
@@ -52,7 +53,7 @@ function Card({
             name: 'subHead',
             label: 'Subhead',
             type: 'textarea',
-            localized: true,
+            localized,
             required: false,
             admin: {
               description: 'The subhead of the card.'
@@ -62,7 +63,7 @@ function Card({
             name: 'date',
             label: 'Date',
             type: 'text',
-            localized: true,
+            localized,
             required: false,
             admin: {
               description: 'The date to be shown on the card.'
