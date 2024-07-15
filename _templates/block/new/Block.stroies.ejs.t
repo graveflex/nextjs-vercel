@@ -3,6 +3,9 @@ to: <%= app_name %>/blocks/<%= name %>/<%= name %>.stories.tsx
 ---
 import { faker } from '@faker-js/faker';
 import type { Meta, StoryObj } from '@storybook/react';
+<% for (path of mockImportPaths) { -%>
+<%- path %>
+<% } -%>
 
 import type { <%= name %>Type } from '.';
 import <%= name %> from '.';
@@ -21,6 +24,8 @@ type Story = StoryObj<<%= name %>Type>;
 
 export const Defaults: Story = {
   args: {
-    title: faker.lorem.text()
+  <% for (field of fields) { -%>
+    <%- field.fieldName %>: <%- field.mock %>,
+  <% } -%>
   }
 };

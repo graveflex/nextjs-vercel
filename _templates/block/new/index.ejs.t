@@ -16,9 +16,9 @@ export type <%= name %>Type = Omit<PayloadType, 'blockType'>;
 const Section = styled.div``;
 
 function <%= name %>({ 
-  <% for (field of fields) { -%>
-    <%- field.fieldName -%>,
-  <% } -%>, 
+<% for (field of fields) { -%>
+  <%- field.fieldName -%>,
+<% } -%>
   blockConfig, 
   ...props 
   }: <%= name %>Type) {
@@ -28,7 +28,7 @@ function <%= name %>({
         <h1><%= name %></h1>
         <%_ for (field of fields) { -%>
           <div>
-            <label><%- field.fieldName %>-</label>
+            <h1><%- field.fieldName %>-</h1>
             <%- field.rendered %>
           </div>
         <%_ } -%>
