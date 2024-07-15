@@ -1,9 +1,10 @@
-import { compact, reduce, uniq } from 'lodash';
+const { reduce, uniq, compact } = require('lodash');
 
 const typeMappings = {
   richText: {
     componentImportPath:
       "import RichText from '@mono/ui/components/primitives/RichText';",
+    mockImportPath: `import genRichText from '@mono/ui/utils/genRichText';`,
     render: (fieldName) => `<RichText {...${fieldName}}/>`,
     type: 'richText',
     mock: `{...genRichText([
@@ -17,19 +18,21 @@ const typeMappings = {
   text: {
     render: (fieldName) => `<p>{${fieldName}}</p>`,
     type: 'text',
-    mock: `faker.internet.words(5)`
+    mock: `faker.lorem.words(5)`
   },
   image: {
     componentImportPath:
       "import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';",
     render: (fieldName) => `<ResponsivePayloadImage image={${fieldName}}/>`,
     type: 'upload',
+    relationTo: 'images',
     mock: `faker.image.imageUrl()`
   },
   video: {
     componentImportPath: "import Video from '@mono/ui/components/Video';",
     render: (fieldName) => `<Video video={${fieldName}}/>`,
     type: 'upload',
+    relationTo: 'videos',
     mock: `faker.internet.url()`
   },
   checkbox: {
@@ -86,8 +89,6 @@ module.exports = {
         let mockImportPaths = [];
         let schemaImportPaths = [];
         const defaultRenderFn = (fieldName) => `<p>{${fieldName}}</p>`;
-        const defaultMockImportPath =
-          "import { faker } from '@faker-js/faker';";
         const fields = reduce(
           nextAnswers,
           (memo, val, key) => {
@@ -95,13 +96,12 @@ module.exports = {
             memo.push({
               fieldName: key,
               fieldType: typeMappings[val].type,
+              fieldRelation: typeMappings[val].relationTo,
               rendered: renderFn(key),
               mock: typeMappings[val].mock
             });
             componentImportPaths.push(typeMappings[val].componentImportPath);
-            mockImportPaths.push(
-              typeMappings[val].mockImportPath || defaultMockImportPath
-            );
+            mockImportPaths.push(typeMappings[val].mockImportPath);
             return memo;
           },
           []

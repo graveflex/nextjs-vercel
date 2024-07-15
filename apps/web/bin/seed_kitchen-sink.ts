@@ -5,6 +5,8 @@ import { heroBlockSchema } from '@mono/web/blocks/HeroBlock/HeroBlockSeed';
 import { markdownBlockSchema } from '@mono/web/blocks/MarkdownBlock/MarkdownBlockSeed';
 import { sectionHeaderBlockSchema } from '@mono/web/blocks/SectionHeaderBlock/SectionHeaderSeed';
 // ImportBlockSchema
+import { TestingTwoBlockSchema } from '@mono/web/blocks/TestingTwoBlock/TestingTwoBlockSeed';
+import { TestBlockSchema } from '@mono/web/blocks/TestBlock/TestBlockSeed';
 import { imageTextBlockSchema } from '@mono/web/blocks/TextImageBlock/TextImageBlockSeed';
 import path from 'path';
 import type { BasePayload } from 'payload';
@@ -69,6 +71,8 @@ const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {
   );
 
   // ResolveBlockSchema
+  const testingTwoBlock = await TestingTwoBlockSchema();
+  const testBlock = await TestBlockSchema();
 
   await payload.create({
     collection: 'pages',
@@ -77,6 +81,8 @@ const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {
       slug: 'kitchen-sink',
       blocks: [
         // AddBlock
+        testingTwoBlock,
+        testBlock,
         heroBlockBG,
         heroBlockCTA,
         sectionHeaderBlockSchema,
