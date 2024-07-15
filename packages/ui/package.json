@@ -30,6 +30,7 @@
     "@testing-library/jest-dom": "^6.4.1",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.5",
+    "@types/lodash": "latest",
     "@types/luxon": "^3.4.2",
     "@types/react": "^18.2.74",
     "@types/react-dom": "^18.2.24",
@@ -38,7 +39,7 @@
     "eslint": "^8.51.0",
     "eslint-config-custom": "workspace:*",
     "framer-motion": "latest",
-    "lodash": "^4.17.21",
+    "lodash": "latest",
     "luxon": "^3.4.4",
     "next": "latest",
     "payload": "latest",
@@ -54,7 +55,6 @@
     "vitest-canvas-mock": "^0.3.3"
   },
   "dependencies": {
-    "@types/lodash": "^4.17.0",
     "@types/styled-components": "latest"
   }
 }

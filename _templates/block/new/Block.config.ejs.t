@@ -10,12 +10,17 @@ const <%= name %>: Block = {
   interfaceName: '<%= name %>T',
   fields: [
     BlockConfig(),
-    {
-      type: 'text',
-      name: 'title',
-      label: 'Title',
-      required: false
-    }
+    <%_ for (field of fields) { -%>
+      {
+        name: '<%= field.fieldName %>',
+        label: '<%= field.fieldName %>',
+        type: '<%= field.fieldType %>',
+        <%_ if (field.fieldType === 'upload') { -%>
+          relationTo: '<%= field.fieldRelation %>',
+        <%_ } -%>
+        required: false
+      },
+    <%_ } -%>
   ]
 };
 
