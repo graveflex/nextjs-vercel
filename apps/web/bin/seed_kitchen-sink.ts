@@ -8,11 +8,10 @@ import { sectionHeaderBlockSchema } from '@mono/web/blocks/SectionHeaderBlock/Se
 import { imageTextBlockSchema } from '@mono/web/blocks/TextImageBlock/TextImageBlockSeed';
 import path from 'path';
 import type { BasePayload } from 'payload';
-import tmp from 'tmp';
 import { tsImport } from 'tsx/esm/api';
 
 interface SeedFnProps {
-  payload: BasePayload<GeneratedTypes>;
+  payload: BasePayload;
 }
 
 const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {

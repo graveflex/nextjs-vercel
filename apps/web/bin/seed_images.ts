@@ -1,13 +1,13 @@
 import { faker } from '@faker-js/faker';
 import fs from 'fs';
 import path from 'path';
-import type { BasePayload, GeneratedTypes } from 'payload';
+import type { BasePayload } from 'payload';
 import { getPayload } from 'payload';
 import { importConfig } from 'payload/node';
 import tmp from 'tmp';
 
 interface SeedFnProps {
-  payload: BasePayload<GeneratedTypes>;
+  payload: BasePayload;
   count?: number;
 }
 
