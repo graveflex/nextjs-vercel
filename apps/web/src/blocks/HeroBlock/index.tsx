@@ -13,8 +13,6 @@ import s, { css } from '@refract-ui/sc';
 
 export type HeroBlockProps = Omit<PayloadType, 'blockType'>;
 
-const StyledWrapper = s(Wrapper)``;
-
 const InnerWrapper = s.div<{
   $hasImage: boolean;
   $layout: string;
@@ -121,6 +119,7 @@ const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
       min-width: 100%;
       height: auto;
     }
+
     margin: 0 auto;
     min-width: 100%;
 
@@ -146,8 +145,9 @@ const InputWrapper = s(FormWrapper)<{ $contentAlign: string }>`
   form {
     display: flex;
     justify-content: ${({ $contentAlign }) => ($contentAlign === 'center' ? 'center' : 'flex-start')};
-    gap: 20px;
+    gap: 1.25rem;
     margin-top: 1rem;
+
     button { 
       height: fit-content;
       align-self: flex-end;
@@ -181,7 +181,7 @@ function HeroBlock({
   const alignText = contentAlign || 'left';
 
   return (
-    <StyledWrapper
+    <Wrapper
       {...blockConfig}
       gutter={isFullBleed ? false : 'blockH'}
       hidden={blockConfig?.hidden ?? false}
@@ -223,7 +223,7 @@ function HeroBlock({
         </ContentWrapper>
         <ImageWrapper image={image} $layout={contentPosition} />
       </InnerWrapper>
-    </StyledWrapper>
+    </Wrapper>
   );
 }
 

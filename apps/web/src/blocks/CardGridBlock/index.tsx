@@ -25,12 +25,12 @@ function CardGridBlock({ cards, blockConfig }: CardGridBlockType) {
       return null;
     }
 
-    return cards.map(({ card: c, id }) => {
-      if (!c) {
+    return cards.map(({ card, id }) => {
+      if (!card) {
         return null;
       }
 
-      return <GeneralCard key={id} {...c} />;
+      return <GeneralCard key={id} {...card} />;
     });
   }, [cards]);
 

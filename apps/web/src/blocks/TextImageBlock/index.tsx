@@ -122,6 +122,7 @@ const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
     grid-area: image;
     overflow: hidden;
     align-self: center;
+
     img {
       max-width: 100%;
       height: auto;
@@ -151,6 +152,7 @@ const VideoWrapper = s.div<{ $layout: string }>`
     grid-area: image;
     overflow: hidden;
     align-self: center;
+
     ${($layout === 'imgLeftCenter' || $layout === 'imgLeft') &&
     css`
       margin-left: auto;
@@ -172,6 +174,7 @@ const InputWrapper = s(FormWrapper)`
   form {
     display: flex;
     gap: 1rem;
+
     button { 
       height: fit-content;
       align-self: flex-end;
@@ -210,13 +213,13 @@ function TextImageBlock({
       return null;
     }
 
-    return items.map(({ cta: t, id }) => {
-      if (!t) {
+    return items.map(({ cta, id }) => {
+      if (!cta) {
         return null;
       }
       return (
         <span key={id}>
-          {t?.link?.label && <CtaButton cta={t} color="primary" />}
+          {cta?.link?.label && <CtaButton cta={cta} color="primary" />}
         </span>
       );
     });
