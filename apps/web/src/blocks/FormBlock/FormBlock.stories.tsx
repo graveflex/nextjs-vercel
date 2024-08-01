@@ -41,61 +41,53 @@ export const Defaults: Story = {
         {
           id: '0',
           blockName: null,
-          blockType: 'textInput',
-          textinput: {
-            name: 'Name',
-            placeholder: 'Enter your name',
-            helpText: null,
-            label: 'Name',
-            required: true
-          }
+          blockType: 'text',
+          name: 'Name',
+          defaultValue: 'Enter your name',
+          label: 'Name',
+          required: true
         },
         {
           id: '1',
           blockName: null,
-          blockType: 'textInput',
-          textinput: {
-            name: 'Email',
-            placeholder: 'Enter your email',
-            helpText: null,
-            label: 'Email',
-            required: true
-          }
+          blockType: 'text',
+          name: 'Email',
+          defaultValue: 'Enter your email',
+          label: 'Email',
+          required: true
         },
         {
           id: '2',
           name: 'message',
-          placeholder: 'Enter a message',
-          helpText: null,
+          defaultValue: 'Enter a message',
           label: "Anything else you'd like to know?",
           required: true,
           blockName: null,
-          blockType: 'textArea'
+          blockType: 'textarea'
         },
         {
           id: '3',
           blockName: null,
           blockType: 'select',
 
-          select: {
-            name: 'select',
-            placeholder: null,
-            helpText: null,
-            label: 'Select',
-            required: false,
+          name: 'select',
+          defaultValue: null,
 
-            selectOptions: [
-              {
-                option: 'Select 1',
-                id: '0'
-              },
+          label: 'Select',
+          required: false,
 
-              {
-                option: 'Select 2',
-                id: '1'
-              }
-            ]
-          }
+          options: [
+            {
+              label: 'Select 1',
+              value: '0',
+              id: '0'
+            },
+            {
+              label: 'Select 2',
+              value: '1',
+              id: '1'
+            }
+          ]
         }
       ],
       submitButtonLabel: 'Send!',

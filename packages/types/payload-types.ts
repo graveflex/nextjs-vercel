@@ -48,6 +48,9 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
+  db: {
+    defaultIDType: number;
+  };
   globals: {
     nav: Nav;
     'four-oh-four': FourOhFour;
@@ -62,12 +65,15 @@ export interface UserAuthOperations {
     email: string;
   };
   login: {
-    password: string;
     email: string;
+    password: string;
   };
   registerFirstUser: {
     email: string;
     password: string;
+  };
+  unlock: {
+    email: string;
   };
 }
 /**
@@ -462,7 +468,47 @@ export interface FormBlockT {
 export interface Form {
   id: number;
   title: string;
-  fields?: (TextInputT | TextAreaT | SelectT | CheckboxT)[] | null;
+  fields?:
+    | (
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            options?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'select';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'text';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textarea';
+          }
+      )[]
+    | null;
   submitButtonLabel?: string | null;
   confirmationType?: ('message' | 'redirect') | null;
   confirmationMessage?: {
@@ -511,97 +557,6 @@ export interface Form {
     | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TextInputT".
- */
-export interface TextInputT {
-  textinput?: TextInputType;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'textInput';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TextInputType".
- */
-export interface TextInputType {
-  name?: string | null;
-  placeholder?: string | null;
-  helpText?: string | null;
-  label?: string | null;
-  required?: boolean | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TextAreaT".
- */
-export interface TextAreaT {
-  name?: string | null;
-  placeholder?: string | null;
-  helpText?: string | null;
-  label?: string | null;
-  required?: boolean | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'textArea';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "SelectT".
- */
-export interface SelectT {
-  select?: SelectType;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'select';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "SelectType".
- */
-export interface SelectType {
-  name?: string | null;
-  placeholder?: string | null;
-  helpText?: string | null;
-  label?: string | null;
-  required?: boolean | null;
-  selectOptions?:
-    | {
-        option?: string | null;
-        value?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CheckboxT".
- */
-export interface CheckboxT {
-  checkbox?: CheckboxType;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'checkbox';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CheckboxType".
- */
-export interface CheckboxType {
-  name?: string | null;
-  placeholder?: string | null;
-  helpText?: string | null;
-  label?: string | null;
-  required?: boolean | null;
-  checkboxOptions?:
-    | {
-        label?: string | null;
-        value?: string | null;
-        id?: string | null;
-      }[]
-    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -842,6 +797,17 @@ export interface TextImageBlockT {
   id?: string | null;
   blockName?: string | null;
   blockType: 'textImageBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextInputType".
+ */
+export interface TextInputType {
+  name?: string | null;
+  placeholder?: string | null;
+  helpText?: string | null;
+  label?: string | null;
+  required?: boolean | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
