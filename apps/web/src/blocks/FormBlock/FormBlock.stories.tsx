@@ -41,26 +41,22 @@ export const Defaults: Story = {
         {
           id: '0',
           blockName: null,
-          blockType: 'textInput',
-          textinput: {
-            name: 'Name',
-            placeholder: 'Enter your name',
-            helpText: null,
-            label: 'Name',
-            required: true
-          }
+          blockType: 'text',
+          name: 'Name',
+          placeholder: 'Enter your name',
+          helpText: null,
+          label: 'Name',
+          required: true
         },
         {
           id: '1',
           blockName: null,
-          blockType: 'textInput',
-          textinput: {
-            name: 'Email',
-            placeholder: 'Enter your email',
-            helpText: null,
-            label: 'Email',
-            required: true
-          }
+          blockType: 'text',
+          name: 'Email',
+          placeholder: 'Enter your email',
+          helpText: null,
+          label: 'Email',
+          required: true
         },
         {
           id: '2',
@@ -70,32 +66,29 @@ export const Defaults: Story = {
           label: "Anything else you'd like to know?",
           required: true,
           blockName: null,
-          blockType: 'textArea'
+          blockType: 'textarea'
         },
         {
           id: '3',
           blockName: null,
           blockType: 'select',
+          name: 'select',
+          placeholder: null,
+          helpText: null,
+          label: 'Select',
+          required: false,
 
-          select: {
-            name: 'select',
-            placeholder: null,
-            helpText: null,
-            label: 'Select',
-            required: false,
+          selectOptions: [
+            {
+              option: 'Select 1',
+              id: '0'
+            },
 
-            selectOptions: [
-              {
-                option: 'Select 1',
-                id: '0'
-              },
-
-              {
-                option: 'Select 2',
-                id: '1'
-              }
-            ]
-          }
+            {
+              option: 'Select 2',
+              id: '1'
+            }
+          ]
         }
       ],
       submitButtonLabel: 'Send!',

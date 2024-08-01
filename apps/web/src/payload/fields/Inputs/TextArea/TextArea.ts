@@ -1,14 +1,14 @@
 import type { GroupField } from 'payload';
 
-function Checkbox({
+function TextArea({
   name,
   interfaceName,
   fields = []
 }: Partial<GroupField> = {}): GroupField {
   return {
-    name: name || 'checkbox',
+    name: name || 'textArea',
     type: 'group',
-    interfaceName: interfaceName || 'CheckboxType',
+    interfaceName: interfaceName || 'TextAreaType',
     fields: [
       {
         label: 'Input Settings',
@@ -19,7 +19,7 @@ function Checkbox({
         fields: [
           {
             name: 'name',
-            label: 'Name ID',
+            label: 'Name',
             type: 'text',
             required: false,
             admin: {
@@ -52,30 +52,6 @@ function Checkbox({
             defaultValue: false,
             required: false
           },
-          {
-            type: 'array',
-            name: 'checkboxOptions',
-            label: 'Options',
-            required: false,
-            fields: [
-              {
-                name: 'label',
-                label: 'Option Label',
-                type: 'text',
-                required: false
-              },
-              {
-                name: 'value',
-                label: 'Option Value',
-                type: 'text',
-                required: false,
-                admin: {
-                  description:
-                    'A unique value to represent the data that is collected.'
-                }
-              }
-            ]
-          },
           ...fields
         ]
       }
@@ -83,4 +59,4 @@ function Checkbox({
   };
 }
 
-export default Checkbox;
+export default TextArea;

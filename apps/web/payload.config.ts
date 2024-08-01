@@ -45,6 +45,10 @@ import CheckboxBlock from './src/payload/fields/Inputs/Checkbox/Checkbox.config'
 import SelectBlock from './src/payload/fields/Inputs/Select/Select.config';
 import TextAreaBlock from './src/payload/fields/Inputs/TextArea/TextArea.config';
 import TextInputBlock from './src/payload/fields/Inputs/TextInput/TextInput.config';
+import TextInputFields from './src/payload/fields/Inputs/TextInput/TextInput';
+import SelectFields from './src/payload/fields/Inputs/Select/Select';
+import TextAreaFields from './src/payload/fields/Inputs/TextArea/TextArea';
+import CheckboxFields from './src/payload/fields/Inputs/Checkbox/Checkbox';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -204,17 +208,21 @@ export default buildConfig({
     }),
     formBuilderPlugin({
       fields: {
-        TextInputBlock,
-        TextAreaBlock,
-        SelectBlock,
-        CheckboxBlock,
-        text: false,
-        textarea: false,
-        select: false,
+        text: {
+          ...TextInputFields(),
+        },
+        textarea: {
+          ...TextAreaFields(),
+        },
+        select: {
+          ...SelectFields(),
+        },
         email: false,
         state: false,
         country: false,
-        checkbox: false,
+        checkbox: {
+          ...CheckboxFields(),
+        },
         number: false,
         message: false,
         payment: false
@@ -228,6 +236,11 @@ export default buildConfig({
   },
   admin: {
     user: Users.slug,
+    autoLogin: {
+      email: 'dev@payloadcms.com',
+      password: 'test',
+      prefillOnly: true
+    },
     livePreview: {
       url: ({ data }) => {
         return `${WEB_URL}/${data?.slug}`;

@@ -196,10 +196,6 @@ export const LeftImageForm: Story = {
         link: {
           label: 'Take Action'
         }
-      },
-      textinput: {
-        placeholder: 'Email address',
-        label: 'Email'
       }
     },
     image: {

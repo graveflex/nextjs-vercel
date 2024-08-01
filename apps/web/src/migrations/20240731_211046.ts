@@ -486,18 +486,11 @@ CREATE TABLE IF NOT EXISTS "pages_blocks_card_grid_block_cards" (
 	"_order" integer NOT NULL,
 	"_parent_id" varchar NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
-	"card_image_id" integer
-);
-
-CREATE TABLE IF NOT EXISTS "pages_blocks_card_grid_block_cards_locales" (
+	"card_image_id" integer,
 	"card_eyebrow" varchar,
 	"card_headline" varchar,
 	"card_sub_head" varchar,
-	"card_date" varchar,
-	"id" serial PRIMARY KEY NOT NULL,
-	"_locale" "_locales" NOT NULL,
-	"_parent_id" varchar NOT NULL,
-	CONSTRAINT "pages_blocks_card_grid_block_cards_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
+	"card_date" varchar
 );
 
 CREATE TABLE IF NOT EXISTS "pages_blocks_card_grid_block" (
@@ -920,18 +913,11 @@ CREATE TABLE IF NOT EXISTS "_pages_v_blocks_card_grid_block_cards" (
 	"_parent_id" integer NOT NULL,
 	"id" serial PRIMARY KEY NOT NULL,
 	"card_image_id" integer,
-	"_uuid" varchar
-);
-
-CREATE TABLE IF NOT EXISTS "_pages_v_blocks_card_grid_block_cards_locales" (
 	"card_eyebrow" varchar,
 	"card_headline" varchar,
 	"card_sub_head" varchar,
 	"card_date" varchar,
-	"id" serial PRIMARY KEY NOT NULL,
-	"_locale" "_locales" NOT NULL,
-	"_parent_id" integer NOT NULL,
-	CONSTRAINT "_pages_v_blocks_card_grid_block_cards_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
+	"_uuid" varchar
 );
 
 CREATE TABLE IF NOT EXISTS "_pages_v_blocks_card_grid_block" (
@@ -1414,16 +1400,58 @@ CREATE TABLE IF NOT EXISTS "redirects_rels" (
 	"posts_id" integer
 );
 
-CREATE TABLE IF NOT EXISTS "forms_blocks_text_input" (
+CREATE TABLE IF NOT EXISTS "forms_blocks_checkbox_checkbox_options" (
+	"_order" integer NOT NULL,
+	"_parent_id" varchar NOT NULL,
+	"id" varchar PRIMARY KEY NOT NULL,
+	"label" varchar,
+	"value" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "forms_blocks_checkbox" (
 	"_order" integer NOT NULL,
 	"_parent_id" integer NOT NULL,
 	"_path" text NOT NULL,
 	"id" varchar PRIMARY KEY NOT NULL,
-	"textinput_name" varchar,
-	"textinput_placeholder" varchar,
-	"textinput_help_text" varchar,
-	"textinput_label" varchar,
-	"textinput_required" boolean,
+	"name" varchar,
+	"placeholder" varchar,
+	"help_text" varchar,
+	"label" varchar,
+	"required" boolean,
+	"block_name" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "forms_blocks_select_select_options" (
+	"_order" integer NOT NULL,
+	"_parent_id" varchar NOT NULL,
+	"id" varchar PRIMARY KEY NOT NULL,
+	"option" varchar,
+	"value" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "forms_blocks_select" (
+	"_order" integer NOT NULL,
+	"_parent_id" integer NOT NULL,
+	"_path" text NOT NULL,
+	"id" varchar PRIMARY KEY NOT NULL,
+	"name" varchar,
+	"placeholder" varchar,
+	"help_text" varchar,
+	"label" varchar,
+	"required" boolean,
+	"block_name" varchar
+);
+
+CREATE TABLE IF NOT EXISTS "forms_blocks_textinput" (
+	"_order" integer NOT NULL,
+	"_parent_id" integer NOT NULL,
+	"_path" text NOT NULL,
+	"id" varchar PRIMARY KEY NOT NULL,
+	"name" varchar,
+	"placeholder" varchar,
+	"help_text" varchar,
+	"label" varchar,
+	"required" boolean,
 	"block_name" varchar
 );
 
@@ -1437,62 +1465,6 @@ CREATE TABLE IF NOT EXISTS "forms_blocks_text_area" (
 	"help_text" varchar,
 	"label" varchar,
 	"required" boolean,
-	"block_name" varchar
-);
-
-CREATE TABLE IF NOT EXISTS "forms_blocks_select_select_select_options" (
-	"_order" integer NOT NULL,
-	"_parent_id" varchar NOT NULL,
-	"id" varchar PRIMARY KEY NOT NULL,
-	"value" varchar
-);
-
-CREATE TABLE IF NOT EXISTS "forms_blocks_select_select_select_options_locales" (
-	"option" varchar,
-	"id" serial PRIMARY KEY NOT NULL,
-	"_locale" "_locales" NOT NULL,
-	"_parent_id" varchar NOT NULL,
-	CONSTRAINT "forms_blocks_select_select_select_options_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
-);
-
-CREATE TABLE IF NOT EXISTS "forms_blocks_select" (
-	"_order" integer NOT NULL,
-	"_parent_id" integer NOT NULL,
-	"_path" text NOT NULL,
-	"id" varchar PRIMARY KEY NOT NULL,
-	"select_name" varchar,
-	"select_placeholder" varchar,
-	"select_help_text" varchar,
-	"select_label" varchar,
-	"select_required" boolean,
-	"block_name" varchar
-);
-
-CREATE TABLE IF NOT EXISTS "forms_blocks_checkbox_checkbox_checkbox_options" (
-	"_order" integer NOT NULL,
-	"_parent_id" varchar NOT NULL,
-	"id" varchar PRIMARY KEY NOT NULL,
-	"value" varchar
-);
-
-CREATE TABLE IF NOT EXISTS "forms_blocks_checkbox_checkbox_checkbox_options_locales" (
-	"label" varchar,
-	"id" serial PRIMARY KEY NOT NULL,
-	"_locale" "_locales" NOT NULL,
-	"_parent_id" varchar NOT NULL,
-	CONSTRAINT "forms_blocks_checkbox_checkbox_checkbox_options_locales_locale_parent_id_unique" UNIQUE("_locale","_parent_id")
-);
-
-CREATE TABLE IF NOT EXISTS "forms_blocks_checkbox" (
-	"_order" integer NOT NULL,
-	"_parent_id" integer NOT NULL,
-	"_path" text NOT NULL,
-	"id" varchar PRIMARY KEY NOT NULL,
-	"checkbox_name" varchar,
-	"checkbox_placeholder" varchar,
-	"checkbox_help_text" varchar,
-	"checkbox_label" varchar,
-	"checkbox_required" boolean,
 	"block_name" varchar
 );
 
@@ -1750,6 +1722,7 @@ CREATE INDEX IF NOT EXISTS "pages_blocks_hero_block_order_idx" ON "pages_blocks_
 CREATE INDEX IF NOT EXISTS "pages_blocks_hero_block_parent_id_idx" ON "pages_blocks_hero_block" ("_parent_id");
 CREATE INDEX IF NOT EXISTS "pages_blocks_hero_block_path_idx" ON "pages_blocks_hero_block" ("_path");
 CREATE INDEX IF NOT EXISTS "pages_created_at_idx" ON "pages" ("created_at");
+CREATE INDEX IF NOT EXISTS "pages__status_idx" ON "pages" ("_status");
 CREATE INDEX IF NOT EXISTS "_pages_v_blocks_section_header_block_order_idx" ON "_pages_v_blocks_section_header_block" ("_order");
 CREATE INDEX IF NOT EXISTS "_pages_v_blocks_section_header_block_parent_id_idx" ON "_pages_v_blocks_section_header_block" ("_parent_id");
 CREATE INDEX IF NOT EXISTS "_pages_v_blocks_section_header_block_path_idx" ON "_pages_v_blocks_section_header_block" ("_path");
@@ -1790,6 +1763,7 @@ CREATE INDEX IF NOT EXISTS "_pages_v_blocks_hero_block_order_idx" ON "_pages_v_b
 CREATE INDEX IF NOT EXISTS "_pages_v_blocks_hero_block_parent_id_idx" ON "_pages_v_blocks_hero_block" ("_parent_id");
 CREATE INDEX IF NOT EXISTS "_pages_v_blocks_hero_block_path_idx" ON "_pages_v_blocks_hero_block" ("_path");
 CREATE INDEX IF NOT EXISTS "_pages_v_version_version_created_at_idx" ON "_pages_v" ("version_created_at");
+CREATE INDEX IF NOT EXISTS "_pages_v_version_version__status_idx" ON "_pages_v" ("version__status");
 CREATE INDEX IF NOT EXISTS "_pages_v_created_at_idx" ON "_pages_v" ("created_at");
 CREATE INDEX IF NOT EXISTS "_pages_v_updated_at_idx" ON "_pages_v" ("updated_at");
 CREATE INDEX IF NOT EXISTS "_pages_v_latest_idx" ON "_pages_v" ("latest");
@@ -1821,22 +1795,22 @@ CREATE INDEX IF NOT EXISTS "redirects_created_at_idx" ON "redirects" ("created_a
 CREATE INDEX IF NOT EXISTS "redirects_rels_order_idx" ON "redirects_rels" ("order");
 CREATE INDEX IF NOT EXISTS "redirects_rels_parent_idx" ON "redirects_rels" ("parent_id");
 CREATE INDEX IF NOT EXISTS "redirects_rels_path_idx" ON "redirects_rels" ("path");
-CREATE INDEX IF NOT EXISTS "forms_blocks_text_input_order_idx" ON "forms_blocks_text_input" ("_order");
-CREATE INDEX IF NOT EXISTS "forms_blocks_text_input_parent_id_idx" ON "forms_blocks_text_input" ("_parent_id");
-CREATE INDEX IF NOT EXISTS "forms_blocks_text_input_path_idx" ON "forms_blocks_text_input" ("_path");
-CREATE INDEX IF NOT EXISTS "forms_blocks_text_area_order_idx" ON "forms_blocks_text_area" ("_order");
-CREATE INDEX IF NOT EXISTS "forms_blocks_text_area_parent_id_idx" ON "forms_blocks_text_area" ("_parent_id");
-CREATE INDEX IF NOT EXISTS "forms_blocks_text_area_path_idx" ON "forms_blocks_text_area" ("_path");
-CREATE INDEX IF NOT EXISTS "forms_blocks_select_select_select_options_order_idx" ON "forms_blocks_select_select_select_options" ("_order");
-CREATE INDEX IF NOT EXISTS "forms_blocks_select_select_select_options_parent_id_idx" ON "forms_blocks_select_select_select_options" ("_parent_id");
-CREATE INDEX IF NOT EXISTS "forms_blocks_select_order_idx" ON "forms_blocks_select" ("_order");
-CREATE INDEX IF NOT EXISTS "forms_blocks_select_parent_id_idx" ON "forms_blocks_select" ("_parent_id");
-CREATE INDEX IF NOT EXISTS "forms_blocks_select_path_idx" ON "forms_blocks_select" ("_path");
-CREATE INDEX IF NOT EXISTS "forms_blocks_checkbox_checkbox_checkbox_options_order_idx" ON "forms_blocks_checkbox_checkbox_checkbox_options" ("_order");
-CREATE INDEX IF NOT EXISTS "forms_blocks_checkbox_checkbox_checkbox_options_parent_id_idx" ON "forms_blocks_checkbox_checkbox_checkbox_options" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "forms_blocks_checkbox_checkbox_options_order_idx" ON "forms_blocks_checkbox_checkbox_options" ("_order");
+CREATE INDEX IF NOT EXISTS "forms_blocks_checkbox_checkbox_options_parent_id_idx" ON "forms_blocks_checkbox_checkbox_options" ("_parent_id");
 CREATE INDEX IF NOT EXISTS "forms_blocks_checkbox_order_idx" ON "forms_blocks_checkbox" ("_order");
 CREATE INDEX IF NOT EXISTS "forms_blocks_checkbox_parent_id_idx" ON "forms_blocks_checkbox" ("_parent_id");
 CREATE INDEX IF NOT EXISTS "forms_blocks_checkbox_path_idx" ON "forms_blocks_checkbox" ("_path");
+CREATE INDEX IF NOT EXISTS "forms_blocks_select_select_options_order_idx" ON "forms_blocks_select_select_options" ("_order");
+CREATE INDEX IF NOT EXISTS "forms_blocks_select_select_options_parent_id_idx" ON "forms_blocks_select_select_options" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "forms_blocks_select_order_idx" ON "forms_blocks_select" ("_order");
+CREATE INDEX IF NOT EXISTS "forms_blocks_select_parent_id_idx" ON "forms_blocks_select" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "forms_blocks_select_path_idx" ON "forms_blocks_select" ("_path");
+CREATE INDEX IF NOT EXISTS "forms_blocks_textinput_order_idx" ON "forms_blocks_textinput" ("_order");
+CREATE INDEX IF NOT EXISTS "forms_blocks_textinput_parent_id_idx" ON "forms_blocks_textinput" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "forms_blocks_textinput_path_idx" ON "forms_blocks_textinput" ("_path");
+CREATE INDEX IF NOT EXISTS "forms_blocks_text_area_order_idx" ON "forms_blocks_text_area" ("_order");
+CREATE INDEX IF NOT EXISTS "forms_blocks_text_area_parent_id_idx" ON "forms_blocks_text_area" ("_parent_id");
+CREATE INDEX IF NOT EXISTS "forms_blocks_text_area_path_idx" ON "forms_blocks_text_area" ("_path");
 CREATE INDEX IF NOT EXISTS "forms_emails_order_idx" ON "forms_emails" ("_order");
 CREATE INDEX IF NOT EXISTS "forms_emails_parent_id_idx" ON "forms_emails" ("_parent_id");
 CREATE INDEX IF NOT EXISTS "forms_created_at_idx" ON "forms" ("created_at");
@@ -2006,12 +1980,6 @@ END $$;
 
 DO $$ BEGIN
  ALTER TABLE "pages_blocks_card_grid_block_cards" ADD CONSTRAINT "pages_blocks_card_grid_block_cards_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_card_grid_block"("id") ON DELETE cascade ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
- ALTER TABLE "pages_blocks_card_grid_block_cards_locales" ADD CONSTRAINT "pages_blocks_card_grid_block_cards_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "pages_blocks_card_grid_block_cards"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -2335,12 +2303,6 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "_pages_v_blocks_card_grid_block_cards_locales" ADD CONSTRAINT "_pages_v_blocks_card_grid_block_cards_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "_pages_v_blocks_card_grid_block_cards"("id") ON DELETE cascade ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
  ALTER TABLE "_pages_v_blocks_card_grid_block" ADD CONSTRAINT "_pages_v_blocks_card_grid_block_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "images"("id") ON DELETE set null ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
@@ -2629,25 +2591,19 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "forms_blocks_text_input" ADD CONSTRAINT "forms_blocks_text_input_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "forms"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "forms_blocks_checkbox_checkbox_options" ADD CONSTRAINT "forms_blocks_checkbox_checkbox_options_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "forms_blocks_checkbox"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "forms_blocks_text_area" ADD CONSTRAINT "forms_blocks_text_area_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "forms"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "forms_blocks_checkbox" ADD CONSTRAINT "forms_blocks_checkbox_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "forms"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "forms_blocks_select_select_select_options" ADD CONSTRAINT "forms_blocks_select_select_select_options_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "forms_blocks_select"("id") ON DELETE cascade ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
- ALTER TABLE "forms_blocks_select_select_select_options_locales" ADD CONSTRAINT "forms_blocks_select_select_select_options_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "forms_blocks_select_select_select_options"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "forms_blocks_select_select_options" ADD CONSTRAINT "forms_blocks_select_select_options_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "forms_blocks_select"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -2659,19 +2615,13 @@ EXCEPTION
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "forms_blocks_checkbox_checkbox_checkbox_options" ADD CONSTRAINT "forms_blocks_checkbox_checkbox_checkbox_options_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "forms_blocks_checkbox"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "forms_blocks_textinput" ADD CONSTRAINT "forms_blocks_textinput_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "forms"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 
 DO $$ BEGIN
- ALTER TABLE "forms_blocks_checkbox_checkbox_checkbox_options_locales" ADD CONSTRAINT "forms_blocks_checkbox_checkbox_checkbox_options_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "forms_blocks_checkbox_checkbox_checkbox_options"("id") ON DELETE cascade ON UPDATE no action;
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
-
-DO $$ BEGIN
- ALTER TABLE "forms_blocks_checkbox" ADD CONSTRAINT "forms_blocks_checkbox_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "forms"("id") ON DELETE cascade ON UPDATE no action;
+ ALTER TABLE "forms_blocks_text_area" ADD CONSTRAINT "forms_blocks_text_area_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "forms"("id") ON DELETE cascade ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -2838,7 +2788,7 @@ EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 `)
-};
+}
 
 export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
 await payload.db.drizzle.execute(sql`
@@ -2853,7 +2803,6 @@ DROP TABLE "pages_blocks_form_block_locales";
 DROP TABLE "pages_blocks_card_grid_block_cards_card_ctas";
 DROP TABLE "pages_blocks_card_grid_block_cards_card_ctas_locales";
 DROP TABLE "pages_blocks_card_grid_block_cards";
-DROP TABLE "pages_blocks_card_grid_block_cards_locales";
 DROP TABLE "pages_blocks_card_grid_block";
 DROP TABLE "pages_blocks_markdown_block";
 DROP TABLE "pages_blocks_markdown_block_locales";
@@ -2878,7 +2827,6 @@ DROP TABLE "_pages_v_blocks_form_block_locales";
 DROP TABLE "_pages_v_blocks_card_grid_block_cards_card_ctas";
 DROP TABLE "_pages_v_blocks_card_grid_block_cards_card_ctas_locales";
 DROP TABLE "_pages_v_blocks_card_grid_block_cards";
-DROP TABLE "_pages_v_blocks_card_grid_block_cards_locales";
 DROP TABLE "_pages_v_blocks_card_grid_block";
 DROP TABLE "_pages_v_blocks_markdown_block";
 DROP TABLE "_pages_v_blocks_markdown_block_locales";
@@ -2910,14 +2858,12 @@ DROP TABLE "videos";
 DROP TABLE "users";
 DROP TABLE "redirects";
 DROP TABLE "redirects_rels";
-DROP TABLE "forms_blocks_text_input";
-DROP TABLE "forms_blocks_text_area";
-DROP TABLE "forms_blocks_select_select_select_options";
-DROP TABLE "forms_blocks_select_select_select_options_locales";
-DROP TABLE "forms_blocks_select";
-DROP TABLE "forms_blocks_checkbox_checkbox_checkbox_options";
-DROP TABLE "forms_blocks_checkbox_checkbox_checkbox_options_locales";
+DROP TABLE "forms_blocks_checkbox_checkbox_options";
 DROP TABLE "forms_blocks_checkbox";
+DROP TABLE "forms_blocks_select_select_options";
+DROP TABLE "forms_blocks_select";
+DROP TABLE "forms_blocks_textinput";
+DROP TABLE "forms_blocks_text_area";
 DROP TABLE "forms_emails";
 DROP TABLE "forms_emails_locales";
 DROP TABLE "forms";
@@ -2939,4 +2885,4 @@ DROP TABLE "nav";
 DROP TABLE "nav_locales";
 DROP TABLE "four_oh_four";
 DROP TABLE "four_oh_four_locales";`)
-};
+}

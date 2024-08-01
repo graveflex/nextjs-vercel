@@ -167,22 +167,22 @@ function FormBlock({ form: formProps, content }: FormBlockProps) {
   const memoizedInputs = useMemo(() => {
     if (formProps && typeof formProps !== 'number' && formProps.fields) {
       return formProps.fields.map((input) => {
-        if (input?.blockType === 'textInput') {
+        if (input?.blockType === 'text') {
           return (
             <Controller
-              key={input?.textinput?.name}
-              name={input?.textinput?.name || 'textInput'}
+              key={input?.name}
+              name={input?.name || 'textInput'}
               rules={{ required: true }}
               render={({ field }) => (
                 <TextInput
                   label={
-                    input?.textinput?.required && input?.textinput?.label
-                      ? `${input?.textinput?.label}*`
-                      : input?.textinput?.label
+                    input?.required && input?.label
+                      ? `${input?.label}*`
+                      : input?.label
                   }
-                  placeholder={input?.textinput?.placeholder || undefined}
-                  helpText={input?.textinput?.helpText}
-                  id={input?.textinput?.name || undefined}
+                  placeholder={input?.placeholder || undefined}
+                  helpText={input?.helpText}
+                  id={input?.name || undefined}
                   className="input"
                   {...field}
                 />
@@ -190,21 +190,21 @@ function FormBlock({ form: formProps, content }: FormBlockProps) {
             />
           );
         }
-        if (input?.blockType === 'select' && input?.select?.selectOptions) {
+        if (input?.blockType === 'select' && input?.selectOptions) {
           const selectOptions = [
             { id: 0, value: '', option: '', disabled: true },
-            ...input.select.selectOptions
+            ...input.selectOptions
           ];
           return (
             <Controller
-              key={input?.select?.name}
-              name={input?.select?.name || 'select'}
+              key={input?.name}
+              name={input?.name || 'select'}
               render={({ field }) => (
                 <Select
                   label={
-                    input?.select?.required && input?.select?.label
-                      ? `${input?.select?.label}*`
-                      : input?.select?.label
+                    input?.required && input?.label
+                      ? `${input?.label}*`
+                      : input?.label
                   }
                   defaultValue=""
                   className="input"
@@ -224,26 +224,21 @@ function FormBlock({ form: formProps, content }: FormBlockProps) {
             />
           );
         }
-        if (
-          input?.blockType === 'checkbox' &&
-          input?.checkbox?.checkboxOptions
-        ) {
-          const transformedOptions = input?.checkbox?.checkboxOptions.map(
-            (option) => ({
-              value: option.value,
-              label: option.label
-            })
-          );
+        if (input?.blockType === 'checkbox' && input?.checkboxOptions) {
+          const transformedOptions = input?.checkboxOptions.map((option) => ({
+            value: option.value,
+            label: option.label
+          }));
           return (
             <Controller
-              key={input?.checkbox?.name}
-              name={input?.checkbox?.name || 'checkbox'}
+              key={input?.name}
+              name={input?.name || 'checkbox'}
               render={({ field }) => (
                 <CheckboxGroup
                   label={
-                    input?.checkbox?.required && input?.checkbox?.label
-                      ? `${input?.checkbox?.label}*`
-                      : input?.checkbox?.label
+                    input?.required && input?.label
+                      ? `${input?.label}*`
+                      : input?.label
                   }
                   options={transformedOptions}
                   {...field}
@@ -252,11 +247,11 @@ function FormBlock({ form: formProps, content }: FormBlockProps) {
             />
           );
         }
-        if (input?.blockType === 'textArea') {
+        if (input?.blockType === 'textarea') {
           return (
             <Controller
               key={input?.id}
-              name={input?.name || 'textArea'}
+              name={input?.name || 'textarea'}
               rules={{ required: true }}
               render={({ field }) => {
                 const { onChange, ...restField } = field;

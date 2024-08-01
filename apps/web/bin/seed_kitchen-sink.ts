@@ -337,10 +337,6 @@ const seedKitchenSinkPage = async ({ payload, count = 10 }: SeedFnProps) => {
           layout: 'contentRight',
           image: images[5].id,
           form: {
-            textinput: {
-              placeholder: 'email address'
-            },
-
             cta: {
               link: {
                 type: 'external',

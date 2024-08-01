@@ -61,7 +61,7 @@ export type PaginationType = {
   limit?: number;
   total?: number;
   range?: number;
-  blogRef?: React.RefObject<HTMLDivElement>;
+  blogRef?: React.RefObject<HTMLDivElement | null>;
   updatePage?: (page: number) => void;
   showJump?: boolean;
 };

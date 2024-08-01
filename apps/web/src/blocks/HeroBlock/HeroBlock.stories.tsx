@@ -38,10 +38,6 @@ export const Defaults: Story = {
         link: {
           label: 'Submit'
         }
-      },
-      textinput: {
-        placeholder: 'Email address',
-        label: 'Email'
       }
     },
     image: {
@@ -83,10 +79,6 @@ export const ContentRight: Story = {
         link: {
           label: 'Submit'
         }
-      },
-      textinput: {
-        placeholder: 'Email address',
-        label: 'Email'
       }
     },
     image: {
@@ -129,10 +121,6 @@ export const ContentCenter: Story = {
         link: {
           label: 'Submit'
         }
-      },
-      textinput: {
-        placeholder: 'Email address',
-        label: 'Email'
       }
     }
   }
@@ -157,10 +145,6 @@ export const FullBleed: Story = {
         link: {
           label: 'Submit'
         }
-      },
-      textinput: {
-        placeholder: 'Email address',
-        label: 'Email'
       }
     },
     image: {
@@ -214,10 +198,6 @@ export const BackgroundImage: Story = {
         link: {
           label: 'Submit'
         }
-      },
-      textinput: {
-        placeholder: 'Email address',
-        label: 'Email'
       }
     }
   }
