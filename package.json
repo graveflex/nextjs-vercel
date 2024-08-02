@@ -81,7 +81,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "babel-plugin-react-compiler": "^0.0.0-experimental-592953e-20240517",
     "framer-motion": "12.0.0-alpha.0",
-    "next": "14.3.0-canary.53",
+    "next": "15.0.0-canary.54",
     "payload": "3.0.0-beta.73",
     "react": "19.0.0-rc-6230622a1a-20240610",
     "react-dom": "19.0.0-rc-6230622a1a-20240610",
