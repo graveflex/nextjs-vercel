@@ -6,6 +6,7 @@ function CTA({
   name,
   interfaceName,
   defaultVariant,
+  localized,
   fields = [],
   condition
 }: Partial<GroupField> & {
@@ -24,7 +25,7 @@ function CTA({
           initCollapsed: true
         },
         fields: [
-          Link(),
+          Link({ localized }),
           {
             name: 'variant',
             label: 'Variant',
@@ -48,6 +49,32 @@ function CTA({
             admin: {
               description:
                 'Variant Style of button - reference Button component in storybook',
+              condition
+            }
+          },
+          {
+            name: 'color',
+            label: 'Color Variant',
+            type: 'select',
+            required: false,
+            dbName: `${name?.toLowerCase()}_cta_tv`,
+            options: [
+              {
+                label: 'Light',
+                value: 'lightTheme'
+              },
+              {
+                label: 'Dark',
+                value: 'darkTheme'
+              },
+              {
+                label: 'Contrast',
+                value: 'contrast'
+              }
+            ],
+            admin: {
+              description:
+                'Theme styles of button - defaults to Block Theme if not set',
               condition
             }
           },

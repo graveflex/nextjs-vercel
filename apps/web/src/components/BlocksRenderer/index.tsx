@@ -11,6 +11,9 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
+  iconGridBlock: dynamic(() => import('@mono/web/blocks/IconGridBlock'), {
+    ...defaultOpts
+  }),
   sectionHeaderBlock: dynamic(
     () => import('@mono/web/blocks/SectionHeaderBlock'),
     {

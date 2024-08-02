@@ -74,7 +74,7 @@ function Card({
       {
         name: 'ctas',
         label: 'CTAs',
-        localized: false,
+        localized: true,
         type: 'array',
         admin: {
           description:

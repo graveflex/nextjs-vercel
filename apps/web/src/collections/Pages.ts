@@ -1,3 +1,5 @@
+import IconGridBlock from '@mono/web/blocks/IconGridBlock/IconGridBlock.config';
+
 import { WEB_URL } from '@mono/settings';
 import CardGridBlock from '@mono/web/blocks/CardGridBlock/CardGridBlock.config';
 import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
@@ -95,6 +97,7 @@ const Pages: CollectionConfig = {
       type: 'blocks',
       blocks: [
         // InsertBlockConfigFields
+IconGridBlock,
         SectionHeaderBlock,
         GalleryGridBlock,
         VideoBlock,

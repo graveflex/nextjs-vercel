@@ -219,6 +219,11 @@ export default buildConfig({
   },
   admin: {
     user: Users.slug,
+    autoLogin: {
+      email: 'dev@payloadcms.com',
+      password: 'test',
+      prefillOnly: true
+    },
     livePreview: {
       url: ({ data }) => {
         return `${WEB_URL}/${data?.slug}`;
