@@ -5,10 +5,10 @@ import { render } from '@testing-library/react';
 
 import * as stories from '../IconGridBlock.stories';
 
-const { Defaults } = composeStories(stories, projectAnnotations);
+const { HorizontalPictogram } = composeStories(stories, projectAnnotations);
 
 describe('IconGridBlock', () => {
   it('component mounts', () => {
-    render(<Defaults />);
+    render(<HorizontalPictogram />);
   });
 });
