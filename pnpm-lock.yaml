@@ -8,7 +8,7 @@ overrides:
   '@payloadcms/db-postgres': 3.0.0-beta.73
   '@payloadcms/email-nodemailer': 3.0.0-beta.73
   '@payloadcms/live-preview': 3.0.0-beta.73
-  '@payloadcms/live-preview-react': 3.0.0-beta.73
+  '@payloadcms/live-preview-react': 3.0.0-canary.f83d96a
   '@payloadcms/richtext-lexical': 3.0.0-beta.73
   '@payloadcms/plugin-cloud-storage': 3.0.0-beta.73
   '@payloadcms/plugin-redirects': 3.0.0-beta.73
@@ -248,8 +248,8 @@ importers:
         specifier: 3.0.0-beta.73
         version: 3.0.0-beta.73
       '@payloadcms/live-preview-react':
-        specifier: 3.0.0-beta.73
-        version: 3.0.0-beta.73(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)
+        specifier: 3.0.0-canary.f83d96a
+        version: 3.0.0-canary.f83d96a(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)
       '@payloadcms/next':
         specifier: 3.0.0-beta.73
         version: 3.0.0-beta.73(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0)(typescript@5.5.3)
@@ -2640,8 +2640,8 @@ packages:
       graphql: ^16.8.1
       payload: 3.0.0-beta.73
 
-  '@payloadcms/live-preview-react@3.0.0-beta.73':
-    resolution: {integrity: sha512-nw/S5uwfOtuU1d1haZktTwoZfetezrSNu43Ng6zm8V2Dz/7dDYZKb4ys6Zs3JAK9CStsRBqZC6ukepygydmT1A==}
+  '@payloadcms/live-preview-react@3.0.0-canary.f83d96a':
+    resolution: {integrity: sha512-r2iYEOvK+d499kbr+Ql9pq/TKH91HVYZeBUWuMmtOR2jCipv0lWR1MrCcuRt4q6nbXi75VaBuDPyXQjAqvVuQQ==}
     peerDependencies:
       react: 19.0.0-rc-6230622a1a-20240610
       react-dom: 19.0.0-rc-6230622a1a-20240610
@@ -11559,7 +11559,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@payloadcms/live-preview-react@3.0.0-beta.73(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)':
+  '@payloadcms/live-preview-react@3.0.0-canary.f83d96a(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)':
     dependencies:
       '@payloadcms/live-preview': 3.0.0-beta.73
       react: 19.0.0-rc-6230622a1a-20240610
