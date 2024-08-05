@@ -7,7 +7,7 @@ settings:
 overrides:
   '@payloadcms/db-postgres': 3.0.0-beta.73
   '@payloadcms/email-nodemailer': 3.0.0-beta.73
-  '@payloadcms/live-preview': 3.0.0-beta.73
+  '@payloadcms/live-preview': 3.0.0-canary.f83d96a
   '@payloadcms/live-preview-react': 3.0.0-beta.73
   '@payloadcms/richtext-lexical': 3.0.0-beta.73
   '@payloadcms/plugin-cloud-storage': 3.0.0-beta.73
@@ -245,8 +245,8 @@ importers:
         specifier: 3.0.0-beta.73
         version: 3.0.0-beta.73(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))
       '@payloadcms/live-preview':
-        specifier: 3.0.0-beta.73
-        version: 3.0.0-beta.73
+        specifier: 3.0.0-canary.f83d96a
+        version: 3.0.0-canary.f83d96a
       '@payloadcms/live-preview-react':
         specifier: 3.0.0-beta.73
         version: 3.0.0-beta.73(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)
@@ -2646,8 +2646,8 @@ packages:
       react: 19.0.0-rc-6230622a1a-20240610
       react-dom: 19.0.0-rc-6230622a1a-20240610
 
-  '@payloadcms/live-preview@3.0.0-beta.73':
-    resolution: {integrity: sha512-35y+FwQGke3fwhuZ66jk7nkd4Uv1OvoPDnVuHWUUTCMShY2X3P9ReoR1U1itnAMuZaNv829uJjmRynIRyyeAxw==}
+  '@payloadcms/live-preview@3.0.0-canary.f83d96a':
+    resolution: {integrity: sha512-s5r46l8/UZAhJPyEPvb/G7BczHGyi8cO1g8lTDa02hzl0QGWPCa+BTktncEvx+OE4uhDnoKQGUoixN3NHJISHw==}
 
   '@payloadcms/next@3.0.0-beta.73':
     resolution: {integrity: sha512-FXPjzDru1rR0/xcbxr074T8WUuYk/440n82Vc37Kh4SeCKrZHSWN+oPGQ6+x8XfOA7PqIZdBrS7/RakAAFyw7g==}
@@ -11561,11 +11561,11 @@ snapshots:
 
   '@payloadcms/live-preview-react@3.0.0-beta.73(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)':
     dependencies:
-      '@payloadcms/live-preview': 3.0.0-beta.73
+      '@payloadcms/live-preview': 3.0.0-canary.f83d96a
       react: 19.0.0-rc-6230622a1a-20240610
       react-dom: 19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610)
 
-  '@payloadcms/live-preview@3.0.0-beta.73': {}
+  '@payloadcms/live-preview@3.0.0-canary.f83d96a': {}
 
   '@payloadcms/next@3.0.0-beta.73(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0)(typescript@5.5.3)':
     dependencies:
