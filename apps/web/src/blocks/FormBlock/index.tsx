@@ -9,7 +9,6 @@ import type { FormBlockT as PayloadType } from '@mono/types/payload-types';
 import FormWrapper from '@mono/ui/components/FormWrapper';
 import RichText from '@mono/ui/components/primitives/RichText';
 import Wrapper from '@mono/ui/components/Wrapper';
-import CheckboxGroup from '@refract-ui/hook-fields/CheckboxGroup';
 import InputGroup from '@refract-ui/hook-fields/InputGroup';
 import Select from '@refract-ui/hook-fields/Select';
 import TextInput from '@refract-ui/hook-fields/TextInput';
@@ -35,25 +34,57 @@ const InnerWrapper = styled.div`
   gap: 1rem;
 `;
 
+const Content = styled(RichText)`
+  padding-bottom: 1rem;
+
+  ${({ theme: { mq } }) => css`
+    ${mq.md`
+      padding-bottom: 2.75rem;
+    `}
+  `}
+`;
+
 const InputWrapper = styled(FormWrapper)`
-  ${({ theme: { allColors } }) => css`
-    form {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      button {
-        justify-self: center;
-        width: 18rem;
-        min-width: 40%;
-      }
-      .input {
-        background-color: ${allColors.bg};
-        color: ${allColors.subtle};
-        &::placeholder {
-          color: ${allColors.subtle};
+  ${({ theme: { allColors, box } }) => css`
+    && {
+      form {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        a {
+          justify-self: center;
+          width: 18rem;
+          min-width: 40%;
+        }
+        label {
+          ${box.t('pSmall')};
+          color: ${allColors.color1} !important;
+        }
+        .input {
+          background-color: transparent;
+          color: ${allColors.color1};
+          border-left: none;
+          border-right: none;
+          border-top: none;
+          border-radius: 0;
+          padding-left: 0;
+          &::placeholder {
+            ${box.t('pLarge')};
+            color: ${allColors.color1};
+          }
         }
       }
     }
+    .textLength {
+      color: ${allColors.color1};
+    }
+  `}
+`;
+
+const Required = styled.span`
+  ${({ theme: { allColors } }) => css`
+    color: ${allColors.red};
+    padding: 0.25rem 0 0 0.25rem;
   `}
 `;
 
@@ -67,7 +98,7 @@ const TextArea = styled.textarea`
   `}
 `;
 
-function FormBlock({ form: formProps, content }: FormBlockProps) {
+function FormBlock({ blockConfig, form: formProps, content }: FormBlockProps) {
   function isFormValid(
     form: unknown
   ): form is Exclude<typeof formProps, undefined | number> {
@@ -87,6 +118,15 @@ function FormBlock({ form: formProps, content }: FormBlockProps) {
     { status?: string; message: string } | undefined
   >();
   const router = useRouter();
+
+  const requiredCopy = (label: string) => {
+    return (
+      <>
+        {label}
+        <Required>*</Required>
+      </>
+    );
+  };
 
   const onSubmit = useCallback(
     (data: Data) => {
@@ -167,22 +207,30 @@ function FormBlock({ form: formProps, content }: FormBlockProps) {
   const memoizedInputs = useMemo(() => {
     if (formProps && typeof formProps !== 'number' && formProps.fields) {
       return formProps.fields.map((input) => {
-        if (input?.blockType === 'textInput') {
+        if (input?.blockType === 'text') {
+          const isEmailInput = input?.name === 'email';
           return (
             <Controller
-              key={input?.textinput?.name}
-              name={input?.textinput?.name || 'textInput'}
-              rules={{ required: true }}
+              key={input?.name}
+              name={input?.name || 'textInput'}
+              rules={{
+                required: input?.required || false,
+                ...(isEmailInput && {
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: 'Please enter a valid email address'
+                  }
+                })
+              }}
               render={({ field }) => (
                 <TextInput
                   label={
-                    input?.textinput?.required && input?.textinput?.label
-                      ? `${input?.textinput?.label}*`
-                      : input?.textinput?.label
+                    input?.required && input?.label
+                      ? requiredCopy(input?.label)
+                      : input?.label
                   }
-                  placeholder={input?.textinput?.placeholder || undefined}
-                  helpText={input?.textinput?.helpText}
-                  id={input?.textinput?.name || undefined}
+                  placeholder={input?.defaultValue || undefined}
+                  id={input?.name || undefined}
                   className="input"
                   {...field}
                 />
@@ -190,74 +238,50 @@ function FormBlock({ form: formProps, content }: FormBlockProps) {
             />
           );
         }
-        if (input?.blockType === 'select' && input?.select?.selectOptions) {
+        if (input?.blockType === 'select' && input?.options) {
           const selectOptions = [
-            { id: 0, value: '', option: '', disabled: true },
-            ...input.select.selectOptions
+            { id: 0, value: '', label: '', disabled: true },
+            ...input.options
           ];
           return (
             <Controller
-              key={input?.select?.name}
-              name={input?.select?.name || 'select'}
+              key={input?.name}
+              name={input?.name || 'select'}
+              rules={{ required: input?.required || false }}
               render={({ field }) => (
                 <Select
                   label={
-                    input?.select?.required && input?.select?.label
-                      ? `${input?.select?.label}*`
-                      : input?.select?.label
+                    input?.required && input?.label
+                      ? requiredCopy(input?.label)
+                      : input?.label
                   }
                   defaultValue=""
                   className="input"
                   {...field}
                 >
-                  {(selectOptions ?? []).map((option) => (
-                    <option
-                      key={option?.id}
-                      value={option?.value || undefined}
-                      disabled={option?.value === ''}
-                    >
-                      {option.option}
-                    </option>
-                  ))}
+                  {(selectOptions ?? []).map((option) => {
+                    const { id, value, label } = option;
+                    return (
+                      <option
+                        key={id}
+                        value={value || undefined}
+                        disabled={value === ''}
+                      >
+                        {label}
+                      </option>
+                    );
+                  })}
                 </Select>
               )}
             />
           );
         }
-        if (
-          input?.blockType === 'checkbox' &&
-          input?.checkbox?.checkboxOptions
-        ) {
-          const transformedOptions = input?.checkbox?.checkboxOptions.map(
-            (option) => ({
-              value: option.value,
-              label: option.label
-            })
-          );
-          return (
-            <Controller
-              key={input?.checkbox?.name}
-              name={input?.checkbox?.name || 'checkbox'}
-              render={({ field }) => (
-                <CheckboxGroup
-                  label={
-                    input?.checkbox?.required && input?.checkbox?.label
-                      ? `${input?.checkbox?.label}*`
-                      : input?.checkbox?.label
-                  }
-                  options={transformedOptions}
-                  {...field}
-                />
-              )}
-            />
-          );
-        }
-        if (input?.blockType === 'textArea') {
+        if (input?.blockType === 'textarea') {
           return (
             <Controller
               key={input?.id}
               name={input?.name || 'textArea'}
-              rules={{ required: true }}
+              rules={{ required: input?.required || false }}
               render={({ field }) => {
                 const { onChange, ...restField } = field;
 
@@ -272,18 +296,20 @@ function FormBlock({ form: formProps, content }: FormBlockProps) {
                   <InputGroup>
                     <label>
                       {input?.required && input?.label
-                        ? `${input?.label}*`
+                        ? requiredCopy(input?.label)
                         : input?.label}
                     </label>
                     <TextArea
-                      placeholder={input?.placeholder || undefined}
+                      placeholder={input?.defaultValue || undefined}
                       id={input?.name || 'textArea'}
                       maxLength={500}
                       onChange={handleChange}
                       className="input"
                       {...restField}
                     />
-                    <span style={{ justifySelf: 'end' }}>{textLength}/500</span>
+                    <span className="textLength" style={{ justifySelf: 'end' }}>
+                      {textLength}/200
+                    </span>
                   </InputGroup>
                 );
               }}
@@ -295,12 +321,12 @@ function FormBlock({ form: formProps, content }: FormBlockProps) {
       });
     }
     return null;
-  }, [formProps]);
+  }, [formProps, textLength]);
 
   return (
-    <Section>
+    <Section {...blockConfig} hidden={blockConfig?.hidden ?? false}>
       <InnerWrapper>
-        {content && <RichText {...content} />}
+        {content && <Content {...content} />}
         {!isLoading &&
           hasSubmitted &&
           confirmationType === 'message' &&

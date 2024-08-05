@@ -13,6 +13,20 @@ export default defaultsDeep(
       color: 'fg',
       weight: 'bold',
       height: 1
+    },
+    pSmall: {
+      stack: 'sans',
+      size: '0',
+      color: 'fg',
+      weight: 'regular',
+      height: 1
+    },
+    pLarge: {
+      stack: 'sans',
+      size: '2',
+      color: 'fg',
+      weight: 'regular',
+      height: 1
     }
   },
   defaultTextVariants

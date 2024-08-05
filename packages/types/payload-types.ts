@@ -48,6 +48,9 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
+  db: {
+    defaultIDType: number;
+  };
   globals: {
     nav: Nav;
     'four-oh-four': FourOhFour;
@@ -62,12 +65,15 @@ export interface UserAuthOperations {
     email: string;
   };
   login: {
-    password: string;
     email: string;
+    password: string;
   };
   registerFirstUser: {
     email: string;
     password: string;
+  };
+  unlock: {
+    email: string;
   };
 }
 /**
@@ -87,6 +93,7 @@ export interface Page {
   publishedAt?: string | null;
   blocks?:
     | (
+        | IconGridBlockT
         | SectionHeaderBlockT
         | GalleryGridBlockT
         | VideoBlockT
@@ -104,9 +111,9 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "SectionHeaderBlockT".
+ * via the `definition` "IconGridBlockT".
  */
-export interface SectionHeaderBlockT {
+export interface IconGridBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
@@ -132,27 +139,32 @@ export interface SectionHeaderBlockT {
       };
     };
   };
-  eyebrow?: string | null;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  alignment?: ('center' | 'left' | 'right') | null;
-  cta?: CTAType;
+  layout?: ('horizontal' | 'vertical') | null;
+  items?:
+    | {
+        image: number | Image;
+        content: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        cta?: CTAType;
+        id?: string | null;
+      }[]
+    | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'sectionHeaderBlock';
+  blockType: 'iconGridBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -232,6 +244,7 @@ export interface Image {
 export interface CTAType {
   link?: PayLoadLink;
   variant?: ('outline' | 'solid' | 'link') | null;
+  color?: ('lightTheme' | 'darkTheme' | 'contrast') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -306,6 +319,58 @@ export interface IconSelect {
     | null;
   size?: ('35' | '30' | '25' | '20') | null;
   color?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SectionHeaderBlockT".
+ */
+export interface SectionHeaderBlockT {
+  blockConfig?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundImage?: number | Image | null;
+    hidden?: boolean | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    p?: {
+      xs?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      md?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      lg?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      xl?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+    };
+  };
+  eyebrow?: string | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  alignment?: ('center' | 'left' | 'right') | null;
+  cta?: CTAType;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'sectionHeaderBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -462,7 +527,47 @@ export interface FormBlockT {
 export interface Form {
   id: number;
   title: string;
-  fields?: (TextInputT | TextAreaT | SelectT | CheckboxT)[] | null;
+  fields?:
+    | (
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            options?:
+              | {
+                  label: string;
+                  value: string;
+                  id?: string | null;
+                }[]
+              | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'select';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'text';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textarea';
+          }
+      )[]
+    | null;
   submitButtonLabel?: string | null;
   confirmationType?: ('message' | 'redirect') | null;
   confirmationMessage?: {
@@ -511,97 +616,6 @@ export interface Form {
     | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TextInputT".
- */
-export interface TextInputT {
-  textinput?: TextInputType;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'textInput';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TextInputType".
- */
-export interface TextInputType {
-  name?: string | null;
-  placeholder?: string | null;
-  helpText?: string | null;
-  label?: string | null;
-  required?: boolean | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TextAreaT".
- */
-export interface TextAreaT {
-  name?: string | null;
-  placeholder?: string | null;
-  helpText?: string | null;
-  label?: string | null;
-  required?: boolean | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'textArea';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "SelectT".
- */
-export interface SelectT {
-  select?: SelectType;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'select';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "SelectType".
- */
-export interface SelectType {
-  name?: string | null;
-  placeholder?: string | null;
-  helpText?: string | null;
-  label?: string | null;
-  required?: boolean | null;
-  selectOptions?:
-    | {
-        option?: string | null;
-        value?: string | null;
-        id?: string | null;
-      }[]
-    | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CheckboxT".
- */
-export interface CheckboxT {
-  checkbox?: CheckboxType;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'checkbox';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CheckboxType".
- */
-export interface CheckboxType {
-  name?: string | null;
-  placeholder?: string | null;
-  helpText?: string | null;
-  label?: string | null;
-  required?: boolean | null;
-  checkboxOptions?:
-    | {
-        label?: string | null;
-        value?: string | null;
-        id?: string | null;
-      }[]
-    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -842,6 +856,17 @@ export interface TextImageBlockT {
   id?: string | null;
   blockName?: string | null;
   blockType: 'textImageBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextInputType".
+ */
+export interface TextInputType {
+  name?: string | null;
+  placeholder?: string | null;
+  helpText?: string | null;
+  label?: string | null;
+  required?: boolean | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
