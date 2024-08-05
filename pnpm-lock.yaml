@@ -9,7 +9,7 @@ overrides:
   '@payloadcms/email-nodemailer': 3.0.0-beta.73
   '@payloadcms/live-preview': 3.0.0-beta.73
   '@payloadcms/live-preview-react': 3.0.0-beta.73
-  '@payloadcms/richtext-lexical': 3.0.0-beta.73
+  '@payloadcms/richtext-lexical': 3.0.0-canary.f83d96a
   '@payloadcms/plugin-cloud-storage': 3.0.0-beta.73
   '@payloadcms/plugin-redirects': 3.0.0-beta.73
   '@payloadcms/plugin-form-builder': 3.0.0-beta.73
@@ -263,8 +263,8 @@ importers:
         specifier: 3.0.0-beta.73
         version: 3.0.0-beta.73(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))
       '@payloadcms/richtext-lexical':
-        specifier: 3.0.0-beta.73
-        version: 3.0.0-beta.73(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610))(@faceless-ui/scroll-info@2.0.0-beta.0(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610))(@lexical/headless@0.16.1)(@lexical/link@0.16.1)(@lexical/list@0.16.1)(@lexical/mark@0.16.1)(@lexical/markdown@0.16.1)(@lexical/react@0.16.1(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(yjs@13.6.18))(@lexical/rich-text@0.16.1)(@lexical/selection@0.16.1)(@lexical/table@0.16.1)(@lexical/utils@0.16.1)(@payloadcms/next@3.0.0-beta.73(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0)(typescript@5.5.3))(@payloadcms/translations@3.0.0-beta.73)(@payloadcms/ui@3.0.0-beta.73(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0))(lexical@0.16.1)(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)
+        specifier: 3.0.0-canary.f83d96a
+        version: 3.0.0-canary.f83d96a(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610))(@faceless-ui/scroll-info@2.0.0-beta.0(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610))(@lexical/headless@0.16.1)(@lexical/link@0.16.1)(@lexical/list@0.16.1)(@lexical/mark@0.16.1)(@lexical/markdown@0.16.1)(@lexical/react@0.16.1(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(yjs@13.6.18))(@lexical/rich-text@0.16.1)(@lexical/selection@0.16.1)(@lexical/utils@0.16.1)(@payloadcms/next@3.0.0-beta.73(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0)(typescript@5.5.3))(@payloadcms/translations@3.0.0-beta.73)(@payloadcms/ui@3.0.0-beta.73(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0))(lexical@0.16.1)(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)
       '@payloadcms/storage-vercel-blob':
         specifier: 3.0.0-beta.73
         version: 3.0.0-beta.73(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))
@@ -591,8 +591,8 @@ importers:
         specifier: workspace:*
         version: link:../types
       '@payloadcms/richtext-lexical':
-        specifier: 3.0.0-beta.73
-        version: 3.0.0-beta.73(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610))(@faceless-ui/scroll-info@2.0.0-beta.0(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610))(@lexical/headless@0.16.1)(@lexical/link@0.16.1)(@lexical/list@0.16.1)(@lexical/mark@0.16.1)(@lexical/markdown@0.16.1)(@lexical/react@0.16.1(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(yjs@13.6.18))(@lexical/rich-text@0.16.1)(@lexical/selection@0.16.1)(@lexical/table@0.16.1)(@lexical/utils@0.16.1)(@payloadcms/next@3.0.0-beta.73(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0)(typescript@5.5.3))(@payloadcms/translations@3.0.0-beta.73)(@payloadcms/ui@3.0.0-beta.73(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0))(lexical@0.16.1)(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)
+        specifier: 3.0.0-canary.f83d96a
+        version: 3.0.0-canary.f83d96a(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610))(@faceless-ui/scroll-info@2.0.0-beta.0(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610))(@lexical/headless@0.16.1)(@lexical/link@0.16.1)(@lexical/list@0.16.1)(@lexical/mark@0.16.1)(@lexical/markdown@0.16.1)(@lexical/react@0.16.1(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(yjs@13.6.18))(@lexical/rich-text@0.16.1)(@lexical/selection@0.16.1)(@lexical/utils@0.16.1)(@payloadcms/next@3.0.0-beta.73(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0)(typescript@5.5.3))(@payloadcms/translations@3.0.0-beta.73)(@payloadcms/ui@3.0.0-beta.73(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0))(lexical@0.16.1)(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)
       '@refract-ui/hook-fields':
         specifier: 1.0.1-alpha.43
         version: 1.0.1-alpha.43(@hookform/resolvers@3.7.0(react-hook-form@7.52.1(react@19.0.0-rc-6230622a1a-20240610)))(@storybook/react@8.1.10(prettier@3.3.2)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react-hook-form@7.52.1(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(styled-components@6.1.8(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610))
@@ -2693,26 +2693,25 @@ packages:
     peerDependencies:
       payload: 3.0.0-beta.73
 
-  '@payloadcms/richtext-lexical@3.0.0-beta.73':
-    resolution: {integrity: sha512-cQo7tpcdpRaUFB2KruZ9TbbmZ4paHkBJHxnyl0G4k1Z4kFbRLgvVVV8vfOY/7K1UEXYGd+QNLYsR4lQ0z9fjSQ==}
+  '@payloadcms/richtext-lexical@3.0.0-canary.f83d96a':
+    resolution: {integrity: sha512-0v5k8ZoMpp/MSIydg5RVErMr4M/41utyQZxyXAwDeJ3fr8XjEwD7JRxYNZEbRJ0Ew/avABxERnah4S7BBCGUzg==}
     engines: {node: ^18.20.2 || >=20.9.0}
     peerDependencies:
-      '@faceless-ui/modal': 3.0.0-beta.2
+      '@faceless-ui/modal': 3.0.0-beta.0
       '@faceless-ui/scroll-info': 2.0.0-beta.0
-      '@lexical/headless': 0.16.1
-      '@lexical/link': 0.16.1
-      '@lexical/list': 0.16.1
-      '@lexical/mark': 0.16.1
-      '@lexical/markdown': 0.16.1
-      '@lexical/react': 0.16.1
-      '@lexical/rich-text': 0.16.1
-      '@lexical/selection': 0.16.1
-      '@lexical/table': 0.16.1
-      '@lexical/utils': 0.16.1
+      '@lexical/headless': 0.16.0
+      '@lexical/link': 0.16.0
+      '@lexical/list': 0.16.0
+      '@lexical/mark': 0.16.0
+      '@lexical/markdown': 0.16.0
+      '@lexical/react': 0.16.0
+      '@lexical/rich-text': 0.16.0
+      '@lexical/selection': 0.16.0
+      '@lexical/utils': 0.16.0
       '@payloadcms/next': 3.0.0-beta.73
-      '@payloadcms/translations': 3.0.0-beta.73
+      '@payloadcms/translations': 3.0.0-canary.f83d96a
       '@payloadcms/ui': 3.0.0-beta.73
-      lexical: 0.16.1
+      lexical: 0.16.0
       payload: 3.0.0-beta.73
       react: 19.0.0-rc-6230622a1a-20240610
       react-dom: 19.0.0-rc-6230622a1a-20240610
@@ -3745,9 +3744,6 @@ packages:
 
   '@types/unist@3.0.2':
     resolution: {integrity: sha512-dqId9J8K/vGi5Zr7oo212BGii5m3q5Hxlkwy3WpYuKPklmBEvsbMYYyLxAQpSffdLl/gdW0XUpKWFvYmyoWCoQ==}
-
-  '@types/uuid@10.0.0':
-    resolution: {integrity: sha512-7gqG38EyHgyP1S+7+xomFtL+ZNHcKv6DwNaCZmJmo1vgMugyF3TCnXVg4t1uk89mLNwnLtnY3TpOpCOyp1/xHQ==}
 
   '@types/uuid@9.0.8':
     resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
@@ -6692,6 +6688,9 @@ packages:
 
   json-schema-traverse@1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
+
+  json-schema@0.4.0:
+    resolution: {integrity: sha512-es94M3nTIfsEPisRafak+HDLfHXnKBhV3vU5eqPcS3flIWqcxJWgXHXiey3YrpaNsanY5ei1VoYEbOzijuq9BA==}
 
   json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
@@ -11631,7 +11630,7 @@ snapshots:
     dependencies:
       payload: 3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3)
 
-  ? '@payloadcms/richtext-lexical@3.0.0-beta.73(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610))(@faceless-ui/scroll-info@2.0.0-beta.0(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610))(@lexical/headless@0.16.1)(@lexical/link@0.16.1)(@lexical/list@0.16.1)(@lexical/mark@0.16.1)(@lexical/markdown@0.16.1)(@lexical/react@0.16.1(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(yjs@13.6.18))(@lexical/rich-text@0.16.1)(@lexical/selection@0.16.1)(@lexical/table@0.16.1)(@lexical/utils@0.16.1)(@payloadcms/next@3.0.0-beta.73(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0)(typescript@5.5.3))(@payloadcms/translations@3.0.0-beta.73)(@payloadcms/ui@3.0.0-beta.73(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0))(lexical@0.16.1)(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)'
+  ? '@payloadcms/richtext-lexical@3.0.0-canary.f83d96a(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610))(@faceless-ui/scroll-info@2.0.0-beta.0(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610))(@lexical/headless@0.16.1)(@lexical/link@0.16.1)(@lexical/list@0.16.1)(@lexical/mark@0.16.1)(@lexical/markdown@0.16.1)(@lexical/react@0.16.1(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(yjs@13.6.18))(@lexical/rich-text@0.16.1)(@lexical/selection@0.16.1)(@lexical/utils@0.16.1)(@payloadcms/next@3.0.0-beta.73(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0)(typescript@5.5.3))(@payloadcms/translations@3.0.0-beta.73)(@payloadcms/ui@3.0.0-beta.73(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0))(lexical@0.16.1)(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)'
   : dependencies:
       '@faceless-ui/modal': 3.0.0-beta.2(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)
       '@faceless-ui/scroll-info': 2.0.0-beta.0(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)
@@ -11643,14 +11642,14 @@ snapshots:
       '@lexical/react': 0.16.1(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(yjs@13.6.18)
       '@lexical/rich-text': 0.16.1
       '@lexical/selection': 0.16.1
-      '@lexical/table': 0.16.1
       '@lexical/utils': 0.16.1
       '@payloadcms/next': 3.0.0-beta.73(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0)(typescript@5.5.3)
       '@payloadcms/translations': 3.0.0-beta.73
       '@payloadcms/ui': 3.0.0-beta.73(monaco-editor@0.38.0)(next@15.0.0-canary.54(@babel/core@7.24.7)(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(sass@1.77.4))(payload@3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3))(react-dom@19.0.0-rc-6230622a1a-20240610(react@19.0.0-rc-6230622a1a-20240610))(react@19.0.0-rc-6230622a1a-20240610)(types-react@19.0.0-rc.0)
-      '@types/uuid': 10.0.0
+      '@types/uuid': 9.0.8
       bson-objectid: 2.0.4
       dequal: 2.0.3
+      json-schema: 0.4.0
       lexical: 0.16.1
       payload: 3.0.0-beta.73(@swc/core@1.5.7(@swc/helpers@0.5.11))(@swc/types@0.1.7)(graphql@16.9.0)(typescript@5.5.3)
       react: 19.0.0-rc-6230622a1a-20240610
@@ -13238,8 +13237,6 @@ snapshots:
   '@types/unist@2.0.10': {}
 
   '@types/unist@3.0.2': {}
-
-  '@types/uuid@10.0.0': {}
 
   '@types/uuid@9.0.8': {}
 
@@ -16860,6 +16857,8 @@ snapshots:
   json-schema-traverse@0.4.1: {}
 
   json-schema-traverse@1.0.0: {}
+
+  json-schema@0.4.0: {}
 
   json-stable-stringify-without-jsonify@1.0.1: {}
 
