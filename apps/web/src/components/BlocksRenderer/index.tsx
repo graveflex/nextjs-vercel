@@ -11,6 +11,15 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
+  fullBleedImageBlock: dynamic(
+    () => import('@mono/web/blocks/FullBleedImageBlock'),
+    {
+      ...defaultOpts
+    }
+  ),
+  iframeBlock: dynamic(() => import('@mono/web/blocks/IframeBlock'), {
+    ...defaultOpts
+  }),
   iconGridBlock: dynamic(() => import('@mono/web/blocks/IconGridBlock'), {
     ...defaultOpts
   }),

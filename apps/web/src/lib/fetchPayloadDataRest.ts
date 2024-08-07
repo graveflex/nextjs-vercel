@@ -31,6 +31,8 @@ async function fetchPayloadDataRest<T>({
     { addQueryPrefix: true }
   )}`;
 
+  console.log('fetchPayloadDataRest', url);
+
   try {
     const res = await fetch(url, {
       next: { revalidate: 10, ...next },
