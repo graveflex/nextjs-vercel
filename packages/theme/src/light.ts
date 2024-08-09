@@ -26,8 +26,8 @@ export default theme({
     light: colors.white
   },
   colorTokens: {
-    bg: ({ themeColors }) => themeColors.dark,
-    fg: ({ themeColors }) => themeColors.light,
+    bg: ({ themeColors }) => themeColors.light,
+    fg: ({ themeColors }) => themeColors.dark,
     color1: ({ themeColors }) => themeColors.dark,
     color2: ({ themeColors }) => themeColors.light,
     color3: colors.neutral,

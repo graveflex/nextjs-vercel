@@ -106,9 +106,9 @@ function StoryContainer({ icons, size, group, color }: T) {
         ... <br />
         {`<RenderIcon name='${Object.keys(icons)?.[0]}'/>`}
         <br />
-        {`<RenderIcon name='${
-          Object.keys(icons)?.[0]
-        }' height='20' width='20' color='red'/>`}
+        {`<RenderIcon name='${Object.keys(
+          icons
+        )?.[0]}' height='20' width='20' color='red'/>`}
       </Code>
       <Content>
         {Object.entries(icons).map(([key, val]) => (
