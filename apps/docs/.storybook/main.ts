@@ -13,10 +13,10 @@ const config: StorybookConfig = {
   ],
   addons: [
     // '@storybook/addon-webpack5-compiler-swc',
-    '@storybook/addon-essentials',
+    '@storybook/addon-essentials', //works
     '@storybook/addon-links',
-    '@storybook/addon-a11y',
-    '@refract-ui/stories'
+    '@storybook/addon-a11y'
+    // '@refract-ui/stories' // breaks
   ],
   framework: {
     name: '@storybook/nextjs',

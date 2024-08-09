@@ -44,6 +44,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "^7.51.1",
+    "react-modal": "latest",
     "styled-components": "latest",
     "ts-loader": "^9.5.1",
     "typescript": "latest",

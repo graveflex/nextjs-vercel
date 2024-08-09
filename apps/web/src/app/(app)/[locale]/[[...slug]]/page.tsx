@@ -29,9 +29,6 @@ export default async function Page({
     pageSlug = '/';
   }
   const showDraft = searchParams.draft === 'true';
-  console.log('pageSlug', pageSlug);
-
-  console.log('showDraft', showDraft);
   const navData = await fetchPayloadDataRest<Nav>({
     endpoint: '/api/globals/nav',
     params: {
