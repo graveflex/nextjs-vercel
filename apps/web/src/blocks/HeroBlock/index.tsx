@@ -144,7 +144,8 @@ const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
 const InputWrapper = s(FormWrapper)<{ $contentAlign: string }>`
   form {
     display: flex;
-    justify-content: ${({ $contentAlign }) => ($contentAlign === 'center' ? 'center' : 'flex-start')};
+    justify-content: ${({ $contentAlign }) =>
+      $contentAlign === 'center' ? 'center' : 'flex-start'};
     gap: 1.25rem;
     margin-top: 1rem;
 

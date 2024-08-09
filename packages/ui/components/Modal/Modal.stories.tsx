@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { ModalType } from '.';
@@ -19,9 +20,11 @@ export const Defaults: Story = {
   args: {
     isOpen: true,
     onClose: () => {},
-    label: 'Modal',
-    headline: 'Headline',
-    content: 'Content',
-    footer: 'Footer'
+    children: (
+      <>
+        <h1>Modal Content</h1>
+        <p>This is the content of the modal</p>
+      </>
+    )
   }
 };
