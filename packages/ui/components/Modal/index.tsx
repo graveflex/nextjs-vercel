@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import styled from '@refract-ui/sc';
+import RenderIcon from '@mono/ui/components/RenderIcon';
 
 export type ModalType = {
   isOpen: boolean;
@@ -107,7 +108,9 @@ function ModalC({ isOpen, onClose, children, ...props }: ModalType) {
       <Overlay onClick={() => handleOverlayClick} />
       <ModalWrapper {...props}>
         <ModalContainer onClick={() => handleModalClick}>
-          <ModalCloseButton onClick={onClose}>X </ModalCloseButton>
+          <ModalCloseButton onClick={onClose}>
+            <RenderIcon name='Close' />
+          </ModalCloseButton>
           {children}
         </ModalContainer>
       </ModalWrapper>

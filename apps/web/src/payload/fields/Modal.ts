@@ -12,20 +12,8 @@ function Modal({
     interfaceName: interfaceName || 'payLoadModal',
     fields: [
       {
-        name: 'label',
-        label: 'Label',
-        type: 'text',
-        localized
-      },
-      {
         name: 'content',
         label: 'Content',
-        type: 'richText',
-        localized
-      },
-      {
-        name: 'footer',
-        label: 'Footer',
         type: 'richText',
         localized
       },
