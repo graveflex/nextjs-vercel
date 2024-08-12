@@ -84,20 +84,11 @@ export interface UserAuthOperations {
  */
 export interface Page {
   id: number;
-  pageTitle: string;
-  slug?: string | null;
-  theme?: ('light' | 'dark') | null;
-  seoConfig?: {
-    title?: string | null;
-    description?: string | null;
-    keywords?: string | null;
-  };
-  publishedAt?: string | null;
   blocks?:
     | (
-        | FullBleedImageBlockT
         | IframeBlockT
         | IconGridBlockT
+        | FullBleedImageBlockT
         | SectionHeaderBlockT
         | GalleryGridBlockT
         | VideoBlockT
@@ -109,15 +100,25 @@ export interface Page {
         | HeroBlockT
       )[]
     | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: number | Image | null;
+    keywords?: string | null;
+  };
+  pageTitle: string;
+  slug?: string | null;
+  theme?: ('light' | 'dark') | null;
+  publishedAt?: string | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FullBleedImageBlockT".
+ * via the `definition` "IframeBlockT".
  */
-export interface FullBleedImageBlockT {
+export interface IframeBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
@@ -143,12 +144,25 @@ export interface FullBleedImageBlockT {
       };
     };
   };
-  image: number | Image;
-  mobileImage?: number | Image | null;
-  isBackground?: boolean | null;
+  title?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  iframe: string;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'fullBleedImageBlock';
+  blockType: 'iframeBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -220,56 +234,6 @@ export interface Image {
       filename?: string | null;
     };
   };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IframeBlockT".
- */
-export interface IframeBlockT {
-  blockConfig?: {
-    theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: number | Image | null;
-    hidden?: boolean | null;
-    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    p?: {
-      xs?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      md?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      lg?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      xl?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-    };
-  };
-  title?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  iframe: string;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'iframeBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -413,6 +377,43 @@ export interface IconSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FullBleedImageBlockT".
+ */
+export interface FullBleedImageBlockT {
+  blockConfig?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundImage?: number | Image | null;
+    hidden?: boolean | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    p?: {
+      xs?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      md?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      lg?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      xl?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+    };
+  };
+  image: number | Image;
+  mobileImage?: number | Image | null;
+  isBackground?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'fullBleedImageBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "SectionHeaderBlockT".
  */
 export interface SectionHeaderBlockT {
@@ -535,7 +536,10 @@ export interface VideoBlockT {
     };
   };
   video?: number | Video | null;
+  videoURL?: string | null;
+  embedURL?: string | null;
   caption?: string | null;
+  fullBleedMobile?: boolean | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'videoBlock';
@@ -1054,13 +1058,14 @@ export interface Post {
     } | null;
     id?: string | null;
   }[];
-  seoConfig?: {
-    title?: string | null;
-    description?: string | null;
-    keywords?: string | null;
-  };
   slug?: string | null;
   publishedAt?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: number | Image | null;
+    keywords?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
