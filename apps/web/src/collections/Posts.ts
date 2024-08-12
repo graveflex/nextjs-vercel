@@ -1,6 +1,5 @@
 import { WEB_URL } from '@mono/settings';
 import RichTextFields from '@mono/web/payload/fields/RichTextFields';
-import SEOConfig from '@mono/web/payload/fields/SEO';
 import type { CollectionConfig } from 'payload';
 
 import { invalidateCache } from '../hooks/invalidateCache';
@@ -88,7 +87,6 @@ const Posts: CollectionConfig = {
       required: true,
       fields: [...RichTextFields]
     },
-    SEOConfig(),
     {
       name: 'slug',
       label: 'Blog Post Slug',
