@@ -15,6 +15,7 @@ import { postgresAdapter } from '@payloadcms/db-postgres';
 import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder';
 import { redirectsPlugin } from '@payloadcms/plugin-redirects';
+import { seoPlugin } from '@payloadcms/plugin-seo';
 import type { FeatureProviderServer } from '@payloadcms/richtext-lexical';
 import {
   AlignFeature,
@@ -165,6 +166,20 @@ export default buildConfig({
     api: '/api'
   },
   plugins: [
+    seoPlugin({
+      collections: ['pages', 'posts'],
+      fields: [
+        {
+          name: 'keywords',
+          label: 'Keywords',
+          type: 'text'
+        }
+      ],
+      tabbedUI: true,
+      uploadsCollection: 'images',
+      generateTitle: ({ doc }) => `Monorepo | ${doc.pageTitle || doc.title}`,
+      generateDescription: () => "Monorepo's description text"
+    }),
     redirectsPlugin({
       collections: ['pages', 'posts']
     }),

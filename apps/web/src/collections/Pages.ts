@@ -11,7 +11,6 @@ import MarkdownBlock from '@mono/web/blocks/MarkdownBlock/MarkdownBlock.config';
 import SectionHeaderBlock from '@mono/web/blocks/SectionHeaderBlock/SectionHeaderBlock.config';
 import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
 import VideoBlock from '@mono/web/blocks/VideoBlock/VideoBlock.config';
-import SEOConfig from '@mono/web/payload/fields/SEO';
 import formatSlug from '@mono/web/payload/utils/formatSlug';
 import type { CollectionConfig } from 'payload';
 
@@ -47,6 +46,36 @@ const Pages: CollectionConfig = {
   },
   fields: [
     {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Page Content',
+          fields: [
+            {
+              name: 'blocks',
+              label: 'Blocks',
+              type: 'blocks',
+              blocks: [
+                // InsertBlockConfigFields
+                IframeBlock,
+                IconGridBlock,
+                FullBleedImageBlock,
+                SectionHeaderBlock,
+                GalleryGridBlock,
+                VideoBlock,
+                FormBlock,
+                CardGridBlock,
+                MarkdownBlock,
+                FAQBlock,
+                TextImageBlock,
+                HeroBlock
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       name: 'pageTitle',
       label: 'Page Title',
       type: 'text',
@@ -77,7 +106,6 @@ const Pages: CollectionConfig = {
       required: false,
       options: themeOptions
     },
-    SEOConfig(),
     {
       name: 'publishedAt',
       type: 'date',
@@ -91,26 +119,6 @@ const Pages: CollectionConfig = {
         position: 'sidebar'
       },
       defaultValue: () => new Date().toJSON()
-    },
-    {
-      name: 'blocks',
-      label: 'Blocks',
-      type: 'blocks',
-      blocks: [
-        // InsertBlockConfigFields
-        FullBleedImageBlock,
-        IframeBlock,
-        IconGridBlock,
-        SectionHeaderBlock,
-        GalleryGridBlock,
-        VideoBlock,
-        FormBlock,
-        CardGridBlock,
-        MarkdownBlock,
-        FAQBlock,
-        TextImageBlock,
-        HeroBlock
-      ]
     }
   ],
   hooks: {

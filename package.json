@@ -54,6 +54,7 @@
     "@payloadcms/richtext-lexical": "3.0.0-beta.76",
     "@payloadcms/plugin-cloud-storage": "3.0.0-beta.76",
     "@payloadcms/plugin-redirects": "3.0.0-beta.76",
+    "@payloadcms/plugin-seo": "3.0.0-beta.76",
     "@payloadcms/plugin-form-builder": "3.0.0-beta.76",
     "@payloadcms/storage-vercel-blob": "3.0.0-beta.76",
     "@payloadcms/next": "3.0.0-beta.76",

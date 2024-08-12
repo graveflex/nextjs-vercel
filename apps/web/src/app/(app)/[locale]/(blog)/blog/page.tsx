@@ -116,11 +116,19 @@ export async function generateMetadata({
     return {};
   }
 
-  const seoData = data?.docs[0]?.seoConfig;
+  const pageData = data?.docs[0];
+  const seoData = data?.docs[0]?.meta;
+  const seoImage =
+    typeof seoData?.image !== 'number' && seoData?.image?.url
+      ? seoData?.image?.url
+      : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
 
   return {
-    title: seoData?.title || 'Default title',
-    description: seoData?.description || 'Default description',
-    keywords: seoData?.keywords
+    title: seoData?.title || pageData?.pageTitle || 'Ukandu',
+    description: seoData?.description || "If there's a cure there's Ukandu",
+    keywords: seoData?.keywords || null,
+    openGraph: {
+      images: [seoImage]
+    }
   };
 }

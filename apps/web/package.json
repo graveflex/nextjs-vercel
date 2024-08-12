@@ -37,6 +37,7 @@
     "@payloadcms/plugin-cloud-storage": "latest",
     "@payloadcms/plugin-form-builder": "latest",
     "@payloadcms/plugin-redirects": "latest",
+    "@payloadcms/plugin-seo": "latest",
     "@payloadcms/richtext-lexical": "latest",
     "@payloadcms/storage-vercel-blob": "latest",
     "@payloadcms/ui": "latest",
