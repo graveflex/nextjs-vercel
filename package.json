@@ -87,7 +87,7 @@
     "next": "15.0.0-canary.104",
     "react": "^19.0.0-rc-06d0b89e-20240801",
     "react-dom": "^19.0.0-rc-06d0b89e-20240801",
-
+    "sharp": "0.32.6",
     "styled-components": "6.1.8",
     "storybook": "8.3.0-alpha.4",
     "tsconfig-paths": "^4.2.0",
