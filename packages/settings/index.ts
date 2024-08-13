@@ -12,6 +12,7 @@ export const BLOB_STORE_ID = process.env.BLOB_STORE_ID;
 
 export const LOCAL = process.env.LOCAL === 'true';
 const FORCE_WEB_URL = process.env.FORCE_WEB_URL;
+export const NODE_ENV = process.env.NODE_ENV;
 
 export const DEFAULT_LOCALE = 'en-US' as const;
 export const FALLBACK_LOCALE = 'en' as const;
