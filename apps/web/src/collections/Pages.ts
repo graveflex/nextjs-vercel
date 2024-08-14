@@ -31,9 +31,7 @@ const Pages: CollectionConfig = {
       const { slug } = (doc as { slug: string }) || '/';
 
       if (slug) {
-        // eslint-disable-next-line no-underscore-dangle
-        const isDraft = !doc?._status || doc?._status === 'draft';
-        return `${WEB_URL}/${slug}?locale=${locale}&draft=${isDraft}`;
+        return `${WEB_URL}/${slug}?locale=${locale}&draft=true`;
       }
       return null;
     }

@@ -1,3 +1,4 @@
+import { NextResponse } from 'next/server';
 import { DEFAULT_LOCALE, LOCALES, NODE_ENV, WEB_URL } from '@mono/settings';
 import Authors from '@mono/web/collections/Authors';
 import Files from '@mono/web/collections/Files';
@@ -66,6 +67,25 @@ async function createTestTransport() {
 }
 
 export default buildConfig({
+  endpoints: [
+    {
+      path: '/findPage',
+      method: 'get',
+      handler: async (req) => {
+        const { query } = req;
+        const pages = await req.payload.find({
+          collection: 'pages',
+          user: {
+            email: null,
+            password: null
+          },
+          ...query,
+          req
+        });
+        return NextResponse.json(pages);
+      }
+    }
+  ],
   db: postgresAdapter({
     pool: {
       connectionString: DATABASE_URL

@@ -37,7 +37,7 @@ export default async function Page({
   });
 
   const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
-    endpoint: '/api/pages',
+    endpoint: '/api/findPage',
     showDraft,
     params: {
       locale,
@@ -74,7 +74,7 @@ export async function generateMetadata({
 }) {
   const pageSlug = slug ? slug.join('/') : '/';
   const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
-    endpoint: '/api/pages',
+    endpoint: '/api/findPage',
     params: {
       locale,
       where: {
