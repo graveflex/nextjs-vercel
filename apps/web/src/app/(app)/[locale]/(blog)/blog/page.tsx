@@ -50,7 +50,7 @@ export default async function Blog({
 
   const [pageData, postData, filterData] = await Promise.all([
     fetchPayloadDataRest<PaginatedDocs<Page>>({
-      endpoint: '/api/pages',
+      endpoint: '/api/findPage',
       params: {
         locale,
         where: {
