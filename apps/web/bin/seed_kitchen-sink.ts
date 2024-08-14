@@ -2,6 +2,8 @@ import { cardGridBlockSchema } from '@mono/web/blocks/CardGridBlock/CardGridBloc
 import { faqBlockSchema } from '@mono/web/blocks/FAQBlock/FAQBlockSeed';
 import { galleryGridBlockSchema } from '@mono/web/blocks/GalleryGridBlock/GalleryGridBlockSeed';
 import { heroBlockSchema } from '@mono/web/blocks/HeroBlock/HeroBlockSeed';
+import { iconGridBlockSchema } from '@mono/web/blocks/IconGridBlock/IconGridSeed';
+import { iFrameBlockSchema } from '@mono/web/blocks/IframeBlock/iframeSeed';
 import { markdownBlockSchema } from '@mono/web/blocks/MarkdownBlock/MarkdownBlockSeed';
 import { sectionHeaderBlockSchema } from '@mono/web/blocks/SectionHeaderBlock/SectionHeaderSeed';
 // ImportBlockSchema
@@ -24,6 +26,7 @@ const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {
     blockName: 'Hero Block BG Image',
     layout: 'contentLeft'
   });
+
   const heroBlockCTA = await heroBlockSchema({
     blockName: 'Hero Block Image Right + CTA',
     blockConfig: {
@@ -37,26 +40,6 @@ const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {
       }
     }
   });
-  const heroBlockForm = await heroBlockSchema({
-    blockName: 'Hero Block Image Left + Form',
-    blockConfig: {
-      contentWidth: 'xl'
-    },
-    layout: 'contentRight',
-    form: {
-      textinput: {
-        placeholder: 'email address'
-      },
-      cta: {
-        link: {
-          type: 'external',
-          label: 'Learn more',
-          externalHref: 'https://google.com',
-          newTab: true
-        }
-      }
-    }
-  });
   const cardGridBlock = await cardGridBlockSchema();
   const galleryGridBlock = await galleryGridBlockSchema();
   const imageTextBlockLeft = await imageTextBlockSchema(
@@ -67,6 +50,19 @@ const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {
     'imgRight',
     'Text Image Block (image right)'
   );
+  const iconGridBlock = await iconGridBlockSchema({
+    blockName: 'Icon Grid Block',
+    blockConfig: {
+      contentWidth: 'xl'
+    }
+  });
+
+  const iFrameBlock = await iFrameBlockSchema({
+    blockName: 'iFrame Block',
+    blockConfig: {
+      contentWidth: 'xl'
+    }
+  });
 
   // ResolveBlockSchema
 
@@ -80,11 +76,12 @@ const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {
         heroBlockBG,
         heroBlockCTA,
         sectionHeaderBlockSchema,
-        heroBlockForm,
         imageTextBlockLeft,
         markdownBlockSchema,
         imageTextBlockRight,
         cardGridBlock,
+        iconGridBlock,
+        iFrameBlock,
         faqBlockSchema,
         galleryGridBlock
       ]

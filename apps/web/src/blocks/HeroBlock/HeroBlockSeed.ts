@@ -9,7 +9,6 @@ interface blockProps {
   blockConfig: HeroBlockT['blockConfig'];
   layout?: HeroBlockT['layout'];
   cta?: HeroBlockT['cta'];
-  form?: HeroBlockT['form'];
 }
 
 export const heroBlockSchema = async ({
