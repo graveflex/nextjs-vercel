@@ -19,8 +19,7 @@ function <%= name %>({
 <% for (field of fields) { -%>
   <%- field.fieldName -%>,
 <% } -%>
-  blockConfig, 
-  ...props 
+  blockConfig
   }: <%= name %>Type) {
   return (
     <Wrapper {...blockConfig} hidden={blockConfig?.hidden ?? false}>

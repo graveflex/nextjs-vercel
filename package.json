@@ -10,7 +10,7 @@
     "clean": "turbo run clean && rm -rf ./node_modules && rm -rf ./coverage",
     "reinstall": "pnpm clean && pnpm install",
     "merge-coverage": "mkdir -p coverage && pnpm cobertura-merge -o coverage/coverage.xml web=apps/web/coverage/cobertura-coverage.xml settings=packages/settings/coverage/cobertura-coverage.xml ui=packages/ui/coverage/cobertura-coverage.xml",
-    "create:block": "npx hygen block new --with-prompt && pnpm generate:types && pnpm lint",
+    "create:block": "npx hygen block new --with-prompt && pnpm generate:types && pnpm lint -- --fix && cd apps/web && pnpm lint -- --fix",
     "create:component": "npx hygen component new --with-prompt",
     "create:package": "npx hygen package new --with-prompt",
     "create:icon": "npx hygen icon new --with-prompt",
