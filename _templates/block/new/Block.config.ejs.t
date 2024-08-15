@@ -18,6 +18,9 @@ const <%= name %>: Block = {
         <%_ if (field.fieldType === 'upload') { -%>
           relationTo: '<%= field.fieldRelation %>',
         <%_ } -%>
+        <%_ if (field.fieldType === 'text' || field.fieldType === 'richText' || field.fieldType === 'array') { -%>
+          localized: true,
+        <%_ } -%>
         required: false
       },
     <%_ } -%>
