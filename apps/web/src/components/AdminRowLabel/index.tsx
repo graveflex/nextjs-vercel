@@ -3,9 +3,8 @@
 import React from 'react';
 import type { PayLoadLink } from '@mono/types/payload-types';
 import { useRowLabel } from '@payloadcms/ui/forms/RowLabel/Context';
-import type { RowLabelComponent } from 'payload';
 
-const AdminRowLabel: RowLabelComponent = function ArrayRowLabel() {
+const AdminRowLabel = function ArrayRowLabel() {
   const { data, rowNumber } = useRowLabel<{
     link: PayLoadLink;
     name: string;

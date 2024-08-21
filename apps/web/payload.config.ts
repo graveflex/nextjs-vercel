@@ -314,17 +314,14 @@ export default buildConfig({
     skipVerify: true,
     defaultFromAddress: 'admin@graveflex.com',
     defaultFromName: 'Payload',
-    transportOptions:
-      NODE_ENV === 'production'
-        ? {
-            host: process.env.SMTP_HOST,
-            port: 587,
-            auth: {
-              user: process.env.SMTP_USER,
-              pass: process.env.SMTP_PASS
-            }
-          }
-        : await createTestTransport()
+    transportOptions: {
+      host: process.env.SMTP_HOST,
+      port: 587,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS
+      }
+    }
   }),
   typescript: {
     outputFile: path.resolve(dirname, '../../packages/types/payload-types.ts')

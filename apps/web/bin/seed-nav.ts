@@ -326,10 +326,9 @@ const seedNavUsingPayload = async ({ payload, count = 2 }: SeedFnProps) => {
 
 const seed = async (): Promise<void> => {
   const { getPayload } = await tsImport('payload', import.meta.url);
-  const { importConfig } = await tsImport('payload/node', import.meta.url);
 
   const configPath = path.resolve(__dirname, '../payload.config.ts');
-  const config = await importConfig(configPath);
+  const config = await import(configPath);
   const payload = await getPayload({ config });
   await seedHomePage({ payload });
   await seedNavUsingPayload({ payload });
