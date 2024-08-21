@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { DEFAULT_LOCALE, LOCALES, NODE_ENV, WEB_URL } from '@mono/settings';
+import { DEFAULT_LOCALE, LOCALES, WEB_URL } from '@mono/settings';
 import Authors from '@mono/web/collections/Authors';
 import Files from '@mono/web/collections/Files';
 import Images from '@mono/web/collections/Images';
@@ -39,7 +39,7 @@ import {
 } from '@payloadcms/richtext-lexical';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import dotenv from 'dotenv';
-import nodeMailer from 'nodemailer';
+// import nodeMailer from 'nodemailer';
 import path from 'path';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
@@ -52,19 +52,19 @@ dotenv.config({ path: `${dirname}/../../.env` });
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
 
-async function createTestTransport() {
-  const testAccount = await nodeMailer.createTestAccount();
+// async function createTestTransport() {
+//   const testAccount = await nodeMailer.createTestAccount();
 
-  return {
-    host: testAccount.smtp.host,
-    port: testAccount.smtp.port,
-    secure: testAccount.smtp.secure,
-    auth: {
-      user: testAccount.user,
-      pass: testAccount.pass
-    }
-  };
-}
+//   return {
+//     host: testAccount.smtp.host,
+//     port: testAccount.smtp.port,
+//     secure: testAccount.smtp.secure,
+//     auth: {
+//       user: testAccount.user,
+//       pass: testAccount.pass
+//     }
+//   };
+// }
 
 export default buildConfig({
   endpoints: [
