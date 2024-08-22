@@ -1,9 +1,10 @@
 import { faker } from '@faker-js/faker';
+import configPromise from '@payload-config';
+import dotenv from 'dotenv';
 import fs from 'fs';
-import path from 'path';
 import type { BasePayload } from 'payload';
+import { getPayload } from 'payload';
 import tmp from 'tmp';
-import { tsImport } from 'tsx/esm/api';
 
 interface SeedFnProps {
   payload: BasePayload;
@@ -89,11 +90,8 @@ const seedImages = async ({
 
 const imageFn = async () => {
   const count = 10;
-  const { getPayload } = await tsImport('payload', import.meta.url);
-
-  const configPath = path.resolve(__dirname, '../payload.config.ts');
-  const config = await import(configPath);
-  const payload = await getPayload({ config });
+  dotenv.config({ path: `${__dirname}/../../../.env` });
+  const payload = await getPayload({ config: configPromise });
   const images = await seedImages({ payload, count, category: 'abstract' });
   return images;
 };
