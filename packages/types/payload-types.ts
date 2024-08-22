@@ -103,7 +103,7 @@ export interface Page {
   meta?: {
     title?: string | null;
     description?: string | null;
-    image?: number | Image | null;
+    image?: (number | null) | Image;
     keywords?: string | null;
   };
   pageTitle: string;
@@ -122,7 +122,7 @@ export interface IframeBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: number | Image | null;
+    backgroundImage?: (number | null) | Image;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -243,7 +243,7 @@ export interface IconGridBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: number | Image | null;
+    backgroundImage?: (number | null) | Image;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -312,7 +312,7 @@ export interface PayLoadLink {
   externalHref?: string | null;
   emailHref?: string | null;
   phoneHref?: string | null;
-  fileHref?: number | File | null;
+  fileHref?: (number | null) | File;
   newTab?: boolean | null;
   icon?: IconSelect;
 }
@@ -383,7 +383,7 @@ export interface FullBleedImageBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: number | Image | null;
+    backgroundImage?: (number | null) | Image;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -406,7 +406,7 @@ export interface FullBleedImageBlockT {
     };
   };
   image: number | Image;
-  mobileImage?: number | Image | null;
+  mobileImage?: (number | null) | Image;
   isBackground?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -420,7 +420,7 @@ export interface SectionHeaderBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: number | Image | null;
+    backgroundImage?: (number | null) | Image;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -472,7 +472,7 @@ export interface GalleryGridBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: number | Image | null;
+    backgroundImage?: (number | null) | Image;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -496,7 +496,7 @@ export interface GalleryGridBlockT {
   };
   galleryImages?:
     | {
-        image?: number | Image | null;
+        image?: (number | null) | Image;
         id?: string | null;
       }[]
     | null;
@@ -513,7 +513,7 @@ export interface VideoBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: number | Image | null;
+    backgroundImage?: (number | null) | Image;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -535,7 +535,7 @@ export interface VideoBlockT {
       };
     };
   };
-  video?: number | Video | null;
+  video?: (number | null) | Video;
   videoURL?: string | null;
   embedURL?: string | null;
   caption?: string | null;
@@ -573,7 +573,7 @@ export interface FormBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: number | Image | null;
+    backgroundImage?: (number | null) | Image;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -720,7 +720,7 @@ export interface CardGridBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: number | Image | null;
+    backgroundImage?: (number | null) | Image;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -757,7 +757,7 @@ export interface CardGridBlockT {
  * via the `definition` "CardType".
  */
 export interface CardType {
-  image?: number | Image | null;
+  image?: (number | null) | Image;
   eyebrow?: string | null;
   headline: string;
   subHead?: string | null;
@@ -777,7 +777,7 @@ export interface MarkdownBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: number | Image | null;
+    backgroundImage?: (number | null) | Image;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -827,7 +827,7 @@ export interface FAQBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: number | Image | null;
+    backgroundImage?: (number | null) | Image;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -898,7 +898,7 @@ export interface TextImageBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: number | Image | null;
+    backgroundImage?: (number | null) | Image;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -921,8 +921,8 @@ export interface TextImageBlockT {
     };
   };
   layout?: ('imgRight' | 'imgLeft') | null;
-  image?: number | Image | null;
-  video?: number | Video | null;
+  image?: (number | null) | Image;
+  video?: (number | null) | Video;
   content?: {
     root: {
       type: string;
@@ -971,7 +971,7 @@ export interface HeroBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: number | Image | null;
+    backgroundImage?: (number | null) | Image;
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -993,7 +993,7 @@ export interface HeroBlockT {
       };
     };
   };
-  image?: number | Image | null;
+  image?: (number | null) | Image;
   eyebrow?: string | null;
   layout?: ('contentRight' | 'contentLeft' | 'contentCenter') | null;
   contentAlign?: ('right' | 'left' | 'center') | null;
@@ -1063,7 +1063,7 @@ export interface Post {
   meta?: {
     title?: string | null;
     description?: string | null;
-    image?: number | Image | null;
+    image?: (number | null) | Image;
     keywords?: string | null;
   };
   updatedAt: string;
@@ -1077,7 +1077,7 @@ export interface Author {
   id: number;
   slug?: string | null;
   fullName: string;
-  image?: number | Image | null;
+  image?: (number | null) | Image;
   jobTitle: string;
   bio?: {
     root: {
@@ -1205,7 +1205,7 @@ export interface PayloadMigration {
 export interface Nav {
   id: number;
   header?: {
-    logo?: number | Image | null;
+    logo?: (number | null) | Image;
     banner?: BannerContent;
     collapsibleMenu?: CollapsibleMenu;
     flatMenu?: FlatMenu;
@@ -1266,7 +1266,7 @@ export interface CollapsibleMenu {
  * via the `definition` "FooterItems".
  */
 export interface FooterItems {
-  footerLogo?: number | Image | null;
+  footerLogo?: (number | null) | Image;
   copyright?: {
     root: {
       type: string;

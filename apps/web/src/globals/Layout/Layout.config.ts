@@ -1,4 +1,3 @@
-import AdminRowLabel from '@mono/web/components/AdminRowLabel';
 import CTA from '@mono/web/payload/fields/CTA';
 import IconSelect from '@mono/web/payload/fields/IconSelect';
 import Link from '@mono/web/payload/fields/Link';
@@ -37,7 +36,7 @@ const collapsibleMenu: GroupField = {
       localized: true,
       admin: {
         components: {
-          RowLabel: AdminRowLabel
+          RowLabel: '@mono/web/components/AdminRowLabel/index.tsx#default'
         }
       },
       fields: [
@@ -56,7 +55,7 @@ const collapsibleMenu: GroupField = {
           admin: {
             description: 'The pages that will be linked in this section',
             components: {
-              RowLabel: AdminRowLabel
+              RowLabel: '@mono/web/components/AdminRowLabel/index.tsx#default'
             }
           },
           type: 'array',
@@ -76,7 +75,7 @@ const flatMenu: ArrayField = {
     description:
       'The pages that will be linked in this section will not have a dropdown',
     components: {
-      RowLabel: AdminRowLabel
+      RowLabel: '@mono/web/components/AdminRowLabel/index.tsx#default'
     }
   },
   fields: [Link()]
@@ -90,7 +89,7 @@ const iconItems: ArrayField = {
   admin: {
     description: 'Nav Items that are only displayed with an icon',
     components: {
-      RowLabel: AdminRowLabel
+      RowLabel: '@mono/web/components/AdminRowLabel/index.tsx#default'
     }
   },
   fields: [
