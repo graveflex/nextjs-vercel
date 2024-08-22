@@ -80,6 +80,7 @@
     "ramda": "^0.30.0",
     "react": "latest",
     "react-dom": "latest",
+    "react-loader-spinner": "^6.1.6",
     "react-hook-form": "^7.51.3",
     "sharp": "0.33.3",
     "styled-components": "latest",
