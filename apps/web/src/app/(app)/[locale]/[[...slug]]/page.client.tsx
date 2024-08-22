@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { WEB_URL } from '@mono/settings';
 import type { Nav, Page } from '@mono/types/payload-types';
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
+import Loading from '@mono/web/components/Loading';
 import Layout from '@mono/web/globals/Layout';
 import useLivePreview from '@mono/web/hooks/useLivePreview';
 
@@ -24,7 +25,9 @@ function PageTemplate({ page, nav }: { page: Page; nav: Nav }) {
 
   return (
     <Layout theme={theme} {...nav}>
-      <BlocksRenderer blocks={blocks} />
+      <Suspense fallback={<Loading />}>
+        <BlocksRenderer blocks={blocks} />
+      </Suspense>
     </Layout>
   );
 }

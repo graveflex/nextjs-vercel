@@ -157,6 +157,7 @@ function ResponsivePayloadImage({
       <Source breakpoints={breakpoints} image={mobile} bp="sm" />
       <Source breakpoints={breakpoints} image={thumbnail} bp="xxs" />
       <ResponsiveImage
+        loading={imageProps?.priority ? 'eager' : 'lazy'}
         $additionalProps={additionalProps}
         {...{
           ...dimensions,
