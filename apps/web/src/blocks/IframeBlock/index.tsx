@@ -28,7 +28,7 @@ function IframeBlock({ blockConfig, title, iframe }: IframeBlockType) {
     <Wrapper {...blockConfig} hidden={blockConfig?.hidden ?? false}>
       <InnerWrapper>
         {title && <Title {...title} />}
-        <IframeWrapper src={iframe} title="iframe-block" />
+        <IframeWrapper src={iframe} title="iframe-block" loading="lazy" />
       </InnerWrapper>
     </Wrapper>
   );
