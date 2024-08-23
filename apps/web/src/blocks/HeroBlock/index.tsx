@@ -126,7 +126,7 @@ const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
 
     margin: 0 auto;
     min-width: 100%;
-    background-color: ${allColors.color4};
+    background-color: ${allColors.bg};
     min-height: 12rem;
 
     ${mq.md`

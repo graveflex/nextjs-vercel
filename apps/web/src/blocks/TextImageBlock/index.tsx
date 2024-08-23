@@ -130,7 +130,6 @@ const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
     align-self: center;
     background-color: ${allColors.color4};
     min-height: 12rem;
-    border: 2px solid green;
 
     img {
       max-width: 100%;
@@ -138,7 +137,6 @@ const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
     }
 
     ${mq.md`
-      border: 2px solid yellow;
       min-height: 30rem;
 
       img {
@@ -148,7 +146,6 @@ const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
     `}
 
     ${mq.lg`
-      border: 2px solid blue;
       min-height: 22rem;
       img {
         max-width: 35rem
@@ -170,8 +167,7 @@ const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
       }
     `}
     ${mq.xl`
-      border: 2px solid red;
-      min-width: unset;
+     min-width: unset;
       min-height: 30rem;
 
       img {
