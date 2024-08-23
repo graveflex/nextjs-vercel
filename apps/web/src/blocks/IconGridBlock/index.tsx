@@ -25,6 +25,7 @@ const Grid = styled.div<{ $dir: IconGridBlockType['layout'] }>`
     ${$dir === 'horizontal' &&
     css`
       grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
+      align-items: start;
     `}
     
     ${mq.md`
@@ -49,6 +50,7 @@ const CardWrapper = styled.div<{ $dir: IconGridBlockType['layout'] }>`
     css`
       flex-direction: column;
       gap: 1rem;
+      justify-content: space-between;
     `}
   `}
 `;
@@ -78,6 +80,17 @@ const StyledRichText = styled(RichText)<{ $dir: IconGridBlockType['layout'] }>`
   }
 `;
 
+const StyledImage = styled(ResponsivePayloadImage)`
+  background-color: ${({ theme: { allColors } }) => allColors.color4};
+  width: 8rem;
+  height: 8rem;
+
+  img {
+    height: 8rem;
+    width: 8rem;
+  }
+`;
+
 function IconGridBlock({ layout, items, blockConfig }: IconGridBlockType) {
   return (
     <Wrapper {...blockConfig} hidden={blockConfig?.hidden ?? false}>
@@ -87,7 +100,7 @@ function IconGridBlock({ layout, items, blockConfig }: IconGridBlockType) {
             const { content, image, cta } = item;
             return (
               <CardWrapper key={`icon-${item?.id}`} $dir={layout}>
-                <ResponsivePayloadImage image={image} />
+                <StyledImage image={image} />
                 <StyledRichText {...content} $dir={layout} />
                 {cta?.link?.label && <CtaButton cta={cta} />}
               </CardWrapper>

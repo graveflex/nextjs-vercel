@@ -113,7 +113,7 @@ const ContentWrapper = s.div<{
 `;
 
 const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
-  ${({ $layout, theme: { mq } }) => css`
+  ${({ $layout, theme: { mq, allColors } }) => css`
     img {
       max-width: 100%;
       min-width: 100%;
@@ -122,21 +122,46 @@ const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
 
     margin: 0 auto;
     min-width: 100%;
+    background-color: ${allColors.color4};
+    min-height: 30rem;
 
     ${mq.lg`
       min-width: unset;
+
       ${
         $layout === 'contentLeft' &&
         css`
           margin: 0 auto 0 0;
+          img {
+            max-width: 35rem;
+            width: 35rem;
+          }
         `
       }
       ${
-        $layout === 'contentLeft' &&
+        $layout === 'contentRight' &&
         css`
           margin: 0 0 0 auto;
+          img {
+            max-width: 35rem;
+            width: 35rem;
+          }
         `
       }
+    `}
+
+    ${mq.xl`
+       ${
+         ($layout === 'contentLeft' || $layout === 'contentRight') &&
+         css`
+           min-width: unset;
+
+           img {
+             max-width: 40rem;
+             width: 40rem;
+           }
+         `
+       }
     `}
   `}
 `;

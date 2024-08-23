@@ -52,10 +52,44 @@ const SubHead = styled.p`
 const ImageContainer = styled.div`
   border-radius: 0.375rem;
   overflow: hidden;
+  background-color: ${({ theme: { allColors } }) => allColors.color4};
+  width: 100%;
 
-  ${({ theme: { spacing } }) => css`
+  ${({ theme: { spacing, mq } }) => css`
     margin-bottom: ${spacing[9]}rem;
     position: relative;
+
+    ${mq.xs`
+      height: 12rem;
+    `}
+
+    ${mq.sm`
+      height: 15rem;
+    `}
+
+    ${mq.lg`
+      height: 19rem;
+    `}
+  `}
+`;
+
+const StyledImage = styled(ResponsiveImage)`
+  ${({ theme: { mq } }) => css`
+    overflow: hidden;
+    background-color: #f5f5f5;
+    min-height: 20rem;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    ${mq.lg`
+      img {
+        max-width: 26rem;
+        width: 26rem;
+      }
+    `}
   `}
 `;
 
@@ -97,7 +131,7 @@ function GeneralCard({
     <Container className={className}>
       {image && (
         <ImageContainer>
-          <ResponsiveImage image={imageProps(image)} />
+          <StyledImage image={imageProps(image)} />
         </ImageContainer>
       )}
       <ContentContainer>
