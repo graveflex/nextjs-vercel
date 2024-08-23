@@ -14,7 +14,7 @@ const formatSlug =
       (data && data[fallback]) || (originalDoc && originalDoc[fallback]);
 
     // If the fallback is 'Home' then return a forward slash
-    if (fallbackData === 'Home') {
+    if (fallbackData === 'Home' || fallbackData === 'Hogar') {
       return '/';
     }
     // remove forward slash from the beginning of the string

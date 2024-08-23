@@ -1,5 +1,5 @@
 {
-  "id": "32ecfda2-f89f-4d0a-aeb7-2ea25c80290d",
+  "id": "4fc2729b-56f2-414f-8a6a-7c55d22036f1",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -4640,12 +4640,6 @@
           "primaryKey": false,
           "notNull": false
         },
-        "page_title": {
-          "name": "page_title",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
         "slug": {
           "name": "slug",
           "type": "varchar",
@@ -4758,6 +4752,12 @@
         "meta_image_id": {
           "name": "meta_image_id",
           "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "page_title": {
+          "name": "page_title",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
@@ -9572,12 +9572,6 @@
           "primaryKey": false,
           "notNull": false
         },
-        "version_page_title": {
-          "name": "version_page_title",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
         "version_slug": {
           "name": "version_slug",
           "type": "varchar",
@@ -9767,6 +9761,12 @@
         "version_meta_image_id": {
           "name": "version_meta_image_id",
           "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "version_page_title": {
+          "name": "version_page_title",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },

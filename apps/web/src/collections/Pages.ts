@@ -77,6 +77,7 @@ const Pages: CollectionConfig = {
       name: 'pageTitle',
       label: 'Page Title',
       type: 'text',
+      localized: true,
       admin: {
         position: 'sidebar'
       },
