@@ -1,13 +1,10 @@
 // eslint-disable-next-line
-import * as globalStorybookConfig from '../../apps/docs/.storybook/preview';
 import { setProjectAnnotations } from '@storybook/react';
-import dotenv from 'dotenv';
 import { vi } from 'vitest';
+import * as globalStorybookConfig from '../../apps/docs/.storybook/preview';
 
 import '@testing-library/jest-dom';
 import 'vitest-canvas-mock';
-
-dotenv.config({ path: '../../.env.local' });
 
 setProjectAnnotations(globalStorybookConfig);
 

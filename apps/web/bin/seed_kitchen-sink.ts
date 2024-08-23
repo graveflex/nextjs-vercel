@@ -9,7 +9,6 @@ import { sectionHeaderBlockSchema } from '@mono/web/blocks/SectionHeaderBlock/Se
 // ImportBlockSchema
 import { imageTextBlockSchema } from '@mono/web/blocks/TextImageBlock/TextImageBlockSeed';
 import configPromise from '@payload-config';
-import dotenv from 'dotenv';
 import type { BasePayload } from 'payload';
 import { getPayload } from 'payload';
 
@@ -91,7 +90,6 @@ const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {
 };
 
 const seed = async (): Promise<void> => {
-  dotenv.config({ path: `${__dirname}/../../../.env` });
   const payload = await getPayload({ config: configPromise });
   await seedKitchenSinkPage({ payload });
   console.info('@-->successfully seeded the kitchen sink!');

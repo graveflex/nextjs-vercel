@@ -1,6 +1,5 @@
 import { faker } from '@faker-js/faker';
 import configPromise from '@payload-config';
-import dotenv from 'dotenv';
 import fs from 'fs';
 import type { BasePayload } from 'payload';
 import { getPayload } from 'payload';
@@ -90,7 +89,6 @@ const seedImages = async ({
 
 const imageFn = async () => {
   const count = 10;
-  dotenv.config({ path: `${__dirname}/../../../.env` });
   const payload = await getPayload({ config: configPromise });
   const images = await seedImages({ payload, count, category: 'abstract' });
   return images;
