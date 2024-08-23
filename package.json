@@ -32,6 +32,7 @@
     "cicd": "pnpm env:ci -- pnpm build && pnpm types && pnpm lint && pnpm test:coverage"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.8.3",
     "@turbo/gen": "^1.10.15",
     "eslint-config-custom": "workspace:*",
     "hygen": "^6.2.11",
