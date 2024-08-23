@@ -118,7 +118,7 @@ const Content = s(RichText)<{ $layout: string }>`
 `;
 
 const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
-  ${({ $layout, theme: { mq, allColors} }) => css`
+  ${({ $layout, theme: { mq, allColors } }) => css`
     grid-area: image;
     overflow: hidden;
     align-self: center;
