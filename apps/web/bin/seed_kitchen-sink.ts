@@ -9,11 +9,11 @@ import type {
   TextImageBlockT
 } from '@mono/types/payload-types';
 import genRichText from '@mono/ui/utils/genRichText';
+import configPromise from '@payload-config';
 import fs from 'fs';
-import path from 'path';
 import type { BasePayload } from 'payload';
+import { getPayload } from 'payload';
 import tmp from 'tmp';
-import { tsImport } from 'tsx/esm/api';
 
 interface SeedFnProps {
   payload: BasePayload;
@@ -413,13 +413,7 @@ const seedKitchenSinkPage = async ({ payload, count = 10 }: SeedFnProps) => {
 };
 
 const seed = async (): Promise<void> => {
-  const { getPayload } = await tsImport('payload', import.meta.url);
-  const { importConfig } = await tsImport('payload/node', import.meta.url);
-
-  const configPath = path.resolve(__dirname, '../payload.config.ts');
-  const config = await importConfig(configPath);
-  const payload = await getPayload({ config });
-  // await seedImages({ payload });
+  const payload = await getPayload({ config: configPromise });
   await seedKitchenSinkPage({ payload });
   console.info('@-->successfully seeded the kitchen sink!');
 

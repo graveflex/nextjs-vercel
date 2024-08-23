@@ -62,7 +62,7 @@
     "@vercel/speed-insights": "^1.0.9",
     "@vitejs/plugin-react": "latest",
     "bson-objectid": "^2.0.4",
-    "dotenv": "^16.4.5",
+    "cross-env": "^7.0.3",
     "escape-html": "^1.0.3",
     "eslint-config-custom": "workspace:*",
     "framer-motion": "latest",

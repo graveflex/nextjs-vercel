@@ -36,7 +36,7 @@ import {
   UploadFeature
 } from '@payloadcms/richtext-lexical';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
-import dotenv from 'dotenv';
+// import nodeMailer from 'nodemailer';
 import path from 'path';
 import { buildConfig } from 'payload';
 import { fileURLToPath } from 'url';
@@ -48,8 +48,6 @@ import TextInputBlock from './src/payload/fields/Inputs/TextInput/TextInput.conf
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
-
-dotenv.config({ path: `${dirname}/../../.env` });
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
 
