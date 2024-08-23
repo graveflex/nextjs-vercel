@@ -87,8 +87,8 @@ export async function generateMetadata({
       : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
 
   return {
-    title: seoData?.title || pageData?.title || 'Ukandu',
-    description: seoData?.description || "If there's a cure there's Ukandu",
+    title: seoData?.title || pageData?.title || 'Blog Post',
+    description: seoData?.description || "Blog post's description",
     keywords: seoData?.keywords || null,
     openGraph: {
       images: [seoImage]

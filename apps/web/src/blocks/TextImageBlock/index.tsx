@@ -118,10 +118,12 @@ const Content = s(RichText)<{ $layout: string }>`
 `;
 
 const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
-  ${({ $layout, theme: { mq } }) => css`
+  ${({ $layout, theme: { mq, allColors} }) => css`
     grid-area: image;
     overflow: hidden;
     align-self: center;
+    background-color: ${allColors.color4};
+    min-height: 30rem;
 
     img {
       max-width: 100%;
@@ -129,19 +131,31 @@ const ImageWrapper = s(ResponsivePayloadImage)<{ $layout: string }>`
     }
 
     ${mq.lg`
-    ${
-      ($layout === 'imgLeftCenter' || $layout === 'imgLeft') &&
-      css`
-        margin-right: auto;
-      `
-    }
+      img {
+        max-width: 35rem
+        height: 35rem;
+      }
 
-    ${
-      $layout === 'imgRight' &&
-      css`
-        margin-left: auto;
-      `
-    }
+      ${
+        ($layout === 'imgLeftCenter' || $layout === 'imgLeft') &&
+        css`
+          margin-right: auto;
+        `
+      }
+
+      ${
+        $layout === 'imgRight' &&
+        css`
+          margin-left: auto;
+        `
+      }
+    `}
+    ${mq.xl`
+      min-width: unset;
+      img {
+        max-width: 40rem;
+        width: 40rem;
+      }
     `}
   `}
 `;

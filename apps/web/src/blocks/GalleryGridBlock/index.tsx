@@ -43,7 +43,12 @@ const Grid = styled.div`
 
 const ImageWrapper = s(ResponsivePayloadImage)`
 
-  ${({ theme: { mq } }) => css`
+  ${({ theme: { mq, allColors } }) => css`
+    background-color: ${allColors.color4};
+    height: 30rem;
+    width: 40rem;
+    border-radius: 2.5rem;
+
     img {
       border-radius: 1.5rem;
     }
@@ -51,6 +56,8 @@ const ImageWrapper = s(ResponsivePayloadImage)`
     ${mq.md`
       img {
         border-radius: 2.5rem;
+        height: 30rem;
+        width: 40rem;
       }
     `}
   `}
