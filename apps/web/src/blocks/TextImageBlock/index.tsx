@@ -262,7 +262,7 @@ function TextImageBlock({
           {items && <ButtonWrapper>{Items}</ButtonWrapper>}
           {form?.textinput?.placeholder && form?.cta && (
             <InputWrapper
-              onSubmit={(data) => console.log(data)}
+              onSubmit={(data) => console.info(data)}
               cta={form?.cta}
             >
               <Controller

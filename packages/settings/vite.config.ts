@@ -1,5 +1,4 @@
 /* eslint-disable turbo/no-undeclared-env-vars */
-import dotenv from 'dotenv';
 import path from 'path';
 import dts from 'vite-plugin-dts';
 import EnvironmentPlugin from 'vite-plugin-environment';
@@ -9,8 +8,6 @@ import { defineConfig, type UserConfigFn } from 'vitest/config';
 import LogSettingsPlugin from './logSettingsPlugin';
 
 const configFn: UserConfigFn = async () => {
-  dotenv.config({ path: `${__dirname}/../../.env` });
-
   const environmentPlugin = EnvironmentPlugin({
     PROJECT_NAME: null,
     NEXT_PORT: null,

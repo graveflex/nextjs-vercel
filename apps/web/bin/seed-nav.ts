@@ -8,7 +8,6 @@ import type {
 } from '@mono/types/payload-types';
 import genRichText from '@mono/ui/utils/genRichText';
 import configPromise from '@payload-config';
-import dotenv from 'dotenv';
 import fs from 'fs';
 import type { BasePayload } from 'payload';
 import { getPayload } from 'payload';
@@ -326,7 +325,6 @@ const seedNavUsingPayload = async ({ payload, count = 2 }: SeedFnProps) => {
 };
 
 const seed = async (): Promise<void> => {
-  dotenv.config({ path: `${__dirname}/../../../.env` });
   const payload = await getPayload({ config: configPromise });
   await seedHomePage({ payload });
   await seedNavUsingPayload({ payload });

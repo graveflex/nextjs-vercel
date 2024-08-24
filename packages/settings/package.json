@@ -27,7 +27,6 @@
   "dependencies": {
     "@mono/tsconfig": "workspace:*",
     "@vitest/coverage-v8": "latest",
-    "dotenv": "^16.3.1",
     "eslint-config-custom": "workspace:*",
     "jsdom": "^22.1.0",
     "typescript": "latest",

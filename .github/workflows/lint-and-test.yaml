@@ -47,6 +47,7 @@ jobs:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
+          DOTENV_PRIVATE_KEY_CI: ${{ secrets.DOTENV_PRIVATE_KEY_CI }}
         run: |
           base=${{ github.base_ref }}
           echo "BRANCH=${base^^}" >> $GITHUB_ENV

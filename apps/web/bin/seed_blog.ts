@@ -1,7 +1,6 @@
 import { faker } from '@faker-js/faker';
 import genRichText from '@mono/ui/utils/genRichText';
 import configPromise from '@payload-config';
-import dotenv from 'dotenv';
 import fs from 'fs';
 import type { BasePayload } from 'payload';
 import { getPayload } from 'payload';
@@ -201,7 +200,6 @@ const seedPosts = async ({ payload, count = 10 }: SeedFnProps) => {
 };
 
 const seed = async (): Promise<void> => {
-  dotenv.config({ path: `${__dirname}/../../../.env` });
   const payload = await getPayload({ config: configPromise });
 
   await seedPage({ payload });
