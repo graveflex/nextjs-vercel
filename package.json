@@ -17,7 +17,7 @@
     "generate:types": "turbo run generate:types",
     "env:ci": "dotenvx run -f .env.ci -f .env.test -f .env ",
     "env:test": "dotenvx run -f .env.test -f .env ",
-    "env:dev": "dotenv run -f .env.local -f .env",
+    "env:dev": "dotenvx run -f .env.local -f .env",
     "test": "pnpm env:test -- vitest run",
     "test:watch": "vitest run test:watch",
     "test:coverage": "vitest run --coverage --coverage.reporter=cobertura",
