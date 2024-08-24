@@ -190,7 +190,6 @@ function FormBlock({ blockConfig, form: formProps, content }: FormBlockProps) {
             }
           }
         } catch (err) {
-          console.warn(err);
           setIsLoading(false);
           setError({
             message: 'Something went wrong.'

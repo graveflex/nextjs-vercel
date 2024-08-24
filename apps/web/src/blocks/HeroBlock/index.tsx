@@ -227,7 +227,7 @@ function HeroBlock({
           {content && <Content $hasImage={hasImage} {...content} />}
           {form?.textinput?.placeholder && form?.cta && (
             <InputWrapper
-              onSubmit={(data) => console.log(data)}
+              onSubmit={(data) => console.info(data)}
               cta={form?.cta}
               $contentAlign={alignText}
             >

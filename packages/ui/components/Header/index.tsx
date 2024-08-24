@@ -324,7 +324,6 @@ function NavContent({
   const [curr, setCurr] = useState<string | null | undefined>('');
   const [openDropdown, setOpenDropdown] = useState(false);
 
-  console.log('open', openDropdown);
   return (
     <NavContentWrapper>
       {collapsibleMenu?.sections &&
