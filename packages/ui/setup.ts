@@ -1,10 +1,11 @@
-// eslint-disable-next-line
 import { setProjectAnnotations } from '@storybook/react';
 import { vi } from 'vitest';
-import * as globalStorybookConfig from '../../apps/docs/.storybook/preview';
 
 import '@testing-library/jest-dom';
 import 'vitest-canvas-mock';
+
+// eslint-disable-next-line
+import * as globalStorybookConfig from '../../apps/docs/.storybook/preview';
 
 setProjectAnnotations(globalStorybookConfig);
 
