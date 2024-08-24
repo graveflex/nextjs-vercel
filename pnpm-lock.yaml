@@ -102,9 +102,6 @@ importers:
       hygen:
         specifier: ^6.2.11
         version: 6.2.11
-      prettier:
-        specifier: 3.0.3
-        version: 3.0.3
       turbo:
         specifier: ^1.13.0
         version: 1.13.4
@@ -6351,11 +6348,6 @@ packages:
   prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
-    hasBin: true
-
-  prettier@3.0.3:
-    resolution: {integrity: sha512-L/4pUDMxcNa8R/EthV08Zt42WBO4h1rarVtK0K+QJG0X187OLo7l699jWw0GKuwzkPQ//jMFA/8Xm6Fh3J/DAg==}
-    engines: {node: '>=14'}
     hasBin: true
 
   pretty-error@4.0.0:
@@ -14484,8 +14476,6 @@ snapshots:
       tunnel-agent: 0.6.0
 
   prettier@2.8.8: {}
-
-  prettier@3.0.3: {}
 
   pretty-error@4.0.0:
     dependencies:
