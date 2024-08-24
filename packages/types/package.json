@@ -4,12 +4,10 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
-    "lint": "eslint . --ext js,jsx,ts,tsx",
     "types": "tsc --noEmit --skipLibCheck"
   },
   "devDependencies": {
     "@mono/tsconfig": "workspace:*",
-    "eslint-config-custom": "workspace:*",
     "payload": "latest",
     "@refract-ui/core": "latest",
     "@refract-ui/sc": "latest",

@@ -10,7 +10,7 @@
     "clean": "turbo run clean && rm -rf ./node_modules && rm -rf ./coverage",
     "reinstall": "pnpm clean && pnpm install",
     "merge-coverage": "mkdir -p coverage && pnpm cobertura-merge -o coverage/coverage.xml web=apps/web/coverage/cobertura-coverage.xml settings=packages/settings/coverage/cobertura-coverage.xml ui=packages/ui/coverage/cobertura-coverage.xml",
-    "create:block": "npx hygen block new --with-prompt && pnpm generate:types && pnpm lint -- --fix && cd apps/web && pnpm lint -- --fix",
+    "create:block": "npx hygen block new --with-prompt && pnpm generate:types && pnpm lint:fix && cd apps/web && pnpm lint:fix",
     "create:component": "npx hygen component new --with-prompt",
     "create:package": "npx hygen package new --with-prompt",
     "create:icon": "npx hygen icon new --with-prompt",
@@ -35,7 +35,6 @@
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
     "@turbo/gen": "^1.10.15",
-    "eslint-config-custom": "workspace:*",
     "hygen": "^6.2.11",
     "prettier": "3.0.3",
     "turbo": "^1.13.0"

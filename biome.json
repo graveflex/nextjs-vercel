@@ -240,7 +240,7 @@
 		"formatter": {
 			"jsxQuoteStyle": "double",
 			"quoteProperties": "asNeeded",
-			"trailingCommas": "all",
+			"trailingCommas": "none",
 			"semicolons": "always",
 			"arrowParentheses": "always",
 			"bracketSpacing": true,

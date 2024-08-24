@@ -11,7 +11,6 @@
     "setup-dev": "tsc && vite build",
     "build": "tsc && vite build",
     "dev": "tsc && vite build --watch",
-    "lint": "eslint . --ext js,jsx,ts,tsx",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage",
@@ -27,7 +26,6 @@
   "dependencies": {
     "@mono/tsconfig": "workspace:*",
     "@vitest/coverage-v8": "latest",
-    "eslint-config-custom": "workspace:*",
     "jsdom": "^22.1.0",
     "typescript": "latest",
     "unplugin-auto-import": "^0.16.6",
