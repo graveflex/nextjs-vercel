@@ -26,7 +26,8 @@
     "buildSettings": "turbo run buildSettings",
     "start": "turbo run start --parallel",
     "dev": "pnpm env:dev -- turbo run dev --filter=!settings",
-    "lint": "pnpm env:dev -- turbo run lint",
+    "lint": "pnpm env:dev -- biome check .",
+    "lint:fix": "pnpm env:dev -- pnpm lint --write",
     "migrations:create": "turbo run migrations:create",
     "migrations:run": "turbo run migrations:run",
     "cicd": "pnpm env:ci -- pnpm build && pnpm types && pnpm lint && pnpm test:coverage"
