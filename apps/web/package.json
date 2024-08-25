@@ -66,6 +66,7 @@
     "@vercel/speed-insights": "^1.0.9",
     "@vitejs/plugin-react": "latest",
     "bson-objectid": "^2.0.4",
+    "babel-plugin-react-compiler": "latest",
     "cross-env": "^7.0.3",
     "escape-html": "^1.0.3",
     "framer-motion": "latest",

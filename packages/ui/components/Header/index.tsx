@@ -17,7 +17,6 @@ import RichText from '@mono/ui/components/primitives/RichText';
 import styled, { css } from '@refract-ui/sc';
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
-import s from 'styled-components';
 
 // UPDATE TO USE THEMECOLOR
 const OuterHeader = styled.header`
@@ -113,7 +112,7 @@ const DrawerButton = styled.button`
   `}
 `;
 
-const MobileColumn = s(motion.div)`
+const MobileColumn = styled(motion.div)`
   ${({ theme: { mq, allColors } }) => css`
     position: absolute;
     top: 6rem;
@@ -233,7 +232,7 @@ const ItemLabel = styled.div`
   `}
 `;
 
-const MobileItemLabel = s(ItemLabel)`
+const MobileItemLabel = styled(ItemLabel)`
   && {
     display: grid;
   }
@@ -417,6 +416,9 @@ function Header({
     open: { right: '0%', display: 'block' },
     closed: { right: '-100%', display: 'none' }
   };
+
+  console.log('@-->header');
+
   return (
     <OuterHeader>
       {banner?.content && (
@@ -480,5 +482,6 @@ function Header({
     </OuterHeader>
   );
 }
+
 
 export default Header;

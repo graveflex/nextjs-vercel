@@ -99,6 +99,7 @@
         "noUnusedVariables": "error",
         "noVoidElementsWithChildren": "error",
         "useArrayLiterals": "off",
+        "useExhaustiveDependencies": "error",
         "useIsNan": "error",
         "useJsxKeyInIterable": "error",
         "useValidForDirection": "error",
