@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useMemo } from 'react';
-import { getImageProps } from 'next/image';
-import { type Image as PayloadImageProps } from '@mono/types/payload-types';
+import type { Image as PayloadImageProps } from '@mono/types/payload-types';
 import styled, { css } from '@refract-ui/sc';
+import { getImageProps } from 'next/image';
+import type React from 'react';
+import { useMemo } from 'react';
 import { type DefaultTheme, useTheme } from 'styled-components';
 
 const Container = styled.picture<{ $fill: boolean }>`
@@ -72,26 +73,31 @@ const ResponsiveImage = styled.img<{
   $fill: boolean;
   $width?: number;
 }>`
-  width: ${({ $fill, $width }) =>
-    $fill ? '100%' : `${$width}px` || undefined};
+  width: ${({ $fill, $width }) => ($fill ? '100%' : `${$width}px` || undefined)};
   ${({ $additionalProps }) => css`
-    ${$additionalProps?.objectFit &&
-    css`
+    ${
+      $additionalProps?.objectFit &&
+      css`
       object-fit: ${$additionalProps?.objectFit};
-    `}
+    `
+    }
 
-    ${$additionalProps?.isRounded
-      ? css`
+    ${
+      $additionalProps?.isRounded
+        ? css`
           border-radius: 2.25rem;
         `
-      : css`
+        : css`
           border-radius: none;
-        `}
+        `
+    }
 
-    ${$additionalProps?.aspectRatio &&
-    css`
+    ${
+      $additionalProps?.aspectRatio &&
+      css`
       aspect-ratio: ${$additionalProps?.aspectRatio};
-    `}
+    `
+    }
   `}
 `;
 

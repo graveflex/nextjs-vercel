@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
 import ThemeProvider from '@mono/theme/src/ThemeProvider';
+import type React from 'react';
 
 function Providers({ children }: React.PropsWithChildren) {
   return <ThemeProvider theme="light">{children}</ThemeProvider>;

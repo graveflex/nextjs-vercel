@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useEffect } from 'react';
 import RenderIcon from '@mono/ui/components/RenderIcon';
 import styled from '@refract-ui/sc';
+import type React from 'react';
+import { useEffect } from 'react';
 
 export type ModalType = {
   isOpen: boolean;

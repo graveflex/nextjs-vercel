@@ -1,4 +1,4 @@
-import { type Image as PayloadImageProps } from '@mono/types/payload-types';
+import type { Image as PayloadImageProps } from '@mono/types/payload-types';
 
 export default function multipleImages(
   image: PayloadImageProps | number | undefined | null,

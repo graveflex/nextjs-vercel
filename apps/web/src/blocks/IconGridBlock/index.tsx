@@ -1,12 +1,12 @@
 'use client';
 
-import React from 'react';
 import type { IconGridBlockT as PayloadType } from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
+import Wrapper from '@mono/ui/components/Wrapper';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
-import Wrapper from '@mono/ui/components/Wrapper';
 import styled, { css } from '@refract-ui/sc';
+import React from 'react';
 
 export type IconGridBlockType = Omit<PayloadType, 'blockType'>;
 const Grid = styled.div<{ $dir: IconGridBlockType['layout'] }>`
@@ -17,16 +17,20 @@ const Grid = styled.div<{ $dir: IconGridBlockType['layout'] }>`
     column-gap: 2rem;
     align-items: center;
 
-    ${$dir === 'vertical' &&
-    css`
+    ${
+      $dir === 'vertical' &&
+      css`
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    `}
+    `
+    }
 
-    ${$dir === 'horizontal' &&
-    css`
+    ${
+      $dir === 'horizontal' &&
+      css`
       grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
       align-items: start;
-    `}
+    `
+    }
     
     ${mq.md`
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -41,17 +45,21 @@ const CardWrapper = styled.div<{ $dir: IconGridBlockType['layout'] }>`
   align-items: center;
 
   ${({ $dir }) => css`
-    ${$dir === 'vertical' &&
-    css`
+    ${
+      $dir === 'vertical' &&
+      css`
       flex-direction: row;
       gap: 1.25rem;
-    `}
-    ${$dir === 'horizontal' &&
-    css`
+    `
+    }
+    ${
+      $dir === 'horizontal' &&
+      css`
       flex-direction: column;
       gap: 1rem;
       justify-content: space-between;
-    `}
+    `
+    }
   `}
 `;
 
@@ -62,8 +70,9 @@ const StyledRichText = styled(RichText)<{ $dir: IconGridBlockType['layout'] }>`
     margin: 0 auto;
   }
   ${({ theme: { box }, $dir }) => css`
-    ${$dir === 'vertical' &&
-    css`
+    ${
+      $dir === 'vertical' &&
+      css`
       text-align: left;
       p {
         max-width: 15rem;
@@ -72,7 +81,8 @@ const StyledRichText = styled(RichText)<{ $dir: IconGridBlockType['layout'] }>`
       h5 {
         margin: 0 0 0.5rem 0;
       }
-    `}
+    `
+    }
   `}
 
   h3, h4 {

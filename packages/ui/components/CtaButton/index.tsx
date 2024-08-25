@@ -1,11 +1,11 @@
 'use client';
 
-import React from 'react';
 import type { CTAType } from '@mono/types/payload-types';
 import Button from '@mono/ui/components/Button';
-import PayloadLink from '@mono/ui/components/primitives/PayloadLink';
 import type { IconProps } from '@mono/ui/components/RenderIcon';
+import PayloadLink from '@mono/ui/components/primitives/PayloadLink';
 import { ctaEvalHref } from '@mono/ui/utils/ctaEvalHref';
+import React from 'react';
 import type { DefaultTheme } from 'styled-components';
 
 type colorProps = keyof DefaultTheme['allColors'];

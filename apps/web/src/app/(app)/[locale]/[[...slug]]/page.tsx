@@ -1,10 +1,10 @@
-import React from 'react';
-import { notFound, redirect } from 'next/navigation';
-import { DEFAULT_LOCALE, type LanguageLocale, LOCALES } from '@mono/settings';
+import { DEFAULT_LOCALE, LOCALES, type LanguageLocale } from '@mono/settings';
 import type { Nav, Page } from '@mono/types/payload-types';
 import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
 import { redirectApi } from '@mono/web/lib/redirectApi';
+import { notFound, redirect } from 'next/navigation';
 import type { PaginatedDocs } from 'payload';
+import React from 'react';
 
 import PageTemplate from './page.client';
 
@@ -20,7 +20,7 @@ interface RootLayoutProps {
   };
 }
 
-export default async function Page({
+export default async function CatchallPage({
   params: { slug, locale = DEFAULT_LOCALE },
   searchParams
 }: RootLayoutProps) {

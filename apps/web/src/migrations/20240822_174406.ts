@@ -1,4 +1,8 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import {
+  type MigrateDownArgs,
+  type MigrateUpArgs,
+  sql
+} from '@payloadcms/db-postgres';
 
 export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
@@ -3151,7 +3155,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "nav_header_icon_items_order_idx" ON "nav_header_icon_items" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "nav_header_icon_items_parent_id_idx" ON "nav_header_icon_items" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "nav_footer_footer_items_footer_menu_order_idx" ON "nav_footer_footer_items_footer_menu" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "nav_footer_footer_items_footer_menu_parent_id_idx" ON "nav_footer_footer_items_footer_menu" USING btree ("_parent_id");`)
+  CREATE INDEX IF NOT EXISTS "nav_footer_footer_items_footer_menu_parent_id_idx" ON "nav_footer_footer_items_footer_menu" USING btree ("_parent_id");`);
 }
 
 export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
@@ -3249,5 +3253,5 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   DROP TABLE "nav_footer_footer_items_footer_menu";
   DROP TABLE "nav";
   DROP TABLE "four_oh_four";
-  DROP TABLE "four_oh_four_locales";`)
+  DROP TABLE "four_oh_four_locales";`);
 }

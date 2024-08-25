@@ -1,11 +1,11 @@
 'use client';
 
-import React from 'react';
 import type { SectionHeaderBlockT as PayloadType } from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
-import RichText from '@mono/ui/components/primitives/RichText';
 import Wrapper from '@mono/ui/components/Wrapper';
+import RichText from '@mono/ui/components/primitives/RichText';
 import styled from '@refract-ui/sc';
+import React from 'react';
 import s from 'styled-components';
 
 export type SectionHeaderBlockType = Omit<PayloadType, 'blockType'>;

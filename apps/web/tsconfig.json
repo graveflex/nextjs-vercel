@@ -8,22 +8,12 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@mono/web/*": [
-        "./src/*"
-      ],
-      "@mono/ui/*": [
-        "../../packages/ui/*"
-      ],
-      "@payload-config": [
-        "./payload.config.ts"
-      ]
+      "@mono/web/*": ["./src/*"],
+      "@mono/ui/*": ["../../packages/ui/*"],
+      "@payload-config": ["./payload.config.ts"]
     },
     "strictNullChecks": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "incremental": true,
     "resolveJsonModule": true,
     "target": "ES2017"
@@ -35,8 +25,5 @@
     "**/*.tsx",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "**/migrations"
-  ]
+  "exclude": ["node_modules", "**/migrations"]
 }

@@ -1,11 +1,11 @@
 'use client';
 
-import React from 'react';
 import type { FooterItems } from '@mono/types/payload-types';
 import CtaLink from '@mono/ui/components/CtaLink';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
 import styled, { css } from '@refract-ui/sc';
+import React from 'react';
 
 const Container = styled.footer`
   ${({ theme: { allColors } }) => css`

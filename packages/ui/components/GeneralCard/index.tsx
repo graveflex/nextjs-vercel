@@ -1,10 +1,10 @@
 'use client';
 
-import React from 'react';
 import type { CardType, Image } from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
 import ResponsiveImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import styled, { css } from '@refract-ui/sc';
+import React from 'react';
 
 const Container = styled.div`
   ${({ theme: { spacing, allColors } }) => css`

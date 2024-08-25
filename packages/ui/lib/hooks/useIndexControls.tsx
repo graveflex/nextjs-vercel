@@ -1,6 +1,6 @@
-import { useCallback, useMemo } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import isNull from 'lodash/isNull';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useCallback, useMemo } from 'react';
 
 interface RouteConstructorProps {
   page?: number | null;

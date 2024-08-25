@@ -1,6 +1,6 @@
-import React from 'react';
 import s from '@refract-ui/sc';
-import { type DefaultTheme } from 'styled-components';
+import type React from 'react';
+import type { DefaultTheme } from 'styled-components';
 
 import type { ResponsivePayloadWrapperProps } from '../ResponsivePayloadImage';
 

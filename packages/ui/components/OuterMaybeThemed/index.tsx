@@ -2,9 +2,9 @@
 
 // THIS WRAPPER IS USED ON THE GLOBAL LAYOUT
 
-import React from 'react';
 import * as themeList from '@mono/theme/src/theme';
 import styled, { SubTheme } from '@refract-ui/sc';
+import type React from 'react';
 
 interface OuterMaybeThemedType {
   children: React.ReactNode;

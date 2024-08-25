@@ -1,11 +1,11 @@
 'use client';
 
-import React from 'react';
 import type { FAQBlockT as PayloadType } from '@mono/types/payload-types';
 import Accordion from '@mono/ui/components/Accordion';
-import RichText from '@mono/ui/components/primitives/RichText';
 import Wrapper from '@mono/ui/components/Wrapper';
+import RichText from '@mono/ui/components/primitives/RichText';
 import s from '@refract-ui/sc';
+import React from 'react';
 
 export type FAQBlockType = Omit<PayloadType, 'blockType'>;
 

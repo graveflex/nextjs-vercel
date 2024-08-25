@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useCallback, useMemo, useState } from 'react';
 import type { FAQBlockT } from '@mono/types/payload-types';
-import RichText from '@mono/ui/components/primitives/RichText';
 import Icon from '@mono/ui/components/RenderIcon';
+import RichText from '@mono/ui/components/primitives/RichText';
 import s, { css } from '@refract-ui/sc';
 import { motion } from 'framer-motion';
+import type React from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
 const ContentStyles = s.div`

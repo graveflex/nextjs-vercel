@@ -1,5 +1,5 @@
-import { revalidatePath } from 'next/cache';
 import { LOCALES } from '@mono/settings';
+import { revalidatePath } from 'next/cache';
 import type { CollectionAfterChangeHook } from 'payload';
 
 function normalizePath(slug: string) {
@@ -17,7 +17,7 @@ export const invalidateCache: CollectionAfterChangeHook = async ({ doc }) => {
         revalidatePath(normalizePath(`/${locale}/${path}`));
       });
     }
-  } catch (err) {
+  } catch (_err) {
     // no-op
   }
 

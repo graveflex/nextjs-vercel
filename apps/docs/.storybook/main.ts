@@ -1,5 +1,5 @@
-import { type StorybookConfig } from '@storybook/nextjs';
 import path from 'path';
+import type { StorybookConfig } from '@storybook/nextjs';
 
 const nextConfigPath = path.resolve(__dirname, '../../web/next.config.js');
 

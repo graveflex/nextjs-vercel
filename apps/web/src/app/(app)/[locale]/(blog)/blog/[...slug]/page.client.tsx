@@ -1,11 +1,11 @@
 'use client';
 
-import React from 'react';
 import { WEB_URL } from '@mono/settings';
 import type { Nav, Post } from '@mono/types/payload-types';
 import BlogDetail from '@mono/ui/components/BlogDetail';
 import Layout from '@mono/web/globals/Layout';
 import useLivePreview from '@mono/web/hooks/useLivePreview';
+import React from 'react';
 
 function PageTemplate({ post, nav }: { post: Post; nav: Nav }) {
   const { data } = useLivePreview<Post>({

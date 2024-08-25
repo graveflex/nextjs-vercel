@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
 import type { PayLoadLink } from '@mono/types/payload-types';
 import { ctaEvalHref } from '@mono/ui/utils/ctaEvalHref';
+import Link from 'next/link';
+import React from 'react';
 import type { DefaultTheme } from 'styled-components';
 import styled, { css } from 'styled-components';
 

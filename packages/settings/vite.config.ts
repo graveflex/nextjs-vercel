@@ -3,7 +3,7 @@ import path from 'path';
 import dts from 'vite-plugin-dts';
 import EnvironmentPlugin from 'vite-plugin-environment';
 import tsConfigPaths from 'vite-tsconfig-paths';
-import { defineConfig, type UserConfigFn } from 'vitest/config';
+import { type UserConfigFn, defineConfig } from 'vitest/config';
 
 import LogSettingsPlugin from './logSettingsPlugin';
 

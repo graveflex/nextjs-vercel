@@ -1,5 +1,5 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
 
 import type { ModalType } from '.';
 import Modal from '.';
@@ -19,7 +19,9 @@ type Story = StoryObj<ModalType>;
 export const Defaults: Story = {
   args: {
     isOpen: true,
-    onClose: () => {},
+    onClose: () => {
+      console.info('@-->closing');
+    },
     children: (
       <>
         <h3>Modal Title</h3>

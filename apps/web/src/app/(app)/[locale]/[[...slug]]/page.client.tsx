@@ -1,12 +1,12 @@
 'use client';
 
-import React, { Suspense } from 'react';
 import { WEB_URL } from '@mono/settings';
 import type { Nav, Page } from '@mono/types/payload-types';
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import Loading from '@mono/web/components/Loading';
 import Layout from '@mono/web/globals/Layout';
 import useLivePreview from '@mono/web/hooks/useLivePreview';
+import React, { Suspense } from 'react';
 
 function PageTemplate({ page, nav }: { page: Page; nav: Nav }) {
   const { data } = useLivePreview<Page>({

@@ -1,11 +1,11 @@
 'use client';
 
-import React from 'react';
 import type { GalleryGridBlockT as PayloadType } from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
-import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import Wrapper from '@mono/ui/components/Wrapper';
+import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import styled, { css } from '@refract-ui/sc';
+import React from 'react';
 import s from 'styled-components';
 
 export type GalleryGridBlockType = Omit<PayloadType, 'blockType'>;

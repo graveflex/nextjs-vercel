@@ -7,10 +7,8 @@
       }
     ],
     "paths": {
-      "@mono/web/*": [
-        "../web/src/*"
-      ]
-    },
+      "@mono/web/*": ["../web/src/*"]
+    }
   },
   "include": [
     "next-env.d.ts",

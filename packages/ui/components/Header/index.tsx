@@ -1,22 +1,22 @@
 'use client';
 
-import React, { useState } from 'react';
 import type {
   BannerContent,
-  CollapsibleMenu,
   CTAType,
+  CollapsibleMenu,
   FlatMenu,
   IconNavItems,
   Image
 } from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
 import CtaLink from '@mono/ui/components/CtaLink';
+import RenderIcon from '@mono/ui/components/RenderIcon';
 import Link from '@mono/ui/components/primitives/PayloadLink';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
-import RenderIcon from '@mono/ui/components/RenderIcon';
 import styled, { css } from '@refract-ui/sc';
 import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 import s from 'styled-components';
 
 // UPDATE TO USE THEMECOLOR
@@ -38,10 +38,12 @@ const NavContainer = styled.div<{ $open: boolean }>`
     grid-template-areas: 'nav nav';
     overflow-x: hidden;
 
-    ${$open &&
-    css`
+    ${
+      $open &&
+      css`
       grid-template-areas: 'nav nav' 'mobileButtons mobileButtons';
-    `}
+    `
+    }
 
     ${mq.md`
       grid-template-areas: "nav buttons";
@@ -258,8 +260,9 @@ const NavDropdownItem = styled.div<{ $open: boolean }>`
   gap: 0.5rem;
   width: 100%;
   ${({ $open }) => css`
-    ${$open &&
-    css`
+    ${
+      $open &&
+      css`
       ${MobileItemLabel} {
         display: grid;
         border-bottom: 1px solid transparent;
@@ -273,7 +276,8 @@ const NavDropdownItem = styled.div<{ $open: boolean }>`
         border-bottom: 1px solid currentColor;
         padding-bottom: 1.5rem;
       }
-    `}
+    `
+    }
   `}
 
   ${({ theme: { mq } }) => mq.md`

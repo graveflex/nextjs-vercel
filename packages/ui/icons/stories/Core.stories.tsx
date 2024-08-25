@@ -1,5 +1,5 @@
-import React from 'react';
 import type { StoryObj } from '@storybook/react';
+import type React from 'react';
 
 import coreIcons from '../core';
 

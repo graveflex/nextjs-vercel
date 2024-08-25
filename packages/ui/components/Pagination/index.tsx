@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useCallback } from 'react';
-import ReactPaginate from 'react-paginate';
 import Button from '@mono/ui/components/Button';
+import type React from 'react';
+import { useCallback } from 'react';
+import ReactPaginate from 'react-paginate';
 import styled, { css } from 'styled-components';
 
 const OuterContainer = styled.div`
@@ -104,7 +105,7 @@ function Pagination({
               $variant="outline"
               $color="primary"
               type="button"
-              isLeadingIcon
+              isLeadingIcon={true}
               disabled={currentPage === 0}
               icon={{ name: 'ArrowLeft' }}
             >

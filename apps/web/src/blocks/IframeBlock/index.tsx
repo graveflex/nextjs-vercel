@@ -1,10 +1,10 @@
 'use client';
 
-import React from 'react';
 import type { IframeBlockT as PayloadType } from '@mono/types/payload-types';
-import RichText from '@mono/ui/components/primitives/RichText';
 import Wrapper from '@mono/ui/components/Wrapper';
+import RichText from '@mono/ui/components/primitives/RichText';
 import s from '@refract-ui/sc';
+import React from 'react';
 
 export type IframeBlockType = Omit<PayloadType, 'blockType'>;
 

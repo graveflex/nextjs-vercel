@@ -1,8 +1,8 @@
 'use client';
 
-import type { PropsWithChildren } from 'react';
-import React from 'react';
 import { GlobalStyles } from '@refract-ui/sc';
+import type { PropsWithChildren } from 'react';
+import type React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
 import * as themeList from './theme';

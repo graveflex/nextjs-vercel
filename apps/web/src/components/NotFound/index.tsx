@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
 import type { MarkdownBlockT } from '@mono/types/payload-types';
 import MarkdownBlock from '@mono/web/blocks/MarkdownBlock';
+import React from 'react';
 
 export default function NotFoundC({
   markdownData

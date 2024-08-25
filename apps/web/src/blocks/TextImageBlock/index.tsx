@@ -1,19 +1,19 @@
 'use client';
 
-import React, { useMemo } from 'react';
-import { Controller } from 'react-hook-form';
 import type {
   Image,
   TextImageBlockT as PayloadType
 } from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
 import FormWrapper from '@mono/ui/components/FormWrapper';
-import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
-import RichText from '@mono/ui/components/primitives/RichText';
 import Video from '@mono/ui/components/Video';
 import Wrapper from '@mono/ui/components/Wrapper';
+import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
+import RichText from '@mono/ui/components/primitives/RichText';
 import TextInput from '@refract-ui/hook-fields/TextInput';
 import s, { css } from '@refract-ui/sc';
+import React, { useMemo } from 'react';
+import { Controller } from 'react-hook-form';
 
 export type TextImageBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -28,10 +28,12 @@ const BlockWrapper = s.div<{ $layout: string }>`
       'content';
     gap: 2rem;
 
-    ${$layout === 'imgLeftCenter' &&
-    css`
+    ${
+      $layout === 'imgLeftCenter' &&
+      css`
       gap: 0;
-    `}
+    `
+    }
 
     ${mq.lg`
       grid-template-columns: 1fr 1fr;
@@ -98,8 +100,9 @@ const Content = s(RichText)<{ $layout: string }>`
       margin-bottom: 1rem;
     }
 
-    ${$layout === 'imgLeftCenter' &&
-    css`
+    ${
+      $layout === 'imgLeftCenter' &&
+      css`
       text-align: center;
       margin: auto;
       max-width: 24rem;
@@ -108,12 +111,15 @@ const Content = s(RichText)<{ $layout: string }>`
         text-align: left;
         max-width: unset;
       `}
-    `}
+    `
+    }
 
-    ${($layout === 'imgLeft' || $layout === 'imgRight') &&
-    css`
+    ${
+      ($layout === 'imgLeft' || $layout === 'imgRight') &&
+      css`
       text-align: left;
-    `}
+    `
+    }
   `}
 `;
 
@@ -183,15 +189,19 @@ const VideoWrapper = s.div<{ $layout: string }>`
     overflow: hidden;
     align-self: center;
 
-    ${($layout === 'imgLeftCenter' || $layout === 'imgLeft') &&
-    css`
+    ${
+      ($layout === 'imgLeftCenter' || $layout === 'imgLeft') &&
+      css`
       margin-left: auto;
-    `}
+    `
+    }
 
-    ${$layout === 'imgRight' &&
-    css`
+    ${
+      $layout === 'imgRight' &&
+      css`
       margin-right: auto;
-    `}
+    `
+    }
   `}
 `;
 

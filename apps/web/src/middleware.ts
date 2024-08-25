@@ -1,5 +1,5 @@
-import createMiddleware from 'next-intl/middleware';
 import { DEFAULT_LOCALE, LOCALES } from '@mono/settings';
+import createMiddleware from 'next-intl/middleware';
 
 export default createMiddleware({
   // A list of all locales that are supported

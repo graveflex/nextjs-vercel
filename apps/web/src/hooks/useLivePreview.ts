@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
 import { ready, subscribe, unsubscribe } from '@payloadcms/live-preview';
 import * as R from 'ramda';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const isObject = (val: unknown) =>
   val && typeof val === 'object' && !Array.isArray(val);
