@@ -1,10 +1,14 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
-  "pipeline": {
+  "globalDependencies": [
+    "**/.env.*local"
+  ],
+  "tasks": {
     "setup": {
       "cache": false,
-      "dependsOn": ["@mono/settings#buildSettings"]
+      "dependsOn": [
+        "@mono/settings#buildSettings"
+      ]
     },
     "clean": {},
     "//lint": {},
@@ -15,28 +19,39 @@
     "types": {},
     "test:watch": {},
     "test:coverage": {
-      "outputs": ["coverage/**"]
+      "outputs": [
+        "coverage/**"
+      ]
     },
     "migrations:create": {},
     "migrations:run": {},
     "buildSettings": {
       "cache": false,
-      "outputs": ["dist/**"]
+      "outputs": [
+        "dist/**"
+      ]
     },
     "generate:types": {
       "cache": false,
-      "dependsOn": ["@mono/settings#setup-dev"]
+      "dependsOn": [
+        "@mono/settings#setup-dev"
+      ]
     },
     "@mono/settings#setup-dev": {
       "cache": false
     },
     "dev": {
       "cache": false,
-      "dependsOn": ["^generate:types"],
-      "persistent": true
+      "dependsOn": [
+        "^generate:types"
+      ],
+      "persistent": true,
+      "interactive": true
     },
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build"
+      ],
       "env": [
         "PROJECT_NAME",
         "AUTO_LOGIN",
@@ -64,10 +79,16 @@
         "SMTP_USER",
         "SMTP_PASS"
       ],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "!.next/cache/**"
+      ]
     },
     "start": {
-      "dependsOn": ["^start"],
+      "dependsOn": [
+        "^start"
+      ],
       "outputs": []
     }
   }

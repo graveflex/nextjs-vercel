@@ -25,7 +25,7 @@
     "build": "turbo run build",
     "buildSettings": "turbo run buildSettings",
     "start": "turbo run start --parallel",
-    "dev": "pnpm env:dev -- turbo run dev --filter=!settings",
+    "dev": "pnpm env:dev -- turbo run dev --filter=!@mono/settings --ui=tui",
     "lint": "pnpm env:dev -- biome check .",
     "lint:fix": "pnpm lint --write",
     "migrations:create": "turbo run migrations:create",
@@ -36,7 +36,7 @@
     "@biomejs/biome": "1.8.3",
     "@turbo/gen": "^1.10.15",
     "hygen": "^6.2.11",
-    "turbo": "^1.13.0"
+    "turbo": "^2.0.14"
   },
   "packageManager": "pnpm@9.1.4+sha256.30a1801ac4e723779efed13a21f4c39f9eb6c9fbb4ced101bce06b422593d7c9",
   "dependencies": {
