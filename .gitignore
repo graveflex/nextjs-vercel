@@ -42,3 +42,4 @@ tmp/
 
 # ts build artifacts
 *.tsbuildinfo
+*.ts.timestamp-*

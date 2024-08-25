@@ -7,14 +7,14 @@
       "dependsOn": ["@mono/settings#buildSettings"]
     },
     "clean": {},
-    "//lint": {},
-    "//lint:fix": {
+    "//#lint": {},
+    "//#lint:fix": {
       "cache": false
     },
-    "test": {},
+    "//#test": {},
     "types": {},
-    "test:watch": {},
-    "test:coverage": {
+    "//#test:watch": {},
+    "//#test:coverage": {
       "outputs": ["coverage/**"]
     },
     "migrations:create": {},
