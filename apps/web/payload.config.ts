@@ -44,9 +44,6 @@ import { NextResponse } from 'next/server';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
 
-const filename = fileURLToPath(import.meta.url);
-const dirname = path.dirname(filename);
-
 const DATABASE_URL = process.env.DATABASE_URL as string;
 
 // async function createTestTransport() {
@@ -321,7 +318,7 @@ export default buildConfig({
     }
   }),
   typescript: {
-    outputFile: path.resolve(dirname, '../../packages/types/payload-types.ts')
+    outputFile: '../../packages/types/payload-types.ts'
   },
   sharp,
   async onInit(payload) {
