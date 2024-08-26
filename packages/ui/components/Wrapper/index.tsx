@@ -12,15 +12,15 @@ type paddingType = {
 
 export interface WrapperProps extends React.ComponentProps<'section'> {
   backgroundColor?:
-  | keyof DefaultTheme['allColors']
-  | keyof DefaultTheme['themeColors']
-  | keyof DefaultTheme['colorTokens']
-  | null;
+    | keyof DefaultTheme['allColors']
+    | keyof DefaultTheme['themeColors']
+    | keyof DefaultTheme['colorTokens']
+    | null;
   backgroundImage?: number | PayloadImageProps | null | undefined;
   contentWidth?:
-  | DefaultTheme['settings']['breakpointNames'][number]
-  | 'full'
-  | null;
+    | DefaultTheme['settings']['breakpointNames'][number]
+    | 'full'
+    | null;
   fullBleed?: boolean;
   gutter?: boolean | keyof DefaultTheme['spacingTokens'];
   className?: string;
@@ -75,68 +75,75 @@ const Container = styled.section<WrapperContainerProps>`
   position: relative;
 
   ${({
-  $gutter = 'blockH',
-  $backgroundColor,
-  $fullBleed = true,
-  $contentWidth,
-  $p,
-  theme: { spacingTokens, box, settings, spacing, mq }
-}) => css`
-    ${$p?.xs &&
-  ($p?.xs?.paddingTop || $p?.xs?.paddingBottom) &&
-  css`
+    $gutter = 'blockH',
+    $backgroundColor,
+    $fullBleed = true,
+    $contentWidth,
+    $p,
+    theme: { spacingTokens, box, settings, spacing, mq }
+  }) => css`
+    ${
+      $p?.xs &&
+      ($p?.xs?.paddingTop || $p?.xs?.paddingBottom) &&
+      css`
       padding-top: ${$p?.xs?.paddingTop || 'initial'};
       padding-bottom: ${$p?.xs?.paddingBottom || 'initial'};
     `
-  }
+    }
 
     ${mq.md`
-      ${$p?.md &&
-    ($p?.md?.paddingTop || $p?.md?.paddingBottom) &&
-    css`
+      ${
+        $p?.md &&
+        ($p?.md?.paddingTop || $p?.md?.paddingBottom) &&
+        css`
           padding-top: ${$p?.md?.paddingTop || 'initial'};
           padding-bottom: ${$p?.md?.paddingBottom || 'initial'};
         `
-    }
+      }
     `}
 
     ${mq.lg`
-      ${$p?.lg &&
-    ($p?.lg?.paddingTop || $p?.lg?.paddingBottom) &&
-    css`
+      ${
+        $p?.lg &&
+        ($p?.lg?.paddingTop || $p?.lg?.paddingBottom) &&
+        css`
           padding-top: ${$p?.lg?.paddingTop || 'initial'};
           padding-bottom: ${$p?.lg?.paddingBottom || 'initial'};
         `
-    }
+      }
     `}
 
     ${mq.xl`
-      ${$p?.xl &&
-    ($p?.xl?.paddingTop || $p?.xl?.paddingBottom) &&
-    css`
+      ${
+        $p?.xl &&
+        ($p?.xl?.paddingTop || $p?.xl?.paddingBottom) &&
+        css`
           padding-top: ${$p?.xl?.paddingTop || 'initial'};
           padding-bottom: ${$p?.xl?.paddingBottom || 'initial'};
         `
-    }
+      }
     `}
 
     ${$backgroundColor && box.bg($backgroundColor)}
 
-    ${typeof $gutter === 'string' &&
-  css`
+    ${
+      typeof $gutter === 'string' &&
+      css`
       gap: ${spacing[`${spacingTokens[$gutter]}` as keyof typeof spacing]}${settings.spacingUnits};
     `
-  }
+    }
 
-    ${$fullBleed &&
-  css`
+    ${
+      $fullBleed &&
+      css`
       justify-self: stretch;
     `
-  }
+    }
 
-    ${$contentWidth &&
-  $contentWidth !== 'full' &&
-  css`
+    ${
+      $contentWidth &&
+      $contentWidth !== 'full' &&
+      css`
       grid-template-areas: '. block-content .';
       grid-auto-columns: 1fr
         minmax(auto, ${getBreakpointValueByName(settings, $contentWidth)}px) 1fr;
@@ -145,33 +152,38 @@ const Container = styled.section<WrapperContainerProps>`
         max-width: ${getBreakpointValueByName(settings, $contentWidth)}px;
       }
     `
-  }
+    }
 
-    ${$contentWidth &&
-  $contentWidth === 'full' &&
-  css`
+    ${
+      $contentWidth &&
+      $contentWidth === 'full' &&
+      css`
       grid-template-areas: 'block-content';
       grid-auto-columns: 1fr;
       padding-right: 0;
       padding-left: 0;
     `
-  }
+    }
 
-    ${!$contentWidth &&
-  css`
+    ${
+      !$contentWidth &&
+      css`
       grid-template-areas: 'block-content';
       grid-auto-columns: 1fr;
 
-      ${typeof $gutter === 'string' &&
-    css`
-        padding-left: ${spacing[`${spacingTokens[$gutter]}` as keyof typeof spacing]
-      }${settings.spacingUnits};
-        padding-right: ${spacing[`${spacingTokens[$gutter]}` as keyof typeof spacing]
-      }${settings.spacingUnits};
+      ${
+        typeof $gutter === 'string' &&
+        css`
+        padding-left: ${
+          spacing[`${spacingTokens[$gutter]}` as keyof typeof spacing]
+        }${settings.spacingUnits};
+        padding-right: ${
+          spacing[`${spacingTokens[$gutter]}` as keyof typeof spacing]
+        }${settings.spacingUnits};
       `
-    }
+      }
     `
-  }
+    }
   `}
 `;
 

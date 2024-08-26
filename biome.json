@@ -277,7 +277,9 @@
       "**/dist/**",
       "**/storybook-static/**",
       "**/.next/**",
-      "apps/web/src/migrations/**"
+      "apps/web/src/migrations/**",
+      "**/importMap.js",
+      "**/payload-types.ts"
     ]
   }
 }

@@ -1,13 +1,13 @@
+import { DEFAULT_LOCALE, LOCALES, type LanguageLocale } from '@mono/settings';
+import type { Nav, Page } from '@mono/types/payload-types';
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import Loading from '@mono/web/components/Loading';
 import Layout from '@mono/web/globals/Layout';
-import React, { Suspense } from 'react';
-import { DEFAULT_LOCALE, LOCALES, type LanguageLocale } from '@mono/settings';
-import type { Nav, Page } from '@mono/types/payload-types';
 import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import { notFound, redirect } from 'next/navigation';
 import type { PaginatedDocs } from 'payload';
+import React, { Suspense } from 'react';
 
 interface RootLayoutProps {
   params: {

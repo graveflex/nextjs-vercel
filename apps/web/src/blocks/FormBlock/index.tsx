@@ -99,6 +99,15 @@ const TextArea = styled.textarea`
   `}
 `;
 
+const requiredCopy = (label: string) => {
+  return (
+    <>
+      {label}
+      <Required>*</Required>
+    </>
+  );
+};
+
 function FormBlock({ blockConfig, form: formProps, content }: FormBlockProps) {
   function isFormValid(
     form: unknown
@@ -119,15 +128,6 @@ function FormBlock({ blockConfig, form: formProps, content }: FormBlockProps) {
     { status?: string; message: string } | undefined
   >();
   const router = useRouter();
-
-  const requiredCopy = (label: string) => {
-    return (
-      <>
-        {label}
-        <Required>*</Required>
-      </>
-    );
-  };
 
   const onSubmit = useCallback(
     (data: Data) => {
