@@ -19,6 +19,10 @@ const GlobalResets = createGlobalStyle`
   a.button {
     text-decoration: none;
   }
+
+  nextjs-portal {
+    display: none;
+  }
 `;
 
 export default GlobalResets;

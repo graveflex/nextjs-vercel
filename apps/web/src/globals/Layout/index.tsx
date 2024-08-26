@@ -13,11 +13,13 @@ export interface LayoutType extends PropsWithChildren<NavT> {
 function Layout({ children, header, footer, theme }: LayoutType) {
   return (
     <MaybeThemed theme={theme} style={containerStyles}>
-      <Header {...header} />
-      <main role="main" style={{ zIndex: 0 }}>
-        {children}
-      </main>
-      <Footer {...footer?.footerItems} />
+      <div style={containerStyles}>
+        <Header {...header} />
+        <main role="main" style={{ zIndex: 0 }}>
+          {children}
+        </main>
+        <Footer {...footer?.footerItems} />
+      </div>
     </MaybeThemed>
   );
 }

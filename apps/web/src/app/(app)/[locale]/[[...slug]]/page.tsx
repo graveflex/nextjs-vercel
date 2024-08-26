@@ -67,7 +67,9 @@ export default async function CatchallPage({
 
   return (
     <Layout theme={page.theme} {...navData}>
-      <BlocksRenderer blocks={page.blocks ?? []} />
+      <Suspense fallback={<Loading />}>
+        <BlocksRenderer blocks={page.blocks ?? []} />
+      </Suspense>
     </Layout>
   );
 }
