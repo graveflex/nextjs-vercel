@@ -46,7 +46,7 @@ export default withPayload(
         // namespace: '',
 
         // Not supported yet.
-        minify: true,
+        minify: false,
 
         // Not supported yet.
         transpileTemplateLiterals: true,

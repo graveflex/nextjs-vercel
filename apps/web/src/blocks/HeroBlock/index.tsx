@@ -182,7 +182,7 @@ const InputWrapper = s(FormWrapper)<{ $contentAlign: string }>`
     gap: 1.25rem;
     margin-top: 1rem;
 
-    button { 
+    button {
       height: fit-content;
       align-self: flex-end;
     }

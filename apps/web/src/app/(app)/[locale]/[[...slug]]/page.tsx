@@ -1,14 +1,13 @@
+import BlocksRenderer from '@mono/web/components/BlocksRenderer';
+import Loading from '@mono/web/components/Loading';
+import Layout from '@mono/web/globals/Layout';
+import React, { Suspense } from 'react';
 import { DEFAULT_LOCALE, LOCALES, type LanguageLocale } from '@mono/settings';
 import type { Nav, Page } from '@mono/types/payload-types';
 import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import { notFound, redirect } from 'next/navigation';
 import type { PaginatedDocs } from 'payload';
-import React from 'react';
-
-import PageTemplate from './page.client';
-
-export const revalidate = 60;
 
 interface RootLayoutProps {
   params: {
@@ -29,26 +28,28 @@ export default async function CatchallPage({
     pageSlug = '/';
   }
   const showDraft = searchParams.draft === 'true';
-  const navData = await fetchPayloadDataRest<Nav>({
-    endpoint: '/api/globals/nav',
-    params: {
-      locale
-    }
-  });
 
-  const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
-    endpoint: '/api/findPage',
-    showDraft,
-    params: {
-      locale,
-      where: {
-        slug: {
-          equals: pageSlug
-        }
-      },
-      limit: 1
-    }
-  });
+  const [navData, data] = await Promise.all([
+    fetchPayloadDataRest<Nav>({
+      endpoint: '/api/globals/nav',
+      params: {
+        locale
+      }
+    }),
+    fetchPayloadDataRest<PaginatedDocs<Page>>({
+      endpoint: '/api/findPage',
+      showDraft,
+      params: {
+        locale,
+        where: {
+          slug: {
+            equals: pageSlug
+          }
+        },
+        limit: 1
+      }
+    })
+  ]);
 
   // if there's an error fetching data, 404
   if ('error' in data || !data.docs[0] || 'error' in navData) {
@@ -64,7 +65,11 @@ export default async function CatchallPage({
 
   const page = data.docs[0];
 
-  return <PageTemplate page={page} nav={navData} />;
+  return (
+    <Layout theme={page.theme} {...navData}>
+      <BlocksRenderer blocks={page.blocks ?? []} />
+    </Layout>
+  );
 }
 
 export async function generateMetadata({

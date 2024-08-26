@@ -308,14 +308,12 @@ type Buttons = {
 export type HeaderType = {
   logo?: Image | number | null;
   banner?: BannerContent | null;
-  open: boolean;
   collapsibleMenu?: CollapsibleMenu | null;
   flatMenu?: FlatMenu | null;
   iconItems?: IconNavItems | null;
   ctaButton?: {
     cta?: CTAType;
   };
-  setOpen: (open: boolean) => void;
 };
 
 function NavContent({
@@ -408,16 +406,13 @@ function Header({
   collapsibleMenu,
   flatMenu,
   iconItems,
-  ctaButton,
-  open,
-  setOpen
+  ctaButton
 }: HeaderType) {
+  const [open, setOpen] = useState(false);
   const openMenuVariants = {
     open: { right: '0%', display: 'block' },
     closed: { right: '-100%', display: 'none' }
   };
-
-  console.log('@-->header');
 
   return (
     <OuterHeader>
@@ -482,6 +477,5 @@ function Header({
     </OuterHeader>
   );
 }
-
 
 export default Header;

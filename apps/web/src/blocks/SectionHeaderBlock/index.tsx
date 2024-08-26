@@ -6,7 +6,6 @@ import Wrapper from '@mono/ui/components/Wrapper';
 import RichText from '@mono/ui/components/primitives/RichText';
 import styled from '@refract-ui/sc';
 import React from 'react';
-import s from 'styled-components';
 
 export type SectionHeaderBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -22,7 +21,7 @@ const Eyebrow = styled.h1`
   margin: 0;
 `;
 
-const StyledRichText = s(RichText)`
+const StyledRichText = styled(RichText)`
   h1 {
     margin: 0;
   }

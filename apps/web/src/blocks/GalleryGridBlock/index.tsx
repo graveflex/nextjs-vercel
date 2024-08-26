@@ -6,7 +6,6 @@ import Wrapper from '@mono/ui/components/Wrapper';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import styled, { css } from '@refract-ui/sc';
 import React from 'react';
-import s from 'styled-components';
 
 export type GalleryGridBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -41,7 +40,7 @@ const Grid = styled.div`
   `}
 `;
 
-const ImageWrapper = s(ResponsivePayloadImage)`
+const ImageWrapper = styled(ResponsivePayloadImage)`
 
   ${({ theme: { mq, allColors } }) => css`
     background-color: ${allColors.color4};

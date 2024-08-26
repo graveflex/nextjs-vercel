@@ -7,13 +7,12 @@ import s, { css } from '@refract-ui/sc';
 import { motion } from 'framer-motion';
 import type React from 'react';
 import { useCallback, useMemo, useState } from 'react';
-import styled from 'styled-components';
 
 const ContentStyles = s.div`
   padding-bottom: 1.125rem;
 `;
 
-const Content = styled(motion.div)`
+const Content = s(motion.div)`
   overflow: hidden;
   height: 0;
   display: none;

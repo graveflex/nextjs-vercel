@@ -56,9 +56,6 @@ export type PayloadRichTextProps =
   | (null & BaseRichTextProps);
 
 const RichTextWrapper = s.div`
-  //  USE THE THEME TO STYLE THE SEMANTIC TAGS 
-
-  //Picture scales with container maintaining aspect ratio
   picture {
     img {
       max-width: 100%;
