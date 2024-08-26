@@ -6,6 +6,7 @@ settings:
 
 overrides:
   '@payloadcms/db-postgres': 3.0.0-beta.91
+  '@payloadcms/db-vercel-postgres': 3.0.0-beta.91
   '@payloadcms/email-nodemailer': 3.0.0-beta.91
   '@payloadcms/live-preview': 3.0.0-beta.91
   '@payloadcms/live-preview-react': 3.0.0-beta.91
@@ -135,49 +136,49 @@ importers:
         version: link:../../packages/ui
       '@refract-ui/hook-fields':
         specifier: 1.0.1-alpha.46
-        version: 1.0.1-alpha.46(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        version: 1.0.1-alpha.46(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@refract-ui/sc':
         specifier: 1.0.1-alpha.46
-        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@refract-ui/stories':
         specifier: 1.0.1-alpha.46
-        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@storybook/addon-a11y':
         specifier: 8.3.0-alpha.4
-        version: 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
+        version: 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
       '@storybook/addon-actions':
         specifier: 8.3.0-alpha.4
-        version: 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
+        version: 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
       '@storybook/addon-essentials':
         specifier: 8.3.0-alpha.4
-        version: 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
+        version: 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
       '@storybook/addon-interactions':
         specifier: 8.3.0-alpha.4
-        version: 8.3.0-alpha.4(@types/jest@29.5.12)(storybook@8.3.0-alpha.4)(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))
+        version: 8.3.0-alpha.4(@types/jest@29.5.12)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))
       '@storybook/addon-links':
         specifier: 8.3.0-alpha.4
-        version: 8.3.0-alpha.4(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)
+        version: 8.3.0-alpha.4(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
       '@storybook/addon-onboarding':
         specifier: 8.3.0-alpha.4
-        version: 8.3.0-alpha.4(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)
+        version: 8.3.0-alpha.4(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
       '@storybook/addon-themes':
         specifier: 8.3.0-alpha.4
-        version: 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
+        version: 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
       '@storybook/addon-webpack5-compiler-swc':
         specifier: ^1.0.2
         version: 1.0.5(@swc/helpers@0.5.12)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1))
       '@storybook/blocks':
         specifier: 8.3.0-alpha.4
-        version: 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)
+        version: 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
       '@storybook/nextjs':
         specifier: 8.3.0-alpha.4
-        version: 8.3.0-alpha.4(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/jest@29.5.12)(esbuild@0.23.1)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4)(storybook@8.3.0-alpha.4)(type-fest@4.25.0)(typescript@5.5.4)(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))(webpack-hot-middleware@2.26.1)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1))
+        version: 8.3.0-alpha.4(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/jest@29.5.12)(esbuild@0.23.1)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(type-fest@4.25.0)(typescript@5.5.4)(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))(webpack-hot-middleware@2.26.1)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1))
       '@storybook/react':
         specifier: 8.3.0-alpha.4
-        version: 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4)
+        version: 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)
       '@storybook/test':
         specifier: 8.3.0-alpha.4
-        version: 8.3.0-alpha.4(@types/jest@29.5.12)(storybook@8.3.0-alpha.4)(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))
+        version: 8.3.0-alpha.4(@types/jest@29.5.12)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))
       babel-core:
         specifier: ^6.26.3
         version: 6.26.3
@@ -201,7 +202,7 @@ importers:
         version: 7.53.0(react@19.0.0-rc-eb3ad065-20240822)
       storybook:
         specifier: 8.3.0-alpha.4
-        version: 8.3.0-alpha.4
+        version: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       styled-components:
         specifier: 6.1.12
         version: 6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
@@ -249,7 +250,10 @@ importers:
         version: 1.3.0-pre.0(@payloadcms/translations@3.0.0-beta.91)(@payloadcms/ui@3.0.0-beta.91(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))
       '@payloadcms/db-postgres':
         specifier: 3.0.0-beta.91
-        version: 3.0.0-beta.91(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
+        version: 3.0.0-beta.91(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
+      '@payloadcms/db-vercel-postgres':
+        specifier: 3.0.0-beta.91
+        version: 3.0.0-beta.91(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
       '@payloadcms/email-nodemailer':
         specifier: 3.0.0-beta.91
         version: 3.0.0-beta.91(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))
@@ -261,7 +265,7 @@ importers:
         version: 3.0.0-beta.91(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
       '@payloadcms/next':
         specifier: 3.0.0-beta.91
-        version: 3.0.0-beta.91(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)
+        version: 3.0.0-beta.91(bufferutil@4.0.8)(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)(utf-8-validate@6.0.4)
       '@payloadcms/plugin-cloud-storage':
         specifier: 3.0.0-beta.91
         version: 3.0.0-beta.91(@vercel/blob@0.16.2)(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))
@@ -276,7 +280,7 @@ importers:
         version: 3.0.0-beta.91(@payloadcms/translations@3.0.0-beta.91)(@payloadcms/ui@3.0.0-beta.91(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
       '@payloadcms/richtext-lexical':
         specifier: 3.0.0-beta.91
-        version: 3.0.0-beta.91(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))(@faceless-ui/scroll-info@2.0.0-beta.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))(@lexical/headless@0.17.0)(@lexical/link@0.17.0)(@lexical/list@0.17.0)(@lexical/mark@0.17.0)(@lexical/markdown@0.17.0)(@lexical/react@0.17.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(yjs@13.6.18))(@lexical/rich-text@0.17.0)(@lexical/selection@0.17.0)(@lexical/table@0.17.0)(@lexical/utils@0.17.0)(@payloadcms/next@3.0.0-beta.91(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4))(@payloadcms/translations@3.0.0-beta.91)(@payloadcms/ui@3.0.0-beta.91(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4))(lexical@0.17.0)(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
+        version: 3.0.0-beta.91(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))(@faceless-ui/scroll-info@2.0.0-beta.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))(@lexical/headless@0.17.0)(@lexical/link@0.17.0)(@lexical/list@0.17.0)(@lexical/mark@0.17.0)(@lexical/markdown@0.17.0)(@lexical/react@0.17.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(yjs@13.6.18))(@lexical/rich-text@0.17.0)(@lexical/selection@0.17.0)(@lexical/table@0.17.0)(@lexical/utils@0.17.0)(@payloadcms/next@3.0.0-beta.91(bufferutil@4.0.8)(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)(utf-8-validate@6.0.4))(@payloadcms/translations@3.0.0-beta.91)(@payloadcms/ui@3.0.0-beta.91(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4))(lexical@0.17.0)(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
       '@payloadcms/storage-vercel-blob':
         specifier: 3.0.0-beta.91
         version: 3.0.0-beta.91(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))
@@ -288,16 +292,16 @@ importers:
         version: 3.0.0-beta.91(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)
       '@refract-ui/hook-fields':
         specifier: 1.0.1-alpha.46
-        version: 1.0.1-alpha.46(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        version: 1.0.1-alpha.46(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@refract-ui/sc':
         specifier: 1.0.1-alpha.46
-        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@refract-ui/stories':
         specifier: 1.0.1-alpha.46
-        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@storybook/react':
         specifier: 8.3.0-alpha.4
-        version: 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4)
+        version: 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)
       '@svgr/webpack':
         specifier: ^8.1.0
         version: 8.1.0(typescript@5.5.4)
@@ -435,7 +439,7 @@ importers:
         version: 1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6)
       vitest-canvas-mock:
         specifier: 0.3.3
-        version: 0.3.3(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))
+        version: 0.3.3(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0(bufferutil@4.0.8)(utf-8-validate@6.0.4))(sass@1.77.4)(terser@5.31.6))
       voca:
         specifier: ^1.4.1
         version: 1.4.1
@@ -457,7 +461,7 @@ importers:
         version: 0.34.6(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))
       jsdom:
         specifier: ^22.1.0
-        version: 22.1.0
+        version: 22.1.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       typescript:
         specifier: ^5.4.3
         version: 5.5.4
@@ -490,7 +494,7 @@ importers:
         version: 1.0.1-alpha.46
       '@refract-ui/sc':
         specifier: 1.0.1-alpha.46
-        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@types/lodash':
         specifier: ^4.17.0
         version: 4.17.7
@@ -531,7 +535,7 @@ importers:
         version: 1.0.1-alpha.46
       '@refract-ui/sc':
         specifier: 1.0.1-alpha.46
-        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       payload:
         specifier: 3.0.0-beta.91
         version: 3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4)
@@ -568,22 +572,22 @@ importers:
         version: link:../types
       '@payloadcms/richtext-lexical':
         specifier: 3.0.0-beta.91
-        version: 3.0.0-beta.91(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))(@faceless-ui/scroll-info@2.0.0-beta.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))(@lexical/headless@0.17.0)(@lexical/link@0.17.0)(@lexical/list@0.17.0)(@lexical/mark@0.17.0)(@lexical/markdown@0.17.0)(@lexical/react@0.17.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(yjs@13.6.18))(@lexical/rich-text@0.17.0)(@lexical/selection@0.17.0)(@lexical/table@0.17.0)(@lexical/utils@0.17.0)(@payloadcms/next@3.0.0-beta.91(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4))(@payloadcms/translations@3.0.0-beta.91)(@payloadcms/ui@3.0.0-beta.91(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4))(lexical@0.17.0)(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
+        version: 3.0.0-beta.91(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))(@faceless-ui/scroll-info@2.0.0-beta.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))(@lexical/headless@0.17.0)(@lexical/link@0.17.0)(@lexical/list@0.17.0)(@lexical/mark@0.17.0)(@lexical/markdown@0.17.0)(@lexical/react@0.17.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(yjs@13.6.18))(@lexical/rich-text@0.17.0)(@lexical/selection@0.17.0)(@lexical/table@0.17.0)(@lexical/utils@0.17.0)(@payloadcms/next@3.0.0-beta.91(bufferutil@4.0.8)(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)(utf-8-validate@6.0.4))(@payloadcms/translations@3.0.0-beta.91)(@payloadcms/ui@3.0.0-beta.91(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4))(lexical@0.17.0)(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
       '@refract-ui/hook-fields':
         specifier: 1.0.1-alpha.46
-        version: 1.0.1-alpha.46(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        version: 1.0.1-alpha.46(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@refract-ui/sc':
         specifier: 1.0.1-alpha.46
-        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@refract-ui/stories':
         specifier: 1.0.1-alpha.46
-        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        version: 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@storybook/react':
         specifier: 8.3.0-alpha.4
-        version: 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4)
+        version: 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)
       '@storybook/test':
         specifier: 8.3.0-alpha.4
-        version: 8.3.0-alpha.4(@types/jest@29.5.12)(storybook@8.3.0-alpha.4)(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))
+        version: 8.3.0-alpha.4(@types/jest@29.5.12)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))
       '@testing-library/jest-dom':
         specifier: ^6.4.1
         version: 6.5.0
@@ -652,7 +656,7 @@ importers:
         version: 1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6)
       vitest-canvas-mock:
         specifier: 0.3.3
-        version: 0.3.3(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))
+        version: 0.3.3(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0(bufferutil@4.0.8)(utf-8-validate@6.0.4))(sass@1.77.4)(terser@5.31.6))
 
 packages:
 
@@ -2260,6 +2264,9 @@ packages:
       react: 19.0.0-rc-eb3ad065-20240822
       react-dom: 19.0.0-rc-eb3ad065-20240822
 
+  '@neondatabase/serverless@0.9.4':
+    resolution: {integrity: sha512-D0AXgJh6xkf+XTlsO7iwE2Q1w8981E1cLCPAALMU2YKtkF/1SF6BiAzYARZFYo175ON+b1RNIy9TdSFHm5nteg==}
+
   '@next/env@15.0.0-canary.104':
     resolution: {integrity: sha512-7wOJhe62uL4ViZOumMwuPev4IxQaXJ4g97iMsXelOF+Q5QuuFXzbxIXh4OJMVAHZJMYkM5VyD2zxV66iYU01DQ==}
 
@@ -2351,6 +2358,11 @@ packages:
 
   '@payloadcms/db-postgres@3.0.0-beta.91':
     resolution: {integrity: sha512-zjt08k2D+ca8zV0ZnVuOn5hhPk544jciSM+XrOZ6PiakG+4xfcWkm3O2HGiYqDKFALmZq9X1AMY5PXatf2rcuA==}
+    peerDependencies:
+      payload: 3.0.0-beta.91
+
+  '@payloadcms/db-vercel-postgres@3.0.0-beta.91':
+    resolution: {integrity: sha512-fDFil/UqpC7e3NgtH/aTm1YofLyhuxvgYwcsiN1YwTxixZfAj4sZCvoGafsHQtoaxOgUvRsy1FglDpyxZPU1MQ==}
     peerDependencies:
       payload: 3.0.0-beta.91
 
@@ -3203,6 +3215,9 @@ packages:
   '@types/parse-json@4.0.2':
     resolution: {integrity: sha512-dISoDXWWQwUquiKsyZ4Ng+HX2KsPL7LyHKHQwgGFEA3IaKac4Obd+h2a/a6waisAoepJlBcx9paWqjA8/HVjCw==}
 
+  '@types/pg@8.11.6':
+    resolution: {integrity: sha512-/2WmmBXHLsfRqzfHW7BNZ8SbYzE8OSk7i3WjFYvfgRHj7S1xj+16Je5fUKv3lVdVzk/zn9TXOqf+avFCFIE0yQ==}
+
   '@types/prettier@2.7.3':
     resolution: {integrity: sha512-+68kP9yzs4LMp7VNh8gdzMSPZFL44MLGqiHWvttYJe+6qnuVr4Ek9wSBQoveqY/r+LwjCcU29kNVkidwim+kYA==}
 
@@ -3282,6 +3297,10 @@ packages:
   '@vercel/blob@0.22.3':
     resolution: {integrity: sha512-l0t2KhbOO/I8ZNOl9zypYf1NE0837aO4/CPQNGR/RAxtj8FpdYKjhyUADUXj2gERLQmnhun+teaVs/G7vZJ/TQ==}
     engines: {node: '>=16.14'}
+
+  '@vercel/postgres@0.9.0':
+    resolution: {integrity: sha512-WiI2g3+ce2g1u1gP41MoDj2DsMuQQ+us7vHobysRixKECGaLHpfTI7DuVZmHU087ozRAGr3GocSyqmWLLo+fig==}
+    engines: {node: '>=14.6'}
 
   '@vercel/speed-insights@1.0.12':
     resolution: {integrity: sha512-ZGQ+a7bcfWJD2VYEp2R1LHvRAMyyaFBYytZXsfnbOMkeOvzGNVxUL7aVUvisIrTZjXTSsxG45DKX7yiw6nq2Jw==}
@@ -3817,6 +3836,10 @@ packages:
 
   buffer@6.0.3:
     resolution: {integrity: sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==}
+
+  bufferutil@4.0.8:
+    resolution: {integrity: sha512-4T53u4PdgsXqKaIctwF8ifXlRTTmEPJ8iEPWFdGZvcf7sbwYo6FKFEX9eNNAnzFZ7EzJAQ3CJeOtCRA4rDp7Pw==}
+    engines: {node: '>=6.14.2'}
 
   builtin-status-codes@3.0.0:
     resolution: {integrity: sha512-HpGFw18DgFWlncDfjTa2rcQ4W88O1mC8e8yZ2AvQY5KDaktSTwo+KRf6nHK6FRI5FyRyb/5T6+TSxfP7QyGsmQ==}
@@ -5944,6 +5967,10 @@ packages:
   node-addon-api@6.1.0:
     resolution: {integrity: sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==}
 
+  node-gyp-build@4.8.1:
+    resolution: {integrity: sha512-OSs33Z9yWr148JZcbZd5WiAXhh/n9z8TxQcdMhIOlpN9AhWpLfvVFO73+m77bBABQMaY9XSvIa+qk0jlI7Gcaw==}
+    hasBin: true
+
   node-plop@0.26.3:
     resolution: {integrity: sha512-Cov028YhBZ5aB7MdMWJEmwyBig43aGL5WT4vdoB28Oitau1zZAcHUn8Sgfk9HM33TqhtLJ9PlM/O0Mv+QpV/4Q==}
     engines: {node: '>=8.9.4'}
@@ -6012,6 +6039,9 @@ packages:
 
   objectorarray@1.0.5:
     resolution: {integrity: sha512-eJJDYkhJFFbBBAxeh8xW+weHlkI28n2ZdQV/J/DNfWfSKlGEf2xcfAbZTv3riEXHAhL9SVOTs2pRmXiSTf78xg==}
+
+  obuf@1.1.2:
+    resolution: {integrity: sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==}
 
   on-exit-leak-free@2.1.2:
     resolution: {integrity: sha512-0eJJY6hXLGf1udHwfNftBqH+g73EU4B504nZeKpz1sYRKafAghwxEJunB2O7rDZkL4PGfsMVnTXZ2EjibbqcsA==}
@@ -6216,6 +6246,10 @@ packages:
     resolution: {integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==}
     engines: {node: '>=4.0.0'}
 
+  pg-numeric@1.0.2:
+    resolution: {integrity: sha512-BM/Thnrw5jm2kKLE5uJkXqqExRUY/toLHda65XgFTBTFYZyopbKjBe29Ii3RbkvlsMoFwD+tHeGaCjjv0gHlyw==}
+    engines: {node: '>=4'}
+
   pg-pool@3.6.2:
     resolution: {integrity: sha512-Htjbg8BlwXqSBQ9V8Vjtc+vzf/6fVUuak/3/XXKA9oxZprwW3IMDQTGHP+KDmVL7rtd+R1QjbnCFPuTHm3G4hg==}
     peerDependencies:
@@ -6227,6 +6261,10 @@ packages:
   pg-types@2.2.0:
     resolution: {integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==}
     engines: {node: '>=4'}
+
+  pg-types@4.0.2:
+    resolution: {integrity: sha512-cRL3JpS3lKMGsKaWndugWQoLOCoP+Cic8oseVcbr0qhPzYD5DWXK+RZ9LY9wxRf7RQia4SCwQlXk0q6FCPrVng==}
+    engines: {node: '>=10'}
 
   pg@8.11.3:
     resolution: {integrity: sha512-+9iuvG8QfaaUrrph+kpF24cXkH1YOOUeArRNYIxq1viYHZagBxrTno7cecY1Fa44tJeZvaoG+Djpkc3JwehN5g==}
@@ -6352,17 +6390,36 @@ packages:
     resolution: {integrity: sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA==}
     engines: {node: '>=4'}
 
+  postgres-array@3.0.2:
+    resolution: {integrity: sha512-6faShkdFugNQCLwucjPcY5ARoW1SlbnrZjmGl0IrrqewpvxvhSLHimCVzqeuULCbG0fQv7Dtk1yDbG3xv7Veog==}
+    engines: {node: '>=12'}
+
   postgres-bytea@1.0.0:
     resolution: {integrity: sha512-xy3pmLuQqRBZBXDULy7KbaitYqLcmxigw14Q5sj8QBVLqEwXfeybIKVWiqAXTlcvdvb0+xkOtDbfQMOf4lST1w==}
     engines: {node: '>=0.10.0'}
+
+  postgres-bytea@3.0.0:
+    resolution: {integrity: sha512-CNd4jim9RFPkObHSjVHlVrxoVQXz7quwNFpz7RY1okNNme49+sVyiTvTRobiLV548Hx/hb1BG+iE7h9493WzFw==}
+    engines: {node: '>= 6'}
 
   postgres-date@1.0.7:
     resolution: {integrity: sha512-suDmjLVQg78nMK2UZ454hAG+OAW+HQPZ6n++TNDUX+L0+uUlLywnoxJKDou51Zm+zTCjrCl0Nq6J9C5hP9vK/Q==}
     engines: {node: '>=0.10.0'}
 
+  postgres-date@2.1.0:
+    resolution: {integrity: sha512-K7Juri8gtgXVcDfZttFKVmhglp7epKb1K4pgrkLxehjqkrgPhfG6OO8LHLkfaqkbpjNRnra018XwAr1yQFWGcA==}
+    engines: {node: '>=12'}
+
   postgres-interval@1.2.0:
     resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
     engines: {node: '>=0.10.0'}
+
+  postgres-interval@3.0.0:
+    resolution: {integrity: sha512-BSNDnbyZCXSxgA+1f5UU2GmwhoI0aU5yMxRGO8CdFEcY2BQF9xm/7MqKnYoM1nJDk8nONNWDk9WeSmePFhQdlw==}
+    engines: {node: '>=12'}
+
+  postgres-range@1.1.4:
+    resolution: {integrity: sha512-i/hbxIE9803Alj/6ytL7UHQxRvZkI9O4Sy+J3HGc4F4oo/2eQAjTSNJ0bfxyse3bH0nuVesCk+3IRLaMtG3H6w==}
 
   prebuild-install@7.1.2:
     resolution: {integrity: sha512-UnNke3IQb6sgarcZIDU3gbMeTp/9SSU1DAIkil7PrqG1vZlBtY5msYccSKSHDqa3hNg436IXK+SNImReuA1wEQ==}
@@ -7633,6 +7690,10 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  utf-8-validate@6.0.4:
+    resolution: {integrity: sha512-xu9GQDeFp+eZ6LnCywXN/zBancWvOpUMzgjLPSjy4BRHSmTelvn2E0DG0o1sTiw5hkCKBHo8rwSKncfRfv2EEQ==}
+    engines: {node: '>=6.14.2'}
 
   utf8-byte-length@1.0.5:
     resolution: {integrity: sha512-Xn0w3MtiQ6zoz2vFyUVruaCL53O/DwUvkEeOvj+uulMm0BkUGYWmBYVyElqZaSLhY6ZD0ulfU3aBra2aVT4xfA==}
@@ -9651,6 +9712,10 @@ snapshots:
       react: 19.0.0-rc-eb3ad065-20240822
       react-dom: 19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822)
 
+  '@neondatabase/serverless@0.9.4':
+    dependencies:
+      '@types/pg': 8.11.6
+
   '@next/env@15.0.0-canary.104': {}
 
   '@next/env@15.0.0-rc.0': {}
@@ -9709,12 +9774,12 @@ snapshots:
       bson-objectid: 2.0.4
       payload: 3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4)
 
-  '@payloadcms/db-postgres@3.0.0-beta.91(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)':
+  '@payloadcms/db-postgres@3.0.0-beta.91(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)':
     dependencies:
-      '@payloadcms/drizzle': 3.0.0-beta.91(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
+      '@payloadcms/drizzle': 3.0.0-beta.91(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
       console-table-printer: 2.11.2
       drizzle-kit: 0.23.2-df9e596
-      drizzle-orm: 0.32.1(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
+      drizzle-orm: 0.32.1(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
       payload: 3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4)
       pg: 8.11.3
       prompts: 2.4.2
@@ -9751,10 +9816,51 @@ snapshots:
       - sqlite3
       - supports-color
 
-  '@payloadcms/drizzle@3.0.0-beta.91(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)':
+  '@payloadcms/db-vercel-postgres@3.0.0-beta.91(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)':
+    dependencies:
+      '@payloadcms/drizzle': 3.0.0-beta.91(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
+      '@vercel/postgres': 0.9.0
+      console-table-printer: 2.11.2
+      drizzle-kit: 0.23.2-df9e596
+      drizzle-orm: 0.32.1(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
+      payload: 3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4)
+      prompts: 2.4.2
+      to-snake-case: 1.0.0
+      uuid: 10.0.0
+    transitivePeerDependencies:
+      - '@aws-sdk/client-rds-data'
+      - '@cloudflare/workers-types'
+      - '@electric-sql/pglite'
+      - '@libsql/client'
+      - '@neondatabase/serverless'
+      - '@op-engineering/op-sqlite'
+      - '@opentelemetry/api'
+      - '@planetscale/database'
+      - '@prisma/client'
+      - '@tidbcloud/serverless'
+      - '@types/better-sqlite3'
+      - '@types/pg'
+      - '@types/react'
+      - '@types/sql.js'
+      - '@xata.io/client'
+      - better-sqlite3
+      - bun-types
+      - expo-sqlite
+      - knex
+      - kysely
+      - mysql2
+      - pg
+      - postgres
+      - prisma
+      - react
+      - sql.js
+      - sqlite3
+      - supports-color
+
+  '@payloadcms/drizzle@3.0.0-beta.91(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)':
     dependencies:
       console-table-printer: 2.11.2
-      drizzle-orm: 0.32.1(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
+      drizzle-orm: 0.32.1(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
       payload: 3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4)
       prompts: 2.4.2
       to-snake-case: 1.0.0
@@ -9813,7 +9919,7 @@ snapshots:
 
   '@payloadcms/live-preview@3.0.0-beta.91': {}
 
-  '@payloadcms/next@3.0.0-beta.91(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)':
+  '@payloadcms/next@3.0.0-beta.91(bufferutil@4.0.8)(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)(utf-8-validate@6.0.4)':
     dependencies:
       '@dnd-kit/core': 6.0.8(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
       '@payloadcms/graphql': 3.0.0-beta.91(graphql@16.9.0)(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(typescript@5.5.4)
@@ -9833,7 +9939,7 @@ snapshots:
       sass: 1.77.4
       sonner: 1.5.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
       uuid: 10.0.0
-      ws: 8.18.0
+      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
     transitivePeerDependencies:
       - '@types/react'
       - bufferutil
@@ -9886,7 +9992,7 @@ snapshots:
       react: 19.0.0-rc-eb3ad065-20240822
       react-dom: 19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822)
 
-  ? '@payloadcms/richtext-lexical@3.0.0-beta.91(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))(@faceless-ui/scroll-info@2.0.0-beta.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))(@lexical/headless@0.17.0)(@lexical/link@0.17.0)(@lexical/list@0.17.0)(@lexical/mark@0.17.0)(@lexical/markdown@0.17.0)(@lexical/react@0.17.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(yjs@13.6.18))(@lexical/rich-text@0.17.0)(@lexical/selection@0.17.0)(@lexical/table@0.17.0)(@lexical/utils@0.17.0)(@payloadcms/next@3.0.0-beta.91(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4))(@payloadcms/translations@3.0.0-beta.91)(@payloadcms/ui@3.0.0-beta.91(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4))(lexical@0.17.0)(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)'
+  ? '@payloadcms/richtext-lexical@3.0.0-beta.91(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))(@faceless-ui/scroll-info@2.0.0-beta.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))(@lexical/headless@0.17.0)(@lexical/link@0.17.0)(@lexical/list@0.17.0)(@lexical/mark@0.17.0)(@lexical/markdown@0.17.0)(@lexical/react@0.17.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(yjs@13.6.18))(@lexical/rich-text@0.17.0)(@lexical/selection@0.17.0)(@lexical/table@0.17.0)(@lexical/utils@0.17.0)(@payloadcms/next@3.0.0-beta.91(bufferutil@4.0.8)(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)(utf-8-validate@6.0.4))(@payloadcms/translations@3.0.0-beta.91)(@payloadcms/ui@3.0.0-beta.91(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4))(lexical@0.17.0)(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)'
   : dependencies:
       '@faceless-ui/modal': 3.0.0-beta.2(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
       '@faceless-ui/scroll-info': 2.0.0-beta.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
@@ -9900,7 +10006,7 @@ snapshots:
       '@lexical/selection': 0.17.0
       '@lexical/table': 0.17.0
       '@lexical/utils': 0.17.0
-      '@payloadcms/next': 3.0.0-beta.91(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)
+      '@payloadcms/next': 3.0.0-beta.91(bufferutil@4.0.8)(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)(utf-8-validate@6.0.4)
       '@payloadcms/translations': 3.0.0-beta.91
       '@payloadcms/ui': 3.0.0-beta.91(monaco-editor@0.38.0)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.91(graphql@16.9.0)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)
       '@types/uuid': 10.0.0
@@ -9987,28 +10093,28 @@ snapshots:
       type-fest: 4.25.0
       utility-types: 3.11.0
 
-  '@refract-ui/hook-fields@1.0.1-alpha.46(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))':
+  '@refract-ui/hook-fields@1.0.1-alpha.46(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))':
     dependencies:
       '@hookform/resolvers': 3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))
-      '@refract-ui/sc': 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
-      '@storybook/react': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4)
+      '@refract-ui/sc': 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+      '@storybook/react': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)
       react: 19.0.0-rc-eb3ad065-20240822
       react-dom: 19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822)
       react-hook-form: 7.53.0(react@19.0.0-rc-eb3ad065-20240822)
       styled-components: 6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
 
-  '@refract-ui/sc@1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))':
+  '@refract-ui/sc@1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))':
     dependencies:
       '@refract-ui/core': 1.0.1-alpha.46
-      '@storybook/react': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4)
+      '@storybook/react': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)
       react: 19.0.0-rc-eb3ad065-20240822
       react-dom: 19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822)
       styled-components: 6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
 
-  '@refract-ui/stories@1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))':
+  '@refract-ui/stories@1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))':
     dependencies:
       '@faker-js/faker': 8.4.1
-      '@refract-ui/sc': 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+      '@refract-ui/sc': 1.0.1-alpha.46(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       csstype: 3.1.3
       lodash: 4.17.21
       react-syntax-highlighter: 15.5.0(react@19.0.0-rc-eb3ad065-20240822)
@@ -10108,82 +10214,82 @@ snapshots:
 
   '@sinclair/typebox@0.27.8': {}
 
-  '@storybook/addon-a11y@8.3.0-alpha.4(storybook@8.3.0-alpha.4)':
+  '@storybook/addon-a11y@8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
-      '@storybook/addon-highlight': 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
+      '@storybook/addon-highlight': 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
       axe-core: 4.10.0
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
 
-  '@storybook/addon-actions@8.3.0-alpha.4(storybook@8.3.0-alpha.4)':
+  '@storybook/addon-actions@8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
       '@storybook/global': 5.0.0
       '@types/uuid': 9.0.8
       dequal: 2.0.3
       polished: 4.3.1
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       uuid: 9.0.1
 
-  '@storybook/addon-backgrounds@8.3.0-alpha.4(storybook@8.3.0-alpha.4)':
+  '@storybook/addon-backgrounds@8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
       '@storybook/global': 5.0.0
       memoizerific: 1.11.3
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       ts-dedent: 2.2.0
 
-  '@storybook/addon-controls@8.3.0-alpha.4(storybook@8.3.0-alpha.4)':
+  '@storybook/addon-controls@8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
       dequal: 2.0.3
       lodash: 4.17.21
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       ts-dedent: 2.2.0
 
-  '@storybook/addon-docs@8.3.0-alpha.4(storybook@8.3.0-alpha.4)':
+  '@storybook/addon-docs@8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
       '@babel/core': 7.25.2
       '@mdx-js/react': 3.0.1(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
-      '@storybook/blocks': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)
-      '@storybook/csf-plugin': 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
+      '@storybook/blocks': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
+      '@storybook/csf-plugin': 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
       '@storybook/global': 5.0.0
-      '@storybook/react-dom-shim': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)
+      '@storybook/react-dom-shim': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
       '@types/react': types-react@19.0.0-rc.0
       fs-extra: 11.2.0
       react: 19.0.0-rc-eb3ad065-20240822
       react-dom: 19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822)
       rehype-external-links: 3.0.0
       rehype-slug: 6.0.0
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       ts-dedent: 2.2.0
     transitivePeerDependencies:
       - supports-color
 
-  '@storybook/addon-essentials@8.3.0-alpha.4(storybook@8.3.0-alpha.4)':
+  '@storybook/addon-essentials@8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
-      '@storybook/addon-actions': 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
-      '@storybook/addon-backgrounds': 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
-      '@storybook/addon-controls': 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
-      '@storybook/addon-docs': 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
-      '@storybook/addon-highlight': 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
-      '@storybook/addon-measure': 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
-      '@storybook/addon-outline': 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
-      '@storybook/addon-toolbars': 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
-      '@storybook/addon-viewport': 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
-      storybook: 8.3.0-alpha.4
+      '@storybook/addon-actions': 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
+      '@storybook/addon-backgrounds': 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
+      '@storybook/addon-controls': 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
+      '@storybook/addon-docs': 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
+      '@storybook/addon-highlight': 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
+      '@storybook/addon-measure': 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
+      '@storybook/addon-outline': 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
+      '@storybook/addon-toolbars': 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
+      '@storybook/addon-viewport': 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       ts-dedent: 2.2.0
     transitivePeerDependencies:
       - supports-color
 
-  '@storybook/addon-highlight@8.3.0-alpha.4(storybook@8.3.0-alpha.4)':
+  '@storybook/addon-highlight@8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
       '@storybook/global': 5.0.0
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
 
-  '@storybook/addon-interactions@8.3.0-alpha.4(@types/jest@29.5.12)(storybook@8.3.0-alpha.4)(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))':
+  '@storybook/addon-interactions@8.3.0-alpha.4(@types/jest@29.5.12)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))':
     dependencies:
       '@storybook/global': 5.0.0
-      '@storybook/instrumenter': 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
-      '@storybook/test': 8.3.0-alpha.4(@types/jest@29.5.12)(storybook@8.3.0-alpha.4)(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))
+      '@storybook/instrumenter': 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
+      '@storybook/test': 8.3.0-alpha.4(@types/jest@29.5.12)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))
       polished: 4.3.1
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       ts-dedent: 2.2.0
     transitivePeerDependencies:
       - '@jest/globals'
@@ -10192,47 +10298,47 @@ snapshots:
       - jest
       - vitest
 
-  '@storybook/addon-links@8.3.0-alpha.4(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)':
+  '@storybook/addon-links@8.3.0-alpha.4(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
       '@storybook/csf': 0.1.11
       '@storybook/global': 5.0.0
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       ts-dedent: 2.2.0
     optionalDependencies:
       react: 19.0.0-rc-eb3ad065-20240822
 
-  '@storybook/addon-measure@8.3.0-alpha.4(storybook@8.3.0-alpha.4)':
+  '@storybook/addon-measure@8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
       '@storybook/global': 5.0.0
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       tiny-invariant: 1.3.3
 
-  '@storybook/addon-onboarding@8.3.0-alpha.4(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)':
+  '@storybook/addon-onboarding@8.3.0-alpha.4(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
       react-confetti: 6.1.0(react@19.0.0-rc-eb3ad065-20240822)
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
     transitivePeerDependencies:
       - react
 
-  '@storybook/addon-outline@8.3.0-alpha.4(storybook@8.3.0-alpha.4)':
+  '@storybook/addon-outline@8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
       '@storybook/global': 5.0.0
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       ts-dedent: 2.2.0
 
-  '@storybook/addon-themes@8.3.0-alpha.4(storybook@8.3.0-alpha.4)':
+  '@storybook/addon-themes@8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       ts-dedent: 2.2.0
 
-  '@storybook/addon-toolbars@8.3.0-alpha.4(storybook@8.3.0-alpha.4)':
+  '@storybook/addon-toolbars@8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
 
-  '@storybook/addon-viewport@8.3.0-alpha.4(storybook@8.3.0-alpha.4)':
+  '@storybook/addon-viewport@8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
       memoizerific: 1.11.3
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
 
   '@storybook/addon-webpack5-compiler-swc@1.0.5(@swc/helpers@0.5.12)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1))':
     dependencies:
@@ -10242,7 +10348,7 @@ snapshots:
       - '@swc/helpers'
       - webpack
 
-  '@storybook/blocks@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)':
+  '@storybook/blocks@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
       '@storybook/csf': 0.1.11
       '@storybook/global': 5.0.0
@@ -10255,7 +10361,7 @@ snapshots:
       memoizerific: 1.11.3
       polished: 4.3.1
       react-colorful: 5.6.1(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       telejson: 7.2.0
       ts-dedent: 2.2.0
       util-deprecate: 1.0.2
@@ -10263,9 +10369,9 @@ snapshots:
       react: 19.0.0-rc-eb3ad065-20240822
       react-dom: 19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822)
 
-  '@storybook/builder-webpack5@8.3.0-alpha.4(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(storybook@8.3.0-alpha.4)(typescript@5.5.4)':
+  '@storybook/builder-webpack5@8.3.0-alpha.4(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)':
     dependencies:
-      '@storybook/core-webpack': 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
+      '@storybook/core-webpack': 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
       '@types/node': 18.19.45
       '@types/semver': 7.5.8
       browser-assert: 1.2.1
@@ -10282,7 +10388,7 @@ snapshots:
       path-browserify: 1.0.1
       process: 0.11.10
       semver: 7.6.3
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       style-loader: 3.3.4(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1))
       terser-webpack-plugin: 5.3.10(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1))
       ts-dedent: 2.2.0
@@ -10303,17 +10409,17 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@storybook/components@8.3.0-alpha.9(storybook@8.3.0-alpha.4)':
+  '@storybook/components@8.3.0-alpha.9(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
 
-  '@storybook/core-webpack@8.3.0-alpha.4(storybook@8.3.0-alpha.4)':
+  '@storybook/core-webpack@8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
       '@types/node': 18.19.45
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       ts-dedent: 2.2.0
 
-  '@storybook/core@8.3.0-alpha.4':
+  '@storybook/core@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)':
     dependencies:
       '@storybook/csf': 0.1.11
       '@types/express': 4.17.21
@@ -10325,15 +10431,15 @@ snapshots:
       process: 0.11.10
       recast: 0.23.9
       semver: 7.6.3
-      ws: 8.18.0
+      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
     transitivePeerDependencies:
       - bufferutil
       - supports-color
       - utf-8-validate
 
-  '@storybook/csf-plugin@8.3.0-alpha.4(storybook@8.3.0-alpha.4)':
+  '@storybook/csf-plugin@8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       unplugin: 1.12.2
 
   '@storybook/csf@0.1.11':
@@ -10347,18 +10453,18 @@ snapshots:
       react: 19.0.0-rc-eb3ad065-20240822
       react-dom: 19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822)
 
-  '@storybook/instrumenter@8.3.0-alpha.4(storybook@8.3.0-alpha.4)':
+  '@storybook/instrumenter@8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
       '@storybook/global': 5.0.0
       '@vitest/utils': 1.6.0
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       util: 0.12.5
 
-  '@storybook/manager-api@8.3.0-alpha.9(storybook@8.3.0-alpha.4)':
+  '@storybook/manager-api@8.3.0-alpha.9(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
 
-  '@storybook/nextjs@8.3.0-alpha.4(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/jest@29.5.12)(esbuild@0.23.1)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4)(storybook@8.3.0-alpha.4)(type-fest@4.25.0)(typescript@5.5.4)(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))(webpack-hot-middleware@2.26.1)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1))':
+  '@storybook/nextjs@8.3.0-alpha.4(@swc/core@1.7.18(@swc/helpers@0.5.12))(@types/jest@29.5.12)(esbuild@0.23.1)(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(type-fest@4.25.0)(typescript@5.5.4)(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))(webpack-hot-middleware@2.26.1)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1))':
     dependencies:
       '@babel/core': 7.25.2
       '@babel/plugin-syntax-bigint': 7.8.3(@babel/core@7.25.2)
@@ -10374,10 +10480,10 @@ snapshots:
       '@babel/preset-typescript': 7.24.7(@babel/core@7.25.2)
       '@babel/runtime': 7.25.4
       '@pmmmwh/react-refresh-webpack-plugin': 0.5.15(react-refresh@0.14.2)(type-fest@4.25.0)(webpack-hot-middleware@2.26.1)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1))
-      '@storybook/builder-webpack5': 8.3.0-alpha.4(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(storybook@8.3.0-alpha.4)(typescript@5.5.4)
-      '@storybook/preset-react-webpack': 8.3.0-alpha.4(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4)
-      '@storybook/react': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4)
-      '@storybook/test': 8.3.0-alpha.4(@types/jest@29.5.12)(storybook@8.3.0-alpha.4)(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))
+      '@storybook/builder-webpack5': 8.3.0-alpha.4(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)
+      '@storybook/preset-react-webpack': 8.3.0-alpha.4(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)
+      '@storybook/react': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)
+      '@storybook/test': 8.3.0-alpha.4(@types/jest@29.5.12)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))
       '@types/node': 18.19.45
       '@types/semver': 7.5.8
       babel-loader: 9.1.3(@babel/core@7.25.2)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1))
@@ -10397,7 +10503,7 @@ snapshots:
       resolve-url-loader: 5.0.0
       sass-loader: 12.6.0(sass@1.77.4)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1))
       semver: 7.6.3
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       style-loader: 3.3.4(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1))
       styled-jsx: 5.1.1(@babel/core@7.25.2)(react@19.0.0-rc-eb3ad065-20240822)
       ts-dedent: 2.2.0
@@ -10431,10 +10537,10 @@ snapshots:
       - webpack-hot-middleware
       - webpack-plugin-serve
 
-  '@storybook/preset-react-webpack@8.3.0-alpha.4(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4)':
+  '@storybook/preset-react-webpack@8.3.0-alpha.4(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)':
     dependencies:
-      '@storybook/core-webpack': 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
-      '@storybook/react': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4)
+      '@storybook/core-webpack': 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
+      '@storybook/react': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)
       '@storybook/react-docgen-typescript-plugin': 1.0.6--canary.9.0c3f3b7.0(typescript@5.5.4)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1))
       '@types/node': 18.19.45
       '@types/semver': 7.5.8
@@ -10446,7 +10552,7 @@ snapshots:
       react-dom: 19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822)
       resolve: 1.22.8
       semver: 7.6.3
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       tsconfig-paths: 4.2.0
       webpack: 5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1)
     optionalDependencies:
@@ -10458,9 +10564,9 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@storybook/preview-api@8.3.0-alpha.9(storybook@8.3.0-alpha.4)':
+  '@storybook/preview-api@8.3.0-alpha.9(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
 
   '@storybook/react-docgen-typescript-plugin@1.0.6--canary.9.0c3f3b7.0(typescript@5.5.4)(webpack@5.94.0(@swc/core@1.7.18(@swc/helpers@0.5.12))(esbuild@0.23.1))':
     dependencies:
@@ -10476,20 +10582,20 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@storybook/react-dom-shim@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)':
+  '@storybook/react-dom-shim@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
       react: 19.0.0-rc-eb3ad065-20240822
       react-dom: 19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822)
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
 
-  '@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)(typescript@5.5.4)':
+  '@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)':
     dependencies:
-      '@storybook/components': 8.3.0-alpha.9(storybook@8.3.0-alpha.4)
+      '@storybook/components': 8.3.0-alpha.9(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
       '@storybook/global': 5.0.0
-      '@storybook/manager-api': 8.3.0-alpha.9(storybook@8.3.0-alpha.4)
-      '@storybook/preview-api': 8.3.0-alpha.9(storybook@8.3.0-alpha.4)
-      '@storybook/react-dom-shim': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4)
-      '@storybook/theming': 8.3.0-alpha.9(storybook@8.3.0-alpha.4)
+      '@storybook/manager-api': 8.3.0-alpha.9(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
+      '@storybook/preview-api': 8.3.0-alpha.9(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
+      '@storybook/react-dom-shim': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
+      '@storybook/theming': 8.3.0-alpha.9(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
       '@types/escodegen': 0.0.6
       '@types/estree': 0.0.51
       '@types/node': 18.19.45
@@ -10504,23 +10610,23 @@ snapshots:
       react-dom: 19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822)
       react-element-to-jsx-string: 15.0.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
       semver: 7.6.3
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       ts-dedent: 2.2.0
       type-fest: 2.19.0
       util-deprecate: 1.0.2
     optionalDependencies:
       typescript: 5.5.4
 
-  '@storybook/test@8.3.0-alpha.4(@types/jest@29.5.12)(storybook@8.3.0-alpha.4)(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))':
+  '@storybook/test@8.3.0-alpha.4(@types/jest@29.5.12)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))':
     dependencies:
       '@storybook/csf': 0.1.11
-      '@storybook/instrumenter': 8.3.0-alpha.4(storybook@8.3.0-alpha.4)
+      '@storybook/instrumenter': 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
       '@testing-library/dom': 10.1.0
       '@testing-library/jest-dom': 6.4.5(@types/jest@29.5.12)(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6))
       '@testing-library/user-event': 14.5.2(@testing-library/dom@10.1.0)
       '@vitest/expect': 1.6.0
       '@vitest/spy': 1.6.0
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       util: 0.12.5
     transitivePeerDependencies:
       - '@jest/globals'
@@ -10529,9 +10635,9 @@ snapshots:
       - jest
       - vitest
 
-  '@storybook/theming@8.3.0-alpha.9(storybook@8.3.0-alpha.4)':
+  '@storybook/theming@8.3.0-alpha.9(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))':
     dependencies:
-      storybook: 8.3.0-alpha.4
+      storybook: 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
 
   '@svgr/babel-plugin-add-jsx-attribute@8.0.0(@babel/core@7.25.2)':
     dependencies:
@@ -10923,6 +11029,12 @@ snapshots:
 
   '@types/parse-json@4.0.2': {}
 
+  '@types/pg@8.11.6':
+    dependencies:
+      '@types/node': 18.19.45
+      pg-protocol: 1.6.1
+      pg-types: 4.0.2
+
   '@types/prettier@2.7.3': {}
 
   '@types/qs@6.9.15': {}
@@ -11002,6 +11114,13 @@ snapshots:
       bytes: 3.1.2
       is-buffer: 2.0.5
       undici: 5.28.4
+
+  '@vercel/postgres@0.9.0':
+    dependencies:
+      '@neondatabase/serverless': 0.9.4
+      bufferutil: 4.0.8
+      utf-8-validate: 6.0.4
+      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
 
   '@vercel/speed-insights@1.0.12(next@15.0.0-canary.104(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(react@19.0.0-rc-eb3ad065-20240822)':
     optionalDependencies:
@@ -11723,6 +11842,10 @@ snapshots:
       base64-js: 1.5.1
       ieee754: 1.2.1
 
+  bufferutil@4.0.8:
+    dependencies:
+      node-gyp-build: 4.8.1
+
   builtin-status-codes@3.0.0: {}
 
   busboy@1.6.0:
@@ -12337,9 +12460,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.32.1(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0):
+  drizzle-orm@0.32.1(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0):
     optionalDependencies:
+      '@neondatabase/serverless': 0.9.4
+      '@types/pg': 8.11.6
       '@types/react': types-react@19.0.0-rc.0
+      '@vercel/postgres': 0.9.0
       pg: 8.11.3
       react: 19.0.0-rc-eb3ad065-20240822
 
@@ -13603,7 +13729,7 @@ snapshots:
 
   jsbn@1.1.0: {}
 
-  jsdom@22.1.0:
+  jsdom@22.1.0(bufferutil@4.0.8)(utf-8-validate@6.0.4):
     dependencies:
       abab: 2.0.6
       cssstyle: 3.0.0
@@ -13626,7 +13752,7 @@ snapshots:
       whatwg-encoding: 2.0.0
       whatwg-mimetype: 3.0.0
       whatwg-url: 12.0.1
-      ws: 8.18.0
+      ws: 8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
       xml-name-validator: 4.0.0
     transitivePeerDependencies:
       - bufferutil
@@ -14019,6 +14145,8 @@ snapshots:
 
   node-addon-api@6.1.0: {}
 
+  node-gyp-build@4.8.1: {}
+
   node-plop@0.26.3:
     dependencies:
       '@babel/runtime-corejs3': 7.25.0
@@ -14107,6 +14235,8 @@ snapshots:
       object-keys: 1.1.1
 
   objectorarray@1.0.5: {}
+
+  obuf@1.1.2: {}
 
   on-exit-leak-free@2.1.2: {}
 
@@ -14349,6 +14479,8 @@ snapshots:
 
   pg-int8@1.0.1: {}
 
+  pg-numeric@1.0.2: {}
+
   pg-pool@3.6.2(pg@8.11.3):
     dependencies:
       pg: 8.11.3
@@ -14362,6 +14494,16 @@ snapshots:
       postgres-bytea: 1.0.0
       postgres-date: 1.0.7
       postgres-interval: 1.2.0
+
+  pg-types@4.0.2:
+    dependencies:
+      pg-int8: 1.0.1
+      pg-numeric: 1.0.2
+      postgres-array: 3.0.2
+      postgres-bytea: 3.0.0
+      postgres-date: 2.1.0
+      postgres-interval: 3.0.0
+      postgres-range: 1.1.4
 
   pg@8.11.3:
     dependencies:
@@ -14510,13 +14652,25 @@ snapshots:
 
   postgres-array@2.0.0: {}
 
+  postgres-array@3.0.2: {}
+
   postgres-bytea@1.0.0: {}
 
+  postgres-bytea@3.0.0:
+    dependencies:
+      obuf: 1.1.2
+
   postgres-date@1.0.7: {}
+
+  postgres-date@2.1.0: {}
 
   postgres-interval@1.2.0:
     dependencies:
       xtend: 4.0.2
+
+  postgres-interval@3.0.0: {}
+
+  postgres-range@1.1.4: {}
 
   prebuild-install@7.1.2:
     dependencies:
@@ -15299,9 +15453,9 @@ snapshots:
     dependencies:
       internal-slot: 1.0.7
 
-  storybook@8.3.0-alpha.4:
+  storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4):
     dependencies:
-      '@storybook/core': 8.3.0-alpha.4
+      '@storybook/core': 8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4)
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -15888,6 +16042,10 @@ snapshots:
     optionalDependencies:
       '@types/react': types-react@19.0.0-rc.0
 
+  utf-8-validate@6.0.4:
+    dependencies:
+      node-gyp-build: 4.8.1
+
   utf8-byte-length@1.0.5: {}
 
   util-deprecate@1.0.2: {}
@@ -16002,7 +16160,7 @@ snapshots:
       sass: 1.77.4
       terser: 5.31.6
 
-  vitest-canvas-mock@0.3.3(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6)):
+  vitest-canvas-mock@0.3.3(vitest@1.6.0(@types/node@18.19.45)(jsdom@22.1.0(bufferutil@4.0.8)(utf-8-validate@6.0.4))(sass@1.77.4)(terser@5.31.6)):
     dependencies:
       jest-canvas-mock: 2.5.2
       vitest: 1.6.0(@types/node@18.19.45)(jsdom@22.1.0)(sass@1.77.4)(terser@5.31.6)
@@ -16031,7 +16189,7 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 18.19.45
-      jsdom: 22.1.0
+      jsdom: 22.1.0(bufferutil@4.0.8)(utf-8-validate@6.0.4)
     transitivePeerDependencies:
       - less
       - lightningcss
@@ -16184,7 +16342,10 @@ snapshots:
 
   wrappy@1.0.2: {}
 
-  ws@8.18.0: {}
+  ws@8.18.0(bufferutil@4.0.8)(utf-8-validate@6.0.4):
+    optionalDependencies:
+      bufferutil: 4.0.8
+      utf-8-validate: 6.0.4
 
   xml-name-validator@4.0.0: {}
 

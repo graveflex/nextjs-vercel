@@ -4,6 +4,10 @@ import { BLOB_STORE_ID } from '@mono/settings';
 import { withPayload } from '@payloadcms/next/withPayload';
 import createNextIntlPlugin from 'next-intl/plugin';
 
+if (process.env.CI) {
+  process.env.NODE_ENV = 'production';
+}
+
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const withNextIntl = createNextIntlPlugin();
@@ -23,6 +27,10 @@ export default withPayload(
   withNextIntl({
     reactStrictMode: true,
     transpilePackages: ['@mono/ui', '@mono/theme', '@mono/types'],
+
+    experimental: {
+      reactCompiler: true
+    },
 
     compiler: {
       styledComponents: {
