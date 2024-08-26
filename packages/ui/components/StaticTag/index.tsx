@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
 import type { Tag } from '@mono/types/payload-types';
 import styled, { css } from '@refract-ui/sc';
+import React from 'react';
 
 const TagContent = styled.p({ bc: 'secondary', c: 'secondary', t: 'small' })`
   border: 1px solid;
@@ -36,11 +36,13 @@ const TagButton = styled.button({ c: 'secondary', bc: 'secondary' })<{
       outline: 2px solid ${allColors.green60};
     }
 
-    ${$isActive &&
-    css`
+    ${
+      $isActive &&
+      css`
       background-color: ${allColors.secondary};
       color: ${allColors.neutral10};
-    `}
+    `
+    }
   `}
 `;
 

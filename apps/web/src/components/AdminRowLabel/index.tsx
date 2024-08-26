@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
 import type { PayLoadLink } from '@mono/types/payload-types';
 import { useRowLabel } from '@payloadcms/ui/forms/RowLabel/Context';
+import React from 'react';
 
 const AdminRowLabel = function ArrayRowLabel() {
   const { data, rowNumber } = useRowLabel<{

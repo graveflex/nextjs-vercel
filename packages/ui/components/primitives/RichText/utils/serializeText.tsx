@@ -1,9 +1,9 @@
+import type { Image as PayloadImageProps } from '@mono/types/payload-types';
 /* eslint-disable no-bitwise */
 import React from 'react';
-import { type Image as PayloadImageProps } from '@mono/types/payload-types';
 
-import ResponsivePayloadImage from '../../ResponsivePayloadImage';
 import type { PayloadRichTextProps, SerializedPayloadNode } from '..';
+import ResponsivePayloadImage from '../../ResponsivePayloadImage';
 
 const IS_BOLD = 1;
 const IS_ITALIC = 2;

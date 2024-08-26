@@ -1,17 +1,52 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalEnv": [
+    "PGUSER",
+    "PGDATABASE",
+    "PROJECT_NAME",
+    "AUTO_LOGIN",
+    "NEXT_PORT",
+    "DOCS_PORT",
+    "LOCAL",
+    "MONGODB_URI",
+    "PAYLOAD_SECRET",
+    "VERCEL_GIT_PULL_REQUEST_ID",
+    "VERCEL_GIT_COMMIT_REF",
+    "VERCEL_DOMAIN_URL",
+    "VERCEL_BRANCH_URL",
+    "VERCEL_URL",
+    "IS_PREVIEW",
+    "PORT",
+    "MONGODB_URI",
+    "BLOB_READ_WRITE_TOKEN",
+    "BLOB_ENDPOINT_URL",
+    "BLOB_STORE_ID",
+    "GOOGLE_TRANSLATE_API_KEY",
+    "FORCE_WEB_URL",
+    "DATABASE_URL",
+    "NODE_ENV",
+    "SMTP_HOST",
+    "SMTP_USER",
+    "SMTP_PASS"
+  ],
   "globalDependencies": ["**/.env.*local"],
-  "pipeline": {
+  "tasks": {
     "setup": {
       "cache": false,
       "dependsOn": ["@mono/settings#buildSettings"]
     },
     "clean": {},
-    "lint": {},
-    "test": {},
-    "types": {},
-    "test:watch": {},
-    "test:coverage": {
+    "//#lint": {},
+    "//#lint:fix": {
+      "cache": false
+    },
+    "//#test": {},
+    "types": {
+      "dependsOn": ["build"]
+    },
+    "//#test:watch": {},
+    "//#test:coverage": {
+      "dependsOn": ["@mono/settings#buildSettings"],
       "outputs": ["coverage/**"]
     },
     "migrations:create": {},
@@ -24,43 +59,20 @@
       "cache": false,
       "dependsOn": ["@mono/settings#setup-dev"]
     },
+    "@mono/web#payload": {
+      "cache": false
+    },
     "@mono/settings#setup-dev": {
       "cache": false
     },
     "dev": {
       "cache": false,
       "dependsOn": ["^generate:types"],
-      "persistent": true
+      "persistent": true,
+      "interactive": true
     },
     "build": {
       "dependsOn": ["^build"],
-      "env": [
-        "PROJECT_NAME",
-        "AUTO_LOGIN",
-        "NEXT_PORT",
-        "DOCS_PORT",
-        "LOCAL",
-        "MONGODB_URI",
-        "PAYLOAD_SECRET",
-        "VERCEL_GIT_PULL_REQUEST_ID",
-        "VERCEL_GIT_COMMIT_REF",
-        "VERCEL_DOMAIN_URL",
-        "VERCEL_BRANCH_URL",
-        "VERCEL_URL",
-        "IS_PREVIEW",
-        "PORT",
-        "MONGODB_URI",
-        "BLOB_READ_WRITE_TOKEN",
-        "BLOB_ENDPOINT_URL",
-        "BLOB_STORE_ID",
-        "GOOGLE_TRANSLATE_API_KEY",
-        "FORCE_WEB_URL",
-        "DATABASE_URL",
-        "NODE_ENV",
-        "SMTP_HOST",
-        "SMTP_USER",
-        "SMTP_PASS"
-      ],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "start": {

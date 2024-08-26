@@ -7,7 +7,7 @@ function logSettingsPlugin() {
     async closeBundle() {
       // eslint-disable-next-line
       const SETTINGS = require('./index');
-      console.log('Using the following settings:');
+      console.info('Using the following settings:');
       console.table(SETTINGS);
     }
   };

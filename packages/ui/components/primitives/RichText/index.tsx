@@ -1,6 +1,6 @@
-import React from 'react';
 import s from '@refract-ui/sc';
-import { type DefaultTheme } from 'styled-components';
+import type React from 'react';
+import type { DefaultTheme } from 'styled-components';
 
 import type { ResponsivePayloadWrapperProps } from '../ResponsivePayloadImage';
 
@@ -56,9 +56,6 @@ export type PayloadRichTextProps =
   | (null & BaseRichTextProps);
 
 const RichTextWrapper = s.div`
-  //  USE THE THEME TO STYLE THE SEMANTIC TAGS 
-
-  //Picture scales with container maintaining aspect ratio
   picture {
     img {
       max-width: 100%;

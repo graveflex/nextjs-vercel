@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useMemo } from 'react';
 import type { CardGridBlockT as PayloadType } from '@mono/types/payload-types';
 import GeneralCard from '@mono/ui/components/GeneralCard';
 import Wrapper from '@mono/ui/components/Wrapper';
 import s from '@refract-ui/sc';
+import React, { useMemo } from 'react';
 
 export type CardGridBlockType = Omit<PayloadType, 'blockType'>;
 

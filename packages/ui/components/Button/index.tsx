@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
 import RenderIcon, { type IconProps } from '@mono/ui/components/RenderIcon';
 import styled, { css } from '@refract-ui/sc';
+import type React from 'react';
 import type { DefaultTheme } from 'styled-components';
 
 type colorProps = keyof DefaultTheme['allColors'];

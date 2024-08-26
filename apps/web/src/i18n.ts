@@ -1,6 +1,6 @@
-import { notFound } from 'next/navigation';
+import { LOCALES, type LanguageLocale } from '@mono/settings';
 import { getRequestConfig } from 'next-intl/server';
-import { type LanguageLocale, LOCALES } from '@mono/settings';
+import { notFound } from 'next/navigation';
 
 interface GetRequestConfigProps {
   locale: string;

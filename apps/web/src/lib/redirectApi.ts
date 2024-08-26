@@ -43,7 +43,7 @@ export async function redirectApi(path: string | string[]) {
     }
 
     return `${subPath}${redirectPath}`;
-  } catch (err) {
+  } catch (_err) {
     return { error: 'Unable to gather redirect path.' };
   }
 }

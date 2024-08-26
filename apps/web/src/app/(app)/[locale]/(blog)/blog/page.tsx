@@ -1,9 +1,9 @@
-import React from 'react';
-import { notFound } from 'next/navigation';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/settings';
 import type { Nav, Page, Post, Tag } from '@mono/types/payload-types';
 import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
+import { notFound } from 'next/navigation';
 import type { PaginatedDocs } from 'payload';
+import React from 'react';
 
 import PageTemplate from './page.client';
 

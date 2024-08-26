@@ -1,4 +1,4 @@
-import { type RefractTheme } from './src/theme';
+import type { RefractTheme } from './src/theme';
 
 declare module 'styled-components' {
   export interface DefaultTheme extends RefractTheme {

@@ -1,10 +1,10 @@
-import React from 'react';
-import { notFound, redirect } from 'next/navigation';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/settings';
 import type { Nav, Post } from '@mono/types/payload-types';
 import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
 import { redirectApi } from '@mono/web/lib/redirectApi';
+import { notFound, redirect } from 'next/navigation';
 import type { PaginatedDocs } from 'payload';
+import React from 'react';
 
 import PageTemplate from './page.client';
 

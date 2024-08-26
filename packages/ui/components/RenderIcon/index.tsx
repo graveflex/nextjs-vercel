@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
 import type { IconSelect } from '@mono/types/payload-types';
 import { isNull } from 'lodash';
+import React from 'react';
 
 import coreIcons from '../../icons/core';
 

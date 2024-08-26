@@ -1,6 +1,5 @@
 'use client';
 
-import React, { useRef } from 'react';
 import type { CTAType, Image, Post, Tag } from '@mono/types/payload-types';
 import GeneralCard from '@mono/ui/components/GeneralCard';
 import Pagination, {
@@ -9,6 +8,7 @@ import Pagination, {
 import Wrapper from '@mono/ui/components/Wrapper';
 import styled, { css } from '@refract-ui/sc';
 import { AnimatePresence, motion } from 'framer-motion';
+import React, { useRef } from 'react';
 
 const PostWrapper = styled.div`
   text-decoration: none;

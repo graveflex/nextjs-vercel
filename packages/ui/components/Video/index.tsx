@@ -1,13 +1,14 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import type { Video } from '@mono/types/payload-types';
+import type { Video as TVideo } from '@mono/types/payload-types';
 import s, { css } from '@refract-ui/sc';
+import type { MouseEvent } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import PlayButton from './PlayButton';
 
 export type VideoProps = {
-  video: string | number | Video;
+  video: string | number | TVideo;
   fullBleed?: boolean | undefined;
 };
 
@@ -65,7 +66,7 @@ function Video({ video, fullBleed }: VideoProps) {
     return null;
   }
 
-  const handlePlayButton = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handlePlayButton = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     if (videoRef.current) {
       videoRef.current.play();
@@ -113,10 +114,15 @@ function Video({ video, fullBleed }: VideoProps) {
         height: videoProps.height
       }}
       onClick={fullBleed ? handleParentClick : undefined}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          fullBleed && handleParentClick();
+        }
+      }}
     >
       <video ref={videoRef} {...videoProps}>
         <source src={videoURL} type={mimeType ?? 'video/mp4'} />
-        <track kind="captions" srcLang="en" default />
+        <track kind="captions" srcLang="en" default={true} />
       </video>
       {renderPlayButton() && (
         <ButtonWrapper

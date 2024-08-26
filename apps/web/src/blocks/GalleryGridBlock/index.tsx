@@ -1,12 +1,11 @@
 'use client';
 
-import React from 'react';
 import type { GalleryGridBlockT as PayloadType } from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
-import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import Wrapper from '@mono/ui/components/Wrapper';
+import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import styled, { css } from '@refract-ui/sc';
-import s from 'styled-components';
+import React from 'react';
 
 export type GalleryGridBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -41,7 +40,7 @@ const Grid = styled.div`
   `}
 `;
 
-const ImageWrapper = s(ResponsivePayloadImage)`
+const ImageWrapper = styled(ResponsivePayloadImage)`
 
   ${({ theme: { mq, allColors } }) => css`
     background-color: ${allColors.color4};

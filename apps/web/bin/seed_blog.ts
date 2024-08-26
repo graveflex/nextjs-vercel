@@ -1,7 +1,7 @@
+import fs from 'fs';
 import { faker } from '@faker-js/faker';
 import genRichText from '@mono/ui/utils/genRichText';
 import configPromise from '@payload-config';
-import fs from 'fs';
 import type { BasePayload } from 'payload';
 import { getPayload } from 'payload';
 import tmp from 'tmp';

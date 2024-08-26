@@ -1,18 +1,18 @@
 'use client';
 
-import React, { useCallback, useMemo, useState } from 'react';
 import type { FAQBlockT } from '@mono/types/payload-types';
-import RichText from '@mono/ui/components/primitives/RichText';
 import Icon from '@mono/ui/components/RenderIcon';
+import RichText from '@mono/ui/components/primitives/RichText';
 import s, { css } from '@refract-ui/sc';
 import { motion } from 'framer-motion';
-import styled from 'styled-components';
+import type React from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 const ContentStyles = s.div`
   padding-bottom: 1.125rem;
 `;
 
-const Content = styled(motion.div)`
+const Content = s(motion.div)`
   overflow: hidden;
   height: 0;
   display: none;

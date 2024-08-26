@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
 import type { FullBleedImageBlockT as PayloadType } from '@mono/types/payload-types';
-import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import Wrapper from '@mono/ui/components/Wrapper';
+import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
+import React from 'react';
 import styled, { css } from 'styled-components';
 
 export type FullBleedImageBlockType = Omit<PayloadType, 'blockType'>;

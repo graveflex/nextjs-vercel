@@ -4,8 +4,7 @@ module.exports = {
       {
         type: 'input',
         name: 'name',
-        message:
-          'What is the name of the Icon? (i.e. "ArrowLeft")'
+        message: 'What is the name of the Icon? (i.e. "ArrowLeft")'
       },
       {
         type: 'select',

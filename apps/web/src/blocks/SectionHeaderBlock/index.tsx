@@ -1,12 +1,11 @@
 'use client';
 
-import React from 'react';
 import type { SectionHeaderBlockT as PayloadType } from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
-import RichText from '@mono/ui/components/primitives/RichText';
 import Wrapper from '@mono/ui/components/Wrapper';
+import RichText from '@mono/ui/components/primitives/RichText';
 import styled from '@refract-ui/sc';
-import s from 'styled-components';
+import React from 'react';
 
 export type SectionHeaderBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -22,7 +21,7 @@ const Eyebrow = styled.h1`
   margin: 0;
 `;
 
-const StyledRichText = s(RichText)`
+const StyledRichText = styled(RichText)`
   h1 {
     margin: 0;
   }

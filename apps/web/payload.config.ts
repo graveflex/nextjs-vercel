@@ -1,4 +1,6 @@
-import { NextResponse } from 'next/server';
+// import nodeMailer from 'nodemailer';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { DEFAULT_LOCALE, LOCALES, WEB_URL } from '@mono/settings';
 import Authors from '@mono/web/collections/Authors';
 import Files from '@mono/web/collections/Files';
@@ -26,7 +28,6 @@ import {
   InlineCodeFeature,
   InlineToolbarFeature,
   ItalicFeature,
-  lexicalEditor,
   LinkFeature,
   OrderedListFeature,
   ParagraphFeature,
@@ -35,17 +36,13 @@ import {
   SuperscriptFeature,
   UnderlineFeature,
   UnorderedListFeature,
-  UploadFeature
+  UploadFeature,
+  lexicalEditor
 } from '@payloadcms/richtext-lexical';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
-// import nodeMailer from 'nodemailer';
-import path from 'path';
+import { NextResponse } from 'next/server';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
-import { fileURLToPath } from 'url';
-
-const filename = fileURLToPath(import.meta.url);
-const dirname = path.dirname(filename);
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
 
@@ -321,7 +318,7 @@ export default buildConfig({
     }
   }),
   typescript: {
-    outputFile: path.resolve(dirname, '../../packages/types/payload-types.ts')
+    outputFile: '../../packages/types/payload-types.ts'
   },
   sharp,
   async onInit(payload) {

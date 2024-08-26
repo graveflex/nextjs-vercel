@@ -2,17 +2,18 @@
 
 'use client';
 
-import React, { useCallback, useMemo, useState } from 'react';
-import { Controller } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 import type { FormBlockT as PayloadType } from '@mono/types/payload-types';
 import FormWrapper from '@mono/ui/components/FormWrapper';
-import RichText from '@mono/ui/components/primitives/RichText';
 import Wrapper from '@mono/ui/components/Wrapper';
+import RichText from '@mono/ui/components/primitives/RichText';
 import InputGroup from '@refract-ui/hook-fields/InputGroup';
 import Select from '@refract-ui/hook-fields/Select';
 import TextInput from '@refract-ui/hook-fields/TextInput';
 import styled, { css } from '@refract-ui/sc';
+import { useRouter } from 'next/navigation';
+import type React from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { Controller } from 'react-hook-form';
 
 export type FormBlockProps = Omit<PayloadType, 'blockType'>;
 
@@ -98,6 +99,15 @@ const TextArea = styled.textarea`
   `}
 `;
 
+const requiredCopy = (label: string) => {
+  return (
+    <>
+      {label}
+      <Required>*</Required>
+    </>
+  );
+};
+
 function FormBlock({ blockConfig, form: formProps, content }: FormBlockProps) {
   function isFormValid(
     form: unknown
@@ -118,15 +128,6 @@ function FormBlock({ blockConfig, form: formProps, content }: FormBlockProps) {
     { status?: string; message: string } | undefined
   >();
   const router = useRouter();
-
-  const requiredCopy = (label: string) => {
-    return (
-      <>
-        {label}
-        <Required>*</Required>
-      </>
-    );
-  };
 
   const onSubmit = useCallback(
     (data: Data) => {
@@ -189,7 +190,7 @@ function FormBlock({ blockConfig, form: formProps, content }: FormBlockProps) {
               router.push(redirectUrl);
             }
           }
-        } catch (err) {
+        } catch (_err) {
           setIsLoading(false);
           setError({
             message: 'Something went wrong.'

@@ -4,12 +4,9 @@
   "main": "./index.tsx",
   "types": "./index.tsx",
   "license": "MIT",
-  "files": [
-    "**"
-  ],
+  "files": ["**"],
   "scripts": {
     "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
-    "lint": "eslint . --ext js,jsx,ts,tsx",
     "types": "tsc --noEmit --skipLibCheck",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage"
@@ -35,8 +32,6 @@
     "@types/react": "^18.2.74",
     "@types/react-dom": "^18.2.24",
     "@vitejs/plugin-react": "^4.2.1",
-    "eslint": "^8.51.0",
-    "eslint-config-custom": "workspace:*",
     "framer-motion": "latest",
     "lodash": "latest",
     "luxon": "^3.4.4",

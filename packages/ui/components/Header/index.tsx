@@ -1,23 +1,22 @@
 'use client';
 
-import React, { useState } from 'react';
 import type {
   BannerContent,
-  CollapsibleMenu,
   CTAType,
+  CollapsibleMenu,
   FlatMenu,
   IconNavItems,
   Image
 } from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
 import CtaLink from '@mono/ui/components/CtaLink';
+import RenderIcon from '@mono/ui/components/RenderIcon';
 import Link from '@mono/ui/components/primitives/PayloadLink';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
-import RenderIcon from '@mono/ui/components/RenderIcon';
 import styled, { css } from '@refract-ui/sc';
 import { motion } from 'framer-motion';
-import s from 'styled-components';
+import React, { useState } from 'react';
 
 // UPDATE TO USE THEMECOLOR
 const OuterHeader = styled.header`
@@ -38,10 +37,12 @@ const NavContainer = styled.div<{ $open: boolean }>`
     grid-template-areas: 'nav nav';
     overflow-x: hidden;
 
-    ${$open &&
-    css`
+    ${
+      $open &&
+      css`
       grid-template-areas: 'nav nav' 'mobileButtons mobileButtons';
-    `}
+    `
+    }
 
     ${mq.md`
       grid-template-areas: "nav buttons";
@@ -111,7 +112,7 @@ const DrawerButton = styled.button`
   `}
 `;
 
-const MobileColumn = s(motion.div)`
+const MobileColumn = styled(motion.div)`
   ${({ theme: { mq, allColors } }) => css`
     position: absolute;
     top: 6rem;
@@ -231,7 +232,7 @@ const ItemLabel = styled.div`
   `}
 `;
 
-const MobileItemLabel = s(ItemLabel)`
+const MobileItemLabel = styled(ItemLabel)`
   && {
     display: grid;
   }
@@ -258,8 +259,9 @@ const NavDropdownItem = styled.div<{ $open: boolean }>`
   gap: 0.5rem;
   width: 100%;
   ${({ $open }) => css`
-    ${$open &&
-    css`
+    ${
+      $open &&
+      css`
       ${MobileItemLabel} {
         display: grid;
         border-bottom: 1px solid transparent;
@@ -273,7 +275,8 @@ const NavDropdownItem = styled.div<{ $open: boolean }>`
         border-bottom: 1px solid currentColor;
         padding-bottom: 1.5rem;
       }
-    `}
+    `
+    }
   `}
 
   ${({ theme: { mq } }) => mq.md`
@@ -305,14 +308,12 @@ type Buttons = {
 export type HeaderType = {
   logo?: Image | number | null;
   banner?: BannerContent | null;
-  open: boolean;
   collapsibleMenu?: CollapsibleMenu | null;
   flatMenu?: FlatMenu | null;
   iconItems?: IconNavItems | null;
   ctaButton?: {
     cta?: CTAType;
   };
-  setOpen: (open: boolean) => void;
 };
 
 function NavContent({
@@ -405,14 +406,14 @@ function Header({
   collapsibleMenu,
   flatMenu,
   iconItems,
-  ctaButton,
-  open,
-  setOpen
+  ctaButton
 }: HeaderType) {
+  const [open, setOpen] = useState(false);
   const openMenuVariants = {
     open: { right: '0%', display: 'block' },
     closed: { right: '-100%', display: 'none' }
   };
+
   return (
     <OuterHeader>
       {banner?.content && (

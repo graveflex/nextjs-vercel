@@ -1,11 +1,11 @@
-import React from 'react';
-import { Controller, useFormContext } from 'react-hook-form';
 import CheckboxGroup from '@refract-ui/hook-fields/CheckboxGroup';
 import FieldErrors from '@refract-ui/hook-fields/FieldErrors';
 import Select from '@refract-ui/hook-fields/Select';
 import TextInput from '@refract-ui/hook-fields/TextInput';
 import s from '@refract-ui/sc';
 import type { Meta, StoryObj } from '@storybook/react';
+import React from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
 
 import type { FormWrapperProps } from '.';
 import FormWrapper from '.';
@@ -109,7 +109,7 @@ export const Defaults: Story = {
     </FormWrapper>
   ),
   args: {
-    onSubmit: (data) => console.log(data),
+    onSubmit: (data) => console.debug(data),
     cta: {
       link: {
         label: 'Submit'

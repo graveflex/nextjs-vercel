@@ -1,15 +1,15 @@
 'use client';
 
-import React from 'react';
-import { Controller } from 'react-hook-form';
 import type { HeroBlockT as PayloadType } from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
 import FormWrapper from '@mono/ui/components/FormWrapper';
+import Wrapper from '@mono/ui/components/Wrapper';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
-import Wrapper from '@mono/ui/components/Wrapper';
 import TextInput from '@refract-ui/hook-fields/TextInput';
 import s, { css } from '@refract-ui/sc';
+import React from 'react';
+import { Controller } from 'react-hook-form';
 
 export type HeroBlockProps = Omit<PayloadType, 'blockType'>;
 
@@ -71,16 +71,20 @@ const ContentWrapper = s.div<{
     max-width: ${$hasImage ? 'unset' : '80%'};
     order: 1;
 
-    ${$contentAlign === 'center' &&
-    css`
+    ${
+      $contentAlign === 'center' &&
+      css`
       text-align: center;
       margin: 0 auto;
-    `}
+    `
+    }
 
-    ${($contentAlign === 'left' || $contentAlign === 'right') &&
-    css`
+    ${
+      ($contentAlign === 'left' || $contentAlign === 'right') &&
+      css`
       margin: 0 auto 0 0;
-    `}
+    `
+    }
 
     ${mq.lg`
       ${
@@ -178,7 +182,7 @@ const InputWrapper = s(FormWrapper)<{ $contentAlign: string }>`
     gap: 1.25rem;
     margin-top: 1rem;
 
-    button { 
+    button {
       height: fit-content;
       align-self: flex-end;
     }

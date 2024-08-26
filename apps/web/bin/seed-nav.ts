@@ -1,3 +1,4 @@
+import fs from 'fs';
 import { faker } from '@faker-js/faker';
 import type {
   CTAType,
@@ -8,7 +9,6 @@ import type {
 } from '@mono/types/payload-types';
 import genRichText from '@mono/ui/utils/genRichText';
 import configPromise from '@payload-config';
-import fs from 'fs';
 import type { BasePayload } from 'payload';
 import { getPayload } from 'payload';
 import tmp from 'tmp';

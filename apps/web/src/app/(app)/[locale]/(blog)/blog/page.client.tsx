@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { WEB_URL } from '@mono/settings';
 import type { Nav, Page, Post } from '@mono/types/payload-types';
 import BlogIndex from '@mono/ui/components/BlogIndex';
@@ -9,6 +8,7 @@ import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import Layout from '@mono/web/globals/Layout';
 import useLivePreview from '@mono/web/hooks/useLivePreview';
 import type { PaginatedDocs } from 'payload';
+import React from 'react';
 
 function PageTemplate({
   page,

@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react';
-import { type Image as PayloadImageProps } from '@mono/types/payload-types';
+import type { Image as PayloadImageProps } from '@mono/types/payload-types';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import styled, { css } from '@refract-ui/sc';
+import type React from 'react';
+import { useMemo } from 'react';
 import type { DefaultTheme } from 'styled-components';
 
 type paddingType = {
@@ -81,12 +82,14 @@ const Container = styled.section<WrapperContainerProps>`
     $p,
     theme: { spacingTokens, box, settings, spacing, mq }
   }) => css`
-    ${$p?.xs &&
-    ($p?.xs?.paddingTop || $p?.xs?.paddingBottom) &&
-    css`
+    ${
+      $p?.xs &&
+      ($p?.xs?.paddingTop || $p?.xs?.paddingBottom) &&
+      css`
       padding-top: ${$p?.xs?.paddingTop || 'initial'};
       padding-bottom: ${$p?.xs?.paddingBottom || 'initial'};
-    `}
+    `
+    }
 
     ${mq.md`
       ${
@@ -123,19 +126,24 @@ const Container = styled.section<WrapperContainerProps>`
 
     ${$backgroundColor && box.bg($backgroundColor)}
 
-    ${typeof $gutter === 'string' &&
-    css`
+    ${
+      typeof $gutter === 'string' &&
+      css`
       gap: ${spacing[`${spacingTokens[$gutter]}` as keyof typeof spacing]}${settings.spacingUnits};
-    `}
+    `
+    }
 
-    ${$fullBleed &&
-    css`
+    ${
+      $fullBleed &&
+      css`
       justify-self: stretch;
-    `}
+    `
+    }
 
-    ${$contentWidth &&
-    $contentWidth !== 'full' &&
-    css`
+    ${
+      $contentWidth &&
+      $contentWidth !== 'full' &&
+      css`
       grid-template-areas: '. block-content .';
       grid-auto-columns: 1fr
         minmax(auto, ${getBreakpointValueByName(settings, $contentWidth)}px) 1fr;
@@ -143,32 +151,39 @@ const Container = styled.section<WrapperContainerProps>`
       ${Content} {
         max-width: ${getBreakpointValueByName(settings, $contentWidth)}px;
       }
-    `}
+    `
+    }
 
-    ${$contentWidth &&
-    $contentWidth === 'full' &&
-    css`
+    ${
+      $contentWidth &&
+      $contentWidth === 'full' &&
+      css`
       grid-template-areas: 'block-content';
       grid-auto-columns: 1fr;
       padding-right: 0;
       padding-left: 0;
-    `}
+    `
+    }
 
-    ${!$contentWidth &&
-    css`
+    ${
+      !$contentWidth &&
+      css`
       grid-template-areas: 'block-content';
       grid-auto-columns: 1fr;
 
-      ${typeof $gutter === 'string' &&
-      css`
-        padding-left: ${spacing[
-            `${spacingTokens[$gutter]}` as keyof typeof spacing
-          ]}${settings.spacingUnits};
-        padding-right: ${spacing[
-            `${spacingTokens[$gutter]}` as keyof typeof spacing
-          ]}${settings.spacingUnits};
-      `}
-    `}
+      ${
+        typeof $gutter === 'string' &&
+        css`
+        padding-left: ${
+          spacing[`${spacingTokens[$gutter]}` as keyof typeof spacing]
+        }${settings.spacingUnits};
+        padding-right: ${
+          spacing[`${spacingTokens[$gutter]}` as keyof typeof spacing]
+        }${settings.spacingUnits};
+      `
+      }
+    `
+    }
   `}
 `;
 
@@ -176,17 +191,22 @@ function Wrapper({
   children,
   backgroundImage,
   className,
-  ...props
+  gutter,
+  backgroundColor,
+  fullBleed,
+  contentWidth,
+  p
 }: WrapperProps) {
   const componentProps = useMemo(() => {
-    return Object.keys(props).reduce<WrapperContainerProps>(
-      (coll, key) => ({
-        ...coll,
-        [`$${key as keyof typeof props}`]: props[key as keyof typeof props]
-      }),
-      {}
-    );
-  }, [props]);
+    return {
+      $gutter: gutter,
+      $backgroundColor: backgroundColor,
+      $fullBleed: fullBleed,
+      $contentWidth: contentWidth,
+      $p: p
+    };
+  }, [gutter, backgroundColor, fullBleed, contentWidth, p]);
+
   return (
     <Container className={className} {...componentProps}>
       {!!backgroundImage && (

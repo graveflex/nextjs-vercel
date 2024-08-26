@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
+import RenderIcon, { type IconProps } from '@mono/ui/components/RenderIcon';
 import type { LinkProps } from 'next/link';
 import Link from 'next/link';
-import RenderIcon, { type IconProps } from '@mono/ui/components/RenderIcon';
+import type React from 'react';
 import styled from 'styled-components';
 
 export type PayloadLinkProps = Partial<LinkProps> & {

@@ -1,14 +1,13 @@
-import React from 'react';
-import { notFound, redirect } from 'next/navigation';
-import { DEFAULT_LOCALE, type LanguageLocale, LOCALES } from '@mono/settings';
+import { DEFAULT_LOCALE, LOCALES, type LanguageLocale } from '@mono/settings';
 import type { Nav, Page } from '@mono/types/payload-types';
+import BlocksRenderer from '@mono/web/components/BlocksRenderer';
+import Loading from '@mono/web/components/Loading';
+import Layout from '@mono/web/globals/Layout';
 import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
 import { redirectApi } from '@mono/web/lib/redirectApi';
+import { notFound, redirect } from 'next/navigation';
 import type { PaginatedDocs } from 'payload';
-
-import PageTemplate from './page.client';
-
-export const revalidate = 60;
+import React, { Suspense } from 'react';
 
 interface RootLayoutProps {
   params: {
@@ -20,7 +19,7 @@ interface RootLayoutProps {
   };
 }
 
-export default async function Page({
+export default async function CatchallPage({
   params: { slug, locale = DEFAULT_LOCALE },
   searchParams
 }: RootLayoutProps) {
@@ -29,26 +28,28 @@ export default async function Page({
     pageSlug = '/';
   }
   const showDraft = searchParams.draft === 'true';
-  const navData = await fetchPayloadDataRest<Nav>({
-    endpoint: '/api/globals/nav',
-    params: {
-      locale
-    }
-  });
 
-  const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
-    endpoint: '/api/findPage',
-    showDraft,
-    params: {
-      locale,
-      where: {
-        slug: {
-          equals: pageSlug
-        }
-      },
-      limit: 1
-    }
-  });
+  const [navData, data] = await Promise.all([
+    fetchPayloadDataRest<Nav>({
+      endpoint: '/api/globals/nav',
+      params: {
+        locale
+      }
+    }),
+    fetchPayloadDataRest<PaginatedDocs<Page>>({
+      endpoint: '/api/findPage',
+      showDraft,
+      params: {
+        locale,
+        where: {
+          slug: {
+            equals: pageSlug
+          }
+        },
+        limit: 1
+      }
+    })
+  ]);
 
   // if there's an error fetching data, 404
   if ('error' in data || !data.docs[0] || 'error' in navData) {
@@ -64,7 +65,13 @@ export default async function Page({
 
   const page = data.docs[0];
 
-  return <PageTemplate page={page} nav={navData} />;
+  return (
+    <Layout theme={page.theme} {...navData}>
+      <Suspense fallback={<Loading />}>
+        <BlocksRenderer blocks={page.blocks ?? []} />
+      </Suspense>
+    </Layout>
+  );
 }
 
 export async function generateMetadata({

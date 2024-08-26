@@ -7,13 +7,11 @@
     "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
     "dev": "export $(grep -e '^DOCS_PORT' -- ../../.env) && storybook dev -p ${DOCS_PORT} --no-open",
     "types": "tsc --noEmit --skipLibCheck",
-    "lint": "eslint . --ext js,jsx,ts,tsx",
     "build": "storybook build"
   },
   "dependencies": {
     "@babel/preset-env": "^7.24.3",
     "@babel/preset-react": "^7.24.1",
-    "@next/eslint-plugin-next": "^14.1.1",
     "@faker-js/faker": "^8.4.1",
     "@mono/tsconfig": "workspace:*",
     "@storybook/addon-a11y": "latest",

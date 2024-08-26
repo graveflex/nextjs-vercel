@@ -1,8 +1,8 @@
-import createNextIntlPlugin from 'next-intl/plugin';
-import { BLOB_STORE_ID } from '@mono/settings';
-import { withPayload } from '@payloadcms/next/withPayload';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { BLOB_STORE_ID } from '@mono/settings';
+import { withPayload } from '@payloadcms/next/withPayload';
+import createNextIntlPlugin from 'next-intl/plugin';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -46,7 +46,7 @@ export default withPayload(
         // namespace: '',
 
         // Not supported yet.
-        minify: true,
+        minify: false,
 
         // Not supported yet.
         transpileTemplateLiterals: true,
