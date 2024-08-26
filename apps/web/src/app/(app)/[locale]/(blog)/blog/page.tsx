@@ -6,6 +6,7 @@ import React from 'react';
 
 import PageTemplate from './page.client';
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 60;
 
 interface BlogLayoutProps {
@@ -41,44 +42,48 @@ export default async function Blog({
   //   }
   // };
 
-  const [navData, pageData, postData, filterData] = await Promise.all([
-    payload.findGlobal({
-      slug: 'nav',
-      locale
-    }),
-    payload.find({
-      collection: 'pages',
-      locale,
-      where: {
-        slug: { equals: 'blog' }
-      }
-    }),
-    payload.find({
-      collection: 'posts',
-      page: parseInt(pagPage, 10),
-      locale,
-      limit: 9
-    }),
-    payload.find({
-      collection: 'tags',
-      locale
-    })
-  ]);
+  try {
+    const [navData, pageData, postData, filterData] = await Promise.all([
+      payload.findGlobal({
+        slug: 'nav',
+        locale
+      }),
+      payload.find({
+        collection: 'pages',
+        locale,
+        where: {
+          slug: { equals: 'blog' }
+        }
+      }),
+      payload.find({
+        collection: 'posts',
+        page: parseInt(pagPage, 10),
+        locale,
+        limit: 9
+      }),
+      payload.find({
+        collection: 'tags',
+        locale
+      })
+    ]);
 
-  // if there's an error fetching data, 404
-  if (
-    'error' in pageData ||
-    !pageData.docs[0] ||
-    'error' in navData ||
-    'error' in postData ||
-    'error' in filterData
-  ) {
-    return notFound();
+    // if there's an error fetching data, 404
+    if (
+      'error' in pageData ||
+      !pageData.docs[0] ||
+      'error' in navData ||
+      'error' in postData ||
+      'error' in filterData
+    ) {
+      return notFound();
+    }
+
+    const page = pageData.docs[0];
+
+    return <PageTemplate page={page} postData={postData} nav={navData} />;
+  } catch (_) {
+    return null;
   }
-
-  const page = pageData.docs[0];
-
-  return <PageTemplate page={page} postData={postData} nav={navData} />;
 }
 
 export async function generateMetadata({
@@ -88,30 +93,35 @@ export async function generateMetadata({
 }) {
   const payload = await getPayloadHMR({ config });
   const pageSlug = slug ? slug.join('/') : '/';
-  const data = await payload.find({
-    collection: 'posts',
-    where: {
-      slug: { equals: pageSlug }
-    },
-    limit: 1
-  });
 
-  if ('error' in data) {
+  try {
+    const data = await payload.find({
+      collection: 'posts',
+      where: {
+        slug: { equals: pageSlug }
+      },
+      limit: 1
+    });
+
+    if ('error' in data) {
+      return {};
+    }
+
+    const seoData = data?.docs[0]?.meta;
+    const seoImage =
+      typeof seoData?.image !== 'number' && seoData?.image?.url
+        ? seoData?.image?.url
+        : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
+
+    return {
+      title: seoData?.title || 'Blog',
+      description: seoData?.description || "Blog's description",
+      keywords: seoData?.keywords || null,
+      openGraph: {
+        images: [seoImage]
+      }
+    };
+  } catch (_) {
     return {};
   }
-
-  const seoData = data?.docs[0]?.meta;
-  const seoImage =
-    typeof seoData?.image !== 'number' && seoData?.image?.url
-      ? seoData?.image?.url
-      : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
-
-  return {
-    title: seoData?.title || 'Blog',
-    description: seoData?.description || "Blog's description",
-    keywords: seoData?.keywords || null,
-    openGraph: {
-      images: [seoImage]
-    }
-  };
 }

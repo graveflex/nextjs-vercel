@@ -8,6 +8,9 @@ import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { notFound, redirect } from 'next/navigation';
 import React, { Suspense } from 'react';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 60;
+
 interface RootLayoutProps {
   params: {
     slug: string[];
@@ -29,46 +32,52 @@ export default async function CatchallPage({
   }
   const showDraft = searchParams.draft === 'true';
 
-  const navData = await payload.findGlobal({
-    slug: 'nav',
-    locale,
-    draft: showDraft,
-    depth: 2,
-    fallbackLocale: DEFAULT_LOCALE
-  });
+  try {
+    const [navData, data] = await Promise.all([
+      payload.findGlobal({
+        slug: 'nav',
+        locale,
+        draft: showDraft,
+        depth: 2,
+        fallbackLocale: DEFAULT_LOCALE
+      }),
 
-  const data = await payload.find({
-    collection: 'pages',
-    locale,
-    draft: showDraft,
-    depth: 2,
-    where: {
-      slug: { equals: pageSlug }
-    },
-    limit: 1
-  });
+      payload.find({
+        collection: 'pages',
+        locale,
+        draft: showDraft,
+        depth: 2,
+        where: {
+          slug: { equals: pageSlug }
+        },
+        limit: 1
+      })
+    ]);
 
-  // if there's an error fetching data, 404
-  if ('error' in data || !data.docs[0] || 'error' in navData) {
-    const redirectPath = await redirectApi(pageSlug);
-    if (
-      !redirectPath ||
-      (typeof redirectPath === 'object' && 'error' in redirectPath)
-    ) {
-      return notFound();
+    // if there's an error fetching data, 404
+    if ('error' in data || !data.docs[0] || 'error' in navData) {
+      const redirectPath = await redirectApi(pageSlug);
+      if (
+        !redirectPath ||
+        (typeof redirectPath === 'object' && 'error' in redirectPath)
+      ) {
+        return notFound();
+      }
+      redirect(redirectPath);
     }
-    redirect(redirectPath);
+
+    const page = data.docs[0];
+
+    return (
+      <Layout theme={page.theme} {...navData}>
+        <Suspense fallback={<Loading />}>
+          <BlocksRenderer blocks={page.blocks ?? []} />
+        </Suspense>
+      </Layout>
+    );
+  } catch (_) {
+    return null;
   }
-
-  const page = data.docs[0];
-
-  return (
-    <Layout theme={page.theme} {...navData}>
-      <Suspense fallback={<Loading />}>
-        <BlocksRenderer blocks={page.blocks ?? []} />
-      </Suspense>
-    </Layout>
-  );
 }
 
 export async function generateMetadata({
@@ -79,33 +88,37 @@ export async function generateMetadata({
   const pageSlug = slug ? slug.join('/') : '/';
   const payload = await getPayloadHMR({ config });
 
-  const data = await payload.find({
-    collection: 'pages',
-    locale,
-    depth: 2,
-    where: {
-      slug: { equals: pageSlug }
-    },
-    limit: 1
-  });
+  try {
+    const data = await payload.find({
+      collection: 'pages',
+      locale,
+      depth: 2,
+      where: {
+        slug: { equals: pageSlug }
+      },
+      limit: 1
+    });
 
-  if ('error' in data) {
+    if ('error' in data) {
+      return {};
+    }
+
+    const pageData = data?.docs[0];
+    const seoData = data?.docs[0]?.meta;
+    const seoImage =
+      typeof seoData?.image !== 'number' && seoData?.image?.url
+        ? seoData?.image?.url
+        : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
+
+    return {
+      title: seoData?.title || pageData?.pageTitle || 'Monorepo',
+      description: seoData?.description || 'Default description text',
+      keywords: seoData?.keywords || null,
+      openGraph: {
+        images: [seoImage]
+      }
+    };
+  } catch (_) {
     return {};
   }
-
-  const pageData = data?.docs[0];
-  const seoData = data?.docs[0]?.meta;
-  const seoImage =
-    typeof seoData?.image !== 'number' && seoData?.image?.url
-      ? seoData?.image?.url
-      : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
-
-  return {
-    title: seoData?.title || pageData?.pageTitle || 'Monorepo',
-    description: seoData?.description || 'Default description text',
-    keywords: seoData?.keywords || null,
-    openGraph: {
-      images: [seoImage]
-    }
-  };
 }
