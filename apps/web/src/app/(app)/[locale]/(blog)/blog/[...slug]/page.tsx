@@ -1,10 +1,9 @@
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/settings';
-import type { Nav, Post } from '@mono/types/payload-types';
-import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import { notFound, redirect } from 'next/navigation';
-import type { PaginatedDocs } from 'payload';
 import React from 'react';
+import config from '@payload-config';
+import { getPayloadHMR } from '@payloadcms/next/utilities';
 
 import PageTemplate from './page.client';
 
@@ -20,27 +19,24 @@ interface BlogLayoutProps {
 export default async function Blog({
   params: { locale = DEFAULT_LOCALE, slug }
 }: BlogLayoutProps) {
+  const payload = await getPayloadHMR({ config });
   const pageSlug = slug ? slug.join('/') : '/';
 
-  const navData = await fetchPayloadDataRest<Nav>({
-    endpoint: '/api/globals/nav',
-    params: {
+  const [navData, postData] = await Promise.all([
+    payload.findGlobal({
+      slug: 'nav',
       locale
-    }
-  });
-
-  const postData = await fetchPayloadDataRest<PaginatedDocs<Post>>({
-    endpoint: '/api/posts',
-    params: {
+    }),
+    payload.find({
+      collection: 'posts',
       locale,
       where: {
         slug: {
           equals: pageSlug
         }
-      },
-      limit: 1
-    }
-  });
+      }
+    })
+  ]);
 
   // if there's an error fetching data, 404
   if ('error' in navData || 'error' in postData || !postData.docs[0]) {
@@ -62,16 +58,14 @@ export async function generateMetadata({
 }: {
   params: { slug?: string[] };
 }) {
+  const payload = await getPayloadHMR({ config });
   const pageSlug = slug ? slug.join('/') : '/';
-  const data = await fetchPayloadDataRest<PaginatedDocs<Post>>({
-    endpoint: '/api/posts',
-    params: {
-      where: {
-        slug: {
-          equals: pageSlug
-        }
-      },
-      limit: 1
+  const data = await payload.find({
+    collection: 'posts',
+    where: {
+      slug: {
+        equals: pageSlug
+      }
     }
   });
 

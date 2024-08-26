@@ -1,13 +1,12 @@
 import { DEFAULT_LOCALE, LOCALES, type LanguageLocale } from '@mono/settings';
-import type { Nav, Page } from '@mono/types/payload-types';
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import Loading from '@mono/web/components/Loading';
 import Layout from '@mono/web/globals/Layout';
-import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import { notFound, redirect } from 'next/navigation';
-import type { PaginatedDocs } from 'payload';
 import React, { Suspense } from 'react';
+import config from '@payload-config';
+import { getPayloadHMR } from '@payloadcms/next/utilities';
 
 interface RootLayoutProps {
   params: {
@@ -23,33 +22,31 @@ export default async function CatchallPage({
   params: { slug, locale = DEFAULT_LOCALE },
   searchParams
 }: RootLayoutProps) {
+  const payload = await getPayloadHMR({ config });
   let pageSlug = slug ? slug.join('/') : '/';
   if (LOCALES.includes(pageSlug as LanguageLocale)) {
     pageSlug = '/';
   }
   const showDraft = searchParams.draft === 'true';
 
-  const [navData, data] = await Promise.all([
-    fetchPayloadDataRest<Nav>({
-      endpoint: '/api/globals/nav',
-      params: {
-        locale
-      }
-    }),
-    fetchPayloadDataRest<PaginatedDocs<Page>>({
-      endpoint: '/api/findPage',
-      showDraft,
-      params: {
-        locale,
-        where: {
-          slug: {
-            equals: pageSlug
-          }
-        },
-        limit: 1
-      }
-    })
-  ]);
+  const navData = await payload.findGlobal({
+    slug: 'nav',
+    locale,
+    draft: showDraft,
+    depth: 2,
+    fallbackLocale: DEFAULT_LOCALE
+  });
+
+  const data = await payload.find({
+    collection: 'pages',
+    locale,
+    draft: showDraft,
+    depth: 2,
+    where: {
+      slug: { equals: pageSlug }
+    },
+    limit: 1
+  });
 
   // if there's an error fetching data, 404
   if ('error' in data || !data.docs[0] || 'error' in navData) {
@@ -80,17 +77,16 @@ export async function generateMetadata({
   params: { slug?: string[]; locale: LanguageLocale };
 }) {
   const pageSlug = slug ? slug.join('/') : '/';
-  const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
-    endpoint: '/api/findPage',
-    params: {
-      locale,
-      where: {
-        slug: {
-          equals: pageSlug
-        }
-      },
-      limit: 1
-    }
+  const payload = await getPayloadHMR({ config });
+
+  const data = await payload.find({
+    collection: 'pages',
+    locale,
+    depth: 2,
+    where: {
+      slug: { equals: pageSlug }
+    },
+    limit: 1
   });
 
   if ('error' in data) {

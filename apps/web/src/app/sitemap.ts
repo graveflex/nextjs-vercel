@@ -1,22 +1,18 @@
 import { WEB_URL } from '@mono/settings';
-import type { Page, Post } from '@mono/types/payload-types';
-import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
 import type { MetadataRoute } from 'next';
-import type { PaginatedDocs } from 'payload';
+import config from '@payload-config';
+import { getPayloadHMR } from '@payloadcms/next/utilities';
 
 export default async function Sitemap(): Promise<MetadataRoute.Sitemap> {
+  const payload = await getPayloadHMR({ config });
   const [postData, pageData] = await Promise.all([
-    fetchPayloadDataRest<PaginatedDocs<Post>>({
-      endpoint: '/api/posts',
-      params: {
-        limit: 0
-      }
+    payload.find({
+      collection: 'posts',
+      limit: 0
     }),
-    fetchPayloadDataRest<PaginatedDocs<Page>>({
-      endpoint: '/api/pages',
-      params: {
-        limit: 0
-      }
+    payload.find({
+      collection: 'pages',
+      limit: 0
     })
   ]);
 

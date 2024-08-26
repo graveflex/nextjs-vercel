@@ -68,8 +68,7 @@
     "dev": {
       "cache": false,
       "dependsOn": ["^generate:types"],
-      "persistent": true,
-      "interactive": true
+      "persistent": true
     },
     "build": {
       "dependsOn": ["^build"],

@@ -24,6 +24,10 @@ export default withPayload(
     reactStrictMode: true,
     transpilePackages: ['@mono/ui', '@mono/theme', '@mono/types'],
 
+    experimental: {
+      reactCompiler: true
+    },
+
     compiler: {
       styledComponents: {
         // Enabled by default in development, disabled in production to reduce file size,

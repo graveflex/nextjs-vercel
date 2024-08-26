@@ -34,6 +34,7 @@
     "@mono/ui": "workspace:*",
     "@payload-enchants/translator": "latest",
     "@payloadcms/db-postgres": "latest",
+    "@payloadcms/db-vercel-postgres": "latest",
     "@payloadcms/email-nodemailer": "latest",
     "@payloadcms/live-preview": "latest",
     "@payloadcms/live-preview-react": "latest",

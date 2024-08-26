@@ -6,7 +6,7 @@ import type React from 'react';
 import Providers from './providers';
 
 export const revalidate = 60;
-export const runtime = 'edge';
+// export const runtime = 'edge';
 
 interface RootLayoutProps {
   children: React.ReactNode;

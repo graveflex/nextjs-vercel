@@ -1,6 +1,4 @@
 // import nodeMailer from 'nodemailer';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { DEFAULT_LOCALE, LOCALES, WEB_URL } from '@mono/settings';
 import Authors from '@mono/web/collections/Authors';
 import Files from '@mono/web/collections/Files';
@@ -40,7 +38,6 @@ import {
   lexicalEditor
 } from '@payloadcms/richtext-lexical';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
-import { NextResponse } from 'next/server';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
 
@@ -61,25 +58,6 @@ const DATABASE_URL = process.env.DATABASE_URL as string;
 // }
 
 export default buildConfig({
-  endpoints: [
-    {
-      path: '/findPage',
-      method: 'get',
-      handler: async (req) => {
-        const { query } = req;
-        const pages = await req.payload.find({
-          collection: 'pages',
-          user: {
-            email: null,
-            password: null
-          },
-          ...query,
-          req
-        });
-        return NextResponse.json(pages);
-      }
-    }
-  ],
   db: postgresAdapter({
     pool: {
       connectionString: DATABASE_URL
@@ -320,7 +298,6 @@ export default buildConfig({
   typescript: {
     outputFile: '../../packages/types/payload-types.ts'
   },
-  sharp,
   async onInit(payload) {
     const existingUsers = await payload.find({
       collection: 'users',
@@ -336,5 +313,6 @@ export default buildConfig({
         }
       });
     }
-  }
+  },
+  sharp
 });

@@ -1,9 +1,8 @@
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/settings';
-import type { Nav, Page, Post, Tag } from '@mono/types/payload-types';
-import fetchPayloadDataRest from '@mono/web/lib/fetchPayloadDataRest';
 import { notFound } from 'next/navigation';
-import type { PaginatedDocs } from 'payload';
 import React from 'react';
+import config from '@payload-config';
+import { getPayloadHMR } from '@payloadcms/next/utilities';
 
 import PageTemplate from './page.client';
 
@@ -25,14 +24,8 @@ export default async function Blog({
   params: { locale = DEFAULT_LOCALE },
   searchParams
 }: BlogLayoutProps) {
-  const navData = await fetchPayloadDataRest<Nav>({
-    endpoint: '/api/globals/nav',
-    params: {
-      locale
-    }
-  });
-
-  const pagPage = searchParams.page ? searchParams.page : 1;
+  const payload = await getPayloadHMR({ config });
+  const pagPage = searchParams.page ? searchParams.page : '1';
   // const sortRes = () => {
   //   switch (searchParams.sort) {
   //     case 'newest':
@@ -48,33 +41,27 @@ export default async function Blog({
   //   }
   // };
 
-  const [pageData, postData, filterData] = await Promise.all([
-    fetchPayloadDataRest<PaginatedDocs<Page>>({
-      endpoint: '/api/findPage',
-      params: {
-        locale,
-        where: {
-          slug: {
-            equals: 'blog'
-          }
-        },
-        limit: 1
+  const [navData, pageData, postData, filterData] = await Promise.all([
+    payload.findGlobal({
+      slug: 'nav',
+      locale
+    }),
+    payload.find({
+      collection: 'pages',
+      locale,
+      where: {
+        slug: { equals: 'blog' }
       }
     }),
-    fetchPayloadDataRest<PaginatedDocs<Post>>({
-      endpoint: '/api/posts',
-      page: pagPage.toString(),
-      params: {
-        locale,
-        limit: 9
-      }
+    payload.find({
+      collection: 'posts',
+      page: parseInt(pagPage, 10),
+      locale,
+      limit: 9
     }),
-
-    fetchPayloadDataRest<PaginatedDocs<Tag>>({
-      endpoint: '/api/tags',
-      params: {
-        locale
-      }
+    payload.find({
+      collection: 'tags',
+      locale
     })
   ]);
 
@@ -99,24 +86,20 @@ export async function generateMetadata({
 }: {
   params: { slug?: string[] };
 }) {
+  const payload = await getPayloadHMR({ config });
   const pageSlug = slug ? slug.join('/') : '/';
-  const data = await fetchPayloadDataRest<PaginatedDocs<Page>>({
-    endpoint: '/api/posts',
-    params: {
-      where: {
-        slug: {
-          equals: pageSlug
-        }
-      },
-      limit: 1
-    }
+  const data = await payload.find({
+    collection: 'posts',
+    where: {
+      slug: { equals: pageSlug }
+    },
+    limit: 1
   });
 
   if ('error' in data) {
     return {};
   }
 
-  const pageData = data?.docs[0];
   const seoData = data?.docs[0]?.meta;
   const seoImage =
     typeof seoData?.image !== 'number' && seoData?.image?.url
@@ -124,7 +107,7 @@ export async function generateMetadata({
       : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
 
   return {
-    title: seoData?.title || pageData?.pageTitle || 'Blog',
+    title: seoData?.title || 'Blog',
     description: seoData?.description || "Blog's description",
     keywords: seoData?.keywords || null,
     openGraph: {
