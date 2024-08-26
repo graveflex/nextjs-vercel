@@ -25,7 +25,7 @@
     "build": "turbo run build",
     "buildSettings": "turbo run buildSettings",
     "start": "turbo run start --parallel",
-    "dev": "pnpm env:dev -- turbo run dev --filter=\"!@mono/settings\"",
+    "dev": "pnpm env:dev -- turbo run dev --filter=\"!@mono/settings\" --ui=tui",
     "lint": "pnpm env:dev -- biome check .",
     "lint:fix": "pnpm lint --write",
     "migrations:create": "turbo run migrations:create",

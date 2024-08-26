@@ -1,12 +1,11 @@
 import type { LanguageLocale } from '@mono/settings';
 import StyledComponentsRegistry from '@mono/web/lib/StyledComponentRegistry';
-// import { SpeedInsights } from '@vercel/speed-insights/next';
 import type React from 'react';
 
 import Providers from './providers';
 
 export const revalidate = 60;
-// export const runtime = 'edge';
+export const runtime = 'nodejs';
 
 interface RootLayoutProps {
   children: React.ReactNode;
