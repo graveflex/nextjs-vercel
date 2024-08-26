@@ -41,9 +41,12 @@
       "cache": false
     },
     "//#test": {},
-    "types": {},
+    "types": {
+      "dependsOn": ["build"]
+    },
     "//#test:watch": {},
     "//#test:coverage": {
+      "dependsOn": ["@mono/settings#buildSettings"],
       "outputs": ["coverage/**"]
     },
     "migrations:create": {},

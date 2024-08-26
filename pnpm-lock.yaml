@@ -515,6 +515,9 @@ importers:
       styled-components:
         specifier: 6.1.12
         version: 6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
+      typescript:
+        specifier: ^5.4.3
+        version: 5.5.4
 
   packages/tsconfig: {}
 

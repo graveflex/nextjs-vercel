@@ -4,8 +4,8 @@ import { GlobalStyles } from '@refract-ui/sc';
 import type { PropsWithChildren } from 'react';
 import type React from 'react';
 
-import * as themeList from './theme';
 import GlobalResets from './Reset';
+import * as themeList from './theme';
 
 export type ThemeKey = keyof typeof themeList;
 
