@@ -5,7 +5,7 @@ import type { PropsWithChildren } from 'react';
 import type React from 'react';
 
 import * as themeList from './theme';
-// import GlobalResets from './Reset';
+import GlobalResets from './Reset';
 
 export type ThemeKey = keyof typeof themeList;
 
@@ -24,6 +24,7 @@ function ThemeProvider({
 
   return (
     <GlobalStyles as="body" theme={t} style={containerStyles}>
+      <GlobalResets />
       {children}
     </GlobalStyles>
   );
