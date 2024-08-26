@@ -3,10 +3,10 @@ import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import Loading from '@mono/web/components/Loading';
 import Layout from '@mono/web/globals/Layout';
 import { redirectApi } from '@mono/web/lib/redirectApi';
-import { notFound, redirect } from 'next/navigation';
-import React, { Suspense } from 'react';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { notFound, redirect } from 'next/navigation';
+import React, { Suspense } from 'react';
 
 interface RootLayoutProps {
   params: {

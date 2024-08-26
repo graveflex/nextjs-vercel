@@ -1,8 +1,8 @@
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/settings';
-import { notFound } from 'next/navigation';
-import React from 'react';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { notFound } from 'next/navigation';
+import React from 'react';
 
 import PageTemplate from './page.client';
 

@@ -1,7 +1,7 @@
 import { WEB_URL } from '@mono/settings';
-import type { MetadataRoute } from 'next';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
+import type { MetadataRoute } from 'next';
 
 export default async function Sitemap(): Promise<MetadataRoute.Sitemap> {
   const payload = await getPayloadHMR({ config });

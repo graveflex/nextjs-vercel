@@ -1,9 +1,9 @@
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/settings';
 import { redirectApi } from '@mono/web/lib/redirectApi';
-import { notFound, redirect } from 'next/navigation';
-import React from 'react';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { notFound, redirect } from 'next/navigation';
+import React from 'react';
 
 import PageTemplate from './page.client';
 
