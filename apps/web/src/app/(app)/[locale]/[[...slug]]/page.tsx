@@ -65,7 +65,6 @@ export default async function CatchallPage({
     // if not page data and not the index check for redirects
     if (!data.docs[0] && pageSlug !== '/') {
       const redirectPath = await redirectApi(pageSlug);
-      console.log('inside no data')
       if (
         !redirectPath ||
         (typeof redirectPath === 'object' && 'error' in redirectPath)
@@ -92,7 +91,7 @@ export default async function CatchallPage({
     return (
       <Layout theme={page.theme} {...navData}>
         <Suspense fallback={<Loading />}>
-          <BlocksRenderer blocks={page.blocks ?? []} /> 
+          <BlocksRenderer blocks={page.blocks ?? []} />
         </Suspense>
       </Layout>
     );

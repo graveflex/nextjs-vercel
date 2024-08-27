@@ -51,7 +51,7 @@ export default async function Blog({
       payload.findGlobal({
         slug: 'blogIndex',
         locale
-    }),
+      }),
       payload.find({
         collection: 'posts',
         page: parseInt(pagPage, 10),

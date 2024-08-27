@@ -12,7 +12,7 @@ const formatSlug =
   ({ value, originalDoc, data }) => {
     const fallbackData =
       (data && data[fallback]) || (originalDoc && originalDoc[fallback]);
-    
+
     // If the fallback is 'Home' then return a forward slash
     if (fallbackData === 'Home') {
       return '/';

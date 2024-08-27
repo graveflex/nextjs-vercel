@@ -93,6 +93,9 @@ const Pages: CollectionConfig = {
         if (regex.test(value)) {
           return 'Slug cannot contain special characters !@]{${%^*()[+= or .';
         }
+        if (value === '/') {
+          return 'Slug cannot be / - this is reserved for the homepage global';
+        }
         if (value === 'admin') {
           return 'Slug cannot be admin';
         }

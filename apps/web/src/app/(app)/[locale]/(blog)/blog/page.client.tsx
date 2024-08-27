@@ -1,7 +1,7 @@
 'use client';
 
 import { WEB_URL } from '@mono/settings';
-import type { Nav, BlogIndex, Post } from '@mono/types/payload-types';
+import type { BlogIndex, Nav, Post } from '@mono/types/payload-types';
 import BlogWrapper from '@mono/ui/components/BlogIndex';
 import useIndexControls from '@mono/ui/lib/hooks/useIndexControls';
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';

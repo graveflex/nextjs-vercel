@@ -9,8 +9,10 @@ import IconGridBlock from '@mono/web/blocks/IconGridBlock/IconGridBlock.config';
 import IframeBlock from '@mono/web/blocks/IframeBlock/IframeBlock.config';
 import MarkdownBlock from '@mono/web/blocks/MarkdownBlock/MarkdownBlock.config';
 import SectionHeaderBlock from '@mono/web/blocks/SectionHeaderBlock/SectionHeaderBlock.config';
+// InsertBlockConfigs
 import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
 import VideoBlock from '@mono/web/blocks/VideoBlock/VideoBlock.config';
+
 import type { CollectionConfig } from 'payload';
 
 import { invalidateCache } from '../../hooks/invalidateCache';
@@ -92,7 +94,7 @@ const HomePage: CollectionConfig = {
       defaultValue: '/',
       admin: {
         readOnly: true,
-        position: 'sidebar',
+        position: 'sidebar'
       }
     },
     {
