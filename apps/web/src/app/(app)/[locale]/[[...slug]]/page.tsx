@@ -8,7 +8,7 @@ import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { notFound, redirect } from 'next/navigation';
 import React, { Suspense } from 'react';
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
 export const revalidate = 60;
 
 interface RootLayoutProps {
