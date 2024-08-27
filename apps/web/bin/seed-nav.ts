@@ -219,41 +219,6 @@ const seedImages = async ({
   return Promise.all(promises);
 };
 
-const heroBlock = {
-  id: '6669d7bd6d58e03f8e7c1078',
-  blockType: 'heroBlock',
-  layout: 'contentLeft',
-  eyebrow: 'SOME TAGLINE',
-  content: {
-    ...genRichText([
-      {
-        type: 'heading',
-        tag: 'h1',
-        text: 'Welcome to our Demo Repo'
-      },
-      {
-        type: 'paragraph',
-        text: faker.lorem.sentence()
-      }
-    ])
-  }
-};
-
-const markdownBlock = {
-  id: '6669d7bd6d58e03f8e7c1077',
-  blockName: 'Markdown Hero Block',
-  blockType: 'markdownBlock',
-  content: {
-    ...genRichText([
-      {
-        type: 'paragraph',
-        text: 'Whether you are looking to advance your career, learn new skills, or connect with like-minded individuals, we got you covered. Join us on this journey and see where your potential can take you.'
-      }
-    ])
-  },
-  maxWidth: null
-};
-
 const seedHomePage = async ({ payload, count = 1 }: SeedFnProps) => {
   console.info(`@-->seeding homepage!`);
   const images = await seedImages({ payload, count, category: 'abstract' });
@@ -265,13 +230,63 @@ const seedHomePage = async ({ payload, count = 1 }: SeedFnProps) => {
       slug: '/',
       blocks: [
         {
-          ...(heroBlock as HeroBlockT),
+          id: '6669d7bd6d58e03f8e7c1077',
+          blockName: 'Markdown Hero Block',
+          blockType: 'markdownBlock',
+          content: {
+            root: {
+              type: 'root',
+              children: [
+                {
+                  type: 'paragraph',
+                  children: [
+                    {
+                      text: 'Whether you are looking to advance your career, learn new skills, or connect with like-minded individuals, we got you covered. Join us on this journey and see where your potential can take you.',
+                      type: 'text'
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          maxWidth: null
+        },
+        {
+          id: '6669d7bd6d58e03f8e7c1078',
+          blockType: 'heroBlock',
           blockConfig: {
             contentWidth: 'xxl',
             backgroundImage: images[0].id
+          },
+          layout: 'contentLeft',
+          eyebrow: 'SOME TAGLINE',
+          content: {
+            root: {
+              type: 'root',
+              children: [
+                {
+                  type: 'heading',
+                  children: [
+                    {
+                      text: 'Welcome to our Demo Repo',
+                      type: 'text'
+                    }
+                  ],
+                  tag: 'h1'
+                },
+                {
+                  type: 'paragraph',
+                  children: [
+                    {
+                      text: faker.lorem.sentence(),
+                      type: 'text'
+                    }
+                  ]
+                }
+              ]
+            }
           }
-        },
-        markdownBlock as MarkdownBlockT
+        }
       ]
     }
   });

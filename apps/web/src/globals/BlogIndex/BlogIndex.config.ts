@@ -13,21 +13,19 @@ import SectionHeaderBlock from '@mono/web/blocks/SectionHeaderBlock/SectionHeade
 
 import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
 import VideoBlock from '@mono/web/blocks/VideoBlock/VideoBlock.config';
-import type { CollectionConfig } from 'payload';
+import type { GlobalConfig } from 'payload';
 
-import { invalidateCache } from '../../hooks/invalidateCache';
-import { publishBeforeRead } from '../../hooks/publishBeforeRead';
+import { globalInvalidateCache } from '../../hooks/globalInvalidateCache';
+import { globalPublishBeforeRead } from '../../hooks/globalPublishBeforeRead';
 
 const themeOptions = [
   { label: 'Light', value: 'light' },
   { label: 'Dark', value: 'dark' }
 ];
 
-const BlogIndex: CollectionConfig = {
+const BlogIndex: GlobalConfig = {
   slug: 'blogIndex',
   admin: {
-    useAsTitle: 'pageTitle',
-    defaultColumns: ['pageTitle', 'slug', '_status', 'createdAt'],
     preview: (doc, { locale }) => {
       const { slug } = (doc as { slug: string }) || '/';
 
@@ -123,8 +121,8 @@ const BlogIndex: CollectionConfig = {
     }
   ],
   hooks: {
-    beforeRead: [publishBeforeRead],
-    afterChange: [invalidateCache]
+    beforeRead: [globalPublishBeforeRead],
+    afterChange: [globalInvalidateCache]
   }
 };
 
