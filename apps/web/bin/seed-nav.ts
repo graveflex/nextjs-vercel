@@ -258,8 +258,8 @@ const seedHomePage = async ({ payload, count = 1 }: SeedFnProps) => {
   console.info(`@-->seeding homepage!`);
   const images = await seedImages({ payload, count, category: 'abstract' });
 
-  await payload.create({
-    collection: 'pages',
+  await payload.updateGlobal({
+    slug: 'homepage',
     data: {
       pageTitle: 'Home',
       slug: '/',

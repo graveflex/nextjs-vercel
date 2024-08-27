@@ -43,18 +43,15 @@ export default async function Blog({
   // };
 
   try {
-    const [navData, pageData, postData, filterData] = await Promise.all([
+    const [navData, indexData, postData, filterData] = await Promise.all([
       payload.findGlobal({
         slug: 'nav',
         locale
       }),
-      payload.find({
-        collection: 'pages',
-        locale,
-        where: {
-          slug: { equals: 'blog' }
-        }
-      }),
+      payload.findGlobal({
+        slug: 'blogIndex',
+        locale
+    }),
       payload.find({
         collection: 'posts',
         page: parseInt(pagPage, 10),
@@ -69,8 +66,7 @@ export default async function Blog({
 
     // if there's an error fetching data, 404
     if (
-      'error' in pageData ||
-      !pageData.docs[0] ||
+      'error' in indexData ||
       'error' in navData ||
       'error' in postData ||
       'error' in filterData
@@ -78,7 +74,7 @@ export default async function Blog({
       return notFound();
     }
 
-    const page = pageData.docs[0];
+    const page = indexData;
 
     return <PageTemplate page={page} postData={postData} nav={navData} />;
   } catch (_) {

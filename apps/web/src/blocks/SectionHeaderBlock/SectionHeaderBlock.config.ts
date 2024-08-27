@@ -5,6 +5,7 @@ import type { Block } from 'payload';
 const SectionHeaderBlock: Block = {
   slug: 'sectionHeaderBlock',
   interfaceName: 'SectionHeaderBlockT',
+  dbName: 'sHeaderB',
   fields: [
     BlockConfig(),
     {

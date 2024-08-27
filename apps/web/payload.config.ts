@@ -10,6 +10,8 @@ import Users from '@mono/web/collections/User';
 import Videos from '@mono/web/collections/Videos';
 import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.config';
 import Nav from '@mono/web/globals/Layout/Layout.config';
+import Homepage from '@mono/web/globals/Home/Homepage.config';
+import BlogIndex from '@mono/web/globals/BlogIndex/BlogIndex.config';
 import { translator } from '@payload-enchants/translator';
 import { googleResolver } from '@payload-enchants/translator/resolvers/google';
 import { postgresAdapter } from '@payloadcms/db-postgres';
@@ -169,7 +171,7 @@ export default buildConfig({
     defaultLocale: DEFAULT_LOCALE,
     fallback: true
   },
-  globals: [Nav, FourOhFour],
+  globals: [Nav, FourOhFour, Homepage, BlogIndex],
   routes: {
     api: '/api'
   },
