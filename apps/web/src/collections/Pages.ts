@@ -77,6 +77,7 @@ const Pages: CollectionConfig = {
       name: 'pageTitle',
       label: 'Page Title',
       type: 'text',
+      localized: true,
       admin: {
         position: 'sidebar'
       },
@@ -86,6 +87,20 @@ const Pages: CollectionConfig = {
       name: 'slug',
       label: 'Page Slug',
       type: 'text',
+      unique: true,
+      validate: (value) => {
+        const regex = /[!@#$%^*[()+=.]/;
+        if (regex.test(value)) {
+          return 'Slug cannot contain special characters !@]{${%^*()[+= or .';
+        }
+        if (value === 'admin') {
+          return 'Slug cannot be admin';
+        }
+        if (value === 'api') {
+          return 'Slug cannot be api';
+        }
+        return true;
+      },
       admin: {
         position: 'sidebar',
         description: 'Will be auto-generated to title if left blank.'
