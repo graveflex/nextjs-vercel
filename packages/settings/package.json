@@ -10,6 +10,7 @@
     "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
     "setup-dev": "tsc && vite build",
     "build": "tsc && vite build",
+    "buildSettings": "tsc && vite build",
     "dev": "tsc && vite build --watch",
     "test": "vitest run",
     "test:watch": "vitest watch",
