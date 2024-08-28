@@ -32,7 +32,8 @@
     "migrations:run": "turbo run migrations:run",
     "payload": "pnpm env:dev -- turbo run payload --",
     "cicd": "pnpm env:ci -- turbo run build types lint test:coverage --ui=tui",
-    "db": "export $(grep -e '^DATABASE_URL' -- .env) && open ${DATABASE_URL}"
+    "db": "export $(grep -e '^DATABASE_URL' -- .env) && open ${DATABASE_URL}",
+    "db:migrate": "pnpm env:dev -- turbo run db:migrate"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",

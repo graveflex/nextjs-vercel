@@ -19,6 +19,7 @@
     "env:dev": "dotenvx run -f ../../.env.local -f ../../.env",
     "env:ci": "dotenvx run -f ../../.env.local -f ../../.env.ci -f ../../.env.test -f ../../.env",
     "db:setup": "./bin/init_db.sh",
+    "db:migrate": "payload migrate",
     "seed:kitchenSink": "pnpm env:dev -- tsx ./bin/seed_kitchen-sink.ts",
     "seed:nav": "pnpm env:dev -- tsx ./bin/seed-nav.ts",
     "seed:blog": "pnpm env:dev -- tsx ./bin/seed_blog.ts",
