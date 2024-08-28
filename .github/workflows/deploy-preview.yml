@@ -21,6 +21,9 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
+      - name: Install dependencies
+        run: pnpm install
+
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v8
