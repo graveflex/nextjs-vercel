@@ -8,6 +8,7 @@ env:
   NEON_API_KEY: ${{ secrets.NEON_API_KEY }} # You can generate a an API key in your account settings
   NEON_PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }} # You can find this in your project settings
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  DOTENV_PRIVATE_KEY: ${{ secrets.DOTENV_PRIVATE_KEY_CI }}
 
 jobs:
   deploy-preview:
