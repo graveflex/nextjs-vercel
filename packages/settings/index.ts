@@ -1,4 +1,4 @@
-import { getWebUrl } from './utils';
+// import { getWebUrl } from './utils';
 
 export const LOCAL_DOMAIN = 'localhost';
 export const PROJECT_NAME = process.env.PROJECT_NAME;
@@ -11,7 +11,7 @@ export const BLOB_ENDPOINT_URL = process.env.BLOB_ENDPOINT_URL;
 export const BLOB_STORE_ID = process.env.BLOB_STORE_ID;
 
 export const LOCAL = process.env.LOCAL === 'true';
-const FORCE_WEB_URL = process.env.FORCE_WEB_URL;
+// const FORCE_WEB_URL = process.env.FORCE_WEB_URL;
 export const NODE_ENV = process.env.NODE_ENV;
 
 export const DEFAULT_LOCALE = 'en-US' as const;
@@ -29,6 +29,9 @@ export const LOCALE_SETTINGS = [
 export const LOCALES = LOCALE_SETTINGS.map(({ code }) => code);
 export type LanguageLocale = (typeof LOCALES)[number];
 
+export const WEB_URL = "";
+
+/*
 export const WEB_URL = getWebUrl({
   projectName: PROJECT_NAME,
   localDomain: LOCAL_DOMAIN,
@@ -37,3 +40,4 @@ export const WEB_URL = getWebUrl({
   local: LOCAL,
   forceUrl: FORCE_WEB_URL
 });
+*/
