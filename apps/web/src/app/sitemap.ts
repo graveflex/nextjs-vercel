@@ -1,4 +1,3 @@
-import { WEB_URL } from '@mono/settings';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import type { MetadataRoute } from 'next';
@@ -35,11 +34,11 @@ export default async function Sitemap(): Promise<MetadataRoute.Sitemap> {
           changeFrequency: 'weekly',
           lastModified: item.updatedAt,
           priority: 1,
-          url: `${WEB_URL}/${item.slug}`,
+          url: `/${item.slug}`,
           alternates: {
             languages: {
-              en: `${WEB_URL}/en-us/${item.slug}`,
-              es: `${WEB_URL}/es-us/${item.slug}`
+              en: `/en-us/${item.slug}`,
+              es: `/es-us/${item.slug}`
             }
           }
         });
@@ -52,11 +51,11 @@ export default async function Sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: 'weekly',
         lastModified: item.updatedAt,
         priority: 1,
-        url: `${WEB_URL}/blog/${item.slug}`,
+        url: `/blog/${item.slug}`,
         alternates: {
           languages: {
-            en: `${WEB_URL}/en-us/blog/${item.slug}`,
-            es: `${WEB_URL}/es-us/blog/${item.slug}`
+            en: `/en-us/blog/${item.slug}`,
+            es: `/es-us/blog/${item.slug}`
           }
         }
       });
@@ -69,14 +68,14 @@ export default async function Sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...pagesAndPosts(),
     {
-      url: WEB_URL,
+      url: '/',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
       alternates: {
         languages: {
-          en: `${WEB_URL}/en-us/`,
-          es: `${WEB_URL}/es-us/`
+          en: `/en-us/`,
+          es: `/es-us/`
         }
       }
     }

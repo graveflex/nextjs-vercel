@@ -1,5 +1,5 @@
 // import nodeMailer from 'nodemailer';
-import { DEFAULT_LOCALE, LOCALES, WEB_URL } from '@mono/settings';
+import { DEFAULT_LOCALE, LOCALES } from '@mono/settings';
 import Authors from '@mono/web/collections/Authors';
 import Files from '@mono/web/collections/Files';
 import Images from '@mono/web/collections/Images';
@@ -42,22 +42,9 @@ import {
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
+import { WEB_URL } from '@mono/web/lib/constants';
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
-
-// async function createTestTransport() {
-//   const testAccount = await nodeMailer.createTestAccount();
-
-//   return {
-//     host: testAccount.smtp.host,
-//     port: testAccount.smtp.port,
-//     secure: testAccount.smtp.secure,
-//     auth: {
-//       user: testAccount.user,
-//       pass: testAccount.pass
-//     }
-//   };
-// }
 
 export default buildConfig({
   db: postgresAdapter({

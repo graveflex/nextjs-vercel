@@ -7,6 +7,7 @@ import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { notFound, redirect } from 'next/navigation';
 import React, { Suspense } from 'react';
+import { RefreshRouteOnSave } from '@mono/web/components/RefreshRouteOnSave';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
@@ -89,11 +90,14 @@ export default async function CatchallPage({
     const page = data.docs[0] ?? homepageData;
 
     return (
-      <Layout theme={page.theme} {...navData}>
-        <Suspense fallback={<Loading />}>
-          <BlocksRenderer blocks={page.blocks ?? []} />
-        </Suspense>
-      </Layout>
+      <>
+        <RefreshRouteOnSave />
+        <Layout theme={page.theme} {...navData}>
+          <Suspense fallback={<Loading />}>
+            <BlocksRenderer blocks={page.blocks ?? []} />
+          </Suspense>
+        </Layout>
+      </>
     );
   } catch (_) {
     return null;

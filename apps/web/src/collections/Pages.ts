@@ -1,4 +1,3 @@
-import { WEB_URL } from '@mono/settings';
 import CardGridBlock from '@mono/web/blocks/CardGridBlock/CardGridBlock.config';
 import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
 import FormBlock from '@mono/web/blocks/FormBlock/FormBlock.config';
@@ -31,7 +30,7 @@ const Pages: CollectionConfig = {
       const { slug } = (doc as { slug: string }) || '/';
 
       if (slug) {
-        return `${WEB_URL}/${slug}?locale=${locale}&draft=true`;
+        return `/${slug}?locale=${locale}&draft=true`;
       }
       return null;
     }
@@ -40,7 +39,9 @@ const Pages: CollectionConfig = {
     read: () => true
   },
   versions: {
-    drafts: true
+    drafts: {
+      autosave: true
+    },
   },
   fields: [
     {

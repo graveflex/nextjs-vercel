@@ -1,5 +1,3 @@
-import { WEB_URL } from '@mono/settings';
-
 import getPayloadAccessToken from './getPayloadAccessToken';
 
 export async function redirectApi(path: string | string[]) {
@@ -8,7 +6,7 @@ export async function redirectApi(path: string | string[]) {
   // make url friendly
   const q = `depth=1&where[from][equals]=${path}`;
 
-  const url = `${WEB_URL}/api/redirects?${q}`;
+  const url = `/api/redirects?${q}`;
 
   try {
     const res = await fetch(url, {

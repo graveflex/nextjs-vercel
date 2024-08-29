@@ -3,6 +3,7 @@ import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { notFound } from 'next/navigation';
 import React from 'react';
+import { RefreshRouteOnSave } from '@mono/web/components/RefreshRouteOnSave';
 
 import PageTemplate from './page.client';
 
@@ -27,20 +28,6 @@ export default async function Blog({
 }: BlogLayoutProps) {
   const payload = await getPayloadHMR({ config });
   const pagPage = searchParams.page ? searchParams.page : '1';
-  // const sortRes = () => {
-  //   switch (searchParams.sort) {
-  //     case 'newest':
-  //       return '-publishedAt';
-  //     case 'oldest':
-  //       return 'publishedAt';
-  //     case 'asc':
-  //       return 'title';
-  //     case 'desc':
-  //       return '-title';
-  //     default:
-  //       return '-publishedAt';
-  //   }
-  // };
 
   try {
     const [navData, indexData, postData, filterData] = await Promise.all([
@@ -76,7 +63,12 @@ export default async function Blog({
 
     const page = indexData;
 
-    return <PageTemplate page={page} postData={postData} nav={navData} />;
+    return (
+      <>
+        <RefreshRouteOnSave />
+        <PageTemplate page={page} postData={postData} nav={navData} />
+      </>
+    );
   } catch (_) {
     return null;
   }

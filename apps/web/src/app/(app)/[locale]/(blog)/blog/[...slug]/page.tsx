@@ -4,6 +4,7 @@ import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { notFound, redirect } from 'next/navigation';
 import React from 'react';
+import { RefreshRouteOnSave } from '@mono/web/components/RefreshRouteOnSave';
 
 import PageTemplate from './page.client';
 
@@ -52,7 +53,12 @@ export default async function Blog({
       redirect(redirectPath);
     }
 
-    return <PageTemplate post={postData.docs[0]} nav={navData} />;
+    return (
+      <>
+        <RefreshRouteOnSave />
+        <PageTemplate post={postData.docs[0]} nav={navData} />
+      </>
+    );
   } catch (_) {
     return null;
   }
