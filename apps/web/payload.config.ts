@@ -8,7 +8,9 @@ import Posts from '@mono/web/collections/Posts';
 import Tags from '@mono/web/collections/Tags';
 import Users from '@mono/web/collections/User';
 import Videos from '@mono/web/collections/Videos';
+import BlogIndex from '@mono/web/globals/BlogIndex/BlogIndex.config';
 import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.config';
+import Homepage from '@mono/web/globals/Home/Homepage.config';
 import Nav from '@mono/web/globals/Layout/Layout.config';
 import { translator } from '@payload-enchants/translator';
 import { googleResolver } from '@payload-enchants/translator/resolvers/google';
@@ -169,7 +171,7 @@ export default buildConfig({
     defaultLocale: DEFAULT_LOCALE,
     fallback: true
   },
-  globals: [Nav, FourOhFour],
+  globals: [Nav, FourOhFour, Homepage, BlogIndex],
   routes: {
     api: '/api'
   },

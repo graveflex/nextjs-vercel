@@ -91,6 +91,20 @@ const Posts: CollectionConfig = {
       name: 'slug',
       label: 'Blog Post Slug',
       type: 'text',
+      unique: true,
+      validate: (value) => {
+        const regex = /[!@#$%^*[()+=.]/;
+        if (regex.test(value)) {
+          return 'Slug cannot contain special characters !@]{${%^*()[+= or .';
+        }
+        if (value === 'admin') {
+          return 'Slug cannot be admin';
+        }
+        if (value === 'api') {
+          return 'Slug cannot be api';
+        }
+        return true;
+      },
       admin: {
         position: 'sidebar',
         description: 'pathname for the blog deatail - do not inculde /.'

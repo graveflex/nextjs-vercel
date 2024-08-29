@@ -33,9 +33,17 @@ export default async function CatchallPage({
   const showDraft = searchParams.draft === 'true';
 
   try {
-    const [navData, data] = await Promise.all([
+    const [navData, homepageData, data] = await Promise.all([
       payload.findGlobal({
         slug: 'nav',
+        locale,
+        draft: showDraft,
+        depth: 2,
+        fallbackLocale: DEFAULT_LOCALE
+      }),
+
+      payload.findGlobal({
+        slug: 'homepage',
         locale,
         draft: showDraft,
         depth: 2,
@@ -54,8 +62,8 @@ export default async function CatchallPage({
       })
     ]);
 
-    // if there's an error fetching data, 404
-    if ('error' in data || !data.docs[0] || 'error' in navData) {
+    // if not page data and not the index check for redirects
+    if (!data.docs[0] && pageSlug !== '/') {
       const redirectPath = await redirectApi(pageSlug);
       if (
         !redirectPath ||
@@ -66,7 +74,19 @@ export default async function CatchallPage({
       redirect(redirectPath);
     }
 
-    const page = data.docs[0];
+    // if there's an error fetching data, 404
+    if ('error' in data || 'error' in navData) {
+      const redirectPath = await redirectApi(pageSlug);
+      if (
+        !redirectPath ||
+        (typeof redirectPath === 'object' && 'error' in redirectPath)
+      ) {
+        return notFound();
+      }
+      redirect(redirectPath);
+    }
+
+    const page = data.docs[0] ?? homepageData;
 
     return (
       <Layout theme={page.theme} {...navData}>

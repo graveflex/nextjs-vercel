@@ -9,24 +9,23 @@ import IconGridBlock from '@mono/web/blocks/IconGridBlock/IconGridBlock.config';
 import IframeBlock from '@mono/web/blocks/IframeBlock/IframeBlock.config';
 import MarkdownBlock from '@mono/web/blocks/MarkdownBlock/MarkdownBlock.config';
 import SectionHeaderBlock from '@mono/web/blocks/SectionHeaderBlock/SectionHeaderBlock.config';
+// InsertBlockConfigs
+
 import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
 import VideoBlock from '@mono/web/blocks/VideoBlock/VideoBlock.config';
-import formatSlug from '@mono/web/payload/utils/formatSlug';
-import type { CollectionConfig } from 'payload';
+import type { GlobalConfig } from 'payload';
 
-import { invalidateCache } from '../hooks/invalidateCache';
-import { publishBeforeRead } from '../hooks/publishBeforeRead';
+import { globalInvalidateCache } from '../../hooks/globalInvalidateCache';
+import { globalPublishBeforeRead } from '../../hooks/globalPublishBeforeRead';
 
 const themeOptions = [
   { label: 'Light', value: 'light' },
   { label: 'Dark', value: 'dark' }
 ];
 
-const Pages: CollectionConfig = {
-  slug: 'pages',
+const BlogIndex: GlobalConfig = {
+  slug: 'blogIndex',
   admin: {
-    useAsTitle: 'pageTitle',
-    defaultColumns: ['pageTitle', 'slug', '_status', 'createdAt'],
     preview: (doc, { locale }) => {
       const { slug } = (doc as { slug: string }) || '/';
 
@@ -78,8 +77,10 @@ const Pages: CollectionConfig = {
       label: 'Page Title',
       type: 'text',
       localized: true,
+      defaultValue: 'Blog Index',
       admin: {
-        position: 'sidebar'
+        position: 'sidebar',
+        readOnly: true
       },
       required: true
     },
@@ -88,28 +89,10 @@ const Pages: CollectionConfig = {
       label: 'Page Slug',
       type: 'text',
       unique: true,
-      validate: (value) => {
-        const regex = /[!@#$%^*[()+=.]/;
-        if (regex.test(value)) {
-          return 'Slug cannot contain special characters !@]{${%^*()[+= or .';
-        }
-        if (value === '/') {
-          return 'Slug cannot be / - this is reserved for the homepage global';
-        }
-        if (value === 'admin') {
-          return 'Slug cannot be admin';
-        }
-        if (value === 'api') {
-          return 'Slug cannot be api';
-        }
-        return true;
-      },
+      defaultValue: 'blog',
       admin: {
-        position: 'sidebar',
-        description: 'Will be auto-generated to title if left blank.'
-      },
-      hooks: {
-        beforeValidate: [formatSlug('pageTitle')]
+        readOnly: true,
+        position: 'sidebar'
       }
     },
     {
@@ -138,9 +121,9 @@ const Pages: CollectionConfig = {
     }
   ],
   hooks: {
-    beforeRead: [publishBeforeRead],
-    afterChange: [invalidateCache]
+    beforeRead: [globalPublishBeforeRead],
+    afterChange: [globalInvalidateCache]
   }
 };
 
-export default Pages;
+export default BlogIndex;

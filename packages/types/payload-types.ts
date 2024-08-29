@@ -54,6 +54,8 @@ export interface Config {
   globals: {
     nav: Nav;
     'four-oh-four': FourOhFour;
+    homepage: Homepage;
+    blogIndex: BlogIndex;
   };
   locale: 'en-US' | 'es-US';
   user: User & {
@@ -1320,6 +1322,66 @@ export interface FourOhFour {
     };
     [k: string]: unknown;
   } | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage".
+ */
+export interface Homepage {
+  id: number;
+  blocks?:
+    | (
+        | IframeBlockT
+        | IconGridBlockT
+        | FullBleedImageBlockT
+        | SectionHeaderBlockT
+        | GalleryGridBlockT
+        | VideoBlockT
+        | FormBlockT
+        | CardGridBlockT
+        | MarkdownBlockT
+        | FAQBlockT
+        | TextImageBlockT
+        | HeroBlockT
+      )[]
+    | null;
+  pageTitle: string;
+  slug?: string | null;
+  theme?: ('light' | 'dark') | null;
+  publishedAt?: string | null;
+  _status?: ('draft' | 'published') | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blogIndex".
+ */
+export interface BlogIndex {
+  id: number;
+  blocks?:
+    | (
+        | IframeBlockT
+        | IconGridBlockT
+        | FullBleedImageBlockT
+        | SectionHeaderBlockT
+        | GalleryGridBlockT
+        | VideoBlockT
+        | FormBlockT
+        | CardGridBlockT
+        | MarkdownBlockT
+        | FAQBlockT
+        | TextImageBlockT
+        | HeroBlockT
+      )[]
+    | null;
+  pageTitle: string;
+  slug?: string | null;
+  theme?: ('light' | 'dark') | null;
+  publishedAt?: string | null;
+  _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

@@ -4,6 +4,7 @@ const format = (val: string): string =>
   val
     .replace(/ /g, '-')
     .replace(/^[^\w-]+/, '')
+    .replace(/--/g, '-')
     .toLowerCase();
 
 const formatSlug =
@@ -12,10 +13,12 @@ const formatSlug =
     const fallbackData =
       (data && data[fallback]) || (originalDoc && originalDoc[fallback]);
 
+    // If the fallback is 'Home' then return a forward slash
     if (fallbackData === 'Home') {
       return '/';
     }
 
+    // remove forward slash from the beginning of the string
     if (typeof value === 'string') {
       return format(value.replace(/^\//, ''));
     }

@@ -1,8 +1,8 @@
 'use client';
 
 import { WEB_URL } from '@mono/settings';
-import type { Nav, Page, Post } from '@mono/types/payload-types';
-import BlogIndex from '@mono/ui/components/BlogIndex';
+import type { BlogIndex, Nav, Post } from '@mono/types/payload-types';
+import BlogWrapper from '@mono/ui/components/BlogIndex';
 import useIndexControls from '@mono/ui/lib/hooks/useIndexControls';
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import Layout from '@mono/web/globals/Layout';
@@ -16,10 +16,10 @@ function PageTemplate({
   postData
 }: {
   postData: PaginatedDocs<Post>;
-  page: Page;
+  page: BlogIndex;
   nav: Nav;
 }) {
-  const { data } = useLivePreview<Page>({
+  const { data } = useLivePreview<BlogIndex>({
     initialData: page,
     serverURL: WEB_URL,
     depth: 1
@@ -43,7 +43,7 @@ function PageTemplate({
     <Layout {...nav} theme={theme}>
       {blocks && <BlocksRenderer blocks={blocks} />}
       {postData && (
-        <BlogIndex
+        <BlogWrapper
           posts={postData.docs}
           activeFilters={activeFilters}
           activeSort={activeSort}

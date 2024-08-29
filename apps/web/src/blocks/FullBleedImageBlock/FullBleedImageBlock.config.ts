@@ -4,6 +4,7 @@ import type { Block } from 'payload';
 const FullBleedImageBlock: Block = {
   slug: 'fullBleedImageBlock',
   interfaceName: 'FullBleedImageBlockT',
+  dbName: 'fbImageB',
   fields: [
     BlockConfig(),
     {

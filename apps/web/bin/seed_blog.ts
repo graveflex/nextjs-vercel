@@ -48,8 +48,8 @@ async function downloadImage(url: string): Promise<string> {
 const seedPage = async ({ payload }: SeedFnProps) => {
   console.info(`@-->seeding blog index page`);
 
-  await payload.create({
-    collection: 'pages',
+  await payload.updateGlobal({
+    slug: 'blogIndex',
     data: {
       pageTitle: 'Blog',
       slug: 'blog'
