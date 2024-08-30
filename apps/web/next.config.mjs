@@ -29,7 +29,7 @@ export default withPayload(
     transpilePackages: ['@mono/ui', '@mono/theme', '@mono/types'],
 
     experimental: {
-      reactCompiler: true
+      reactCompiler: false // <-- breaks styled-components SSR when true
     },
 
     compiler: {
@@ -54,7 +54,7 @@ export default withPayload(
         // namespace: '',
 
         // Not supported yet.
-        minify: false,
+        minify: true,
 
         // Not supported yet.
         transpileTemplateLiterals: true,
