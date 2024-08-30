@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css } from '@refract-ui/sc';
 
 interface T {
   icons: Record<string, Parameters<typeof React.createElement>[0]>;

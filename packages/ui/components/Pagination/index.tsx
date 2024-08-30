@@ -4,7 +4,7 @@ import Button from '@mono/ui/components/Button';
 import type React from 'react';
 import { useCallback } from 'react';
 import ReactPaginate from 'react-paginate';
-import styled, { css } from 'styled-components';
+import styled, { css } from '@refract-ui/sc';
 
 const OuterContainer = styled.div`
   display: grid;

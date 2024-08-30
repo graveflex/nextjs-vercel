@@ -5,7 +5,7 @@ import { ctaEvalHref } from '@mono/ui/utils/ctaEvalHref';
 import Link from 'next/link';
 import React from 'react';
 import type { DefaultTheme } from 'styled-components';
-import styled, { css } from 'styled-components';
+import styled, { css } from '@refract-ui/sc';
 
 type colorProps = keyof DefaultTheme['allColors'];
 

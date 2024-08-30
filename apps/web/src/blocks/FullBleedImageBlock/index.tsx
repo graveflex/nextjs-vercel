@@ -4,7 +4,7 @@ import type { FullBleedImageBlockT as PayloadType } from '@mono/types/payload-ty
 import Wrapper from '@mono/ui/components/Wrapper';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css } from '@refract-ui/sc';
 
 export type FullBleedImageBlockType = Omit<PayloadType, 'blockType'>;
 

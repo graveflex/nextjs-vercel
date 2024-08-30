@@ -4,7 +4,7 @@ import RenderIcon, { type IconProps } from '@mono/ui/components/RenderIcon';
 import type { LinkProps } from 'next/link';
 import Link from 'next/link';
 import type React from 'react';
-import styled from 'styled-components';
+import styled from '@refract-ui/sc';
 
 export type PayloadLinkProps = Partial<LinkProps> & {
   children?: React.ReactNode;
