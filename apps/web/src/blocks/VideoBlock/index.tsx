@@ -3,8 +3,8 @@
 import type { VideoBlockT as PayloadType } from '@mono/types/payload-types';
 import Video from '@mono/ui/components/Video';
 import Wrapper from '@mono/ui/components/Wrapper';
+import styled, { css } from '@refract-ui/sc';
 import React from 'react';
-import styled, { css } from 'styled-components';
 
 export type VideoBlockType = Omit<PayloadType, 'blockType'>;
 

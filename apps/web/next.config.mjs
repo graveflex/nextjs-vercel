@@ -29,7 +29,7 @@ export default withPayload(
     transpilePackages: ['@mono/ui', '@mono/theme', '@mono/types'],
 
     experimental: {
-      reactCompiler: true
+      reactCompiler: false
     },
 
     compiler: {
