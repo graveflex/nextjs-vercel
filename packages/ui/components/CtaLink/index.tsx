@@ -2,10 +2,10 @@
 
 import type { PayLoadLink } from '@mono/types/payload-types';
 import { ctaEvalHref } from '@mono/ui/utils/ctaEvalHref';
+import styled, { css } from '@refract-ui/sc';
 import Link from 'next/link';
 import React from 'react';
 import type { DefaultTheme } from 'styled-components';
-import styled, { css } from '@refract-ui/sc';
 
 type colorProps = keyof DefaultTheme['allColors'];
 

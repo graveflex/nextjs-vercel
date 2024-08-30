@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
+import styled from '@refract-ui/sc';
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import styled from '@refract-ui/sc';
 
 import type { WrapperProps } from '.';
 import Wrapper from '.';
