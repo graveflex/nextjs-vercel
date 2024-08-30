@@ -1,20 +1,20 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
 import type {
-  CollapsibleMenu,
   CTAType,
+  CollapsibleMenu,
   FlatMenu,
   IconNavItems,
   Image
 } from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
 import CtaLink from '@mono/ui/components/CtaLink';
+import RenderIcon from '@mono/ui/components/RenderIcon';
 import Link from '@mono/ui/components/primitives/PayloadLink';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
-import RenderIcon from '@mono/ui/components/RenderIcon';
 import styled, { css } from '@refract-ui/sc';
 import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 import s from 'styled-components';
 
 // UPDATE TO USE THEMECOLOR
@@ -38,35 +38,17 @@ const NavContainer = styled.div<{ $open: boolean; $scrolled: boolean }>`
     padding: 1rem 1.25rem;
     border-bottom: ${$scrolled ? '1px solid black' : 'none'};
 
-    ${$open &&
-    css`
+    ${
+      $open &&
+      css`
       grid-template-areas: 'nav nav' 'mobileButtons mobileButtons';
-    `}
+    `
+    }
 
     ${mq.lg`
       grid-template-areas: "nav buttons";
       gap: 0;
     `}
-  `}
-`;
-
-const LinkStyled = styled.a`
-  ${({ theme: { allColors } }) => css`
-    position: relative;
-    color: ${allColors.fg} !important;
-    letter-spacing: 0.3px;
-    transition: all 0.3s ease;
-    span {
-      transition: 0.3s ease;
-      border-bottom: 1px solid transparent;
-    }
-    text-decoration: none;
-    &:hover {
-      span {
-        border-bottom: 1px solid ${allColors.fg};
-      }
-      color: ${allColors.fg} !important;
-    }
   `}
 `;
 
@@ -383,8 +365,9 @@ const NavDropdownItem = styled.div<{ $open: boolean }>`
     margin-top: auto;
   }
   ${({ $open }) => css`
-    ${$open &&
-    css`
+    ${
+      $open &&
+      css`
       .mobileItemLabel {
         display: grid;
         border-bottom: none;
@@ -406,7 +389,8 @@ const NavDropdownItem = styled.div<{ $open: boolean }>`
           transition: transform 0.25s;
         }
       }
-    `}
+    `
+    }
   `}
 
   ${({ theme: { mq } }) => mq.lg`
