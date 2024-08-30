@@ -196,9 +196,13 @@ export default buildConfig({
     vercelBlobStorage({
       enabled: true,
       collections: {
-        [Images.slug]: true,
+        [Images.slug]: {
+          disablePayloadAccessControl: true
+        },
         [Files.slug]: true,
-        [Videos.slug]: true
+        [Videos.slug]: {
+          disablePayloadAccessControl: true
+        }
       },
       token: process.env.BLOB_READ_WRITE_TOKEN as string
     }),
