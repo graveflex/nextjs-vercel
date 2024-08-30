@@ -1,4 +1,4 @@
-import { WEB_URL } from '@mono/settings';
+import { WEB_URL } from '@mono/web/lib/constants';
 import CardGridBlock from '@mono/web/blocks/CardGridBlock/CardGridBlock.config';
 import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
 import FormBlock from '@mono/web/blocks/FormBlock/FormBlock.config';
