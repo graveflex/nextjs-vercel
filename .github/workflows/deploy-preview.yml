@@ -52,6 +52,7 @@ jobs:
             pnpm db:migrate
 
       - name: Assign DB ENV Vars
+        continue-on-error: true
         run: |
           branch_name=${{ steps.branch-name.outputs.current_branch }}
           echo ${{ steps.create-branch.outputs.db_url }} | vercel env add DATABASE_URL preview $branch_name --scope=graveflex --token=${{ env.VERCEL_TOKEN }}
