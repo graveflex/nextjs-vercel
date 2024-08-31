@@ -51,9 +51,6 @@ jobs:
 
             pnpm db:migrate
 
-      - name: Build Deps
-        run: pnpm env:dev -- turbo run build --filter={packages/settings}...
-
       - name: Pull Vercel Environment Information
         run: |
           branch_name=${{ steps.branch-name.outputs.current_branch }}
