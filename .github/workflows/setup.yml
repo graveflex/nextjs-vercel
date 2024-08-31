@@ -5,8 +5,6 @@ on:
     secrets:
       DOTENV_PRIVATE_KEY:
         required: true
-      GITHUB_TOKEN:
-        required: true
       NEON_DATABASE_USERNAME:
         required: true
       NEON_API_KEY:
