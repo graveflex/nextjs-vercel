@@ -1,5 +1,5 @@
 {
-  "name": "@/web",
+  "name": "@mono/web",
   "description": "GFX Monorepo Web App",
   "version": "1.0.0",
   "private": true,
