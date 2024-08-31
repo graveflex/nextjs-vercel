@@ -32,6 +32,10 @@ jobs:
         id: branch-name
         uses: tj-actions/branch-names@v8
 
+      - name: Get Head Commit Message
+        id: get_head_commit_message
+        run: echo "HEAD_COMMIT_MESSAGE=$(git show -s --format=%s)" >> "$GITHUB_OUTPUT"
+
       - name: Get the Commit Author Name
         run: |
           echo "AUTHOR_NAME=$(git log -1 --pretty=format:'%an')" >> $GITHUB_ENV
@@ -82,7 +86,7 @@ jobs:
           author_name="${{ env.AUTHOR_NAME }}"
           db_url="${{ steps.create-branch.outputs.db_url_with_pooler }}"
           db_url_unpooled="${{ steps.create-branch.outputs.db_url }}"
-          commit_message="${{ github.event.head_commit.message }}"
+          commit_message="${{ env.HEAD_COMMIT_MESSAGE }}"
           gh_username="${{ github.actor }}"
           token="${{ env.VERCEL_TOKEN }}"
           preview_url=$(vercel deploy \
