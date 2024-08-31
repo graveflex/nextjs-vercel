@@ -88,7 +88,7 @@ jobs:
       - name: Deploy Preview to Vercel
         id: deploy
         env:
-          VERCEL_GIT_COMMIT_REF: branch_name=${{ steps.branch-name.outputs.current_branch }}
+          VERCEL_GIT_COMMIT_REF: ${{ steps.branch-name.outputs.current_branch }}
         run: |
           branch_name="${{ steps.branch-name.outputs.current_branch }}"
           commit_sha="${{ env.COMMIT_SHA }}"
