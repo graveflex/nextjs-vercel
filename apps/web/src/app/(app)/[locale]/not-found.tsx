@@ -1,5 +1,5 @@
-import { DEFAULT_LOCALE, type LOCALES } from '@mono/settings';
 import NotFoundC from '@mono/web/components/NotFound';
+import { DEFAULT_LOCALE, type LOCALES } from '@mono/web/lib/constants';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { cookies } from 'next/headers';

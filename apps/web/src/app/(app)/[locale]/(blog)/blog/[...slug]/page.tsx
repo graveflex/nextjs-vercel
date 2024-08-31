@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/settings';
+import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
@@ -16,7 +16,7 @@ interface BlogDetailProps {
     slug: string[];
     draft?: boolean;
   };
-};
+}
 
 export default async function Blog({
   params: { locale = DEFAULT_LOCALE, slug, draft }
@@ -56,9 +56,7 @@ export default async function Blog({
   return <PageTemplate post={postData.docs[0]} nav={navData} />;
 }
 
-export async function generateMetadata({
-  params: { slug }
-}: BlogDetailProps) {
+export async function generateMetadata({ params: { slug } }: BlogDetailProps) {
   const payload = await getPayloadHMR({ config });
   const pageSlug = slug ? slug.join('/') : '/';
   try {

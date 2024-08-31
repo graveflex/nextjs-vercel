@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/settings';
+import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { notFound } from 'next/navigation';

@@ -1,7 +1,11 @@
-import { DEFAULT_LOCALE, LOCALES, type LanguageLocale } from '@mono/settings';
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import Loading from '@mono/web/components/Loading';
 import Layout from '@mono/web/globals/Layout';
+import {
+  DEFAULT_LOCALE,
+  LOCALES,
+  type LanguageLocale
+} from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';

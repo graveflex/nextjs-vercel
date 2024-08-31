@@ -1,5 +1,3 @@
-// import nodeMailer from 'nodemailer';
-import { DEFAULT_LOCALE, LOCALES } from '@mono/settings';
 import Authors from '@mono/web/collections/Authors';
 import Files from '@mono/web/collections/Files';
 import Images from '@mono/web/collections/Images';
@@ -12,6 +10,8 @@ import BlogIndex from '@mono/web/globals/BlogIndex/BlogIndex.config';
 import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.config';
 import Homepage from '@mono/web/globals/Home/Homepage.config';
 import Nav from '@mono/web/globals/Layout/Layout.config';
+// import nodeMailer from 'nodemailer';
+import { DEFAULT_LOCALE, LOCALES } from '@mono/web/lib/constants';
 import { WEB_URL } from '@mono/web/lib/constants';
 import { translator } from '@payload-enchants/translator';
 import { googleResolver } from '@payload-enchants/translator/resolvers/google';

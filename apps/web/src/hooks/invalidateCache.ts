@@ -1,4 +1,4 @@
-import { LOCALES } from '@mono/settings';
+import { LOCALES } from '@mono/web/lib/constants';
 import { revalidatePath } from 'next/cache';
 import type { CollectionAfterChangeHook } from 'payload';
 

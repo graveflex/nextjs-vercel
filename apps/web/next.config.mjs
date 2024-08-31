@@ -1,6 +1,6 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { BLOB_STORE_ID } from '@mono/settings';
+import { BLOB_STORE_ID } from '@mono/web/lib/constants';
 import { withPayload } from '@payloadcms/next/withPayload';
 import createNextIntlPlugin from 'next-intl/plugin';
 

@@ -31,12 +31,10 @@
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "setup": {
-      "cache": false,
-      "dependsOn": ["@mono/settings#buildSettings"]
+      "cache": false
     },
     "db:migrate": {
-      "cache": false,
-      "dependsOn": ["@mono/settings#buildSettings"]
+      "cache": false
     },
     "clean": {},
     "//#lint": {},
@@ -44,28 +42,17 @@
       "cache": false
     },
     "//#test": {},
-    "types": {
-      "dependsOn": ["@mono/settings#buildSettings"]
-    },
+    "types": {},
     "//#test:watch": {},
     "//#test:coverage": {
-      "dependsOn": ["@mono/settings#buildSettings"],
       "outputs": ["coverage/**"]
     },
     "migrations:create": {},
     "migrations:run": {},
-    "buildSettings": {
-      "cache": false,
-      "outputs": ["dist/**"]
-    },
     "generate:types": {
-      "cache": false,
-      "dependsOn": ["@mono/settings#setup-dev"]
-    },
-    "@mono/web#payload": {
       "cache": false
     },
-    "@mono/settings#setup-dev": {
+    "@mono/web#payload": {
       "cache": false
     },
     "dev": {

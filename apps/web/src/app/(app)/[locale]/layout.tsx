@@ -1,5 +1,5 @@
-import type { LanguageLocale } from '@mono/settings';
 import StyledComponentsRegistry from '@mono/web/lib/StyledComponentRegistry';
+import type { LanguageLocale } from '@mono/web/lib/constants';
 import type React from 'react';
 
 import Providers from './providers';
