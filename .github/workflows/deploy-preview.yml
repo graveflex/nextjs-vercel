@@ -28,9 +28,6 @@ jobs:
       - name: Link Vercel App
         run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
 
-      - name: Install GitHub CLI
-        run: sudo apt-get install gh
-
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v8
@@ -38,6 +35,9 @@ jobs:
       - name: Get the Commit Author Name
         run: |
           echo "AUTHOR_NAME=$(git log -1 --pretty=format:'%an')" >> $GITHUB_ENV
+
+      - name: Set Commit SHA as an environment variable
+        run: echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
 
       - name: Create Neon Branch
         id: create-branch
@@ -77,17 +77,23 @@ jobs:
         id: deploy
         run: |
           branch_name=${{ steps.branch-name.outputs.current_branch }}
+          commit_sha=${{ env.COMMIT_SHA }}
+          pr_id=${{ github.event.number }}
+          author_name=${{ env.AUTHOR_NAME }}
+          db_url=${{ steps.create-branch.outputs.db_url_with_pooler }}
+          db_url_unpooled=${{ steps.create-branch.outputs.db_url }}
+          token=${{ env.VERCEL_TOKEN }}
           preview_url=$(vercel deploy \
-            --build-env VERCEL_GIT_COMMIT_REF=${{ steps.branch-name.outputs.current_branch }} \
-            --build-env VERCEL_GIT_COMMIT_SHA=$GITHUB_SHA \
-            --build-env VERCEL_GIT_PULL_REQUEST_ID=${{ github.event.number }} \
+            --build-env VERCEL_GIT_COMMIT_REF=$branch_name \
+            --build-env VERCEL_GIT_COMMIT_SHA=$commit_sha \
+            --build-env VERCEL_GIT_PULL_REQUEST_ID=$pr_id \
             --build-env VERCEL_GIT_REPO_OWNER=graveflex \
             --build-env VERCEL_GIT_REPO_SLUG=nextjs-vercel \
-            --build-env VERCEL_GIT_COMMIT_AUTHOR_NAME=${{ env.AUTHOR_NAME }} \
-            --build-env DATABASE_URL=${{ steps.create-branch.outputs.db_url_with_pooler }} \
-            --build-env DATABASE_URL_UNPOOLED=${{ steps.create-branch.outputs.db_url }} \
+            --build-env VERCEL_GIT_COMMIT_AUTHOR_NAME=$author_name \
+            --build-env DATABASE_URL=$db_url \
+            --build-env DATABASE_URL_UNPOOLED=$db_url_unpooled \
             --prebuilt \
-            --token=${{ env.VERCEL_TOKEN }} \
+            --token=$token \
             --scope=graveflex \
             --yes \
             --debug)
