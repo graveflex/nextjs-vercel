@@ -1,0 +1,48 @@
+name: Setup
+
+on:
+  workflow_call:
+    secrets:
+      GITHUB_TOKEN:
+        required: true
+      NEON_DATABASE_USERNAME:
+        required: true
+      NEON_API_KEY:
+        required: true
+      NEON_PROJECT_ID:
+        required: true
+      VERCEL_TOKEN:
+        required: true
+      DOTENV_PRIVATE_KEY:
+        required: true
+      TURBO_TOKEN:
+        required: true
+      TURBO_TEAM:
+        required: true
+      VERCEL_ORG_ID:
+        required: true
+      VERCEL_PROJECT_ID:
+        required: true
+
+jobs:
+  setup:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - name: Install dependencies
+        run: pnpm install
