@@ -1,8 +1,9 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { BLOB_STORE_ID } from '@mono/web/lib/constants';
 import { withPayload } from '@payloadcms/next/withPayload';
 import createNextIntlPlugin from 'next-intl/plugin';
+
+const BLOB_STORE_ID = process.env.BLOB_STORE_ID;
 
 if (process.env.CI) {
   process.env.NODE_ENV = 'production';
