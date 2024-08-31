@@ -10,7 +10,7 @@ env:
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
   DOTENV_PRIVATE_KEY: ${{ secrets.DOTENV_PRIVATE_KEY_CI }}
   TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-  TURBO_TEAM: graveflex
+  TURBO_TEAM: Graveflex
 
 jobs:
   deploy-preview:
