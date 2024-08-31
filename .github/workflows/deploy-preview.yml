@@ -25,6 +25,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Link Vercel App
+        working-directory: ./apps/web
+        run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
+
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v8
@@ -51,15 +55,11 @@ jobs:
       - name: Build Deps
         run: pnpm env:dev -- turbo run build --filter={packages/settings}...
 
-      - name: Link Vercel App
-        working-directory: ./apps/web
-        run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }}
-
       - name: Pull Vercel Environment Information
         working-directory: ./apps/web
         run: |
           branch_name=${{ steps.branch-name.outputs.current_branch }}
-          vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }} --git-branch=$branch_name
+          vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }} --git-branch=$branch_name --scope=graveflex
 
       - name: Build Project Artifacts
         working-directory: ./apps/web
@@ -69,7 +69,7 @@ jobs:
         id: deploy
         working-directory: ./apps/web
         run: |
-          preview_url=$(pnpm env:dev -- vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }})
+          preview_url=$(pnpm env:dev -- vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }} --scope=graveflex)
           echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
 
       - name: Comment on Pull Request
