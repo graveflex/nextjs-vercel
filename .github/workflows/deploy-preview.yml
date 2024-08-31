@@ -48,13 +48,14 @@ jobs:
 
             pnpm db:migrate
 
+      - name: Build Deps
+        run: pnpm env:dev -- turbo run build --filter={packages/settings}...
+
       - name: Pull Vercel Environment Information
         run: |
           branch_name=${{ steps.branch-name.outputs.current_branch }}
           vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }} --git-branch=$branch_name
-
-      - name: Build Deps
-        run: pnpm env:dev -- turbo run build --filter={packages/settings}...
+        working-directory: ./apps/web
 
       - name: Build Project Artifacts
         working-directory: ./apps/web
