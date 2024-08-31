@@ -52,10 +52,10 @@ jobs:
         run: pnpm env:dev -- turbo run build --filter={packages/settings}...
 
       - name: Pull Vercel Environment Information
+        working-directory: ./apps/web
         run: |
           branch_name=${{ steps.branch-name.outputs.current_branch }}
           vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }} --git-branch=$branch_name
-        working-directory: ./apps/web
 
       - name: Build Project Artifacts
         working-directory: ./apps/web

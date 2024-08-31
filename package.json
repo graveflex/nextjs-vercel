@@ -46,7 +46,6 @@
     "@dotenvx/dotenvx": "^1.10.1",
     "@vitejs/plugin-react": "latest",
     "@vitest/coverage-v8": "latest",
-    "vercel": "^37.1.2",
     "vite-plugin-dts": "latest",
     "vite-plugin-environment": "latest",
     "vite-plugin-svgr": "latest",

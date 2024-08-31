@@ -1,5 +1,5 @@
 {
-  "name": "@mono/web",
+  "name": "@/web",
   "description": "GFX Monorepo Web App",
   "version": "1.0.0",
   "private": true,
@@ -94,6 +94,7 @@
     "tmp": "^0.2.3",
     "tsx": "latest",
     "typescript": "latest",
+    "vercel": "^37.1.2",
     "vite-plugin-svgr": "latest",
     "vite-transform-stub": "latest",
     "vite-tsconfig-paths": "latest",
