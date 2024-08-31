@@ -89,14 +89,12 @@ jobs:
             --scope=graveflex \
             --yes \
             --debug \
-            --env VERCEL_GIT_COMMIT_AUTHOR_NAME="$author_name" \
-            --env VERCEL_GIT_COMMIT_REF="$branch_name" \
-            --env VERCEL_GIT_COMMIT_SHA="$commit_sha" \
-            --env VERCEL_GIT_PULL_REQUEST_ID="$pr_id" \
-            --build-env VERCEL_GIT_COMMIT_AUTHOR_NAME="$author_name" \
-            --build-env VERCEL_GIT_COMMIT_REF="$branch_name" \
-            --build-env VERCEL_GIT_COMMIT_SHA="$commit_sha" \
-            --build-env VERCEL_GIT_PULL_REQUEST_ID="$pr_id")
+            -m githubCommitOrg=graveflex \
+            -m githubCommitRef="$branch_name"
+            -m githubCommitRepo=nextjs-vercel
+            -m githubCommitSha="$commit_sha"
+            -m githubCommitAuthorName="$author_name" \
+          )
           echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
 
       - name: Comment on Pull Request
