@@ -34,7 +34,7 @@
     "cicd": "pnpm env:ci -- turbo run types lint test:coverage --ui=tui",
     "db": "export $(grep -e '^DATABASE_URL' -- .env) && open ${DATABASE_URL}",
     "db:migrate": "pnpm env:dev -- turbo run db:migrate",
-    "vercel-build": "pnpm env:dev -- turbo run build --filter=@mono/web..."
+    "vercel-build": "pnpm env:dev -- turbo run build --filter=@mono/web... --remote-only"
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
