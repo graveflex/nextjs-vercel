@@ -83,7 +83,7 @@ jobs:
           db_url="${{ steps.create-branch.outputs.db_url_with_pooler }}"
           db_url_unpooled="${{ steps.create-branch.outputs.db_url }}"
           token="${{ env.VERCEL_TOKEN }}"
-          preview_url=$(vercel deploy \
+          preview_url=$(vercel deploy --prebuilt --token=$token --scope=graveflex --yes --debug \
             --build-env VERCEL_GIT_COMMIT_REF=$branch_name \
             --build-env VERCEL_GIT_COMMIT_SHA=$commit_sha \
             --build-env VERCEL_GIT_PULL_REQUEST_ID=$pr_id \
@@ -91,12 +91,7 @@ jobs:
             --build-env VERCEL_GIT_REPO_SLUG=nextjs-vercel \
             --build-env VERCEL_GIT_COMMIT_AUTHOR_NAME=$author_name \
             --build-env DATABASE_URL=$db_url \
-            --build-env DATABASE_URL_UNPOOLED=$db_url_unpooled \
-            --prebuilt \
-            --token=$token \
-            --scope=graveflex \
-            --yes \
-            --debug)
+            --build-env DATABASE_URL_UNPOOLED=$db_url_unpooled)
           echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
 
       - name: Comment on Pull Request
