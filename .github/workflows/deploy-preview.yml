@@ -60,12 +60,12 @@ jobs:
           vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }} --git-branch=$branch_name --scope=graveflex --cwd=./apps/web
 
       - name: Build Project Artifacts
-        run: pnpm env:dev -- vercel build --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
+        run: pnpm env:dev -- vercel build --token=${{ env.VERCEL_TOKEN }} --scope=graveflex --cwd=./apps/web
 
       - name: Deploy Preview to Vercel
         id: deploy
         run: |
-          preview_url=$(pnpm env:dev -- vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }} --scope=graveflex)
+          preview_url=$(pnpm env:dev -- vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }} --scope=graveflex --cwd=./apps/web)
           echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
 
       - name: Comment on Pull Request
