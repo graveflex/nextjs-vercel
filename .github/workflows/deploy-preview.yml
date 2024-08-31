@@ -57,7 +57,7 @@ jobs:
           vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }} --git-branch=$branch_name --scope=graveflex --cwd=./apps/web
 
       - name: Build Project Artifacts
-        run: pnpm env:dev -- vercel build --token=${{ env.VERCEL_TOKEN }} --scope=graveflex --cwd=./apps/web
+        run: pnpm env:dev -- vercel build --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
 
       - name: Deploy Preview to Vercel
         id: deploy
