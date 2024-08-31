@@ -3,6 +3,8 @@ name: Setup
 on:
   workflow_call:
     secrets:
+      DOTENV_PRIVATE_KEY:
+        required: true
       GITHUB_TOKEN:
         required: true
       NEON_DATABASE_USERNAME:
@@ -13,16 +15,22 @@ on:
         required: true
       VERCEL_TOKEN:
         required: true
-      DOTENV_PRIVATE_KEY:
-        required: true
-      TURBO_TOKEN:
-        required: true
-      TURBO_TEAM:
-        required: true
       VERCEL_ORG_ID:
         required: true
       VERCEL_PROJECT_ID:
         required: true
+
+env:
+  NEON_DATABASE_USERNAME: ${{ secrets.NEON_DATABASE_USERNAME }} # change this to your database username
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Required for commenting on pull requests for private repos
+  NEON_API_KEY: ${{ secrets.NEON_API_KEY }} # You can generate a an API key in your account settings
+  NEON_PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }} # You can find this in your project settings
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  DOTENV_PRIVATE_KEY: ${{ secrets.DOTENV_PRIVATE_KEY_CI }}
+  TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  TURBO_TEAM: Graveflex
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
   setup:
