@@ -53,13 +53,18 @@ jobs:
           branch_name=${{ steps.branch-name.outputs.current_branch }}
           vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }} --git-branch=$branch_name
 
+      - name: Build Deps
+        run: pnpm env:dev -- turbo run build --filter={packages/settings}...
+
       - name: Build Project Artifacts
-        run: pnpm env:dev -- vercel build apps/web --token=${{ env.VERCEL_TOKEN }} --output=public
+        working-directory: ./apps/web
+        run: pnpm env:dev -- vercel build --token=${{ env.VERCEL_TOKEN }}
 
       - name: Deploy Preview to Vercel
         id: deploy
+        working-directory: ./apps/web
         run: |
-          preview_url=$(vercel deploy --prebuilt apps/web --token=${{ env.VERCEL_TOKEN }})
+          preview_url=$(vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }})
           echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
 
       - name: Comment on Pull Request
