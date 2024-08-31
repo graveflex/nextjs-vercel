@@ -84,8 +84,8 @@ jobs:
             --build-env VERCEL_GIT_REPO_OWNER=graveflex \
             --build-env VERCEL_GIT_REPO_SLUG=nextjs-vercel \
             --build-env VERCEL_GIT_COMMIT_AUTHOR_NAME=${{ env.AUTHOR_NAME }} \
-            --build-env DATABASE_URL=${{ steps.create-branch.outputs.db_url_with_pooler }}
-            --build-env DATABASE_URL_UNPOOLED=${{ steps.create-branch.outputs.db_url }}
+            --build-env DATABASE_URL=${{ steps.create-branch.outputs.db_url_with_pooler }} \
+            --build-env DATABASE_URL_UNPOOLED=${{ steps.create-branch.outputs.db_url }} \
             --prebuilt \
             --token=${{ env.VERCEL_TOKEN }} \
             --scope=graveflex \
