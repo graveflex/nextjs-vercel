@@ -101,12 +101,7 @@ jobs:
             --scope=graveflex \
             --yes \
             --debug \
-            -e VERCEL_GIT_COMMIT_REF="$branch_name" \
-            -m githubCommitOrg=graveflex \
             -m githubCommitRef="$branch_name" \
-            -m githubCommitRepo=nextjs-vercel \
-            -m githubCommitSha="$commit_sha" \
-            -m githubCommitAuthorName="$gh_username" \
           )
           echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
 
