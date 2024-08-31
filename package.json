@@ -33,7 +33,7 @@
     "cicd": "pnpm env:ci -- turbo run types lint test:coverage --ui=tui",
     "db": "export $(grep -e '^DATABASE_URL' -- .env) && open ${DATABASE_URL}",
     "db:migrate": "pnpm env:dev -- turbo run db:migrate",
-    "vercel-build": "pnpm env:dev -- turbo run build --filter=@mono/web... --remote-only"
+    "vercel-build": "pnpm env:dev -- turbo run build --filter=@mono/web..."
   },
   "devDependencies": {
     "@biomejs/biome": "1.8.3",
@@ -95,7 +95,7 @@
     "babel-plugin-react-compiler": "0.0.0-experimental-48eb8f4-20240822",
     "framer-motion": "12.0.0-alpha.0",
     "payload": "3.0.0-beta.97",
-    "next": "15.0.0-canary.104",
+    "next": "15.0.0-canary.136",
     "react": "19.0.0-rc-eb3ad065-20240822",
     "react-dom": "19.0.0-rc-eb3ad065-20240822",
     "sharp": "0.32.6",
