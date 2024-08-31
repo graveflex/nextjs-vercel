@@ -63,7 +63,7 @@
     },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**", ".vercel/**"]
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**", ".vercel/**", "public/**"]
     },
     "start": {
       "dependsOn": ["^start"],
