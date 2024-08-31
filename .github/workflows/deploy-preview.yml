@@ -26,7 +26,7 @@ jobs:
         run: pnpm install
 
       - name: Link Vercel App
-        run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
+        run: vercel link apps/web --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
 
       - name: Get branch name
         id: branch-name
@@ -89,6 +89,11 @@ jobs:
             --scope=graveflex \
             --yes \
             --debug \
+            --env VERCEL_GIT_COMMIT_AUTHOR_NAME="$author_name" \
+            --env VERCEL_GIT_COMMIT_REF="$branch_name" \
+            --env VERCEL_GIT_COMMIT_SHA="$commit_sha" \
+            --env VERCEL_GIT_PULL_REQUEST_ID="$pr_id" \
+            --build-env VERCEL_GIT_COMMIT_AUTHOR_NAME="$author_name" \
             --build-env VERCEL_GIT_COMMIT_REF="$branch_name" \
             --build-env VERCEL_GIT_COMMIT_SHA="$commit_sha" \
             --build-env VERCEL_GIT_PULL_REQUEST_ID="$pr_id")
