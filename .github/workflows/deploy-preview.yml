@@ -53,7 +53,7 @@ jobs:
 
       - name: Link Vercel App
         working-directory: ./apps/web
-        run: vercel link --yes --project nextjs-vercel-monorepo-web
+        run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }}
 
       - name: Pull Vercel Environment Information
         working-directory: ./apps/web
