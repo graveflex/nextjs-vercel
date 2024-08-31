@@ -83,7 +83,7 @@ jobs:
           db_url="${{ steps.create-branch.outputs.db_url_with_pooler }}"
           db_url_unpooled="${{ steps.create-branch.outputs.db_url }}"
           token="${{ env.VERCEL_TOKEN }}"
-          preview_url=$(vercel deploy --prebuilt --token=$token --scope=graveflex --yes --debug --build-env VERCEL_GIT_COMMIT_REF=$branch_name --build-env VERCEL_GIT_COMMIT_SHA=$commit_sha --build-env VERCEL_GIT_PULL_REQUEST_ID=$pr_id)
+          preview_url=$(vercel deploy --prebuilt --token="$token" --scope=graveflex --yes --debug --build-env VERCEL_GIT_COMMIT_REF="$branch_name" --build-env VERCEL_GIT_COMMIT_SHA="$commit_sha" --build-env VERCEL_GIT_PULL_REQUEST_ID="$pr_id")
           echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
 
       - name: Comment on Pull Request
