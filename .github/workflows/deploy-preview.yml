@@ -28,9 +28,23 @@ jobs:
       - name: Link Vercel App
         run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
 
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh
+
+      - name: Get the Commit Author's GitHub Username
+        id: author_username
+        run: |
+          COMMIT_AUTHOR_EMAIL=$(git log -1 --pretty=format:'%ae')
+          GITHUB_USERNAME=$(gh api -X GET "search/users?q=${COMMIT_AUTHOR_EMAIL}" --jq '.items[0].login')
+          echo "GITHUB_USERNAME=$GITHUB_USERNAME" >> $GITHUB_ENV
+
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v8
+
+      - name: Get the Commit Author Name
+        run: |
+          echo "AUTHOR_NAME=$(git log -1 --pretty=format:'%an')" >> $GITHUB_ENV
 
       - name: Create Neon Branch
         id: create-branch
@@ -70,7 +84,21 @@ jobs:
         id: deploy
         run: |
           branch_name=${{ steps.branch-name.outputs.current_branch }}
-          preview_url=$(vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }} --scope=graveflex --yes --debug)
+          preview_url=$(vercel deploy \
+            --build-env VERCEL_GIT_COMMIT_REF=${{ steps.branch-name.outputs.current_branch }} \
+            --build-env VERCEL_GIT_COMMIT_SHA=$GITHUB_SHA \
+            --build-env VERCEL_GIT_PULL_REQUEST_ID=${{ github.event.number }} \
+            --build-env VERCEL_GIT_REPO_OWNER=graveflex \
+            --build-env VERCEL_GIT_REPO_SLUG=nextjs-vercel \
+            --build-env VERCEL_GIT_COMMIT_AUTHOR_LOGIN=${{ env.GITHUB_USERNAME }} \
+            --build-env VERCEL_GIT_COMMIT_AUTHOR_NAME=${{ env.AUTHOR_NAME }} \
+            --build-env DATABASE_URL=${{ steps.create-branch.outputs.db_url_with_pooler }}
+            --build-env DATABASE_URL_UNPOOLED=${{ steps.create-branch.outputs.db_url }}
+            --prebuilt \
+            --token=${{ env.VERCEL_TOKEN }} \
+            --scope=graveflex \
+            --yes \
+            --debug)
           echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
 
       - name: Comment on Pull Request
