@@ -1,3 +1,4 @@
+import { WEB_URL } from '@mono/web/lib/constants';
 import CardGridBlock from '@mono/web/blocks/CardGridBlock/CardGridBlock.config';
 import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
 import FormBlock from '@mono/web/blocks/FormBlock/FormBlock.config';
@@ -26,13 +27,11 @@ const Pages: CollectionConfig = {
   admin: {
     useAsTitle: 'pageTitle',
     defaultColumns: ['pageTitle', 'slug', '_status', 'createdAt'],
-    preview: (doc, { locale }) => {
-      const { slug } = (doc as { slug: string }) || '/';
-
-      if (slug) {
-        return `/${slug}?locale=${locale}&draft=true`;
+    livePreview: {
+      url: (doc) => {
+        const { data: { slug }, locale: { code } } = doc;
+        return `${WEB_URL}/${code}/draft/${slug}`;
       }
-      return null;
     }
   },
   access: {

@@ -10,7 +10,8 @@ import PageTemplate from './page.client';
 export const dynamic = 'force-static';
 export const revalidate = 60;
 
-interface BlogLayoutProps {
+export interface BlogLayoutProps {
+  draft?: boolean;
   params: {
     locale: LanguageLocale;
   };
@@ -23,11 +24,14 @@ interface BlogLayoutProps {
 }
 
 export default async function Blog({
+  draft,
   params: { locale = DEFAULT_LOCALE },
   searchParams
 }: BlogLayoutProps) {
   const payload = await getPayloadHMR({ config });
   const pagPage = searchParams.page ? searchParams.page : '1';
+
+  console.log('@-->draft', draft);
 
   try {
     const [navData, indexData, postData, filterData] = await Promise.all([
@@ -37,7 +41,8 @@ export default async function Blog({
       }),
       payload.findGlobal({
         slug: 'blogIndex',
-        locale
+        locale,
+        draft
       }),
       payload.find({
         collection: 'posts',

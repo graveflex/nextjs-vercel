@@ -7,38 +7,35 @@ import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { notFound, redirect } from 'next/navigation';
 import React, { Suspense } from 'react';
-import { RefreshRouteOnSave } from '@mono/web/components/RefreshRouteOnSave';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
 
-interface RootLayoutProps {
+export interface RootLayoutProps {
+  draft?: boolean;
   params: {
     slug: string[];
     locale: LanguageLocale;
   };
-  searchParams: {
-    draft: string;
-  };
 }
 
 export default async function CatchallPage({
+  draft,
   params: { slug, locale = DEFAULT_LOCALE },
-  searchParams
 }: RootLayoutProps) {
   const payload = await getPayloadHMR({ config });
   let pageSlug = slug ? slug.join('/') : '/';
+
   if (LOCALES.includes(pageSlug as LanguageLocale)) {
     pageSlug = '/';
   }
-  const showDraft = searchParams.draft === 'true';
 
   try {
     const [navData, homepageData, data] = await Promise.all([
       payload.findGlobal({
         slug: 'nav',
         locale,
-        draft: showDraft,
+        draft,
         depth: 2,
         fallbackLocale: DEFAULT_LOCALE
       }),
@@ -46,7 +43,7 @@ export default async function CatchallPage({
       payload.findGlobal({
         slug: 'homepage',
         locale,
-        draft: showDraft,
+        draft,
         depth: 2,
         fallbackLocale: DEFAULT_LOCALE
       }),
@@ -54,7 +51,7 @@ export default async function CatchallPage({
       payload.find({
         collection: 'pages',
         locale,
-        draft: showDraft,
+        draft,
         depth: 2,
         where: {
           slug: { equals: pageSlug }
@@ -91,7 +88,6 @@ export default async function CatchallPage({
 
     return (
       <>
-        <RefreshRouteOnSave />
         <Layout theme={page.theme} {...navData}>
           <Suspense fallback={<Loading />}>
             <BlocksRenderer blocks={page.blocks ?? []} />
@@ -106,9 +102,7 @@ export default async function CatchallPage({
 
 export async function generateMetadata({
   params: { slug, locale }
-}: {
-  params: { slug?: string[]; locale: LanguageLocale };
-}) {
+}: RootLayoutProps) {
   const pageSlug = slug ? slug.join('/') : '/';
   const payload = await getPayloadHMR({ config });
 

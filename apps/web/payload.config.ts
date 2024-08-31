@@ -51,7 +51,8 @@ export default buildConfig({
     pool: {
       connectionString: DATABASE_URL
     },
-    push: false
+    push: false,
+    logger: false
   }),
   editor: lexicalEditor({
     features: () =>
@@ -237,9 +238,11 @@ export default buildConfig({
       prefillOnly: true
     },
     livePreview: {
+      /*
       url: ({ data }) => {
         return `${WEB_URL}/${data?.slug}`;
       },
+      */
       breakpoints: [
         {
           label: 'Mobile',

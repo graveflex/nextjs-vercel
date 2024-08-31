@@ -1,3 +1,4 @@
+import { WEB_URL } from '@mono/web/lib/constants';
 import RichTextFields from '@mono/web/payload/fields/RichTextFields';
 import type { CollectionConfig } from 'payload';
 
@@ -18,15 +19,11 @@ const Posts: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    preview: (doc, { locale }) => {
-      const { slug } = (doc as { slug: string }) || '/';
-
-      if (slug) {
-        // eslint-disable-next-line no-underscore-dangle
-        const isDraft = !doc?._status || doc?._status === 'draft';
-        return `/${slug}?locale=${locale}&draft=${isDraft}`;
+    livePreview: {
+      url: (doc) => {
+        const { data: { slug }, locale: { code } } = doc;
+        return `${WEB_URL}/${code}/draft/blog/${slug}`;
       }
-      return null;
     }
   },
   fields: [

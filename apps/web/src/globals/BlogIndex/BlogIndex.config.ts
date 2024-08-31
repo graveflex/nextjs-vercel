@@ -26,20 +26,20 @@ const themeOptions = [
 const BlogIndex: GlobalConfig = {
   slug: 'blogIndex',
   admin: {
-    preview: (doc, { locale }) => {
-      const { slug } = (doc as { slug: string }) || '/';
-
-      if (slug) {
-        return `${WEB_URL}/${slug}?locale=${locale}&draft=true`;
+    livePreview: {
+      url: (doc) => {
+        const { locale: { code } } = doc;
+        return `${WEB_URL}/${code}/draft/blog`;
       }
-      return null;
     }
   },
   access: {
     read: () => true
   },
   versions: {
-    drafts: true
+    drafts: {
+      autosave: true
+    }
   },
   fields: [
     {

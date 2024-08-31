@@ -11,7 +11,8 @@ import PageTemplate from './page.client';
 export const dynamic = 'force-static';
 export const revalidate = 60;
 
-interface BlogLayoutProps {
+export interface BlogLayoutProps {
+  draft?: boolean;
   params: {
     locale: LanguageLocale;
     slug: string[];
@@ -19,6 +20,7 @@ interface BlogLayoutProps {
 }
 
 export default async function Blog({
+  draft,
   params: { locale = DEFAULT_LOCALE, slug }
 }: BlogLayoutProps) {
   const payload = await getPayloadHMR({ config });
@@ -33,6 +35,7 @@ export default async function Blog({
       payload.find({
         collection: 'posts',
         locale,
+        draft,
         where: {
           slug: {
             equals: pageSlug
