@@ -69,8 +69,7 @@ jobs:
       - name: Deploy Preview to Vercel
         id: deploy
         run: |
-          branch_name=${{ steps.branch-name.outputs.current_branch }}
-          preview_url=$(vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }} --scope=graveflex --git-branch=$branch_name --environment=preview --yes)
+          preview_url=$(vercel deploy --prebuilt --token=${{ env.VERCEL_TOKEN }} --scope=graveflex --yes)
           echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
 
       - name: Comment on Pull Request
