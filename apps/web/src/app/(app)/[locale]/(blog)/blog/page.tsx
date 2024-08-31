@@ -3,17 +3,16 @@ import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { notFound } from 'next/navigation';
 import React from 'react';
-import { RefreshRouteOnSave } from '@mono/web/components/RefreshRouteOnSave';
 
 import PageTemplate from './page.client';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
 
-export interface BlogLayoutProps {
-  draft?: boolean;
+interface BlogLayoutProps {
   params: {
     locale: LanguageLocale;
+    draft?: boolean;
   };
   searchParams: {
     page: string;
@@ -24,59 +23,47 @@ export interface BlogLayoutProps {
 }
 
 export default async function Blog({
-  draft,
-  params: { locale = DEFAULT_LOCALE },
+  params: { locale = DEFAULT_LOCALE, draft },
   searchParams
 }: BlogLayoutProps) {
   const payload = await getPayloadHMR({ config });
   const pagPage = searchParams.page ? searchParams.page : '1';
 
-  console.log('@-->draft', draft);
+  const [navData, indexData, postData, filterData] = await Promise.all([
+    payload.findGlobal({
+      slug: 'nav',
+      locale
+    }),
+    payload.findGlobal({
+      slug: 'blogIndex',
+      locale,
+      draft
+    }),
+    payload.find({
+      collection: 'posts',
+      page: parseInt(pagPage, 10),
+      locale,
+      limit: 9
+    }),
+    payload.find({
+      collection: 'tags',
+      locale
+    })
+  ]);
 
-  try {
-    const [navData, indexData, postData, filterData] = await Promise.all([
-      payload.findGlobal({
-        slug: 'nav',
-        locale
-      }),
-      payload.findGlobal({
-        slug: 'blogIndex',
-        locale,
-        draft
-      }),
-      payload.find({
-        collection: 'posts',
-        page: parseInt(pagPage, 10),
-        locale,
-        limit: 9
-      }),
-      payload.find({
-        collection: 'tags',
-        locale
-      })
-    ]);
-
-    // if there's an error fetching data, 404
-    if (
-      'error' in indexData ||
-      'error' in navData ||
-      'error' in postData ||
-      'error' in filterData
-    ) {
-      return notFound();
-    }
-
-    const page = indexData;
-
-    return (
-      <>
-        <RefreshRouteOnSave />
-        <PageTemplate page={page} postData={postData} nav={navData} />
-      </>
-    );
-  } catch (_) {
-    return null;
+  // if there's an error fetching data, 404
+  if (
+    'error' in indexData ||
+    'error' in navData ||
+    'error' in postData ||
+    'error' in filterData
+  ) {
+    return notFound();
   }
+
+  const page = indexData;
+
+  return <PageTemplate page={page} postData={postData} nav={navData} />;
 }
 
 export async function generateMetadata({

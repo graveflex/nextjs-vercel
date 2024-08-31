@@ -11,17 +11,16 @@ import React, { Suspense } from 'react';
 export const dynamic = 'force-static';
 export const revalidate = 60;
 
-export interface RootLayoutProps {
-  draft?: boolean;
+interface RootLayoutProps {
   params: {
     slug: string[];
     locale: LanguageLocale;
+    draft?: boolean;
   };
 }
 
 export default async function CatchallPage({
-  draft,
-  params: { slug, locale = DEFAULT_LOCALE },
+  params: { slug, locale = DEFAULT_LOCALE, draft }
 }: RootLayoutProps) {
   const payload = await getPayloadHMR({ config });
   let pageSlug = slug ? slug.join('/') : '/';
@@ -30,74 +29,70 @@ export default async function CatchallPage({
     pageSlug = '/';
   }
 
-  try {
-    const [navData, homepageData, data] = await Promise.all([
-      payload.findGlobal({
-        slug: 'nav',
-        locale,
-        draft,
-        depth: 2,
-        fallbackLocale: DEFAULT_LOCALE
-      }),
+  const [navData, homepageData, data] = await Promise.all([
+    payload.findGlobal({
+      slug: 'nav',
+      locale,
+      draft,
+      depth: 2,
+      fallbackLocale: DEFAULT_LOCALE
+    }),
 
-      payload.findGlobal({
-        slug: 'homepage',
-        locale,
-        draft,
-        depth: 2,
-        fallbackLocale: DEFAULT_LOCALE
-      }),
+    payload.findGlobal({
+      slug: 'homepage',
+      locale,
+      draft,
+      depth: 2,
+      fallbackLocale: DEFAULT_LOCALE
+    }),
 
-      payload.find({
-        collection: 'pages',
-        locale,
-        draft,
-        depth: 2,
-        where: {
-          slug: { equals: pageSlug }
-        },
-        limit: 1
-      })
-    ]);
+    payload.find({
+      collection: 'pages',
+      locale,
+      draft,
+      depth: 2,
+      where: {
+        slug: { equals: pageSlug }
+      },
+      limit: 1
+    })
+  ]);
 
-    // if not page data and not the index check for redirects
-    if (!data.docs[0] && pageSlug !== '/') {
-      const redirectPath = await redirectApi(pageSlug);
-      if (
-        !redirectPath ||
-        (typeof redirectPath === 'object' && 'error' in redirectPath)
-      ) {
-        return notFound();
-      }
-      redirect(redirectPath);
+  // if not page data and not the index check for redirects
+  if (!data.docs[0] && pageSlug !== '/') {
+    const redirectPath = await redirectApi(pageSlug);
+    if (
+      !redirectPath ||
+      (typeof redirectPath === 'object' && 'error' in redirectPath)
+    ) {
+      return notFound();
     }
-
-    // if there's an error fetching data, 404
-    if ('error' in data || 'error' in navData) {
-      const redirectPath = await redirectApi(pageSlug);
-      if (
-        !redirectPath ||
-        (typeof redirectPath === 'object' && 'error' in redirectPath)
-      ) {
-        return notFound();
-      }
-      redirect(redirectPath);
-    }
-
-    const page = data.docs[0] ?? homepageData;
-
-    return (
-      <>
-        <Layout theme={page.theme} {...navData}>
-          <Suspense fallback={<Loading />}>
-            <BlocksRenderer blocks={page.blocks ?? []} />
-          </Suspense>
-        </Layout>
-      </>
-    );
-  } catch (_) {
-    return null;
+    redirect(redirectPath);
   }
+
+  // if there's an error fetching data, 404
+  if ('error' in data || 'error' in navData) {
+    const redirectPath = await redirectApi(pageSlug);
+    if (
+      !redirectPath ||
+      (typeof redirectPath === 'object' && 'error' in redirectPath)
+    ) {
+      return notFound();
+    }
+    redirect(redirectPath);
+  }
+
+  const page = data.docs[0] ?? homepageData;
+
+  return (
+    <>
+      <Layout theme={page.theme} {...navData}>
+        <Suspense fallback={<Loading />}>
+          <BlocksRenderer blocks={page.blocks ?? []} />
+        </Suspense>
+      </Layout>
+    </>
+  );
 }
 
 export async function generateMetadata({

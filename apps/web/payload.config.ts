@@ -12,6 +12,7 @@ import BlogIndex from '@mono/web/globals/BlogIndex/BlogIndex.config';
 import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.config';
 import Homepage from '@mono/web/globals/Home/Homepage.config';
 import Nav from '@mono/web/globals/Layout/Layout.config';
+import { WEB_URL } from '@mono/web/lib/constants';
 import { translator } from '@payload-enchants/translator';
 import { googleResolver } from '@payload-enchants/translator/resolvers/google';
 import { postgresAdapter } from '@payloadcms/db-postgres';
@@ -42,7 +43,6 @@ import {
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
-import { WEB_URL } from '@mono/web/lib/constants';
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
 

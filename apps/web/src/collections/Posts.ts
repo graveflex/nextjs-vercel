@@ -15,13 +15,16 @@ const Posts: CollectionConfig = {
   versions: {
     drafts: {
       autosave: true
-    },
+    }
   },
   admin: {
     useAsTitle: 'title',
     livePreview: {
       url: (doc) => {
-        const { data: { slug }, locale: { code } } = doc;
+        const {
+          data: { slug },
+          locale: { code }
+        } = doc;
         return `${WEB_URL}/${code}/draft/blog/${slug}`;
       }
     }

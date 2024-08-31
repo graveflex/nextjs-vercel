@@ -1,4 +1,3 @@
-import { WEB_URL } from '@mono/web/lib/constants';
 import CardGridBlock from '@mono/web/blocks/CardGridBlock/CardGridBlock.config';
 import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
 import FormBlock from '@mono/web/blocks/FormBlock/FormBlock.config';
@@ -9,6 +8,7 @@ import IconGridBlock from '@mono/web/blocks/IconGridBlock/IconGridBlock.config';
 import IframeBlock from '@mono/web/blocks/IframeBlock/IframeBlock.config';
 import MarkdownBlock from '@mono/web/blocks/MarkdownBlock/MarkdownBlock.config';
 import SectionHeaderBlock from '@mono/web/blocks/SectionHeaderBlock/SectionHeaderBlock.config';
+import { WEB_URL } from '@mono/web/lib/constants';
 // InsertBlockConfigs
 
 import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
@@ -28,7 +28,9 @@ const BlogIndex: GlobalConfig = {
   admin: {
     livePreview: {
       url: (doc) => {
-        const { locale: { code } } = doc;
+        const {
+          locale: { code }
+        } = doc;
         return `${WEB_URL}/${code}/draft/blog`;
       }
     }
