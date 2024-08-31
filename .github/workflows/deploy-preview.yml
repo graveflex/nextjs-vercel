@@ -26,7 +26,7 @@ jobs:
         run: pnpm install
 
       - name: Link Vercel App
-        run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex --cwd=./apps/web
+        run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
 
       - name: Get branch name
         id: branch-name
