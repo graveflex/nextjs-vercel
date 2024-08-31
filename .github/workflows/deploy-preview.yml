@@ -87,6 +87,8 @@ jobs:
 
       - name: Deploy Preview to Vercel
         id: deploy
+        env:
+          VERCEL_GIT_COMMIT_REF: branch_name=${{ steps.branch-name.outputs.current_branch }}
         run: |
           branch_name="${{ steps.branch-name.outputs.current_branch }}"
           commit_sha="${{ env.COMMIT_SHA }}"
@@ -104,6 +106,8 @@ jobs:
             --target preview \
             --yes \
             --debug \
+            -e VERCEL_GIT_COMMIT_REF="$branch_name" \
+            -b VERCEL_GIT_COMMIT_REF="$branch_name" \
             -m githubCommitRef="$branch_name" \
           )
           echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
