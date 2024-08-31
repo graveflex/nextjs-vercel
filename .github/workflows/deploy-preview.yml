@@ -82,7 +82,7 @@ jobs:
           author_name="${{ env.AUTHOR_NAME }}"
           db_url="${{ steps.create-branch.outputs.db_url_with_pooler }}"
           db_url_unpooled="${{ steps.create-branch.outputs.db_url }}"
-          commit_message="${{ github.event.head_commit.message }}"
+          commit_message=$(git log -1 --pretty=format:'%s' $commit_sha)
           gh_username="${{ github.actor }}"
           token="${{ env.VERCEL_TOKEN }}"
           preview_url=$(vercel deploy \
