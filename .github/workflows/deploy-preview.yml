@@ -82,7 +82,7 @@ jobs:
           author_name="${{ env.AUTHOR_NAME }}"
           db_url="${{ steps.create-branch.outputs.db_url_with_pooler }}"
           db_url_unpooled="${{ steps.create-branch.outputs.db_url }}"
-          commit_message=$(git log -1 --pretty=format:'%s' $commit_sha)
+          commit_message="$(git log -1 --pretty=format:'%s' $commit_sha)"
           gh_username="${{ github.actor }}"
           token="${{ env.VERCEL_TOKEN }}"
           preview_url=$(vercel deploy \
@@ -91,11 +91,11 @@ jobs:
             --scope=graveflex \
             --yes \
             --debug \
+            -e VERCEL_GIT_COMMIT_REF="$branch_name" \
             -m githubCommitOrg=graveflex \
             -m githubCommitRef="$branch_name" \
             -m githubCommitRepo=nextjs-vercel \
             -m githubCommitSha="$commit_sha" \
-            -m githubCommitMessage="$commit_message" \
             -m githubCommitAuthorName="$gh_username" \
           )
           echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
