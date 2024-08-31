@@ -27,6 +27,7 @@ yarn-error.log*
 .env.keys
 .env.bk
 .env.local
+.env.secrets
 
 # turbo
 .turbo
