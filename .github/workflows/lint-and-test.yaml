@@ -39,8 +39,6 @@ jobs:
               })
             }
 
-  setup:
-    uses: ./.github/workflows/setup.yml
   test-suite:
     runs-on: ubuntu-latest
     needs: remove-labels
@@ -53,6 +51,18 @@ jobs:
         run: |
           base=${{ github.base_ref }}
           echo "BRANCH=${base^^}" >> $GITHUB_ENV
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
 
       - name: ci
         env:
