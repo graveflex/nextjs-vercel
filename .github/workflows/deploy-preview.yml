@@ -99,6 +99,7 @@ jobs:
             --prebuilt \
             --token="$token" \
             --scope=graveflex \
+            --target=preview \
             --yes \
             --debug \
             -m githubCommitRef="$branch_name" \
