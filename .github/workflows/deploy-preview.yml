@@ -51,6 +51,10 @@ jobs:
       - name: Build Deps
         run: pnpm env:dev -- turbo run build --filter={packages/settings}...
 
+      - name: Link Vercel App
+        working-directory: ./apps/web
+        run: vercel link --yes --project nextjs-vercel-monorepo-web
+
       - name: Pull Vercel Environment Information
         working-directory: ./apps/web
         run: |
