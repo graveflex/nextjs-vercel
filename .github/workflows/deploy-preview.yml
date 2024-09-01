@@ -101,6 +101,7 @@ jobs:
             | PR URL | DB Branch |
             |--------|-----------|
             | [Link :rocket:](https://${{ needs.set_vercel_domain.outputs.vercel_domain }}) | [Link :elephant:](https://console.neon.tech/app/projects/${{ env.NEON_PROJECT_ID }}/branches/${{ steps.create-branch.outputs.branch_id }}) |
+
   lighthouse:
     runs-on: ubuntu-latest
     needs: [set_vercel_domain, deploy-preview]
@@ -112,22 +113,52 @@ jobs:
         with:
           urls: |
             https://${{ needs.set_vercel_domain.outputs.vercel_domain }}
-            https://${{ needs.set_vercel_domain.outputs.vercel_domain }}/kitchen-sink
           budgetPath: ./budget.json # test performance budgets
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true
           runs: 3
-          outputPath: ./lighthouse-results.html
 
-      - name: Upload Lighthouse results
-        uses: actions/upload-artifact@v3
+      - name: Format lighthouse score
+        id: format_lighthouse_score
+        uses: actions/github-script@v3
         with:
-          name: lighthouse-results
-          path: ./lighthouse-results.html
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const results = ${{ steps.lighthouse_audit.outputs.manifest }}
 
-      - name: Comment on Pull Request with Lighthouse results
-        uses: marocchino/sticky-pull-request-comment@v2
+            const score = res => res >= 90 ? '🟢' : res >= 50 ? '🟠' : '🔴'
+            const formatResult = (res) => Math.round((res * 100))
+            const links = ${{ steps.lighthouse_audit.outputs.links }}
+
+            const heading = '| Route | Performance | Accessibility | Best Practices | SEO |'
+
+            const entries = results.map((item, i) => {
+              const result = item.summary;
+              Object.keys(result).forEach(key => result[key] = formatResult(result[key]))
+              const url = Object.keys(links)[i]
+              const pathname = new URL(url).pathname
+
+              const row = [
+                `[${pathname}](${url})`,
+                `${score(result.performance)} ${result.performance}`,
+                `${score(result.accessibility)} ${result.accessibility}`,
+                `${score(result['best-practices'])} ${result['best-practices']}`,
+                `${score(result.seo)} ${result.seo}`
+              ].join(' | ');
+
+              return `| ${row} |`
+            }).join('\n');
+
+            const comment = [heading, entries].join('\n')
+
+            core.setOutput("comment", comment);
+
+      - name: Add comment to PR
+        id: comment_to_pr
+        uses: marocchino/sticky-pull-request-comment@v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          header: Lighthouse Report
-          path: ./lighthouse-results.html
+          number: ${{ github.event.issue.number }}
+          header: lighthouse
+          message: |
+            ${{ steps.format_lighthouse_score.outputs.comment }}
