@@ -1,3 +1,8 @@
 {
-  "outputDirectory": ".vercel/output"
+  "framework": "nextjs",
+  "outputDirectory": ".vercel/output",
+  "github": {
+    "autoAlias": true,
+    "deploymentEnabled": false
+  }
 }
