@@ -53,6 +53,14 @@ jobs:
           username: ${{ env.NEON_DATABASE_USERNAME }}
           api_key: ${{ env.NEON_API_KEY }}
 
+      - name: Bake DB Urls
+        run: |
+          db_url="${{ steps.create-branch.outputs.db_url_with_pooler }}"
+          db_url_unpooled="${{ steps.create-branch.outputs.db_url }}"
+          jq --arg dbUrl "$db_url" '.env.DATABASE_URL = $dbUrl' vercel.json > tmp.json && mv tmp.json vercel.json
+          jq --arg dbUrl "$db_url_unpooled" '.env.DATABASE_URL_UNPOOLED = $dbUrl' vercel.json > tmp.json && mv tmp.json vercel.json
+          cat vercel.json
+
       - name: Run Migrations
         run: |
             touch .env.local
