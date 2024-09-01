@@ -2,8 +2,8 @@ import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
-import { notFound, redirect } from 'next/navigation';
 import { unstable_cache } from 'next/cache';
+import { notFound, redirect } from 'next/navigation';
 import React from 'react';
 
 import PageTemplate from './page.client';
@@ -25,7 +25,11 @@ export default async function Blog({
   const pageSlug = slug ? slug.join('/') : '/';
 
   const fetchPageData = unstable_cache(
-    async (draft: boolean | undefined, locale: LanguageLocale, pageSlug: string) => {
+    async (
+      draft: boolean | undefined,
+      locale: LanguageLocale,
+      pageSlug: string
+    ) => {
       const payload = await getPayloadHMR({ config });
 
       return Promise.all([
@@ -48,7 +52,7 @@ export default async function Blog({
     [[locale, draft, 'blog', pageSlug].filter((x) => x).join('/')]
   );
 
-  const [navData, postData] = await fetchPageData(draft, locale, pageSlug)
+  const [navData, postData] = await fetchPageData(draft, locale, pageSlug);
 
   // if there's an error fetching data, 404
   if ('error' in navData || 'error' in postData || !postData.docs[0]) {

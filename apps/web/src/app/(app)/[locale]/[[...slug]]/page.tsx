@@ -1,7 +1,6 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import Loading from '@mono/web/components/Loading';
 import Layout from '@mono/web/globals/Layout';
-import { unstable_cache } from 'next/cache';
 import {
   DEFAULT_LOCALE,
   LOCALES,
@@ -10,6 +9,7 @@ import {
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { unstable_cache } from 'next/cache';
 import { notFound, redirect } from 'next/navigation';
 import React, { Suspense } from 'react';
 
