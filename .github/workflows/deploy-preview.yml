@@ -114,7 +114,7 @@ jobs:
         run: |
           commit_url=${{ steps.deploy.outputs.preview_url }}
           pr_domain=${{ needs.set_vercel_domain.outputs.vercel_domain }}
-          vercel alias set $commit_url $pr_domain
+          vercel alias set $commit_url $pr_domain --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
 
 
       - name: Comment on Pull Request
