@@ -79,8 +79,8 @@ jobs:
             database_url="${{ steps.create-branch.outputs.db_url_with_pooler }}?sslmode=require"
             database_url_unpooled="${{ steps.create-branch.outputs.db_url }}?sslmode=require"
 
-            echo DATABASE_URL= >> .env.local
-            echo DIRECT_URL= >> .env.local
+            echo DATABASE_URL=$database_url >> .env.local
+            echo DATABASE_URL_UNPOOLED=$database_url_unpooled >> .env.local
 
             pnpm db:migrate
 
