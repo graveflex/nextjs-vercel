@@ -45,6 +45,10 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install
 
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v8
+
       - name: Create Neon Branch
         id: create-branch
         uses: neondatabase/create-branch-action@v4
