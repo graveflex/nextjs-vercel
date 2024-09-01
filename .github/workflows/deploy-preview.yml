@@ -17,7 +17,7 @@ env:
 
 jobs:
   build:
-    uses: ./.github/workflows/bulid.yaml
+    uses: ./.github/workflows/build.yaml
     secrets: inherit
   deploy-preview:
     permissions: write-all
