@@ -32,7 +32,6 @@ jobs:
 
       - name: Print Vercel Domain
         run: |
-          echo Vercel Domain env: ${{ env.VERCEL_DOMAIN }}
           echo Vercel Domain: ${{ needs.set_vercel_domain.outputs.vercel_domain }}
 
       - name: Install dependencies
@@ -103,10 +102,19 @@ jobs:
           )
           echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
 
+      - name: Alias pr deploy
+        id: alias
+        run: |
+          commit_url=${{ steps.deploy.outputs.preview_url }}
+          pr_domain=${{ needs.set_vercel_domain.outputs.vercel_domain }}
+          vercel alias set $commit_url $pr_domain
+
+
       - name: Comment on Pull Request
         uses: thollander/actions-comment-pull-request@v2
         with:
           GITHUB_TOKEN: ${{ env.GH_TOKEN }}
           message: |
-            Vercel Preview URL :rocket: : ${{ steps.deploy.outputs.preview_url }}
+            Vercel Commit URL :rocket: : ${{ steps.deploy.outputs.preview_url }}
+            Vercel PR URL : https://${{ needs.set_vercel_domain.outputs.vercel_domain }}
             Neon branch :elephant: : https://console.neon.tech/app/projects/${{ env.NEON_PROJECT_ID }}/branches/${{ steps.create-branch.outputs.branch_id }}

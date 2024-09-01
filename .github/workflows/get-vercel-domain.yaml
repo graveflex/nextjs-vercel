@@ -41,13 +41,13 @@ jobs:
             local deployment_name="${project_name}-${prefix}-${branch_slug}-${org}"
 
             if [ ${#deployment_name} -lt 64 ]; then
-              echo "https://${deployment_name}.vercel.app"
+              echo "${deployment_name}.vercel.app"
             else
               local hash
               hash=$(echo -n "git-${branch}${project_name}" | sha256sum | cut -c1-6)
               local suffix="${hash}-${org}"
               local truncated_name="${deployment_name:0:61-${#suffix}}"
-              echo "https://${truncated_name}-${suffix}.vercel.app"
+              echo "${truncated_name}-${suffix}.vercel.app"
             fi
           }
 
@@ -57,9 +57,9 @@ jobs:
             local app_name=$2
 
             if [ "$branch_name" = "main" ] || [ -z "$branch_name" ]; then
-              echo "https://$project_name-$app_name.vercel.app"
+              echo "$project_name-$app_name.vercel.app"
             elif [ "$branch_name" = "staging" ]; then
-              echo "https://$project_name-$app_name-staging.vercel.app"
+              echo "$project_name-$app_name-staging.vercel.app"
             else
               truncate "git" "$branch_name" "${project_name}-${app_name}" "graveflex"
             fi
