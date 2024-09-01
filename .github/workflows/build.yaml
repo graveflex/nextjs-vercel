@@ -97,6 +97,10 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install
 
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v8
+
       - name: Cache turbo build setup
         uses: actions/cache@v4
         with:
@@ -110,10 +114,6 @@ jobs:
 
       - name: Link Vercel App
         run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
-
-      - name: Get branch name
-        id: branch-name
-        uses: tj-actions/branch-names@v8
 
       - name: Pull Vercel Environment Information
         run: |

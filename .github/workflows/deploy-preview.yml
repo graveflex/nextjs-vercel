@@ -35,6 +35,10 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install
 
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v8
+
       - name: Cache turbo build setup
         uses: actions/cache@v4
         with:
@@ -45,13 +49,6 @@ jobs:
           key: ${{ runner.os }}-vercel-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-vercel-
-
-      - name: Get branch name
-        id: branch-name
-        uses: tj-actions/branch-names@v8
-
-      - name: Link Vercel App
-        run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
 
       - name: Get the Commit Author Name
         run: |
