@@ -66,8 +66,8 @@ jobs:
         continue-on-error: true
         run: |
           branch_name=${{ steps.branch-name.outputs.current_branch }}
-          echo ${{ steps.create-branch.outputs.db_url_with_pooler }} | vercel env edit DATABASE_URL preview $branch_name --scope=graveflex --token=${{ env.VERCEL_TOKEN }}
-          echo ${{ steps.create-branch.outputs.db_url }} | vercel env edit DATABASE_URL_UNPOOLED preview $branch_name --scope=graveflex --token=${{ env.VERCEL_TOKEN }}
+          echo ${{ steps.create-branch.outputs.db_url_with_pooler }} | vercel env add DATABASE_URL preview $branch_name --scope=graveflex --token=${{ env.VERCEL_TOKEN }} --debug
+          echo ${{ steps.create-branch.outputs.db_url }} | vercel env add DATABASE_URL_UNPOOLED preview $branch_name --scope=graveflex --token=${{ env.VERCEL_TOKEN }}
 
       - name: Pull Vercel Environment Information
         run: |
