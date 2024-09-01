@@ -55,8 +55,8 @@ jobs:
 
       - name: Bake DB Urls
         run: |
-          db_url="${{ steps.create-branch.outputs.db_url_with_pooler }}"
-          db_url_unpooled="${{ steps.create-branch.outputs.db_url }}"
+          db_url="${{ steps.create-branch.outputs.db_url_with_pooler }}?sslmode=require"
+          db_url_unpooled="${{ steps.create-branch.outputs.db_url }}?sslmode=require"
           jq --arg dbUrl "$db_url" '.env.DATABASE_URL = $dbUrl' vercel.json > tmp.json && mv tmp.json vercel.json
           jq --arg dbUrl "$db_url_unpooled" '.env.DATABASE_URL_UNPOOLED = $dbUrl' vercel.json > tmp.json && mv tmp.json vercel.json
           cat vercel.json
@@ -94,8 +94,8 @@ jobs:
           commit_sha="${{ env.COMMIT_SHA }}"
           pr_id="${{ github.event.number }}"
           author_name="${{ env.AUTHOR_NAME }}"
-          db_url="${{ steps.create-branch.outputs.db_url_with_pooler }}"
-          db_url_unpooled="${{ steps.create-branch.outputs.db_url }}"
+          db_url="${{ steps.create-branch.outputs.db_url_with_pooler }}?sslmode=require"
+          db_url_unpooled="${{ steps.create-branch.outputs.db_url }}?sslmode=require"
           commit_message="$(git log -1 --pretty=format:'%s' $commit_sha)"
           gh_username="${{ github.actor }}"
           token="${{ env.VERCEL_TOKEN }}"
