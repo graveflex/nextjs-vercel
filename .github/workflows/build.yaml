@@ -49,6 +49,17 @@ jobs:
         id: branch-name
         uses: tj-actions/branch-names@v8
 
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: |
+            .env.local
+            .vercel
+            apps/web/.next
+          key: ${{ runner.os }}-vercel-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-vercel-
+
       - name: Create Neon Branch
         id: create-branch
         uses: neondatabase/create-branch-action@v4
@@ -97,6 +108,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
+            .env.local
             .vercel
             apps/web/.next
           key: ${{ runner.os }}-vercel-${{ github.sha }}
