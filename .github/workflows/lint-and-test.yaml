@@ -9,6 +9,9 @@ permissions:
   packages: read
 
 jobs:
+  setup:
+    uses: ./.github/workflows/setup.yaml
+    secrets: inherit
   remove-labels:
     runs-on: ubuntu-latest
     steps:
@@ -44,26 +47,6 @@ jobs:
     needs: remove-labels
     if: ${{ always() }}
     steps:
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-          DOTENV_PRIVATE_KEY_CI: ${{ secrets.DOTENV_PRIVATE_KEY_CI }}
-        run: |
-          base=${{ github.base_ref }}
-          echo "BRANCH=${base^^}" >> $GITHUB_ENV
-
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - run: corepack enable
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install
-
       - name: ci
         env:
           BLOB_READ_WRITE_TOKEN: vercel_blob_rw_xxxxxxxxxxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

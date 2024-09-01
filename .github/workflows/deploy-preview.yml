@@ -16,12 +16,12 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
-  set_vercel_domain:
-    uses: ./.github/workflows/get-vercel-domain.yaml
+  setup:
+    uses: ./.github/workflows/setup.yaml
     secrets: inherit
   deploy-preview:
     permissions: write-all
-    needs: set_vercel_domain
+    needs: setup
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -40,7 +40,7 @@ jobs:
 
       - name: Print Vercel Domain
         run: |
-          echo Vercel Domain: ${{ needs.set_vercel_domain.outputs.vercel_domain }}
+          echo Vercel Domain: ${{ needs.setup.outputs.vercel_domain }}
 
       - name: Install dependencies
         run: pnpm install

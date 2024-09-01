@@ -1,0 +1,29 @@
+name: Install Deps
+
+on:
+  workflow_call:
+    outputs:
+      vercel_domain:
+        description: "The branch domain for the vercel prod / staging / preview deploy"
+        value: ${{ jobs.get_vercel_domain.outputs.vercel_domain }}
+
+jobs:
+  get_vercel_domain:
+    uses: ./.github/workflows/get-vercel-domain.yaml
+    secrets: inherit
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v8
+
+      - name: Install dependencies
+        run: pnpm install
