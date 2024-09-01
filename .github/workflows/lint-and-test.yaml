@@ -41,7 +41,7 @@ jobs:
 
   test-suite:
     runs-on: ubuntu-latest
-    needs: [remove-labels, setup]
+    needs: [remove-labels]
     if: ${{ always() }}
     steps:
       - uses: actions/checkout@v4
