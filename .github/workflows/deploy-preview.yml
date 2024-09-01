@@ -15,6 +15,9 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
+  set-vercel-domain:
+    uses: ./.github/workflows/get-vercel-domain.yml
+    secrets: inherit
   deploy-preview:
     permissions: write-all
     runs-on: ubuntu-latest
@@ -26,15 +29,15 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
+      - name: Print Vercel Domain
+        run: |
+          echo "Vercel Domain: ${{ needs.set-vercel-domain.outputs.vercel_domain }}"
+
       - name: Install dependencies
         run: pnpm install
 
       - name: Link Vercel App
         run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
-
-      - name: Get branch name
-        id: branch-name
-        uses: tj-actions/branch-names@v8
 
       - name: Get the Commit Author Name
         run: |
