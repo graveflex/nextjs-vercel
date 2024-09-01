@@ -48,9 +48,28 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install
 
+      - name: Link Vercel App
+        run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
+
       - name: Get branch name
         id: branch-name
         uses: tj-actions/branch-names@v8
+
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: |
+            .env.local
+            .vercel
+            apps/web/.next
+          key: ${{ runner.os }}-vercel-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-vercel-
+
+      - name: Pull Vercel Environment Information
+        run: |
+          branch_name=${{ steps.branch-name.outputs.current_branch }}
+          vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }} --git-branch=$branch_name --scope=graveflex
 
       - name: Create Neon Branch
         id: create-branch
@@ -78,24 +97,5 @@ jobs:
             echo "database_url=${database_url}" >> $GITHUB_OUTPUT
             echo "database_url_unpooled=${database_url_unpooled}" >> $GITHUB_OUTPUT
 
-      - name: Link Vercel App
-        run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
-
-      - name: Pull Vercel Environment Information
-        run: |
-          branch_name=${{ steps.branch-name.outputs.current_branch }}
-          vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }} --git-branch=$branch_name --scope=graveflex
-
       - name: Build Project Artifacts
         run: pnpm env:dev -- vercel build --token=${{ env.VERCEL_TOKEN }} --scope=graveflex --target=preview
-
-      - name: Cache turbo build setup
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            .env.local
-            .vercel
-            apps/web/.next
-          key: ${{ runner.os }}-vercel-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-vercel-
