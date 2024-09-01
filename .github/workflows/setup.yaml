@@ -1,4 +1,4 @@
-name: Install Deps
+name: Install deps and set context
 
 on:
   workflow_call:

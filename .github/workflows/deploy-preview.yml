@@ -19,6 +19,8 @@ jobs:
   build:
     uses: ./.github/workflows/build.yaml
     secrets: inherit
+  lint_and_test:
+    uses: ./.github/workflows/lint-and-test.yaml
   deploy-preview:
     permissions: write-all
     needs: build
