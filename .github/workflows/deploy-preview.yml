@@ -19,9 +19,12 @@ jobs:
   build:
     uses: ./.github/workflows/build.yaml
     secrets: inherit
+  set_vercel_domain:
+    uses: ./.github/workflows/get-vercel-domain.yaml
+    secrets: inherit
   deploy-preview:
     permissions: write-all
-    needs: build
+    needs: [set_vercel_domain, build]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
