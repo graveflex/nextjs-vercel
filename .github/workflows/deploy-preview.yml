@@ -20,6 +20,7 @@ jobs:
     secrets: inherit
   deploy-preview:
     permissions: write-all
+    needs: set-vercel-domain
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
