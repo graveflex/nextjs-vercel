@@ -40,6 +40,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v8
+
       - name: Link Vercel App
         run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
 
