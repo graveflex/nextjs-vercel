@@ -9,9 +9,6 @@ permissions:
   packages: read
 
 jobs:
-  setup:
-    uses: ./.github/workflows/setup.yaml
-    secrets: inherit
   remove-labels:
     runs-on: ubuntu-latest
     steps:

@@ -52,25 +52,6 @@ jobs:
       - name: Set Commit SHA as an environment variable
         run: echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
 
-      - name: Create Neon Branch
-        id: create-branch
-        uses: neondatabase/create-branch-action@v4
-        with:
-          project_id: ${{ env.NEON_PROJECT_ID }}
-          # parent: dev # optional (defaults to your primary branch)
-          branch_name: preview/pr-${{ github.event.number }}-${{ steps.branch-name.outputs.current_branch }}
-          username: ${{ env.NEON_DATABASE_USERNAME }}
-          api_key: ${{ env.NEON_API_KEY }}
-
-      - name: Run Migrations
-        run: |
-            touch .env.local
-
-            echo DATABASE_URL=${{ steps.create-branch.outputs.db_url_with_pooler }}?sslmode=require >> .env.local
-            echo DIRECT_URL=${{ steps.create-branch.outputs.db_url }}?sslmode=require >> .env.local
-
-            pnpm db:migrate
-
       - name: Deploy Preview to Vercel
         id: deploy
         env:
@@ -80,8 +61,8 @@ jobs:
           commit_sha="${{ env.COMMIT_SHA }}"
           pr_id="${{ github.event.number }}"
           author_name="${{ env.AUTHOR_NAME }}"
-          db_url="${{ steps.create-branch.outputs.db_url_with_pooler }}?sslmode=require"
-          db_url_unpooled="${{ steps.create-branch.outputs.db_url }}?sslmode=require"
+          db_url="${{ needs.build.outputs.database_url }}"
+          db_url_unpooled="${{ needs.build.outputs.database_url_unpooled }}"
           commit_message="$(git log -1 --pretty=format:'%s' $commit_sha)"
           gh_username="${{ github.actor }}"
           token="${{ env.VERCEL_TOKEN }}"
