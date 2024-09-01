@@ -62,13 +62,6 @@ jobs:
 
             pnpm db:migrate
 
-      # - name: Assign DB ENV Vars
-      #   continue-on-error: true
-      #   run: |
-      #     branch_name=${{ steps.branch-name.outputs.current_branch }}
-      #     echo ${{ steps.create-branch.outputs.db_url_with_pooler }} | vercel env add DATABASE_URL --environment=preview --git-branch="$branch_name" --scope=graveflex --token=${{ env.VERCEL_TOKEN }} --debug
-      #     echo ${{ steps.create-branch.outputs.db_url }} | vercel env add DATABASE_URL_UNPOOLED --environment=preview --git-branch="$branch_name" --scope=graveflex --token=${{ env.VERCEL_TOKEN }}
-
       - name: Pull Vercel Environment Information
         run: |
           branch_name=${{ steps.branch-name.outputs.current_branch }}
@@ -97,7 +90,6 @@ jobs:
             --scope=graveflex \
             --target preview \
             --yes \
-            --debug \
             -e DATABASE_URL="$db_url" \
             -b DATABASE_URL="$db_url" \
             -e VERCEL_GIT_COMMIT_REF="$branch_name" \
