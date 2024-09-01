@@ -2,10 +2,16 @@ name: Get Vercel Demain
 
 on:
   workflow_call:
+    outputs:
+      vercel_domain:
+        description: "The branch domain for the vercel prod / staging / preview deploy"
+        value: ${{ jobs.get_vercel_domain.outputs.vercel_domain }}
 
 jobs:
-  get-vercel-domain:
+  get_vercel_domain:
     runs-on: ubuntu-latest
+    outputs:
+      vercel_domain: ${{ steps.get_domain.outputs.vercel_domain }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -15,6 +21,7 @@ jobs:
         uses: tj-actions/branch-names@v8
 
       - name: Get Vercel Domain
+        id: get_domain
         run: |
           branch_name=${{ steps.branch-name.outputs.current_branch }}
           # Function to slugify a string
