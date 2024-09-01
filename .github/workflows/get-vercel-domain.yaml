@@ -1,7 +1,7 @@
 name: Get Vercel Demain
 
 on:
-  workflow_call::
+  workflow_call:
 
 jobs:
   get-vercel-domain:
