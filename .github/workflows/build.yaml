@@ -36,6 +36,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: setup
+    outputs:
+      database_url: ${{ steps.migrate.outputs.database_url }}
+      database_url_unpooled: ${{ steps.migrate.outputs.database_url_unpooled }}
     steps:
       - uses: actions/checkout@v4
       - run: corepack enable
@@ -60,6 +63,7 @@ jobs:
           api_key: ${{ env.NEON_API_KEY }}
 
       - name: Run Migrations
+        id: migrate
         run: |
             touch .env.local
 
