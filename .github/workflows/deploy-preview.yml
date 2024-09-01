@@ -16,7 +16,7 @@ env:
 
 jobs:
   set-vercel-domain:
-    uses: ./.github/workflows/get-vercel-domain.yml
+    uses: ./.github/workflows/get-vercel-domain.yaml
     secrets: inherit
   deploy-preview:
     permissions: write-all
