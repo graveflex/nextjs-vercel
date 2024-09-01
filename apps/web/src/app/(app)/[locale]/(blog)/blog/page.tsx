@@ -2,6 +2,7 @@ import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { notFound } from 'next/navigation';
+import { unstable_cache } from 'next/cache';
 import React from 'react';
 
 import PageTemplate from './page.client';
@@ -26,30 +27,40 @@ export default async function Blog({
   params: { locale = DEFAULT_LOCALE, draft },
   searchParams
 }: BlogLayoutProps) {
-  const payload = await getPayloadHMR({ config });
   const pagPage = searchParams.page ? searchParams.page : '1';
 
-  const [navData, indexData, postData, filterData] = await Promise.all([
-    payload.findGlobal({
-      slug: 'nav',
-      locale
-    }),
-    payload.findGlobal({
-      slug: 'blogIndex',
-      locale,
-      draft
-    }),
-    payload.find({
-      collection: 'posts',
-      page: parseInt(pagPage, 10),
-      locale,
-      limit: 9
-    }),
-    payload.find({
-      collection: 'tags',
-      locale
-    })
-  ]);
+  const fetchPageData = unstable_cache(
+    async (draft: boolean | undefined, locale: LanguageLocale) => {
+      const payload = await getPayloadHMR({ config });
+      return Promise.all([
+        payload.findGlobal({
+          slug: 'nav',
+          locale
+        }),
+        payload.findGlobal({
+          slug: 'blogIndex',
+          locale,
+          draft
+        }),
+        payload.find({
+          collection: 'posts',
+          page: parseInt(pagPage, 10),
+          locale,
+          limit: 9
+        }),
+        payload.find({
+          collection: 'tags',
+          locale
+        })
+      ]);
+    },
+    [[locale, draft, 'blog'].filter((x) => x).join('/')]
+  );
+
+  const [navData, indexData, postData, filterData] = await fetchPageData(
+    draft,
+    locale
+  );
 
   // if there's an error fetching data, 404
   if (

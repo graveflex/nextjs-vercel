@@ -1,6 +1,7 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import Loading from '@mono/web/components/Loading';
 import Layout from '@mono/web/globals/Layout';
+import { unstable_cache } from 'next/cache';
 import {
   DEFAULT_LOCALE,
   LOCALES,
@@ -26,41 +27,48 @@ interface RootLayoutProps {
 export default async function CatchallPage({
   params: { slug, locale = DEFAULT_LOCALE, draft }
 }: RootLayoutProps) {
-  const payload = await getPayloadHMR({ config });
   let pageSlug = slug ? slug.join('/') : '/';
 
   if (LOCALES.includes(pageSlug as LanguageLocale)) {
     pageSlug = '/';
   }
 
-  const [navData, homepageData, data] = await Promise.all([
-    payload.findGlobal({
-      slug: 'nav',
-      locale,
-      draft,
-      depth: 2,
-      fallbackLocale: DEFAULT_LOCALE
-    }),
+  const fetchPageData = unstable_cache(
+    async (draft: boolean | undefined, locale: LanguageLocale) => {
+      const payload = await getPayloadHMR({ config });
+      return Promise.all([
+        payload.findGlobal({
+          slug: 'nav',
+          locale,
+          draft,
+          depth: 2,
+          fallbackLocale: DEFAULT_LOCALE
+        }),
 
-    payload.findGlobal({
-      slug: 'homepage',
-      locale,
-      draft,
-      depth: 2,
-      fallbackLocale: DEFAULT_LOCALE
-    }),
+        payload.findGlobal({
+          slug: 'homepage',
+          locale,
+          draft,
+          depth: 2,
+          fallbackLocale: DEFAULT_LOCALE
+        }),
 
-    payload.find({
-      collection: 'pages',
-      locale,
-      draft,
-      depth: 2,
-      where: {
-        slug: { equals: pageSlug }
-      },
-      limit: 1
-    })
-  ]);
+        payload.find({
+          collection: 'pages',
+          locale,
+          draft,
+          depth: 2,
+          where: {
+            slug: { equals: pageSlug }
+          },
+          limit: 1
+        })
+      ]);
+    },
+    [[locale, draft, pageSlug].filter((x) => x).join('/')]
+  );
+
+  const [navData, homepageData, data] = await fetchPageData(draft, locale);
 
   // if not page data and not the index check for redirects
   if (!data.docs[0] && pageSlug !== '/') {

@@ -3,6 +3,7 @@ import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { notFound, redirect } from 'next/navigation';
+import { unstable_cache } from 'next/cache';
 import React from 'react';
 
 import PageTemplate from './page.client';
@@ -21,25 +22,33 @@ interface BlogDetailProps {
 export default async function Blog({
   params: { locale = DEFAULT_LOCALE, slug, draft }
 }: BlogDetailProps) {
-  const payload = await getPayloadHMR({ config });
   const pageSlug = slug ? slug.join('/') : '/';
 
-  const [navData, postData] = await Promise.all([
-    payload.findGlobal({
-      slug: 'nav',
-      locale
-    }),
-    payload.find({
-      collection: 'posts',
-      locale,
-      draft,
-      where: {
-        slug: {
-          equals: pageSlug
-        }
-      }
-    })
-  ]);
+  const fetchPageData = unstable_cache(
+    async (draft: boolean | undefined, locale: LanguageLocale, pageSlug: string) => {
+      const payload = await getPayloadHMR({ config });
+
+      return Promise.all([
+        payload.findGlobal({
+          slug: 'nav',
+          locale
+        }),
+        payload.find({
+          collection: 'posts',
+          locale,
+          draft,
+          where: {
+            slug: {
+              equals: pageSlug
+            }
+          }
+        })
+      ]);
+    },
+    [[locale, draft, 'blog', pageSlug].filter((x) => x).join('/')]
+  );
+
+  const [navData, postData] = await fetchPageData(draft, locale, pageSlug)
 
   // if there's an error fetching data, 404
   if ('error' in navData || 'error' in postData || !postData.docs[0]) {
