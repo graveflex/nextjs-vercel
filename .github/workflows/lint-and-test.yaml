@@ -52,14 +52,6 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install
 
-      - name: Cache turbo build setup
-        uses: actions/cache@v4
-        with:
-          path: .vercel
-          key: ${{ runner.os }}-vercel-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-vercel-
-
       - name: ci
         env:
           BLOB_READ_WRITE_TOKEN: vercel_blob_rw_xxxxxxxxxxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

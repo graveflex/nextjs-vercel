@@ -52,7 +52,9 @@ jobs:
       - name: Cache turbo build setup
         uses: actions/cache@v4
         with:
-          path: .vercel
+          path: |
+            .vercel
+            apps/web/.next
           key: ${{ runner.os }}-vercel-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-vercel-
