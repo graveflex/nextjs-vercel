@@ -11,6 +11,7 @@ env:
   DOTENV_PRIVATE_KEY: ${{ secrets.DOTENV_PRIVATE_KEY_CI }}
   TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
   TURBO_TEAM: Graveflex
+  TURBO_REMOTE_ONLY: true
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
@@ -115,7 +116,6 @@ jobs:
           commit_url=${{ steps.deploy.outputs.preview_url }}
           pr_domain=${{ needs.set_vercel_domain.outputs.vercel_domain }}
           vercel alias set $commit_url $pr_domain --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
-
 
       - name: Comment on Pull Request
         uses: thollander/actions-comment-pull-request@v2
