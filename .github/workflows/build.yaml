@@ -1,0 +1,36 @@
+name: Build
+
+on:
+  workflow_call:
+
+env:
+  NEON_DATABASE_USERNAME: ${{ secrets.NEON_DATABASE_USERNAME }} # change this to your database username
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Required for commenting on pull requests for private repos
+  NEON_API_KEY: ${{ secrets.NEON_API_KEY }} # You can generate a an API key in your account settings
+  NEON_PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }} # You can find this in your project settings
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  DOTENV_PRIVATE_KEY: ${{ secrets.DOTENV_PRIVATE_KEY_CI }}
+  TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  TURBO_TEAM: Graveflex
+  TURBO_REMOTE_ONLY: true
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  setup:
+    uses: ./.github/workflows/setup.yaml
+    secrets: inherit
+  build:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Link Vercel App
+        run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
+
+      - name: Pull Vercel Environment Information
+        run: |
+          branch_name=${{ steps.branch-name.outputs.current_branch }}
+          vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }} --git-branch=$branch_name --scope=graveflex
+
+      - name: Build Project Artifacts
+        run: pnpm env:dev -- vercel build --token=${{ env.VERCEL_TOKEN }} --scope=graveflex --target=preview

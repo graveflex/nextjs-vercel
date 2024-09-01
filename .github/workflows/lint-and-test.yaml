@@ -44,7 +44,7 @@ jobs:
 
   test-suite:
     runs-on: ubuntu-latest
-    needs: remove-labels
+    needs: [remove-labels, setup]
     if: ${{ always() }}
     steps:
       - name: ci

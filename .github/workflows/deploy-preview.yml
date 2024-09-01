@@ -16,35 +16,14 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
-  setup:
-    uses: ./.github/workflows/setup.yaml
+  build:
+    uses: ./.github/workflows/bulid.yaml
     secrets: inherit
   deploy-preview:
     permissions: write-all
-    needs: setup
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: corepack enable
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'pnpm'
-
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Get branch name
-        id: branch-name
-        uses: tj-actions/branch-names@v8
-
-      - name: Print Vercel Domain
-        run: |
-          echo Vercel Domain: ${{ needs.setup.outputs.vercel_domain }}
-
-      - name: Install dependencies
-        run: pnpm install
-
       - name: Link Vercel App
         run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
 
@@ -73,14 +52,6 @@ jobs:
             echo DIRECT_URL=${{ steps.create-branch.outputs.db_url }}?sslmode=require >> .env.local
 
             pnpm db:migrate
-
-      - name: Pull Vercel Environment Information
-        run: |
-          branch_name=${{ steps.branch-name.outputs.current_branch }}
-          vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }} --git-branch=$branch_name --scope=graveflex
-
-      - name: Build Project Artifacts
-        run: pnpm env:dev -- vercel build --token=${{ env.VERCEL_TOKEN }} --scope=graveflex --target=preview
 
       - name: Deploy Preview to Vercel
         id: deploy
