@@ -64,4 +64,4 @@ jobs:
 
           vercel_domain=$(get_vercel_domain "$project_name" "$app_name")
           echo "VERCEL_DOMAIN=${vercel_domain}" >> "$GITHUB_ENV"
-          echo "::set-output name=vercel_domain::${vercel_domain}"
+          echo "vercel_domain=${vercel_domain}" >> "$GITHUB_OUTPUT"

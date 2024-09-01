@@ -32,6 +32,7 @@ jobs:
 
       - name: Print Vercel Domain
         run: |
+          echo "Vercel Domain env: ${{ env.VERCEL_DOMAIN }}"
           echo "Vercel Domain: ${{ needs.set-vercel-domain.outputs.vercel_domain }}"
 
       - name: Install dependencies
