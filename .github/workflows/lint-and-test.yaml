@@ -13,7 +13,7 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         with:
           script: |
             const currentLabels = await github.rest.issues.listLabelsOnIssue({
@@ -82,7 +82,7 @@ jobs:
     needs: test-suite
     if: github.event_name == 'pull_request'
     steps:
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         with:
           script: |
             const prevStepFailed = ${{ contains(join(needs.*.result, ','), 'failure') }}
