@@ -16,7 +16,7 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
-  build:
+  build_app:
     uses: ./.github/workflows/build.yaml
     secrets: inherit
   set_vercel_domain:
@@ -66,8 +66,8 @@ jobs:
           commit_sha="${{ env.COMMIT_SHA }}"
           pr_id="${{ github.event.number }}"
           author_name="${{ env.AUTHOR_NAME }}"
-          db_url="${{ needs.build.outputs.database_url }}"
-          db_url_unpooled="${{ needs.build.outputs.database_url_unpooled }}"
+          db_url="${{ needs.build_app.outputs.database_url }}"
+          db_url_unpooled="${{ needs.build_app.outputs.database_url_unpooled }}"
           commit_message="$(git log -1 --pretty=format:'%s' $commit_sha)"
           gh_username="${{ github.actor }}"
           token="${{ env.VERCEL_TOKEN }}"
@@ -114,10 +114,11 @@ jobs:
         with:
           urls: |
             https://${{ needs.set_vercel_domain.outputs.vercel_domain }}
+            https://${{ needs.set_vercel_domain.outputs.vercel_domain }}/kitchen-sink
           budgetPath: ./budget.json # test performance budgets
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true
-          runs: 3
+          runs: 1
 
       - name: Format lighthouse score
         id: format_lighthouse_score
@@ -135,7 +136,7 @@ jobs:
             const entries = results.map((item, i) => {
               const result = item.summary;
               Object.keys(result).forEach(key => result[key] = formatResult(result[key]));
-              const url = Object.keys(links)[i];
+              const url = item.url;
               const pathname = new URL(url).pathname;
 
               const row = [

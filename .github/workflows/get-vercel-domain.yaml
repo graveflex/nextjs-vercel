@@ -70,5 +70,4 @@ jobs:
           app_name="web"
 
           vercel_domain=$(get_vercel_domain "$project_name" "$app_name")
-          echo "VERCEL_DOMAIN=${vercel_domain}" >> "$GITHUB_ENV"
           echo "vercel_domain=${vercel_domain}" >> "$GITHUB_OUTPUT"
