@@ -56,7 +56,7 @@
   },
   "resolutions": {
     "@payloadcms/db-postgres": "3.0.0-beta.97",
-    "@payloadcms/db-vercel-postgres": "3.0.0-beta.97",
+    "@payloadcms/db-vercel-postgres": "3.0.0-canary.ff8c8fd",
     "@payloadcms/email-nodemailer": "3.0.0-beta.97",
     "@payloadcms/live-preview": "3.0.0-beta.97",
     "@payloadcms/live-preview-react": "3.0.0-beta.97",

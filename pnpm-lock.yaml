@@ -6,7 +6,7 @@ settings:
 
 overrides:
   '@payloadcms/db-postgres': 3.0.0-beta.97
-  '@payloadcms/db-vercel-postgres': 3.0.0-beta.97
+  '@payloadcms/db-vercel-postgres': 3.0.0-canary.ff8c8fd
   '@payloadcms/email-nodemailer': 3.0.0-beta.97
   '@payloadcms/live-preview': 3.0.0-beta.97
   '@payloadcms/live-preview-react': 3.0.0-beta.97
@@ -249,8 +249,8 @@ importers:
         specifier: 3.0.0-beta.97
         version: 3.0.0-beta.97(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
       '@payloadcms/db-vercel-postgres':
-        specifier: 3.0.0-beta.97
-        version: 3.0.0-beta.97(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
+        specifier: 3.0.0-canary.ff8c8fd
+        version: 3.0.0-canary.ff8c8fd(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
       '@payloadcms/email-nodemailer':
         specifier: 3.0.0-beta.97
         version: 3.0.0-beta.97(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))
@@ -2348,13 +2348,18 @@ packages:
     peerDependencies:
       payload: 3.0.0-beta.97
 
-  '@payloadcms/db-vercel-postgres@3.0.0-beta.97':
-    resolution: {integrity: sha512-XnStPi7rIlJHxckvEQcUWLFpC+HAf4w5l1ywdEGm3ScZuS4LTUgUXIx1tBuS+qM73hZO+sBB1WZjehsD1f/eYw==}
+  '@payloadcms/db-vercel-postgres@3.0.0-canary.ff8c8fd':
+    resolution: {integrity: sha512-xnp2F7tpALctcMw3yZ8F/UMpTw2iny3PQqhlcs7LWKs4LvIyH8SZAqK4/8f8SXDk2CPu28ncZl3VlhySC9jA5Q==}
     peerDependencies:
       payload: 3.0.0-beta.97
 
   '@payloadcms/drizzle@3.0.0-beta.97':
     resolution: {integrity: sha512-aHvpKbnF6EkoZEND6zLrWlKNSa/PT/4kpFV4mpdgHrkRGmR4j2hGDt3Z3ezoyEfXaCWtcF8+q/y+EjmCgx2hXA==}
+    peerDependencies:
+      payload: 3.0.0-beta.97
+
+  '@payloadcms/drizzle@3.0.0-canary.ff8c8fd':
+    resolution: {integrity: sha512-+vgGNVQzxX4WiCeuZX/IUCS6OjU6scXNXolW2D0pv6pDhjUOR6j+UWqQI6W1aMIpoX2NVMd6bFdEjKceJD1vwQ==}
     peerDependencies:
       payload: 3.0.0-beta.97
 
@@ -10387,9 +10392,9 @@ snapshots:
       - sqlite3
       - supports-color
 
-  '@payloadcms/db-vercel-postgres@3.0.0-beta.97(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)':
+  '@payloadcms/db-vercel-postgres@3.0.0-canary.ff8c8fd(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)':
     dependencies:
-      '@payloadcms/drizzle': 3.0.0-beta.97(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
+      '@payloadcms/drizzle': 3.0.0-canary.ff8c8fd(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
       '@vercel/postgres': 0.9.0
       console-table-printer: 2.11.2
       drizzle-kit: 0.23.2-df9e596
@@ -10429,6 +10434,44 @@ snapshots:
       - supports-color
 
   '@payloadcms/drizzle@3.0.0-beta.97(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)':
+    dependencies:
+      console-table-printer: 2.11.2
+      drizzle-orm: 0.32.1(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
+      payload: 3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4)
+      prompts: 2.4.2
+      to-snake-case: 1.0.0
+      uuid: 9.0.0
+    transitivePeerDependencies:
+      - '@aws-sdk/client-rds-data'
+      - '@cloudflare/workers-types'
+      - '@electric-sql/pglite'
+      - '@libsql/client'
+      - '@neondatabase/serverless'
+      - '@op-engineering/op-sqlite'
+      - '@opentelemetry/api'
+      - '@planetscale/database'
+      - '@prisma/client'
+      - '@tidbcloud/serverless'
+      - '@types/better-sqlite3'
+      - '@types/pg'
+      - '@types/react'
+      - '@types/sql.js'
+      - '@vercel/postgres'
+      - '@xata.io/client'
+      - better-sqlite3
+      - bun-types
+      - expo-sqlite
+      - knex
+      - kysely
+      - mysql2
+      - pg
+      - postgres
+      - prisma
+      - react
+      - sql.js
+      - sqlite3
+
+  '@payloadcms/drizzle@3.0.0-canary.ff8c8fd(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)':
     dependencies:
       console-table-printer: 2.11.2
       drizzle-orm: 0.32.1(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(@vercel/postgres@0.9.0)(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
