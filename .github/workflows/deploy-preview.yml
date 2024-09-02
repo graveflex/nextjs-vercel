@@ -66,9 +66,9 @@ jobs:
           commit_sha="${{ env.COMMIT_SHA }}"
           pr_id="${{ github.event.number }}"
           author_name="${{ env.AUTHOR_NAME }}"
-          db_url=${{ needs.build_app.outputs.database_url }}
-          db_url_unpooled=${{ needs.build_app.outputs.database_url_unpooled }}
-          commit_message=$(git log -1 --pretty=format:'%s' $commit_sha)
+          db_url="${{ needs.build_app.outputs.database_url }}"
+          db_url_unpooled="${{ needs.build_app.outputs.database_url_unpooled }}"
+          commit_message="$(git log -1 --pretty=format:'%s' $commit_sha)"
           gh_username="${{ github.actor }}"
           token="${{ env.VERCEL_TOKEN }}"
           preview_url=$(vercel deploy \
@@ -131,7 +131,8 @@ jobs:
             const formatResult = (res) => Math.round((res * 100));
             const links = ${{ steps.lighthouse_audit.outputs.links }};
 
-            const heading = '| Route | Performance | Accessibility | Best Practices | SEO |';
+            const heading   = '| Route | Performance | Accessibility | Best Practices | SEO |';
+            const separator = '|-------|-------------|---------------|----------------|-----|';
 
             const entries = results.map((item, i) => {
               const result = item.summary;
@@ -150,7 +151,7 @@ jobs:
               return `| ${row} |`
             }).join('\n');
 
-            const comment = [heading, entries].join('\n')
+            const comment = [heading, separator, entries].join('\n')
 
             core.setOutput("comment", comment);
 

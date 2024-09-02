@@ -72,7 +72,7 @@ jobs:
           vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }} --git-branch=$branch_name --scope=graveflex
 
       - name: Create Neon Branch
-        id: create-branch
+        id: create_branch
         uses: neondatabase/create-branch-action@v4
         with:
           project_id: ${{ env.NEON_PROJECT_ID }}
@@ -86,8 +86,8 @@ jobs:
         run: |
             touch .env.local
 
-            database_url="${{ steps.create-branch.outputs.db_url_with_pooler }}?sslmode=require"
-            database_url_unpooled="${{ steps.create-branch.outputs.db_url }}?sslmode=require"
+            database_url="${{ steps.create_branch.outputs.db_url_with_pooler }}?sslmode=require"
+            database_url_unpooled="${{ steps.create_branch.outputs.db_url }}?sslmode=require"
 
             echo "database_url=${database_url}" >> "$GITHUB_OUTPUT"
             echo "database_url_unpooled=${database_url_unpooled}" >> "$GITHUB_OUTPUT"
