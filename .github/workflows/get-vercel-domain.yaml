@@ -1,0 +1,73 @@
+name: Get Vercel Demain
+
+on:
+  workflow_call:
+    outputs:
+      vercel_domain:
+        description: "The branch domain for the vercel prod / staging / preview deploy"
+        value: ${{ jobs.get_vercel_domain.outputs.vercel_domain }}
+
+jobs:
+  get_vercel_domain:
+    runs-on: ubuntu-latest
+    outputs:
+      vercel_domain: ${{ steps.get_domain.outputs.vercel_domain }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v8
+
+      - name: Get Vercel Domain
+        id: get_domain
+        run: |
+          branch_name=${{ steps.branch-name.outputs.current_branch }}
+          # Function to slugify a string
+          slugify() {
+            echo "$1" | tr '[:upper:]' '[:lower:]' | sed -e 's/[^a-z0-9-]/-/g' -e 's/-\+/-/g' -e 's/^-//' -e 's/-$//'
+          }
+
+          # Function to truncate and generate the Vercel domain
+          truncate() {
+            local prefix=$1
+            local branch=$2
+            local project_name=$3
+            local org=$4
+
+            local branch_slug
+            branch_slug=$(slugify "$branch")
+            local deployment_name="${project_name}-${prefix}-${branch_slug}-${org}"
+
+            if [ ${#deployment_name} -lt 64 ]; then
+              echo "${deployment_name}.vercel.app"
+            else
+              local hash
+              hash=$(echo -n "git-${branch}${project_name}" | sha256sum | cut -c1-6)
+              local suffix="${hash}-${org}"
+              local truncated_name="${deployment_name:0:61-${#suffix}}"
+              echo "${truncated_name}-${suffix}.vercel.app"
+            fi
+          }
+
+          # Function to get the Vercel domain
+          get_vercel_domain() {
+            local project_name=$1
+            local app_name=$2
+
+            if [ "$branch_name" = "main" ] || [ -z "$branch_name" ]; then
+              echo "$project_name-$app_name.vercel.app"
+            elif [ "$branch_name" = "staging" ]; then
+              echo "$project_name-$app_name-staging.vercel.app"
+            else
+              truncate "git" "$branch_name" "${project_name}-${app_name}" "graveflex"
+            fi
+          }
+
+          # Example usage
+          project_name="nextjs-vercel-monorepo"
+          app_name="web"
+
+          vercel_domain=$(get_vercel_domain "$project_name" "$app_name")
+          echo "vercel_domain=${vercel_domain}" >> "$GITHUB_OUTPUT"

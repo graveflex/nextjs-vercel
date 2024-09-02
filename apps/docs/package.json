@@ -31,7 +31,6 @@
     "storybook": "latest",
     "swc-loader": "^0.2.6",
     "@hookform/resolvers": "^3.3.4",
-    "@mono/settings": "workspace:*",
     "@mono/ui": "workspace:*",
     "@mono/theme": "workspace:*",
     "@refract-ui/hook-fields": "latest",

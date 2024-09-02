@@ -1,9 +1,10 @@
-import type { LanguageLocale } from '@mono/settings';
 import StyledComponentsRegistry from '@mono/web/lib/StyledComponentRegistry';
+import type { LanguageLocale } from '@mono/web/lib/constants';
 import type React from 'react';
 
 import Providers from './providers';
 
+export const dynamic = 'force-static';
 export const revalidate = 60;
 export const runtime = 'nodejs';
 

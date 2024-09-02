@@ -1,4 +1,3 @@
-import { WEB_URL } from '@mono/settings';
 import CardGridBlock from '@mono/web/blocks/CardGridBlock/CardGridBlock.config';
 import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
 import FormBlock from '@mono/web/blocks/FormBlock/FormBlock.config';
@@ -11,6 +10,7 @@ import MarkdownBlock from '@mono/web/blocks/MarkdownBlock/MarkdownBlock.config';
 import SectionHeaderBlock from '@mono/web/blocks/SectionHeaderBlock/SectionHeaderBlock.config';
 import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
 import VideoBlock from '@mono/web/blocks/VideoBlock/VideoBlock.config';
+import { WEB_URL } from '@mono/web/lib/constants';
 import formatSlug from '@mono/web/payload/utils/formatSlug';
 import type { CollectionConfig } from 'payload';
 
@@ -27,20 +27,23 @@ const Pages: CollectionConfig = {
   admin: {
     useAsTitle: 'pageTitle',
     defaultColumns: ['pageTitle', 'slug', '_status', 'createdAt'],
-    preview: (doc, { locale }) => {
-      const { slug } = (doc as { slug: string }) || '/';
-
-      if (slug) {
-        return `${WEB_URL}/${slug}?locale=${locale}&draft=true`;
+    livePreview: {
+      url: (doc) => {
+        const {
+          data: { slug },
+          locale: { code }
+        } = doc;
+        return `${WEB_URL}/${code}/draft/${slug}`;
       }
-      return null;
     }
   },
   access: {
     read: () => true
   },
   versions: {
-    drafts: true
+    drafts: {
+      autosave: true
+    }
   },
   fields: [
     {

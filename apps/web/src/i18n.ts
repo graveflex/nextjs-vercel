@@ -1,4 +1,4 @@
-import { LOCALES, type LanguageLocale } from '@mono/settings';
+import { LOCALES, type LanguageLocale } from '@mono/web/lib/constants';
 import { getRequestConfig } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 

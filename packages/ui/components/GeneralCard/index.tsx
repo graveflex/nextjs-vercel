@@ -78,6 +78,7 @@ const StyledImage = styled(ResponsiveImage)`
     overflow: hidden;
     background-color: #f5f5f5;
     min-height: 20rem;
+    aspect-ratio: 4/3;
 
     img {
       max-width: 100%;
@@ -131,7 +132,7 @@ function GeneralCard({
     <Container className={className}>
       {image && (
         <ImageContainer>
-          <StyledImage image={imageProps(image)} />
+          <StyledImage image={imageProps(image)} width={460} />
         </ImageContainer>
       )}
       <ContentContainer>
