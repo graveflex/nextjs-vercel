@@ -7,7 +7,7 @@ settings:
 overrides:
   '@payloadcms/db-postgres': 3.0.0-beta.97
   '@payloadcms/db-vercel-postgres': 3.0.0-beta.97
-  '@payloadcms/email-nodemailer': 3.0.0-beta.97
+  '@payloadcms/email-nodemailer': 3.0.0-canary.ff8c8fd
   '@payloadcms/live-preview': 3.0.0-beta.97
   '@payloadcms/live-preview-react': 3.0.0-beta.97
   '@payloadcms/richtext-lexical': 3.0.0-beta.97
@@ -252,8 +252,8 @@ importers:
         specifier: 3.0.0-beta.97
         version: 3.0.0-beta.97(@neondatabase/serverless@0.9.4)(@types/pg@8.11.6)(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(pg@8.11.3)(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)
       '@payloadcms/email-nodemailer':
-        specifier: 3.0.0-beta.97
-        version: 3.0.0-beta.97(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))
+        specifier: 3.0.0-canary.ff8c8fd
+        version: 3.0.0-canary.ff8c8fd(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))
       '@payloadcms/live-preview':
         specifier: 3.0.0-beta.97
         version: 3.0.0-beta.97
@@ -2358,8 +2358,8 @@ packages:
     peerDependencies:
       payload: 3.0.0-beta.97
 
-  '@payloadcms/email-nodemailer@3.0.0-beta.97':
-    resolution: {integrity: sha512-zvEMddHdRN0Ao2a3BACcPTkd2cG7ClSW7Od8Vu+noeNgKQ7Qy3L4SccRG/IdEg1sEmQuwwntI1hY+b14zZbiAg==}
+  '@payloadcms/email-nodemailer@3.0.0-canary.ff8c8fd':
+    resolution: {integrity: sha512-iC1ff+0IYEeKJ17u+IQ7pI3mj57lbmflGUzEOgcTOFAjoFcBo/DyFbh7NNM/HLdpUq1Vpo56qFId4RS6FdQt8g==}
     engines: {node: ^18.20.2 || >=20.9.0}
     peerDependencies:
       payload: 3.0.0-beta.97
@@ -10466,7 +10466,7 @@ snapshots:
       - sql.js
       - sqlite3
 
-  '@payloadcms/email-nodemailer@3.0.0-beta.97(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))':
+  '@payloadcms/email-nodemailer@3.0.0-canary.ff8c8fd(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))':
     dependencies:
       nodemailer: 6.9.10
       payload: 3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4)
