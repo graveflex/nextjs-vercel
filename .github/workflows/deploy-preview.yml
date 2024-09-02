@@ -124,19 +124,18 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            const results = ${{ steps.lighthouse_audit.outputs.manifest }}
+            const results = JSON.parse(`${{ steps.lighthouse_audit.outputs.manifest }}`);
+            const score = res => res >= 90 ? '🟢' : (res) >= 50 ? '🟠' : '🔴';
+            const formatResult = (res) => Math.round((res * 100));
+            const links = `JSON.parse(${{ steps.lighthouse_audit.outputs.links }})`;
 
-            const score = res => res >= 90 ? '🟢' : res >= 50 ? '🟠' : '🔴'
-            const formatResult = (res) => Math.round((res * 100))
-            const links = ${{ steps.lighthouse_audit.outputs.links }}
-
-            const heading = '| Route | Performance | Accessibility | Best Practices | SEO |'
+            const heading = '| Route | Performance | Accessibility | Best Practices | SEO |';
 
             const entries = results.map((item, i) => {
               const result = item.summary;
-              Object.keys(result).forEach(key => result[key] = formatResult(result[key]))
-              const url = Object.keys(links)[i]
-              const pathname = new URL(url).pathname
+              Object.keys(result).forEach(key => result[key] = formatResult(result[key]));
+              const url = Object.keys(links)[i];
+              const pathname = new URL(url).pathname;
 
               const row = [
                 `[${pathname}](${url})`,
