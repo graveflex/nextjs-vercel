@@ -118,6 +118,7 @@ jobs:
 
       - name: Build Project Artifacts
         run: |
+          branch_name=${{ steps.branch-name.outputs.current_branch }}
           if [ "$branch_name" = "main" ]; then
             target="--prod"
           else
