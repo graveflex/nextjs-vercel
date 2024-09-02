@@ -29,9 +29,11 @@ export default withPayload(
     reactStrictMode: true,
     transpilePackages: ['@mono/ui', '@mono/theme', '@mono/types'],
 
+    /*
     experimental: {
       reactCompiler: false
     },
+    */
 
     compiler: {
       styledComponents: {

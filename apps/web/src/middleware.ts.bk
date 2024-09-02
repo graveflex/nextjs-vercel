@@ -1,5 +1,5 @@
-import { DEFAULT_LOCALE, LOCALES } from '@mono/web/lib/constants';
 import createMiddleware from 'next-intl/middleware';
+import { DEFAULT_LOCALE, LOCALES } from '@mono/web/lib/constants';
 
 export default createMiddleware({
   // A list of all locales that are supported
@@ -17,6 +17,6 @@ export const config = {
     // Match all pathnames except for
     // - … if they start with `/api`, `/_next` or `/_vercel`
     // - … the ones containing a dot (e.g. `favicon.ico`)
-    '/((?!api|admin|_next|_vercel|.*\\..*).*)'
+    '/((?!api|admin|_next|_vercel(?!/insights/script\\.js)|.*\\..*).*)'
   ]
 };

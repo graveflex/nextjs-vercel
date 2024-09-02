@@ -95,7 +95,7 @@
     "babel-plugin-react-compiler": "0.0.0-experimental-48eb8f4-20240822",
     "framer-motion": "12.0.0-alpha.0",
     "payload": "3.0.0-beta.97",
-    "next": "15.0.0-canary.136",
+    "next": "15.0.0-canary.104",
     "react": "19.0.0-rc-eb3ad065-20240822",
     "react-dom": "19.0.0-rc-eb3ad065-20240822",
     "sharp": "0.32.6",

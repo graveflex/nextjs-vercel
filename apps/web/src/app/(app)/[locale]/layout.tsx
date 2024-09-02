@@ -21,7 +21,9 @@ async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
       <head />
 
       <StyledComponentsRegistry>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+        </Providers>
       </StyledComponentsRegistry>
     </html>
   );
