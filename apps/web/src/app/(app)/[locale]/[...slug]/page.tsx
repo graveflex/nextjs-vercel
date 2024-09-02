@@ -1,5 +1,4 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
-import Loading from '@mono/web/components/Loading';
 import Layout from '@mono/web/globals/Layout';
 import {
   DEFAULT_LOCALE,
@@ -11,7 +10,7 @@ import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { unstable_cache } from 'next/cache';
 import { notFound, redirect } from 'next/navigation';
-import React, { Suspense } from 'react';
+import React from 'react';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
@@ -45,14 +44,6 @@ export default async function CatchallPage({
           fallbackLocale: DEFAULT_LOCALE
         }),
 
-        payload.findGlobal({
-          slug: 'homepage',
-          locale,
-          draft,
-          depth: 2,
-          fallbackLocale: DEFAULT_LOCALE
-        }),
-
         payload.find({
           collection: 'pages',
           locale,
@@ -68,10 +59,10 @@ export default async function CatchallPage({
     [[locale, draft, pageSlug].filter((x) => x).join('/')]
   );
 
-  const [navData, homepageData, data] = await fetchPageData(draft, locale);
+  const [navData, data] = await fetchPageData(draft, locale);
 
   // if not page data and not the index check for redirects
-  if (!data.docs[0] && pageSlug !== '/') {
+  if (!data.docs[0]) {
     const redirectPath = await redirectApi(pageSlug);
     if (
       !redirectPath ||
@@ -82,19 +73,7 @@ export default async function CatchallPage({
     redirect(redirectPath);
   }
 
-  // if there's an error fetching data, 404
-  if ('error' in data || 'error' in navData) {
-    const redirectPath = await redirectApi(pageSlug);
-    if (
-      !redirectPath ||
-      (typeof redirectPath === 'object' && 'error' in redirectPath)
-    ) {
-      return notFound();
-    }
-    redirect(redirectPath);
-  }
-
-  const page = data.docs[0] ?? homepageData;
+  const page = data.docs[0];
 
   return (
     <Layout theme={page.theme} {...navData}>
