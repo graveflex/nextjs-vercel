@@ -8,7 +8,7 @@ overrides:
   '@payloadcms/db-postgres': 3.0.0-beta.97
   '@payloadcms/db-vercel-postgres': 3.0.0-beta.97
   '@payloadcms/email-nodemailer': 3.0.0-beta.97
-  '@payloadcms/live-preview': 3.0.0-beta.97
+  '@payloadcms/live-preview': 3.0.0-canary.ff8c8fd
   '@payloadcms/live-preview-react': 3.0.0-beta.97
   '@payloadcms/richtext-lexical': 3.0.0-beta.97
   '@payloadcms/plugin-cloud-storage': 3.0.0-beta.97
@@ -255,8 +255,8 @@ importers:
         specifier: 3.0.0-beta.97
         version: 3.0.0-beta.97(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))
       '@payloadcms/live-preview':
-        specifier: 3.0.0-beta.97
-        version: 3.0.0-beta.97
+        specifier: 3.0.0-canary.ff8c8fd
+        version: 3.0.0-canary.ff8c8fd
       '@payloadcms/live-preview-react':
         specifier: 3.0.0-beta.97
         version: 3.0.0-beta.97(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
@@ -2377,8 +2377,8 @@ packages:
       react: 19.0.0-rc-eb3ad065-20240822
       react-dom: 19.0.0-rc-eb3ad065-20240822
 
-  '@payloadcms/live-preview@3.0.0-beta.97':
-    resolution: {integrity: sha512-eHpaP07eHQiv0xQJbHQkzJyOcWYXkGJwbquju7oOZu74VHsCNDk6L+BsjSqDs60691u2ghgD0c87CMkAnLv53Q==}
+  '@payloadcms/live-preview@3.0.0-canary.ff8c8fd':
+    resolution: {integrity: sha512-vG51g2lcAKLQgVDMz1eYnTqjeRzr9deiRv2rkPIScl2kiIMBJN7rnIjdO0yiT4r0nK+So1kRjNZ/DDungOAFJg==}
 
   '@payloadcms/next@3.0.0-beta.97':
     resolution: {integrity: sha512-Y3ph7aEwvGxuKgZPJy5sWJzHrmRoafWK6a4wJePRjBT4zVl5lL0JKnRZhtsSNLdtjQfaMWBMvuvQG0nIa99GxQ==}
@@ -10484,11 +10484,11 @@ snapshots:
 
   '@payloadcms/live-preview-react@3.0.0-beta.97(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)':
     dependencies:
-      '@payloadcms/live-preview': 3.0.0-beta.97
+      '@payloadcms/live-preview': 3.0.0-canary.ff8c8fd
       react: 19.0.0-rc-eb3ad065-20240822
       react-dom: 19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822)
 
-  '@payloadcms/live-preview@3.0.0-beta.97': {}
+  '@payloadcms/live-preview@3.0.0-canary.ff8c8fd': {}
 
   '@payloadcms/next@3.0.0-beta.97(bufferutil@4.0.8)(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.136(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)(utf-8-validate@6.0.4)':
     dependencies:
