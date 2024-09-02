@@ -12,7 +12,7 @@ overrides:
   '@payloadcms/live-preview-react': 3.0.0-beta.97
   '@payloadcms/richtext-lexical': 3.0.0-beta.97
   '@payloadcms/plugin-cloud-storage': 3.0.0-beta.97
-  '@payloadcms/plugin-redirects': 3.0.0-beta.97
+  '@payloadcms/plugin-redirects': 3.0.0-canary.ff8c8fd
   '@payloadcms/plugin-seo': 3.0.0-beta.97
   '@payloadcms/translations': 3.0.0-beta.97
   '@payloadcms/plugin-form-builder': 3.0.0-beta.97
@@ -270,8 +270,8 @@ importers:
         specifier: 3.0.0-beta.97
         version: 3.0.0-beta.97(monaco-editor@0.38.0)(next@15.0.0-canary.136(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)
       '@payloadcms/plugin-redirects':
-        specifier: 3.0.0-beta.97
-        version: 3.0.0-beta.97(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))
+        specifier: 3.0.0-canary.ff8c8fd
+        version: 3.0.0-canary.ff8c8fd(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))
       '@payloadcms/plugin-seo':
         specifier: 3.0.0-beta.97
         version: 3.0.0-beta.97(monaco-editor@0.38.0)(next@15.0.0-canary.136(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)
@@ -2419,8 +2419,8 @@ packages:
       react: 19.0.0-rc-eb3ad065-20240822
       react-dom: 19.0.0-rc-eb3ad065-20240822
 
-  '@payloadcms/plugin-redirects@3.0.0-beta.97':
-    resolution: {integrity: sha512-71pZ07MVUA3f3gMd7gwX3WS0U0LdzhZJP2/2L5Pt5lZzd90akEKS1CzctSsDhsEKp4OZe7SECLwCe1+ovam0XQ==}
+  '@payloadcms/plugin-redirects@3.0.0-canary.ff8c8fd':
+    resolution: {integrity: sha512-aFlf5L6RKeH8boRU6mfp+yvaGEiPTF67o2Xy1ivHSaiWU5fuPrqfj4wC/8xKZvDM6fcEhPBjGO+FMqJStVI4QQ==}
     peerDependencies:
       payload: 3.0.0-beta.97
 
@@ -10551,7 +10551,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@payloadcms/plugin-redirects@3.0.0-beta.97(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))':
+  '@payloadcms/plugin-redirects@3.0.0-canary.ff8c8fd(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))':
     dependencies:
       payload: 3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4)
 
