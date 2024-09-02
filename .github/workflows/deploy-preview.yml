@@ -66,9 +66,9 @@ jobs:
           commit_sha="${{ env.COMMIT_SHA }}"
           pr_id="${{ github.event.number }}"
           author_name="${{ env.AUTHOR_NAME }}"
-          db_url="${{ needs.build_app.outputs.database_url }}"
-          db_url_unpooled="${{ needs.build_app.outputs.database_url_unpooled }}"
-          commit_message="$(git log -1 --pretty=format:'%s' $commit_sha)"
+          db_url=${{ needs.build_app.outputs.database_url }}
+          db_url_unpooled=${{ needs.build_app.outputs.database_url_unpooled }}
+          commit_message=$(git log -1 --pretty=format:'%s' $commit_sha)
           gh_username="${{ github.actor }}"
           token="${{ env.VERCEL_TOKEN }}"
           preview_url=$(vercel deploy \
