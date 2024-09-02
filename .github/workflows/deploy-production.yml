@@ -77,6 +77,8 @@ jobs:
         env:
           VERCEL_GIT_COMMIT_REF: ${{ steps.branch-name.outputs.current_branch }}
         run: |
+          branch_name="${{ steps.branch-name.outputs.current_branch }}"
+
           if [ "$branch_name" = "main" ]; then
             target="--prod"
           else
@@ -85,7 +87,6 @@ jobs:
 
           db_url="${{ steps.create_branch.outputs.db_url_with_pooler }}?sslmode=require"
           db_url_unpooled="${{ steps.create_branch.outputs.db_url }}?sslmode=require"
-          branch_name="${{ steps.branch-name.outputs.current_branch }}"
           commit_sha="${{ env.COMMIT_SHA }}"
           pr_id="${{ github.event.number }}"
           author_name="${{ env.AUTHOR_NAME }}"
