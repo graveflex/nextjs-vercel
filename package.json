@@ -98,7 +98,7 @@
     "next": "15.0.0-canary.136",
     "react": "19.0.0-rc-eb3ad065-20240822",
     "react-dom": "19.0.0-rc-eb3ad065-20240822",
-    "sharp": "0.32.6",
+    "sharp": "0.33.5",
     "lodash": "^4.17.21",
     "styled-components": "6.1.12",
     "storybook": "8.3.0-alpha.4",
