@@ -39,7 +39,9 @@
     "db:migrate": {
       "cache": false
     },
-    "clean": {},
+    "clean": {
+      "cache": false
+    },
     "//#lint": {},
     "//#lint:fix": {
       "cache": false
@@ -62,7 +64,7 @@
       "cache": false,
       "dependsOn": ["^generate:types"],
       "persistent": true,
-      "interactive": true
+      "interactive": false
     },
     "build": {
       "dependsOn": ["^build"],
