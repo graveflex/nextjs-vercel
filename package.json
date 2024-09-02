@@ -63,7 +63,7 @@
     "@payloadcms/richtext-lexical": "3.0.0-beta.97",
     "@payloadcms/plugin-cloud-storage": "3.0.0-beta.97",
     "@payloadcms/plugin-redirects": "3.0.0-beta.97",
-    "@payloadcms/plugin-seo": "3.0.0-beta.97",
+    "@payloadcms/plugin-seo": "3.0.0-canary.ff8c8fd",
     "@payloadcms/translations": "3.0.0-beta.97",
     "@payloadcms/plugin-form-builder": "3.0.0-beta.97",
     "@payloadcms/storage-vercel-blob": "3.0.0-beta.97",
