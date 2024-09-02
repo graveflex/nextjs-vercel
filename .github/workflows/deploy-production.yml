@@ -108,7 +108,7 @@ jobs:
 
       - name: Alias pr deploy
         id: alias
-        if: github.ref == 'refs/heads/main'
+        if: github.ref != 'refs/heads/main'
         run: |
           commit_url=${{ steps.deploy.outputs.preview_url }}
           pr_domain=${{ needs.set_vercel_domain.outputs.vercel_domain }}
