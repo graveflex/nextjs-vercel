@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   remove-labels:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v6
@@ -79,7 +80,7 @@ jobs:
   add-label:
     runs-on: ubuntu-latest
     needs: test-suite
-    if: ${{ always() }}
+    if: github.event_name == 'pull_request'
     steps:
       - uses: actions/github-script@v6
         with:
