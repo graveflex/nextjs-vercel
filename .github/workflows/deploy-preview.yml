@@ -142,21 +142,23 @@ jobs:
             const links = ${{ steps.lighthouse_audit.outputs.links }};
 
             const header = "### Lighthouse Audit";
-            const heading   = '| Route | Performance | Accessibility | Best Practices | SEO |';
-            const separator = '|-------|-------------|---------------|----------------|-----|';
+            const heading   = '| Route | Performance | Accessibility | Best Practices | SEO | Full Report |';
+            const separator = '|-------|-------------|---------------|----------------|-----|-------------|';
 
             const entries = results.map((item, i) => {
               const result = item.summary;
               Object.keys(result).forEach(key => result[key] = formatResult(result[key]));
               const url = item.url;
               const pathname = new URL(url).pathname;
+              const fullReportUrl = links[url];
 
               const row = [
                 `[${pathname}](${url})`,
                 `${score(result.performance)} ${result.performance}`,
                 `${score(result.accessibility)} ${result.accessibility}`,
                 `${score(result['best-practices'])} ${result['best-practices']}`,
-                `${score(result.seo)} ${result.seo}`
+                `${score(result.seo)} ${result.seo}`,
+                `[Full Report](${fullReportUrl})`
               ].join(' | ');
 
               return `| ${row} |`
