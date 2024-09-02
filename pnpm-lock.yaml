@@ -20,10 +20,10 @@ overrides:
   '@payloadcms/next': 3.0.0-beta.97
   '@payload-enchants/translator': 1.3.0-pre.0
   '@payloadcms/ui': 3.0.0-beta.97
-  '@refract-ui/core': 1.0.1-alpha.48
-  '@refract-ui/sc': 1.0.1-alpha.48
-  '@refract-ui/stories': 1.0.1-alpha.48
-  '@refract-ui/hook-fields': 1.0.1-alpha.48
+  '@refract-ui/core': 1.0.1-alpha.49
+  '@refract-ui/sc': 1.0.1-alpha.49
+  '@refract-ui/stories': 1.0.1-alpha.49
+  '@refract-ui/hook-fields': 1.0.1-alpha.49
   '@storybook/addon-a11y': 8.3.0-alpha.4
   '@storybook/addon-actions': 8.3.0-alpha.4
   '@storybook/addon-essentials': 8.3.0-alpha.4
@@ -135,14 +135,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/ui
       '@refract-ui/hook-fields':
-        specifier: 1.0.1-alpha.48
-        version: 1.0.1-alpha.48(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        specifier: 1.0.1-alpha.49
+        version: 1.0.1-alpha.49(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@refract-ui/sc':
-        specifier: 1.0.1-alpha.48
-        version: 1.0.1-alpha.48(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        specifier: 1.0.1-alpha.49
+        version: 1.0.1-alpha.49(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@refract-ui/stories':
-        specifier: 1.0.1-alpha.48
-        version: 1.0.1-alpha.48(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        specifier: 1.0.1-alpha.49
+        version: 1.0.1-alpha.49(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@storybook/addon-a11y':
         specifier: 8.3.0-alpha.4
         version: 8.3.0-alpha.4(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))
@@ -288,14 +288,14 @@ importers:
         specifier: 3.0.0-beta.97
         version: 3.0.0-beta.97(monaco-editor@0.38.0)(next@15.0.0-canary.136(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)
       '@refract-ui/hook-fields':
-        specifier: 1.0.1-alpha.48
-        version: 1.0.1-alpha.48(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        specifier: 1.0.1-alpha.49
+        version: 1.0.1-alpha.49(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@refract-ui/sc':
-        specifier: 1.0.1-alpha.48
-        version: 1.0.1-alpha.48(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        specifier: 1.0.1-alpha.49
+        version: 1.0.1-alpha.49(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@refract-ui/stories':
-        specifier: 1.0.1-alpha.48
-        version: 1.0.1-alpha.48(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        specifier: 1.0.1-alpha.49
+        version: 1.0.1-alpha.49(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@storybook/react':
         specifier: 8.3.0-alpha.4
         version: 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)
@@ -451,11 +451,11 @@ importers:
         specifier: workspace:*
         version: link:../tsconfig
       '@refract-ui/core':
-        specifier: 1.0.1-alpha.48
-        version: 1.0.1-alpha.48
+        specifier: 1.0.1-alpha.49
+        version: 1.0.1-alpha.49
       '@refract-ui/sc':
-        specifier: 1.0.1-alpha.48
-        version: 1.0.1-alpha.48(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        specifier: 1.0.1-alpha.49
+        version: 1.0.1-alpha.49(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@types/lodash':
         specifier: ^4.17.0
         version: 4.17.7
@@ -492,11 +492,11 @@ importers:
         specifier: workspace:*
         version: link:../tsconfig
       '@refract-ui/core':
-        specifier: 1.0.1-alpha.48
-        version: 1.0.1-alpha.48
+        specifier: 1.0.1-alpha.49
+        version: 1.0.1-alpha.49
       '@refract-ui/sc':
-        specifier: 1.0.1-alpha.48
-        version: 1.0.1-alpha.48(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        specifier: 1.0.1-alpha.49
+        version: 1.0.1-alpha.49(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       payload:
         specifier: 3.0.0-beta.97
         version: 3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4)
@@ -535,14 +535,14 @@ importers:
         specifier: 3.0.0-beta.97
         version: 3.0.0-beta.97(@faceless-ui/modal@3.0.0-beta.2(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))(@faceless-ui/scroll-info@2.0.0-beta.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))(@lexical/headless@0.17.0)(@lexical/link@0.17.0)(@lexical/list@0.17.0)(@lexical/mark@0.17.0)(@lexical/markdown@0.17.0)(@lexical/react@0.17.0(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(yjs@13.6.18))(@lexical/rich-text@0.17.0)(@lexical/selection@0.17.0)(@lexical/table@0.17.0)(@lexical/utils@0.17.0)(@payloadcms/next@3.0.0-beta.97(bufferutil@4.0.8)(graphql@16.9.0)(monaco-editor@0.38.0)(next@15.0.0-canary.136(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)(utf-8-validate@6.0.4))(lexical@0.17.0)(monaco-editor@0.38.0)(next@15.0.0-canary.136(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(payload@3.0.0-beta.97(graphql@16.9.0)(monaco-editor@0.38.0)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(types-react@19.0.0-rc.0)(typescript@5.5.4)
       '@refract-ui/hook-fields':
-        specifier: 1.0.1-alpha.48
-        version: 1.0.1-alpha.48(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        specifier: 1.0.1-alpha.49
+        version: 1.0.1-alpha.49(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@refract-ui/sc':
-        specifier: 1.0.1-alpha.48
-        version: 1.0.1-alpha.48(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        specifier: 1.0.1-alpha.49
+        version: 1.0.1-alpha.49(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@refract-ui/stories':
-        specifier: 1.0.1-alpha.48
-        version: 1.0.1-alpha.48(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+        specifier: 1.0.1-alpha.49
+        version: 1.0.1-alpha.49(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@storybook/react':
         specifier: 8.3.0-alpha.4
         version: 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)
@@ -2501,11 +2501,11 @@ packages:
       webpack-plugin-serve:
         optional: true
 
-  '@refract-ui/core@1.0.1-alpha.48':
-    resolution: {integrity: sha512-r7qg7ZoZ9YNjYffru/OlkdW0oE0CdcGyolm2YdyK63IdViguzZcoggDnujRDJvq3G4WIz1s9iiCOqgSsmOGumg==}
+  '@refract-ui/core@1.0.1-alpha.49':
+    resolution: {integrity: sha512-6ZFOVTzoJo0ILOMo9crF8zHooo70czZdt5pPH7ExOeLDWUqKWlxq6CfDcV9vj92K8wMsu3R/5IhZPXUnKBrqXg==}
 
-  '@refract-ui/hook-fields@1.0.1-alpha.48':
-    resolution: {integrity: sha512-WnBWLkn/YYGuHi82aRnwb7c5595fKEHaxjBSCOgkDWagymTRtt2QM1f0brxpRjlfeqsAdC8eOABowxRlrKcGuw==}
+  '@refract-ui/hook-fields@1.0.1-alpha.49':
+    resolution: {integrity: sha512-Nq7bMqEYrFnRdGNaEojT/zSHGfdRrca6M/A+xFclSKEGD1wYJjgHHoXBADP0oH4p/y52uMahSr3rRuD4JHwlow==}
     peerDependencies:
       '@hookform/resolvers': latest
       '@storybook/react': 8.3.0-alpha.4
@@ -2514,16 +2514,16 @@ packages:
       react-hook-form: latest
       styled-components: 6.1.12
 
-  '@refract-ui/sc@1.0.1-alpha.48':
-    resolution: {integrity: sha512-Lu466WWxmC7Ck3jAZ/Cn1dd0El1DhonBgL2ZDmUzWDmJn+eu68zhysRquFr3UYRabR6+IG4yHV+I3Wdxfe4xQg==}
+  '@refract-ui/sc@1.0.1-alpha.49':
+    resolution: {integrity: sha512-byleftKxCqhleWvFZQa/GCZ5Th6Txwto4bIn94/tA4YJfJawhl+DaIeWKroWSDJ1kjqVFjwtxbCyhthnbyo0Tw==}
     peerDependencies:
       '@storybook/react': 8.3.0-alpha.4
       react: 19.0.0-rc-eb3ad065-20240822
       react-dom: 19.0.0-rc-eb3ad065-20240822
       styled-components: 6.1.12
 
-  '@refract-ui/stories@1.0.1-alpha.48':
-    resolution: {integrity: sha512-Nc6BqnzGFB5Vi1zfgAcstHuO/1dBIZZ1lh72Ml9C4Byz6OMR34SN0CzLVy+UmOuwDiP+IG4IncByOI1x/LaCcw==}
+  '@refract-ui/stories@1.0.1-alpha.49':
+    resolution: {integrity: sha512-ENT+oLa1WSkUBuxSgbqp9TvT4bZqURC4ZmIEmW+y76w5GZ8uVNe+91IyvKuLk3n4ruKAJQV0r+hHYNRjMUcqNw==}
 
   '@rollup/pluginutils@4.2.1':
     resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
@@ -10672,7 +10672,7 @@ snapshots:
       type-fest: 4.26.0
       webpack-hot-middleware: 2.26.1
 
-  '@refract-ui/core@1.0.1-alpha.48':
+  '@refract-ui/core@1.0.1-alpha.49':
     dependencies:
       csstype: 3.1.3
       fp-ts: 2.16.9
@@ -10680,28 +10680,28 @@ snapshots:
       type-fest: 4.26.0
       utility-types: 3.11.0
 
-  '@refract-ui/hook-fields@1.0.1-alpha.48(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))':
+  '@refract-ui/hook-fields@1.0.1-alpha.49(@hookform/resolvers@3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822)))(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))':
     dependencies:
       '@hookform/resolvers': 3.9.0(react-hook-form@7.53.0(react@19.0.0-rc-eb3ad065-20240822))
-      '@refract-ui/sc': 1.0.1-alpha.48(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+      '@refract-ui/sc': 1.0.1-alpha.49(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       '@storybook/react': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)
       react: 19.0.0-rc-eb3ad065-20240822
       react-dom: 19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822)
       react-hook-form: 7.53.0(react@19.0.0-rc-eb3ad065-20240822)
       styled-components: 6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
 
-  '@refract-ui/sc@1.0.1-alpha.48(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))':
+  '@refract-ui/sc@1.0.1-alpha.49(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))':
     dependencies:
-      '@refract-ui/core': 1.0.1-alpha.48
+      '@refract-ui/core': 1.0.1-alpha.49
       '@storybook/react': 8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4)
       react: 19.0.0-rc-eb3ad065-20240822
       react-dom: 19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822)
       styled-components: 6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)
 
-  '@refract-ui/stories@1.0.1-alpha.48(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))':
+  '@refract-ui/stories@1.0.1-alpha.49(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))':
     dependencies:
       '@faker-js/faker': 8.4.1
-      '@refract-ui/sc': 1.0.1-alpha.48(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
+      '@refract-ui/sc': 1.0.1-alpha.49(@storybook/react@8.3.0-alpha.4(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(storybook@8.3.0-alpha.4(bufferutil@4.0.8)(utf-8-validate@6.0.4))(typescript@5.5.4))(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(styled-components@6.1.12(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822))
       csstype: 3.1.3
       lodash: 4.17.21
       react-syntax-highlighter: 15.5.0(react@19.0.0-rc-eb3ad065-20240822)
