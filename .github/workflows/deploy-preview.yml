@@ -124,10 +124,10 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            const results = JSON.parse(`${{ steps.lighthouse_audit.outputs.manifest }}`);
+            const results = ${{ steps.lighthouse_audit.outputs.manifest }};
             const score = res => res >= 90 ? '🟢' : (res) >= 50 ? '🟠' : '🔴';
             const formatResult = (res) => Math.round((res * 100));
-            const links = `JSON.parse(${{ steps.lighthouse_audit.outputs.links }})`;
+            const links = ${{ steps.lighthouse_audit.outputs.links }};
 
             const heading = '| Route | Performance | Accessibility | Best Practices | SEO |';
 
