@@ -74,12 +74,12 @@ jobs:
         run: |
           branch_name=${{ steps.branch-name.outputs.current_branch }}
           if [ "$branch_name" = "main" ]; then
-            environment="prod"
+            environment=""
           else
-            environment="preview"
+            environment="--environment=preview"
           fi
 
-          vercel pull --yes --environment=$environment --token=${{ env.VERCEL_TOKEN }} --git-branch=$branch_name --scope=graveflex
+          vercel pull --yes $environment --token=${{ env.VERCEL_TOKEN }} --git-branch=$branch_name --scope=graveflex
 
       - name: Set Neon Branch Name
         run: |
@@ -119,8 +119,8 @@ jobs:
       - name: Build Project Artifacts
         run: |
           if [ "$branch_name" = "main" ]; then
-            target="prod"
+            target="--prod"
           else
-            target="preview"
+            target="--target=preview"
           fi
-          pnpm env:dev -- vercel build --token=${{ env.VERCEL_TOKEN }} --scope=graveflex --target=$target
+          pnpm env:dev -- vercel build --token=${{ env.VERCEL_TOKEN }} --scope=graveflex $target

@@ -78,9 +78,9 @@ jobs:
           VERCEL_GIT_COMMIT_REF: ${{ steps.branch-name.outputs.current_branch }}
         run: |
           if [ "$branch_name" = "main" ]; then
-            target="prod"
+            target="--prod"
           else
-            target="preview"
+            target="--target=preview"
           fi
 
           db_url="${{ steps.create_branch.outputs.db_url_with_pooler }}?sslmode=require"
@@ -96,7 +96,7 @@ jobs:
             --prebuilt \
             --token="$token" \
             --scope=graveflex \
-            --target=$target \
+            $target \
             --yes \
             -e DATABASE_URL="$db_url" \
             -b DATABASE_URL="$db_url" \
