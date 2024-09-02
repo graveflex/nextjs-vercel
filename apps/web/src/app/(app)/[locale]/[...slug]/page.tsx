@@ -26,43 +26,31 @@ interface RootLayoutProps {
 export default async function CatchallPage({
   params: { slug, locale = DEFAULT_LOCALE, draft }
 }: RootLayoutProps) {
-  let pageSlug = slug ? slug.join('/') : '/';
-
-  if (LOCALES.includes(pageSlug as LanguageLocale)) {
-    pageSlug = '/';
-  }
+  let pageSlug = slug.join('/');
 
   const fetchPageData = unstable_cache(
     async (draft: boolean | undefined, locale: LanguageLocale) => {
       const payload = await getPayloadHMR({ config });
-      return Promise.all([
-        payload.findGlobal({
-          slug: 'nav',
-          locale,
-          draft,
-          depth: 2,
-          fallbackLocale: DEFAULT_LOCALE
-        }),
+      const data = await payload.find({
+        collection: 'pages',
+        locale,
+        draft,
+        depth: 2,
+        where: {
+          slug: { equals: pageSlug }
+        },
+        limit: 1
+      });
 
-        payload.find({
-          collection: 'pages',
-          locale,
-          draft,
-          depth: 2,
-          where: {
-            slug: { equals: pageSlug }
-          },
-          limit: 1
-        })
-      ]);
+      return data?.docs?.[0];
     },
     [[locale, draft, pageSlug].filter((x) => x).join('/')]
   );
 
-  const [navData, data] = await fetchPageData(draft, locale);
+  const page = await fetchPageData(draft, locale);
 
   // if not page data and not the index check for redirects
-  if (!data.docs[0]) {
+  if (!page) {
     const redirectPath = await redirectApi(pageSlug);
     if (
       !redirectPath ||
@@ -73,10 +61,8 @@ export default async function CatchallPage({
     redirect(redirectPath);
   }
 
-  const page = data.docs[0];
-
   return (
-    <Layout theme={page.theme} {...navData}>
+    <Layout theme={page.theme}>
       <BlocksRenderer blocks={page.blocks ?? []} />
     </Layout>
   );
