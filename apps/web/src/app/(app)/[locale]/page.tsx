@@ -29,7 +29,7 @@ export default async function CatchallPage({
         draft,
         depth: 2,
         fallbackLocale: DEFAULT_LOCALE
-      })
+      });
     },
     [[locale, draft, 'homepage'].filter((x) => x).join('/')]
   );
@@ -60,7 +60,8 @@ export async function generateMetadata({
       return {};
     }
 
-    const seoImage = 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
+    const seoImage =
+      'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
 
     return {
       title: data.pageTitle ?? 'Monorepo',

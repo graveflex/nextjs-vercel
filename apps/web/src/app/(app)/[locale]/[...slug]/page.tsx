@@ -26,7 +26,7 @@ interface RootLayoutProps {
 export default async function CatchallPage({
   params: { slug, locale = DEFAULT_LOCALE, draft }
 }: RootLayoutProps) {
-  let pageSlug = slug.join('/');
+  const pageSlug = slug.join('/');
 
   const fetchPageData = unstable_cache(
     async (draft: boolean | undefined, locale: LanguageLocale) => {
