@@ -7,9 +7,9 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
+async function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang={locale}>
+    <html lang="en-US">
       <head />
       <body
         style={{

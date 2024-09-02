@@ -4,10 +4,10 @@ import light from '@mono/theme/src/light';
 import { GlobalStyles } from '@refract-ui/sc';
 import type React from 'react';
 
-interface ProvidersProps {
-  children: React.Children;
+interface ProviderProps {
+  children: React.ReactNode;
 }
 
-export default function RefractProviders({ children }: ProvidersProps) {
+export default function RefractProviders({ children }: ProviderProps) {
   return <GlobalStyles theme={light}>{children}</GlobalStyles>;
 }
