@@ -60,6 +60,8 @@ jobs:
               echo "$project_name-$app_name.vercel.app"
             elif [ "$branch_name" = "staging" ]; then
               echo "$project_name-$app_name-staging.vercel.app"
+            elif [ "$branch_name" = "development" ]; then
+              echo "$project_name-$app_name-dev.vercel.app"
             else
               truncate "git" "$branch_name" "${project_name}-${app_name}" "graveflex"
             fi
