@@ -131,6 +131,7 @@ jobs:
             const formatResult = (res) => Math.round((res * 100));
             const links = ${{ steps.lighthouse_audit.outputs.links }};
 
+            const header = "### Lighthouse Audit";
             const heading   = '| Route | Performance | Accessibility | Best Practices | SEO |';
             const separator = '|-------|-------------|---------------|----------------|-----|';
 
@@ -151,7 +152,7 @@ jobs:
               return `| ${row} |`
             }).join('\n');
 
-            const comment = [heading, separator, entries].join('\n')
+            const comment = [header, heading, separator, entries].join('\n')
 
             core.setOutput("comment", comment);
 
