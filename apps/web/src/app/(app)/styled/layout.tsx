@@ -1,8 +1,5 @@
 import StyledComponentsRegistry from '@mono/web/lib/StyledComponentRegistry';
-import type { LanguageLocale } from '@mono/web/lib/constants';
 import type React from 'react';
-
-import Providers from './providers';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
@@ -10,18 +7,25 @@ export const runtime = 'nodejs';
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: {
-    locale: LanguageLocale;
-  };
 }
 
-async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
+async function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang={locale}>
+    <html lang="en-US">
       <head />
 
       <StyledComponentsRegistry>
-        <Providers>{children}</Providers>
+        <body
+          style={{
+            margin: 0,
+            display: 'grid',
+            height: '100vh',
+            alignContent: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          {children}
+        </body>
       </StyledComponentsRegistry>
     </html>
   );

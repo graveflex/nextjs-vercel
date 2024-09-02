@@ -11,7 +11,15 @@ async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
   return (
     <html lang={locale}>
       <head />
-      <body>
+      <body
+        style={{
+          margin: 0,
+          display: 'grid',
+          height: '100vh',
+          alignContent: 'center',
+          justifyContent: 'center'
+        }}
+      >
         {children}
       </body>
     </html>
