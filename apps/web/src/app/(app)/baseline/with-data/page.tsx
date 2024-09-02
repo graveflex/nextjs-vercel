@@ -16,9 +16,7 @@ export default async function BaselineWithoutDataPage() {
   const data = await fetchPageData();
 
   return (
-    <div
-      style={{}}
-    >
+    <div style={{}}>
       <h2>This page contains no styles and pulls data from the API</h2>
       <p>{data.title}</p>
     </div>

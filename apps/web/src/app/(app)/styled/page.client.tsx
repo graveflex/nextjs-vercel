@@ -16,7 +16,7 @@ const H2 = styled.h2`
 const P = styled.p`
   font-family: sans-serif;
   color: #666;
-`
+`;
 
 interface StyledPageProps {
   heading: string;

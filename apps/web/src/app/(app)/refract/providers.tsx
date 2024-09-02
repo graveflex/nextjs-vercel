@@ -1,8 +1,8 @@
 'use client';
 
-import type React from 'react';
-import { GlobalStyles } from '@refract-ui/sc';
 import light from '@mono/theme/src/light';
+import { GlobalStyles } from '@refract-ui/sc';
+import type React from 'react';
 
 interface ProvidersProps {
   children: React.Children;
