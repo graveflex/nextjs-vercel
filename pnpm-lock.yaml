@@ -375,8 +375,8 @@ importers:
         specifier: 15.0.0-canary.136
         version: 15.0.0-canary.136(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4)
       next-intl:
-        specifier: ^3.11.1
-        version: 3.17.6(next@15.0.0-canary.136(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(react@19.0.0-rc-eb3ad065-20240822)
+        specifier: ^3.19.0
+        version: 3.19.0(next@15.0.0-canary.136(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(react@19.0.0-rc-eb3ad065-20240822)
       nodemailer:
         specifier: ^6.9.14
         version: 6.9.14
@@ -6268,8 +6268,8 @@ packages:
     resolution: {integrity: sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==}
     engines: {node: '>= 0.4.0'}
 
-  next-intl@3.17.6:
-    resolution: {integrity: sha512-giPh2Us/C7B5P/60qdfHZMj9YPg5yXp6c9msFxv6Ua4zJt1IueNrKivInowN8FAwwSqEyC7TNYXBkXuG6oToTQ==}
+  next-intl@3.19.0:
+    resolution: {integrity: sha512-ciiHYBwR3ztoMdJZgFmt0LII7GYTsLA/MFt3y681q4Lw4fI5EYNCZSYb9XA/BIt3ZX5S1TLUP1uOERy1dIQvMg==}
     peerDependencies:
       next: 15.0.0-canary.136
       react: 19.0.0-rc-eb3ad065-20240822
@@ -8166,8 +8166,8 @@ packages:
       react: 19.0.0-rc-eb3ad065-20240822
       scheduler: '>=0.19.0'
 
-  use-intl@3.17.6:
-    resolution: {integrity: sha512-07wyVHSFSfI6M6TjhX/buZUFXnFymSz5LCimIMutTnBY11Vc/ym18j3HpZoQoWH+JYRKCCa4Jfm7NNyVKmgVww==}
+  use-intl@3.19.0:
+    resolution: {integrity: sha512-JOA73+YdtArxkvFKrneLAhH55m+x+sA9Wj8w8rYkHkHvcW/76w5T3szSmBG063vH3UqLoIKlsDVBBUfpkB7GMg==}
     peerDependencies:
       react: 19.0.0-rc-eb3ad065-20240822
 
@@ -15123,13 +15123,13 @@ snapshots:
 
   netmask@2.0.2: {}
 
-  next-intl@3.17.6(next@15.0.0-canary.136(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(react@19.0.0-rc-eb3ad065-20240822):
+  next-intl@3.19.0(next@15.0.0-canary.136(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4))(react@19.0.0-rc-eb3ad065-20240822):
     dependencies:
       '@formatjs/intl-localematcher': 0.5.4
       negotiator: 0.6.3
       next: 15.0.0-canary.136(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4)
       react: 19.0.0-rc-eb3ad065-20240822
-      use-intl: 3.17.6(react@19.0.0-rc-eb3ad065-20240822)
+      use-intl: 3.19.0(react@19.0.0-rc-eb3ad065-20240822)
 
   next@15.0.0-canary.136(@babel/core@7.25.2)(babel-plugin-react-compiler@0.0.0-experimental-48eb8f4-20240822)(react-dom@19.0.0-rc-eb3ad065-20240822(react@19.0.0-rc-eb3ad065-20240822))(react@19.0.0-rc-eb3ad065-20240822)(sass@1.77.4):
     dependencies:
@@ -17198,7 +17198,7 @@ snapshots:
       react: 19.0.0-rc-eb3ad065-20240822
       scheduler: 0.25.0-rc-f994737d14-20240522
 
-  use-intl@3.17.6(react@19.0.0-rc-eb3ad065-20240822):
+  use-intl@3.19.0(react@19.0.0-rc-eb3ad065-20240822):
     dependencies:
       '@formatjs/fast-memoize': 2.2.0
       intl-messageformat: 10.5.14

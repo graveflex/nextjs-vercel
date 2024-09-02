@@ -536,15 +536,14 @@ function Header({
   collapsibleMenu,
   flatMenu,
   iconItems,
-  ctaButton,
-  open,
-  setOpen
+  ctaButton
 }: HeaderType) {
   const openMenuVariants = {
     open: { right: '0%', display: 'block' },
     closed: { right: '-100%', display: 'none' }
   };
 
+  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
