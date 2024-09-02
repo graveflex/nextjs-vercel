@@ -72,5 +72,47 @@ jobs:
           username: ${{ env.NEON_DATABASE_USERNAME }}
           api_key: ${{ env.NEON_API_KEY }}
 
+      - name: Deploy to Vercel
+        id: deploy
+        env:
+          VERCEL_GIT_COMMIT_REF: ${{ steps.branch-name.outputs.current_branch }}
+        run: |
+          if [ "$branch_name" = "main" ]; then
+            target="prod"
+          else
+            target="preview"
+          fi
+
+          db_url="${{ steps.create_branch.outputs.db_url_with_pooler }}?sslmode=require"
+          db_url_unpooled="${{ steps.create_branch.outputs.db_url }}?sslmode=require"
+          branch_name="${{ steps.branch-name.outputs.current_branch }}"
+          commit_sha="${{ env.COMMIT_SHA }}"
+          pr_id="${{ github.event.number }}"
+          author_name="${{ env.AUTHOR_NAME }}"
+          commit_message="$(git log -1 --pretty=format:'%s' $commit_sha)"
+          gh_username="${{ github.actor }}"
+          token="${{ env.VERCEL_TOKEN }}"
+          preview_url=$(vercel deploy \
+            --prebuilt \
+            --token="$token" \
+            --scope=graveflex \
+            --target=$target \
+            --yes \
+            -e DATABASE_URL="$db_url" \
+            -b DATABASE_URL="$db_url" \
+            -e VERCEL_GIT_COMMIT_REF="$branch_name" \
+            -b VERCEL_GIT_COMMIT_REF="$branch_name" \
+            -m githubCommitRef="$branch_name" \
+          )
+          echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
+
+      - name: Alias pr deploy
+        id: alias
+        if: github.ref == 'refs/heads/main'
+        run: |
+          commit_url=${{ steps.deploy.outputs.preview_url }}
+          pr_domain=${{ needs.set_vercel_domain.outputs.vercel_domain }}
+          vercel alias set $commit_url $pr_domain --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
+
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
