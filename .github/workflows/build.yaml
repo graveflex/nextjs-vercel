@@ -9,6 +9,9 @@ on:
       database_url_unpooled:
         description: "The unpooled neon database connection URL"
         value: ${{ jobs.build.outputs.database_url_unpooled }}
+      neon_branch:
+        description: "The name of the neon database branch"
+        value: ${{ jobs.build.outputs.neon_branch }}
 
 env:
   NEON_DATABASE_USERNAME: ${{ secrets.NEON_DATABASE_USERNAME }} # change this to your database username
@@ -39,6 +42,7 @@ jobs:
     outputs:
       database_url: ${{ steps.migrate.outputs.database_url }}
       database_url_unpooled: ${{ steps.migrate.outputs.database_url_unpooled }}
+      neon_branch: ${{ env.NEON_BRANCH }}
     steps:
       - uses: actions/checkout@v4
       - run: corepack enable
@@ -71,13 +75,22 @@ jobs:
           branch_name=${{ steps.branch-name.outputs.current_branch }}
           vercel pull --yes --environment=preview --token=${{ env.VERCEL_TOKEN }} --git-branch=$branch_name --scope=graveflex
 
+      - name: Set Neon Branch Name
+        run: |
+          branch_name=${{ steps.branch-name.outputs.current_branch }}
+          if [ "$branch_name" = "staging" ] || [ "$branch_name" = "main" ] || [ "$branch_name" = "development" ]; then
+            echo "NEON_BRANCH=${branch_name}" >> "$GITHUB_ENV"
+          else
+            echo "NEON_BRANCH=preview/pr-${{ github.event.number }}-${branch_name}" >> "$GITHUB_ENV"
+          fi
+
       - name: Create Neon Branch
         id: create_branch
         uses: neondatabase/create-branch-action@v4
         with:
           project_id: ${{ env.NEON_PROJECT_ID }}
           # parent: dev # optional (defaults to your primary branch)
-          branch_name: preview/pr-${{ github.event.number }}-${{ steps.branch-name.outputs.current_branch }}
+          branch_name: ${{ env.NEON_BRANCH }}
           username: ${{ env.NEON_DATABASE_USERNAME }}
           api_key: ${{ env.NEON_API_KEY }}
 

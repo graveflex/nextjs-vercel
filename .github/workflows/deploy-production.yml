@@ -4,30 +4,72 @@ on:
   push:
     branches:
       - 'main'
+      - 'staging'
+      - 'development'
 
 env:
+  NEON_DATABASE_USERNAME: ${{ secrets.NEON_DATABASE_USERNAME }} # change this to your database username
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Required for commenting on pull requests for private repos
+  NEON_API_KEY: ${{ secrets.NEON_API_KEY }} # You can generate a an API key in your account settings
+  NEON_PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }} # You can find this in your project settings
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-  DATABASE_URL: ${{ secrets.MAIN_DB_URL }}
-  DIRECT_URL: ${{ secrets.DIRECT_URL }}
+  DOTENV_PRIVATE_KEY: ${{ secrets.DOTENV_PRIVATE_KEY_CI }}
+  TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  TURBO_TEAM: Graveflex
+  TURBO_REMOTE_ONLY: true
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
+  build_app:
+    uses: ./.github/workflows/build.yaml
+    secrets: inherit
+  set_vercel_domain:
+    uses: ./.github/workflows/get-vercel-domain.yaml
+    secrets: inherit
   deploy-production:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - run: pnpm install
 
-      - name: Run Prisma Migrate
-        run: pnpm db:migrate
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v8
 
-      - name: Install Vercel CLI
-        run: npm install --global vercel@latest
+      - name: Cache turbo build setup
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            .env.local
+            .vercel
+            apps/web/.next
+          key: ${{ runner.os }}-vercel-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-vercel-
 
-      - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Get the Commit Author Name
+        run: |
+          echo "AUTHOR_NAME=$(git log -1 --pretty=format:'%an')" >> $GITHUB_ENV
 
-      - name: Build Project Artifacts
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Set Commit SHA as an environment variable
+        run: echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
+
+      - name: Get Neon branch URLs
+        id: create_branch
+        uses: neondatabase/create-branch-action@v4
+        with:
+          project_id: ${{ env.NEON_PROJECT_ID }}
+          # parent: dev # optional (defaults to your primary branch)
+          branch_name: ${{ needs.build_app.outputs.neon_branch }}
+          username: ${{ env.NEON_DATABASE_USERNAME }}
+          api_key: ${{ env.NEON_API_KEY }}
 
       - name: Deploy Project Artifacts to Vercel
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
