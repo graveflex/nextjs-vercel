@@ -1,5 +1,8 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "remoteCache": {
+    "enabled": true
+  },
   "globalEnv": [
     "PGUSER",
     "PGDATABASE",
@@ -22,7 +25,6 @@
     "BLOB_ENDPOINT_URL",
     "BLOB_STORE_ID",
     "GOOGLE_TRANSLATE_API_KEY",
-    "FORCE_WEB_URL",
     "DATABASE_URL",
     "NODE_ENV",
     "SMTP_HOST",
@@ -32,8 +34,10 @@
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "setup": {
-      "cache": false,
-      "dependsOn": ["@mono/settings#buildSettings"]
+      "cache": false
+    },
+    "db:migrate": {
+      "cache": false
     },
     "clean": {},
     "//#lint": {},
@@ -41,28 +45,17 @@
       "cache": false
     },
     "//#test": {},
-    "types": {
-      "dependsOn": ["build"]
-    },
+    "types": {},
     "//#test:watch": {},
     "//#test:coverage": {
-      "dependsOn": ["@mono/settings#buildSettings"],
       "outputs": ["coverage/**"]
     },
     "migrations:create": {},
     "migrations:run": {},
-    "buildSettings": {
-      "cache": false,
-      "outputs": ["dist/**"]
-    },
     "generate:types": {
-      "cache": false,
-      "dependsOn": ["@mono/settings#setup-dev"]
-    },
-    "@mono/web#payload": {
       "cache": false
     },
-    "@mono/settings#setup-dev": {
+    "@mono/web#payload": {
       "cache": false
     },
     "dev": {
@@ -73,7 +66,7 @@
     },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**", ".vercel/output/**"]
     },
     "start": {
       "dependsOn": ["^start"],

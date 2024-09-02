@@ -1,68 +1,75 @@
-import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/settings';
+import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { unstable_cache } from 'next/cache';
 import { notFound, redirect } from 'next/navigation';
 import React from 'react';
 
 import PageTemplate from './page.client';
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
 export const revalidate = 60;
 
-interface BlogLayoutProps {
+interface BlogDetailProps {
   params: {
     locale: LanguageLocale;
     slug: string[];
+    draft?: boolean;
   };
 }
 
 export default async function Blog({
-  params: { locale = DEFAULT_LOCALE, slug }
-}: BlogLayoutProps) {
-  const payload = await getPayloadHMR({ config });
+  params: { locale = DEFAULT_LOCALE, slug, draft }
+}: BlogDetailProps) {
   const pageSlug = slug ? slug.join('/') : '/';
 
-  try {
-    const [navData, postData] = await Promise.all([
-      payload.findGlobal({
-        slug: 'nav',
-        locale
-      }),
-      payload.find({
-        collection: 'posts',
-        locale,
-        where: {
-          slug: {
-            equals: pageSlug
+  const fetchPageData = unstable_cache(
+    async (
+      draft: boolean | undefined,
+      locale: LanguageLocale,
+      pageSlug: string
+    ) => {
+      const payload = await getPayloadHMR({ config });
+
+      return Promise.all([
+        payload.findGlobal({
+          slug: 'nav',
+          locale
+        }),
+        payload.find({
+          collection: 'posts',
+          locale,
+          draft,
+          where: {
+            slug: {
+              equals: pageSlug
+            }
           }
-        }
-      })
-    ]);
+        })
+      ]);
+    },
+    [[locale, draft, 'blog', pageSlug].filter((x) => x).join('/')]
+  );
 
-    // if there's an error fetching data, 404
-    if ('error' in navData || 'error' in postData || !postData.docs[0]) {
-      const redirectPath = await redirectApi(pageSlug);
-      if (
-        !redirectPath ||
-        (typeof redirectPath === 'object' && 'error' in redirectPath)
-      ) {
-        return notFound();
-      }
-      redirect(redirectPath);
+  const [navData, postData] = await fetchPageData(draft, locale, pageSlug);
+
+  // if there's an error fetching data, 404
+  if ('error' in navData || 'error' in postData || !postData.docs[0]) {
+    const redirectPath = await redirectApi(pageSlug);
+    if (
+      !redirectPath ||
+      (typeof redirectPath === 'object' && 'error' in redirectPath)
+    ) {
+      return notFound();
     }
-
-    return <PageTemplate post={postData.docs[0]} nav={navData} />;
-  } catch (_) {
-    return null;
+    redirect(redirectPath);
   }
+
+  return <PageTemplate post={postData.docs[0]} nav={navData} />;
 }
 
-export async function generateMetadata({
-  params: { slug }
-}: {
-  params: { slug?: string[] };
-}) {
+export async function generateMetadata({ params: { slug } }: BlogDetailProps) {
   const payload = await getPayloadHMR({ config });
   const pageSlug = slug ? slug.join('/') : '/';
   try {

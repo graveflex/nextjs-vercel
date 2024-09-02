@@ -1,0 +1,115 @@
+name: Deploy Production
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'staging'
+      - 'development'
+
+env:
+  NEON_DATABASE_USERNAME: ${{ secrets.NEON_DATABASE_USERNAME }} # change this to your database username
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Required for commenting on pull requests for private repos
+  NEON_API_KEY: ${{ secrets.NEON_API_KEY }} # You can generate a an API key in your account settings
+  NEON_PROJECT_ID: ${{ secrets.NEON_PROJECT_ID }} # You can find this in your project settings
+  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  DOTENV_PRIVATE_KEY: ${{ secrets.DOTENV_PRIVATE_KEY_CI }}
+  TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+  TURBO_TEAM: Graveflex
+  TURBO_REMOTE_ONLY: true
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  build_app:
+    uses: ./.github/workflows/build.yaml
+    secrets: inherit
+  set_vercel_domain:
+    uses: ./.github/workflows/get-vercel-domain.yaml
+    secrets: inherit
+  deploy-production:
+    permissions: write-all
+    needs: [set_vercel_domain, build_app]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - run: pnpm install
+
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v8
+
+      - name: Cache turbo build setup
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            .env.local
+            .vercel
+            apps/web/.next
+          key: ${{ runner.os }}-vercel-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-vercel-
+
+      - name: Get the Commit Author Name
+        run: |
+          echo "AUTHOR_NAME=$(git log -1 --pretty=format:'%an')" >> $GITHUB_ENV
+
+      - name: Set Commit SHA as an environment variable
+        run: echo "COMMIT_SHA=$GITHUB_SHA" >> $GITHUB_ENV
+
+      - name: Get Neon branch URLs
+        id: create_branch
+        uses: neondatabase/create-branch-action@v4
+        with:
+          project_id: ${{ env.NEON_PROJECT_ID }}
+          # parent: dev # optional (defaults to your primary branch)
+          branch_name: ${{ needs.build_app.outputs.neon_branch }}
+          username: ${{ env.NEON_DATABASE_USERNAME }}
+          api_key: ${{ env.NEON_API_KEY }}
+
+      - name: Deploy to Vercel
+        id: deploy
+        env:
+          VERCEL_GIT_COMMIT_REF: ${{ steps.branch-name.outputs.current_branch }}
+        run: |
+          if [ "$branch_name" = "main" ]; then
+            target="prod"
+          else
+            target="preview"
+          fi
+
+          db_url="${{ steps.create_branch.outputs.db_url_with_pooler }}?sslmode=require"
+          db_url_unpooled="${{ steps.create_branch.outputs.db_url }}?sslmode=require"
+          branch_name="${{ steps.branch-name.outputs.current_branch }}"
+          commit_sha="${{ env.COMMIT_SHA }}"
+          pr_id="${{ github.event.number }}"
+          author_name="${{ env.AUTHOR_NAME }}"
+          commit_message="$(git log -1 --pretty=format:'%s' $commit_sha)"
+          gh_username="${{ github.actor }}"
+          token="${{ env.VERCEL_TOKEN }}"
+          preview_url=$(vercel deploy \
+            --prebuilt \
+            --token="$token" \
+            --scope=graveflex \
+            --target=$target \
+            --yes \
+            -e DATABASE_URL="$db_url" \
+            -b DATABASE_URL="$db_url" \
+            -e VERCEL_GIT_COMMIT_REF="$branch_name" \
+            -b VERCEL_GIT_COMMIT_REF="$branch_name" \
+            -m githubCommitRef="$branch_name" \
+          )
+          echo "preview_url=$preview_url" >> $GITHUB_OUTPUT
+
+      - name: Alias pr deploy
+        id: alias
+        if: github.ref != 'refs/heads/main'
+        run: |
+          commit_url=${{ steps.deploy.outputs.preview_url }}
+          pr_domain=${{ needs.set_vercel_domain.outputs.vercel_domain }}
+          vercel alias set $commit_url $pr_domain --token=${{ env.VERCEL_TOKEN }} --scope=graveflex

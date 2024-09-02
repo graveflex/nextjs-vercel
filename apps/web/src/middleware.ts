@@ -1,4 +1,4 @@
-import { DEFAULT_LOCALE, LOCALES } from '@mono/settings';
+import { DEFAULT_LOCALE, LOCALES } from '@mono/web/lib/constants';
 import createMiddleware from 'next-intl/middleware';
 
 export default createMiddleware({
