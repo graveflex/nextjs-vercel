@@ -20,7 +20,7 @@ export default async function RefractWithoutDataPage() {
   return (
     <Providers>
       <PageClient
-        heading="This page contains no styles and pulls data from the API"
+        heading="This page contains the entire refract theme and pulls data from the API"
         body={data.title}
       />
     </Providers>

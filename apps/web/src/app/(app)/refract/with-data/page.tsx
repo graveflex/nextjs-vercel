@@ -18,7 +18,7 @@ export default async function RefractWithoutDataPage() {
 
   return (
     <PageClient
-      heading="This page contains no styles and pulls data from the API"
+      heading="This page contains basic refract styling and pulls data from the API"
       body={data.title}
     />
   );

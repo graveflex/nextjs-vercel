@@ -18,7 +18,7 @@ export default async function BaselineWithoutDataPage() {
 
   return (
     <PageClient
-      heading="This page contains no styles and pulls data from the API"
+      heading="This page contains basic styles and pulls data from the API"
       body={data.title}
     />
   );

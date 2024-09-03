@@ -28,7 +28,7 @@ export default async function RefractWithoutDataPage() {
       >
         <PageClient
           imageSrc="https://xcimnkefyv2zqinf.public.blob.vercel-storage.com/tmp-52453-h76vzH8SwzgV-.jpg"
-          heading="This page contains no styles and pulls data from the API"
+          heading="This page contains the entire refract theme and pulls data from the API"
           body={data.title}
         />
       </div>
