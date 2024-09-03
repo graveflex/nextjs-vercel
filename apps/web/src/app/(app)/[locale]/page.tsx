@@ -23,21 +23,36 @@ export default async function CatchallPage({
   const fetchPageData = unstable_cache(
     async (draft: boolean | undefined, locale: LanguageLocale) => {
       const payload = await getPayloadHMR({ config });
-      return payload.findGlobal({
-        slug: 'homepage',
-        locale,
-        draft,
-        depth: 2,
-        fallbackLocale: DEFAULT_LOCALE
-      });
+      return Promise.all([
+        payload.findGlobal({
+          slug: 'nav',
+          locale,
+          draft,
+          depth: 2,
+          fallbackLocale: DEFAULT_LOCALE
+        }),
+
+        payload.find({
+          collection: 'pages',
+          locale,
+          draft,
+          depth: 2,
+          where: {
+            slug: { equals: '/' }
+          },
+          limit: 1
+        })
+      ]);
     },
     [[locale, draft, 'homepage'].filter((x) => x).join('/')]
   );
 
-  const homepageData = await fetchPageData(draft, locale);
+  const [navData, pageData] = await fetchPageData(draft, locale);
+
+  const homepageData = pageData?.docs[0];
 
   return (
-    <Layout id={0} theme={homepageData.theme}>
+    <Layout theme={homepageData.theme} {...navData}>
       <BlocksRenderer blocks={homepageData.blocks ?? []} />
     </Layout>
   );

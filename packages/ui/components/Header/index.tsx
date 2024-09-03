@@ -446,6 +446,8 @@ export type HeaderType = {
   ctaButton?: {
     cta?: CTAType;
   };
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function NavContent({
@@ -534,14 +536,15 @@ function Header({
   collapsibleMenu,
   flatMenu,
   iconItems,
-  ctaButton
+  ctaButton,
+  open,
+  setOpen
 }: HeaderType) {
   const openMenuVariants = {
     open: { right: '0%', display: 'block' },
     closed: { right: '-100%', display: 'none' }
   };
 
-  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
