@@ -1,10 +1,10 @@
 'use server';
 
-import { type LanguageLocale, DEFAULT_LOCALE } from '@mono/web/lib/constants';
+import type * as themeList from '@mono/theme/src/theme';
+import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { unstable_cache } from 'next/cache';
-import type * as themeList from '@mono/theme/src/theme';
 
 import type React from 'react';
 
