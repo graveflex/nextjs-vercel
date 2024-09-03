@@ -33,13 +33,13 @@ export default async function CatchallPage({
         }),
 
         payload.findGlobal({
-        slug: 'homepage',
-        locale,
-        draft,
-        depth: 2,
-        fallbackLocale: DEFAULT_LOCALE
-      })
-    ]);
+          slug: 'homepage',
+          locale,
+          draft,
+          depth: 2,
+          fallbackLocale: DEFAULT_LOCALE
+        })
+      ]);
     },
     [[locale, draft, 'homepage'].filter((x) => x).join('/')]
   );
