@@ -31,33 +31,23 @@ export default async function CatchallPage({
   const fetchPageData = unstable_cache(
     async (draft: boolean | undefined, locale: LanguageLocale) => {
       const payload = await getPayloadHMR({ config });
+      const data = await payload.find({
+        collection: 'pages',
+        locale,
+        draft,
+        depth: 2,
+        where: {
+          slug: { equals: pageSlug }
+        },
+        limit: 1
+      });
 
-      return Promise.all([
-        payload.findGlobal({
-          slug: 'nav',
-          locale,
-          draft,
-          depth: 2,
-          fallbackLocale: DEFAULT_LOCALE
-        }),
-
-        payload.find({
-          collection: 'pages',
-          locale,
-          draft,
-          depth: 2,
-          where: {
-            slug: { equals: pageSlug }
-          },
-          limit: 1
-        })
-      ]);
+      return data?.docs?.[0];
     },
     [[locale, draft, pageSlug].filter((x) => x).join('/')]
   );
 
-  const [navData, pageData] = await fetchPageData(draft, locale);
-  const page = pageData?.docs?.[0];
+  const page = await fetchPageData(draft, locale);
 
   // if not page data and not the index check for redirects
   if (!page) {
@@ -72,7 +62,14 @@ export default async function CatchallPage({
   }
 
   return (
-    <Layout theme={page.theme} {...navData}>
+    <Layout
+      id={page.id}
+      theme={page.theme}
+      params={{
+        locale: locale,
+        draft: draft
+      }}
+    >
       <BlocksRenderer blocks={page.blocks ?? []} />
     </Layout>
   );
