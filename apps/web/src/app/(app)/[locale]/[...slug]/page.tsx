@@ -32,7 +32,7 @@ export default async function CatchallPage({
     async (draft: boolean | undefined, locale: LanguageLocale) => {
       const payload = await getPayloadHMR({ config });
 
-       return Promise.all([
+      return Promise.all([
         payload.findGlobal({
           slug: 'nav',
           locale,
@@ -55,8 +55,6 @@ export default async function CatchallPage({
     },
     [[locale, draft, pageSlug].filter((x) => x).join('/')]
   );
-
-
 
   const [navData, pageData] = await fetchPageData(draft, locale);
   const page = pageData?.docs?.[0];
