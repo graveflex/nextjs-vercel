@@ -32,24 +32,19 @@ export default async function CatchallPage({
           fallbackLocale: DEFAULT_LOCALE
         }),
 
-        payload.find({
-          collection: 'pages',
-          locale,
-          draft,
-          depth: 2,
-          where: {
-            slug: { equals: '/' }
-          },
-          limit: 1
-        })
-      ]);
+        payload.findGlobal({
+        slug: 'homepage',
+        locale,
+        draft,
+        depth: 2,
+        fallbackLocale: DEFAULT_LOCALE
+      })
+    ]);
     },
     [[locale, draft, 'homepage'].filter((x) => x).join('/')]
   );
 
-  const [navData, pageData] = await fetchPageData(draft, locale);
-
-  const homepageData = pageData?.docs[0];
+  const [navData, homepageData] = await fetchPageData(draft, locale);
 
   return (
     <Layout theme={homepageData.theme} {...navData}>
