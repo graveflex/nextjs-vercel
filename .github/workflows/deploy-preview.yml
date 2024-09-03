@@ -131,6 +131,7 @@ jobs:
             https://${{ needs.set_vercel_domain.outputs.vercel_domain }}/refract/with-data
             https://${{ needs.set_vercel_domain.outputs.vercel_domain }}/refract/with-theme-no-data
             https://${{ needs.set_vercel_domain.outputs.vercel_domain }}/refract/with-theme-and-data
+            https://${{ needs.set_vercel_domain.outputs.vercel_domain }}/refract/with-theme-and-data-and-image
             https://${{ needs.set_vercel_domain.outputs.vercel_domain }}/en-US
             https://${{ needs.set_vercel_domain.outputs.vercel_domain }}/en-US/kitchen-sink
           budgetPath: ./budget.json # test performance budgets
