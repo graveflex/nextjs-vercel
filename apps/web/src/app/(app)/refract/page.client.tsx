@@ -33,16 +33,22 @@ interface StyledPageProps {
   imageSrc?: string;
 }
 
-export default function StyledPage({ heading, body, imageSrc }: StyledPageProps) {
+export default function StyledPage({
+  heading,
+  body,
+  imageSrc
+}: StyledPageProps) {
   return (
     <Container>
-      {imageSrc && (<Img
-        loading="eager"
-        width={500}
-        height={500}
-        alt="Demo image"
-        src={imageSrc}
-      />)}
+      {imageSrc && (
+        <Img
+          loading="eager"
+          width={500}
+          height={500}
+          alt="Demo image"
+          src={imageSrc}
+        />
+      )}
       <H2>{heading}</H2>
       {body && <P>{body}</P>}
     </Container>
