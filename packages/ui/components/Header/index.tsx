@@ -12,6 +12,7 @@ import CtaLink from '@mono/ui/components/CtaLink';
 import RenderIcon from '@mono/ui/components/RenderIcon';
 import Link from '@mono/ui/components/primitives/PayloadLink';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
+import useLockBodyScroll from '@mono/ui/lib/hooks/useLockBodyScroll';
 import styled, { css } from '@refract-ui/sc';
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
@@ -446,8 +447,6 @@ export type HeaderType = {
   ctaButton?: {
     cta?: CTAType;
   };
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 function NavContent({
@@ -536,16 +535,16 @@ function Header({
   collapsibleMenu,
   flatMenu,
   iconItems,
-  ctaButton,
-  open,
-  setOpen
+  ctaButton
 }: HeaderType) {
   const openMenuVariants = {
     open: { right: '0%', display: 'block' },
     closed: { right: '-100%', display: 'none' }
   };
 
+  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  useLockBodyScroll(open);
 
   useEffect(() => {
     const handleScroll = () => {

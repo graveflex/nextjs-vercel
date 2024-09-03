@@ -6,8 +6,7 @@ import type { Nav as NavT } from '@mono/types/payload-types';
 import Footer from '@mono/ui/components/Footer';
 import Header from '@mono/ui/components/Header';
 import MaybeThemed from '@mono/ui/components/MaybeThemed';
-import useLockBodyScroll from '@mono/ui/lib/hooks/useLockBodyScroll';
-import React, { useState } from 'react';
+import React from 'react';
 import type { PropsWithChildren } from 'react';
 
 export interface LayoutType extends PropsWithChildren<NavT> {
@@ -15,13 +14,10 @@ export interface LayoutType extends PropsWithChildren<NavT> {
 }
 
 function Layout({ children, footer, header, theme }: LayoutType) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  useLockBodyScroll(menuOpen);
-
   return (
     <MaybeThemed theme={theme} style={containerStyles}>
       <div style={containerStyles}>
-        <Header {...header} open={menuOpen} setOpen={setMenuOpen} />
+        <Header {...header} />
         <main role="main" style={{ zIndex: 0 }}>
           {children}
         </main>
