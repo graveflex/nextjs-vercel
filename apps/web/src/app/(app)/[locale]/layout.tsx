@@ -1,5 +1,8 @@
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import StyledComponentsRegistry from '@mono/web/lib/StyledComponentRegistry';
 import type { LanguageLocale } from '@mono/web/lib/constants';
+import { routing } from '@mono/web/i18n/routing';
 import type React from 'react';
 
 import Providers from './providers';
@@ -15,13 +18,24 @@ interface RootLayoutProps {
   };
 }
 
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
 async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
+  unstable_setRequestLocale(locale);
+  const messages = await getMessages();
+
   return (
     <html lang={locale}>
       <head />
 
       <StyledComponentsRegistry>
-        <Providers>{children}</Providers>
+        <Providers>
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </Providers>
       </StyledComponentsRegistry>
     </html>
   );

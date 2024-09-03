@@ -1,16 +1,13 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import Layout from '@mono/web/globals/Layout';
-import {
-  DEFAULT_LOCALE,
-  LOCALES,
-  type LanguageLocale
-} from '@mono/web/lib/constants';
+import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { unstable_cache } from 'next/cache';
 import { notFound, redirect } from 'next/navigation';
 import React from 'react';
+import { routing } from '@mono/web/i18n/routing';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
@@ -21,6 +18,10 @@ interface RootLayoutProps {
     locale: LanguageLocale;
     draft?: boolean;
   };
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function CatchallPage({

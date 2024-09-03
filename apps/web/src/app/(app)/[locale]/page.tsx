@@ -1,5 +1,6 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import Layout from '@mono/web/globals/Layout';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
@@ -47,6 +48,7 @@ export default async function CatchallPage({
 export async function generateMetadata({
   params: { locale }
 }: RootLayoutProps) {
+  unstable_setRequestLocale(locale);
   const payload = await getPayloadHMR({ config });
 
   try {
