@@ -440,14 +440,12 @@ type Buttons = {
 
 export type HeaderType = {
   logo?: Image | number | null;
-  open: boolean;
   collapsibleMenu?: CollapsibleMenu | null;
   flatMenu?: FlatMenu | null;
   iconItems?: IconNavItems | null;
   ctaButton?: {
     cta?: CTAType;
   };
-  setOpen: (open: boolean) => void;
 };
 
 function NavContent({
