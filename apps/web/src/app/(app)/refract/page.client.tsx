@@ -45,6 +45,7 @@ export default function StyledPage({
           loading="eager"
           width={500}
           height={500}
+          sizes="(max-width: 768px) 300px, (max-width: 1200px) 500px, 640px"
           alt="Demo image"
           src={imageSrc}
         />
