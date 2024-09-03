@@ -9,7 +9,7 @@ import React from 'react';
 export const dynamic = 'force-static';
 export const revalidate = 60;
 
-interface RootLayoutProps {
+export interface RootLayoutProps {
   params: {
     slug: string[];
     locale: LanguageLocale;
@@ -23,31 +23,22 @@ export default async function CatchallPage({
   const fetchPageData = unstable_cache(
     async (draft: boolean | undefined, locale: LanguageLocale) => {
       const payload = await getPayloadHMR({ config });
-      return Promise.all([
-        payload.findGlobal({
-          slug: 'nav',
-          locale,
-          draft,
-          depth: 2,
-          fallbackLocale: DEFAULT_LOCALE
-        }),
 
-        payload.findGlobal({
-          slug: 'homepage',
-          locale,
-          draft,
-          depth: 2,
-          fallbackLocale: DEFAULT_LOCALE
-        })
-      ]);
+      return payload.findGlobal({
+        slug: 'homepage',
+        locale,
+        draft,
+        depth: 2,
+        fallbackLocale: DEFAULT_LOCALE
+      });
     },
     [[locale, draft, 'homepage'].filter((x) => x).join('/')]
   );
 
-  const [navData, homepageData] = await fetchPageData(draft, locale);
+  const homepageData = await fetchPageData(draft, locale);
 
   return (
-    <Layout theme={homepageData.theme} {...navData}>
+    <Layout theme={homepageData.theme} locale={locale} draft={draft}>
       <BlocksRenderer blocks={homepageData.blocks ?? []} />
     </Layout>
   );

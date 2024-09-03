@@ -1,30 +1,47 @@
-'use client';
+'use server';
 
-import { containerStyles } from '@mono/theme/src/ThemeProvider';
+import { type LanguageLocale, DEFAULT_LOCALE } from '@mono/web/lib/constants';
+import config from '@payload-config';
+import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { unstable_cache } from 'next/cache';
 import type * as themeList from '@mono/theme/src/theme';
-import type { Nav as NavT } from '@mono/types/payload-types';
-import Footer from '@mono/ui/components/Footer';
-import Header from '@mono/ui/components/Header';
-import MaybeThemed from '@mono/ui/components/MaybeThemed';
-import React from 'react';
-import type { PropsWithChildren } from 'react';
 
-export interface LayoutType extends PropsWithChildren<NavT> {
+import type React from 'react';
+
+import LayoutClient from './Layout.client';
+
+type LayoutProps = {
   theme?: keyof typeof themeList | null;
-}
+  locale: LanguageLocale;
+  draft?: boolean;
+  children: React.ReactNode;
+};
 
-function Layout({ children, footer, header, theme }: LayoutType) {
+export default async function Layout({
+  children,
+  theme,
+  locale,
+  draft
+}: LayoutProps) {
+  const fetchNavData = unstable_cache(
+    async (draft: boolean | undefined, locale: LanguageLocale) => {
+      const payload = await getPayloadHMR({ config });
+      return payload.findGlobal({
+        slug: 'nav',
+        locale,
+        draft,
+        depth: 2,
+        fallbackLocale: DEFAULT_LOCALE
+      });
+    },
+    [[locale, draft, 'nav'].filter((x) => x).join('/')]
+  );
+
+  const navData = await fetchNavData(draft, locale);
+
   return (
-    <MaybeThemed theme={theme} style={containerStyles}>
-      <div style={containerStyles}>
-        <Header {...header} />
-        <main role="main" style={{ zIndex: 0 }}>
-          {children}
-        </main>
-        <Footer {...footer?.footerItems} />
-      </div>
-    </MaybeThemed>
+    <LayoutClient theme={theme} {...navData}>
+      {children}
+    </LayoutClient>
   );
 }
-
-export default Layout;
