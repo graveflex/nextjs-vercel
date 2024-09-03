@@ -37,7 +37,14 @@ export default async function CatchallPage({
   const homepageData = await fetchPageData(draft, locale);
 
   return (
-    <Layout id={0} theme={homepageData.theme}>
+    <Layout
+      id={0}
+      theme={homepageData.theme}
+      params={{
+        locale: locale,
+        draft: draft
+      }}
+    >
       <BlocksRenderer blocks={homepageData.blocks ?? []} />
     </Layout>
   );
