@@ -9,7 +9,7 @@ import React from 'react';
 export const dynamic = 'force-static';
 export const revalidate = 60;
 
-interface RootLayoutProps {
+export interface RootLayoutProps {
   params: {
     slug: string[];
     locale: LanguageLocale;
@@ -23,6 +23,7 @@ export default async function CatchallPage({
   const fetchPageData = unstable_cache(
     async (draft: boolean | undefined, locale: LanguageLocale) => {
       const payload = await getPayloadHMR({ config });
+
       return payload.findGlobal({
         slug: 'homepage',
         locale,
@@ -37,7 +38,7 @@ export default async function CatchallPage({
   const homepageData = await fetchPageData(draft, locale);
 
   return (
-    <Layout id={0} theme={homepageData.theme}>
+    <Layout theme={homepageData.theme} locale={locale} draft={draft}>
       <BlocksRenderer blocks={homepageData.blocks ?? []} />
     </Layout>
   );

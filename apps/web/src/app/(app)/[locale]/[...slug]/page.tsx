@@ -62,7 +62,7 @@ export default async function CatchallPage({
   }
 
   return (
-    <Layout id={page.id} theme={page.theme}>
+    <Layout theme={page.theme} locale={locale} draft={draft}>
       <BlocksRenderer blocks={page.blocks ?? []} />
     </Layout>
   );

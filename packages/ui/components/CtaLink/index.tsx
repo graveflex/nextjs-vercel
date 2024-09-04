@@ -43,6 +43,7 @@ function CtaLink({ link, ariaLabel, $color }: CtaLinkType) {
       href={link ? (ctaEvalHref(link) as string) : ''}
       aria-label={ariaLabel}
       target={link?.newTab ? '_blank' : undefined}
+      rel="preconnect"
     >
       {link?.label}
     </LinkStyled>

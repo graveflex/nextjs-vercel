@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { LayoutType } from '.';
-import Layout from '.';
+import Layout from './Layout.client.js';
+import type { LayoutType } from './Layout.client.tsx';
 
 const meta: Meta<LayoutType> = {
   title: 'web/Layout',

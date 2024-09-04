@@ -37,6 +37,7 @@ function PayloadLink({
       target={newTab ? '_blank' : undefined}
       aria-label={ariaLabel}
       title={title}
+      rel="preconnect"
     >
       {children}
       {icon && <RenderIcon {...icon} />}
