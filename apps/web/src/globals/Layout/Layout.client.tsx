@@ -1,12 +1,12 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { containerStyles } from '@mono/theme/src/ThemeProvider';
 import type * as themeList from '@mono/theme/src/theme';
 import type { Nav as NavT } from '@mono/types/payload-types';
 import Footer from '@mono/ui/components/Footer';
 import Header from '@mono/ui/components/Header';
 import MaybeThemed from '@mono/ui/components/MaybeThemed';
+import { useTranslations } from 'next-intl';
 import React from 'react';
 import type { PropsWithChildren } from 'react';
 
