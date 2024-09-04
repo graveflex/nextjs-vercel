@@ -18,7 +18,7 @@ export interface RootLayoutProps {
   };
 }
 
-export default async function CatchallPage({
+export default async function CatchHomePage({
   params: { locale = DEFAULT_LOCALE, draft }
 }: RootLayoutProps) {
   const fetchPageData = unstable_cache(

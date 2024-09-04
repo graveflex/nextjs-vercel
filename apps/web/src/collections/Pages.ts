@@ -30,9 +30,9 @@ const Pages: CollectionConfig = {
     livePreview: {
       url: (doc) => {
         const {
-          data: { slug },
           locale: { code }
         } = doc;
+        const { slug } = doc?.data?.version || '/';
         return `${WEB_URL}/${code}/draft/${slug}`;
       }
     }
