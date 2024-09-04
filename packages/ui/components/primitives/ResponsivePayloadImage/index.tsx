@@ -66,7 +66,9 @@ const getSrcSets = (
   return srcSets;
 };
 
-export default function ResponsiveImage(props: ResponsivePayloadWrapperProps) {
+export default function ResponsiveImage(
+  props: ResponsivePayloadWrapperProps & { className?: string }
+) {
   if (typeof props.image === 'number' || !props.image) {
     return null;
   }
@@ -124,6 +126,7 @@ export default function ResponsiveImage(props: ResponsivePayloadWrapperProps) {
       height={dimensions.height}
       url={url}
       alt={alt ?? ''}
+      className={props.className}
     />
   );
 }

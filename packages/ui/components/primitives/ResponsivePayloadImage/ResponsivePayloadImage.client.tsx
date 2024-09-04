@@ -88,9 +88,9 @@ function ResponsivePayloadImage({
   url,
   alt,
   additionalProps,
-  fillSizes,
-  ...props
+  fillSizes
 }: ResponsivePayloadWrapperProps & {
+  className?: string;
   fill: boolean;
   width?: number;
   height?: number;
@@ -114,9 +114,6 @@ function ResponsivePayloadImage({
         $additionalProps={additionalProps}
         width={width}
         height={height}
-        {...{
-          ...props
-        }}
         src={url}
         srcSet={defaultSrcSet}
         sizes={fill ? fillSizes : '100vw'}
