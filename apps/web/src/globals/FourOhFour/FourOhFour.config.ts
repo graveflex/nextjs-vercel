@@ -1,5 +1,6 @@
 import RichTextFields from '@mono/web/payload/fields/RichTextFields';
 import type { GlobalConfig } from 'payload';
+import { globalInvalidateCache } from '../../hooks/globalInvalidateCache';
 
 const FourOhFour: GlobalConfig = {
   slug: 'four-oh-four',
@@ -7,6 +8,9 @@ const FourOhFour: GlobalConfig = {
   access: {
     read: () => true
   },
-  fields: [...RichTextFields]
+  fields: [...RichTextFields],
+    hooks: {
+      afterChange: [globalInvalidateCache]
+  }
 };
 export default FourOhFour;
