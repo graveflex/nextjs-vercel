@@ -1,8 +1,8 @@
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
+import { routing } from '@mono/web/i18n/routing';
 import StyledComponentsRegistry from '@mono/web/lib/StyledComponentRegistry';
 import type { LanguageLocale } from '@mono/web/lib/constants';
-import { routing } from '@mono/web/i18n/routing';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import type React from 'react';
 
 import Providers from './providers';

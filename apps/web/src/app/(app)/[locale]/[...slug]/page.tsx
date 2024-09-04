@@ -1,14 +1,18 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import Layout from '@mono/web/globals/Layout';
-import { DEFAULT_LOCALE, LOCALES, type LanguageLocale } from '@mono/web/lib/constants';
-import { unstable_setRequestLocale } from 'next-intl/server';
+import { routing } from '@mono/web/i18n/routing';
+import {
+  DEFAULT_LOCALE,
+  LOCALES,
+  type LanguageLocale
+} from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import { unstable_cache } from 'next/cache';
 import { notFound, redirect } from 'next/navigation';
 import React from 'react';
-import { routing } from '@mono/web/i18n/routing';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
@@ -32,7 +36,7 @@ export default async function CatchallPage({
   let locale = localeOrSlug;
   if (LOCALES.includes(pageSlug as LanguageLocale)) {
     pageSlug = locale;
-    locale = DEFAULT_LOCALE
+    locale = DEFAULT_LOCALE;
   }
 
   unstable_setRequestLocale(locale);
