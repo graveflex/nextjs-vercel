@@ -1,21 +1,16 @@
 'use client';
 
-import type { BlogIndex, Post } from '@mono/types/payload-types';
+import type { Post } from '@mono/types/payload-types';
 import BlogWrapper from '@mono/ui/components/BlogIndex';
 import useIndexControls from '@mono/ui/lib/hooks/useIndexControls';
-import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import type { PaginatedDocs } from 'payload';
 import React from 'react';
 
 function PageTemplate({
-  page,
   postData
 }: {
   postData: PaginatedDocs<Post>;
-  page: BlogIndex;
 }) {
-  const blocks = page?.blocks;
-
   const { setPage, setFilter, setSort, activeSort, activeFilters } =
     useIndexControls();
 
@@ -30,7 +25,6 @@ function PageTemplate({
 
   return (
     <>
-      {blocks && <BlocksRenderer blocks={blocks} />}
       {postData && (
         <BlogWrapper
           posts={postData.docs}

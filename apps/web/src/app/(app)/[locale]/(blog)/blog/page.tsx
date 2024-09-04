@@ -1,3 +1,4 @@
+import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import Layout from '@mono/web/globals/Layout';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
@@ -5,8 +6,7 @@ import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { unstable_cache } from 'next/cache';
 import { notFound } from 'next/navigation';
 import React from 'react';
-
-import PageTemplate from './page.client';
+import Posts from './components/posts';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
@@ -28,8 +28,6 @@ export default async function Blog({
   params: { locale = DEFAULT_LOCALE, draft },
   searchParams
 }: BlogLayoutProps) {
-  const pagPage = searchParams.page ? searchParams.page : '1';
-
   const fetchPageData = unstable_cache(
     async (draft: boolean | undefined, locale: LanguageLocale) => {
       const payload = await getPayloadHMR({ config });
@@ -38,34 +36,32 @@ export default async function Blog({
           slug: 'blogIndex',
           locale,
           draft
-        }),
-        payload.find({
-          collection: 'posts',
-          page: parseInt(pagPage, 10),
-          locale,
-          limit: 9
-        }),
+        })
+        /* currently not used
         payload.find({
           collection: 'tags',
           locale
         })
+        */
       ]);
     },
     [[locale, draft, 'blog'].filter((x) => x).join('/')]
   );
 
-  const [indexData, postData, filterData] = await fetchPageData(draft, locale);
+  const [indexData] = await fetchPageData(draft, locale);
 
   // if there's an error fetching data, 404
-  if ('error' in indexData || 'error' in postData || 'error' in filterData) {
+  if ('error' in indexData) {
     return notFound();
   }
 
   const page = indexData;
+  const blocks = page.blocks;
 
   return (
     <Layout theme={page.theme} locale={locale} draft={draft}>
-      <PageTemplate page={page} postData={postData} />
+      {blocks && <BlocksRenderer blocks={blocks} />}
+      <Posts locale={locale} draft={draft} searchParams={searchParams} />
     </Layout>
   );
 }
