@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { NextIntlClientProvider } from 'next-intl';
 
 import Layout from './Layout.client.js';
 import type { LayoutType } from './Layout.client.tsx';
+
+import messages from '../../../messages/en-US.json';
 
 const meta: Meta<LayoutType> = {
   title: 'web/Layout',
@@ -9,7 +12,12 @@ const meta: Meta<LayoutType> = {
   parameters: {
     layout: 'centered'
   },
-  tags: ['autodocs']
+  tags: ['autodocs'],
+  decorators: (Story) => (
+    <NextIntlClientProvider messages={messages} locale="en-US">
+      {Story()}
+    </NextIntlClientProvider>
+  )
 };
 
 export default meta;
