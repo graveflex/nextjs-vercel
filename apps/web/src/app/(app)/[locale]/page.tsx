@@ -3,6 +3,7 @@ import Layout from '@mono/web/globals/Layout';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import { unstable_cache } from 'next/cache';
 import React from 'react';
 
@@ -47,6 +48,7 @@ export default async function CatchallPage({
 export async function generateMetadata({
   params: { locale }
 }: RootLayoutProps) {
+  unstable_setRequestLocale(locale);
   const payload = await getPayloadHMR({ config });
 
   try {
