@@ -49,7 +49,6 @@ const ResponsiveImage = styled.img<{
   $fill: boolean;
   $width?: number;
 }>`
-  width: ${({ $fill, $width }) => ($fill ? '100%' : `${$width}px` || undefined)};
   ${({ $additionalProps }) => css`
     ${
       $additionalProps?.objectFit &&
@@ -66,13 +65,6 @@ const ResponsiveImage = styled.img<{
         : css`
           border-radius: none;
         `
-    }
-
-    ${
-      $additionalProps?.aspectRatio &&
-      css`
-      aspect-ratio: ${$additionalProps?.aspectRatio};
-    `
     }
   `}
 `;
@@ -103,7 +95,7 @@ function ResponsivePayloadImage({
   srcSets: SrcSets;
 }) {
   return (
-    <Container className={className} $fill={fill}>
+    <Container $fill={fill}>
       <Source {...srcSets.ultrawide} />
       <Source {...srcSets.desktop} />
       <Source {...srcSets.tablet} />
@@ -112,14 +104,15 @@ function ResponsivePayloadImage({
       <ResponsiveImage
         loading={imageProps?.priority ? 'eager' : 'lazy'}
         $additionalProps={additionalProps}
+        src={url}
         width={width}
         height={height}
-        src={url}
         srcSet={defaultSrcSet}
         sizes={fill ? fillSizes : '100vw'}
         alt={alt ?? ''}
         $fill={fill}
         $width={width || undefined}
+        className={className}
       />
     </Container>
   );

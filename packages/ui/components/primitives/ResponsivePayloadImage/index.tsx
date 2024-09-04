@@ -1,3 +1,5 @@
+'use client';
+
 import type { Image as PayloadImageProps } from '@mono/types/payload-types';
 import { getImageProps } from 'next/image';
 import React from 'react';
