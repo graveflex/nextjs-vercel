@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { containerStyles } from '@mono/theme/src/ThemeProvider';
 import type * as themeList from '@mono/theme/src/theme';
 import type { Nav as NavT } from '@mono/types/payload-types';
@@ -14,10 +15,14 @@ export interface LayoutType extends PropsWithChildren<NavT> {
 }
 
 function Layout({ children, footer, header, theme }: LayoutType) {
+  const t = useTranslations('Test');
   return (
     <MaybeThemed theme={theme} style={containerStyles}>
       <div style={containerStyles}>
         <Header {...header} />
+        <div>
+          <b>Locale test:</b> {t('ok')}
+        </div>
         <main role="main" style={{ zIndex: 0 }}>
           {children}
         </main>
