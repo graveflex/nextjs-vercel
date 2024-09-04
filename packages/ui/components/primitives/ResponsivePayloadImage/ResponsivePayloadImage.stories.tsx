@@ -3,8 +3,8 @@ import type { Image } from '@mono/types/payload-types';
 import multipleImages from '@mono/ui/utils/multipleImages';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { ResponsivePayloadWrapperProps } from '.';
 import ResponsivePayloadImage from '.';
+import type { ResponsivePayloadWrapperProps } from './ResponsivePayloadImage.client';
 
 const meta: Meta<ResponsivePayloadWrapperProps> = {
   title: 'ui/ResponsivePayloadImage',

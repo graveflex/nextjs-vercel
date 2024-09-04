@@ -1,28 +1,31 @@
-'use client';
-
 import type { Image as PayloadImageProps } from '@mono/types/payload-types';
-import styled, { css } from '@refract-ui/sc';
 import { getImageProps } from 'next/image';
-import type React from 'react';
-import { useMemo } from 'react';
-import { type DefaultTheme, useTheme } from 'styled-components';
-
-const Container = styled.picture<{ $fill: boolean }>`
-  ${({ $fill }) => css`
-    width: ${$fill ? '100%' : 'fit-content'};
-    height: ${$fill ? '100%' : 'fit-content'};
-  `}
-`;
-
-export interface ResponsivePayloadWrapperProps
-  extends React.ComponentProps<'img'> {
-  image?: number | PayloadImageProps | null | undefined;
-}
+import React from 'react';
+import type { DefaultTheme } from 'styled-components';
+import ResponsiveImageClient, {
+  type ResponsivePayloadWrapperProps
+} from './ResponsivePayloadImage.client';
 
 type Dimensions = {
   height?: number;
   width?: number;
 };
+
+const sizeMapping = {
+  ultrawide: 'xxl',
+  desktop: 'lg',
+  tablet: 'md',
+  mobile: 'sm',
+  thumbnail: 'xxs'
+};
+
+export type SrcSets = Record<
+  keyof typeof sizeMapping,
+  {
+    bp: DefaultTheme['settings']['breakpointNames'][number];
+    srcSet?: string;
+  }
+>;
 
 /* If there is no height or width then the image will fill the container */
 const isFill = ({ width, height }: Dimensions): boolean => {
@@ -32,99 +35,44 @@ const isFill = ({ width, height }: Dimensions): boolean => {
   return false;
 };
 
-type Breakpoints = {
-  [K in DefaultTheme['settings']['breakpointNames'][number]]: number;
+const getSrcSets = (
+  sizes: PayloadImageProps['sizes'],
+  alt: string
+): SrcSets => {
+  const srcSets = Object.keys(sizeMapping).reduce(
+    (memo, screenSize): SrcSets => {
+      const sizeKey = screenSize as keyof typeof sizeMapping;
+
+      const image = sizes?.[sizeKey];
+      if (image && image.url) {
+        memo[sizeKey] = {
+          bp: sizeMapping[
+            sizeKey
+          ] as DefaultTheme['settings']['breakpointNames'][number],
+          srcSet: getImageProps({
+            alt,
+            src: image.url,
+            width: image.width || undefined,
+            height: image.height || undefined
+          }).props.srcSet
+        };
+      }
+
+      return memo;
+    },
+    {} as SrcSets
+  );
+
+  return srcSets;
 };
 
-interface SourceProps {
-  image?: {
-    url?: string | null;
-    width?: number | null;
-    height?: number | null;
-  };
-  breakpoints: Breakpoints;
-  bp: keyof Breakpoints;
-}
-
-function Source({ image, breakpoints, bp }: SourceProps) {
-  if (!image?.url) {
+export default function ResponsiveImage(props: ResponsivePayloadWrapperProps) {
+  if (typeof props.image === 'number' || !props.image) {
     return null;
   }
 
-  const minWidth = breakpoints[bp];
-
-  return (
-    <source
-      media={`(min-width: ${minWidth}px)`}
-      srcSet={
-        getImageProps({
-          alt: '',
-          width: image.width || undefined,
-          height: image.height || undefined,
-          src: image.url
-        }).props.srcSet
-      }
-    />
-  );
-}
-
-const ResponsiveImage = styled.img<{
-  $additionalProps: PayloadImageProps['additionalProps'];
-  $fill: boolean;
-  $width?: number;
-}>`
-  width: ${({ $fill, $width }) => ($fill ? '100%' : `${$width}px` || undefined)};
-  ${({ $additionalProps }) => css`
-    ${
-      $additionalProps?.objectFit &&
-      css`
-      object-fit: ${$additionalProps?.objectFit};
-    `
-    }
-
-    ${
-      $additionalProps?.isRounded
-        ? css`
-          border-radius: 2.25rem;
-        `
-        : css`
-          border-radius: none;
-        `
-    }
-
-    ${
-      $additionalProps?.aspectRatio &&
-      css`
-      aspect-ratio: ${$additionalProps?.aspectRatio};
-    `
-    }
-  `}
-`;
-
-function ResponsivePayloadImage({
-  image,
-  className,
-  ...props
-}: ResponsivePayloadWrapperProps) {
-  const theme = useTheme();
-
-  const breakpoints = useMemo(
-    () =>
-      theme.settings.breakpointNames.reduce<Partial<Breakpoints>>(
-        (coll, name, idx) => ({
-          ...coll,
-          [name]: theme.settings.breakpointValues[idx]
-        }),
-        {}
-      ) as Breakpoints,
-    [theme.settings.breakpointValues, theme.settings.breakpointNames]
-  );
-
-  if (typeof image === 'number' || !image) {
-    return null;
-  }
-
-  const { alt, url, height, sizes, width, imageProps, additionalProps } = image;
+  const { alt, url, height, sizes, width, imageProps, additionalProps } =
+    props.image;
 
   if (!url) {
     return null;
@@ -155,37 +103,27 @@ function ResponsivePayloadImage({
       } as Dimensions)
     : {};
 
+  const srcSets = getSrcSets(sizes, alt ?? '');
+  const defaultSrcSet = getImageProps({
+    alt: alt ?? '',
+    width: width || undefined,
+    height: height || undefined,
+    src: url,
+    fill: !width && !!imageProps?.fill
+  }).props.srcSet;
+
   return (
-    <Container className={className} $fill={fill}>
-      <Source breakpoints={breakpoints} image={ultrawide} bp="xxl" />
-      <Source breakpoints={breakpoints} image={desktop} bp="lg" />
-      <Source breakpoints={breakpoints} image={tablet} bp="md" />
-      <Source breakpoints={breakpoints} image={mobile} bp="sm" />
-      <Source breakpoints={breakpoints} image={thumbnail} bp="xxs" />
-      <ResponsiveImage
-        loading={imageProps?.priority ? 'eager' : 'lazy'}
-        $additionalProps={additionalProps}
-        {...{
-          ...dimensions,
-          ...props
-        }}
-        src={url}
-        srcSet={
-          getImageProps({
-            alt: '',
-            width: width || undefined,
-            height: height || undefined,
-            src: url,
-            fill: !width && !!imageProps?.fill
-          }).props.srcSet
-        }
-        sizes={fill ? fillSizes : '100vw'}
-        alt={alt ?? ''}
-        $fill={fill}
-        $width={width || undefined}
-      />
-    </Container>
+    <ResponsiveImageClient
+      fill={fill}
+      defaultSrcSet={defaultSrcSet}
+      imageProps={imageProps}
+      fillSizes={fillSizes}
+      srcSets={srcSets}
+      additionalProps={additionalProps ?? {}}
+      width={dimensions.width}
+      height={dimensions.height}
+      url={url}
+      alt={alt ?? ''}
+    />
   );
 }
-
-export default ResponsivePayloadImage;

@@ -2,7 +2,7 @@ import s from '@refract-ui/sc';
 import type React from 'react';
 import type { DefaultTheme } from 'styled-components';
 
-import type { ResponsivePayloadWrapperProps } from '../ResponsivePayloadImage';
+import type { ResponsivePayloadWrapperProps } from '../ResponsivePayloadImage/ResponsivePayloadImage.client';
 
 import serializeText from './utils/serializeText';
 
