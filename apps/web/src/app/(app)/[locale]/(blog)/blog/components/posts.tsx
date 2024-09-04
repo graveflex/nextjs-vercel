@@ -38,7 +38,7 @@ export default async function Posts({
         limit: 9
       });
     },
-    [[locale, draft, 'blocks'].filter((x) => x).join('/')]
+    [`${[locale, draft, 'posts'].filter((x) => x).join('/')}?page=${pagPage}`]
   );
 
   const postData = await fetchPostData(draft, locale);
