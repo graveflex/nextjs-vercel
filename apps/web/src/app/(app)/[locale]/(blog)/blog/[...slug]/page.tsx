@@ -1,14 +1,13 @@
+import Layout from '@mono/web/globals/Layout';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
-import Layout from '@mono/web/globals/Layout';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { unstable_cache } from 'next/cache';
 import { notFound, redirect } from 'next/navigation';
 import React from 'react';
 
 import PageTemplate from './page.client';
-import { de } from '@faker-js/faker';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
@@ -54,7 +53,7 @@ export default async function Blog({
   const [postData] = await fetchPageData(draft, locale, pageSlug);
 
   // if there's an error fetching data, 404
-  if ( 'error' in postData || !postData.docs[0]) {
+  if ('error' in postData || !postData.docs[0]) {
     const redirectPath = await redirectApi(pageSlug);
     if (
       !redirectPath ||
@@ -66,7 +65,7 @@ export default async function Blog({
   }
 
   return (
-    <Layout theme={postData.theme} locale={locale} draft={draft}>
+    <Layout locale={locale} draft={draft}>
       <PageTemplate post={postData.docs[0]} />
     </Layout>
   );

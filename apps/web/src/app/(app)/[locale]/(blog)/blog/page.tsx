@@ -1,6 +1,6 @@
+import Layout from '@mono/web/globals/Layout';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
-import Layout from '@mono/web/globals/Layout';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { unstable_cache } from 'next/cache';
 import { notFound } from 'next/navigation';
@@ -54,23 +54,20 @@ export default async function Blog({
     [[locale, draft, 'blog'].filter((x) => x).join('/')]
   );
 
-  const [indexData, postData, filterData] = await fetchPageData(
-    draft,
-    locale
-  );
+  const [indexData, postData, filterData] = await fetchPageData(draft, locale);
 
   // if there's an error fetching data, 404
-  if (
-    'error' in indexData ||
-    'error' in postData ||
-    'error' in filterData
-  ) {
+  if ('error' in indexData || 'error' in postData || 'error' in filterData) {
     return notFound();
   }
 
   const page = indexData;
 
-  return <Layout theme={page.theme} locale={locale} draft={draft}><PageTemplate page={page} postData={postData} /></Layout>;
+  return (
+    <Layout theme={page.theme} locale={locale} draft={draft}>
+      <PageTemplate page={page} postData={postData} />
+    </Layout>
+  );
 }
 
 export async function generateMetadata({

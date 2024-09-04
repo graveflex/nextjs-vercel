@@ -3,9 +3,7 @@ import BlogDetail from '@mono/ui/components/BlogDetail';
 import React from 'react';
 
 function PageTemplate({ post }: { post: Post }) {
-  return (
-      <BlogDetail postData={post} />
-  );
+  return <BlogDetail postData={post} />;
 }
 
 export default PageTemplate;

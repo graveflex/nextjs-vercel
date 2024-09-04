@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import type { BlogIndex, Post } from '@mono/types/payload-types';
 import BlogWrapper from '@mono/ui/components/BlogIndex';
