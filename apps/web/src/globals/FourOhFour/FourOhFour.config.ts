@@ -9,8 +9,8 @@ const FourOhFour: GlobalConfig = {
     read: () => true
   },
   fields: [...RichTextFields],
-    hooks: {
-      afterChange: [globalInvalidateCache]
+  hooks: {
+    afterChange: [globalInvalidateCache]
   }
 };
 export default FourOhFour;

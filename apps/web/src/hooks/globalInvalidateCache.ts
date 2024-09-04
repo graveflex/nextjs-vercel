@@ -4,7 +4,7 @@ import type { GlobalAfterChangeHook } from 'payload';
 export const globalInvalidateCache: GlobalAfterChangeHook = async ({ doc }) => {
   try {
     const path = doc?.slug;
-    if (path === '/') {
+    if (path) {
       revalidatePath('/', 'layout');
     }
   } catch (_err) {
