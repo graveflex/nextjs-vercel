@@ -24,7 +24,7 @@ export default async function Posts({
 }: LayoutProps) {
   'use server';
 
-  const pagPage = searchParams.page ? searchParams.page : '1';
+  const pagPage = searchParams.page;
 
   const fetchPostData = unstable_cache(
     async (draft: boolean | undefined, locale: LanguageLocale) => {

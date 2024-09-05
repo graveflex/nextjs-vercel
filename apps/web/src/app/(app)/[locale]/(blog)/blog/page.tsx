@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation';
 import React from 'react';
 import Posts from './components/posts';
 
-export const dynamic = 'force-static';
+export const dynamic = 'force-dynamic';
 export const revalidate = 60;
 
 interface BlogLayoutProps {
@@ -45,7 +45,9 @@ export default async function Blog({
         */
       ]);
     },
-    [[locale, draft, 'blog'].filter((x) => x).join('/')]
+    [
+      `${[locale, draft, 'blog'].filter((x) => x).join('/')}?page=${searchParams.page}`
+    ]
   );
 
   const [indexData] = await fetchPageData(draft, locale);
