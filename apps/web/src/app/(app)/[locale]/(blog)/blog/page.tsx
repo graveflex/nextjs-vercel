@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation';
 import React from 'react';
 import Posts from './components/posts';
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'auto';
 export const revalidate = 60;
 
 interface BlogLayoutProps {
@@ -62,6 +62,7 @@ export default async function Blog({
 
   return (
     <Layout theme={page.theme} locale={locale} draft={draft}>
+      <span>{searchParams.page}</span>
       {blocks && <BlocksRenderer blocks={blocks} />}
       <Posts locale={locale} draft={draft} searchParams={searchParams} />
     </Layout>
