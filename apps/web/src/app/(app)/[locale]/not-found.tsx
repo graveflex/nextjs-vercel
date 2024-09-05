@@ -1,4 +1,5 @@
 import NotFoundC from '@mono/web/components/NotFound';
+import Layout from '@mono/web/globals/Layout';
 import { DEFAULT_LOCALE, type LOCALES } from '@mono/web/lib/constants';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
@@ -16,7 +17,9 @@ export default async function NotFound() {
   try {
     const defaultMarkdownData = await payload.findGlobal({
       slug: 'four-oh-four',
-      locale
+      locale,
+      depth: 1,
+      fallbackLocale: DEFAULT_LOCALE
     });
 
     if ('error' in defaultMarkdownData) {
@@ -24,13 +27,15 @@ export default async function NotFound() {
     }
 
     return (
-      <NotFoundC
-        markdownData={{
-          ...defaultMarkdownData,
-          blockType: 'markdownBlock',
-          id: '42069'
-        }}
-      />
+      <Layout locale={locale}>
+        <NotFoundC
+          markdownData={{
+            ...defaultMarkdownData,
+            blockType: 'markdownBlock',
+            id: '42069'
+          }}
+        />
+      </Layout>
     );
   } catch (_) {
     return null;
