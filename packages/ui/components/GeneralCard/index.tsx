@@ -55,21 +55,9 @@ const ImageContainer = styled.div`
   background-color: ${({ theme: { allColors } }) => allColors.color4};
   width: 100%;
 
-  ${({ theme: { spacing, mq } }) => css`
+  ${({ theme: { spacing } }) => css`
     margin-bottom: ${spacing[9]}rem;
     position: relative;
-
-    ${mq.xs`
-      height: 12rem;
-    `}
-
-    ${mq.sm`
-      height: 15rem;
-    `}
-
-    ${mq.lg`
-      height: 19rem;
-    `}
   `}
 `;
 
@@ -85,10 +73,18 @@ const StyledImage = styled(ResponsiveImage)`
       height: auto;
     }
 
+    ${mq.xs`
+      height: 12rem;
+    `}
+
+    ${mq.sm`
+      height: 15rem;
+    `}
+
     ${mq.lg`
+      height: 19rem;
       img {
         max-width: 26rem;
-        width: 26rem;
       }
     `}
   `}
@@ -132,7 +128,7 @@ function GeneralCard({
     <Container className={className}>
       {image && (
         <ImageContainer>
-          <StyledImage image={imageProps(image)} width={460} />
+          <StyledImage image={imageProps(image)} />
         </ImageContainer>
       )}
       <ContentContainer>
