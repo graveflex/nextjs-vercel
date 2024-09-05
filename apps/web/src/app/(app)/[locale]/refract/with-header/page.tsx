@@ -1,6 +1,6 @@
 import type { Image as PayloadImage } from '@mono/types/payload-types';
-import config from '@payload-config';
 import Layout from '@mono/web/globals/Layout';
+import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { unstable_cache } from 'next/cache';
 import dynamic from 'next/dynamic';
