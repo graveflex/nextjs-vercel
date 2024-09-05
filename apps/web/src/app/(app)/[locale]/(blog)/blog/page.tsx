@@ -55,7 +55,6 @@ export default async function Blog({
 
   return (
     <Layout theme={page.theme} locale={locale} draft={draft}>
-      <span>{searchParams.page}</span>
       {blocks && <BlocksRenderer blocks={blocks} />}
       <Posts locale={locale} draft={draft} searchParams={searchParams} />
     </Layout>
