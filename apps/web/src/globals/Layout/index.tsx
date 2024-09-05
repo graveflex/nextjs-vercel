@@ -12,10 +12,11 @@ import LayoutClient from './Layout.client';
 type LayoutProps = {
   locale: LanguageLocale;
   draft?: boolean;
+  showHeader?: boolean;
   children: React.ReactNode;
 };
 
-export default async function Layout({ children, locale, draft }: LayoutProps) {
+export default async function Layout({ children, locale, draft, showHeader }: LayoutProps) {
   const fetchNavData = unstable_cache(
     async (draft: boolean | undefined, locale: LanguageLocale) => {
       const payload = await getPayloadHMR({ config });
@@ -32,5 +33,5 @@ export default async function Layout({ children, locale, draft }: LayoutProps) {
 
   const navData = await fetchNavData(draft, locale);
 
-  return <LayoutClient {...navData}>{children}</LayoutClient>;
+  return <LayoutClient showHeader={showHeader} {...navData}>{children}</LayoutClient>;
 }

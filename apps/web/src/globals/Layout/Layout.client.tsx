@@ -11,10 +11,15 @@ export interface LayoutType extends PropsWithChildren<NavT> {
   theme?: ThemeKey;
 }
 
-function Layout({ children, footer, header }: LayoutType) {
+function Layout({
+  children,
+  footer,
+  header,
+  showHeader = true
+}: LayoutType & { showHeader?: boolean }) {
   return (
     <div style={containerStyles}>
-      <Header {...header} />
+      {showHeader && <Header {...header} />}
       <main role="main" style={{ zIndex: 0 }}>
         {children}
       </main>
