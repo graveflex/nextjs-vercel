@@ -12,7 +12,12 @@ export const globalInvalidateCache: GlobalAfterChangeHook = async ({ doc }) => {
 
     // Invalidate the blog index
     if (path === 'blog') {
-      revalidatePath(`/(app)/[locale]/(blog)/${path}`, 'page');
+      revalidatePath(`/(app)/[locale]/(blog)/blog`, 'page');
+    }
+
+    // Invalidate the main layout if the nav or footer is updated
+    if (doc?.header) {
+      revalidatePath('/', 'layout');
     }
   } catch (_err) {
     // no-op
