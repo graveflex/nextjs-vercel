@@ -2,11 +2,12 @@ import { faker } from '@faker-js/faker';
 import type { Image } from '@mono/types/payload-types';
 import multipleImages from '@mono/ui/utils/multipleImages';
 import type { Meta, StoryObj } from '@storybook/react';
+import type React from 'react';
 
 import ResponsivePayloadImage from '.';
-import type { ResponsivePayloadWrapperProps } from './ResponsivePayloadImage.client';
+import type { ResponsivePayloadWrapperProps } from '.';
 
-const meta: Meta<ResponsivePayloadWrapperProps> = {
+const meta: Meta<React.ComponentProps<typeof ResponsivePayloadImage>> = {
   title: 'ui/ResponsivePayloadImage',
   component: ResponsivePayloadImage,
   parameters: {

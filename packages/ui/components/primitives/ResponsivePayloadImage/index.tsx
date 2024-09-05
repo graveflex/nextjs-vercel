@@ -1,12 +1,15 @@
 'use client';
 
+import theme from '@mono/theme/src/light';
 import type { Image as PayloadImageProps } from '@mono/types/payload-types';
+import styled, { css } from '@refract-ui/sc';
 import { getImageProps } from 'next/image';
-import React from 'react';
+import type React from 'react';
 import type { DefaultTheme } from 'styled-components';
-import ResponsiveImageClient, {
-  type ResponsivePayloadWrapperProps
-} from './ResponsivePayloadImage.client';
+
+type Breakpoints = {
+  [K in DefaultTheme['settings']['breakpointNames'][number]]: number;
+};
 
 type Dimensions = {
   height?: number;
@@ -36,6 +39,21 @@ const isFill = ({ width, height }: Dimensions): boolean => {
   }
   return false;
 };
+
+const breakpoints = theme.settings.breakpointNames.reduce<Partial<Breakpoints>>(
+  (coll, name, idx) => ({
+    ...coll,
+    [name]: theme.settings.breakpointValues[idx]
+  }),
+  {}
+) as Breakpoints;
+
+const Container = styled.picture<{ $fill: boolean }>`
+  ${({ $fill }) => css`
+    width: ${$fill ? '100%' : 'fit-content'};
+    height: ${$fill ? '100%' : 'fit-content'};
+  `}
+`;
 
 const getSrcSets = (
   sizes: PayloadImageProps['sizes'],
@@ -68,9 +86,51 @@ const getSrcSets = (
   return srcSets;
 };
 
-export default function ResponsiveImage(
-  props: ResponsivePayloadWrapperProps & { className?: string }
-) {
+export interface ResponsivePayloadWrapperProps
+  extends React.ComponentProps<'img'> {
+  image?: number | PayloadImageProps | null | undefined;
+}
+
+interface SourceProps {
+  srcSet?: string;
+  bp: keyof Breakpoints;
+}
+
+function Source({ srcSet, bp }: SourceProps) {
+  if (!srcSet) {
+    return null;
+  }
+
+  const minWidth = breakpoints[bp];
+
+  return <source media={`(min-width: ${minWidth}px)`} srcSet={srcSet} />;
+}
+
+const ResponsiveImage = styled.img<{
+  $additionalProps: PayloadImageProps['additionalProps'];
+  $fill: boolean;
+}>`
+  ${({ $additionalProps }) => css`
+    ${
+      $additionalProps?.objectFit &&
+      css`
+      object-fit: ${$additionalProps?.objectFit};
+    `
+    }
+
+    ${
+      $additionalProps?.isRounded
+        ? css`
+          border-radius: 2.25rem;
+        `
+        : css`
+          border-radius: none;
+        `
+    }
+  `}
+`;
+
+function ResponsivePayloadImage(props: ResponsivePayloadWrapperProps) {
   if (typeof props.image === 'number' || !props.image) {
     return null;
   }
@@ -92,20 +152,15 @@ export default function ResponsiveImage(
   /* Nextjs Image properties. There cannot be a height and width if fill is true */
   const fill = imageProps?.fill ?? isFill({ height, width } as Dimensions);
 
-  const fillSizes = [
-    `(min-width: 2048px) ${desktop?.width} px`,
-    `(min-width: 1024px) ${tablet?.width} px`,
-    `(min-width: 768px) ${mobile?.width} px`,
-    `(min-width: 0) ${thumbnail?.width} px`,
-    `${ultrawide?.width} px`
-  ].join(', ');
-
-  const dimensions = !fill
-    ? ({
-        height,
-        width
-      } as Dimensions)
-    : {};
+  const fillSizes =
+    props.sizes ??
+    [
+      `(min-width: 2048px) ${desktop?.width} px`,
+      `(min-width: 1024px) ${tablet?.width} px`,
+      `(min-width: 768px) ${mobile?.width} px`,
+      `(min-width: 0) ${thumbnail?.width} px`,
+      `${ultrawide?.width} px`
+    ].join(', ');
 
   const srcSets = getSrcSets(sizes, alt ?? '');
   const defaultSrcSet = getImageProps({
@@ -117,18 +172,25 @@ export default function ResponsiveImage(
   }).props.srcSet;
 
   return (
-    <ResponsiveImageClient
-      fill={fill}
-      defaultSrcSet={defaultSrcSet}
-      imageProps={imageProps}
-      fillSizes={fillSizes}
-      srcSets={srcSets}
-      additionalProps={additionalProps ?? {}}
-      width={dimensions.width}
-      height={dimensions.height}
-      url={url}
-      alt={alt ?? ''}
-      className={props.className}
-    />
+    <Container $fill={fill}>
+      <Source {...srcSets.ultrawide} />
+      <Source {...srcSets.desktop} />
+      <Source {...srcSets.tablet} />
+      <Source {...srcSets.mobile} />
+      <Source {...srcSets.thumbnail} />
+      <ResponsiveImage
+        loading={imageProps?.priority ? 'eager' : 'lazy'}
+        $additionalProps={additionalProps}
+        src={url}
+        width={width || undefined}
+        height={height || undefined}
+        srcSet={defaultSrcSet}
+        sizes={fillSizes}
+        $fill={fill}
+        {...props}
+      />
+    </Container>
   );
 }
+
+export default ResponsivePayloadImage;
