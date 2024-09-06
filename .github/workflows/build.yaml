@@ -118,7 +118,7 @@ jobs:
 
             echo DATABASE_URL=$database_url >> .env.local
             echo DATABASE_URL_UNPOOLED=$database_url_unpooled >> .env.local
-            echo VERCEL_URL=$pr_domain >> .env.local
+            echo SERVER_URL=$pr_domain >> .env.local
 
             pnpm db:migrate
 
