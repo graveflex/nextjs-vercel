@@ -2,7 +2,7 @@ export const LOCAL_DOMAIN = 'localhost';
 export const PROJECT_NAME = process.env.PROJECT_NAME;
 export const AUTO_LOGIN = process.env.AUTO_LOGIN === 'true';
 
-export const NEXT_PORT = process.env.NEXT_PORT;
+export const NEXT_PORT = 3000;
 export const DOCS_PORT = process.env.DOCS_PORT;
 
 export const BLOB_ENDPOINT_URL = process.env.BLOB_ENDPOINT_URL;

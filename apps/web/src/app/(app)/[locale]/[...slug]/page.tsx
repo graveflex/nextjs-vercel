@@ -1,4 +1,5 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
+import { RefreshRouteOnSave } from '@mono/web/components/RefreshRouteOnSave';
 import Layout from '@mono/web/globals/Layout';
 import { routing } from '@mono/web/i18n/routing';
 import {
@@ -17,7 +18,7 @@ import React from 'react';
 export const dynamic = 'force-static';
 export const revalidate = 60;
 
-interface RootLayoutProps {
+export interface RootLayoutProps {
   params: {
     slug: string[];
     locale: LanguageLocale;
@@ -41,24 +42,25 @@ export default async function CatchallPage({
 
   unstable_setRequestLocale(locale);
 
-  const fetchPageData = unstable_cache(
-    async (draft: boolean | undefined, locale: LanguageLocale) => {
-      const payload = await getPayloadHMR({ config });
-      const data = await payload.find({
-        collection: 'pages',
-        locale,
-        draft,
-        depth: 2,
-        where: {
-          slug: { equals: pageSlug }
-        },
-        limit: 1
-      });
+  const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
+    const payload = await getPayloadHMR({ config });
+    const data = await payload.find({
+      collection: 'pages',
+      locale,
+      draft,
+      depth: 2,
+      where: {
+        slug: { equals: pageSlug }
+      },
+      limit: 1
+    });
 
-      return data?.docs?.[0];
-    },
-    [[locale, draft, pageSlug].filter((x) => x).join('/')]
-  );
+    return data?.docs?.[0];
+  };
+
+  const fetchPageData = draft
+    ? query
+    : unstable_cache(query, [[locale, pageSlug].filter((x) => x).join('/')]);
 
   const page = await fetchPageData(draft, locale);
 
@@ -75,9 +77,12 @@ export default async function CatchallPage({
   }
 
   return (
-    <Layout theme={page.theme} locale={locale} draft={draft}>
-      <BlocksRenderer blocks={page.blocks ?? []} />
-    </Layout>
+    <>
+      <RefreshRouteOnSave />
+      <Layout theme={page.theme} locale={locale} draft={draft}>
+        <BlocksRenderer blocks={page.blocks ?? []} />
+      </Layout>
+    </>
   );
 }
 
