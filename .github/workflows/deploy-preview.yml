@@ -71,12 +71,14 @@ jobs:
         id: deploy
         env:
           VERCEL_GIT_COMMIT_REF: ${{ steps.branch-name.outputs.current_branch }}
+          VERCEL_URL: ${{ needs.set_vercel_domain.outputs.vercel_domain }}
         run: |
           db_url="${{ steps.create_branch.outputs.db_url_with_pooler }}?sslmode=require"
           db_url_unpooled="${{ steps.create_branch.outputs.db_url }}?sslmode=require"
           branch_name="${{ steps.branch-name.outputs.current_branch }}"
           commit_sha="${{ env.COMMIT_SHA }}"
           pr_id="${{ github.event.number }}"
+          pr_domain=${{ needs.set_vercel_domain.outputs.vercel_domain }}
           author_name="${{ env.AUTHOR_NAME }}"
           commit_message="$(git log -1 --pretty=format:'%s' $commit_sha)"
           gh_username="${{ github.actor }}"
@@ -89,6 +91,8 @@ jobs:
             --yes \
             -e DATABASE_URL="$db_url" \
             -b DATABASE_URL="$db_url" \
+            -e VERCEL_URL="$pr_domain" \
+            -b VERCEL_URL="$pr_domain" \
             -e VERCEL_GIT_COMMIT_REF="$branch_name" \
             -b VERCEL_GIT_COMMIT_REF="$branch_name" \
             -m githubCommitRef="$branch_name" \
