@@ -107,12 +107,14 @@ jobs:
 
             database_url="${{ steps.create_branch.outputs.db_url_with_pooler }}?sslmode=require"
             database_url_unpooled="${{ steps.create_branch.outputs.db_url }}?sslmode=require"
+            pr_domain=${{ needs.set_vercel_domain.outputs.vercel_domain }}
 
             echo "database_url=$database_url" >> "$GITHUB_OUTPUT"
             echo "database_url_unpooled=$database_url_unpooled" >> "$GITHUB_OUTPUT"
 
             echo DATABASE_URL=$database_url >> .env.local
             echo DATABASE_URL_UNPOOLED=$database_url_unpooled >> .env.local
+            echo VERCEL_URL=$pr_domain >> .env.local
 
             pnpm db:migrate
 
