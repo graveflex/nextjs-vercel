@@ -14,13 +14,6 @@ export default async function NotFound() {
     DEFAULT_LOCALE) as (typeof LOCALES)[number];
 
   try {
-    const defaultMarkdownData = await payload.findGlobal({
-      slug: 'four-oh-four',
-      locale,
-      depth: 1,
-      fallbackLocale: DEFAULT_LOCALE
-    });
-
     const defaultNavData = await payload.findGlobal({
       slug: 'nav',
       locale,
@@ -28,11 +21,11 @@ export default async function NotFound() {
       fallbackLocale: DEFAULT_LOCALE
     });
 
-    if ('error' in defaultMarkdownData || 'error' in defaultNavData) {
+    if ('error' in defaultNavData) {
       return { error: 'Error fetching data' };
     }
 
-    return <FourOhFour markdown={defaultMarkdownData} nav={defaultNavData} />;
+    return <FourOhFour nav={defaultNavData} />;
   } catch (_) {
     return null;
   }
