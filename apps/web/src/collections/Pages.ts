@@ -30,9 +30,9 @@ const Pages: CollectionConfig = {
     livePreview: {
       url: (doc) => {
         const {
-          data: { slug },
           locale: { code }
         } = doc;
+        const { slug } = doc.data;
         return `${WEB_URL}/${code}/draft/${slug}`;
       }
     }
@@ -60,8 +60,8 @@ const Pages: CollectionConfig = {
                 // InsertBlockConfigFields
                 IframeBlock,
                 IconGridBlock,
-                FullBleedImageBlock,
-                SectionHeaderBlock,
+                FullBleedImageBlock('Page'),
+                SectionHeaderBlock('Page'),
                 GalleryGridBlock,
                 VideoBlock,
                 FormBlock,

@@ -25,30 +25,33 @@ export default async function Blog({
 }: BlogDetailProps) {
   const pageSlug = slug ? slug.join('/') : '/';
 
-  const fetchPageData = unstable_cache(
-    async (
-      draft: boolean | undefined,
-      locale: LanguageLocale,
-      pageSlug: string
-    ) => {
-      const payload = await getPayloadHMR({ config });
+  const query = async (
+    draft: boolean | undefined,
+    locale: LanguageLocale,
+    pageSlug: string
+  ) => {
+    const payload = await getPayloadHMR({ config });
 
-      return Promise.all([
-        payload.find({
-          collection: 'posts',
-          locale,
-          draft,
-          depth: 2,
-          where: {
-            slug: {
-              equals: pageSlug
-            }
+    return Promise.all([
+      payload.find({
+        collection: 'posts',
+        locale,
+        draft,
+        depth: 2,
+        where: {
+          slug: {
+            equals: pageSlug
           }
-        })
+        }
+      })
+    ]);
+  };
+
+  const fetchPageData = draft
+    ? query
+    : unstable_cache(query, [
+        [locale, draft, 'blog', pageSlug].filter((x) => x).join('/')
       ]);
-    },
-    [[locale, draft, 'blog', pageSlug].filter((x) => x).join('/')]
-  );
 
   const [postData] = await fetchPageData(draft, locale, pageSlug);
 

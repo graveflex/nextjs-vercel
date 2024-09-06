@@ -28,29 +28,22 @@ export default async function Blog({
   params: { locale = DEFAULT_LOCALE, draft },
   searchParams
 }: BlogLayoutProps) {
-  const fetchPageData = unstable_cache(
-    async (draft: boolean | undefined, locale: LanguageLocale) => {
-      const payload = await getPayloadHMR({ config });
-      return Promise.all([
-        payload.findGlobal({
-          slug: 'blogIndex',
-          locale,
-          draft
-        })
-        /* currently not used
-        payload.find({
-          collection: 'tags',
-          locale
-        })
-        */
-      ]);
-    },
-    [
-      `${[locale, draft, 'blog'].filter((x) => x).join('/')}?page=${searchParams.page}`
-    ]
-  );
+  const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
+    const payload = await getPayloadHMR({ config });
+    return payload.findGlobal({
+      slug: 'blogIndex',
+      locale,
+      draft
+    });
+  };
 
-  const [indexData] = await fetchPageData(draft, locale);
+  const fetchPageData = draft
+    ? query
+    : unstable_cache(query, [
+        `${[locale, 'blog'].filter((x) => x).join('/')}?page=${searchParams.page}`
+      ]);
+
+  const indexData = await fetchPageData(draft, locale);
 
   // if there's an error fetching data, 404
   if ('error' in indexData) {

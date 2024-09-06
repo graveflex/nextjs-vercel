@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { NextIntlClientProvider } from 'next-intl';
 
-import Layout from './Layout.client.js';
+import Layout from './Layout.client';
 import type { LayoutType } from './Layout.client.tsx';
 
 import messages from '../../../messages/en-US.json';

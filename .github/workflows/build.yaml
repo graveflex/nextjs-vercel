@@ -12,6 +12,9 @@ on:
       neon_branch:
         description: "The name of the neon database branch"
         value: ${{ jobs.build.outputs.neon_branch }}
+      vercel_domain:
+        description: "The branch domain for the vercel prod / staging / preview deploy"
+        value: ${{ jobs.set_vercel_domain.outputs.vercel_domain }}
 
 env:
   NEON_DATABASE_USERNAME: ${{ secrets.NEON_DATABASE_USERNAME }} # change this to your database username
@@ -36,9 +39,13 @@ jobs:
     secrets: inherit
     needs: setup
 
+  set_vercel_domain:
+    uses: ./.github/workflows/get-vercel-domain.yaml
+    secrets: inherit
+
   build:
     runs-on: ubuntu-latest
-    needs: setup
+    needs: [set_vercel_domain, setup]
     outputs:
       database_url: ${{ steps.migrate.outputs.database_url }}
       database_url_unpooled: ${{ steps.migrate.outputs.database_url_unpooled }}
@@ -107,12 +114,14 @@ jobs:
 
             database_url="${{ steps.create_branch.outputs.db_url_with_pooler }}?sslmode=require"
             database_url_unpooled="${{ steps.create_branch.outputs.db_url }}?sslmode=require"
+            pr_domain=${{ needs.set_vercel_domain.outputs.vercel_domain }}
 
             echo "database_url=$database_url" >> "$GITHUB_OUTPUT"
             echo "database_url_unpooled=$database_url_unpooled" >> "$GITHUB_OUTPUT"
 
             echo DATABASE_URL=$database_url >> .env.local
             echo DATABASE_URL_UNPOOLED=$database_url_unpooled >> .env.local
+            echo SERVER_URL=$pr_domain >> .env.local
 
             pnpm db:migrate
 

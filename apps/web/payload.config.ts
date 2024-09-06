@@ -242,11 +242,6 @@ export default buildConfig({
       prefillOnly: true
     },
     livePreview: {
-      /*
-      url: ({ data }) => {
-        return `${WEB_URL}/${data?.slug}`;
-      },
-      */
       breakpoints: [
         {
           label: 'Mobile',

@@ -26,20 +26,22 @@ const themeOptions = [
 const HomePage: GlobalConfig = {
   slug: 'homepage',
   admin: {
-    preview: (doc, { locale }) => {
-      const { slug } = (doc as { slug: string }) || '/';
-
-      if (slug) {
-        return `${WEB_URL}/${slug}?locale=${locale}&draft=true`;
+    livePreview: {
+      url: (doc) => {
+        const {
+          locale: { code }
+        } = doc;
+        return `${WEB_URL}/${code}/draft/`;
       }
-      return null;
     }
   },
   access: {
     read: () => true
   },
   versions: {
-    drafts: true
+    drafts: {
+      autosave: true
+    }
   },
   fields: [
     {
@@ -56,8 +58,8 @@ const HomePage: GlobalConfig = {
                 // InsertBlockConfigFields
                 IframeBlock,
                 IconGridBlock,
-                FullBleedImageBlock,
-                SectionHeaderBlock,
+                FullBleedImageBlock('Home'),
+                SectionHeaderBlock('Home'),
                 GalleryGridBlock,
                 VideoBlock,
                 FormBlock,
