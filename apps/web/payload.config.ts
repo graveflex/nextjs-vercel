@@ -47,6 +47,7 @@ import sharp from 'sharp';
 const DATABASE_URL = process.env.DATABASE_URL as string;
 
 export default buildConfig({
+  cors: [WEB_URL],
   db: postgresAdapter({
     pool: {
       connectionString: DATABASE_URL
