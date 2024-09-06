@@ -21,15 +21,15 @@ export interface RootLayoutProps {
 export default async function HomePage({
   params: { locale = DEFAULT_LOCALE, draft }
 }: RootLayoutProps) {
-   const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
+  const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
     const payload = await getPayloadHMR({ config });
-      return payload.findGlobal({
-        slug: 'homepage',
-        locale,
-        draft,
-        depth: 2,
-        fallbackLocale: DEFAULT_LOCALE
-      });
+    return payload.findGlobal({
+      slug: 'homepage',
+      locale,
+      draft,
+      depth: 2,
+      fallbackLocale: DEFAULT_LOCALE
+    });
   };
 
   const fetchPageData = draft

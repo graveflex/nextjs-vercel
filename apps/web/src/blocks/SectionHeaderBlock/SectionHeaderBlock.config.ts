@@ -2,7 +2,8 @@ import BlockConfig from '@mono/web/payload/fields/BlockConfig';
 import CTA from '@mono/web/payload/fields/CTA';
 import type { Block } from 'payload';
 
-const SectionHeaderBlock = (prefix: string): Block => ({ // <-- convert to function
+const SectionHeaderBlock = (prefix: string): Block => ({
+  // <-- convert to function
   slug: 'sectionHeaderBlock',
   interfaceName: 'SectionHeaderBlockT',
   dbName: `${prefix}SHeaderB`, // <-- prepend with prefix

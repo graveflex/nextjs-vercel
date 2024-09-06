@@ -30,16 +30,18 @@ export default async function Blog({
 }: BlogLayoutProps) {
   const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
     const payload = await getPayloadHMR({ config });
-      return payload.findGlobal({
-        slug: 'blogIndex',
-        locale,
-        draft
-      });
+    return payload.findGlobal({
+      slug: 'blogIndex',
+      locale,
+      draft
+    });
   };
 
-const fetchPageData = draft
+  const fetchPageData = draft
     ? query
-    : unstable_cache(query, [`${[locale, 'blog'].filter((x) => x).join('/')}?page=${searchParams.page}`]);
+    : unstable_cache(query, [
+        `${[locale, 'blog'].filter((x) => x).join('/')}?page=${searchParams.page}`
+      ]);
 
   const indexData = await fetchPageData(draft, locale);
 
