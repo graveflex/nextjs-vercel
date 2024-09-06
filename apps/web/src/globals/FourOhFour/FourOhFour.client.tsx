@@ -1,12 +1,15 @@
 'use client';
 
-import type { FourOhFour as FourOhFourTypes } from '@mono/types/payload-types';
+import type {
+  FourOhFour as FourOhFourTypes,
+  Nav
+} from '@mono/types/payload-types';
 import NotFoundC from '@mono/web/components/NotFound';
+import LayoutClient from '@mono/web/globals/Layout/Layout.client';
 import { DEFAULT_LOCALE, type LOCALES } from '@mono/web/lib/constants';
-import { WEB_URL } from '@mono/web/lib/constants';
-import React, { useEffect, useState } from 'react';
-
 import { usePathname } from 'next/navigation';
+// import { WEB_URL } from '@mono/web/lib/constants';
+import React, { useEffect, useState } from 'react';
 
 export default function FourOhFour({
   markdown
@@ -14,17 +17,22 @@ export default function FourOhFour({
   const [markdownData, setMarkdownData] = useState<Partial<FourOhFourTypes>>(
     markdown ?? {}
   );
+  const [navData, setNavData] = useState<Nav | null>(null);
   const path = usePathname();
   const locale =
     (path.split('/')[1] as (typeof LOCALES)[number]) ?? DEFAULT_LOCALE;
+  const webUrl = path.split('/')[0];
 
   useEffect(() => {
     const fetchMarkdownData = async () => {
-      const route = `${WEB_URL}/api/globals/four-oh-four?locale=${locale}`;
+      const routeNav = `${webUrl}/api/globals/nav?locale=${locale}`;
+      const route404 = `${webUrl}/api/globals/four-oh-four?locale=${locale}`;
 
       try {
-        const data = fetch(route).then((res) => res.json());
+        const nav = fetch(routeNav).then((res) => res.json());
+        const data = fetch(route404).then((res) => res.json());
 
+        setNavData(await nav);
         setMarkdownData(await data);
       } catch (error) {
         console.error(error);
@@ -32,19 +40,21 @@ export default function FourOhFour({
     };
 
     fetchMarkdownData();
-  }, [locale]);
+  }, [locale, webUrl]);
 
-  if (!markdownData) {
+  if (!markdownData || !navData) {
     return null;
   }
 
   return (
-    <NotFoundC
-      markdownData={{
-        ...markdownData,
-        blockType: 'markdownBlock',
-        id: '42069'
-      }}
-    />
+    <LayoutClient {...navData}>
+      <NotFoundC
+        markdownData={{
+          ...markdownData,
+          blockType: 'markdownBlock',
+          id: '42069'
+        }}
+      />
+    </LayoutClient>
   );
 }

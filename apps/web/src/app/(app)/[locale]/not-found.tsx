@@ -1,5 +1,4 @@
 import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.client';
-import Layout from '@mono/web/globals/Layout';
 import { DEFAULT_LOCALE, type LOCALES } from '@mono/web/lib/constants';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
@@ -26,11 +25,7 @@ export default async function NotFound() {
       return { error: 'Error fetching data' };
     }
 
-    return (
-      <Layout locale={locale}>
-        <FourOhFour markdown={defaultMarkdownData} />
-      </Layout>
-    );
+    return <FourOhFour markdown={defaultMarkdownData} />;
   } catch (_) {
     return null;
   }
