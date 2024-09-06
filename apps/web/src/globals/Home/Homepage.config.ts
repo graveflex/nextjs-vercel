@@ -58,8 +58,8 @@ const HomePage: GlobalConfig = {
                 // InsertBlockConfigFields
                 IframeBlock,
                 IconGridBlock,
-                FullBleedImageBlock,
-                SectionHeaderBlock,
+                FullBleedImageBlock('Home'),
+                SectionHeaderBlock('Home'),
                 GalleryGridBlock,
                 VideoBlock,
                 FormBlock,

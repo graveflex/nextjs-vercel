@@ -58,8 +58,8 @@ const BlogIndex: GlobalConfig = {
                 // InsertBlockConfigFields
                 IframeBlock,
                 IconGridBlock,
-                FullBleedImageBlock,
-                SectionHeaderBlock,
+                FullBleedImageBlock('Blog'),
+                SectionHeaderBlock("Blog"),
                 GalleryGridBlock,
                 VideoBlock,
                 FormBlock,

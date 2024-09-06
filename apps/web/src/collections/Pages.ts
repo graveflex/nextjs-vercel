@@ -60,8 +60,8 @@ const Pages: CollectionConfig = {
                 // InsertBlockConfigFields
                 IframeBlock,
                 IconGridBlock,
-                FullBleedImageBlock,
-                SectionHeaderBlock,
+                FullBleedImageBlock('Page'),
+                SectionHeaderBlock('Page'),
                 GalleryGridBlock,
                 VideoBlock,
                 FormBlock,

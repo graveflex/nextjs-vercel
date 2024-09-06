@@ -18,13 +18,11 @@ export interface RootLayoutProps {
   };
 }
 
-export default async function CatchHomePage({
+export default async function HomePage({
   params: { locale = DEFAULT_LOCALE, draft }
 }: RootLayoutProps) {
-  const fetchPageData = unstable_cache(
-    async (draft: boolean | undefined, locale: LanguageLocale) => {
-      const payload = await getPayloadHMR({ config });
-
+   const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
+    const payload = await getPayloadHMR({ config });
       return payload.findGlobal({
         slug: 'homepage',
         locale,
@@ -32,9 +30,11 @@ export default async function CatchHomePage({
         depth: 2,
         fallbackLocale: DEFAULT_LOCALE
       });
-    },
-    [[locale, draft, 'homepage'].filter((x) => x).join('/')]
-  );
+  };
+
+  const fetchPageData = draft
+    ? query
+    : unstable_cache(query, [[locale, 'homepage'].filter((x) => x).join('/')]);
 
   const homepageData = await fetchPageData(draft, locale);
 
