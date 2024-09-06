@@ -5,10 +5,10 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules ./.next",
-    "dev": "export $(grep -e '^NEXT_PUBLIC_NEXT_PORT' -- ../../.env) && next dev -p ${NEXT_PUBLIC_NEXT_PORT}",
+    "dev": "export $(grep -e '^NEXT_PORT' -- ../../.env) && next dev -p ${NEXT_PORT}",
     "dev:debug": "pnpm env:debug -- next dev",
     "build": "next build",
-    "start": "export $(grep -e '^NEXT_PUBLIC_NEXT_PORT' -- ../../.env) && next start -p ${NEXT_PUBLIC_NEXT_PORT}",
+    "start": "export $(grep -e '^NEXT_PORT' -- ../../.env) && next start -p ${NEXT_PORT}",
     "types": "tsc --noEmit --skipLibCheck",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
