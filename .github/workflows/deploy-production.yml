@@ -76,6 +76,7 @@ jobs:
         id: deploy
         env:
           VERCEL_GIT_COMMIT_REF: ${{ steps.branch-name.outputs.current_branch }}
+          SERVER_URL: ${{ needs.set_vercel_domain.outputs.vercel_domain }}
         run: |
           branch_name="${{ steps.branch-name.outputs.current_branch }}"
 
@@ -101,6 +102,8 @@ jobs:
             --yes \
             -e DATABASE_URL="$db_url" \
             -b DATABASE_URL="$db_url" \
+            -e SERVER_URL="$pr_domain" \
+            -b SERVER_URL="$pr_domain" \
             -e VERCEL_GIT_COMMIT_REF="$branch_name" \
             -b VERCEL_GIT_COMMIT_REF="$branch_name" \
             -m githubCommitRef="$branch_name" \
