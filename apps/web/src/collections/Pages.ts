@@ -32,7 +32,7 @@ const Pages: CollectionConfig = {
         const {
           locale: { code }
         } = doc;
-        const { slug } = doc?.data?.version || '/';
+        const { slug } = doc.data;
         return `${WEB_URL}/${code}/draft/${slug}`;
       }
     }
