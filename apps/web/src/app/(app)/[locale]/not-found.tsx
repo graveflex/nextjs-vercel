@@ -21,11 +21,18 @@ export default async function NotFound() {
       fallbackLocale: DEFAULT_LOCALE
     });
 
-    if ('error' in defaultMarkdownData) {
+    const defaultNavData = await payload.findGlobal({
+      slug: 'nav',
+      locale,
+      depth: 2,
+      fallbackLocale: DEFAULT_LOCALE
+    });
+
+    if ('error' in defaultMarkdownData || 'error' in defaultNavData) {
       return { error: 'Error fetching data' };
     }
 
-    return <FourOhFour markdown={defaultMarkdownData} />;
+    return <FourOhFour markdown={defaultMarkdownData} nav={defaultNavData} />;
   } catch (_) {
     return null;
   }

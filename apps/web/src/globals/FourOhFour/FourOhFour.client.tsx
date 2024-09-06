@@ -12,12 +12,13 @@ import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 export default function FourOhFour({
-  markdown
-}: { markdown: Partial<FourOhFourTypes> }) {
-  const [markdownData, setMarkdownData] = useState<Partial<FourOhFourTypes>>(
+  markdown,
+  nav
+}: { markdown: FourOhFourTypes; nav: Nav }) {
+  const [markdownData, setMarkdownData] = useState<FourOhFourTypes>(
     markdown ?? {}
   );
-  const [navData, setNavData] = useState<Nav | null>(null);
+  const [navData, setNavData] = useState<Nav>(nav);
   const path = usePathname();
   const locale =
     (path.split('/')[1] as (typeof LOCALES)[number]) ?? DEFAULT_LOCALE;
