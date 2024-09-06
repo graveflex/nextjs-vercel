@@ -25,6 +25,6 @@ export const LOCALE_SETTINGS = [
 export const LOCALES = LOCALE_SETTINGS.map(({ code }) => code);
 export type LanguageLocale = (typeof LOCALES)[number];
 
-export const WEB_URL = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
+export const WEB_URL = process.env.NEXT_PUBLIC_VERCEL_URL
+  ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
   : `http://localhost:${NEXT_PORT}`;
