@@ -12,6 +12,9 @@ on:
       neon_branch:
         description: "The name of the neon database branch"
         value: ${{ jobs.build.outputs.neon_branch }}
+      vercel_domain:
+        description: "The branch domain for the vercel prod / staging / preview deploy"
+        value: ${{ jobs.set_vercel_domain.outputs.vercel_domain }}
 
 env:
   NEON_DATABASE_USERNAME: ${{ secrets.NEON_DATABASE_USERNAME }} # change this to your database username
