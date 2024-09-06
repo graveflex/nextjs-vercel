@@ -57,22 +57,22 @@ function CtaButton({
   }
 
   return (
-    <Button
-      $color={color || 'primary'}
-      $variant={cta?.variant || 'solid'}
-      $form={form}
-      icon={icon}
-      element="button"
-      type={submit ? 'submit' : undefined}
+    <a
+      href={link ? (ctaEvalHref(link) as string) : ''}
+      target={cta?.link?.newTab ? '_blank' : ''}
+      rel="noreferrer"
     >
-      <a
-        href={link ? (ctaEvalHref(link) as string) : ''}
-        target={cta?.link?.newTab ? '_blank' : ''}
-        rel="noreferrer"
+      <Button
+        $color={color || 'primary'}
+        $variant={cta?.variant || 'solid'}
+        $form={form}
+        icon={icon}
+        element="button"
+        type={submit ? 'submit' : undefined}
       >
         {cta?.link?.label ? cta?.link?.label : undefined}
-      </a>
-    </Button>
+      </Button>
+    </a>
   );
 }
 
