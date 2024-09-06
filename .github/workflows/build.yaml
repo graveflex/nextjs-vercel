@@ -36,9 +36,13 @@ jobs:
     secrets: inherit
     needs: setup
 
+  set_vercel_domain:
+    uses: ./.github/workflows/get-vercel-domain.yaml
+    secrets: inherit
+
   build:
     runs-on: ubuntu-latest
-    needs: setup
+    needs: [set_vercel_domain, setup]
     outputs:
       database_url: ${{ steps.migrate.outputs.database_url }}
       database_url_unpooled: ${{ steps.migrate.outputs.database_url_unpooled }}
