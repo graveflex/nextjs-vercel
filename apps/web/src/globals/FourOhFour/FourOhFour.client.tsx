@@ -9,7 +9,8 @@ import { DEFAULT_LOCALE, type LOCALES } from '@mono/web/lib/constants';
 import { WEB_URL } from '@mono/web/lib/constants';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 
 type FourOhFourProps = {
   nav: Nav;
