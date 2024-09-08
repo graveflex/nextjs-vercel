@@ -13,7 +13,7 @@ export const iconGridBlockSchema = async ({
   blockConfig,
   blockName
 }: blockProps) => {
-  const images = await imageFn();
+  const images = await imageFn({ count: 1 });
   return {
     id: '6669d7bd6d58e03f8e7c1078',
     blockType: 'iconGridBlock',

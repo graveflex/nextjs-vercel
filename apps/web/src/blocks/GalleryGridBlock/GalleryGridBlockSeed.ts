@@ -3,7 +3,7 @@ import type { GalleryGridBlockT } from '@mono/types/payload-types';
 import imageFn from '../../../bin/seed_images';
 
 export const galleryGridBlockSchema = async () => {
-  const images = await imageFn();
+  const images = await imageFn({ count: 4 });
   return {
     id: '6669d7bd6d58e03f8e7c107c',
     blockName: 'Gallery Grid Block',

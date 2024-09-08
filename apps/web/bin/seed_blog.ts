@@ -1,11 +1,10 @@
-import fs from 'fs';
 import { faker } from '@faker-js/faker';
 import genRichText from '@mono/ui/utils/genRichText';
 import configPromise from '@payload-config';
 import type { BasePayload } from 'payload';
 import { getPayload } from 'payload';
-import tmp from 'tmp';
 import { slugify } from 'voca';
+import downloadImage from './downloadImage';
 
 const randomDoc = <T extends Array<object>>(arr: T) => {
   const idx = Math.floor(Math.random() * arr.length);
@@ -15,34 +14,6 @@ const randomDoc = <T extends Array<object>>(arr: T) => {
 interface SeedFnProps {
   payload: BasePayload;
   count?: number;
-}
-
-async function downloadImage(url: string): Promise<string> {
-  try {
-    // Fetch the image
-    const response = await fetch(url);
-
-    // Check if response is ok
-    if (!response.ok) {
-      throw new Error(`Failed to fetch image. Status: ${response.status}`);
-    }
-
-    // Convert response body to buffer
-    const arrayBuffer = await response.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
-
-    // Create a temporary file
-    const tempFile = tmp.fileSync({ postfix: '.jpg' });
-
-    // Write image data to the temporary file
-    fs.writeFileSync(tempFile.name, buffer);
-
-    // Return the path to the temporary file
-    return tempFile.name;
-  } catch (error) {
-    console.error('Error downloading image:', error);
-    throw error;
-  }
 }
 
 const seedPage = async ({ payload }: SeedFnProps) => {

@@ -29,12 +29,20 @@
     "NODE_ENV",
     "SMTP_HOST",
     "SMTP_USER",
-    "SMTP_PASS"
+    "SMTP_PASS",
+    "GITHUB_REPO",
+    "GITHUB_TOKEN",
+    "NEON_API_KEY",
+    "NEON_PROJECT_ID"
   ],
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "setup": {
       "cache": false
+    },
+    "db:cli": {
+      "cache": false,
+      "interactive": true
     },
     "db:migrate": {
       "cache": false

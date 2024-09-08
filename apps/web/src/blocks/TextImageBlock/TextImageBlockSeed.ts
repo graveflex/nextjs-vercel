@@ -8,7 +8,7 @@ export const imageTextBlockSchema = async (
   layout: string,
   blockName: string
 ) => {
-  const images = await imageFn();
+  const images = await imageFn({ count: 1 });
   return {
     id: '6669d7bd6d58e03f8e7c1079',
     blockType: 'textImageBlock',
