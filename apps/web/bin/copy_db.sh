@@ -21,8 +21,5 @@ psql "$DEST_CREDENTIALS" -c "CREATE DATABASE $DEST_DB;"
 echo "Restoring source DB to destination DB..."
 pg_restore --no-owner --disable-triggers -c --if-exists -d "$DESTINATION_DATABASE_URL" tmp/dump.bak
 
-# echo "Granting privileges to current user..."
-# psql "$DEST_CREDENTIALS" -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO CURRENT_USER;"
-
 # Cleanup the dump file
 rm tmp/dump.bak
