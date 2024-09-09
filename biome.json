@@ -249,7 +249,6 @@
   },
   "javascript": {
     "globals": ["describe", "it"],
-    "jsxRuntime": "reactClassic",
     "formatter": {
       "jsxQuoteStyle": "double",
       "quoteProperties": "asNeeded",

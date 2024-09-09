@@ -69,8 +69,9 @@ const StyledImage = styled(ResponsiveImage)`
     aspect-ratio: 4/3;
 
     img {
+      width: 100%;
       max-width: 100%;
-      height: auto;
+      aspect-ratio: 4/3;
     }
 
     ${mq.xs`
@@ -128,7 +129,7 @@ function GeneralCard({
     <Container className={className}>
       {image && (
         <ImageContainer>
-          <StyledImage image={imageProps(image)} />
+          <StyledImage image={imageProps(image)} width={330} height={230} />
         </ImageContainer>
       )}
       <ContentContainer>

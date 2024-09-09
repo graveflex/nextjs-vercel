@@ -1,4 +1,5 @@
-import Layout from '@mono/web/globals/Layout';
+import { DEFAULT_THEME_NAME } from '@mono/theme/src/ThemeProvider';
+import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
@@ -68,9 +69,10 @@ export default async function Blog({
   }
 
   return (
-    <Layout locale={locale} draft={draft}>
+    <>
+      <UpdatePageTheme theme={DEFAULT_THEME_NAME} />
       <PageTemplate post={postData.docs[0]} />
-    </Layout>
+    </>
   );
 }
 

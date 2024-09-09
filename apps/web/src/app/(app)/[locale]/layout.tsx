@@ -1,3 +1,4 @@
+import Layout from '@mono/web/globals/Layout';
 import { routing } from '@mono/web/i18n/routing';
 import StyledComponentsRegistry from '@mono/web/lib/StyledComponentRegistry';
 import type { LanguageLocale } from '@mono/web/lib/constants';
@@ -33,7 +34,7 @@ async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
       <StyledComponentsRegistry>
         <Providers>
           <NextIntlClientProvider messages={messages}>
-            {children}
+            <Layout locale={locale}>{children}</Layout>
           </NextIntlClientProvider>
         </Providers>
       </StyledComponentsRegistry>

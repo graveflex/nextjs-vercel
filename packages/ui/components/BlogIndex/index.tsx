@@ -57,7 +57,7 @@ export type BlogIndexType = {
   activeFilters?: string[];
 };
 
-function BlogIndex({ posts, page, paginationProps }: BlogIndexType) {
+function BlogIndex({ posts, paginationProps }: BlogIndexType) {
   const ref = useRef<HTMLDivElement>(null);
 
   const defaultImageProps = (thumbnail: Image | number) => {
@@ -77,51 +77,41 @@ function BlogIndex({ posts, page, paginationProps }: BlogIndexType) {
     <Wrapper contentWidth="xl">
       <OuterContainer ref={ref}>
         {posts && (
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={page}
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 50 }}
-              transition={{ duration: 0.15 }}
-            >
-              <CardWrapper>
-                {posts &&
-                  posts?.map((post) => {
-                    const { title, date, subTitle, thumbnail, slug, ctas } =
-                      post as Post;
+          <CardWrapper>
+            {posts &&
+              posts?.map((post) => {
+                const { title, date, subTitle, thumbnail, slug, ctas } =
+                  post as Post;
 
-                    const defaultCtas: { cta: CTAType }[] = [
-                      {
-                        cta: {
-                          link: {
-                            label: 'Read More',
-                            type: 'external',
-                            externalHref: `blog/${slug}`,
-                            icon: {
-                              name: 'ArrowRight'
-                            }
-                          }
+                const defaultCtas: { cta: CTAType }[] = [
+                  {
+                    cta: {
+                      link: {
+                        label: 'Read More',
+                        type: 'external',
+                        externalHref: `blog/${slug}`,
+                        icon: {
+                          name: 'ArrowRight'
                         }
                       }
-                    ];
+                    }
+                  }
+                ];
 
-                    return (
-                      <PostWrapper key={`${slug}-${post.id}`}>
-                        <GeneralCard
-                          key={`${slug}-${post.id}`}
-                          image={defaultImageProps(thumbnail)}
-                          headline={title}
-                          date={date}
-                          subHead={subTitle}
-                          ctas={ctas?.length === 0 ? defaultCtas : ctas}
-                        />
-                      </PostWrapper>
-                    );
-                  })}
-              </CardWrapper>
-            </motion.div>
-          </AnimatePresence>
+                return (
+                  <PostWrapper key={`${slug}-${post.id}`}>
+                    <GeneralCard
+                      key={`${slug}-${post.id}`}
+                      image={defaultImageProps(thumbnail)}
+                      headline={title}
+                      date={date}
+                      subHead={subTitle}
+                      ctas={ctas?.length === 0 ? defaultCtas : ctas}
+                    />
+                  </PostWrapper>
+                );
+              })}
+          </CardWrapper>
         )}
       </OuterContainer>
       {paginationProps &&

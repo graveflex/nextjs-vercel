@@ -4,7 +4,7 @@ import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 import type { PayloadRequest } from 'payload';
-import React from 'react';
+import type React from 'react';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;

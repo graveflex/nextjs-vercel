@@ -1,6 +1,5 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
-import { RefreshRouteOnSave } from '@mono/web/components/RefreshRouteOnSave';
-import Layout from '@mono/web/globals/Layout';
+import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
 import { routing } from '@mono/web/i18n/routing';
 import {
   DEFAULT_LOCALE,
@@ -78,10 +77,8 @@ export default async function CatchallPage({
 
   return (
     <>
-      <RefreshRouteOnSave />
-      <Layout theme={page.theme} locale={locale} draft={draft}>
-        <BlocksRenderer blocks={page.blocks ?? []} />
-      </Layout>
+      <UpdatePageTheme theme={page.theme} />
+      <BlocksRenderer blocks={page.blocks ?? []} />
     </>
   );
 }

@@ -1,5 +1,5 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
-import Layout from '@mono/web/globals/Layout';
+import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
@@ -39,9 +39,10 @@ export default async function HomePage({
   const homepageData = await fetchPageData(draft, locale);
 
   return (
-    <Layout theme={homepageData.theme} locale={locale} draft={draft}>
+    <>
+      <UpdatePageTheme theme={homepageData.theme} />
       <BlocksRenderer blocks={homepageData.blocks ?? []} />
-    </Layout>
+    </>
   );
 }
 
