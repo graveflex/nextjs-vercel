@@ -6,6 +6,12 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
 import Styled, { css } from 'styled-components';
 
+type QueryProps = {
+  selectedTags: string[];
+  sort: string;
+  search: string;
+};
+
 const Label = Styled.label`
     display: block;
 `;
@@ -46,17 +52,15 @@ const buildQuery = (query: {
 }) => {
   const searchParams = new URLSearchParams();
 
-  if (!query.selectedTags) {
-    return '';
-  }
-
   searchParams.append('filter', query.selectedTags.join(','));
-
   searchParams.append('sort', query.sort);
   searchParams.append('search', query.search);
 
   return searchParams.toString();
 };
+
+const isSelected = (tag: string, query: QueryProps) =>
+  query.selectedTags.includes(tag);
 
 function TagsClient({ tagData }: { tagData: Tag[] }) {
   const initialParams = useSearchParams();
@@ -65,7 +69,7 @@ function TagsClient({ tagData }: { tagData: Tag[] }) {
   const initialSort = initialParams?.get('sort') ?? 'newest';
   const initialSearch = initialParams?.get('search') ?? '';
 
-  const [query, setQuery] = useState({
+  const [query, setQuery] = useState<QueryProps>({
     selectedTags: initialFilter,
     sort: initialSort,
     search: initialSearch
@@ -100,23 +104,23 @@ function TagsClient({ tagData }: { tagData: Tag[] }) {
     }));
   };
 
-  const isSelected = (tag: string) => query.selectedTags.includes(tag);
-
   return (
     <Wrapper contentWidth="xl">
       <Container>
         <FilterContent>
           <Label>Filter by: </Label>
-          {tagData.map(({ id, label }) => (
-            <button
-              key={id}
-              onClick={() => handleTagClick(label)}
-              type="button"
-              className={isSelected(label) ? 'selected' : ''}
-            >
-              {label}
-            </button>
-          ))}
+          {tagData.map(({ id, label }) => {
+            return (
+              <button
+                key={id}
+                onClick={() => handleTagClick(label)}
+                type="button"
+                className={isSelected(label, query) ? 'selected' : ''}
+              >
+                {label}
+              </button>
+            );
+          })}
         </FilterContent>
 
         <SelectContent>
