@@ -36,7 +36,7 @@ export default async function Posts({
       const filterQuery: Where = filterPage
         ? {
             'tags.label': {
-              in: [filterPage]
+              in: filterPage
             }
           }
         : {};
@@ -44,7 +44,7 @@ export default async function Posts({
       const searchQuery: Where = searchPage
         ? {
             title: {
-              contains: searchPage
+              in: searchPage
             }
           }
         : {};
