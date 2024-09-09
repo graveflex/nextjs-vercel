@@ -29,6 +29,34 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+async function fetchPageData(draft: boolean | undefined, locale: LanguageLocale, pageSlug: string) {
+  const cacheKey = [locale, pageSlug].filter((x) => x).join('/');
+
+  const query = async (locale: LanguageLocale, pageSlug: string) => {
+    const payload = await getPayloadHMR({ config });
+    const data = await payload.find({
+      collection: 'pages',
+      locale,
+      draft,
+      depth: 2,
+      where: {
+        slug: { equals: pageSlug }
+      },
+      limit: 1
+    });
+    return data?.docs?.[0];
+  }
+
+
+  const executeQuery = draft
+    ? query
+    : unstable_cache(query, [cacheKey], {
+      tags: [cacheKey]
+    });
+
+  return executeQuery(locale, pageSlug);
+}
+
 export default async function CatchallPage({
   params: { slug, locale: localeOrSlug = DEFAULT_LOCALE, draft }
 }: RootLayoutProps) {
@@ -41,29 +69,7 @@ export default async function CatchallPage({
 
   unstable_setRequestLocale(locale);
 
-  const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
-    const payload = await getPayloadHMR({ config });
-    const data = await payload.find({
-      collection: 'pages',
-      locale,
-      draft,
-      depth: 2,
-      where: {
-        slug: { equals: pageSlug }
-      },
-      limit: 1
-    });
-
-    return data?.docs?.[0];
-  };
-
-  const fetchPageData = draft
-    ? query
-    : unstable_cache(query, [[locale, pageSlug].filter((x) => x).join('/')], {
-        tags: [`${pageSlug}`]
-      });
-
-  const page = await fetchPageData(draft, locale);
+  const page = await fetchPageData(draft, locale, pageSlug);
 
   // if not page data and not the index check for redirects
   if (!page) {
@@ -86,42 +92,28 @@ export default async function CatchallPage({
 }
 
 export async function generateMetadata({
-  params: { slug, locale }
+  params: { draft, slug, locale }
 }: RootLayoutProps) {
   const pageSlug = slug ? slug.join('/') : '/';
-  const payload = await getPayloadHMR({ config });
+  const data = await fetchPageData(draft, locale, pageSlug);
 
-  try {
-    const data = await payload.find({
-      collection: 'pages',
-      locale,
-      depth: 2,
-      where: {
-        slug: { equals: pageSlug }
-      },
-      limit: 1
-    });
-
-    if ('error' in data) {
-      return {};
-    }
-
-    const pageData = data?.docs[0];
-    const seoData = data?.docs[0]?.meta;
-    const seoImage =
-      typeof seoData?.image !== 'number' && seoData?.image?.url
-        ? seoData?.image?.url
-        : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
-
-    return {
-      title: seoData?.title || pageData?.pageTitle || 'Monorepo',
-      description: seoData?.description || 'Default description text',
-      keywords: seoData?.keywords || null,
-      openGraph: {
-        images: [seoImage]
-      }
-    };
-  } catch (_) {
+  if ('error' in data) {
     return {};
   }
+
+  const pageData = data;
+  const seoData = data.meta;
+  const seoImage =
+    typeof seoData?.image !== 'number' && seoData?.image?.url
+      ? seoData?.image?.url
+      : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
+
+  return {
+    title: seoData?.title || pageData?.pageTitle || 'Monorepo',
+    description: seoData?.description || 'Default description text',
+    keywords: seoData?.keywords || null,
+    openGraph: {
+      images: [seoImage]
+    }
+  };
 }

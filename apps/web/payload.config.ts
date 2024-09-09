@@ -52,7 +52,7 @@ export default buildConfig({
       connectionString: DATABASE_URL
     },
     push: false,
-    logger: false
+    logger: true
   }),
   editor: lexicalEditor({
     features: () =>
