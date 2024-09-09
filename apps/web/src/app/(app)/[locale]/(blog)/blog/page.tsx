@@ -24,10 +24,13 @@ interface BlogLayoutProps {
   };
 }
 
-export default async function Blog({
-  params: { locale = DEFAULT_LOCALE, draft },
-  searchParams
-}: BlogLayoutProps) {
+async function fetchPageData(
+  draft: boolean | undefined,
+  locale: LanguageLocale,
+  searchParams: BlogLayoutProps['searchParams']
+) {
+  const cacheKey = [locale, 'blogIndex'].filter((x) => x).join('/');
+
   const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
     const payload = await getPayloadHMR({ config });
     return payload.findGlobal({
@@ -37,7 +40,7 @@ export default async function Blog({
     });
   };
 
-  const fetchPageData = draft
+  const executeQuery = draft
     ? query
     : unstable_cache(
         query,
@@ -45,11 +48,18 @@ export default async function Blog({
           `${[locale, 'blog'].filter((x) => x).join('/')}?page=${searchParams.page}`
         ],
         {
-          tags: ['blogIndex']
+          tags: [cacheKey]
         }
       );
 
-  const indexData = await fetchPageData(draft, locale);
+  return executeQuery(draft, locale);
+}
+
+export default async function Blog({
+  params: { locale = DEFAULT_LOCALE, draft },
+  searchParams
+}: BlogLayoutProps) {
+  const indexData = await fetchPageData(draft, locale, searchParams);
 
   // if there's an error fetching data, 404
   if ('error' in indexData) {
@@ -69,41 +79,25 @@ export default async function Blog({
 }
 
 export async function generateMetadata({
-  params: { slug }
-}: {
-  params: { slug?: string[] };
-}) {
-  const payload = await getPayloadHMR({ config });
-  const pageSlug = slug ? slug.join('/') : '/';
+  params: { draft, locale },
+  searchParams
+}: BlogLayoutProps) {
+  const data = await fetchPageData(draft, locale, searchParams);
 
-  try {
-    const data = await payload.find({
-      collection: 'posts',
-      where: {
-        slug: { equals: pageSlug }
-      },
-      limit: 1
-    });
-
-    if ('error' in data) {
-      return {};
-    }
-
-    const seoData = data?.docs[0]?.meta;
-    const seoImage =
-      typeof seoData?.image !== 'number' && seoData?.image?.url
-        ? seoData?.image?.url
-        : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
-
-    return {
-      title: seoData?.title || 'Blog',
-      description: seoData?.description || "Blog's description",
-      keywords: seoData?.keywords || null,
-      openGraph: {
-        images: [seoImage]
-      }
-    };
-  } catch (_) {
+  if ('error' in data) {
     return {};
   }
+
+  // const seoData = data?.docs[0]?.meta;
+  const seoImage =
+    'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
+
+  return {
+    title: data.pageTitle || 'Blog',
+    description: 'Default Blog description',
+    keywords: null,
+    openGraph: {
+      images: [seoImage]
+    }
+  };
 }

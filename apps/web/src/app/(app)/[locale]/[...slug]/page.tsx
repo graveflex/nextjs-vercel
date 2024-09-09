@@ -29,7 +29,11 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-async function fetchPageData(draft: boolean | undefined, locale: LanguageLocale, pageSlug: string) {
+async function fetchPageData(
+  draft: boolean | undefined,
+  locale: LanguageLocale,
+  pageSlug: string
+) {
   const cacheKey = [locale, pageSlug].filter((x) => x).join('/');
 
   const query = async (locale: LanguageLocale, pageSlug: string) => {
@@ -45,14 +49,13 @@ async function fetchPageData(draft: boolean | undefined, locale: LanguageLocale,
       limit: 1
     });
     return data?.docs?.[0];
-  }
-
+  };
 
   const executeQuery = draft
     ? query
     : unstable_cache(query, [cacheKey], {
-      tags: [cacheKey]
-    });
+        tags: [cacheKey]
+      });
 
   return executeQuery(locale, pageSlug);
 }

@@ -21,10 +21,12 @@ interface BlogDetailProps {
   };
 }
 
-export default async function Blog({
-  params: { locale = DEFAULT_LOCALE, slug, draft }
-}: BlogDetailProps) {
-  const pageSlug = slug ? slug.join('/') : '/';
+async function fetchPageData(
+  draft: boolean | undefined,
+  locale: LanguageLocale,
+  pageSlug: string
+) {
+  const cacheKey = [locale, pageSlug].filter((x) => x).join('/');
 
   const query = async (
     draft: boolean | undefined,
@@ -48,15 +50,19 @@ export default async function Blog({
     ]);
   };
 
-  const fetchPageData = draft
+  const executeQuery = draft
     ? query
-    : unstable_cache(
-        query,
-        [[locale, draft, 'blog', pageSlug].filter((x) => x).join('/')],
-        {
-          tags: [`${pageSlug}`]
-        }
-      );
+    : unstable_cache(query, [cacheKey], {
+        tags: [cacheKey]
+      });
+
+  return executeQuery(draft, locale, pageSlug);
+}
+
+export default async function Blog({
+  params: { locale = DEFAULT_LOCALE, slug, draft }
+}: BlogDetailProps) {
+  const pageSlug = slug ? slug.join('/') : '/';
 
   const [postData] = await fetchPageData(draft, locale, pageSlug);
 
@@ -80,39 +86,28 @@ export default async function Blog({
   );
 }
 
-export async function generateMetadata({ params: { slug } }: BlogDetailProps) {
-  const payload = await getPayloadHMR({ config });
+export async function generateMetadata({
+  params: { draft, slug, locale }
+}: BlogDetailProps) {
   const pageSlug = slug ? slug.join('/') : '/';
-  try {
-    const data = await payload.find({
-      collection: 'posts',
-      where: {
-        slug: {
-          equals: pageSlug
-        }
-      }
-    });
+  const [data] = await fetchPageData(draft, locale, pageSlug);
 
-    if ('error' in data) {
-      return {};
-    }
-
-    const pageData = data?.docs[0];
-    const seoData = data?.docs[0]?.meta;
-    const seoImage =
-      typeof seoData?.image !== 'number' && seoData?.image?.url
-        ? seoData?.image?.url
-        : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
-
-    return {
-      title: seoData?.title || pageData?.title || 'Blog Post',
-      description: seoData?.description || "Blog post's description",
-      keywords: seoData?.keywords || null,
-      openGraph: {
-        images: [seoImage]
-      }
-    };
-  } catch (_) {
+  if ('error' in data) {
     return {};
   }
+
+  const seoData = data?.docs[0]?.meta;
+  const seoImage =
+    typeof seoData?.image !== 'number' && seoData?.image?.url
+      ? seoData?.image?.url
+      : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
+
+  return {
+    title: seoData?.title || 'Blog Post',
+    description: seoData?.description || "Blog post's description",
+    keywords: seoData?.keywords || null,
+    openGraph: {
+      images: [seoImage]
+    }
+  };
 }
