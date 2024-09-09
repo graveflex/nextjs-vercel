@@ -3,7 +3,7 @@
 import theme from '@mono/theme/src/light';
 import type { Image as PayloadImageProps } from '@mono/types/payload-types';
 import styled, { css } from '@refract-ui/sc';
-import { getImageProps } from 'next/image';
+import { getImageProps, type ImageProps } from 'next/image';
 import type React from 'react';
 import type { DefaultTheme } from 'styled-components';
 
@@ -86,8 +86,7 @@ const getSrcSets = (
   return srcSets;
 };
 
-export interface ResponsivePayloadWrapperProps
-  extends React.ComponentProps<'img'> {
+export interface ResponsivePayloadWrapperProps extends ImageProps {
   image?: number | PayloadImageProps | null | undefined;
 }
 
@@ -106,37 +105,12 @@ function Source({ srcSet, bp }: SourceProps) {
   return <source media={`(min-width: ${minWidth}px)`} srcSet={srcSet} />;
 }
 
-const ResponsiveImage = styled.img<{
-  $additionalProps: PayloadImageProps['additionalProps'];
-  $fill: boolean;
-}>`
-  ${({ $additionalProps }) => css`
-    ${
-      $additionalProps?.objectFit &&
-      css`
-      object-fit: ${$additionalProps?.objectFit};
-    `
-    }
-
-    ${
-      $additionalProps?.isRounded
-        ? css`
-          border-radius: 2.25rem;
-        `
-        : css`
-          border-radius: none;
-        `
-    }
-  `}
-`;
-
 function ResponsivePayloadImage(props: ResponsivePayloadWrapperProps) {
   if (typeof props.image === 'number' || !props.image) {
     return null;
   }
 
-  const { alt, url, height, sizes, width, imageProps, additionalProps } =
-    props.image;
+  const { alt, url, height, sizes, width, imageProps } = props.image;
 
   if (!url) {
     return null;
@@ -150,7 +124,7 @@ function ResponsivePayloadImage(props: ResponsivePayloadWrapperProps) {
   }
 
   /* Nextjs Image properties. There cannot be a height and width if fill is true */
-  const fill = imageProps?.fill ?? isFill({ height, width } as Dimensions);
+  const fill = props.fill ?? isFill({ height, width } as Dimensions);
 
   const fillSizes =
     props.sizes ??
@@ -168,7 +142,7 @@ function ResponsivePayloadImage(props: ResponsivePayloadWrapperProps) {
     width: width || undefined,
     height: height || undefined,
     src: url,
-    fill: !width && !!imageProps?.fill
+    fill: !width
   }).props.srcSet;
 
   return (
@@ -178,16 +152,15 @@ function ResponsivePayloadImage(props: ResponsivePayloadWrapperProps) {
       <Source {...srcSets.tablet} />
       <Source {...srcSets.mobile} />
       <Source {...srcSets.thumbnail} />
-      <ResponsiveImage
+      <img
         loading={imageProps?.priority ? 'eager' : 'lazy'}
-        $additionalProps={additionalProps}
-        src={url}
         width={width || undefined}
         height={height || undefined}
         srcSet={defaultSrcSet}
         sizes={fillSizes}
-        $fill={fill}
         {...props}
+        src={url}
+        alt={props.alt ?? ''}
       />
     </Container>
   );

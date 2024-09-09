@@ -81,19 +81,19 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
-   CREATE TYPE "public"."enum_fbImageB_block_config_theme" AS ENUM('_', 'light', 'dark');
+   CREATE TYPE "public"."enum_PagefbImageB_block_config_theme" AS ENUM('_', 'light', 'dark');
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   CREATE TYPE "public"."enum_sHeaderB_block_config_theme" AS ENUM('_', 'light', 'dark');
+   CREATE TYPE "public"."enum_PageSHeaderB_block_config_theme" AS ENUM('_', 'light', 'dark');
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   CREATE TYPE "public"."enum_sHeaderB_alignment" AS ENUM('center', 'left', 'right');
+   CREATE TYPE "public"."enum_PageSHeaderB_alignment" AS ENUM('center', 'left', 'right');
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -231,19 +231,19 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
-   CREATE TYPE "public"."enum__fbImageB_v_block_config_theme" AS ENUM('_', 'light', 'dark');
+   CREATE TYPE "public"."enum__PagefbImageB_v_block_config_theme" AS ENUM('_', 'light', 'dark');
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   CREATE TYPE "public"."enum__sHeaderB_v_block_config_theme" AS ENUM('_', 'light', 'dark');
+   CREATE TYPE "public"."enum__PageSHeaderB_v_block_config_theme" AS ENUM('_', 'light', 'dark');
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   CREATE TYPE "public"."enum__sHeaderB_v_alignment" AS ENUM('center', 'left', 'right');
+   CREATE TYPE "public"."enum__PageSHeaderB_v_alignment" AS ENUM('center', 'left', 'right');
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -351,18 +351,6 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
-   CREATE TYPE "public"."enum_images_additional_props_object_fit" AS ENUM('cover', 'contain', 'fill', 'scale-down');
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
-   CREATE TYPE "public"."enum_images_additional_props_aspect_ratio" AS ENUM('1/1', '3/2', '4/3', '6/7', '16/9', 'initial');
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
    CREATE TYPE "public"."enum_redirects_to_type" AS ENUM('reference', 'custom');
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -406,6 +394,24 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    CREATE TYPE "public"."enum_homepage_blocks_icon_grid_block_layout" AS ENUM('horizontal', 'vertical');
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   CREATE TYPE "public"."enum_HomefbImageB_block_config_theme" AS ENUM('_', 'light', 'dark');
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   CREATE TYPE "public"."enum_HomeSHeaderB_block_config_theme" AS ENUM('_', 'light', 'dark');
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   CREATE TYPE "public"."enum_HomeSHeaderB_alignment" AS ENUM('center', 'left', 'right');
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -519,6 +525,24 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   CREATE TYPE "public"."enum__HomefbImageB_v_block_config_theme" AS ENUM('_', 'light', 'dark');
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   CREATE TYPE "public"."enum__HomeSHeaderB_v_block_config_theme" AS ENUM('_', 'light', 'dark');
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   CREATE TYPE "public"."enum__HomeSHeaderB_v_alignment" AS ENUM('center', 'left', 'right');
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    CREATE TYPE "public"."enum__homepage_v_blocks_gallery_grid_block_block_config_theme" AS ENUM('_', 'light', 'dark');
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -627,6 +651,24 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   CREATE TYPE "public"."enum_BlogfbImageB_block_config_theme" AS ENUM('_', 'light', 'dark');
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   CREATE TYPE "public"."enum_BlogSHeaderB_block_config_theme" AS ENUM('_', 'light', 'dark');
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   CREATE TYPE "public"."enum_BlogSHeaderB_alignment" AS ENUM('center', 'left', 'right');
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    CREATE TYPE "public"."enum_blog_index_blocks_gallery_grid_block_block_config_theme" AS ENUM('_', 'light', 'dark');
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -730,6 +772,24 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    CREATE TYPE "public"."enum__blog_index_v_blocks_icon_grid_block_layout" AS ENUM('horizontal', 'vertical');
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   CREATE TYPE "public"."enum__BlogfbImageB_v_block_config_theme" AS ENUM('_', 'light', 'dark');
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   CREATE TYPE "public"."enum__BlogSHeaderB_v_block_config_theme" AS ENUM('_', 'light', 'dark');
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   CREATE TYPE "public"."enum__BlogSHeaderB_v_alignment" AS ENUM('center', 'left', 'right');
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -898,12 +958,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
-  CREATE TABLE IF NOT EXISTS "fbImageB" (
+  CREATE TABLE IF NOT EXISTS "PagefbImageB" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
   	"_path" text NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
-  	"blockConfig_theme" "enum_fbImageB_block_config_theme",
+  	"blockConfig_theme" "enum_PagefbImageB_block_config_theme",
   	"blockConfig_backgroundColor" "bgColor",
   	"block_config_background_image_id" integer,
   	"block_config_hidden" boolean DEFAULT false,
@@ -922,12 +982,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
-  CREATE TABLE IF NOT EXISTS "sHeaderB" (
+  CREATE TABLE IF NOT EXISTS "PageSHeaderB" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
   	"_path" text NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
-  	"blockConfig_theme" "enum_sHeaderB_block_config_theme",
+  	"blockConfig_theme" "enum_PageSHeaderB_block_config_theme",
   	"blockConfig_backgroundColor" "bgColor",
   	"block_config_background_image_id" integer,
   	"block_config_hidden" boolean DEFAULT false,
@@ -942,7 +1002,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"blockConfig_p_xl_paddingBottom" "b",
   	"eyebrow" varchar,
   	"content" jsonb,
-  	"alignment" "enum_sHeaderB_alignment" DEFAULT 'center',
+  	"alignment" "enum_PageSHeaderB_alignment" DEFAULT 'center',
   	"cta_link_type" "undefined_cta_t" DEFAULT 'internal',
   	"cta_link_label" varchar,
   	"cta_link_internal_href_id" integer,
@@ -1410,12 +1470,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
-  CREATE TABLE IF NOT EXISTS "_fbImageB_v" (
+  CREATE TABLE IF NOT EXISTS "_PagefbImageB_v" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
   	"_path" text NOT NULL,
   	"id" serial PRIMARY KEY NOT NULL,
-  	"blockConfig_theme" "enum__fbImageB_v_block_config_theme",
+  	"blockConfig_theme" "enum__PagefbImageB_v_block_config_theme",
   	"blockConfig_backgroundColor" "bgColor",
   	"block_config_background_image_id" integer,
   	"block_config_hidden" boolean DEFAULT false,
@@ -1435,12 +1495,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
-  CREATE TABLE IF NOT EXISTS "_sHeaderB_v" (
+  CREATE TABLE IF NOT EXISTS "_PageSHeaderB_v" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
   	"_path" text NOT NULL,
   	"id" serial PRIMARY KEY NOT NULL,
-  	"blockConfig_theme" "enum__sHeaderB_v_block_config_theme",
+  	"blockConfig_theme" "enum__PageSHeaderB_v_block_config_theme",
   	"blockConfig_backgroundColor" "bgColor",
   	"block_config_background_image_id" integer,
   	"block_config_hidden" boolean DEFAULT false,
@@ -1455,7 +1515,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"blockConfig_p_xl_paddingBottom" "b",
   	"eyebrow" varchar,
   	"content" jsonb,
-  	"alignment" "enum__sHeaderB_v_alignment" DEFAULT 'center',
+  	"alignment" "enum__PageSHeaderB_v_alignment" DEFAULT 'center',
   	"cta_link_type" "undefined_cta_t" DEFAULT 'internal',
   	"cta_link_label" varchar,
   	"cta_link_internal_href_id" integer,
@@ -2057,12 +2117,8 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   
   CREATE TABLE IF NOT EXISTS "images" (
   	"id" serial PRIMARY KEY NOT NULL,
-  	"image_props_fill" boolean DEFAULT false,
   	"image_props_priority" boolean DEFAULT false,
   	"image_props_quality" numeric DEFAULT 75,
-  	"additionalProps_objectFit" "enum_images_additional_props_object_fit" DEFAULT 'cover',
-  	"additional_props_is_rounded" boolean DEFAULT false,
-  	"additionalProps_aspectRatio" "enum_images_additional_props_aspect_ratio" DEFAULT 'initial',
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"url" varchar,
@@ -2074,6 +2130,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"height" numeric,
   	"focal_x" numeric,
   	"focal_y" numeric,
+  	"sizes_blur_url" varchar,
+  	"sizes_blur_width" numeric,
+  	"sizes_blur_height" numeric,
+  	"sizes_blur_mime_type" varchar,
+  	"sizes_blur_filesize" numeric,
+  	"sizes_blur_filename" varchar,
   	"sizes_thumbnail_url" varchar,
   	"sizes_thumbnail_width" numeric,
   	"sizes_thumbnail_height" numeric,
@@ -2497,6 +2559,67 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"blockConfig_p_xl_paddingTop" "t",
   	"blockConfig_p_xl_paddingBottom" "b",
   	"layout" "enum_homepage_blocks_icon_grid_block_layout" DEFAULT 'horizontal',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "HomefbImageB" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"blockConfig_theme" "enum_HomefbImageB_block_config_theme",
+  	"blockConfig_backgroundColor" "bgColor",
+  	"block_config_background_image_id" integer,
+  	"block_config_hidden" boolean DEFAULT false,
+  	"blockConfig_contentWidth" "cw" DEFAULT 'xl',
+  	"blockConfig_p_xs_paddingTop" "t",
+  	"blockConfig_p_xs_paddingBottom" "b",
+  	"blockConfig_p_md_paddingTop" "t",
+  	"blockConfig_p_md_paddingBottom" "b",
+  	"blockConfig_p_lg_paddingTop" "t",
+  	"blockConfig_p_lg_paddingBottom" "b",
+  	"blockConfig_p_xl_paddingTop" "t",
+  	"blockConfig_p_xl_paddingBottom" "b",
+  	"image_id" integer,
+  	"mobile_image_id" integer,
+  	"is_background" boolean DEFAULT false,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "HomeSHeaderB" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"blockConfig_theme" "enum_HomeSHeaderB_block_config_theme",
+  	"blockConfig_backgroundColor" "bgColor",
+  	"block_config_background_image_id" integer,
+  	"block_config_hidden" boolean DEFAULT false,
+  	"blockConfig_contentWidth" "cw" DEFAULT 'xl',
+  	"blockConfig_p_xs_paddingTop" "t",
+  	"blockConfig_p_xs_paddingBottom" "b",
+  	"blockConfig_p_md_paddingTop" "t",
+  	"blockConfig_p_md_paddingBottom" "b",
+  	"blockConfig_p_lg_paddingTop" "t",
+  	"blockConfig_p_lg_paddingBottom" "b",
+  	"blockConfig_p_xl_paddingTop" "t",
+  	"blockConfig_p_xl_paddingBottom" "b",
+  	"eyebrow" varchar,
+  	"content" jsonb,
+  	"alignment" "enum_HomeSHeaderB_alignment" DEFAULT 'center',
+  	"cta_link_type" "undefined_cta_t" DEFAULT 'internal',
+  	"cta_link_label" varchar,
+  	"cta_link_internal_href_id" integer,
+  	"cta_link_external_href" varchar,
+  	"cta_link_email_href" varchar,
+  	"cta_link_phone_href" varchar,
+  	"cta_link_file_href_id" integer,
+  	"cta_link_new_tab" boolean,
+  	"cta_link_icon_name" "undefined_link_ic",
+  	"cta_link_icon_size" "undefined_link_iw" DEFAULT '35',
+  	"cta_link_icon_color" varchar,
+  	"cta_variant" "undefined_cta_v" DEFAULT 'solid',
+  	"cta_color" "undefined_cta_tv",
   	"block_name" varchar
   );
   
@@ -2947,6 +3070,69 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
+  CREATE TABLE IF NOT EXISTS "_HomefbImageB_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"blockConfig_theme" "enum__HomefbImageB_v_block_config_theme",
+  	"blockConfig_backgroundColor" "bgColor",
+  	"block_config_background_image_id" integer,
+  	"block_config_hidden" boolean DEFAULT false,
+  	"blockConfig_contentWidth" "cw" DEFAULT 'xl',
+  	"blockConfig_p_xs_paddingTop" "t",
+  	"blockConfig_p_xs_paddingBottom" "b",
+  	"blockConfig_p_md_paddingTop" "t",
+  	"blockConfig_p_md_paddingBottom" "b",
+  	"blockConfig_p_lg_paddingTop" "t",
+  	"blockConfig_p_lg_paddingBottom" "b",
+  	"blockConfig_p_xl_paddingTop" "t",
+  	"blockConfig_p_xl_paddingBottom" "b",
+  	"image_id" integer,
+  	"mobile_image_id" integer,
+  	"is_background" boolean DEFAULT false,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_HomeSHeaderB_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"blockConfig_theme" "enum__HomeSHeaderB_v_block_config_theme",
+  	"blockConfig_backgroundColor" "bgColor",
+  	"block_config_background_image_id" integer,
+  	"block_config_hidden" boolean DEFAULT false,
+  	"blockConfig_contentWidth" "cw" DEFAULT 'xl',
+  	"blockConfig_p_xs_paddingTop" "t",
+  	"blockConfig_p_xs_paddingBottom" "b",
+  	"blockConfig_p_md_paddingTop" "t",
+  	"blockConfig_p_md_paddingBottom" "b",
+  	"blockConfig_p_lg_paddingTop" "t",
+  	"blockConfig_p_lg_paddingBottom" "b",
+  	"blockConfig_p_xl_paddingTop" "t",
+  	"blockConfig_p_xl_paddingBottom" "b",
+  	"eyebrow" varchar,
+  	"content" jsonb,
+  	"alignment" "enum__HomeSHeaderB_v_alignment" DEFAULT 'center',
+  	"cta_link_type" "undefined_cta_t" DEFAULT 'internal',
+  	"cta_link_label" varchar,
+  	"cta_link_internal_href_id" integer,
+  	"cta_link_external_href" varchar,
+  	"cta_link_email_href" varchar,
+  	"cta_link_phone_href" varchar,
+  	"cta_link_file_href_id" integer,
+  	"cta_link_new_tab" boolean,
+  	"cta_link_icon_name" "undefined_link_ic",
+  	"cta_link_icon_size" "undefined_link_iw" DEFAULT '35',
+  	"cta_link_icon_color" varchar,
+  	"cta_variant" "undefined_cta_v" DEFAULT 'solid',
+  	"cta_color" "undefined_cta_tv",
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
   CREATE TABLE IF NOT EXISTS "_homepage_v_blocks_gallery_grid_block_gallery_images" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -3322,7 +3508,8 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"version_created_at" timestamp(3) with time zone,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
-  	"latest" boolean
+  	"latest" boolean,
+  	"autosave" boolean
   );
   
   CREATE TABLE IF NOT EXISTS "_homepage_v_locales" (
@@ -3404,6 +3591,67 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"blockConfig_p_xl_paddingTop" "t",
   	"blockConfig_p_xl_paddingBottom" "b",
   	"layout" "enum_blog_index_blocks_icon_grid_block_layout" DEFAULT 'horizontal',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "BlogfbImageB" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"blockConfig_theme" "enum_BlogfbImageB_block_config_theme",
+  	"blockConfig_backgroundColor" "bgColor",
+  	"block_config_background_image_id" integer,
+  	"block_config_hidden" boolean DEFAULT false,
+  	"blockConfig_contentWidth" "cw" DEFAULT 'xl',
+  	"blockConfig_p_xs_paddingTop" "t",
+  	"blockConfig_p_xs_paddingBottom" "b",
+  	"blockConfig_p_md_paddingTop" "t",
+  	"blockConfig_p_md_paddingBottom" "b",
+  	"blockConfig_p_lg_paddingTop" "t",
+  	"blockConfig_p_lg_paddingBottom" "b",
+  	"blockConfig_p_xl_paddingTop" "t",
+  	"blockConfig_p_xl_paddingBottom" "b",
+  	"image_id" integer,
+  	"mobile_image_id" integer,
+  	"is_background" boolean DEFAULT false,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "BlogSHeaderB" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"blockConfig_theme" "enum_BlogSHeaderB_block_config_theme",
+  	"blockConfig_backgroundColor" "bgColor",
+  	"block_config_background_image_id" integer,
+  	"block_config_hidden" boolean DEFAULT false,
+  	"blockConfig_contentWidth" "cw" DEFAULT 'xl',
+  	"blockConfig_p_xs_paddingTop" "t",
+  	"blockConfig_p_xs_paddingBottom" "b",
+  	"blockConfig_p_md_paddingTop" "t",
+  	"blockConfig_p_md_paddingBottom" "b",
+  	"blockConfig_p_lg_paddingTop" "t",
+  	"blockConfig_p_lg_paddingBottom" "b",
+  	"blockConfig_p_xl_paddingTop" "t",
+  	"blockConfig_p_xl_paddingBottom" "b",
+  	"eyebrow" varchar,
+  	"content" jsonb,
+  	"alignment" "enum_BlogSHeaderB_alignment" DEFAULT 'center',
+  	"cta_link_type" "undefined_cta_t" DEFAULT 'internal',
+  	"cta_link_label" varchar,
+  	"cta_link_internal_href_id" integer,
+  	"cta_link_external_href" varchar,
+  	"cta_link_email_href" varchar,
+  	"cta_link_phone_href" varchar,
+  	"cta_link_file_href_id" integer,
+  	"cta_link_new_tab" boolean,
+  	"cta_link_icon_name" "undefined_link_ic",
+  	"cta_link_icon_size" "undefined_link_iw" DEFAULT '35',
+  	"cta_link_icon_color" varchar,
+  	"cta_variant" "undefined_cta_v" DEFAULT 'solid',
+  	"cta_color" "undefined_cta_tv",
   	"block_name" varchar
   );
   
@@ -3854,6 +4102,69 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
+  CREATE TABLE IF NOT EXISTS "_BlogfbImageB_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"blockConfig_theme" "enum__BlogfbImageB_v_block_config_theme",
+  	"blockConfig_backgroundColor" "bgColor",
+  	"block_config_background_image_id" integer,
+  	"block_config_hidden" boolean DEFAULT false,
+  	"blockConfig_contentWidth" "cw" DEFAULT 'xl',
+  	"blockConfig_p_xs_paddingTop" "t",
+  	"blockConfig_p_xs_paddingBottom" "b",
+  	"blockConfig_p_md_paddingTop" "t",
+  	"blockConfig_p_md_paddingBottom" "b",
+  	"blockConfig_p_lg_paddingTop" "t",
+  	"blockConfig_p_lg_paddingBottom" "b",
+  	"blockConfig_p_xl_paddingTop" "t",
+  	"blockConfig_p_xl_paddingBottom" "b",
+  	"image_id" integer,
+  	"mobile_image_id" integer,
+  	"is_background" boolean DEFAULT false,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_BlogSHeaderB_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"blockConfig_theme" "enum__BlogSHeaderB_v_block_config_theme",
+  	"blockConfig_backgroundColor" "bgColor",
+  	"block_config_background_image_id" integer,
+  	"block_config_hidden" boolean DEFAULT false,
+  	"blockConfig_contentWidth" "cw" DEFAULT 'xl',
+  	"blockConfig_p_xs_paddingTop" "t",
+  	"blockConfig_p_xs_paddingBottom" "b",
+  	"blockConfig_p_md_paddingTop" "t",
+  	"blockConfig_p_md_paddingBottom" "b",
+  	"blockConfig_p_lg_paddingTop" "t",
+  	"blockConfig_p_lg_paddingBottom" "b",
+  	"blockConfig_p_xl_paddingTop" "t",
+  	"blockConfig_p_xl_paddingBottom" "b",
+  	"eyebrow" varchar,
+  	"content" jsonb,
+  	"alignment" "enum__BlogSHeaderB_v_alignment" DEFAULT 'center',
+  	"cta_link_type" "undefined_cta_t" DEFAULT 'internal',
+  	"cta_link_label" varchar,
+  	"cta_link_internal_href_id" integer,
+  	"cta_link_external_href" varchar,
+  	"cta_link_email_href" varchar,
+  	"cta_link_phone_href" varchar,
+  	"cta_link_file_href_id" integer,
+  	"cta_link_new_tab" boolean,
+  	"cta_link_icon_name" "undefined_link_ic",
+  	"cta_link_icon_size" "undefined_link_iw" DEFAULT '35',
+  	"cta_link_icon_color" varchar,
+  	"cta_variant" "undefined_cta_v" DEFAULT 'solid',
+  	"cta_color" "undefined_cta_tv",
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
   CREATE TABLE IF NOT EXISTS "_blog_index_v_blocks_gallery_grid_block_gallery_images" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -4296,49 +4607,49 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "fbImageB" ADD CONSTRAINT "fbImageB_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "PagefbImageB" ADD CONSTRAINT "PagefbImageB_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "fbImageB" ADD CONSTRAINT "fbImageB_image_id_images_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "PagefbImageB" ADD CONSTRAINT "PagefbImageB_image_id_images_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "fbImageB" ADD CONSTRAINT "fbImageB_mobile_image_id_images_id_fk" FOREIGN KEY ("mobile_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "PagefbImageB" ADD CONSTRAINT "PagefbImageB_mobile_image_id_images_id_fk" FOREIGN KEY ("mobile_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "fbImageB" ADD CONSTRAINT "fbImageB_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "PagefbImageB" ADD CONSTRAINT "PagefbImageB_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "sHeaderB" ADD CONSTRAINT "sHeaderB_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "PageSHeaderB" ADD CONSTRAINT "PageSHeaderB_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "sHeaderB" ADD CONSTRAINT "sHeaderB_cta_link_internal_href_id_pages_id_fk" FOREIGN KEY ("cta_link_internal_href_id") REFERENCES "public"."pages"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "PageSHeaderB" ADD CONSTRAINT "PageSHeaderB_cta_link_internal_href_id_pages_id_fk" FOREIGN KEY ("cta_link_internal_href_id") REFERENCES "public"."pages"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "sHeaderB" ADD CONSTRAINT "sHeaderB_cta_link_file_href_id_files_id_fk" FOREIGN KEY ("cta_link_file_href_id") REFERENCES "public"."files"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "PageSHeaderB" ADD CONSTRAINT "PageSHeaderB_cta_link_file_href_id_files_id_fk" FOREIGN KEY ("cta_link_file_href_id") REFERENCES "public"."files"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "sHeaderB" ADD CONSTRAINT "sHeaderB_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "PageSHeaderB" ADD CONSTRAINT "PageSHeaderB_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -4680,49 +4991,49 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_fbImageB_v" ADD CONSTRAINT "_fbImageB_v_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "_PagefbImageB_v" ADD CONSTRAINT "_PagefbImageB_v_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_fbImageB_v" ADD CONSTRAINT "_fbImageB_v_image_id_images_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "_PagefbImageB_v" ADD CONSTRAINT "_PagefbImageB_v_image_id_images_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_fbImageB_v" ADD CONSTRAINT "_fbImageB_v_mobile_image_id_images_id_fk" FOREIGN KEY ("mobile_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "_PagefbImageB_v" ADD CONSTRAINT "_PagefbImageB_v_mobile_image_id_images_id_fk" FOREIGN KEY ("mobile_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_fbImageB_v" ADD CONSTRAINT "_fbImageB_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "_PagefbImageB_v" ADD CONSTRAINT "_PagefbImageB_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_sHeaderB_v" ADD CONSTRAINT "_sHeaderB_v_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "_PageSHeaderB_v" ADD CONSTRAINT "_PageSHeaderB_v_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_sHeaderB_v" ADD CONSTRAINT "_sHeaderB_v_cta_link_internal_href_id_pages_id_fk" FOREIGN KEY ("cta_link_internal_href_id") REFERENCES "public"."pages"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "_PageSHeaderB_v" ADD CONSTRAINT "_PageSHeaderB_v_cta_link_internal_href_id_pages_id_fk" FOREIGN KEY ("cta_link_internal_href_id") REFERENCES "public"."pages"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_sHeaderB_v" ADD CONSTRAINT "_sHeaderB_v_cta_link_file_href_id_files_id_fk" FOREIGN KEY ("cta_link_file_href_id") REFERENCES "public"."files"("id") ON DELETE set null ON UPDATE no action;
+   ALTER TABLE "_PageSHeaderB_v" ADD CONSTRAINT "_PageSHeaderB_v_cta_link_file_href_id_files_id_fk" FOREIGN KEY ("cta_link_file_href_id") REFERENCES "public"."files"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "_sHeaderB_v" ADD CONSTRAINT "_sHeaderB_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "_PageSHeaderB_v" ADD CONSTRAINT "_PageSHeaderB_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -5448,6 +5759,54 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "HomefbImageB" ADD CONSTRAINT "HomefbImageB_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "HomefbImageB" ADD CONSTRAINT "HomefbImageB_image_id_images_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "HomefbImageB" ADD CONSTRAINT "HomefbImageB_mobile_image_id_images_id_fk" FOREIGN KEY ("mobile_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "HomefbImageB" ADD CONSTRAINT "HomefbImageB_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "HomeSHeaderB" ADD CONSTRAINT "HomeSHeaderB_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "HomeSHeaderB" ADD CONSTRAINT "HomeSHeaderB_cta_link_internal_href_id_pages_id_fk" FOREIGN KEY ("cta_link_internal_href_id") REFERENCES "public"."pages"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "HomeSHeaderB" ADD CONSTRAINT "HomeSHeaderB_cta_link_file_href_id_files_id_fk" FOREIGN KEY ("cta_link_file_href_id") REFERENCES "public"."files"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "HomeSHeaderB" ADD CONSTRAINT "HomeSHeaderB_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "homepage_blocks_gallery_grid_block_gallery_images" ADD CONSTRAINT "homepage_blocks_gallery_grid_block_gallery_images_image_id_images_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -5773,6 +6132,54 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "_homepage_v_blocks_icon_grid_block" ADD CONSTRAINT "_homepage_v_blocks_icon_grid_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepage_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_HomefbImageB_v" ADD CONSTRAINT "_HomefbImageB_v_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_HomefbImageB_v" ADD CONSTRAINT "_HomefbImageB_v_image_id_images_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_HomefbImageB_v" ADD CONSTRAINT "_HomefbImageB_v_mobile_image_id_images_id_fk" FOREIGN KEY ("mobile_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_HomefbImageB_v" ADD CONSTRAINT "_HomefbImageB_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepage_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_HomeSHeaderB_v" ADD CONSTRAINT "_HomeSHeaderB_v_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_HomeSHeaderB_v" ADD CONSTRAINT "_HomeSHeaderB_v_cta_link_internal_href_id_pages_id_fk" FOREIGN KEY ("cta_link_internal_href_id") REFERENCES "public"."pages"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_HomeSHeaderB_v" ADD CONSTRAINT "_HomeSHeaderB_v_cta_link_file_href_id_files_id_fk" FOREIGN KEY ("cta_link_file_href_id") REFERENCES "public"."files"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_HomeSHeaderB_v" ADD CONSTRAINT "_HomeSHeaderB_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepage_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -6108,6 +6515,54 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "BlogfbImageB" ADD CONSTRAINT "BlogfbImageB_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "BlogfbImageB" ADD CONSTRAINT "BlogfbImageB_image_id_images_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "BlogfbImageB" ADD CONSTRAINT "BlogfbImageB_mobile_image_id_images_id_fk" FOREIGN KEY ("mobile_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "BlogfbImageB" ADD CONSTRAINT "BlogfbImageB_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blog_index"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "BlogSHeaderB" ADD CONSTRAINT "BlogSHeaderB_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "BlogSHeaderB" ADD CONSTRAINT "BlogSHeaderB_cta_link_internal_href_id_pages_id_fk" FOREIGN KEY ("cta_link_internal_href_id") REFERENCES "public"."pages"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "BlogSHeaderB" ADD CONSTRAINT "BlogSHeaderB_cta_link_file_href_id_files_id_fk" FOREIGN KEY ("cta_link_file_href_id") REFERENCES "public"."files"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "BlogSHeaderB" ADD CONSTRAINT "BlogSHeaderB_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blog_index"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "blog_index_blocks_gallery_grid_block_gallery_images" ADD CONSTRAINT "blog_index_blocks_gallery_grid_block_gallery_images_image_id_images_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -6438,6 +6893,54 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "_BlogfbImageB_v" ADD CONSTRAINT "_BlogfbImageB_v_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_BlogfbImageB_v" ADD CONSTRAINT "_BlogfbImageB_v_image_id_images_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_BlogfbImageB_v" ADD CONSTRAINT "_BlogfbImageB_v_mobile_image_id_images_id_fk" FOREIGN KEY ("mobile_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_BlogfbImageB_v" ADD CONSTRAINT "_BlogfbImageB_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blog_index_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_BlogSHeaderB_v" ADD CONSTRAINT "_BlogSHeaderB_v_block_config_background_image_id_images_id_fk" FOREIGN KEY ("block_config_background_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_BlogSHeaderB_v" ADD CONSTRAINT "_BlogSHeaderB_v_cta_link_internal_href_id_pages_id_fk" FOREIGN KEY ("cta_link_internal_href_id") REFERENCES "public"."pages"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_BlogSHeaderB_v" ADD CONSTRAINT "_BlogSHeaderB_v_cta_link_file_href_id_files_id_fk" FOREIGN KEY ("cta_link_file_href_id") REFERENCES "public"."files"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_BlogSHeaderB_v" ADD CONSTRAINT "_BlogSHeaderB_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blog_index_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "_blog_index_v_blocks_gallery_grid_block_gallery_images" ADD CONSTRAINT "_blog_index_v_blocks_gallery_grid_block_gallery_images_image_id_images_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -6722,12 +7225,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "pages_blocks_icon_grid_block_order_idx" ON "pages_blocks_icon_grid_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "pages_blocks_icon_grid_block_parent_id_idx" ON "pages_blocks_icon_grid_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_icon_grid_block_path_idx" ON "pages_blocks_icon_grid_block" USING btree ("_path");
-  CREATE INDEX IF NOT EXISTS "fbImageB_order_idx" ON "fbImageB" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "fbImageB_parent_id_idx" ON "fbImageB" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "fbImageB_path_idx" ON "fbImageB" USING btree ("_path");
-  CREATE INDEX IF NOT EXISTS "sHeaderB_order_idx" ON "sHeaderB" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "sHeaderB_parent_id_idx" ON "sHeaderB" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "sHeaderB_path_idx" ON "sHeaderB" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "PagefbImageB_order_idx" ON "PagefbImageB" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "PagefbImageB_parent_id_idx" ON "PagefbImageB" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "PagefbImageB_path_idx" ON "PagefbImageB" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "PageSHeaderB_order_idx" ON "PageSHeaderB" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "PageSHeaderB_parent_id_idx" ON "PageSHeaderB" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "PageSHeaderB_path_idx" ON "PageSHeaderB" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "pages_blocks_gallery_grid_block_gallery_images_order_idx" ON "pages_blocks_gallery_grid_block_gallery_images" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "pages_blocks_gallery_grid_block_gallery_images_parent_id_idx" ON "pages_blocks_gallery_grid_block_gallery_images" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_gallery_grid_block_order_idx" ON "pages_blocks_gallery_grid_block" USING btree ("_order");
@@ -6777,12 +7280,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_icon_grid_block_order_idx" ON "_pages_v_blocks_icon_grid_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_icon_grid_block_parent_id_idx" ON "_pages_v_blocks_icon_grid_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_icon_grid_block_path_idx" ON "_pages_v_blocks_icon_grid_block" USING btree ("_path");
-  CREATE INDEX IF NOT EXISTS "_fbImageB_v_order_idx" ON "_fbImageB_v" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_fbImageB_v_parent_id_idx" ON "_fbImageB_v" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_fbImageB_v_path_idx" ON "_fbImageB_v" USING btree ("_path");
-  CREATE INDEX IF NOT EXISTS "_sHeaderB_v_order_idx" ON "_sHeaderB_v" USING btree ("_order");
-  CREATE INDEX IF NOT EXISTS "_sHeaderB_v_parent_id_idx" ON "_sHeaderB_v" USING btree ("_parent_id");
-  CREATE INDEX IF NOT EXISTS "_sHeaderB_v_path_idx" ON "_sHeaderB_v" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_PagefbImageB_v_order_idx" ON "_PagefbImageB_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_PagefbImageB_v_parent_id_idx" ON "_PagefbImageB_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_PagefbImageB_v_path_idx" ON "_PagefbImageB_v" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_PageSHeaderB_v_order_idx" ON "_PageSHeaderB_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_PageSHeaderB_v_parent_id_idx" ON "_PageSHeaderB_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_PageSHeaderB_v_path_idx" ON "_PageSHeaderB_v" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_gallery_grid_block_gallery_images_order_idx" ON "_pages_v_blocks_gallery_grid_block_gallery_images" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_gallery_grid_block_gallery_images_parent_id_idx" ON "_pages_v_blocks_gallery_grid_block_gallery_images" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_gallery_grid_block_order_idx" ON "_pages_v_blocks_gallery_grid_block" USING btree ("_order");
@@ -6857,6 +7360,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE UNIQUE INDEX IF NOT EXISTS "files_filename_idx" ON "files" USING btree ("filename");
   CREATE INDEX IF NOT EXISTS "images_created_at_idx" ON "images" USING btree ("created_at");
   CREATE UNIQUE INDEX IF NOT EXISTS "images_filename_idx" ON "images" USING btree ("filename");
+  CREATE INDEX IF NOT EXISTS "images_sizes_blur_sizes_blur_filename_idx" ON "images" USING btree ("sizes_blur_filename");
   CREATE INDEX IF NOT EXISTS "images_sizes_thumbnail_sizes_thumbnail_filename_idx" ON "images" USING btree ("sizes_thumbnail_filename");
   CREATE INDEX IF NOT EXISTS "images_sizes_mobile_sizes_mobile_filename_idx" ON "images" USING btree ("sizes_mobile_filename");
   CREATE INDEX IF NOT EXISTS "images_sizes_tablet_sizes_tablet_filename_idx" ON "images" USING btree ("sizes_tablet_filename");
@@ -6915,6 +7419,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "homepage_blocks_icon_grid_block_order_idx" ON "homepage_blocks_icon_grid_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "homepage_blocks_icon_grid_block_parent_id_idx" ON "homepage_blocks_icon_grid_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "homepage_blocks_icon_grid_block_path_idx" ON "homepage_blocks_icon_grid_block" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "HomefbImageB_order_idx" ON "HomefbImageB" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "HomefbImageB_parent_id_idx" ON "HomefbImageB" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "HomefbImageB_path_idx" ON "HomefbImageB" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "HomeSHeaderB_order_idx" ON "HomeSHeaderB" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "HomeSHeaderB_parent_id_idx" ON "HomeSHeaderB" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "HomeSHeaderB_path_idx" ON "HomeSHeaderB" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "homepage_blocks_gallery_grid_block_gallery_images_order_idx" ON "homepage_blocks_gallery_grid_block_gallery_images" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "homepage_blocks_gallery_grid_block_gallery_images_parent_id_idx" ON "homepage_blocks_gallery_grid_block_gallery_images" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "homepage_blocks_gallery_grid_block_order_idx" ON "homepage_blocks_gallery_grid_block" USING btree ("_order");
@@ -6963,6 +7473,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_icon_grid_block_order_idx" ON "_homepage_v_blocks_icon_grid_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_icon_grid_block_parent_id_idx" ON "_homepage_v_blocks_icon_grid_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_icon_grid_block_path_idx" ON "_homepage_v_blocks_icon_grid_block" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_HomefbImageB_v_order_idx" ON "_HomefbImageB_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_HomefbImageB_v_parent_id_idx" ON "_HomefbImageB_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_HomefbImageB_v_path_idx" ON "_HomefbImageB_v" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_HomeSHeaderB_v_order_idx" ON "_HomeSHeaderB_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_HomeSHeaderB_v_parent_id_idx" ON "_HomeSHeaderB_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_HomeSHeaderB_v_path_idx" ON "_HomeSHeaderB_v" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_gallery_grid_block_gallery_images_order_idx" ON "_homepage_v_blocks_gallery_grid_block_gallery_images" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_gallery_grid_block_gallery_images_parent_id_idx" ON "_homepage_v_blocks_gallery_grid_block_gallery_images" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_gallery_grid_block_order_idx" ON "_homepage_v_blocks_gallery_grid_block" USING btree ("_order");
@@ -7003,6 +7519,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_homepage_v_version_version_slug_idx" ON "_homepage_v" USING btree ("version_slug");
   CREATE INDEX IF NOT EXISTS "_homepage_v_version_version__status_idx" ON "_homepage_v" USING btree ("version__status");
   CREATE INDEX IF NOT EXISTS "_homepage_v_latest_idx" ON "_homepage_v" USING btree ("latest");
+  CREATE INDEX IF NOT EXISTS "_homepage_v_autosave_idx" ON "_homepage_v" USING btree ("autosave");
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_iframe_block_order_idx" ON "blog_index_blocks_iframe_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_iframe_block_parent_id_idx" ON "blog_index_blocks_iframe_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_iframe_block_path_idx" ON "blog_index_blocks_iframe_block" USING btree ("_path");
@@ -7012,6 +7529,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_icon_grid_block_order_idx" ON "blog_index_blocks_icon_grid_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_icon_grid_block_parent_id_idx" ON "blog_index_blocks_icon_grid_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_icon_grid_block_path_idx" ON "blog_index_blocks_icon_grid_block" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "BlogfbImageB_order_idx" ON "BlogfbImageB" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "BlogfbImageB_parent_id_idx" ON "BlogfbImageB" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "BlogfbImageB_path_idx" ON "BlogfbImageB" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "BlogSHeaderB_order_idx" ON "BlogSHeaderB" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "BlogSHeaderB_parent_id_idx" ON "BlogSHeaderB" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "BlogSHeaderB_path_idx" ON "BlogSHeaderB" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_gallery_grid_block_gallery_images_order_idx" ON "blog_index_blocks_gallery_grid_block_gallery_images" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_gallery_grid_block_gallery_images_parent_id_idx" ON "blog_index_blocks_gallery_grid_block_gallery_images" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_gallery_grid_block_order_idx" ON "blog_index_blocks_gallery_grid_block" USING btree ("_order");
@@ -7060,6 +7583,12 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_icon_grid_block_order_idx" ON "_blog_index_v_blocks_icon_grid_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_icon_grid_block_parent_id_idx" ON "_blog_index_v_blocks_icon_grid_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_icon_grid_block_path_idx" ON "_blog_index_v_blocks_icon_grid_block" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_BlogfbImageB_v_order_idx" ON "_BlogfbImageB_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_BlogfbImageB_v_parent_id_idx" ON "_BlogfbImageB_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_BlogfbImageB_v_path_idx" ON "_BlogfbImageB_v" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_BlogSHeaderB_v_order_idx" ON "_BlogSHeaderB_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_BlogSHeaderB_v_parent_id_idx" ON "_BlogSHeaderB_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_BlogSHeaderB_v_path_idx" ON "_BlogSHeaderB_v" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_gallery_grid_block_gallery_images_order_idx" ON "_blog_index_v_blocks_gallery_grid_block_gallery_images" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_gallery_grid_block_gallery_images_parent_id_idx" ON "_blog_index_v_blocks_gallery_grid_block_gallery_images" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_gallery_grid_block_order_idx" ON "_blog_index_v_blocks_gallery_grid_block" USING btree ("_order");
@@ -7109,8 +7638,8 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   DROP TABLE "pages_blocks_iframe_block_locales";
   DROP TABLE "pages_blocks_icon_grid_block_items";
   DROP TABLE "pages_blocks_icon_grid_block";
-  DROP TABLE "fbImageB";
-  DROP TABLE "sHeaderB";
+  DROP TABLE "PagefbImageB";
+  DROP TABLE "PageSHeaderB";
   DROP TABLE "pages_blocks_gallery_grid_block_gallery_images";
   DROP TABLE "pages_blocks_gallery_grid_block";
   DROP TABLE "pages_blocks_video_block";
@@ -7135,8 +7664,8 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   DROP TABLE "_pages_v_blocks_iframe_block_locales";
   DROP TABLE "_pages_v_blocks_icon_grid_block_items";
   DROP TABLE "_pages_v_blocks_icon_grid_block";
-  DROP TABLE "_fbImageB_v";
-  DROP TABLE "_sHeaderB_v";
+  DROP TABLE "_PagefbImageB_v";
+  DROP TABLE "_PageSHeaderB_v";
   DROP TABLE "_pages_v_blocks_gallery_grid_block_gallery_images";
   DROP TABLE "_pages_v_blocks_gallery_grid_block";
   DROP TABLE "_pages_v_blocks_video_block";
@@ -7209,6 +7738,8 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   DROP TABLE "homepage_blocks_iframe_block_locales";
   DROP TABLE "homepage_blocks_icon_grid_block_items";
   DROP TABLE "homepage_blocks_icon_grid_block";
+  DROP TABLE "HomefbImageB";
+  DROP TABLE "HomeSHeaderB";
   DROP TABLE "homepage_blocks_gallery_grid_block_gallery_images";
   DROP TABLE "homepage_blocks_gallery_grid_block";
   DROP TABLE "homepage_blocks_video_block";
@@ -7233,6 +7764,8 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   DROP TABLE "_homepage_v_blocks_iframe_block_locales";
   DROP TABLE "_homepage_v_blocks_icon_grid_block_items";
   DROP TABLE "_homepage_v_blocks_icon_grid_block";
+  DROP TABLE "_HomefbImageB_v";
+  DROP TABLE "_HomeSHeaderB_v";
   DROP TABLE "_homepage_v_blocks_gallery_grid_block_gallery_images";
   DROP TABLE "_homepage_v_blocks_gallery_grid_block";
   DROP TABLE "_homepage_v_blocks_video_block";
@@ -7257,6 +7790,8 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   DROP TABLE "blog_index_blocks_iframe_block_locales";
   DROP TABLE "blog_index_blocks_icon_grid_block_items";
   DROP TABLE "blog_index_blocks_icon_grid_block";
+  DROP TABLE "BlogfbImageB";
+  DROP TABLE "BlogSHeaderB";
   DROP TABLE "blog_index_blocks_gallery_grid_block_gallery_images";
   DROP TABLE "blog_index_blocks_gallery_grid_block";
   DROP TABLE "blog_index_blocks_video_block";
@@ -7281,6 +7816,8 @@ export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
   DROP TABLE "_blog_index_v_blocks_iframe_block_locales";
   DROP TABLE "_blog_index_v_blocks_icon_grid_block_items";
   DROP TABLE "_blog_index_v_blocks_icon_grid_block";
+  DROP TABLE "_BlogfbImageB_v";
+  DROP TABLE "_BlogSHeaderB_v";
   DROP TABLE "_blog_index_v_blocks_gallery_grid_block_gallery_images";
   DROP TABLE "_blog_index_v_blocks_gallery_grid_block";
   DROP TABLE "_blog_index_v_blocks_video_block";
