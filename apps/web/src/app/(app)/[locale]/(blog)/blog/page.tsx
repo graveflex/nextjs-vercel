@@ -39,9 +39,15 @@ export default async function Blog({
 
   const fetchPageData = draft
     ? query
-    : unstable_cache(query, [
-        `${[locale, 'blog'].filter((x) => x).join('/')}?page=${searchParams.page}`
-      ]);
+    : unstable_cache(
+        query,
+        [
+          `${[locale, 'blog'].filter((x) => x).join('/')}?page=${searchParams.page}`
+        ],
+        {
+          tags: ['blogIndex']
+        }
+      );
 
   const indexData = await fetchPageData(draft, locale);
 

@@ -34,7 +34,9 @@ export default async function HomePage({
 
   const fetchPageData = draft
     ? query
-    : unstable_cache(query, [[locale, 'homepage'].filter((x) => x).join('/')]);
+    : unstable_cache(query, [[locale, 'homepage'].filter((x) => x).join('/')], {
+        tags: ['homepage']
+      });
 
   const homepageData = await fetchPageData(draft, locale);
 

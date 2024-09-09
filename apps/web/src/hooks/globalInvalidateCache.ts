@@ -1,4 +1,4 @@
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import type { GlobalAfterChangeHook } from 'payload';
 
 export const globalInvalidateCache: GlobalAfterChangeHook = async ({ doc }) => {
@@ -7,17 +7,17 @@ export const globalInvalidateCache: GlobalAfterChangeHook = async ({ doc }) => {
 
     // Invalidate the homepage
     if (path === '/') {
-      revalidatePath('/(app)/[locale]/', 'page');
+      revalidateTag('homepage');
     }
 
     // Invalidate the blog index
     if (path === 'blog') {
-      revalidatePath(`/(app)/[locale]/(blog)/blog`, 'page');
+      revalidateTag('blogIndex');
     }
 
     // Invalidate the main layout if the nav or footer is updated
     if (doc?.header) {
-      revalidatePath('/', 'layout');
+      revalidateTag('global-nav');
     }
   } catch (_err) {
     // no-op

@@ -50,9 +50,13 @@ export default async function Blog({
 
   const fetchPageData = draft
     ? query
-    : unstable_cache(query, [
-        [locale, draft, 'blog', pageSlug].filter((x) => x).join('/')
-      ]);
+    : unstable_cache(
+        query,
+        [[locale, draft, 'blog', pageSlug].filter((x) => x).join('/')],
+        {
+          tags: [`${pageSlug}`]
+        }
+      );
 
   const [postData] = await fetchPageData(draft, locale, pageSlug);
 

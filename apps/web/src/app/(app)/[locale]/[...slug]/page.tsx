@@ -59,7 +59,9 @@ export default async function CatchallPage({
 
   const fetchPageData = draft
     ? query
-    : unstable_cache(query, [[locale, pageSlug].filter((x) => x).join('/')]);
+    : unstable_cache(query, [[locale, pageSlug].filter((x) => x).join('/')], {
+        tags: [`${pageSlug}`]
+      });
 
   const page = await fetchPageData(draft, locale);
 
