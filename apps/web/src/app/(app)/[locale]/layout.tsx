@@ -3,6 +3,7 @@ import StyledComponentsRegistry from '@mono/web/lib/StyledComponentRegistry';
 import type { LanguageLocale } from '@mono/web/lib/constants';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
+import Layout from '@mono/web/globals/Layout';
 import type React from 'react';
 
 import Providers from './providers';
@@ -22,7 +23,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
+async function RootLayout({ children, params: { locale, ...params } }: RootLayoutProps) {
   unstable_setRequestLocale(locale);
   const messages = await getMessages();
 
@@ -33,7 +34,7 @@ async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
       <StyledComponentsRegistry>
         <Providers>
           <NextIntlClientProvider messages={messages}>
-            {children}
+            <Layout locale={locale}>{children}</Layout>
           </NextIntlClientProvider>
         </Providers>
       </StyledComponentsRegistry>

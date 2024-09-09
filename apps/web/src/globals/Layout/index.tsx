@@ -1,6 +1,5 @@
 'use server';
 
-import type * as themeList from '@mono/theme/src/theme';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
@@ -11,7 +10,6 @@ import type React from 'react';
 import LayoutClient from './Layout.client';
 
 type LayoutProps = {
-  theme?: keyof typeof themeList | null;
   locale: LanguageLocale;
   draft?: boolean;
   children: React.ReactNode;
@@ -19,7 +17,6 @@ type LayoutProps = {
 
 export default async function Layout({
   children,
-  theme,
   locale,
   draft
 }: LayoutProps) {
@@ -40,7 +37,7 @@ export default async function Layout({
   const navData = await fetchNavData(draft, locale);
 
   return (
-    <LayoutClient theme={theme} {...navData}>
+    <LayoutClient {...navData}>
       {children}
     </LayoutClient>
   );
