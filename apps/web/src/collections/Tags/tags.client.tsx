@@ -14,6 +14,47 @@ type QueryProps = {
 
 const Label = Styled.label`
     display: block;
+    ${({ theme: { allColors, box } }) => css`
+    ${box.t('label')};
+    color: ${allColors.fg};
+    `}
+`;
+
+const ButtonStyled = Styled.button`
+    ${({ theme: { allColors, box } }) => css`
+      ${box.t('button')};
+    
+      && {
+      color: ${allColors.bg};
+      border: 1px solid transparent;
+      background-color: ${allColors.fg};
+      border-radius: 1rem;
+
+      &:focus {
+          outline: 1px solid ${allColors.fg};
+        }
+        &:hover {
+        background-color: ${allColors.plain800};
+        color: ${allColors.bg};
+        border: 1px solid transparent;
+    }
+      }
+
+
+
+    &.selected {
+      && {
+        background-color: ${allColors.primary};
+        color: ${allColors.bg};
+        border: 1px solid transparent;
+
+        &:focus {
+          outline: 1px solid ${allColors.primary};
+        }
+
+      }
+    }
+  `}
 `;
 
 const SelectContent = Styled.div`
@@ -25,12 +66,8 @@ const FilterContent = Styled.div`
   flex-direction: row;
   align-items: flex-start;
 
-  ${({ theme: { spacing, themeColorShades } }) => css`
+  ${({ theme: { spacing } }) => css`
     gap: ${spacing[4]}rem;
-
-    .selected {
-        background-color: ${themeColorShades.secondary30};
-    }
   `}
 `;
 
@@ -111,27 +148,33 @@ function TagsClient({ tagData }: { tagData: Tag[] }) {
           <Label>Filter by: </Label>
           {tagData.map(({ id, label }) => {
             return (
-              <button
+              <ButtonStyled
                 key={id}
                 onClick={() => handleTagClick(label)}
                 type="button"
                 className={isSelected(label, query) ? 'selected' : ''}
+                aria-label={`Filter by ${label}`}
               >
                 {label}
-              </button>
+              </ButtonStyled>
             );
           })}
         </FilterContent>
 
         <SelectContent>
-          <Label>Sort by: </Label>
-          <select onChange={handleSelectChange} defaultValue={initialSort}>
+          <Label htmlFor="sort">Sort by: </Label>
+          <select
+            id="sort"
+            onChange={handleSelectChange}
+            defaultValue={initialSort}
+          >
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
           </select>
 
-          <Label>Search: </Label>
+          <Label htmlFor="search">Search: </Label>
           <input
+            id="search"
             type="text"
             placeholder="Search"
             onChange={handleSearchChange}
