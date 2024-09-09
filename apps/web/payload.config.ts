@@ -12,7 +12,6 @@ import Homepage from '@mono/web/globals/Home/Homepage.config';
 import Nav from '@mono/web/globals/Layout/Layout.config';
 // import nodeMailer from 'nodemailer';
 import { DEFAULT_LOCALE, LOCALES } from '@mono/web/lib/constants';
-import { WEB_URL } from '@mono/web/lib/constants';
 import { translator } from '@payload-enchants/translator';
 import { googleResolver } from '@payload-enchants/translator/resolvers/google';
 import { postgresAdapter } from '@payloadcms/db-postgres';

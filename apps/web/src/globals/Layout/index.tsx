@@ -33,7 +33,10 @@ export default async function Layout({
         fallbackLocale: DEFAULT_LOCALE
       });
     },
-    [[locale, draft, 'nav'].filter((x) => x).join('/')]
+    [[locale, draft, 'nav'].filter((x) => x).join('/')],
+    {
+      tags: ['global-nav']
+    }
   );
 
   const navData = await fetchNavData(draft, locale);
