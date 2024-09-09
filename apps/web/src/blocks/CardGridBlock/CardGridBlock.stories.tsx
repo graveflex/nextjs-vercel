@@ -34,11 +34,7 @@ export const Defaults: Story = {
             mimeType: 'image/svg+xml',
             filesize: 7144,
             width: 412,
-            height: 231,
-            additionalProps: {
-              objectFit: 'fill',
-              aspectRatio: '16/9'
-            }
+            height: 231
           },
           ctas: [
             {
@@ -67,11 +63,7 @@ export const Defaults: Story = {
             mimeType: 'image/svg+xml',
             filesize: 7144,
             width: 412,
-            height: 231,
-            additionalProps: {
-              objectFit: 'fill',
-              aspectRatio: '16/9'
-            }
+            height: 231
           },
           ctas: [
             {
@@ -100,11 +92,7 @@ export const Defaults: Story = {
             mimeType: 'image/svg+xml',
             filesize: 7144,
             width: 412,
-            height: 231,
-            additionalProps: {
-              objectFit: 'fill',
-              aspectRatio: '16/9'
-            }
+            height: 231
           },
           ctas: [
             {
@@ -140,11 +128,7 @@ export const FourCards: Story = {
             mimeType: 'image/svg+xml',
             filesize: 7144,
             width: 412,
-            height: 231,
-            additionalProps: {
-              objectFit: 'fill',
-              aspectRatio: '16/9'
-            }
+            height: 231
           },
           ctas: [
             {
@@ -173,11 +157,7 @@ export const FourCards: Story = {
             mimeType: 'image/svg+xml',
             filesize: 7144,
             width: 412,
-            height: 231,
-            additionalProps: {
-              objectFit: 'fill',
-              aspectRatio: '16/9'
-            }
+            height: 231
           },
           ctas: [
             {
@@ -206,11 +186,7 @@ export const FourCards: Story = {
             mimeType: 'image/svg+xml',
             filesize: 7144,
             width: 412,
-            height: 231,
-            additionalProps: {
-              objectFit: 'fill',
-              aspectRatio: '16/9'
-            }
+            height: 231
           },
           ctas: [
             {
@@ -239,11 +215,7 @@ export const FourCards: Story = {
             mimeType: 'image/svg+xml',
             filesize: 7144,
             width: 412,
-            height: 231,
-            additionalProps: {
-              objectFit: 'fill',
-              aspectRatio: '16/9'
-            }
+            height: 231
           },
           ctas: [
             {

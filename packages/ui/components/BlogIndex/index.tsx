@@ -7,7 +7,6 @@ import Pagination, {
 } from '@mono/ui/components/Pagination';
 import Wrapper from '@mono/ui/components/Wrapper';
 import styled, { css } from '@refract-ui/sc';
-import { AnimatePresence, motion } from 'framer-motion';
 import React, { useRef } from 'react';
 
 const PostWrapper = styled.div`
@@ -66,10 +65,7 @@ function BlogIndex({ posts, paginationProps }: BlogIndexType) {
     }
     return {
       ...thumbnail,
-      image: thumbnail,
-      imageProps: {
-        fill: true
-      }
+      image: thumbnail
     };
   };
 

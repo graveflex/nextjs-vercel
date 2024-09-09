@@ -3,7 +3,7 @@
 import theme from '@mono/theme/src/light';
 import type { Image as PayloadImageProps } from '@mono/types/payload-types';
 import styled, { css } from '@refract-ui/sc';
-import { getImageProps, type ImageProps } from 'next/image';
+import { type ImageProps, getImageProps } from 'next/image';
 import type React from 'react';
 import type { DefaultTheme } from 'styled-components';
 
@@ -86,7 +86,7 @@ const getSrcSets = (
   return srcSets;
 };
 
-export interface ResponsivePayloadWrapperProps extends ImageProps {
+export interface ResponsivePayloadWrapperProps extends Partial<ImageProps> {
   image?: number | PayloadImageProps | null | undefined;
 }
 

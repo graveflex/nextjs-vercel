@@ -29,14 +29,7 @@ const mobileImage: Image = {
   height: 800,
   createdAt: '2023-09-13T16:32:11.202Z',
   updatedAt: '2023-09-13T16:32:11.202Z',
-  url: faker.image.abstract(450, 800),
-  imageProps: {
-    fill: true
-  },
-  additionalProps: {
-    objectFit: 'fill',
-    isRounded: false
-  }
+  url: faker.image.abstract(450, 800)
 };
 
 const desktopImage: Image = {
@@ -49,14 +42,7 @@ const desktopImage: Image = {
   height: 450,
   createdAt: '2023-09-13T16:32:11.202Z',
   updatedAt: '2023-09-13T16:32:11.202Z',
-  url: faker.image.abstract(800, 450),
-  imageProps: {
-    fill: true
-  },
-  additionalProps: {
-    objectFit: 'fill',
-    isRounded: false
-  }
+  url: faker.image.abstract(800, 450)
 };
 
 const responsiveImage = multipleImages(desktopImage, mobileImage, 'desktop');
@@ -106,15 +92,7 @@ export const Defaults: Story = {
       },
       createdAt: '2023-09-13T16:32:11.202Z',
       updatedAt: '2023-09-13T16:32:11.202Z',
-      url: faker.image.abstract(800, 450),
-      imageProps: {
-        fill: false
-      },
-      additionalProps: {
-        isRounded: true,
-        aspectRatio: '16/9',
-        objectFit: 'cover'
-      }
+      url: faker.image.abstract(800, 450)
     }
   }
 };
@@ -293,14 +271,8 @@ export const MultipleAspectRatios: Story = {
       width: 600,
       height: 700,
       imageProps: {
-        fill: true,
         priority: false,
         quality: 75
-      },
-      additionalProps: {
-        objectFit: 'contain',
-        isRounded: false,
-        aspectRatio: '6/7'
       },
       sizes: {
         tablet: {

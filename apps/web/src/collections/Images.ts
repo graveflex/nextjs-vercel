@@ -33,7 +33,7 @@ const Images: CollectionConfig = {
           required: false
         }
       ]
-    },
+    }
   ],
   upload: {
     staticDir: 'images',

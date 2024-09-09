@@ -151,11 +151,7 @@ const defaultImageProps = (coverImage: Image | number) => {
 
   return {
     ...coverImage,
-    image: coverImage,
-    imageProps: {
-      fill: true,
-      priority: true
-    }
+    image: coverImage
   };
 };
 

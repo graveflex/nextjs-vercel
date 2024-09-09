@@ -54,10 +54,7 @@ export const Defaults: Story = {
       mimeType: 'image/svg+xml',
       filesize: 7144,
       width: 640,
-      height: 447,
-      imageProps: {
-        fill: false
-      }
+      height: 447
     }
   }
 };
@@ -99,10 +96,7 @@ export const ContentRight: Story = {
       mimeType: 'image/svg+xml',
       filesize: 7144,
       width: 640,
-      height: 447,
-      imageProps: {
-        fill: false
-      }
+      height: 447
     }
   }
 };
@@ -173,10 +167,7 @@ export const FullBleed: Story = {
       mimeType: 'image/svg+xml',
       filesize: 7144,
       width: 720,
-      height: 471,
-      imageProps: {
-        fill: true
-      }
+      height: 471
     }
   }
 };
@@ -254,10 +245,7 @@ export const CTANoForm: Story = {
       mimeType: 'image/svg+xml',
       filesize: 7144,
       width: 640,
-      height: 447,
-      imageProps: {
-        fill: false
-      }
+      height: 447
     }
   }
 };
