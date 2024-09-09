@@ -44,14 +44,13 @@ export default async function Posts({
       const searchQuery: Where = searchPage
         ? {
             title: {
-              in: searchPage
+              contains: searchPage
             }
           }
         : {};
 
       const filterSearchQuery: Where = {
-        ...filterQuery,
-        ...searchQuery
+        and: [filterQuery, searchQuery]
       };
 
       return payload.find({
