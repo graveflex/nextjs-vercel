@@ -38,7 +38,6 @@ type Story = StoryObj<GeneralCardType>;
 
 export const BasicCard: Story = {
   args: {
-    // @ts-expect-error image is not required
     image,
     eyebrow: 'Eyebrow',
     headline: 'General Card',

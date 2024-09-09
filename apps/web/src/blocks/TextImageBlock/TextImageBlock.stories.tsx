@@ -58,10 +58,7 @@ export const LeftImageButton: Story = {
       mimeType: 'image/svg+xml',
       filesize: 7144,
       width: 726,
-      height: 484,
-      imageProps: {
-        fill: false
-      }
+      height: 484
     }
   }
 };
@@ -107,10 +104,7 @@ export const RightImageButton: Story = {
       mimeType: 'image/svg+xml',
       filesize: 7144,
       width: 726,
-      height: 484,
-      imageProps: {
-        fill: false
-      }
+      height: 484
     }
   }
 };
@@ -138,10 +132,7 @@ export const LeftImage: Story = {
       mimeType: 'image/svg+xml',
       filesize: 7144,
       width: 726,
-      height: 484,
-      imageProps: {
-        fill: false
-      }
+      height: 484
     }
   }
 };
@@ -169,10 +160,7 @@ export const RightImage: Story = {
       mimeType: 'image/svg+xml',
       filesize: 7144,
       width: 726,
-      height: 484,
-      imageProps: {
-        fill: false
-      }
+      height: 484
     }
   }
 };
@@ -211,10 +199,7 @@ export const LeftImageForm: Story = {
       mimeType: 'image/svg+xml',
       filesize: 7144,
       width: 726,
-      height: 484,
-      imageProps: {
-        fill: false
-      }
+      height: 484
     }
   }
 };

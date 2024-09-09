@@ -16,7 +16,6 @@ import useLockBodyScroll from '@mono/ui/lib/hooks/useLockBodyScroll';
 import styled, { css } from '@refract-ui/sc';
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
-import s from 'styled-components';
 
 // UPDATE TO USE THEMECOLOR
 const OuterHeader = styled.header`
@@ -151,7 +150,7 @@ const CtaWrapper = styled.div`
   `}
 `;
 
-const MobileColumn = s(motion.div)`
+const MobileColumn = styled(motion.div)`
   ${({ theme: { mq, allColors } }) => css`
     position: absolute;
     top: 5.25rem;
@@ -292,7 +291,7 @@ const LocaleLabel = styled.div`
   `}
 `;
 
-const MobileItemLabel = s(ItemLabel)`
+const MobileItemLabel = styled(ItemLabel)`
   ${({ theme: { allColors, box } }) => css`
     && {
       display: grid;
@@ -321,7 +320,7 @@ const MobileItemLabel = s(ItemLabel)`
   `}
 `;
 
-const MenuLink = s(CtaLink)`
+const MenuLink = styled(CtaLink)`
   ${({ theme: { mq, box } }) => css`
     && {
       font-weight: 400;
@@ -334,7 +333,7 @@ const MenuLink = s(CtaLink)`
   `}
 `;
 
-const MenuNavLink = s(CtaLink)`
+const MenuNavLink = styled(CtaLink)`
   ${({ theme: { mq, box } }) => css`
     && {
       font-weight: 400;
@@ -351,7 +350,7 @@ const MenuNavLink = s(CtaLink)`
   `}
 `;
 
-const MenuLinkMobile = s(CtaLink)`
+const MenuLinkMobile = styled(CtaLink)`
   font-weight: 600;
 `;
 

@@ -26,10 +26,7 @@ const image = {
   mimeType: 'image/svg+xml',
   filesize: 7144,
   width: 296,
-  height: 296,
-  imageProps: {
-    fill: false
-  }
+  height: 296
 };
 
 export const Defaults: Story = {

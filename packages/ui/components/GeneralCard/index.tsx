@@ -110,10 +110,7 @@ const imageProps = (image: Image | number) => {
   }
 
   return {
-    ...image,
-    imageProps: {
-      fill: true
-    }
+    ...image
   };
 };
 

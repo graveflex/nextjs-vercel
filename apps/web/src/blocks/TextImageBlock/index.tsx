@@ -229,10 +229,7 @@ const defaultImageProps = (image: Image | number) => {
 
   return {
     ...image,
-    image,
-    imageProps: {
-      fill: false
-    }
+    image
   };
 };
 

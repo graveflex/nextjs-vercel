@@ -30,10 +30,7 @@ const images = ids.map((id) => ({
     mimeType: 'image/svg+xml',
     filesize: 7144,
     width: 296,
-    height: 296,
-    imageProps: {
-      fill: false
-    }
+    height: 296
   }
 }));
 

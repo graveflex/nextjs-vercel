@@ -174,14 +174,8 @@ export interface Image {
   id: number;
   alt?: string | null;
   imageProps?: {
-    fill?: boolean | null;
     priority?: boolean | null;
     quality?: number | null;
-  };
-  additionalProps?: {
-    objectFit?: ('cover' | 'contain' | 'fill' | 'scale-down') | null;
-    isRounded?: boolean | null;
-    aspectRatio?: ('1/1' | '3/2' | '4/3' | '6/7' | '16/9' | 'initial') | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -195,6 +189,14 @@ export interface Image {
   focalX?: number | null;
   focalY?: number | null;
   sizes?: {
+    blur?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
     thumbnail?: {
       url?: string | null;
       width?: number | null;
