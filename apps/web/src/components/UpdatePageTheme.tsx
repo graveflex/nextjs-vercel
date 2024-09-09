@@ -1,9 +1,9 @@
 'use client';
 
 import {
-  usePageThemeContext,
-  type ThemeKey,
   DEFAULT_THEME_NAME,
+  type ThemeKey,
+  usePageThemeContext
 } from '@mono/theme/src/ThemeProvider';
 import { useEffect } from 'react';
 
@@ -12,12 +12,9 @@ interface UpdatePageThemeProps {
 }
 
 export default function UpdatePageTheme({ theme }: UpdatePageThemeProps) {
-  const { currentTheme, setCurrentTheme } = usePageThemeContext();
-
-  console.log('@-->UpdatePageTheme | currentTheme', currentTheme);
+  const { setCurrentTheme } = usePageThemeContext();
 
   useEffect(() => {
-    console.log('@-->UpdatePageTheme.useEffect | currentTheme', currentTheme);
     setCurrentTheme(theme || DEFAULT_THEME_NAME);
   }, [theme, setCurrentTheme]);
 

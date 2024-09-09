@@ -1,6 +1,6 @@
+import { DEFAULT_THEME_NAME } from '@mono/theme/src/ThemeProvider';
 import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
-import { DEFAULT_THEME_NAME } from '@mono/theme/src/ThemeProvider';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
@@ -51,8 +51,8 @@ export default async function Blog({
   const fetchPageData = draft
     ? query
     : unstable_cache(query, [
-      [locale, draft, 'blog', pageSlug].filter((x) => x).join('/')
-    ]);
+        [locale, draft, 'blog', pageSlug].filter((x) => x).join('/')
+      ]);
 
   const [postData] = await fetchPageData(draft, locale, pageSlug);
 

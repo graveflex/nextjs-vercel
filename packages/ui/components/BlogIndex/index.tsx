@@ -115,8 +115,8 @@ function BlogIndex({ posts, paginationProps }: BlogIndexType) {
         )}
       </OuterContainer>
       {paginationProps &&
-        paginationProps.total &&
-        paginationProps?.total > 1 ? (
+      paginationProps.total &&
+      paginationProps?.total > 1 ? (
         <Pagination {...paginationProps} blogRef={ref} />
       ) : null}
     </Wrapper>

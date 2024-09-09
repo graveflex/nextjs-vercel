@@ -3,7 +3,13 @@
 import { GlobalStyles } from '@refract-ui/sc';
 import type { PropsWithChildren } from 'react';
 import type React from 'react';
-import { createContext, useContext, useState, useCallback, useMemo } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState
+} from 'react';
 
 import GlobalResets from './Reset';
 import * as themeList from './theme';
@@ -35,17 +41,18 @@ export const containerStyles = {
 function ThemeProvider({
   children
 }: PropsWithChildren<{ theme?: ThemeKey }>): React.JSX.Element {
-  const [currentTheme, setCurrentTheme] = useState<ThemeKey>(DEFAULT_THEME_NAME);
+  const [currentTheme, setCurrentTheme] =
+    useState<ThemeKey>(DEFAULT_THEME_NAME);
 
-  console.log('@-->ThemeProvider | currentTheme', currentTheme);
-
-  const updateCurrentTheme = useCallback((themeName?: ThemeKey | null) => {
-    console.log('@-->ThemeProvider.updateCurrentTheme | currentTheme', currentTheme);
-    const nextTheme = themeName || DEFAULT_THEME_NAME;
-    if (nextTheme !== currentTheme) {
-      setCurrentTheme(nextTheme);
-    }
-  }, [currentTheme]);
+  const updateCurrentTheme = useCallback(
+    (themeName?: ThemeKey | null) => {
+      const nextTheme = themeName || DEFAULT_THEME_NAME;
+      if (nextTheme !== currentTheme) {
+        setCurrentTheme(nextTheme);
+      }
+    },
+    [currentTheme]
+  );
 
   const t = useMemo(() => themeList[currentTheme], [currentTheme]);
 
