@@ -1,6 +1,6 @@
 'use client';
 
-import type { Post } from '@mono/types/payload-types';
+import type { Post, Tag } from '@mono/types/payload-types';
 import BlogWrapper from '@mono/ui/components/BlogIndex';
 import useIndexControls from '@mono/ui/lib/hooks/useIndexControls';
 import type { PaginatedDocs } from 'payload';

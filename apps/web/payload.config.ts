@@ -3,7 +3,7 @@ import Files from '@mono/web/collections/Files';
 import Images from '@mono/web/collections/Images';
 import Pages from '@mono/web/collections/Pages';
 import Posts from '@mono/web/collections/Posts';
-import Tags from '@mono/web/collections/Tags';
+import Tags from '@mono/web/collections/Tags/Tags.config';
 import Users from '@mono/web/collections/User';
 import Videos from '@mono/web/collections/Videos';
 import BlogIndex from '@mono/web/globals/BlogIndex/BlogIndex.config';
