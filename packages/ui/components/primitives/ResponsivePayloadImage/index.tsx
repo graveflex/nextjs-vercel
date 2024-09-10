@@ -2,6 +2,7 @@
 
 import theme from '@mono/theme/src/light';
 import type { Image as PayloadImageProps } from '@mono/types/payload-types';
+import { useImagePriorityContext } from '@mono/ui/components/ImagePriorityContext';
 import styled, { css } from '@refract-ui/sc';
 import { type ImageProps, getImageProps } from 'next/image';
 import type React from 'react';
@@ -106,11 +107,18 @@ function Source({ srcSet, bp }: SourceProps) {
 }
 
 function ResponsivePayloadImage(props: ResponsivePayloadWrapperProps) {
+  const priorityContext = useImagePriorityContext();
+
   if (typeof props.image === 'number' || !props.image) {
     return null;
   }
 
   const { alt, url, height, sizes, width, imageProps } = props.image;
+
+  const cmsPriority = imageProps?.priority ? 'eager' : undefined;
+
+  const priority =
+    props.loading ?? cmsPriority ?? priorityContext.loading ?? 'lazy';
 
   if (!url) {
     return null;
@@ -153,7 +161,7 @@ function ResponsivePayloadImage(props: ResponsivePayloadWrapperProps) {
       <Source {...srcSets.mobile} />
       <Source {...srcSets.thumbnail} />
       <img
-        loading={imageProps?.priority ? 'eager' : 'lazy'}
+        loading={priority}
         width={width || undefined}
         height={height || undefined}
         srcSet={defaultSrcSet}
