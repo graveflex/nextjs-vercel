@@ -43,9 +43,18 @@ export default async function Posts({
 
       const searchQuery: Where = searchPage
         ? {
-            title: {
-              contains: searchPage
-            }
+            and: [
+              {
+                title: {
+                  contains: searchPage
+                }
+              },
+              {
+                subTitle: {
+                  contains: searchPage
+                }
+              }
+            ]
           }
         : {};
 

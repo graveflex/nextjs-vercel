@@ -1,5 +1,6 @@
 'use client';
 
+import { de } from '@faker-js/faker';
 import type { Tag } from '@mono/types/payload-types';
 import Wrapper from '@mono/ui/components/Wrapper';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
@@ -75,6 +76,7 @@ const FilterContent = Styled.div`
 const Container = Styled.div`
     display: grid;
     grid-template-columns: 1fr 260px;
+
     ${({ theme: { spacing, themeColorShades } }) => css`
     background-color: ${themeColorShades.plain10};
         margin: ${spacing[6]}rem 0;
@@ -97,8 +99,9 @@ const buildQuery = (query: {
   return searchParams.toString();
 };
 
-const isSelected = (tag: string, query: QueryProps) =>
-  query.selectedTags.includes(tag);
+const isSelected = (tag: string, query: QueryProps) => {
+  return query.selectedTags.includes(tag);
+};
 
 function TagsClient({ tagData }: { tagData: Tag[] }) {
   const initialParams = useSearchParams();
@@ -112,12 +115,24 @@ function TagsClient({ tagData }: { tagData: Tag[] }) {
     sort: initialSort,
     search: initialSearch
   });
+  const [debouncedQuery, setDebouncedQuery] = useState<QueryProps>(query);
+
   const router = useRouter();
   const path = usePathname();
 
   useEffect(() => {
-    router.push(`${path}?${buildQuery(query)}`);
-  }, [query, router, path]);
+    const handler = setTimeout(() => {
+      setDebouncedQuery(query);
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [query]);
+
+  useEffect(() => {
+    router.push(`${path}?${buildQuery(debouncedQuery)}`);
+  }, [path, router, debouncedQuery]);
 
   const handleTagClick = (tag: string) => {
     setQuery((prevState) => {
@@ -135,10 +150,12 @@ function TagsClient({ tagData }: { tagData: Tag[] }) {
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const search = e.target.value.trim();
+    const search = e.target.value.replace(/[^a-zA-Z0-9]/g, '').trim();
+    const searchLength = search.length;
+
     setQuery((prevState) => ({
       ...prevState,
-      search: search.length > 2 ? search : ''
+      search: searchLength >= 2 && searchLength <= 20 ? search : ''
     }));
   };
 
@@ -177,9 +194,11 @@ function TagsClient({ tagData }: { tagData: Tag[] }) {
           <input
             id="search"
             type="text"
-            placeholder="Search"
+            placeholder="Search blog..."
             onChange={handleSearchChange}
             defaultValue={initialSearch}
+            autoComplete="off"
+            aria-label="Search blog posts"
           />
         </SelectContent>
       </Container>
