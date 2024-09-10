@@ -28,6 +28,10 @@ async function getCurrentPRId(branchName: string) {
   const repo = process.env.GITHUB_REPO as string; // e.g., 'owner/repo'
   const token = process.env.GITHUB_TOKEN as string; // GitHub token with repo access
 
+  if (/^(development|staging|main)$/.test(branchName)) {
+    return null;
+  }
+
   const response = await fetch(
     `https://api.github.com/repos/${repo}/pulls?head=${repo.split('/')[0]}:${branchName}`,
     {
