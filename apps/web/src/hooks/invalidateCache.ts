@@ -1,22 +1,16 @@
-import { LOCALES } from '@mono/web/lib/constants';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import type { CollectionAfterChangeHook } from 'payload';
 
-function normalizePath(slug: string) {
-  const normalized = `/${slug}`.replace(/\/+/g, '/');
-  return normalized;
-}
-
-export const invalidateCache: CollectionAfterChangeHook = async ({ doc }) => {
+export const invalidateCache: CollectionAfterChangeHook = async ({
+  req,
+  doc
+}) => {
   try {
     const path = doc?.slug;
-    if (path) {
-      revalidatePath(normalizePath(`/${path}`));
+    const locale = req?.locale;
 
-      LOCALES.forEach((locale) => {
-        revalidatePath(normalizePath(`/${locale}/${path}`));
-      });
-    }
+    // invalidate dynamic block pages / blog detail pages
+    revalidateTag(`${locale}/${path}`);
   } catch (_err) {
     // no-op
   }

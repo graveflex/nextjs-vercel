@@ -1,4 +1,4 @@
-import CatchallPage from '@mono/web/app/(app)/[locale]/[[...slug]]/page';
+import CatchallPage from '@mono/web/app/(app)/[locale]/[...slug]/page';
 import type React from 'react';
 
 export const dynamic = 'force-dynamic';

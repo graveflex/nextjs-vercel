@@ -1,0 +1,12 @@
+{
+  "Test": {
+    "ok": "Está funcionando"
+  },
+  "FourOhFour": {
+    "title": "Página 404",
+    "content": "Página no encontrada"
+  },
+  "Blog": {
+    "noPosts": "No se encontraron publicaciones"
+  }
+}

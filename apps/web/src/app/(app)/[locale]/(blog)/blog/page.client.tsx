@@ -1,27 +1,33 @@
 'use client';
 
-import type { BlogIndex, Nav, Post } from '@mono/types/payload-types';
+import type { Post } from '@mono/types/payload-types';
 import BlogWrapper from '@mono/ui/components/BlogIndex';
 import useIndexControls from '@mono/ui/lib/hooks/useIndexControls';
-import BlocksRenderer from '@mono/web/components/BlocksRenderer';
-import Layout from '@mono/web/globals/Layout';
+import { useTranslations } from 'next-intl';
 import type { PaginatedDocs } from 'payload';
 import React from 'react';
+import s, { css } from 'styled-components';
+
+const NoPosts = s.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  ${({ theme: { box } }) => css`
+    ${box.t('heading')};
+  `}
+`;
 
 function PageTemplate({
-  page,
-  nav,
   postData
 }: {
   postData: PaginatedDocs<Post>;
-  page: BlogIndex;
-  nav: Nav;
 }) {
-  const { theme } = page;
-  const blocks = page?.blocks;
-
   const { setPage, setFilter, setSort, activeSort, activeFilters } =
     useIndexControls();
+
+  const t = useTranslations('Blog');
 
   const pagination = {
     total: postData.totalDocs,
@@ -33,9 +39,8 @@ function PageTemplate({
   };
 
   return (
-    <Layout {...nav} theme={theme}>
-      {blocks && <BlocksRenderer blocks={blocks} />}
-      {postData && (
+    <>
+      {postData ? (
         <BlogWrapper
           posts={postData.docs}
           activeFilters={activeFilters}
@@ -45,8 +50,10 @@ function PageTemplate({
           paginationProps={pagination}
           page={postData.page}
         />
+      ) : (
+        <NoPosts>{t('noPosts')}</NoPosts>
       )}
-    </Layout>
+    </>
   );
 }
 

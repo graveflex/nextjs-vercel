@@ -1,21 +1,26 @@
-import { LOCALES } from '@mono/web/lib/constants';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import type { GlobalAfterChangeHook } from 'payload';
 
-function normalizePath(slug: string) {
-  const normalized = `/${slug}`.replace(/\/+/g, '/');
-  return normalized;
-}
-
-export const globalInvalidateCache: GlobalAfterChangeHook = async ({ doc }) => {
+export const globalInvalidateCache: GlobalAfterChangeHook = async ({
+  req,
+  doc
+}) => {
   try {
     const path = doc?.slug;
-    if (path) {
-      revalidatePath(normalizePath(`/${path}`));
+    const locale = req?.locale;
+    // Invalidate the homepage
+    if (path === '/') {
+      revalidateTag(`${locale}/homepage`);
+    }
 
-      LOCALES.forEach((locale) => {
-        revalidatePath(normalizePath(`/${locale}/${path}`));
-      });
+    // Invalidate the blog index
+    if (path === 'blog') {
+      revalidateTag(`${locale}/blogIndex`);
+    }
+
+    // Invalidate the main layout if the nav or footer is updated
+    if (doc?.header) {
+      revalidateTag('global-nav');
     }
   } catch (_err) {
     // no-op

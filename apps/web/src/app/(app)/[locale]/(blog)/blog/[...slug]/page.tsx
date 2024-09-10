@@ -1,3 +1,5 @@
+import { DEFAULT_THEME_NAME } from '@mono/theme/src/ThemeProvider';
+import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
@@ -19,43 +21,53 @@ interface BlogDetailProps {
   };
 }
 
+async function fetchPageData(
+  draft: boolean | undefined,
+  locale: LanguageLocale,
+  pageSlug: string
+) {
+  const cacheKey = [locale, pageSlug].filter((x) => x).join('/');
+
+  const query = async (
+    draft: boolean | undefined,
+    locale: LanguageLocale,
+    pageSlug: string
+  ) => {
+    const payload = await getPayloadHMR({ config });
+
+    return Promise.all([
+      payload.find({
+        collection: 'posts',
+        locale,
+        draft,
+        depth: 2,
+        where: {
+          slug: {
+            equals: pageSlug
+          }
+        }
+      })
+    ]);
+  };
+
+  const executeQuery = draft
+    ? query
+    : unstable_cache(query, [cacheKey], {
+        tags: [cacheKey]
+      });
+
+  return executeQuery(draft, locale, pageSlug);
+}
+
 export default async function Blog({
   params: { locale = DEFAULT_LOCALE, slug, draft }
 }: BlogDetailProps) {
   const pageSlug = slug ? slug.join('/') : '/';
 
-  const fetchPageData = unstable_cache(
-    async (
-      draft: boolean | undefined,
-      locale: LanguageLocale,
-      pageSlug: string
-    ) => {
-      const payload = await getPayloadHMR({ config });
-
-      return Promise.all([
-        payload.findGlobal({
-          slug: 'nav',
-          locale
-        }),
-        payload.find({
-          collection: 'posts',
-          locale,
-          draft,
-          where: {
-            slug: {
-              equals: pageSlug
-            }
-          }
-        })
-      ]);
-    },
-    [[locale, draft, 'blog', pageSlug].filter((x) => x).join('/')]
-  );
-
-  const [navData, postData] = await fetchPageData(draft, locale, pageSlug);
+  const [postData] = await fetchPageData(draft, locale, pageSlug);
 
   // if there's an error fetching data, 404
-  if ('error' in navData || 'error' in postData || !postData.docs[0]) {
+  if ('error' in postData || !postData.docs[0]) {
     const redirectPath = await redirectApi(pageSlug);
     if (
       !redirectPath ||
@@ -66,42 +78,36 @@ export default async function Blog({
     redirect(redirectPath);
   }
 
-  return <PageTemplate post={postData.docs[0]} nav={navData} />;
+  return (
+    <>
+      <UpdatePageTheme theme={DEFAULT_THEME_NAME} />
+      <PageTemplate post={postData.docs[0]} />
+    </>
+  );
 }
 
-export async function generateMetadata({ params: { slug } }: BlogDetailProps) {
-  const payload = await getPayloadHMR({ config });
+export async function generateMetadata({
+  params: { draft, slug, locale }
+}: BlogDetailProps) {
   const pageSlug = slug ? slug.join('/') : '/';
-  try {
-    const data = await payload.find({
-      collection: 'posts',
-      where: {
-        slug: {
-          equals: pageSlug
-        }
-      }
-    });
+  const [data] = await fetchPageData(draft, locale, pageSlug);
 
-    if ('error' in data) {
-      return {};
-    }
-
-    const pageData = data?.docs[0];
-    const seoData = data?.docs[0]?.meta;
-    const seoImage =
-      typeof seoData?.image !== 'number' && seoData?.image?.url
-        ? seoData?.image?.url
-        : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
-
-    return {
-      title: seoData?.title || pageData?.title || 'Blog Post',
-      description: seoData?.description || "Blog post's description",
-      keywords: seoData?.keywords || null,
-      openGraph: {
-        images: [seoImage]
-      }
-    };
-  } catch (_) {
+  if ('error' in data) {
     return {};
   }
+
+  const seoData = data?.docs[0]?.meta;
+  const seoImage =
+    typeof seoData?.image !== 'number' && seoData?.image?.url
+      ? seoData?.image?.url
+      : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
+
+  return {
+    title: seoData?.title || 'Blog Post',
+    description: seoData?.description || "Blog post's description",
+    keywords: seoData?.keywords || null,
+    openGraph: {
+      images: [seoImage]
+    }
+  };
 }

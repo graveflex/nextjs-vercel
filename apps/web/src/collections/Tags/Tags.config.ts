@@ -1,5 +1,7 @@
 import type { CollectionConfig } from 'payload';
 
+import { invalidateCache } from '@mono/web/hooks/invalidateCache';
+
 const Tags: CollectionConfig = {
   slug: 'tags',
   access: {
@@ -16,7 +18,10 @@ const Tags: CollectionConfig = {
       localized: true,
       required: true
     }
-  ]
+  ],
+  hooks: {
+    afterChange: [invalidateCache]
+  }
 };
 
 export default Tags;

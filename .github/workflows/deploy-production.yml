@@ -24,12 +24,9 @@ jobs:
   build_app:
     uses: ./.github/workflows/build.yaml
     secrets: inherit
-  set_vercel_domain:
-    uses: ./.github/workflows/get-vercel-domain.yaml
-    secrets: inherit
   deploy-production:
     permissions: write-all
-    needs: [set_vercel_domain, build_app]
+    needs: [build_app]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -76,6 +73,7 @@ jobs:
         id: deploy
         env:
           VERCEL_GIT_COMMIT_REF: ${{ steps.branch-name.outputs.current_branch }}
+          SERVER_URL: ${{ needs.build_app.outputs.vercel_domain }}
         run: |
           branch_name="${{ steps.branch-name.outputs.current_branch }}"
 
@@ -101,6 +99,8 @@ jobs:
             --yes \
             -e DATABASE_URL="$db_url" \
             -b DATABASE_URL="$db_url" \
+            -e SERVER_URL="$pr_domain" \
+            -b SERVER_URL="$pr_domain" \
             -e VERCEL_GIT_COMMIT_REF="$branch_name" \
             -b VERCEL_GIT_COMMIT_REF="$branch_name" \
             -m githubCommitRef="$branch_name" \
@@ -112,5 +112,5 @@ jobs:
         if: github.ref != 'refs/heads/main'
         run: |
           commit_url=${{ steps.deploy.outputs.preview_url }}
-          pr_domain=${{ needs.set_vercel_domain.outputs.vercel_domain }}
+          pr_domain=${{ needs.build_app.outputs.vercel_domain }}
           vercel alias set $commit_url $pr_domain --token=${{ env.VERCEL_TOKEN }} --scope=graveflex

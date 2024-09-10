@@ -1,11 +1,21 @@
 'use client';
 
-import { WEB_URL } from '@mono/web/lib/constants';
 import { RefreshRouteOnSave as PayloadLivePreview } from '@payloadcms/live-preview-react';
 import { useRouter } from 'next/navigation.js';
-import React from 'react';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 
 export const RefreshRouteOnSave: React.FC = () => {
   const router = useRouter();
-  return <PayloadLivePreview refresh={router.refresh} serverURL={WEB_URL} />;
+  const [serverURL, setServerURL] = useState('');
+
+  useEffect(() => {
+    setServerURL(window.location.origin);
+  }, []);
+
+  if (!serverURL) {
+    return null;
+  }
+
+  return <PayloadLivePreview refresh={router.refresh} serverURL={serverURL} />;
 };

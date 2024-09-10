@@ -206,10 +206,8 @@ function HeroBlock({
 }: HeroBlockProps) {
   const hasImage = typeof image !== 'undefined';
 
-  const isFullBleed =
-    typeof image === 'object' && typeof image?.imageProps?.fill === 'boolean'
-      ? image?.imageProps?.fill
-      : false;
+  // TODO: this was removed from the image config, add this to block config
+  const isFullBleed = true;
 
   const contentPosition = layout || 'contentLeft';
   const alignText = contentAlign || 'left';

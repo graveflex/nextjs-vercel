@@ -19,12 +19,9 @@ jobs:
   build_app:
     uses: ./.github/workflows/build.yaml
     secrets: inherit
-  set_vercel_domain:
-    uses: ./.github/workflows/get-vercel-domain.yaml
-    secrets: inherit
   deploy-preview:
     permissions: write-all
-    needs: [set_vercel_domain, build_app]
+    needs: build_app
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -71,12 +68,14 @@ jobs:
         id: deploy
         env:
           VERCEL_GIT_COMMIT_REF: ${{ steps.branch-name.outputs.current_branch }}
+          SERVER_URL: ${{ needs.build_app.outputs.vercel_domain }}
         run: |
           db_url="${{ steps.create_branch.outputs.db_url_with_pooler }}?sslmode=require"
           db_url_unpooled="${{ steps.create_branch.outputs.db_url }}?sslmode=require"
           branch_name="${{ steps.branch-name.outputs.current_branch }}"
           commit_sha="${{ env.COMMIT_SHA }}"
           pr_id="${{ github.event.number }}"
+          pr_domain=${{ needs.build_app.outputs.vercel_domain }}
           author_name="${{ env.AUTHOR_NAME }}"
           commit_message="$(git log -1 --pretty=format:'%s' $commit_sha)"
           gh_username="${{ github.actor }}"
@@ -89,6 +88,8 @@ jobs:
             --yes \
             -e DATABASE_URL="$db_url" \
             -b DATABASE_URL="$db_url" \
+            -e SERVER_URL="$pr_domain" \
+            -b SERVER_URL="$pr_domain" \
             -e VERCEL_GIT_COMMIT_REF="$branch_name" \
             -b VERCEL_GIT_COMMIT_REF="$branch_name" \
             -m githubCommitRef="$branch_name" \
@@ -99,7 +100,7 @@ jobs:
         id: alias
         run: |
           commit_url=${{ steps.deploy.outputs.preview_url }}
-          pr_domain=${{ needs.set_vercel_domain.outputs.vercel_domain }}
+          pr_domain=${{ needs.build_app.outputs.vercel_domain }}
           vercel alias set $commit_url $pr_domain --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
 
       - name: Comment on Pull Request with URLs
@@ -110,11 +111,11 @@ jobs:
           message: |
             | PR URL | DB Branch |
             |--------|-----------|
-            | [Link :rocket:](https://${{ needs.set_vercel_domain.outputs.vercel_domain }}) | [Link :elephant:](https://console.neon.tech/app/projects/${{ env.NEON_PROJECT_ID }}/branches/${{ steps.create-branch.outputs.branch_id }}) |
+            | [Link :rocket:](https://${{ needs.build_app.outputs.vercel_domain }}) | [Link :elephant:](https://console.neon.tech/app/projects/${{ env.NEON_PROJECT_ID }}/branches/${{ steps.create-branch.outputs.branch_id }}) |
 
   lighthouse:
     runs-on: ubuntu-latest
-    needs: [set_vercel_domain, deploy-preview]
+    needs: [build_app, deploy-preview]
     steps:
       - uses: actions/checkout@v4
 
@@ -123,8 +124,12 @@ jobs:
         uses: treosh/lighthouse-ci-action@v12
         with:
           urls: |
-            https://${{ needs.set_vercel_domain.outputs.vercel_domain }}
-            https://${{ needs.set_vercel_domain.outputs.vercel_domain }}/kitchen-sink
+            https://${{ needs.build_app.outputs.vercel_domain }}/refract/without-data
+            https://${{ needs.build_app.outputs.vercel_domain }}/refract/with-theme-and-data-and-image
+            https://${{ needs.build_app.outputs.vercel_domain }}/refract/with-theme-and-data-and-payload-image
+            https://${{ needs.build_app.outputs.vercel_domain }}/refract/with-dynamic-import
+            https://${{ needs.build_app.outputs.vercel_domain }}/
+            https://${{ needs.build_app.outputs.vercel_domain }}/kitchen-sink
           budgetPath: ./budget.json # test performance budgets
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true

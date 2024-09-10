@@ -3,7 +3,7 @@ import Files from '@mono/web/collections/Files';
 import Images from '@mono/web/collections/Images';
 import Pages from '@mono/web/collections/Pages';
 import Posts from '@mono/web/collections/Posts';
-import Tags from '@mono/web/collections/Tags';
+import Tags from '@mono/web/collections/Tags/Tags.config';
 import Users from '@mono/web/collections/User';
 import Videos from '@mono/web/collections/Videos';
 import BlogIndex from '@mono/web/globals/BlogIndex/BlogIndex.config';
@@ -12,7 +12,6 @@ import Homepage from '@mono/web/globals/Home/Homepage.config';
 import Nav from '@mono/web/globals/Layout/Layout.config';
 // import nodeMailer from 'nodemailer';
 import { DEFAULT_LOCALE, LOCALES } from '@mono/web/lib/constants';
-import { WEB_URL } from '@mono/web/lib/constants';
 import { translator } from '@payload-enchants/translator';
 import { googleResolver } from '@payload-enchants/translator/resolvers/google';
 import { postgresAdapter } from '@payloadcms/db-postgres';
@@ -52,7 +51,7 @@ export default buildConfig({
       connectionString: DATABASE_URL
     },
     push: false,
-    logger: false
+    logger: true
   }),
   editor: lexicalEditor({
     features: () =>
@@ -242,11 +241,6 @@ export default buildConfig({
       prefillOnly: true
     },
     livePreview: {
-      /*
-      url: ({ data }) => {
-        return `${WEB_URL}/${data?.slug}`;
-      },
-      */
       breakpoints: [
         {
           label: 'Mobile',

@@ -18,13 +18,10 @@ export default function multipleImages(
           [breakPoint]: {
             ...image
           }
-        },
-        imageProps: {
-          fill: true /* we want this to be true for all images */
         }
       };
     }
-    return { ...image, imageProps: { fill: true } };
+    return { ...image };
   }
   return null;
 }

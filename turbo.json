@@ -17,7 +17,7 @@
     "VERCEL_GIT_COMMIT_REF",
     "VERCEL_DOMAIN_URL",
     "VERCEL_BRANCH_URL",
-    "VERCEL_URL",
+    "SERVER_URL",
     "IS_PREVIEW",
     "PORT",
     "MONGODB_URI",
@@ -29,17 +29,27 @@
     "NODE_ENV",
     "SMTP_HOST",
     "SMTP_USER",
-    "SMTP_PASS"
+    "SMTP_PASS",
+    "GITHUB_REPO",
+    "GITHUB_TOKEN",
+    "NEON_API_KEY",
+    "NEON_PROJECT_ID"
   ],
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "setup": {
       "cache": false
     },
+    "db:cli": {
+      "cache": false,
+      "interactive": true
+    },
     "db:migrate": {
       "cache": false
     },
-    "clean": {},
+    "clean": {
+      "cache": false
+    },
     "//#lint": {},
     "//#lint:fix": {
       "cache": false
@@ -62,7 +72,7 @@
       "cache": false,
       "dependsOn": ["^generate:types"],
       "persistent": true,
-      "interactive": true
+      "interactive": false
     },
     "build": {
       "dependsOn": ["^build"],

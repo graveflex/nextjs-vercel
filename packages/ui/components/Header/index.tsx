@@ -12,10 +12,10 @@ import CtaLink from '@mono/ui/components/CtaLink';
 import RenderIcon from '@mono/ui/components/RenderIcon';
 import Link from '@mono/ui/components/primitives/PayloadLink';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
+import useLockBodyScroll from '@mono/ui/lib/hooks/useLockBodyScroll';
 import styled, { css } from '@refract-ui/sc';
 import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
-import s from 'styled-components';
 
 // UPDATE TO USE THEMECOLOR
 const OuterHeader = styled.header`
@@ -150,7 +150,7 @@ const CtaWrapper = styled.div`
   `}
 `;
 
-const MobileColumn = s(motion.div)`
+const MobileColumn = styled(motion.div)`
   ${({ theme: { mq, allColors } }) => css`
     position: absolute;
     top: 5.25rem;
@@ -291,7 +291,7 @@ const LocaleLabel = styled.div`
   `}
 `;
 
-const MobileItemLabel = s(ItemLabel)`
+const MobileItemLabel = styled(ItemLabel)`
   ${({ theme: { allColors, box } }) => css`
     && {
       display: grid;
@@ -320,7 +320,7 @@ const MobileItemLabel = s(ItemLabel)`
   `}
 `;
 
-const MenuLink = s(CtaLink)`
+const MenuLink = styled(CtaLink)`
   ${({ theme: { mq, box } }) => css`
     && {
       font-weight: 400;
@@ -333,7 +333,7 @@ const MenuLink = s(CtaLink)`
   `}
 `;
 
-const MenuNavLink = s(CtaLink)`
+const MenuNavLink = styled(CtaLink)`
   ${({ theme: { mq, box } }) => css`
     && {
       font-weight: 400;
@@ -350,7 +350,7 @@ const MenuNavLink = s(CtaLink)`
   `}
 `;
 
-const MenuLinkMobile = s(CtaLink)`
+const MenuLinkMobile = styled(CtaLink)`
   font-weight: 600;
 `;
 
@@ -440,14 +440,12 @@ type Buttons = {
 
 export type HeaderType = {
   logo?: Image | number | null;
-  open: boolean;
   collapsibleMenu?: CollapsibleMenu | null;
   flatMenu?: FlatMenu | null;
   iconItems?: IconNavItems | null;
   ctaButton?: {
     cta?: CTAType;
   };
-  setOpen: (open: boolean) => void;
 };
 
 function NavContent({
@@ -536,16 +534,16 @@ function Header({
   collapsibleMenu,
   flatMenu,
   iconItems,
-  ctaButton,
-  open,
-  setOpen
+  ctaButton
 }: HeaderType) {
   const openMenuVariants = {
     open: { right: '0%', display: 'block' },
     closed: { right: '-100%', display: 'none' }
   };
 
+  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  useLockBodyScroll(open);
 
   useEffect(() => {
     const handleScroll = () => {

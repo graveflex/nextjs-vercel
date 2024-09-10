@@ -1,33 +1,49 @@
-'use client';
+'use server';
 
-import { containerStyles } from '@mono/theme/src/ThemeProvider';
-import type * as themeList from '@mono/theme/src/theme';
-import type { Nav as NavT } from '@mono/types/payload-types';
-import Footer from '@mono/ui/components/Footer';
-import Header from '@mono/ui/components/Header';
-import MaybeThemed from '@mono/ui/components/MaybeThemed';
-import useLockBodyScroll from '@mono/ui/lib/hooks/useLockBodyScroll';
-import React, { useState } from 'react';
-import type { PropsWithChildren } from 'react';
+import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
+import config from '@payload-config';
+import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { unstable_cache } from 'next/cache';
 
-export interface LayoutType extends PropsWithChildren<NavT> {
-  theme?: keyof typeof themeList | null;
-}
+import type React from 'react';
 
-function Layout({ children, header, footer, theme }: LayoutType) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  useLockBodyScroll(menuOpen);
+import LayoutClient from './Layout.client';
+
+type LayoutProps = {
+  locale: LanguageLocale;
+  draft?: boolean;
+  showHeader?: boolean;
+  children: React.ReactNode;
+};
+
+export default async function Layout({
+  children,
+  locale,
+  draft,
+  showHeader
+}: LayoutProps) {
+  const fetchNavData = unstable_cache(
+    async (draft: boolean | undefined, locale: LanguageLocale) => {
+      const payload = await getPayloadHMR({ config });
+      return payload.findGlobal({
+        slug: 'nav',
+        locale,
+        draft,
+        depth: 2,
+        fallbackLocale: DEFAULT_LOCALE
+      });
+    },
+    [[locale, draft, 'nav'].filter((x) => x).join('/')],
+    {
+      tags: ['global-nav']
+    }
+  );
+
+  const navData = await fetchNavData(draft, locale);
+
   return (
-    <MaybeThemed theme={theme} style={containerStyles}>
-      <div style={containerStyles}>
-        <Header {...header} open={menuOpen} setOpen={setMenuOpen} />
-        <main role="main" style={{ zIndex: 0 }}>
-          {children}
-        </main>
-        <Footer {...footer?.footerItems} />
-      </div>
-    </MaybeThemed>
+    <LayoutClient showHeader={showHeader} {...navData}>
+      {children}
+    </LayoutClient>
   );
 }
-
-export default Layout;

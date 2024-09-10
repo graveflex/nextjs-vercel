@@ -16,7 +16,7 @@ export const heroBlockSchema = async ({
   blockName,
   layout
 }: blockProps) => {
-  const images = await imageFn();
+  const images = await imageFn({ count: 1 });
   return {
     id: '6669d7bd6d58e03f8e7c1078',
     blockType: 'heroBlock',

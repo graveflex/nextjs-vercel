@@ -3,6 +3,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalResets = createGlobalStyle`
+  body {
+    transition: background-color 0.3s, color 0.3s;
+  }
+
   button {
     -webkit-appearance: none;
     border-radius: 0;

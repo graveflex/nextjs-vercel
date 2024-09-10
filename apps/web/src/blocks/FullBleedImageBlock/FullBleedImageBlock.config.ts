@@ -1,10 +1,10 @@
 import BlockConfig from '@mono/web/payload/fields/BlockConfig';
 import type { Block } from 'payload';
 
-const FullBleedImageBlock: Block = {
+const FullBleedImageBlock = (prefix: string): Block => ({
   slug: 'fullBleedImageBlock',
   interfaceName: 'FullBleedImageBlockT',
-  dbName: 'fbImageB',
+  dbName: `${prefix}fbImageB`,
   fields: [
     BlockConfig(),
     {
@@ -32,6 +32,6 @@ const FullBleedImageBlock: Block = {
       }
     }
   ]
-};
+});
 
 export default FullBleedImageBlock;

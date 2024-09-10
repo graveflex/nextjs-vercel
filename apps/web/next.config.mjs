@@ -15,6 +15,10 @@ const withNextIntl = createNextIntlPlugin();
 
 const baseUrl = `https://${BLOB_STORE_ID}.public.blob.vercel-storage.com`;
 
+export const serverUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : `http://localhost:${process.env.NEXT_PORT}`;
+
 async function rewrites() {
   return [
     {
@@ -29,9 +33,11 @@ export default withPayload(
     reactStrictMode: true,
     transpilePackages: ['@mono/ui', '@mono/theme', '@mono/types'],
 
+    /*
     experimental: {
       reactCompiler: false
     },
+    */
 
     compiler: {
       styledComponents: {
