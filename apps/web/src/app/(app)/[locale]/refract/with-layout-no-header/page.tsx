@@ -30,21 +30,19 @@ export default async function RefractWithoutDataPage() {
 
   return (
     <Providers>
-      <Layout locale="en-US" showHeader={false}>
-        <div
-          style={{
-            display: 'grid',
-            justifyItems: 'center',
-            margin: '4rem'
-          }}
-        >
-          <PageClient
-            payloadImg={data.coverImage as PayloadImage}
-            heading="This page contains the entire refract theme and pulls data from the API"
-            body={data.title}
-          />
-        </div>
-      </Layout>
+      <div
+        style={{
+          display: 'grid',
+          justifyItems: 'center',
+          margin: '4rem'
+        }}
+      >
+        <PageClient
+          payloadImg={data.coverImage as PayloadImage}
+          heading="This page contains the entire refract theme and pulls data from the API"
+          body={data.title}
+        />
+      </div>
     </Providers>
   );
 }
