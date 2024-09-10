@@ -51,7 +51,6 @@ export default buildConfig({
       connectionString: DATABASE_URL
     },
     push: false,
-    logger: true
   }),
   editor: lexicalEditor({
     features: () =>
