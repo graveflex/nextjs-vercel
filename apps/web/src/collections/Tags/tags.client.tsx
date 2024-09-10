@@ -26,7 +26,7 @@ const Label = Styled.label`
 const ButtonStyled = Styled.button`
     ${({ theme: { allColors, box } }) => css`
       ${box.t('button')};
-    
+
       && {
       color: ${allColors.bg};
       border: 1px solid transparent;
@@ -108,9 +108,9 @@ function TagsClient({ tagData }: { tagData: Tag[] }) {
   const initialParams = useSearchParams();
   const initialFilter =
     initialParams?.get('filter')?.split(',') ?? ([] as string[]);
-  const initialSort = initialParams?.get('sort') ?? 'newest';
+  const initialSort = initialParams?.get('sort') ?? '';
   const initialSearch = initialParams?.get('search') ?? '';
-  const initialPage = initialParams?.get('page') ?? '1';
+  const initialPage = initialParams?.get('page') ?? '';
 
   const [query, setQuery] = useState<QueryProps>({
     selectedTags: initialFilter,
@@ -134,7 +134,18 @@ function TagsClient({ tagData }: { tagData: Tag[] }) {
   }, [query]);
 
   useEffect(() => {
-    router.push(`${path}?${buildQuery(debouncedQuery)}`);
+    let nextPath = path;
+
+    if (
+      debouncedQuery.page ||
+      debouncedQuery.sort ||
+      debouncedQuery.search ||
+      debouncedQuery.selectedTags.length
+    ) {
+      nextPath = `${path}?${buildQuery(debouncedQuery)}`;
+    }
+
+    router.push(nextPath);
   }, [path, router, debouncedQuery]);
 
   const handleTagClick = (tag: string) => {
