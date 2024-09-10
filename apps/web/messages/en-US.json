@@ -5,5 +5,8 @@
   "FourOhFour": {
     "title": "404 Page",
     "content": "Page not found"
+  },
+  "Blog": {
+    "noPosts": "No posts found"
   }
 }
