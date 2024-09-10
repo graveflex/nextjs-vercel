@@ -94,7 +94,7 @@ jobs:
           preview_url=$(vercel deploy \
             --prebuilt \
             --token="$token" \
-            --scope=graveflex \
+            --scope=${{ vars.VERCEL_ORG }} \
             $target \
             --yes \
             -e DATABASE_URL="$db_url" \

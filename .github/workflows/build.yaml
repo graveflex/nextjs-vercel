@@ -24,7 +24,7 @@ env:
   VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
   DOTENV_PRIVATE_KEY: ${{ secrets.DOTENV_PRIVATE_KEY_CI }}
   TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-  TURBO_TEAM: Graveflex
+  TURBO_TEAM: ${{ vars.TURBO_TEAM }}
   TURBO_REMOTE_ONLY: true
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -60,7 +60,7 @@ jobs:
       - run: pnpm install
 
       - name: Link Vercel App
-        run: vercel link --yes --project nextjs-vercel-monorepo-web --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
+        run: vercel link --yes --project ${{ vars.VERCEL_PROJECT_NAME }} --token=${{ env.VERCEL_TOKEN }} --scope=${{ vars.VERCEL_ORG }}
 
       - name: Get branch name
         id: branch-name
@@ -86,7 +86,7 @@ jobs:
             environment="--environment=preview --git-branch=$branch_name"
           fi
 
-          vercel pull --yes $environment --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
+          vercel pull --yes $environment --token=${{ env.VERCEL_TOKEN }} --scope=${{ vars.VERCEL_ORG }}
 
       - name: Set Neon Branch Name
         run: |
@@ -133,4 +133,4 @@ jobs:
           else
             target="--target=preview"
           fi
-          pnpm env:dev -- vercel build --token=${{ env.VERCEL_TOKEN }} --scope=graveflex $target
+          pnpm env:dev -- vercel build --token=${{ env.VERCEL_TOKEN }} --scope=${{ vars.VERCEL_ORG }} $target

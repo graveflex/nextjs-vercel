@@ -63,12 +63,12 @@ jobs:
             elif [ "$branch_name" = "development" ]; then
               echo "$project_name-$app_name-dev.vercel.app"
             else
-              truncate "git" "$branch_name" "${project_name}-${app_name}" "graveflex"
+              truncate "git" "$branch_name" "${project_name}-${app_name}" "${{ vars.VERCEL_ORG }}"
             fi
           }
 
           # Example usage
-          project_name="nextjs-vercel-monorepo"
+          project_name="${{ vars.VERCEL_ORG }}"
           app_name="web"
 
           vercel_domain=$(get_vercel_domain "$project_name" "$app_name")

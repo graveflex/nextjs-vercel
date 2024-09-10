@@ -83,7 +83,7 @@ jobs:
           preview_url=$(vercel deploy \
             --prebuilt \
             --token="$token" \
-            --scope=graveflex \
+            --scope=${{ vars.VERCEL_ORG }} \
             --target preview \
             --yes \
             -e DATABASE_URL="$db_url" \
@@ -101,7 +101,7 @@ jobs:
         run: |
           commit_url=${{ steps.deploy.outputs.preview_url }}
           pr_domain=${{ needs.build_app.outputs.vercel_domain }}
-          vercel alias set $commit_url $pr_domain --token=${{ env.VERCEL_TOKEN }} --scope=graveflex
+          vercel alias set $commit_url $pr_domain --token=${{ env.VERCEL_TOKEN }} --scope=${{ vars.VERCEL_ORG }}
 
       - name: Comment on Pull Request with URLs
         uses: marocchino/sticky-pull-request-comment@v2
@@ -124,12 +124,10 @@ jobs:
         uses: treosh/lighthouse-ci-action@v12
         with:
           urls: |
-            https://${{ needs.build_app.outputs.vercel_domain }}/refract/without-data
-            https://${{ needs.build_app.outputs.vercel_domain }}/refract/with-theme-and-data-and-image
-            https://${{ needs.build_app.outputs.vercel_domain }}/refract/with-theme-and-data-and-payload-image
-            https://${{ needs.build_app.outputs.vercel_domain }}/refract/with-dynamic-import
+            https://${{ needs.build_app.outputs.vercel_domain }}/
             https://${{ needs.build_app.outputs.vercel_domain }}/
             https://${{ needs.build_app.outputs.vercel_domain }}/kitchen-sink
+            https://${{ needs.build_app.outputs.vercel_domain }}/blog
           budgetPath: ./budget.json # test performance budgets
           uploadArtifacts: true # save results as an action artifacts
           temporaryPublicStorage: true
