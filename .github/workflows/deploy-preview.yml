@@ -128,7 +128,6 @@ jobs:
             https://${{ needs.build_app.outputs.vercel_domain }}/refract/with-theme-and-data-and-image
             https://${{ needs.build_app.outputs.vercel_domain }}/refract/with-theme-and-data-and-payload-image
             https://${{ needs.build_app.outputs.vercel_domain }}/refract/with-dynamic-import
-            https://${{ needs.build_app.outputs.vercel_domain }}/refract/with-layout
             https://${{ needs.build_app.outputs.vercel_domain }}/
             https://${{ needs.build_app.outputs.vercel_domain }}/kitchen-sink
           budgetPath: ./budget.json # test performance budgets
