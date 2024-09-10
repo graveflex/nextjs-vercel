@@ -3,7 +3,8 @@
 import type { Tag } from '@mono/types/payload-types';
 import Wrapper from '@mono/ui/components/Wrapper';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import React, { useState, useEffect } from 'react';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import Styled, { css } from 'styled-components';
 
 type QueryProps = {

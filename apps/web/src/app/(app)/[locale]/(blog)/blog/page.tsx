@@ -73,11 +73,9 @@ export default async function Blog({
   return (
     <>
       <UpdatePageTheme theme={page.theme} />
-    <Layout theme={page.theme} locale={locale} draft={draft}>
       {blocks && <BlocksRenderer blocks={blocks} />}
       <Tags locale={locale} draft={draft} />
       <Posts locale={locale} draft={draft} searchParams={searchParams} />
-    </Layout>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload';
 
-import { invalidateCache } from '../hooks/invalidateCache';
+import { invalidateCache } from '@mono/web/hooks/invalidateCache';
 
 const Tags: CollectionConfig = {
   slug: 'tags',
