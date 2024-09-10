@@ -6,7 +6,7 @@
     "title": "404 Page",
     "content": "Page not found"
   },
-  "blog": {
+  "Blog": {
     "noPosts": "No posts found"
   }
 }

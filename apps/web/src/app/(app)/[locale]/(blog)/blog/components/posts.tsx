@@ -25,9 +25,9 @@ export default async function Posts({
   'use server';
 
   const pagPage = searchParams.page;
-  const filterPage = searchParams.filter;
+  const filterPage = decodeURIComponent(searchParams.filter);
   const sortPage = searchParams.sort ?? 'newest';
-  const searchPage = searchParams.search;
+  const searchPage = decodeURIComponent(searchParams.search);
 
   const fetchPostData = unstable_cache(
     async (draft: boolean | undefined, locale: LanguageLocale) => {
@@ -65,7 +65,7 @@ export default async function Posts({
       });
     },
     [
-      `${[locale, draft, 'posts'].filter((x) => x).join('/')}?page=${pagPage}?filter=${filterPage}?sort=${sortPage}?search=${searchPage}`
+      `${[locale, draft, 'posts'].filter((x) => x).join('/')}?page=${pagPage}&sort=${sortPage}&filter=${filterPage}&search=${searchPage}`
     ]
   );
 

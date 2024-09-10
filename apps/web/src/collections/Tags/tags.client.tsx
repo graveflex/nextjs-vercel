@@ -12,6 +12,7 @@ type QueryProps = {
   selectedTags: string[];
   sort: string;
   search: string;
+  page: string;
 };
 
 const Label = Styled.label`
@@ -41,8 +42,6 @@ const ButtonStyled = Styled.button`
         border: 1px solid transparent;
     }
       }
-
-
 
     &.selected {
       && {
@@ -89,12 +88,14 @@ const buildQuery = (query: {
   selectedTags: string[];
   sort: string;
   search: string;
+  page: string;
 }) => {
   const searchParams = new URLSearchParams();
 
   searchParams.append('filter', query.selectedTags.join(','));
   searchParams.append('sort', query.sort);
   searchParams.append('search', query.search);
+  searchParams.append('page', query.page);
 
   return searchParams.toString();
 };
@@ -109,11 +110,13 @@ function TagsClient({ tagData }: { tagData: Tag[] }) {
     initialParams?.get('filter')?.split(',') ?? ([] as string[]);
   const initialSort = initialParams?.get('sort') ?? 'newest';
   const initialSearch = initialParams?.get('search') ?? '';
+  const initialPage = initialParams?.get('page') ?? '1';
 
   const [query, setQuery] = useState<QueryProps>({
     selectedTags: initialFilter,
     sort: initialSort,
-    search: initialSearch
+    search: initialSearch,
+    page: initialPage
   });
   const [debouncedQuery, setDebouncedQuery] = useState<QueryProps>(query);
 
@@ -141,7 +144,7 @@ function TagsClient({ tagData }: { tagData: Tag[] }) {
         tagIndex === -1
           ? [...prevState.selectedTags, tag]
           : prevState.selectedTags.filter((t) => t !== tag);
-      return { ...prevState, selectedTags: newTags };
+      return { ...prevState, selectedTags: newTags, page: '1' };
     });
   };
 
@@ -150,12 +153,13 @@ function TagsClient({ tagData }: { tagData: Tag[] }) {
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const search = e.target.value.replace(/[^a-zA-Z0-9]/g, '').trim();
+    const search = e.target.value.trim();
     const searchLength = search.length;
 
     setQuery((prevState) => ({
       ...prevState,
-      search: searchLength >= 2 && searchLength <= 20 ? search : ''
+      search: searchLength >= 2 && searchLength <= 20 ? search : '',
+      page: '1'
     }));
   };
 
