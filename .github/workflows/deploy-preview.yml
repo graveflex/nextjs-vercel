@@ -133,7 +133,6 @@ jobs:
         with:
           urls: |
             https://${{ needs.build_app.outputs.vercel_domain }}/
-            https://${{ needs.build_app.outputs.vercel_domain }}/
             https://${{ needs.build_app.outputs.vercel_domain }}/kitchen-sink
             https://${{ needs.build_app.outputs.vercel_domain }}/blog
           budgetPath: ./budget.json # test performance budgets
