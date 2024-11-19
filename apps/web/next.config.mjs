@@ -108,6 +108,18 @@ export default withPayload(
           hostname: '*.vercel-storage.com'
         }
       ]
+    },
+    async rewrites() {
+      return [
+        {
+          source: '/stories/',
+          destination: '/stories/index.html'
+        },
+        {
+          source: '/stories/:path*',
+          destination: '/stories/:path*'
+        }
+      ];
     }
   }),
   {

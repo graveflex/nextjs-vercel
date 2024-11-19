@@ -7,7 +7,8 @@
     "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
     "dev": "export $(grep -e '^DOCS_PORT' -- ../../.env) && storybook dev -p ${DOCS_PORT} --no-open",
     "types": "tsc --noEmit --skipLibCheck",
-    "build": "storybook build"
+    "build": "storybook build",
+    "build:ci": "pnpm build -o ../../.vercel/output/static/stories"
   },
   "dependencies": {
     "@babel/preset-env": "^7.24.3",
