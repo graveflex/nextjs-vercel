@@ -4,10 +4,10 @@ import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
-import { unstable_cache } from 'next/cache';
 import { notFound, redirect } from 'next/navigation';
 import React from 'react';
 
+import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import PageTemplate from './page.client';
 
 export const dynamic = 'force-static';
@@ -26,13 +26,7 @@ async function fetchPageData(
   locale: LanguageLocale,
   pageSlug: string
 ) {
-  const cacheKey = [locale, pageSlug].filter((x) => x).join('/');
-
-  const query = async (
-    draft: boolean | undefined,
-    locale: LanguageLocale,
-    pageSlug: string
-  ) => {
+  const query = async (locale: LanguageLocale, pageSlug?: string) => {
     const payload = await getPayloadHMR({ config });
 
     return Promise.all([
@@ -50,13 +44,7 @@ async function fetchPageData(
     ]);
   };
 
-  const executeQuery = draft
-    ? query
-    : unstable_cache(query, [cacheKey], {
-        tags: [cacheKey]
-      });
-
-  return executeQuery(draft, locale, pageSlug);
+  return executeCachedQuery(query, pageSlug, locale, draft);
 }
 
 export default async function Blog({

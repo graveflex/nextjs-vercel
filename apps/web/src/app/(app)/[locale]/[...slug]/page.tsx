@@ -6,11 +6,11 @@ import {
   LOCALES,
   type LanguageLocale
 } from '@mono/web/lib/constants';
+import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { unstable_setRequestLocale } from 'next-intl/server';
-import { unstable_cache } from 'next/cache';
 import { notFound, redirect } from 'next/navigation';
 import React from 'react';
 
@@ -34,9 +34,7 @@ async function fetchPageData(
   locale: LanguageLocale,
   pageSlug: string
 ) {
-  const cacheKey = [locale, pageSlug].filter((x) => x).join('/');
-
-  const query = async (locale: LanguageLocale, pageSlug: string) => {
+  const query = async (locale: LanguageLocale) => {
     const payload = await getPayloadHMR({ config });
     const data = await payload.find({
       collection: 'pages',
@@ -51,13 +49,7 @@ async function fetchPageData(
     return data?.docs?.[0];
   };
 
-  const executeQuery = draft
-    ? query
-    : unstable_cache(query, [cacheKey], {
-        tags: [cacheKey]
-      });
-
-  return executeQuery(locale, pageSlug);
+  return executeCachedQuery(query, pageSlug, locale, draft);
 }
 
 export default async function CatchallPage({

@@ -2,9 +2,9 @@ import Tags from '@mono/web/collections/Tags';
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
+import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
-import { unstable_cache } from 'next/cache';
 import { notFound } from 'next/navigation';
 import React from 'react';
 import Posts from './components/posts';
@@ -27,12 +27,9 @@ interface BlogLayoutProps {
 
 async function fetchPageData(
   draft: boolean | undefined,
-  locale: LanguageLocale,
-  searchParams: BlogLayoutProps['searchParams']
+  locale: LanguageLocale
 ) {
-  const cacheKey = [locale, 'blogIndex'].filter((x) => x).join('/');
-
-  const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
+  const query = async (locale: LanguageLocale) => {
     const payload = await getPayloadHMR({ config });
     return payload.findGlobal({
       slug: 'blogIndex',
@@ -41,26 +38,14 @@ async function fetchPageData(
     });
   };
 
-  const executeQuery = draft
-    ? query
-    : unstable_cache(
-        query,
-        [
-          `${[locale, 'blog'].filter((x) => x).join('/')}?page=${searchParams.page}`
-        ],
-        {
-          tags: [cacheKey]
-        }
-      );
-
-  return executeQuery(draft, locale);
+  return executeCachedQuery(query, 'blogIndex', locale, draft);
 }
 
 export default async function Blog({
   params: { locale = DEFAULT_LOCALE, draft },
   searchParams
 }: BlogLayoutProps) {
-  const indexData = await fetchPageData(draft, locale, searchParams);
+  const indexData = await fetchPageData(draft, locale);
 
   // if there's an error fetching data, 404
   if ('error' in indexData) {
@@ -81,10 +66,9 @@ export default async function Blog({
 }
 
 export async function generateMetadata({
-  params: { draft, locale },
-  searchParams
+  params: { draft, locale }
 }: BlogLayoutProps) {
-  const data = await fetchPageData(draft, locale, searchParams);
+  const data = await fetchPageData(draft, locale);
 
   if ('error' in data) {
     return {};

@@ -1,10 +1,10 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
+import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { unstable_setRequestLocale } from 'next-intl/server';
-import { unstable_cache } from 'next/cache';
 import React from 'react';
 
 export const dynamic = 'force-static';
@@ -22,9 +22,7 @@ async function fetchPageData(
   draft: boolean | undefined,
   locale: LanguageLocale
 ) {
-  const cacheKey = [locale, 'homepage'].filter((x) => x).join('/');
-
-  const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
+  const query = async (locale: LanguageLocale) => {
     const payload = await getPayloadHMR({ config });
     return payload.findGlobal({
       slug: 'homepage',
@@ -35,13 +33,7 @@ async function fetchPageData(
     });
   };
 
-  const executeQuery = draft
-    ? query
-    : unstable_cache(query, [[locale, 'homepage'].filter((x) => x).join('/')], {
-        tags: [cacheKey]
-      });
-
-  return executeQuery(draft, locale);
+  return executeCachedQuery(query, 'homepage', locale, draft);
 }
 
 export default async function HomePage({
