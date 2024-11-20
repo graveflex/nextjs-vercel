@@ -23,7 +23,7 @@
     "test:watch": "vitest run test:watch",
     "test:coverage": "vitest run --coverage --coverage.reporter=cobertura",
     "types": "pnpm env:dev -- turbo run types",
-    "build": "pnpm env:dev -- turbo run build",
+    "build": "turbo run build",
     "start": "turbo run start --parallel",
     "dev": "pnpm env:dev -- turbo run dev",
     "dev:debug": "pnpm env:debug -- turbo run dev",
