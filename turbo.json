@@ -81,6 +81,7 @@
     "start": {
       "dependsOn": ["^start"],
       "outputs": []
-    }
+    },
+    "seed:all": {}
   }
 }
