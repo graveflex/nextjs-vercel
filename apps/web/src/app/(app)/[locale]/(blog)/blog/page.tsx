@@ -27,7 +27,8 @@ interface BlogLayoutProps {
 
 async function fetchPageData(
   draft: boolean | undefined,
-  locale: LanguageLocale
+  locale: LanguageLocale,
+  searchParams: BlogLayoutProps['searchParams']
 ) {
   const query = async (locale: LanguageLocale) => {
     const payload = await getPayloadHMR({ config });
@@ -37,15 +38,22 @@ async function fetchPageData(
       draft
     });
   };
+  const searchParamString = `page=${searchParams.page}`;
 
-  return executeCachedQuery(query, 'blogIndex', locale, draft);
+  return executeCachedQuery(
+    query,
+    'blogIndex',
+    locale,
+    draft,
+    searchParamString
+  );
 }
 
 export default async function Blog({
   params: { locale = DEFAULT_LOCALE, draft },
   searchParams
 }: BlogLayoutProps) {
-  const indexData = await fetchPageData(draft, locale);
+  const indexData = await fetchPageData(draft, locale, searchParams);
 
   // if there's an error fetching data, 404
   if ('error' in indexData) {
@@ -66,9 +74,10 @@ export default async function Blog({
 }
 
 export async function generateMetadata({
-  params: { draft, locale }
+  params: { draft, locale },
+  searchParams
 }: BlogLayoutProps) {
-  const data = await fetchPageData(draft, locale);
+  const data = await fetchPageData(draft, locale, searchParams);
 
   if ('error' in data) {
     return {};

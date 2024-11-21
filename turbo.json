@@ -75,6 +75,7 @@
       "interactive": false
     },
     "build": {
+      "cache": false,
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**", ".vercel/output/**"]
     },

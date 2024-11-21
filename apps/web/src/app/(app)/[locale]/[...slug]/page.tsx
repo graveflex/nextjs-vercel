@@ -16,7 +16,6 @@ import React from 'react';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
-
 export interface RootLayoutProps {
   params: {
     slug: string[];
@@ -24,11 +23,9 @@ export interface RootLayoutProps {
     draft?: boolean;
   };
 }
-
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
-
 async function fetchPageData(
   draft: boolean | undefined,
   locale: LanguageLocale,
@@ -61,11 +58,8 @@ export default async function CatchallPage({
     pageSlug = locale;
     locale = DEFAULT_LOCALE;
   }
-
   unstable_setRequestLocale(locale);
-
   const page = await fetchPageData(draft, locale, pageSlug);
-
   // if not page data and not the index check for redirects
   if (!page) {
     const redirectPath = await redirectApi(pageSlug);
@@ -77,7 +71,6 @@ export default async function CatchallPage({
     }
     redirect(redirectPath);
   }
-
   return (
     <>
       <UpdatePageTheme theme={page.theme} />
@@ -85,24 +78,20 @@ export default async function CatchallPage({
     </>
   );
 }
-
 export async function generateMetadata({
   params: { draft, slug, locale }
 }: RootLayoutProps) {
   const pageSlug = slug ? slug.join('/') : '/';
   const data = await fetchPageData(draft, locale, pageSlug);
-
   if ('error' in data) {
     return {};
   }
-
   const pageData = data;
   const seoData = data.meta;
   const seoImage =
     typeof seoData?.image !== 'number' && seoData?.image?.url
       ? seoData?.image?.url
       : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
-
   return {
     title: seoData?.title || pageData?.pageTitle || 'Monorepo',
     description: seoData?.description || 'Default description text',
