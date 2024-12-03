@@ -164,13 +164,17 @@ export default buildConfig({
   plugins: [
     seoPlugin({
       collections: ['pages', 'posts'],
-      fields: [
-        {
-          name: 'keywords',
-          label: 'Keywords',
-          type: 'text'
-        }
-      ],
+
+      fields: ({ defaultFields }) => {
+        return [
+          ...defaultFields,
+          {
+            name: 'keywords',
+            label: 'Keywords',
+            type: 'text'
+          }
+        ];
+      },
       tabbedUI: true,
       uploadsCollection: 'images',
       generateTitle: ({ doc }) => `Monorepo | ${doc.pageTitle || doc.title}`,

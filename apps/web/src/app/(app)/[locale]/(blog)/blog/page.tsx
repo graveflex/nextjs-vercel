@@ -3,9 +3,9 @@ import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { unstable_cache } from 'next/cache';
 import { notFound } from 'next/navigation';
+import { getPayload } from 'payload';
 import React from 'react';
 import Posts from './components/posts';
 
@@ -13,16 +13,16 @@ export const dynamic = 'auto';
 export const revalidate = 60;
 
 interface BlogLayoutProps {
-  params: {
+  params: Promise<{
     locale: LanguageLocale;
     draft?: boolean;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     page: string;
     sort: string;
     filter: string;
     search: string;
-  };
+  }>;
 }
 
 async function fetchPageData(
@@ -33,7 +33,7 @@ async function fetchPageData(
   const cacheKey = [locale, 'blogIndex'].filter((x) => x).join('/');
 
   const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
-    const payload = await getPayloadHMR({ config });
+    const payload = await getPayload({ config });
     return payload.findGlobal({
       slug: 'blogIndex',
       locale,
@@ -46,7 +46,7 @@ async function fetchPageData(
     : unstable_cache(
         query,
         [
-          `${[locale, 'blog'].filter((x) => x).join('/')}?page=${searchParams.page}`
+          `${[locale, 'blog'].filter((x) => x).join('/')}?page=${(await searchParams).page}`
         ],
         {
           tags: [cacheKey]
@@ -56,10 +56,9 @@ async function fetchPageData(
   return executeQuery(draft, locale);
 }
 
-export default async function Blog({
-  params: { locale = DEFAULT_LOCALE, draft },
-  searchParams
-}: BlogLayoutProps) {
+export default async function Blog({ params, searchParams }: BlogLayoutProps) {
+  const { locale = DEFAULT_LOCALE, draft } = await params;
+
   const indexData = await fetchPageData(draft, locale, searchParams);
 
   // if there's an error fetching data, 404
@@ -81,9 +80,10 @@ export default async function Blog({
 }
 
 export async function generateMetadata({
-  params: { draft, locale },
+  params,
   searchParams
 }: BlogLayoutProps) {
+  const { draft, locale } = await params;
   const data = await fetchPageData(draft, locale, searchParams);
 
   if ('error' in data) {

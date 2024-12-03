@@ -20,7 +20,7 @@ const Posts: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     livePreview: {
-      url: (doc) => {
+      url: (doc: any) => {
         const {
           data: { slug },
           locale: { code }
@@ -96,7 +96,7 @@ const Posts: CollectionConfig = {
       label: 'Blog Post Slug',
       type: 'text',
       unique: true,
-      validate: (value) => {
+      validate: (value: any) => {
         const regex = /[!@#$%^*[()+=.]/;
         if (regex.test(value)) {
           return 'Slug cannot contain special characters !@]{${%^*()[+= or .';

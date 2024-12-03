@@ -1,12 +1,12 @@
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
 import type { MetadataRoute } from 'next';
+import { getPayload } from 'payload';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
 
 export default async function Sitemap(): Promise<MetadataRoute.Sitemap> {
-  const payload = await getPayloadHMR({ config });
+  const payload = await getPayload({ config });
   const [postData, pageData] = await Promise.all([
     payload.find({
       collection: 'posts',

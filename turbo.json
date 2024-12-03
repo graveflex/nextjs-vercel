@@ -60,7 +60,11 @@
     "//#test:coverage": {
       "outputs": ["coverage/**"]
     },
-    "migrations:create": {},
+    "migrations:create": {
+      "cache": false,
+      "persistent": true,
+      "interactive": true
+    },
     "migrations:run": {},
     "generate:types": {
       "cache": false
@@ -81,6 +85,7 @@
     "start": {
       "dependsOn": ["^start"],
       "outputs": []
-    }
+    },
+    "seed:all": { "cache": false }
   }
 }

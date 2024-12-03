@@ -45,8 +45,26 @@ export interface Config {
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
+    'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
+  };
+  collectionsJoins: {};
+  collectionsSelect: {
+    pages: PagesSelect<false> | PagesSelect<true>;
+    posts: PostsSelect<false> | PostsSelect<true>;
+    authors: AuthorsSelect<false> | AuthorsSelect<true>;
+    tags: TagsSelect<false> | TagsSelect<true>;
+    files: FilesSelect<false> | FilesSelect<true>;
+    images: ImagesSelect<false> | ImagesSelect<true>;
+    videos: VideosSelect<false> | VideosSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
+    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
+    forms: FormsSelect<false> | FormsSelect<true>;
+    'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: number;
@@ -57,9 +75,19 @@ export interface Config {
     homepage: Homepage;
     blogIndex: BlogIndex;
   };
+  globalsSelect: {
+    nav: NavSelect<false> | NavSelect<true>;
+    'four-oh-four': FourOhFourSelect<false> | FourOhFourSelect<true>;
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
+    blogIndex: BlogIndexSelect<false> | BlogIndexSelect<true>;
+  };
   locale: 'en-US' | 'es-US';
   user: User & {
     collection: 'users';
+  };
+  jobs: {
+    tasks: unknown;
+    workflows: unknown;
   };
 }
 export interface UserAuthOperations {
@@ -1171,6 +1199,65 @@ export interface FormSubmission {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-locked-documents".
+ */
+export interface PayloadLockedDocument {
+  id: number;
+  document?:
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'posts';
+        value: number | Post;
+      } | null)
+    | ({
+        relationTo: 'authors';
+        value: number | Author;
+      } | null)
+    | ({
+        relationTo: 'tags';
+        value: number | Tag;
+      } | null)
+    | ({
+        relationTo: 'files';
+        value: number | File;
+      } | null)
+    | ({
+        relationTo: 'images';
+        value: number | Image;
+      } | null)
+    | ({
+        relationTo: 'videos';
+        value: number | Video;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
+      } | null)
+    | ({
+        relationTo: 'redirects';
+        value: number | Redirect;
+      } | null)
+    | ({
+        relationTo: 'forms';
+        value: number | Form;
+      } | null)
+    | ({
+        relationTo: 'form-submissions';
+        value: number | FormSubmission;
+      } | null);
+  globalSlug?: string | null;
+  user: {
+    relationTo: 'users';
+    value: number | User;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
@@ -1202,6 +1289,1209 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  blocks?:
+    | T
+    | {
+        iframeBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              title?: T;
+              iframe?: T;
+              id?: T;
+              blockName?: T;
+            };
+        iconGridBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              layout?: T;
+              items?:
+                | T
+                | {
+                    image?: T;
+                    content?: T;
+                    cta?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                label?: T;
+                                internalHref?: T;
+                                externalHref?: T;
+                                emailHref?: T;
+                                phoneHref?: T;
+                                fileHref?: T;
+                                newTab?: T;
+                                icon?:
+                                  | T
+                                  | {
+                                      name?: T;
+                                      size?: T;
+                                      color?: T;
+                                    };
+                              };
+                          variant?: T;
+                          color?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        fullBleedImageBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              image?: T;
+              mobileImage?: T;
+              isBackground?: T;
+              id?: T;
+              blockName?: T;
+            };
+        sectionHeaderBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              eyebrow?: T;
+              content?: T;
+              alignment?: T;
+              cta?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          label?: T;
+                          internalHref?: T;
+                          externalHref?: T;
+                          emailHref?: T;
+                          phoneHref?: T;
+                          fileHref?: T;
+                          newTab?: T;
+                          icon?:
+                            | T
+                            | {
+                                name?: T;
+                                size?: T;
+                                color?: T;
+                              };
+                        };
+                    variant?: T;
+                    color?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        galleryGridBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              galleryImages?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              cta?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          label?: T;
+                          internalHref?: T;
+                          externalHref?: T;
+                          emailHref?: T;
+                          phoneHref?: T;
+                          fileHref?: T;
+                          newTab?: T;
+                          icon?:
+                            | T
+                            | {
+                                name?: T;
+                                size?: T;
+                                color?: T;
+                              };
+                        };
+                    variant?: T;
+                    color?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        videoBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              video?: T;
+              videoURL?: T;
+              embedURL?: T;
+              caption?: T;
+              fullBleedMobile?: T;
+              id?: T;
+              blockName?: T;
+            };
+        formBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              content?: T;
+              form?: T;
+              id?: T;
+              blockName?: T;
+            };
+        cardGridBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              cards?:
+                | T
+                | {
+                    card?:
+                      | T
+                      | {
+                          image?: T;
+                          eyebrow?: T;
+                          headline?: T;
+                          subHead?: T;
+                          date?: T;
+                          ctas?:
+                            | T
+                            | {
+                                cta?:
+                                  | T
+                                  | {
+                                      link?:
+                                        | T
+                                        | {
+                                            type?: T;
+                                            label?: T;
+                                            internalHref?: T;
+                                            externalHref?: T;
+                                            emailHref?: T;
+                                            phoneHref?: T;
+                                            fileHref?: T;
+                                            newTab?: T;
+                                            icon?:
+                                              | T
+                                              | {
+                                                  name?: T;
+                                                  size?: T;
+                                                  color?: T;
+                                                };
+                                          };
+                                      variant?: T;
+                                      color?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        markdownBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              content?: T;
+              maxWidth?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faqBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              header?: T;
+              textAlignment?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        textImageBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              layout?: T;
+              image?: T;
+              video?: T;
+              content?: T;
+              items?:
+                | T
+                | {
+                    cta?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                label?: T;
+                                internalHref?: T;
+                                externalHref?: T;
+                                emailHref?: T;
+                                phoneHref?: T;
+                                fileHref?: T;
+                                newTab?: T;
+                                icon?:
+                                  | T
+                                  | {
+                                      name?: T;
+                                      size?: T;
+                                      color?: T;
+                                    };
+                              };
+                          variant?: T;
+                          color?: T;
+                        };
+                    id?: T;
+                  };
+              form?:
+                | T
+                | {
+                    textinput?:
+                      | T
+                      | {
+                          name?: T;
+                          placeholder?: T;
+                          helpText?: T;
+                          label?: T;
+                          required?: T;
+                        };
+                    cta?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                label?: T;
+                                internalHref?: T;
+                                externalHref?: T;
+                                emailHref?: T;
+                                phoneHref?: T;
+                                fileHref?: T;
+                                newTab?: T;
+                                icon?:
+                                  | T
+                                  | {
+                                      name?: T;
+                                      size?: T;
+                                      color?: T;
+                                    };
+                              };
+                          variant?: T;
+                          color?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              image?: T;
+              eyebrow?: T;
+              layout?: T;
+              contentAlign?: T;
+              content?: T;
+              form?:
+                | T
+                | {
+                    textinput?:
+                      | T
+                      | {
+                          name?: T;
+                          placeholder?: T;
+                          helpText?: T;
+                          label?: T;
+                          required?: T;
+                        };
+                    cta?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                label?: T;
+                                internalHref?: T;
+                                externalHref?: T;
+                                emailHref?: T;
+                                phoneHref?: T;
+                                fileHref?: T;
+                                newTab?: T;
+                                icon?:
+                                  | T
+                                  | {
+                                      name?: T;
+                                      size?: T;
+                                      color?: T;
+                                    };
+                              };
+                          variant?: T;
+                          color?: T;
+                        };
+                  };
+              cta?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          label?: T;
+                          internalHref?: T;
+                          externalHref?: T;
+                          emailHref?: T;
+                          phoneHref?: T;
+                          fileHref?: T;
+                          newTab?: T;
+                          icon?:
+                            | T
+                            | {
+                                name?: T;
+                                size?: T;
+                                color?: T;
+                              };
+                        };
+                    variant?: T;
+                    color?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        keywords?: T;
+      };
+  pageTitle?: T;
+  slug?: T;
+  theme?: T;
+  publishedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts_select".
+ */
+export interface PostsSelect<T extends boolean = true> {
+  title?: T;
+  subTitle?: T;
+  date?: T;
+  authors?: T;
+  tags?: T;
+  ctas?:
+    | T
+    | {
+        cta?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    label?: T;
+                    internalHref?: T;
+                    externalHref?: T;
+                    emailHref?: T;
+                    phoneHref?: T;
+                    fileHref?: T;
+                    newTab?: T;
+                    icon?:
+                      | T
+                      | {
+                          name?: T;
+                          size?: T;
+                          color?: T;
+                        };
+                  };
+              variant?: T;
+              color?: T;
+            };
+        id?: T;
+      };
+  thumbnail?: T;
+  coverImage?: T;
+  content?:
+    | T
+    | {
+        content?: T;
+        id?: T;
+      };
+  slug?: T;
+  publishedAt?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        keywords?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "authors_select".
+ */
+export interface AuthorsSelect<T extends boolean = true> {
+  slug?: T;
+  fullName?: T;
+  image?: T;
+  jobTitle?: T;
+  bio?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags_select".
+ */
+export interface TagsSelect<T extends boolean = true> {
+  label?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "files_select".
+ */
+export interface FilesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "images_select".
+ */
+export interface ImagesSelect<T extends boolean = true> {
+  alt?: T;
+  imageProps?:
+    | T
+    | {
+        priority?: T;
+        quality?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+  sizes?:
+    | T
+    | {
+        blur?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        mobile?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        tablet?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        desktop?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        ultrawide?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos_select".
+ */
+export interface VideosSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  publishedDate?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects_select".
+ */
+export interface RedirectsSelect<T extends boolean = true> {
+  from?: T;
+  to?:
+    | T
+    | {
+        type?: T;
+        reference?: T;
+        url?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "forms_select".
+ */
+export interface FormsSelect<T extends boolean = true> {
+  title?: T;
+  fields?:
+    | T
+    | {
+        select?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              defaultValue?: T;
+              options?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        text?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              defaultValue?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        textarea?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              defaultValue?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  submitButtonLabel?: T;
+  confirmationType?: T;
+  confirmationMessage?: T;
+  redirect?:
+    | T
+    | {
+        url?: T;
+      };
+  emails?:
+    | T
+    | {
+        emailTo?: T;
+        cc?: T;
+        bcc?: T;
+        replyTo?: T;
+        emailFrom?: T;
+        subject?: T;
+        message?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions_select".
+ */
+export interface FormSubmissionsSelect<T extends boolean = true> {
+  form?: T;
+  submissionData?:
+    | T
+    | {
+        field?: T;
+        value?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-locked-documents_select".
+ */
+export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
+  document?: T;
+  globalSlug?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-preferences_select".
+ */
+export interface PayloadPreferencesSelect<T extends boolean = true> {
+  user?: T;
+  key?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-migrations_select".
+ */
+export interface PayloadMigrationsSelect<T extends boolean = true> {
+  name?: T;
+  batch?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1387,6 +2677,1839 @@ export interface BlogIndex {
   _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav_select".
+ */
+export interface NavSelect<T extends boolean = true> {
+  header?:
+    | T
+    | {
+        logo?: T;
+        banner?:
+          | T
+          | {
+              content?: T;
+              background?: T;
+            };
+        collapsibleMenu?:
+          | T
+          | {
+              sections?:
+                | T
+                | {
+                    label?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                label?: T;
+                                internalHref?: T;
+                                externalHref?: T;
+                                emailHref?: T;
+                                phoneHref?: T;
+                                fileHref?: T;
+                                newTab?: T;
+                                icon?:
+                                  | T
+                                  | {
+                                      name?: T;
+                                      size?: T;
+                                      color?: T;
+                                    };
+                              };
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+            };
+        flatMenu?:
+          | T
+          | {
+              link?:
+                | T
+                | {
+                    type?: T;
+                    label?: T;
+                    internalHref?: T;
+                    externalHref?: T;
+                    emailHref?: T;
+                    phoneHref?: T;
+                    fileHref?: T;
+                    newTab?: T;
+                    icon?:
+                      | T
+                      | {
+                          name?: T;
+                          size?: T;
+                          color?: T;
+                        };
+                  };
+              id?: T;
+            };
+        iconItems?:
+          | T
+          | {
+              href?: T;
+              newTab?: T;
+              icon?:
+                | T
+                | {
+                    name?: T;
+                    size?: T;
+                    color?: T;
+                  };
+              id?: T;
+            };
+        hasCta?: T;
+        ctaButton?:
+          | T
+          | {
+              cta?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          label?: T;
+                          internalHref?: T;
+                          externalHref?: T;
+                          emailHref?: T;
+                          phoneHref?: T;
+                          fileHref?: T;
+                          newTab?: T;
+                          icon?:
+                            | T
+                            | {
+                                name?: T;
+                                size?: T;
+                                color?: T;
+                              };
+                        };
+                    variant?: T;
+                    color?: T;
+                  };
+            };
+      };
+  footer?:
+    | T
+    | {
+        footerItems?:
+          | T
+          | {
+              footerLogo?: T;
+              copyright?: T;
+              legalDisclaimer?: T;
+              footerMenu?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          label?: T;
+                          internalHref?: T;
+                          externalHref?: T;
+                          emailHref?: T;
+                          phoneHref?: T;
+                          fileHref?: T;
+                          newTab?: T;
+                          icon?:
+                            | T
+                            | {
+                                name?: T;
+                                size?: T;
+                                color?: T;
+                              };
+                        };
+                    id?: T;
+                  };
+            };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "four-oh-four_select".
+ */
+export interface FourOhFourSelect<T extends boolean = true> {
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage_select".
+ */
+export interface HomepageSelect<T extends boolean = true> {
+  blocks?:
+    | T
+    | {
+        iframeBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              title?: T;
+              iframe?: T;
+              id?: T;
+              blockName?: T;
+            };
+        iconGridBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              layout?: T;
+              items?:
+                | T
+                | {
+                    image?: T;
+                    content?: T;
+                    cta?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                label?: T;
+                                internalHref?: T;
+                                externalHref?: T;
+                                emailHref?: T;
+                                phoneHref?: T;
+                                fileHref?: T;
+                                newTab?: T;
+                                icon?:
+                                  | T
+                                  | {
+                                      name?: T;
+                                      size?: T;
+                                      color?: T;
+                                    };
+                              };
+                          variant?: T;
+                          color?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        fullBleedImageBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              image?: T;
+              mobileImage?: T;
+              isBackground?: T;
+              id?: T;
+              blockName?: T;
+            };
+        sectionHeaderBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              eyebrow?: T;
+              content?: T;
+              alignment?: T;
+              cta?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          label?: T;
+                          internalHref?: T;
+                          externalHref?: T;
+                          emailHref?: T;
+                          phoneHref?: T;
+                          fileHref?: T;
+                          newTab?: T;
+                          icon?:
+                            | T
+                            | {
+                                name?: T;
+                                size?: T;
+                                color?: T;
+                              };
+                        };
+                    variant?: T;
+                    color?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        galleryGridBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              galleryImages?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              cta?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          label?: T;
+                          internalHref?: T;
+                          externalHref?: T;
+                          emailHref?: T;
+                          phoneHref?: T;
+                          fileHref?: T;
+                          newTab?: T;
+                          icon?:
+                            | T
+                            | {
+                                name?: T;
+                                size?: T;
+                                color?: T;
+                              };
+                        };
+                    variant?: T;
+                    color?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        videoBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              video?: T;
+              videoURL?: T;
+              embedURL?: T;
+              caption?: T;
+              fullBleedMobile?: T;
+              id?: T;
+              blockName?: T;
+            };
+        formBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              content?: T;
+              form?: T;
+              id?: T;
+              blockName?: T;
+            };
+        cardGridBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              cards?:
+                | T
+                | {
+                    card?:
+                      | T
+                      | {
+                          image?: T;
+                          eyebrow?: T;
+                          headline?: T;
+                          subHead?: T;
+                          date?: T;
+                          ctas?:
+                            | T
+                            | {
+                                cta?:
+                                  | T
+                                  | {
+                                      link?:
+                                        | T
+                                        | {
+                                            type?: T;
+                                            label?: T;
+                                            internalHref?: T;
+                                            externalHref?: T;
+                                            emailHref?: T;
+                                            phoneHref?: T;
+                                            fileHref?: T;
+                                            newTab?: T;
+                                            icon?:
+                                              | T
+                                              | {
+                                                  name?: T;
+                                                  size?: T;
+                                                  color?: T;
+                                                };
+                                          };
+                                      variant?: T;
+                                      color?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        markdownBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              content?: T;
+              maxWidth?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faqBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              header?: T;
+              textAlignment?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        textImageBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              layout?: T;
+              image?: T;
+              video?: T;
+              content?: T;
+              items?:
+                | T
+                | {
+                    cta?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                label?: T;
+                                internalHref?: T;
+                                externalHref?: T;
+                                emailHref?: T;
+                                phoneHref?: T;
+                                fileHref?: T;
+                                newTab?: T;
+                                icon?:
+                                  | T
+                                  | {
+                                      name?: T;
+                                      size?: T;
+                                      color?: T;
+                                    };
+                              };
+                          variant?: T;
+                          color?: T;
+                        };
+                    id?: T;
+                  };
+              form?:
+                | T
+                | {
+                    textinput?:
+                      | T
+                      | {
+                          name?: T;
+                          placeholder?: T;
+                          helpText?: T;
+                          label?: T;
+                          required?: T;
+                        };
+                    cta?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                label?: T;
+                                internalHref?: T;
+                                externalHref?: T;
+                                emailHref?: T;
+                                phoneHref?: T;
+                                fileHref?: T;
+                                newTab?: T;
+                                icon?:
+                                  | T
+                                  | {
+                                      name?: T;
+                                      size?: T;
+                                      color?: T;
+                                    };
+                              };
+                          variant?: T;
+                          color?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              image?: T;
+              eyebrow?: T;
+              layout?: T;
+              contentAlign?: T;
+              content?: T;
+              form?:
+                | T
+                | {
+                    textinput?:
+                      | T
+                      | {
+                          name?: T;
+                          placeholder?: T;
+                          helpText?: T;
+                          label?: T;
+                          required?: T;
+                        };
+                    cta?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                label?: T;
+                                internalHref?: T;
+                                externalHref?: T;
+                                emailHref?: T;
+                                phoneHref?: T;
+                                fileHref?: T;
+                                newTab?: T;
+                                icon?:
+                                  | T
+                                  | {
+                                      name?: T;
+                                      size?: T;
+                                      color?: T;
+                                    };
+                              };
+                          variant?: T;
+                          color?: T;
+                        };
+                  };
+              cta?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          label?: T;
+                          internalHref?: T;
+                          externalHref?: T;
+                          emailHref?: T;
+                          phoneHref?: T;
+                          fileHref?: T;
+                          newTab?: T;
+                          icon?:
+                            | T
+                            | {
+                                name?: T;
+                                size?: T;
+                                color?: T;
+                              };
+                        };
+                    variant?: T;
+                    color?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  pageTitle?: T;
+  slug?: T;
+  theme?: T;
+  publishedAt?: T;
+  _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blogIndex_select".
+ */
+export interface BlogIndexSelect<T extends boolean = true> {
+  blocks?:
+    | T
+    | {
+        iframeBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              title?: T;
+              iframe?: T;
+              id?: T;
+              blockName?: T;
+            };
+        iconGridBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              layout?: T;
+              items?:
+                | T
+                | {
+                    image?: T;
+                    content?: T;
+                    cta?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                label?: T;
+                                internalHref?: T;
+                                externalHref?: T;
+                                emailHref?: T;
+                                phoneHref?: T;
+                                fileHref?: T;
+                                newTab?: T;
+                                icon?:
+                                  | T
+                                  | {
+                                      name?: T;
+                                      size?: T;
+                                      color?: T;
+                                    };
+                              };
+                          variant?: T;
+                          color?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        fullBleedImageBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              image?: T;
+              mobileImage?: T;
+              isBackground?: T;
+              id?: T;
+              blockName?: T;
+            };
+        sectionHeaderBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              eyebrow?: T;
+              content?: T;
+              alignment?: T;
+              cta?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          label?: T;
+                          internalHref?: T;
+                          externalHref?: T;
+                          emailHref?: T;
+                          phoneHref?: T;
+                          fileHref?: T;
+                          newTab?: T;
+                          icon?:
+                            | T
+                            | {
+                                name?: T;
+                                size?: T;
+                                color?: T;
+                              };
+                        };
+                    variant?: T;
+                    color?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        galleryGridBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              galleryImages?:
+                | T
+                | {
+                    image?: T;
+                    id?: T;
+                  };
+              cta?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          label?: T;
+                          internalHref?: T;
+                          externalHref?: T;
+                          emailHref?: T;
+                          phoneHref?: T;
+                          fileHref?: T;
+                          newTab?: T;
+                          icon?:
+                            | T
+                            | {
+                                name?: T;
+                                size?: T;
+                                color?: T;
+                              };
+                        };
+                    variant?: T;
+                    color?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        videoBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              video?: T;
+              videoURL?: T;
+              embedURL?: T;
+              caption?: T;
+              fullBleedMobile?: T;
+              id?: T;
+              blockName?: T;
+            };
+        formBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              content?: T;
+              form?: T;
+              id?: T;
+              blockName?: T;
+            };
+        cardGridBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              cards?:
+                | T
+                | {
+                    card?:
+                      | T
+                      | {
+                          image?: T;
+                          eyebrow?: T;
+                          headline?: T;
+                          subHead?: T;
+                          date?: T;
+                          ctas?:
+                            | T
+                            | {
+                                cta?:
+                                  | T
+                                  | {
+                                      link?:
+                                        | T
+                                        | {
+                                            type?: T;
+                                            label?: T;
+                                            internalHref?: T;
+                                            externalHref?: T;
+                                            emailHref?: T;
+                                            phoneHref?: T;
+                                            fileHref?: T;
+                                            newTab?: T;
+                                            icon?:
+                                              | T
+                                              | {
+                                                  name?: T;
+                                                  size?: T;
+                                                  color?: T;
+                                                };
+                                          };
+                                      variant?: T;
+                                      color?: T;
+                                    };
+                                id?: T;
+                              };
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        markdownBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              content?: T;
+              maxWidth?: T;
+              id?: T;
+              blockName?: T;
+            };
+        faqBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              header?: T;
+              textAlignment?: T;
+              items?:
+                | T
+                | {
+                    title?: T;
+                    content?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        textImageBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              layout?: T;
+              image?: T;
+              video?: T;
+              content?: T;
+              items?:
+                | T
+                | {
+                    cta?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                label?: T;
+                                internalHref?: T;
+                                externalHref?: T;
+                                emailHref?: T;
+                                phoneHref?: T;
+                                fileHref?: T;
+                                newTab?: T;
+                                icon?:
+                                  | T
+                                  | {
+                                      name?: T;
+                                      size?: T;
+                                      color?: T;
+                                    };
+                              };
+                          variant?: T;
+                          color?: T;
+                        };
+                    id?: T;
+                  };
+              form?:
+                | T
+                | {
+                    textinput?:
+                      | T
+                      | {
+                          name?: T;
+                          placeholder?: T;
+                          helpText?: T;
+                          label?: T;
+                          required?: T;
+                        };
+                    cta?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                label?: T;
+                                internalHref?: T;
+                                externalHref?: T;
+                                emailHref?: T;
+                                phoneHref?: T;
+                                fileHref?: T;
+                                newTab?: T;
+                                icon?:
+                                  | T
+                                  | {
+                                      name?: T;
+                                      size?: T;
+                                      color?: T;
+                                    };
+                              };
+                          variant?: T;
+                          color?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        heroBlock?:
+          | T
+          | {
+              blockConfig?:
+                | T
+                | {
+                    theme?: T;
+                    backgroundColor?: T;
+                    backgroundImage?: T;
+                    hidden?: T;
+                    contentWidth?: T;
+                    p?:
+                      | T
+                      | {
+                          xs?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          md?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          lg?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                          xl?:
+                            | T
+                            | {
+                                paddingTop?: T;
+                                paddingBottom?: T;
+                              };
+                        };
+                  };
+              image?: T;
+              eyebrow?: T;
+              layout?: T;
+              contentAlign?: T;
+              content?: T;
+              form?:
+                | T
+                | {
+                    textinput?:
+                      | T
+                      | {
+                          name?: T;
+                          placeholder?: T;
+                          helpText?: T;
+                          label?: T;
+                          required?: T;
+                        };
+                    cta?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                label?: T;
+                                internalHref?: T;
+                                externalHref?: T;
+                                emailHref?: T;
+                                phoneHref?: T;
+                                fileHref?: T;
+                                newTab?: T;
+                                icon?:
+                                  | T
+                                  | {
+                                      name?: T;
+                                      size?: T;
+                                      color?: T;
+                                    };
+                              };
+                          variant?: T;
+                          color?: T;
+                        };
+                  };
+              cta?:
+                | T
+                | {
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          label?: T;
+                          internalHref?: T;
+                          externalHref?: T;
+                          emailHref?: T;
+                          phoneHref?: T;
+                          fileHref?: T;
+                          newTab?: T;
+                          icon?:
+                            | T
+                            | {
+                                name?: T;
+                                size?: T;
+                                color?: T;
+                              };
+                        };
+                    variant?: T;
+                    color?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
+  pageTitle?: T;
+  slug?: T;
+  theme?: T;
+  publishedAt?: T;
+  _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

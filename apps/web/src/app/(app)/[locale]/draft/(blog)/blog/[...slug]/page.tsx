@@ -5,14 +5,18 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default function (props: React.ComponentProps<typeof BlogDetail>) {
+  const { params } = props;
+
+  const updatedParams = {
+    ...params,
+    draft: true
+  };
+
   return (
     <BlogDetail
       {...{
         ...props,
-        params: {
-          ...props.params,
-          draft: true
-        }
+        params: updatedParams
       }}
     />
   );

@@ -14,7 +14,7 @@
     "test:coverage": "vitest run --coverage",
     "generate:types": "payload generate:types",
     "generate:import": "payload generate:importMap",
-    "migrations:create": "payload migrate:create",
+    "migrations:create": "payload migrate:fresh",
     "migrations:run": "if [ \"$CI\" != \"true\" ]; then payload migrate; fi",
     "payload": "payload",
     "env:dev": "dotenvx run -f ../../.env.local -f ../../.env",

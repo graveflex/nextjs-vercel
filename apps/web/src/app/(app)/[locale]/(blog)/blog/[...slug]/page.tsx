@@ -3,9 +3,9 @@ import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { unstable_cache } from 'next/cache';
 import { notFound, redirect } from 'next/navigation';
+import { getPayload } from 'payload';
 import React from 'react';
 
 import PageTemplate from './page.client';
@@ -14,11 +14,11 @@ export const dynamic = 'force-static';
 export const revalidate = 60;
 
 interface BlogDetailProps {
-  params: {
+  params: Promise<{
     locale: LanguageLocale;
     slug: string[];
     draft?: boolean;
-  };
+  }>;
 }
 
 async function fetchPageData(
@@ -33,7 +33,7 @@ async function fetchPageData(
     locale: LanguageLocale,
     pageSlug: string
   ) => {
-    const payload = await getPayloadHMR({ config });
+    const payload = await getPayload({ config });
 
     return Promise.all([
       payload.find({
@@ -59,9 +59,9 @@ async function fetchPageData(
   return executeQuery(draft, locale, pageSlug);
 }
 
-export default async function Blog({
-  params: { locale = DEFAULT_LOCALE, slug, draft }
-}: BlogDetailProps) {
+export default async function Blog({ params }: BlogDetailProps) {
+  const { locale = DEFAULT_LOCALE, slug, draft } = await params;
+
   const pageSlug = slug ? slug.join('/') : '/';
 
   const [postData] = await fetchPageData(draft, locale, pageSlug);
@@ -86,9 +86,9 @@ export default async function Blog({
   );
 }
 
-export async function generateMetadata({
-  params: { draft, slug, locale }
-}: BlogDetailProps) {
+export async function generateMetadata({ params }: BlogDetailProps) {
+  const { draft, slug, locale } = await params;
+
   const pageSlug = slug ? slug.join('/') : '/';
   const [data] = await fetchPageData(draft, locale, pageSlug);
 

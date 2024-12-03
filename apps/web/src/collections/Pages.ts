@@ -28,7 +28,7 @@ const Pages: CollectionConfig = {
     useAsTitle: 'pageTitle',
     defaultColumns: ['pageTitle', 'slug', '_status', 'createdAt'],
     livePreview: {
-      url: (doc) => {
+      url: (doc: any) => {
         const {
           locale: { code }
         } = doc;
@@ -91,7 +91,7 @@ const Pages: CollectionConfig = {
       label: 'Page Slug',
       type: 'text',
       unique: true,
-      validate: (value) => {
+      validate: (value: any) => {
         const regex = /[!@#$%^*[()+=.]/;
         if (regex.test(value)) {
           return 'Slug cannot contain special characters !@]{${%^*()[+= or .';

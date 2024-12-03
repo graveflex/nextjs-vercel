@@ -5,14 +5,18 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function (props: React.ComponentProps<typeof HomePage>) {
+  const { params } = props;
+
+  const updatedParams = {
+    ...params,
+    draft: true
+  };
+
   return (
     <HomePage
       {...{
         ...props,
-        params: {
-          ...props.params,
-          draft: true
-        }
+        params: updatedParams
       }}
     />
   );
