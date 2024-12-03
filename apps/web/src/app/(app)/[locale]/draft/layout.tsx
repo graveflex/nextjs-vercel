@@ -15,7 +15,7 @@ interface DraftLayoutProps {
 
 export default async function DraftLayout({ children }: DraftLayoutProps) {
   const payload = await getPayload({ config });
-  const requestHeaders = headers();
+  const requestHeaders = await headers();
 
   const me = await payload.auth({
     headers: requestHeaders,

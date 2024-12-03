@@ -1,9 +1,10 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
+import { routing } from '@mono/web/i18n/routing';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
-import { unstable_setRequestLocale } from 'next-intl/server';
 import { unstable_cache } from 'next/cache';
+import { notFound } from 'next/navigation';
 import { getPayload } from 'payload';
 import React from 'react';
 
@@ -58,7 +59,11 @@ export default async function HomePage({ params }: RootLayoutProps) {
 
 export async function generateMetadata({ params }: RootLayoutProps) {
   const { draft, locale } = await params;
-  unstable_setRequestLocale(locale);
+
+  // Ensure that the incoming `locale` is valid
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
+    notFound();
+  }
 
   const data = await fetchPageData(draft, locale);
 

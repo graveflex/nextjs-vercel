@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 
-function getPayloadAccessToken() {
-  const cookieStore = cookies();
+async function getPayloadAccessToken() {
+  const cookieStore = await cookies();
 
   const accessToken = cookieStore.get('payload-token')?.value;
 

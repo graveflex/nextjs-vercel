@@ -65,12 +65,18 @@ export default async function CatchallPage({ params }: RootLayoutProps) {
 
   let pageSlug = slug.join('/');
   let locale = localeOrSlug;
-  if (LOCALES.includes(pageSlug as LanguageLocale)) {
+  if (
+    LOCALES.includes(pageSlug as LanguageLocale) ||
+    decodeURIComponent(pageSlug) === '[...slug]'
+  ) {
     pageSlug = locale;
     locale = DEFAULT_LOCALE;
   }
 
-  unstable_setRequestLocale(locale);
+  // Ensure that the incoming `locale` is valid
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
+    notFound();
+  }
 
   const page = await fetchPageData(draft, locale, pageSlug);
 

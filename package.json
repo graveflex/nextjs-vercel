@@ -39,18 +39,18 @@
     "seed:all": "pnpm env:dev -- turbo run seed:all"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.8.3",
-    "@turbo/gen": "^1.10.15",
+    "@biomejs/biome": "1.9.4",
+    "@turbo/gen": "^2.3.3",
     "hygen": "^6.2.11",
-    "jsdom": "^25.0.0",
-    "turbo": "^2.0.14"
+    "jsdom": "^25.0.1",
+    "turbo": "^2.3.3"
   },
-  "packageManager": "pnpm@9.1.4+sha256.30a1801ac4e723779efed13a21f4c39f9eb6c9fbb4ced101bce06b422593d7c9",
+  "packageManager": "pnpm@9.14.4",
   "dependencies": {
-    "@dotenvx/dotenvx": "^1.10.1",
+    "@dotenvx/dotenvx": "^1.26.2",
     "@vitejs/plugin-react": "latest",
     "@vitest/coverage-v8": "latest",
-    "vercel": "^37.1.2",
+    "vercel": "^39.1.2",
     "vite-plugin-dts": "latest",
     "vite-plugin-environment": "latest",
     "vite-plugin-svgr": "latest",

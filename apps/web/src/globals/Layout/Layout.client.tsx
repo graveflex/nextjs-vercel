@@ -20,9 +20,7 @@ function Layout({
   return (
     <div style={containerStyles}>
       {showHeader && <Header {...header} />}
-      <main role="main" style={{ zIndex: 0 }}>
-        {children}
-      </main>
+      <main style={{ zIndex: 0 }}>{children}</main>
       <Footer {...footer?.footerItems} />
     </div>
   );

@@ -58,9 +58,9 @@ function Video({ video, fullBleed }: VideoProps) {
 
   const videoURL = typeof video === 'string' ? video : video?.url;
   const mimeType = typeof video === 'string' ? 'video/mp4' : video?.mimeType;
-  const width = typeof video === 'string' ? '100%' : video?.width ?? '100%';
-  const height = typeof video === 'string' ? 'auto' : video?.height ?? 'auto';
-  const title = typeof video === 'string' ? '' : video?.title ?? '';
+  const width = typeof video === 'string' ? '100%' : (video?.width ?? '100%');
+  const height = typeof video === 'string' ? 'auto' : (video?.height ?? 'auto');
+  const title = typeof video === 'string' ? '' : (video?.title ?? '');
 
   if (!videoURL) {
     return null;
