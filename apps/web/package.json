@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.10.1",
-    "@faker-js/faker": "^8.4.0",
+    "@faker-js/faker": "^9.3.0",
     "@hookform/resolvers": "^3.3.4",
     "@inquirer/prompts": "^5.5.0",
     "@mono/theme": "workspace:*",

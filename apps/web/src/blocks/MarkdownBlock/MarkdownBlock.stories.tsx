@@ -32,7 +32,7 @@ export const Defaults: Story = {
 
             updatedAt: '2024-01-05T20:29:44.749Z',
             createdAt: '2024-01-05T20:29:44.749Z',
-            url: faker.image.abstract(650),
+            url: faker.image.url({ width: 650, height: 650 }),
             filename: 'Logo.svg',
             mimeType: 'image/svg+xml',
             filesize: 7144,

@@ -27,7 +27,7 @@ export const Defaults: Story = {
         }
       },
       {
-        id: '1',
+        id: '2',
         link: {
           type: 'external',
           label: 'About',
@@ -35,7 +35,7 @@ export const Defaults: Story = {
         }
       },
       {
-        id: '1',
+        id: '3',
         link: {
           type: 'external',
           label: 'Learn More',
