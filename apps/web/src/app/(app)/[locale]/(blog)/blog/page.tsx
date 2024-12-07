@@ -2,9 +2,9 @@ import Tags from '@mono/web/collections/Tags';
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
+import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import config from '@payload-config';
 import { getPayloadHMR } from '@payloadcms/next/utilities';
-import { unstable_cache } from 'next/cache';
 import { notFound } from 'next/navigation';
 import React from 'react';
 import Posts from './components/posts';
@@ -30,9 +30,7 @@ async function fetchPageData(
   locale: LanguageLocale,
   searchParams: BlogLayoutProps['searchParams']
 ) {
-  const cacheKey = [locale, 'blogIndex'].filter((x) => x).join('/');
-
-  const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
+  const query = async (locale: LanguageLocale) => {
     const payload = await getPayloadHMR({ config });
     return payload.findGlobal({
       slug: 'blogIndex',
@@ -40,20 +38,15 @@ async function fetchPageData(
       draft
     });
   };
+  const searchParamString = `page=${searchParams.page}`;
 
-  const executeQuery = draft
-    ? query
-    : unstable_cache(
-        query,
-        [
-          `${[locale, 'blog'].filter((x) => x).join('/')}?page=${searchParams.page}`
-        ],
-        {
-          tags: [cacheKey]
-        }
-      );
-
-  return executeQuery(draft, locale);
+  return executeCachedQuery(
+    query,
+    'blogIndex',
+    locale,
+    draft,
+    searchParamString
+  );
 }
 
 export default async function Blog({
