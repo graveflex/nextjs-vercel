@@ -37,6 +37,7 @@ yarn-error.log*
 
 # storybook
 storybook-static
+apps/web/public/stories/
 
 # db dumps, etc
 tmp/

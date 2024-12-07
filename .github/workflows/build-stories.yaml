@@ -1,0 +1,29 @@
+name: Build Storybook
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - run: pnpm install
+
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: |
+            .vercel/output/static/stories
+          key: ${{ runner.os }}-stories-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stories-
+      - name: Build Project Artifacts
+        working-directory: apps/docs
+        run: |
+          pnpm build:ci

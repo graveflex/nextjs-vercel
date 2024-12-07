@@ -19,15 +19,6 @@ export const serverUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : `http://localhost:${process.env.NEXT_PORT}`;
 
-async function rewrites() {
-  return [
-    {
-      source: '/images/:filename*',
-      destination: `${baseUrl}/:filename*`
-    }
-  ];
-}
-
 export default withPayload(
   withNextIntl({
     reactStrictMode: true,
@@ -70,7 +61,6 @@ export default withPayload(
         pure: true
       }
     },
-    rewrites,
     webpack: (config) => {
       /*
       config.module.rules.push(
@@ -108,6 +98,22 @@ export default withPayload(
           hostname: '*.vercel-storage.com'
         }
       ]
+    },
+    async rewrites() {
+      return [
+        {
+          source: '/stories/',
+          destination: '/stories/index.html'
+        },
+        {
+          source: '/stories/:path*',
+          destination: '/stories/:path*'
+        },
+        {
+          source: '/images/:filename*',
+          destination: `${baseUrl}/:filename*`
+        }
+      ];
     }
   }),
   {
