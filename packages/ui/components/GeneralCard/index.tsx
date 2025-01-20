@@ -1,104 +1,7 @@
-'use client';
-
 import type { CardType, Image } from '@mono/types/payload-types';
 import CtaButton from '@mono/ui/components/CtaButton';
 import ResponsiveImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
-import styled, { css } from '@refract-ui/sc';
 import React from 'react';
-
-const Container = styled.div`
-  ${({ theme: { spacing, allColors } }) => css`
-    display: flex;
-    flex-direction: column;
-    border-radius: 1.13rem;
-    background-color: ${allColors.fg};
-    max-width: 30rem;
-    padding: ${spacing[9]}rem;
-    color: ${allColors.bg};
-  `}
-`;
-
-const ContentContainer = styled.div`
-  display: grid;
-  gap: 1rem;
-`;
-
-const Eyebrow = styled.h6`
-  margin: 0rem;
-`;
-
-const Headline = styled.h1`
-  margin: 0;
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: normal;
-  line-height: 1;
-
-  ${({ theme: { box } }) => css`
-    ${box.t('h3')};
-    ${box.c('bg')};
-  `}
-`;
-
-const SubHead = styled.p`
-  ${({ theme: { spacing } }) => css`
-    margin-top: ${spacing[6]}rem;
-  `}
-`;
-
-const ImageContainer = styled.div`
-  border-radius: 0.375rem;
-  overflow: hidden;
-  background-color: ${({ theme: { allColors } }) => allColors.color4};
-  width: 100%;
-
-  ${({ theme: { spacing } }) => css`
-    margin-bottom: ${spacing[9]}rem;
-    position: relative;
-  `}
-`;
-
-const StyledImage = styled(ResponsiveImage)`
-  ${({ theme: { mq } }) => css`
-    overflow: hidden;
-    background-color: #f5f5f5;
-    min-height: 20rem;
-    aspect-ratio: 4/3;
-
-    img {
-      width: 100%;
-      max-width: 100%;
-      aspect-ratio: 4/3;
-    }
-
-    ${mq.xs`
-      height: 12rem;
-    `}
-
-    ${mq.sm`
-      height: 15rem;
-    `}
-
-    ${mq.lg`
-      height: 19rem;
-      img {
-        max-width: 26rem;
-      }
-    `}
-  `}
-`;
-
-const ButtonsWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  ${({ theme: { spacing } }) => css`
-    margin-top: ${spacing[9]}rem;
-    gap: ${spacing[6]}rem;
-  `}
-`;
 
 export type GeneralCardType = CardType & {
   className?: string;
@@ -123,22 +26,27 @@ function GeneralCard({
   className
 }: GeneralCardType) {
   return (
-    <Container className={className}>
+    <div className={className}>
       {image && (
-        <ImageContainer>
-          <StyledImage image={imageProps(image)} width={330} height={230} />
-        </ImageContainer>
+        <div>
+          <ResponsiveImage
+            image={imageProps(image)}
+            width={330}
+            height={230}
+            sizes="330px"
+          />
+        </div>
       )}
-      <ContentContainer>
+      <div>
         {headline && (
           <>
-            {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-            <Headline>{headline}</Headline>
+            {eyebrow && <div>{eyebrow}</div>}
+            <div>{headline}</div>
           </>
         )}
-        {subHead && <SubHead>{subHead}</SubHead>}
+        {subHead && <div>{subHead}</div>}
         {ctas && (
-          <ButtonsWrapper>
+          <div>
             {ctas?.map(({ cta }, index) => {
               const key = `${cta?.link?.label}-${index}`;
               if (!cta) {
@@ -147,10 +55,10 @@ function GeneralCard({
 
               return <CtaButton key={key} cta={cta} />;
             })}
-          </ButtonsWrapper>
+          </div>
         )}
-      </ContentContainer>
-    </Container>
+      </div>
+    </div>
   );
 }
 

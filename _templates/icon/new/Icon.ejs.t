@@ -1,10 +1,7 @@
 ---
 to: packages/ui/icons/<%= icon_group %>/<%= name %>.tsx
 ---
-'use client';
-
 import React, { SVGProps } from 'react';
-
 
 const Svg<%= name %> = (props: SVGProps<SVGSVGElement>) => {
   const { color, width, height, viewBox } = props;
@@ -19,7 +16,8 @@ const Svg<%= name %> = (props: SVGProps<SVGSVGElement>) => {
     >
       # Add the path here
       <path
-        fill={color || '#0C0E0F'}/>
+        fill={color || '#0C0E0F'}
+      />
     </svg>
   )
 };

@@ -1,5 +1,3 @@
-'use client';
-
 import type { IconSelect } from '@mono/types/payload-types';
 import { isNull } from 'lodash';
 import React from 'react';

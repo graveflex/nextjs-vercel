@@ -1,21 +1,9 @@
 import { faker } from '@faker-js/faker';
-import styled from '@refract-ui/sc';
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
 
 import type { WrapperProps } from '.';
 import Wrapper from '.';
-
-const Content = styled.div`
-  background: rgba(255, 0, 0, 0.3);
-  align-self: stretch;
-  justify-self: stretch;
-`;
-
-const StoryContainer = styled.div`
-  min-height: 50svh;
-  display: grid;
-`;
 
 const meta: Meta<WrapperProps> = {
   title: 'ui/Wrapper',
@@ -24,11 +12,11 @@ const meta: Meta<WrapperProps> = {
     layout: 'fullscreen'
   },
   tags: ['autodocs'],
-  decorators: (Story) => <StoryContainer>{Story()}</StoryContainer>
+  decorators: (Story) => <div>{Story()}</div>
 };
 
 const sharedArgs: Partial<WrapperProps> = {
-  children: <Content />
+  children: <div />
 };
 
 export default meta;

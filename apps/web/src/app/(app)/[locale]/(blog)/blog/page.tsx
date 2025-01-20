@@ -1,6 +1,5 @@
 import Tags from '@mono/web/collections/Tags';
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
-import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import config from '@payload-config';
@@ -65,7 +64,6 @@ export default async function Blog({
 
   return (
     <>
-      <UpdatePageTheme theme={page.theme} />
       {blocks && <BlocksRenderer blocks={blocks} />}
       <Tags locale={locale} draft={draft} />
       <Posts locale={locale} draft={draft} searchParams={searchParams} />

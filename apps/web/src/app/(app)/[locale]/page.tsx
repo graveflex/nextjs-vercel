@@ -1,5 +1,4 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
-import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import config from '@payload-config';
@@ -43,7 +42,6 @@ export default async function HomePage({
 
   return (
     <>
-      <UpdatePageTheme theme={homepageData.theme} />
       <BlocksRenderer blocks={homepageData.blocks ?? []} />
     </>
   );
