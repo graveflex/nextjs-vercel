@@ -1,49 +1,10 @@
-'use client';
-
 import type { CTAType, Image, Post, Tag } from '@mono/types/payload-types';
 import GeneralCard from '@mono/ui/components/GeneralCard';
 import Pagination, {
   type PaginationType
 } from '@mono/ui/components/Pagination';
 import Wrapper from '@mono/ui/components/Wrapper';
-import styled, { css } from '@refract-ui/sc';
 import React, { useRef } from 'react';
-
-const PostWrapper = styled.div`
-  text-decoration: none;
-  transition: outline 0.1s ease;
-  border-radius: 1.125rem;
-`;
-
-const CardWrapper = styled.div`
-  display: grid;
-  justify-content: center;
-  max-width: 100%;
-
-  ${({ theme: { mq, spacing } }) => css`
-    gap: ${spacing[9]}rem;
-
-    ${mq.md`
-      grid-template-columns: repeat(2, 1fr);
-    `}
-
-    ${mq.lg`
-      margin: 0 auto;
-      grid-template-columns: repeat(3, 1fr);
-    `}
-  `};
-`;
-
-const OuterContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-
-  ${({ theme: { spacing } }) => css`
-    gap: ${spacing[9]}rem;
-    margin: ${spacing[9]}rem 0;
-  `}
-`;
 
 export type BlogIndexType = {
   posts?: Post[];
@@ -71,9 +32,9 @@ function BlogIndex({ posts, paginationProps }: BlogIndexType) {
 
   return (
     <Wrapper contentWidth="xl">
-      <OuterContainer ref={ref}>
+      <div ref={ref}>
         {posts && (
-          <CardWrapper>
+          <div>
             {posts &&
               posts?.map((post) => {
                 const { title, date, subTitle, thumbnail, slug, ctas } =
@@ -95,7 +56,7 @@ function BlogIndex({ posts, paginationProps }: BlogIndexType) {
                 ];
 
                 return (
-                  <PostWrapper key={`${slug}-${post.id}`}>
+                  <div key={`${slug}-${post.id}`}>
                     <GeneralCard
                       key={`${slug}-${post.id}`}
                       image={defaultImageProps(thumbnail)}
@@ -104,12 +65,12 @@ function BlogIndex({ posts, paginationProps }: BlogIndexType) {
                       subHead={subTitle}
                       ctas={ctas?.length === 0 ? defaultCtas : ctas}
                     />
-                  </PostWrapper>
+                  </div>
                 );
               })}
-          </CardWrapper>
+          </div>
         )}
-      </OuterContainer>
+      </div>
       {paginationProps &&
       paginationProps.total &&
       paginationProps?.total > 1 ? (

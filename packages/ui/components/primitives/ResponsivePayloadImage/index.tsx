@@ -1,16 +1,7 @@
-'use client';
-
-import theme from '@mono/theme/src/light';
 import type { Image as PayloadImageProps } from '@mono/types/payload-types';
 import { useImagePriorityContext } from '@mono/ui/components/ImagePriorityContext';
-import styled, { css } from '@refract-ui/sc';
-import { type ImageProps, getImageProps } from 'next/image';
+import Image, { type ImageProps, getImageProps } from 'next/image';
 import type React from 'react';
-import type { DefaultTheme } from 'styled-components';
-
-type Breakpoints = {
-  [K in DefaultTheme['settings']['breakpointNames'][number]]: number;
-};
 
 type Dimensions = {
   height?: number;
@@ -28,8 +19,9 @@ const sizeMapping = {
 export type SrcSets = Record<
   keyof typeof sizeMapping,
   {
-    bp: DefaultTheme['settings']['breakpointNames'][number];
+    bp: string;
     srcSet?: string;
+    sizes?: string;
   }
 >;
 
@@ -41,24 +33,10 @@ const isFill = ({ width, height }: Dimensions): boolean => {
   return false;
 };
 
-const breakpoints = theme.settings.breakpointNames.reduce<Partial<Breakpoints>>(
-  (coll, name, idx) => ({
-    ...coll,
-    [name]: theme.settings.breakpointValues[idx]
-  }),
-  {}
-) as Breakpoints;
-
-const Container = styled.picture<{ $fill: boolean }>`
-  ${({ $fill }) => css`
-    width: ${$fill ? '100%' : 'fit-content'};
-    height: ${$fill ? '100%' : 'fit-content'};
-  `}
-`;
-
 const getSrcSets = (
   sizes: PayloadImageProps['sizes'],
-  alt: string
+  alt: string,
+  fillSizes?: string
 ): SrcSets => {
   const srcSets = Object.keys(sizeMapping).reduce(
     (memo, screenSize): SrcSets => {
@@ -67,12 +45,12 @@ const getSrcSets = (
       const image = sizes?.[sizeKey];
       if (image && image.url) {
         memo[sizeKey] = {
-          bp: sizeMapping[
-            sizeKey
-          ] as DefaultTheme['settings']['breakpointNames'][number],
+          bp: sizeMapping[sizeKey],
+          sizes: fillSizes,
           srcSet: getImageProps({
             alt,
             src: image.url,
+            sizes: fillSizes,
             width: image.width || undefined,
             height: image.height || undefined
           }).props.srcSet
@@ -89,31 +67,45 @@ const getSrcSets = (
 
 export interface ResponsivePayloadWrapperProps extends Partial<ImageProps> {
   image?: number | PayloadImageProps | null | undefined;
+  mimeType?: string | null | undefined;
+  $rounded?: boolean;
+  sizes: string;
 }
 
 interface SourceProps {
   srcSet?: string;
-  bp: keyof Breakpoints;
+  sizes?: string;
 }
 
-function Source({ srcSet, bp }: SourceProps) {
+function Source({ srcSet, sizes }: SourceProps) {
   if (!srcSet) {
     return null;
   }
 
-  const minWidth = breakpoints[bp];
+  const minWidth = 320;
 
-  return <source media={`(min-width: ${minWidth}px)`} srcSet={srcSet} />;
+  return (
+    <source
+      media={`(min-width: ${minWidth}px)`}
+      srcSet={srcSet}
+      sizes={sizes}
+    />
+  );
 }
 
-function ResponsivePayloadImage(props: ResponsivePayloadWrapperProps) {
+function ResponsivePayloadImage({
+  className,
+  fill,
+  image,
+  ...props
+}: ResponsivePayloadWrapperProps) {
   const priorityContext = useImagePriorityContext();
 
-  if (typeof props.image === 'number' || !props.image) {
+  if (typeof image === 'number' || !image) {
     return null;
   }
 
-  const { alt, url, height, sizes, width, imageProps } = props.image;
+  const { alt, url, height, sizes, width, imageProps } = image;
 
   const cmsPriority = imageProps?.priority ? 'eager' : undefined;
 
@@ -132,45 +124,34 @@ function ResponsivePayloadImage(props: ResponsivePayloadWrapperProps) {
   }
 
   /* Nextjs Image properties. There cannot be a height and width if fill is true */
-  const fill = props.fill ?? isFill({ height, width } as Dimensions);
+  fill = fill ?? isFill({ height, width } as Dimensions);
 
   const fillSizes =
     props.sizes ??
     [
-      `(min-width: 2048px) ${desktop?.width} px`,
-      `(min-width: 1024px) ${tablet?.width} px`,
-      `(min-width: 768px) ${mobile?.width} px`,
-      `(min-width: 0) ${thumbnail?.width} px`,
-      `${ultrawide?.width} px`
+      `(min-width: 2048px) ${ultrawide?.width}px`,
+      `(min-width: 1024px) ${desktop?.width}px`,
+      `(min-width: 768px) ${tablet?.width}px`,
+      `${mobile?.width}px`
     ].join(', ');
 
-  const srcSets = getSrcSets(sizes, alt ?? '');
-  const defaultSrcSet = getImageProps({
-    alt: alt ?? '',
-    width: width || undefined,
-    height: height || undefined,
-    src: url,
-    fill: !width
-  }).props.srcSet;
+  const srcSets = getSrcSets(sizes, alt ?? '', fillSizes);
 
   return (
-    <Container $fill={fill}>
+    <picture className={className}>
       <Source {...srcSets.ultrawide} />
       <Source {...srcSets.desktop} />
       <Source {...srcSets.tablet} />
       <Source {...srcSets.mobile} />
-      <Source {...srcSets.thumbnail} />
-      <img
+      <Image
         loading={priority}
         width={width || undefined}
         height={height || undefined}
-        srcSet={defaultSrcSet}
-        sizes={fillSizes}
         {...props}
         src={url}
         alt={props.alt ?? ''}
       />
-    </Container>
+    </picture>
   );
 }
 

@@ -1,5 +1,4 @@
 import type { Image as PayloadImageProps } from '@mono/types/payload-types';
-/* eslint-disable no-bitwise */
 import React from 'react';
 
 import type { PayloadRichTextProps, SerializedPayloadNode } from '..';
@@ -238,7 +237,9 @@ function serializeText(content: PayloadRichTextProps) {
             height: node.value.height,
             sizes: node.value.sizes
           };
-          return <ResponsivePayloadImage key={index} image={img} />;
+          return (
+            <ResponsivePayloadImage key={index} image={img} sizes="100%" />
+          );
         }
         return null;
       default:

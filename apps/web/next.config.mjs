@@ -31,45 +31,12 @@ async function rewrites() {
 export default withPayload(
   withNextIntl({
     reactStrictMode: true,
-    transpilePackages: ['@mono/ui', '@mono/theme', '@mono/types'],
+    transpilePackages: ['@mono/ui', '@mono/types'],
 
-    /*
     experimental: {
-      reactCompiler: false
+      reactCompiler: true
     },
-    */
 
-    compiler: {
-      styledComponents: {
-        // Enabled by default in development, disabled in production to reduce file size,
-        // setting this will override the default for all environments.
-        displayName: true,
-        // Enabled by default.
-        ssr: true,
-        // Enabled by default.
-        fileName: true,
-
-        topLevelImportPaths: ['@refract-ui/sc', 'styled-components'],
-
-        // Defaults to ["index"].
-        meaninglessFileNames: ['index'],
-
-        // Enabled by default.
-        cssProp: true,
-
-        // Empty by default.
-        // namespace: '',
-
-        // Not supported yet.
-        minify: true,
-
-        // Not supported yet.
-        transpileTemplateLiterals: true,
-
-        // Not supported yet.
-        pure: true
-      }
-    },
     rewrites,
     webpack: (config) => {
       /*

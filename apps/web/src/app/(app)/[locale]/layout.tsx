@@ -1,6 +1,5 @@
 import Layout from '@mono/web/globals/Layout';
 import { routing } from '@mono/web/i18n/routing';
-import StyledComponentsRegistry from '@mono/web/lib/StyledComponentRegistry';
 import type { LanguageLocale } from '@mono/web/lib/constants';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
@@ -31,13 +30,11 @@ async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
     <html lang={locale}>
       <head />
 
-      <StyledComponentsRegistry>
-        <Providers>
-          <NextIntlClientProvider messages={messages}>
-            <Layout locale={locale}>{children}</Layout>
-          </NextIntlClientProvider>
-        </Providers>
-      </StyledComponentsRegistry>
+      <Providers>
+        <NextIntlClientProvider messages={messages}>
+          <Layout locale={locale}>{children}</Layout>
+        </NextIntlClientProvider>
+      </Providers>
     </html>
   );
 }

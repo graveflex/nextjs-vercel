@@ -1,28 +1,20 @@
-'use client';
-
-import { type ThemeKey, containerStyles } from '@mono/theme/src/ThemeProvider';
 import type { Nav as NavT } from '@mono/types/payload-types';
 import Footer from '@mono/ui/components/Footer';
 import Header from '@mono/ui/components/Header';
 import React from 'react';
 import type { PropsWithChildren } from 'react';
 
-export interface LayoutType extends PropsWithChildren<NavT> {
-  theme?: ThemeKey;
-}
+export interface LayoutType extends PropsWithChildren<NavT> {}
 
 function Layout({
   children,
   footer,
-  header,
   showHeader = true
 }: LayoutType & { showHeader?: boolean }) {
   return (
-    <div style={containerStyles}>
-      {showHeader && <Header {...header} />}
-      <main role="main" style={{ zIndex: 0 }}>
-        {children}
-      </main>
+    <div>
+      {showHeader && <Header />}
+      <main>{children}</main>
       <Footer {...footer?.footerItems} />
     </div>
   );

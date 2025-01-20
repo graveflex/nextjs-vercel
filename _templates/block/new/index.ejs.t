@@ -1,19 +1,14 @@
 ---
 to: <%= app_name %>/blocks/<%= name %>/index.tsx
 ---
-'use client';
-
 import React from 'react';
 import type { <%= name %>T as PayloadType } from '@mono/types/payload-types';
 import Wrapper from '@mono/ui/components/Wrapper';
-import styled from '@refract-ui/sc';
 <% for (path of componentImportPaths) { -%>
 <%- path %>
 <% } -%>
 
 export type <%= name %>Type = Omit<PayloadType, 'blockType'>;
-
-const Section = styled.div``;
 
 function <%= name %>({ 
 <% for (field of fields) { -%>
@@ -23,7 +18,7 @@ function <%= name %>({
   }: <%= name %>Type) {
   return (
     <Wrapper {...blockConfig} hidden={blockConfig?.hidden ?? false}>
-      <Section>
+      <div>
         <h1><%= name %></h1>
         <%_ for (field of fields) { -%>
           <div>
@@ -31,7 +26,7 @@ function <%= name %>({
             <%- field.rendered %>
           </div>
         <%_ } -%>
-      </Section>
+      </div>
     </Wrapper>
   );
 }

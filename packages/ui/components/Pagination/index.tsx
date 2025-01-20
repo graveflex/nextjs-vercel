@@ -1,61 +1,6 @@
-'use client';
-
-import Button from '@mono/ui/components/Button';
-import styled, { css } from '@refract-ui/sc';
 import type React from 'react';
 import { useCallback } from 'react';
 import ReactPaginate from 'react-paginate';
-
-const OuterContainer = styled.div`
-  display: grid;
-  margin: 1rem 0;
-  width: 100%;
-  justify-content: center;
-
-  .selected {
-    text-decoration: underline;
-    align-self: center;
-  }
-`;
-
-const Container = styled.div`
-  ${({ theme: { allColors, mq } }) => css`
-    display: flex;
-    gap: 1rem;
-    flex-direction: row;
-    align-items: flex-end;
-    overflow-x: hidden;
-
-    ul {
-      position: relative;
-      list-style-type: none;
-      padding-left: 0;
-      display: flex;
-      flex-flow: row nowrap;
-      gap: 0.5rem;
-      overflow-x: auto;
-      margin-bottom: 0;
-      align-items: center;
-    }
-
-    li {
-      display: flex;
-      justify-content: center;
-      color: ${allColors.primary};
-      
-      ${mq.md`
-        &.previous {
-          margin-right: 5rem;
-        }
-
-        &.next {
-          margin-left: 5rem;
-        }
-      `}
-      }
-    }
-  `}
-`;
 
 export type PaginationType = {
   currentPage: number;
@@ -87,41 +32,25 @@ function Pagination({
   );
 
   return (
-    <OuterContainer>
-      <Container>
+    <div>
+      <div>
         {showJump && (
-          <Button
+          <button
             onClick={() => onPageChange({ selected: 0 })}
-            $variant="outline"
-            $color="primary"
             type="button"
             disabled={currentPage === 0}
-            icon={{ name: 'DoubleCaretLeft' }}
           />
         )}
         <ReactPaginate
           previousLabel={
-            <Button
-              $variant="outline"
-              $color="primary"
-              type="button"
-              isLeadingIcon={true}
-              disabled={currentPage === 0}
-              icon={{ name: 'ArrowLeft' }}
-            >
+            <button type="button" disabled={currentPage === 0}>
               Previous{' '}
-            </Button>
+            </button>
           }
           nextLabel={
-            <Button
-              $variant="outline"
-              $color="primary"
-              type="button"
-              disabled={currentPage === lastPage}
-              icon={{ name: 'ArrowRight' }}
-            >
+            <button type="button" disabled={currentPage === lastPage}>
               Next
-            </Button>
+            </button>
           }
           breakLabel="..."
           pageCount={Math.ceil(pageCount)}
@@ -131,17 +60,14 @@ function Pagination({
           forcePage={currentPage}
         />
         {showJump && (
-          <Button
+          <button
             onClick={() => onPageChange({ selected: lastPage })}
-            $variant="outline"
-            $color="primary"
             type="button"
             disabled={currentPage === lastPage}
-            icon={{ name: 'DoubleCaretRight' }}
           />
         )}
-      </Container>
-    </OuterContainer>
+      </div>
+    </div>
   );
 }
 

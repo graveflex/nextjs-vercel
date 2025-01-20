@@ -1,5 +1,4 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
-import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
 import { routing } from '@mono/web/i18n/routing';
 import {
   DEFAULT_LOCALE,
@@ -86,12 +85,7 @@ export default async function CatchallPage({
     redirect(redirectPath);
   }
 
-  return (
-    <>
-      <UpdatePageTheme theme={page.theme} />
-      <BlocksRenderer blocks={page.blocks ?? []} />
-    </>
-  );
+  return <BlocksRenderer blocks={page.blocks ?? []} />;
 }
 
 export async function generateMetadata({
