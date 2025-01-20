@@ -7,7 +7,7 @@ import {
 } from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { unstable_cache } from 'next/cache';
 import { notFound, redirect } from 'next/navigation';
@@ -36,7 +36,7 @@ async function fetchPageData(
   const cacheKey = [locale, pageSlug].filter((x) => x).join('/');
 
   const query = async (locale: LanguageLocale, pageSlug: string) => {
-    const payload = await getPayloadHMR({ config });
+    const payload = await getPayload({ config });
     const data = await payload.find({
       collection: 'pages',
       locale,

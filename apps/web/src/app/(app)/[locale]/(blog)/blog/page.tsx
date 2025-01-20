@@ -2,7 +2,7 @@ import Tags from '@mono/web/collections/Tags';
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 import { unstable_cache } from 'next/cache';
 import { notFound } from 'next/navigation';
 import React from 'react';
@@ -32,7 +32,7 @@ async function fetchPageData(
   const cacheKey = [locale, 'blogIndex'].filter((x) => x).join('/');
 
   const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
-    const payload = await getPayloadHMR({ config });
+    const payload = await getPayload({ config });
     return payload.findGlobal({
       slug: 'blogIndex',
       locale,

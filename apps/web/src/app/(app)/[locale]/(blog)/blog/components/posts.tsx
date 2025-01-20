@@ -1,6 +1,6 @@
 import type { LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 import { unstable_cache } from 'next/cache';
 import type { Where } from 'payload';
 import type React from 'react';
@@ -50,7 +50,7 @@ async function fetchPostData({ draft, locale, searchParams }: LayoutProps) {
     : undefined;
 
   const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
-    const payload = await getPayloadHMR({ config });
+    const payload = await getPayload({ config });
 
     const resp = await payload.find({
       collection: 'posts',

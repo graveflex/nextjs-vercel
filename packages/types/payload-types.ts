@@ -7,6 +7,8 @@
  */
 
 /**
+ * The pages that will be linked in this section will not have a dropdown
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "FlatMenu".
  */
@@ -17,6 +19,8 @@ export type FlatMenu =
     }[]
   | null;
 /**
+ * Nav Items that are only displayed with an icon
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "IconNavItems".
  */
@@ -45,8 +49,26 @@ export interface Config {
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
+    'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
+  };
+  collectionsJoins: {};
+  collectionsSelect: {
+    pages: PagesSelect<false> | PagesSelect<true>;
+    posts: PostsSelect<false> | PostsSelect<true>;
+    authors: AuthorsSelect<false> | AuthorsSelect<true>;
+    tags: TagsSelect<false> | TagsSelect<true>;
+    files: FilesSelect<false> | FilesSelect<true>;
+    images: ImagesSelect<false> | ImagesSelect<true>;
+    videos: VideosSelect<false> | VideosSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
+    redirects: RedirectsSelect<false> | RedirectsSelect<true>;
+    forms: FormsSelect<false> | FormsSelect<true>;
+    'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
+    'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
+    'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
+    'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
     defaultIDType: number;
@@ -57,9 +79,19 @@ export interface Config {
     homepage: Homepage;
     blogIndex: BlogIndex;
   };
+  globalsSelect: {
+    nav: NavSelect<false> | NavSelect<true>;
+    'four-oh-four': FourOhFourSelect<false> | FourOhFourSelect<true>;
+    homepage: HomepageSelect<false> | HomepageSelect<true>;
+    blogIndex: BlogIndexSelect<false> | BlogIndexSelect<true>;
+  };
   locale: 'en-US' | 'es-US';
   user: User & {
     collection: 'users';
+  };
+  jobs: {
+    tasks: unknown;
+    workflows: unknown;
   };
 }
 export interface UserAuthOperations {
@@ -105,12 +137,20 @@ export interface Page {
   meta?: {
     title?: string | null;
     description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
     image?: (number | null) | Image;
-    keywords?: string | null;
   };
   pageTitle: string;
+  /**
+   * Will be auto-generated to title if left blank.
+   */
   slug?: string | null;
   theme?: ('light' | 'dark') | null;
+  /**
+   * If the current time is before this date, the page will not render
+   */
   publishedAt?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -125,6 +165,9 @@ export interface IframeBlockT {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
     backgroundImage?: (number | null) | Image;
+    /**
+     * Block will not appear on page
+     */
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -248,6 +291,9 @@ export interface IconGridBlockT {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
     backgroundImage?: (number | null) | Image;
+    /**
+     * Block will not appear on page
+     */
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -302,7 +348,13 @@ export interface IconGridBlockT {
  */
 export interface CTAType {
   link?: PayLoadLink;
+  /**
+   * Variant Style of button - reference Button component in storybook
+   */
   variant?: ('outline' | 'solid' | 'link') | null;
+  /**
+   * Theme styles of button - defaults to Block Theme if not set
+   */
   color?: ('lightTheme' | 'darkTheme' | 'contrast') | null;
 }
 /**
@@ -312,9 +364,21 @@ export interface CTAType {
 export interface PayLoadLink {
   type?: ('internal' | 'external' | 'email' | 'phone' | 'file') | null;
   label?: string | null;
+  /**
+   * Route for link
+   */
   internalHref?: (number | null) | Page;
+  /**
+   * Route for link
+   */
   externalHref?: string | null;
+  /**
+   * will open the default email client with this email address as the recipient
+   */
   emailHref?: string | null;
+  /**
+   * Do no include spaces or special characters
+   */
   phoneHref?: string | null;
   fileHref?: (number | null) | File;
   newTab?: boolean | null;
@@ -376,6 +440,9 @@ export interface IconSelect {
         | 'ArrowNesting'
       )
     | null;
+  /**
+   * Icon height/width in pixels - x-large is default.
+   */
   size?: ('35' | '30' | '25' | '20') | null;
   color?: string | null;
 }
@@ -388,6 +455,9 @@ export interface FullBleedImageBlockT {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
     backgroundImage?: (number | null) | Image;
+    /**
+     * Block will not appear on page
+     */
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -411,6 +481,9 @@ export interface FullBleedImageBlockT {
   };
   image: number | Image;
   mobileImage?: (number | null) | Image;
+  /**
+   * Controls the overlap of blocks. If checked, make sure that this block has the bottom padding unset and the block below it has the top padding unset.
+   */
   isBackground?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -425,6 +498,9 @@ export interface SectionHeaderBlockT {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
     backgroundImage?: (number | null) | Image;
+    /**
+     * Block will not appear on page
+     */
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -477,6 +553,9 @@ export interface GalleryGridBlockT {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
     backgroundImage?: (number | null) | Image;
+    /**
+     * Block will not appear on page
+     */
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -518,6 +597,9 @@ export interface VideoBlockT {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
     backgroundImage?: (number | null) | Image;
+    /**
+     * Block will not appear on page
+     */
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -540,9 +622,21 @@ export interface VideoBlockT {
     };
   };
   video?: (number | null) | Video;
+  /**
+   * A direct link to a video file, to be used for videos larger than 4.5MB
+   */
   videoURL?: string | null;
+  /**
+   * A URL from a video hosting service like YouTube or Vimeo
+   */
   embedURL?: string | null;
+  /**
+   * Optional caption will display below the video
+   */
   caption?: string | null;
+  /**
+   * Makes video taller & overflow off page on mobile. Also hides video controls.
+   */
   fullBleedMobile?: boolean | null;
   id?: string | null;
   blockName?: string | null;
@@ -578,6 +672,9 @@ export interface FormBlockT {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
     backgroundImage?: (number | null) | Image;
+    /**
+     * Block will not appear on page
+     */
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -668,6 +765,9 @@ export interface Form {
       )[]
     | null;
   submitButtonLabel?: string | null;
+  /**
+   * Choose whether to display an on-page message or redirect to a different page after they submit the form.
+   */
   confirmationType?: ('message' | 'redirect') | null;
   confirmationMessage?: {
     root: {
@@ -687,6 +787,9 @@ export interface Form {
   redirect?: {
     url: string;
   };
+  /**
+   * Send custom emails when the form submits. Use comma separated lists to send the same email to multiple recipients. To reference a value from this form, wrap that field's name with double curly brackets, i.e. {{firstName}}. You can use a wildcard {{*}} to output all data and {{*:table}} to format it as an HTML table in the email.
+   */
   emails?:
     | {
         emailTo?: string | null;
@@ -695,6 +798,9 @@ export interface Form {
         replyTo?: string | null;
         emailFrom?: string | null;
         subject: string;
+        /**
+         * Enter the message that should be sent in this email.
+         */
         message?: {
           root: {
             type: string;
@@ -725,6 +831,9 @@ export interface CardGridBlockT {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
     backgroundImage?: (number | null) | Image;
+    /**
+     * Block will not appear on page
+     */
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -761,11 +870,26 @@ export interface CardGridBlockT {
  * via the `definition` "CardType".
  */
 export interface CardType {
+  /**
+   * The image that will be displayed at the top of the card.
+   */
   image?: (number | null) | Image;
   eyebrow?: string | null;
+  /**
+   * The main headline of the card.
+   */
   headline: string;
+  /**
+   * The subhead of the card.
+   */
   subHead?: string | null;
+  /**
+   * The date to be shown on the card.
+   */
   date?: string | null;
+  /**
+   * The call to actions that appear at the bottom of the card. Be mindful of text length.
+   */
   ctas?:
     | {
         cta?: CTAType;
@@ -782,6 +906,9 @@ export interface MarkdownBlockT {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
     backgroundImage?: (number | null) | Image;
+    /**
+     * Block will not appear on page
+     */
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -803,6 +930,9 @@ export interface MarkdownBlockT {
       };
     };
   };
+  /**
+   * The content that will be displayed in the markdown block.
+   */
   content?: {
     root: {
       type: string;
@@ -818,6 +948,9 @@ export interface MarkdownBlockT {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * The maximum width of the content block.
+   */
   maxWidth?: ('1440px' | '1280px' | '992px' | '768px' | '576px' | '320px' | 'unset') | null;
   id?: string | null;
   blockName?: string | null;
@@ -832,6 +965,9 @@ export interface FAQBlockT {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
     backgroundImage?: (number | null) | Image;
+    /**
+     * Block will not appear on page
+     */
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -853,6 +989,9 @@ export interface FAQBlockT {
       };
     };
   };
+  /**
+   * Header & subtitle content for FAQ Block.
+   */
   header?: {
     root: {
       type: string;
@@ -868,10 +1007,19 @@ export interface FAQBlockT {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * The alignment of the Header text
+   */
   textAlignment?: ('left' | 'center' | 'right') | null;
   items?:
     | {
+        /**
+         * The text that will be displayed in the accordion item.
+         */
         title?: string | null;
+        /**
+         * The content that will be displayed when the accordion item is expanded.
+         */
         content?: {
           root: {
             type: string;
@@ -903,6 +1051,9 @@ export interface TextImageBlockT {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
     backgroundImage?: (number | null) | Image;
+    /**
+     * Block will not appear on page
+     */
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -924,9 +1075,21 @@ export interface TextImageBlockT {
       };
     };
   };
+  /**
+   * Select the layout of the block
+   */
   layout?: ('imgRight' | 'imgLeft') | null;
+  /**
+   * The image that will be displayed in its selected position.
+   */
   image?: (number | null) | Image;
+  /**
+   * If a video is uploaded, the image will not be displayed.
+   */
   video?: (number | null) | Video;
+  /**
+   * The content that will be displayed in the block.
+   */
   content?: {
     root: {
       type: string;
@@ -961,6 +1124,9 @@ export interface TextImageBlockT {
  * via the `definition` "TextInputType".
  */
 export interface TextInputType {
+  /**
+   * The unique name that serves as the ID for the input.
+   */
   name?: string | null;
   placeholder?: string | null;
   helpText?: string | null;
@@ -976,6 +1142,9 @@ export interface HeroBlockT {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
     backgroundImage?: (number | null) | Image;
+    /**
+     * Block will not appear on page
+     */
     hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
     p?: {
@@ -997,9 +1166,15 @@ export interface HeroBlockT {
       };
     };
   };
+  /**
+   * Set Fill to true to make the image full-bleed
+   */
   image?: (number | null) | Image;
   eyebrow?: string | null;
   layout?: ('contentRight' | 'contentLeft' | 'contentCenter') | null;
+  /**
+   * If copy flows from left, right, or center.
+   */
   contentAlign?: ('right' | 'left' | 'center') | null;
   content?: {
     root: {
@@ -1045,6 +1220,9 @@ export interface Post {
   thumbnail: number | Image;
   coverImage: number | Image;
   content: {
+    /**
+     * The content that will be displayed in the markdown block.
+     */
     content?: {
       root: {
         type: string;
@@ -1062,13 +1240,21 @@ export interface Post {
     } | null;
     id?: string | null;
   }[];
+  /**
+   * pathname for the blog deatail - do not inculde /.
+   */
   slug?: string | null;
+  /**
+   * If the current time is before this date, the page will not render
+   */
   publishedAt?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
     image?: (number | null) | Image;
-    keywords?: string | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -1171,6 +1357,65 @@ export interface FormSubmission {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-locked-documents".
+ */
+export interface PayloadLockedDocument {
+  id: number;
+  document?:
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'posts';
+        value: number | Post;
+      } | null)
+    | ({
+        relationTo: 'authors';
+        value: number | Author;
+      } | null)
+    | ({
+        relationTo: 'tags';
+        value: number | Tag;
+      } | null)
+    | ({
+        relationTo: 'files';
+        value: number | File;
+      } | null)
+    | ({
+        relationTo: 'images';
+        value: number | Image;
+      } | null)
+    | ({
+        relationTo: 'videos';
+        value: number | Video;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
+      } | null)
+    | ({
+        relationTo: 'redirects';
+        value: number | Redirect;
+      } | null)
+    | ({
+        relationTo: 'forms';
+        value: number | Form;
+      } | null)
+    | ({
+        relationTo: 'form-submissions';
+        value: number | FormSubmission;
+      } | null);
+  globalSlug?: string | null;
+  user: {
+    relationTo: 'users';
+    value: number | User;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
@@ -1205,17 +1450,1075 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  blocks?:
+    | T
+    | {
+        iframeBlock?: T | IframeBlockTSelect<T>;
+        iconGridBlock?: T | IconGridBlockTSelect<T>;
+        fullBleedImageBlock?: T | FullBleedImageBlockTSelect<T>;
+        sectionHeaderBlock?: T | SectionHeaderBlockTSelect<T>;
+        galleryGridBlock?: T | GalleryGridBlockTSelect<T>;
+        videoBlock?: T | VideoBlockTSelect<T>;
+        formBlock?: T | FormBlockTSelect<T>;
+        cardGridBlock?: T | CardGridBlockTSelect<T>;
+        markdownBlock?: T | MarkdownBlockTSelect<T>;
+        faqBlock?: T | FAQBlockTSelect<T>;
+        textImageBlock?: T | TextImageBlockTSelect<T>;
+        heroBlock?: T | HeroBlockTSelect<T>;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  pageTitle?: T;
+  slug?: T;
+  theme?: T;
+  publishedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IframeBlockT_select".
+ */
+export interface IframeBlockTSelect<T extends boolean = true> {
+  blockConfig?:
+    | T
+    | {
+        theme?: T;
+        backgroundColor?: T;
+        backgroundImage?: T;
+        hidden?: T;
+        contentWidth?: T;
+        p?:
+          | T
+          | {
+              xs?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              md?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              lg?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              xl?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+            };
+      };
+  title?: T;
+  iframe?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconGridBlockT_select".
+ */
+export interface IconGridBlockTSelect<T extends boolean = true> {
+  blockConfig?:
+    | T
+    | {
+        theme?: T;
+        backgroundColor?: T;
+        backgroundImage?: T;
+        hidden?: T;
+        contentWidth?: T;
+        p?:
+          | T
+          | {
+              xs?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              md?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              lg?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              xl?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+            };
+      };
+  layout?: T;
+  items?:
+    | T
+    | {
+        image?: T;
+        content?: T;
+        cta?: T | CTATypeSelect<T>;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTAType_select".
+ */
+export interface CTATypeSelect<T extends boolean = true> {
+  link?: T | PayLoadLinkSelect<T>;
+  variant?: T;
+  color?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payLoadLink_select".
+ */
+export interface PayLoadLinkSelect<T extends boolean = true> {
+  type?: T;
+  label?: T;
+  internalHref?: T;
+  externalHref?: T;
+  emailHref?: T;
+  phoneHref?: T;
+  fileHref?: T;
+  newTab?: T;
+  icon?: T | IconSelectSelect<T>;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconSelect_select".
+ */
+export interface IconSelectSelect<T extends boolean = true> {
+  name?: T;
+  size?: T;
+  color?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FullBleedImageBlockT_select".
+ */
+export interface FullBleedImageBlockTSelect<T extends boolean = true> {
+  blockConfig?:
+    | T
+    | {
+        theme?: T;
+        backgroundColor?: T;
+        backgroundImage?: T;
+        hidden?: T;
+        contentWidth?: T;
+        p?:
+          | T
+          | {
+              xs?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              md?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              lg?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              xl?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+            };
+      };
+  image?: T;
+  mobileImage?: T;
+  isBackground?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SectionHeaderBlockT_select".
+ */
+export interface SectionHeaderBlockTSelect<T extends boolean = true> {
+  blockConfig?:
+    | T
+    | {
+        theme?: T;
+        backgroundColor?: T;
+        backgroundImage?: T;
+        hidden?: T;
+        contentWidth?: T;
+        p?:
+          | T
+          | {
+              xs?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              md?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              lg?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              xl?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+            };
+      };
+  eyebrow?: T;
+  content?: T;
+  alignment?: T;
+  cta?: T | CTATypeSelect<T>;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GalleryGridBlockT_select".
+ */
+export interface GalleryGridBlockTSelect<T extends boolean = true> {
+  blockConfig?:
+    | T
+    | {
+        theme?: T;
+        backgroundColor?: T;
+        backgroundImage?: T;
+        hidden?: T;
+        contentWidth?: T;
+        p?:
+          | T
+          | {
+              xs?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              md?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              lg?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              xl?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+            };
+      };
+  galleryImages?:
+    | T
+    | {
+        image?: T;
+        id?: T;
+      };
+  cta?: T | CTATypeSelect<T>;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "VideoBlockT_select".
+ */
+export interface VideoBlockTSelect<T extends boolean = true> {
+  blockConfig?:
+    | T
+    | {
+        theme?: T;
+        backgroundColor?: T;
+        backgroundImage?: T;
+        hidden?: T;
+        contentWidth?: T;
+        p?:
+          | T
+          | {
+              xs?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              md?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              lg?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              xl?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+            };
+      };
+  video?: T;
+  videoURL?: T;
+  embedURL?: T;
+  caption?: T;
+  fullBleedMobile?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FormBlockT_select".
+ */
+export interface FormBlockTSelect<T extends boolean = true> {
+  blockConfig?:
+    | T
+    | {
+        theme?: T;
+        backgroundColor?: T;
+        backgroundImage?: T;
+        hidden?: T;
+        contentWidth?: T;
+        p?:
+          | T
+          | {
+              xs?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              md?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              lg?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              xl?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+            };
+      };
+  content?: T;
+  form?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardGridBlockT_select".
+ */
+export interface CardGridBlockTSelect<T extends boolean = true> {
+  blockConfig?:
+    | T
+    | {
+        theme?: T;
+        backgroundColor?: T;
+        backgroundImage?: T;
+        hidden?: T;
+        contentWidth?: T;
+        p?:
+          | T
+          | {
+              xs?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              md?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              lg?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              xl?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+            };
+      };
+  cards?:
+    | T
+    | {
+        card?: T | CardTypeSelect<T>;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CardType_select".
+ */
+export interface CardTypeSelect<T extends boolean = true> {
+  image?: T;
+  eyebrow?: T;
+  headline?: T;
+  subHead?: T;
+  date?: T;
+  ctas?:
+    | T
+    | {
+        cta?: T | CTATypeSelect<T>;
+        id?: T;
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MarkdownBlockT_select".
+ */
+export interface MarkdownBlockTSelect<T extends boolean = true> {
+  blockConfig?:
+    | T
+    | {
+        theme?: T;
+        backgroundColor?: T;
+        backgroundImage?: T;
+        hidden?: T;
+        contentWidth?: T;
+        p?:
+          | T
+          | {
+              xs?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              md?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              lg?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              xl?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+            };
+      };
+  content?: T;
+  maxWidth?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlockT_select".
+ */
+export interface FAQBlockTSelect<T extends boolean = true> {
+  blockConfig?:
+    | T
+    | {
+        theme?: T;
+        backgroundColor?: T;
+        backgroundImage?: T;
+        hidden?: T;
+        contentWidth?: T;
+        p?:
+          | T
+          | {
+              xs?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              md?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              lg?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              xl?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+            };
+      };
+  header?: T;
+  textAlignment?: T;
+  items?:
+    | T
+    | {
+        title?: T;
+        content?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextImageBlockT_select".
+ */
+export interface TextImageBlockTSelect<T extends boolean = true> {
+  blockConfig?:
+    | T
+    | {
+        theme?: T;
+        backgroundColor?: T;
+        backgroundImage?: T;
+        hidden?: T;
+        contentWidth?: T;
+        p?:
+          | T
+          | {
+              xs?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              md?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              lg?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              xl?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+            };
+      };
+  layout?: T;
+  image?: T;
+  video?: T;
+  content?: T;
+  items?:
+    | T
+    | {
+        cta?: T | CTATypeSelect<T>;
+        id?: T;
+      };
+  form?:
+    | T
+    | {
+        textinput?: T | TextInputTypeSelect<T>;
+        cta?: T | CTATypeSelect<T>;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TextInputType_select".
+ */
+export interface TextInputTypeSelect<T extends boolean = true> {
+  name?: T;
+  placeholder?: T;
+  helpText?: T;
+  label?: T;
+  required?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroBlockT_select".
+ */
+export interface HeroBlockTSelect<T extends boolean = true> {
+  blockConfig?:
+    | T
+    | {
+        theme?: T;
+        backgroundColor?: T;
+        backgroundImage?: T;
+        hidden?: T;
+        contentWidth?: T;
+        p?:
+          | T
+          | {
+              xs?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              md?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              lg?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              xl?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+            };
+      };
+  image?: T;
+  eyebrow?: T;
+  layout?: T;
+  contentAlign?: T;
+  content?: T;
+  form?:
+    | T
+    | {
+        textinput?: T | TextInputTypeSelect<T>;
+        cta?: T | CTATypeSelect<T>;
+      };
+  cta?: T | CTATypeSelect<T>;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts_select".
+ */
+export interface PostsSelect<T extends boolean = true> {
+  title?: T;
+  subTitle?: T;
+  date?: T;
+  authors?: T;
+  tags?: T;
+  ctas?:
+    | T
+    | {
+        cta?: T | CTATypeSelect<T>;
+        id?: T;
+      };
+  thumbnail?: T;
+  coverImage?: T;
+  content?:
+    | T
+    | {
+        content?: T;
+        id?: T;
+      };
+  slug?: T;
+  publishedAt?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "authors_select".
+ */
+export interface AuthorsSelect<T extends boolean = true> {
+  slug?: T;
+  fullName?: T;
+  image?: T;
+  jobTitle?: T;
+  bio?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags_select".
+ */
+export interface TagsSelect<T extends boolean = true> {
+  label?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "files_select".
+ */
+export interface FilesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "images_select".
+ */
+export interface ImagesSelect<T extends boolean = true> {
+  alt?: T;
+  imageProps?:
+    | T
+    | {
+        priority?: T;
+        quality?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+  sizes?:
+    | T
+    | {
+        blur?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        mobile?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        tablet?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        desktop?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        ultrawide?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos_select".
+ */
+export interface VideosSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  publishedDate?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects_select".
+ */
+export interface RedirectsSelect<T extends boolean = true> {
+  from?: T;
+  to?:
+    | T
+    | {
+        type?: T;
+        reference?: T;
+        url?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "forms_select".
+ */
+export interface FormsSelect<T extends boolean = true> {
+  title?: T;
+  fields?:
+    | T
+    | {
+        select?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              defaultValue?: T;
+              options?:
+                | T
+                | {
+                    label?: T;
+                    value?: T;
+                    id?: T;
+                  };
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        text?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              defaultValue?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        textarea?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              defaultValue?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  submitButtonLabel?: T;
+  confirmationType?: T;
+  confirmationMessage?: T;
+  redirect?:
+    | T
+    | {
+        url?: T;
+      };
+  emails?:
+    | T
+    | {
+        emailTo?: T;
+        cc?: T;
+        bcc?: T;
+        replyTo?: T;
+        emailFrom?: T;
+        subject?: T;
+        message?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions_select".
+ */
+export interface FormSubmissionsSelect<T extends boolean = true> {
+  form?: T;
+  submissionData?:
+    | T
+    | {
+        field?: T;
+        value?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-locked-documents_select".
+ */
+export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
+  document?: T;
+  globalSlug?: T;
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-preferences_select".
+ */
+export interface PayloadPreferencesSelect<T extends boolean = true> {
+  user?: T;
+  key?: T;
+  value?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-migrations_select".
+ */
+export interface PayloadMigrationsSelect<T extends boolean = true> {
+  name?: T;
+  batch?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "nav".
  */
 export interface Nav {
   id: number;
   header?: {
+    /**
+     * Logo for header. Prefer `.svg`
+     */
     logo?: (number | null) | Image;
     banner?: BannerContent;
     collapsibleMenu?: CollapsibleMenu;
     flatMenu?: FlatMenu;
     iconItems?: IconNavItems;
     hasCta?: boolean | null;
+    /**
+     * Call to Action Button
+     */
     ctaButton?: {
       cta?: CTAType;
     };
@@ -1255,7 +2558,13 @@ export interface BannerContent {
 export interface CollapsibleMenu {
   sections?:
     | {
+        /**
+         * Label for menu item
+         */
         label: string;
+        /**
+         * The pages that will be linked in this section
+         */
         links?:
           | {
               link?: PayLoadLink;
@@ -1271,6 +2580,9 @@ export interface CollapsibleMenu {
  * via the `definition` "FooterItems".
  */
 export interface FooterItems {
+  /**
+   * Logo for footer. Prefer `.svg`
+   */
   footerLogo?: (number | null) | Image;
   copyright?: {
     root: {
@@ -1310,6 +2622,9 @@ export interface FooterItems {
  */
 export interface FourOhFour {
   id: number;
+  /**
+   * The content that will be displayed in the markdown block.
+   */
   content?: {
     root: {
       type: string;
@@ -1353,6 +2668,9 @@ export interface Homepage {
   pageTitle: string;
   slug?: string | null;
   theme?: ('light' | 'dark') | null;
+  /**
+   * If the current time is before this date, the page will not render
+   */
   publishedAt?: string | null;
   _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
@@ -1383,10 +2701,166 @@ export interface BlogIndex {
   pageTitle: string;
   slug?: string | null;
   theme?: ('light' | 'dark') | null;
+  /**
+   * If the current time is before this date, the page will not render
+   */
   publishedAt?: string | null;
   _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nav_select".
+ */
+export interface NavSelect<T extends boolean = true> {
+  header?:
+    | T
+    | {
+        logo?: T;
+        banner?: T | BannerContentSelect<T>;
+        collapsibleMenu?: T | CollapsibleMenuSelect<T>;
+        flatMenu?: T | FlatMenuSelect<T>;
+        iconItems?: T | IconNavItemsSelect<T>;
+        hasCta?: T;
+        ctaButton?:
+          | T
+          | {
+              cta?: T | CTATypeSelect<T>;
+            };
+      };
+  footer?:
+    | T
+    | {
+        footerItems?: T | FooterItemsSelect<T>;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BannerContent_select".
+ */
+export interface BannerContentSelect<T extends boolean = true> {
+  content?: T;
+  background?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CollapsibleMenu_select".
+ */
+export interface CollapsibleMenuSelect<T extends boolean = true> {
+  sections?:
+    | T
+    | {
+        label?: T;
+        links?:
+          | T
+          | {
+              link?: T | PayLoadLinkSelect<T>;
+              id?: T;
+            };
+        id?: T;
+      };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FlatMenu_select".
+ */
+export interface FlatMenuSelect<T extends boolean = true> {
+  link?: T | PayLoadLinkSelect<T>;
+  id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconNavItems_select".
+ */
+export interface IconNavItemsSelect<T extends boolean = true> {
+  href?: T;
+  newTab?: T;
+  icon?: T | IconSelectSelect<T>;
+  id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FooterItems_select".
+ */
+export interface FooterItemsSelect<T extends boolean = true> {
+  footerLogo?: T;
+  copyright?: T;
+  legalDisclaimer?: T;
+  footerMenu?: T | FlatMenuSelect<T>;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "four-oh-four_select".
+ */
+export interface FourOhFourSelect<T extends boolean = true> {
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "homepage_select".
+ */
+export interface HomepageSelect<T extends boolean = true> {
+  blocks?:
+    | T
+    | {
+        iframeBlock?: T | IframeBlockTSelect<T>;
+        iconGridBlock?: T | IconGridBlockTSelect<T>;
+        fullBleedImageBlock?: T | FullBleedImageBlockTSelect<T>;
+        sectionHeaderBlock?: T | SectionHeaderBlockTSelect<T>;
+        galleryGridBlock?: T | GalleryGridBlockTSelect<T>;
+        videoBlock?: T | VideoBlockTSelect<T>;
+        formBlock?: T | FormBlockTSelect<T>;
+        cardGridBlock?: T | CardGridBlockTSelect<T>;
+        markdownBlock?: T | MarkdownBlockTSelect<T>;
+        faqBlock?: T | FAQBlockTSelect<T>;
+        textImageBlock?: T | TextImageBlockTSelect<T>;
+        heroBlock?: T | HeroBlockTSelect<T>;
+      };
+  pageTitle?: T;
+  slug?: T;
+  theme?: T;
+  publishedAt?: T;
+  _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blogIndex_select".
+ */
+export interface BlogIndexSelect<T extends boolean = true> {
+  blocks?:
+    | T
+    | {
+        iframeBlock?: T | IframeBlockTSelect<T>;
+        iconGridBlock?: T | IconGridBlockTSelect<T>;
+        fullBleedImageBlock?: T | FullBleedImageBlockTSelect<T>;
+        sectionHeaderBlock?: T | SectionHeaderBlockTSelect<T>;
+        galleryGridBlock?: T | GalleryGridBlockTSelect<T>;
+        videoBlock?: T | VideoBlockTSelect<T>;
+        formBlock?: T | FormBlockTSelect<T>;
+        cardGridBlock?: T | CardGridBlockTSelect<T>;
+        markdownBlock?: T | MarkdownBlockTSelect<T>;
+        faqBlock?: T | FAQBlockTSelect<T>;
+        textImageBlock?: T | TextImageBlockTSelect<T>;
+        heroBlock?: T | HeroBlockTSelect<T>;
+      };
+  pageTitle?: T;
+  slug?: T;
+  theme?: T;
+  publishedAt?: T;
+  _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

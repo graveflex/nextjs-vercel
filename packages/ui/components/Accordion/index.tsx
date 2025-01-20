@@ -1,3 +1,5 @@
+'use client';
+
 import type { FAQBlockT } from '@mono/types/payload-types';
 import Icon from '@mono/ui/components/RenderIcon';
 import RichText from '@mono/ui/components/primitives/RichText';

@@ -32,28 +32,9 @@ export interface WrapperProps extends React.ComponentProps<'section'> {
   };
 }
 
-function Wrapper({
-  children,
-  backgroundImage,
-  className,
-  gutter,
-  backgroundColor,
-  fullBleed,
-  contentWidth,
-  p
-}: WrapperProps) {
-  const componentProps = useMemo(() => {
-    return {
-      $gutter: gutter,
-      $backgroundColor: backgroundColor,
-      $fullBleed: fullBleed,
-      $contentWidth: contentWidth,
-      $p: p
-    };
-  }, [gutter, backgroundColor, fullBleed, contentWidth, p]);
-
+function Wrapper({ children, backgroundImage, className }: WrapperProps) {
   return (
-    <div className={className} {...componentProps}>
+    <div className={className}>
       {!!backgroundImage && (
         <ResponsivePayloadImage
           image={backgroundImage}

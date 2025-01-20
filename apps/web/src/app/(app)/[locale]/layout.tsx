@@ -13,16 +13,17 @@ export const runtime = 'nodejs';
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     locale: LanguageLocale;
-  };
+  }>;
 }
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
+async function RootLayout({ children, params }: RootLayoutProps) {
+  const { locale } = await params;
   unstable_setRequestLocale(locale);
   const messages = await getMessages();
 
@@ -30,11 +31,13 @@ async function RootLayout({ children, params: { locale } }: RootLayoutProps) {
     <html lang={locale}>
       <head />
 
-      <Providers>
-        <NextIntlClientProvider messages={messages}>
-          <Layout locale={locale}>{children}</Layout>
-        </NextIntlClientProvider>
-      </Providers>
+      <body>
+        <Providers>
+          <NextIntlClientProvider messages={messages}>
+            <Layout locale={locale}>{children}</Layout>
+          </NextIntlClientProvider>
+        </Providers>
+      </body>
     </html>
   );
 }

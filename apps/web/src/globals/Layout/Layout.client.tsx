@@ -12,11 +12,11 @@ function Layout({
   showHeader = true
 }: LayoutType & { showHeader?: boolean }) {
   return (
-    <div>
+    <>
       {showHeader && <Header />}
       <main>{children}</main>
       <Footer {...footer?.footerItems} />
-    </div>
+    </>
   );
 }
 

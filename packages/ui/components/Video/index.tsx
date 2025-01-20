@@ -1,3 +1,5 @@
+'use client';
+
 import type { Video as TVideo } from '@mono/types/payload-types';
 import type { MouseEvent } from 'react';
 import { useEffect, useRef, useState } from 'react';
