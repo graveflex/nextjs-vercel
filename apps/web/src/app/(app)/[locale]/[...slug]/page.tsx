@@ -8,7 +8,7 @@ import {
 import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { notFound, redirect } from 'next/navigation';
 import React from 'react';
@@ -31,7 +31,7 @@ async function fetchPageData(
   pageSlug: string
 ) {
   const query = async (locale: LanguageLocale) => {
-    const payload = await getPayloadHMR({ config });
+    const payload = await getPayload({ config });
     const data = await payload.find({
       collection: 'pages',
       locale,
@@ -90,7 +90,7 @@ export async function generateMetadata({
   return {
     title: seoData?.title || pageData?.pageTitle || 'Monorepo',
     description: seoData?.description || 'Default description text',
-    keywords: seoData?.keywords || null,
+    keywords: null,
     openGraph: {
       images: [seoImage]
     }

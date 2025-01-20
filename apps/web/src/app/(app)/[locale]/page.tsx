@@ -2,7 +2,7 @@ import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import React from 'react';
 
@@ -10,11 +10,11 @@ export const dynamic = 'force-static';
 export const revalidate = 60;
 
 export interface RootLayoutProps {
-  params: {
+  params: Promise<{
     slug: string[];
     locale: LanguageLocale;
     draft?: boolean;
-  };
+  }>;
 }
 
 async function fetchPageData(
@@ -22,7 +22,7 @@ async function fetchPageData(
   locale: LanguageLocale
 ) {
   const query = async (locale: LanguageLocale) => {
-    const payload = await getPayloadHMR({ config });
+    const payload = await getPayload({ config });
     return payload.findGlobal({
       slug: 'homepage',
       locale,
@@ -35,9 +35,9 @@ async function fetchPageData(
   return executeCachedQuery(query, 'homepage', locale, draft);
 }
 
-export default async function HomePage({
-  params: { locale = DEFAULT_LOCALE, draft }
-}: RootLayoutProps) {
+export default async function HomePage(props: RootLayoutProps) {
+  const { locale = DEFAULT_LOCALE, draft } = await props.params;
+
   const homepageData = await fetchPageData(draft, locale);
 
   return (
@@ -47,9 +47,9 @@ export default async function HomePage({
   );
 }
 
-export async function generateMetadata({
-  params: { draft, locale }
-}: RootLayoutProps) {
+export async function generateMetadata(props: RootLayoutProps) {
+  const { draft, locale } = await props.params;
+
   unstable_setRequestLocale(locale);
   const data = await fetchPageData(draft, locale);
 

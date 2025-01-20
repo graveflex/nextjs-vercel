@@ -1,5 +1,4 @@
 import type { Image as PayloadImageProps } from '@mono/types/payload-types';
-import { useImagePriorityContext } from '@mono/ui/components/ImagePriorityContext';
 import Image, { type ImageProps, getImageProps } from 'next/image';
 import type React from 'react';
 
@@ -99,8 +98,6 @@ function ResponsivePayloadImage({
   image,
   ...props
 }: ResponsivePayloadWrapperProps) {
-  const priorityContext = useImagePriorityContext();
-
   if (typeof image === 'number' || !image) {
     return null;
   }
@@ -109,8 +106,7 @@ function ResponsivePayloadImage({
 
   const cmsPriority = imageProps?.priority ? 'eager' : undefined;
 
-  const priority =
-    props.loading ?? cmsPriority ?? priorityContext.loading ?? 'lazy';
+  const priority = props.loading ?? cmsPriority ?? 'lazy';
 
   if (!url) {
     return null;

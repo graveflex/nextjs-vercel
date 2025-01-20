@@ -1,7 +1,7 @@
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 import { notFound, redirect } from 'next/navigation';
 import React from 'react';
 
@@ -25,7 +25,7 @@ async function fetchPageData(
   pageSlug: string
 ) {
   const query = async (locale: LanguageLocale, pageSlug?: string) => {
-    const payload = await getPayloadHMR({ config });
+    const payload = await getPayload({ config });
 
     return Promise.all([
       payload.find({
@@ -90,7 +90,7 @@ export async function generateMetadata({
   return {
     title: seoData?.title || 'Blog Post',
     description: seoData?.description || "Blog post's description",
-    keywords: seoData?.keywords || null,
+    keywords: null,
     openGraph: {
       images: [seoImage]
     }

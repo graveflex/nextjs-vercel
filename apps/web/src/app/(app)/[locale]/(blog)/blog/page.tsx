@@ -3,7 +3,7 @@ import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 import { notFound } from 'next/navigation';
 import React from 'react';
 import Posts from './components/posts';
@@ -30,7 +30,7 @@ async function fetchPageData(
   searchParams: BlogLayoutProps['searchParams']
 ) {
   const query = async (locale: LanguageLocale) => {
-    const payload = await getPayloadHMR({ config });
+    const payload = await getPayload({ config });
     return payload.findGlobal({
       slug: 'blogIndex',
       locale,
