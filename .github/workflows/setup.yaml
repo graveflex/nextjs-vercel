@@ -8,20 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable 
-      - run: corepack prepare pnpm@latest --activate
+      - run: corepack enable
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'
 
-      - name: Init pnpm global
-        env:
-          SHELL: sh
-        run: pnpm setup
-
       - name: Install dependencies
         run: pnpm install
-
-      - name: Install Vercel links
-        run: pnpm add -g vercel@latest 

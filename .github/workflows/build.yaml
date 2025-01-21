@@ -66,7 +66,7 @@ jobs:
       - run: pnpm install
 
       - name: Link Vercel App
-        run: vercel link --yes --project ${{ vars.VERCEL_PROJECT_NAME }} --token=${{ env.VERCEL_TOKEN }} --scope=${{ vars.VERCEL_ORG }}
+        run: ./node_modules/.bin/vercel link --yes --project ${{ vars.VERCEL_PROJECT_NAME }} --token=${{ env.VERCEL_TOKEN }} --scope=${{ vars.VERCEL_ORG }}
 
       - name: Get branch name
         id: branch-name
@@ -92,7 +92,7 @@ jobs:
             environment="--environment=preview --git-branch=$branch_name"
           fi
 
-          vercel pull --yes $environment --token=${{ env.VERCEL_TOKEN }} --scope=${{ vars.VERCEL_ORG }}
+          ./node_modules/.bin/vercel pull --yes $environment --token=${{ env.VERCEL_TOKEN }} --scope=${{ vars.VERCEL_ORG }}
 
       - name: Set Neon Branch Name
         run: |
