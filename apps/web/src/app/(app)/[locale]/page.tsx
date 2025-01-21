@@ -1,11 +1,11 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
+import { Button } from '@mono/web/components/ui/Button';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
-import { getPayload } from 'payload';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { unstable_cache } from 'next/cache';
+import { getPayload } from 'payload';
 import React from 'react';
-import { Button } from '@mono/web/components/ui/Button';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;

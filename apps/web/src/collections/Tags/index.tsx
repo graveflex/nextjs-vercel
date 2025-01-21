@@ -1,7 +1,7 @@
 import type { LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
-import { getPayload } from 'payload';
 import { unstable_cache } from 'next/cache';
+import { getPayload } from 'payload';
 import type React from 'react';
 import TagsClient from './tags.client';
 

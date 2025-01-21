@@ -1,28 +1,28 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Loader2, Mail } from "lucide-react";
+import type { Meta, StoryObj } from '@storybook/react';
+import { Loader2, Mail } from 'lucide-react';
 
-import { Button } from "@mono/web/components/ui/Button";
+import { Button } from '@mono/web/components/ui/Button';
 
 /**
  * Displays a button or a component that looks like a button.
  */
 const meta = {
-  title: "ui/Button",
+  title: 'ui/Button',
   component: Button,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     children: {
-      control: "text",
-    },
+      control: 'text'
+    }
   },
   parameters: {
-    layout: "centered",
+    layout: 'centered'
   },
   args: {
-    variant: "default",
-    size: "default",
-    children: "Button",
-  },
+    variant: 'default',
+    size: 'default',
+    children: 'Button'
+  }
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -40,8 +40,8 @@ export const Default: Story = {};
  */
 export const Outline: Story = {
   args: {
-    variant: "outline",
-  },
+    variant: 'outline'
+  }
 };
 
 /**
@@ -50,8 +50,8 @@ export const Outline: Story = {
  */
 export const Ghost: Story = {
   args: {
-    variant: "ghost",
-  },
+    variant: 'ghost'
+  }
 };
 
 /**
@@ -60,8 +60,8 @@ export const Ghost: Story = {
  */
 export const Secondary: Story = {
   args: {
-    variant: "secondary",
-  },
+    variant: 'secondary'
+  }
 };
 
 /**
@@ -70,8 +70,8 @@ export const Secondary: Story = {
  */
 export const Destructive: Story = {
   args: {
-    variant: "destructive",
-  },
+    variant: 'destructive'
+  }
 };
 
 /**
@@ -80,8 +80,8 @@ export const Destructive: Story = {
  */
 export const Link: Story = {
   args: {
-    variant: "link",
-  },
+    variant: 'link'
+  }
 };
 
 /**
@@ -97,8 +97,8 @@ export const Loading: Story = {
   ),
   args: {
     ...Outline.args,
-    disabled: true,
-  },
+    disabled: true
+  }
 };
 
 /**
@@ -112,8 +112,8 @@ export const WithIcon: Story = {
     </Button>
   ),
   args: {
-    ...Secondary.args,
-  },
+    ...Secondary.args
+  }
 };
 
 /**
@@ -122,8 +122,8 @@ export const WithIcon: Story = {
  */
 export const Small: Story = {
   args: {
-    size: "sm",
-  },
+    size: 'sm'
+  }
 };
 
 /**
@@ -132,8 +132,8 @@ export const Small: Story = {
  */
 export const Large: Story = {
   args: {
-    size: "lg",
-  },
+    size: 'lg'
+  }
 };
 
 /**
@@ -142,9 +142,9 @@ export const Large: Story = {
 export const Icon: Story = {
   args: {
     ...Secondary.args,
-    size: "icon",
-    children: <Mail />,
-  },
+    size: 'icon',
+    children: <Mail />
+  }
 };
 
 /**
@@ -152,6 +152,6 @@ export const Icon: Story = {
  */
 export const Disabled: Story = {
   args: {
-    disabled: true,
-  },
+    disabled: true
+  }
 };

@@ -2,9 +2,9 @@ import Tags from '@mono/web/collections/Tags';
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
-import { getPayload } from 'payload';
 import { unstable_cache } from 'next/cache';
 import { notFound } from 'next/navigation';
+import { getPayload } from 'payload';
 import React from 'react';
 import Posts from './components/posts';
 

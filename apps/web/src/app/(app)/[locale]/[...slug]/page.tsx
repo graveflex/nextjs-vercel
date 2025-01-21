@@ -7,10 +7,10 @@ import {
 } from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
-import { getPayload } from 'payload';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { unstable_cache } from 'next/cache';
 import { notFound, redirect } from 'next/navigation';
+import { getPayload } from 'payload';
 import React from 'react';
 
 export const dynamic = 'force-static';

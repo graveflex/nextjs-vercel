@@ -1,8 +1,8 @@
 import { RefreshRouteOnSave } from '@mono/web/components/RefreshRouteOnSave';
 import config from '@payload-config';
-import { getPayload } from 'payload';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
+import { getPayload } from 'payload';
 import type { PayloadRequest } from 'payload';
 import type React from 'react';
 
