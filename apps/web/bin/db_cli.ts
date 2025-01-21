@@ -90,7 +90,7 @@ async function createNeonBranch(projectId: string, neonBranch: string) {
 
 async function getNeonConnectionUrl(neonBranch: string) {
   const projectId = process.env.NEON_PROJECT_ID as string;
-  const branches = await apiClient.listProjectBranches(projectId);
+  const branches = await apiClient.listProjectBranches({ projectId });
   let branchData = branches.data.branches.find((b) => b.name === neonBranch);
 
   if (!branchData) {
@@ -122,7 +122,7 @@ async function getNeonConnectionUrl(neonBranch: string) {
 
 async function getAnotherNeonPRConnectionUrl() {
   const projectId = process.env.NEON_PROJECT_ID as string;
-  const neonBranchList = await apiClient.listProjectBranches(projectId);
+  const neonBranchList = await apiClient.listProjectBranches({ projectId });
   const neonBranchName = await search({
     message: 'Select a Neon branch (type to narrow down the list)',
     source: async (input) => {

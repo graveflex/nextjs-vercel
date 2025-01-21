@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import 'vitest-canvas-mock';
 
 // eslint-disable-next-line
-import * as globalStorybookConfig from '../../apps/docs/.storybook/preview';
+import * as globalStorybookConfig from '../../apps/web/.storybook/preview';
 
 setProjectAnnotations(globalStorybookConfig);
 

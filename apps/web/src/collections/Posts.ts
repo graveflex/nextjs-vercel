@@ -1,6 +1,6 @@
 import { WEB_URL } from '@mono/web/lib/constants';
 import RichTextFields from '@mono/web/payload/fields/RichTextFields';
-import type { CollectionConfig } from 'payload';
+import type { CollectionConfig, Field } from 'payload';
 
 import { invalidateCache } from '../hooks/invalidateCache';
 import { publishBeforeRead } from '../hooks/publishBeforeRead';
@@ -96,7 +96,7 @@ const Posts: CollectionConfig = {
       label: 'Blog Post Slug',
       type: 'text',
       unique: true,
-      validate: (value) => {
+      validate: (value: string) => {
         const regex = /[!@#$%^*[()+=.]/;
         if (regex.test(value)) {
           return 'Slug cannot contain special characters !@]{${%^*()[+= or .';
@@ -113,7 +113,7 @@ const Posts: CollectionConfig = {
         position: 'sidebar',
         description: 'pathname for the blog deatail - do not inculde /.'
       }
-    },
+    } as Field,
     {
       name: 'publishedAt',
       type: 'date',

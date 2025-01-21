@@ -16,7 +16,9 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "incremental": true,
     "resolveJsonModule": true,
-    "target": "ES2017"
+    "target": "ES2017",
+    "declaration": false,
+    "declarationMap": false
   },
   "include": [
     "next-env.d.ts",

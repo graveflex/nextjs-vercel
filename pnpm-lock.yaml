@@ -50,7 +50,7 @@ overrides:
   storybook: 8.5.0
   tsconfig-paths: ^4.2.0
   tsx: ^4.16.2
-  typescript: ^5.4.3
+  typescript: ^5.7.3
   vitest: 3.0.2
   vitest-canvas-mock: 0.3.3
   vite-plugin-svgr: 4.3.0
@@ -374,7 +374,7 @@ importers:
         specifier: ^4.16.2
         version: 4.19.2
       typescript:
-        specifier: ^5.4.3
+        specifier: ^5.7.3
         version: 5.7.3
       use-intl:
         specifier: ^3.19.0
@@ -413,7 +413,7 @@ importers:
         specifier: 3.18.0
         version: 3.18.0(bufferutil@4.0.9)(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)(utf-8-validate@6.0.5)
       typescript:
-        specifier: ^5.4.3
+        specifier: ^5.7.3
         version: 5.7.3
 
   packages/ui:
@@ -501,7 +501,7 @@ importers:
         specifier: 6.1.12
         version: 6.1.12(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       typescript:
-        specifier: ^5.4.3
+        specifier: ^5.7.3
         version: 5.7.3
       vite-plugin-svgr:
         specifier: 4.3.0
@@ -2874,7 +2874,7 @@ packages:
   '@storybook/react-docgen-typescript-plugin@1.0.6--canary.9.0c3f3b7.0':
     resolution: {integrity: sha512-KUqXC3oa9JuQ0kZJLBhVdS4lOneKTOopnNBK4tUAgoxWQ3u/IjzdueZjFr7gyBrXMoU6duutk3RQR9u8ZpYJ4Q==}
     peerDependencies:
-      typescript: ^5.4.3
+      typescript: ^5.7.3
       webpack: '>= 4'
 
   '@storybook/react-dom-shim@8.5.0':
@@ -2892,7 +2892,7 @@ packages:
       react: 19.0.0
       react-dom: 19.0.0
       storybook: 8.5.0
-      typescript: ^5.4.3
+      typescript: ^5.7.3
     peerDependenciesMeta:
       '@storybook/test':
         optional: true
@@ -3564,7 +3564,7 @@ packages:
   '@vue/language-core@1.8.27':
     resolution: {integrity: sha512-L8Kc27VdQserNaCUNiSFdDl9LWT24ly8Hpwf1ECy3aFb9m6bDhBGQYOujDm21N7EW3moKIOKEanQwe1q5BK+mA==}
     peerDependencies:
-      typescript: ^5.4.3
+      typescript: ^5.7.3
     peerDependenciesMeta:
       typescript:
         optional: true
@@ -4331,7 +4331,7 @@ packages:
     resolution: {integrity: sha512-kcZ6+W5QzcJ3P1Mt+83OUv/oHFqZHIx8DuxG6eZ5RGMERoLqp4BuGjhHLYGK+Kf5XVkQvqBSmAy/nGWN3qDgEA==}
     engines: {node: '>=14'}
     peerDependencies:
-      typescript: ^5.4.3
+      typescript: ^5.7.3
     peerDependenciesMeta:
       typescript:
         optional: true
@@ -4340,7 +4340,7 @@ packages:
     resolution: {integrity: sha512-itvL5h8RETACmOTFc4UfIyB2RfEHi71Ax6E/PivVxq9NseKbOWpeyHEOIbmAw1rs8Ak0VursQNww7lf7YtUwzg==}
     engines: {node: '>=14'}
     peerDependencies:
-      typescript: ^5.4.3
+      typescript: ^5.7.3
     peerDependenciesMeta:
       typescript:
         optional: true
@@ -5251,7 +5251,7 @@ packages:
     resolution: {integrity: sha512-mX3qW3idpueT2klaQXBzrIM/pHw+T0B/V9KHEvNrqijTq9NFnMZU6oreVxDYcf33P8a5cW+67PjodNHthGnNVg==}
     engines: {node: '>=12.13.0', yarn: '>=1.0.0'}
     peerDependencies:
-      typescript: ^5.4.3
+      typescript: ^5.7.3
       webpack: ^5.11.0
 
   form-data@4.0.1:
@@ -7193,7 +7193,7 @@ packages:
   react-docgen-typescript@2.2.2:
     resolution: {integrity: sha512-tvg2ZtOpOi6QDwsb3GZhOjDkkX0h8Z2gipvTg6OVMUyoYoURhEiRNePT8NZItTVCDh39JJHnLdfCOkzoLbFnTg==}
     peerDependencies:
-      typescript: ^5.4.3
+      typescript: ^5.7.3
 
   react-docgen@7.1.0:
     resolution: {integrity: sha512-APPU8HB2uZnpl6Vt/+0AFoVYgSRtfiP6FLrZgPPTDmqSb2R4qZRbgd0A3VzIFxDt5e+Fozjx79WjLWnF69DK8g==}
@@ -8043,7 +8043,7 @@ packages:
   ts-essentials@10.0.3:
     resolution: {integrity: sha512-/FrVAZ76JLTWxJOERk04fm8hYENDo0PWSP3YLQKxevLwWtxemGcl5JJEzN4iqfDlRve0ckyfFaOBu4xbNH/wZw==}
     peerDependencies:
-      typescript: ^5.4.3
+      typescript: ^5.7.3
     peerDependenciesMeta:
       typescript:
         optional: true
@@ -8058,7 +8058,7 @@ packages:
       '@swc/core': '>=1.2.50'
       '@swc/wasm': '>=1.2.50'
       '@types/node': '*'
-      typescript: ^5.4.3
+      typescript: ^5.7.3
     peerDependenciesMeta:
       '@swc/core':
         optional: true
@@ -8072,7 +8072,7 @@ packages:
       '@swc/core': '>=1.2.50'
       '@swc/wasm': '>=1.2.50'
       '@types/node': '*'
-      typescript: ^5.4.3
+      typescript: ^5.7.3
     peerDependenciesMeta:
       '@swc/core':
         optional: true
@@ -8099,7 +8099,7 @@ packages:
     engines: {node: ^18 || >=20}
     hasBin: true
     peerDependencies:
-      typescript: ^5.4.3
+      typescript: ^5.7.3
     peerDependenciesMeta:
       typescript:
         optional: true
@@ -8371,7 +8371,7 @@ packages:
     resolution: {integrity: sha512-yRHiRosQw7MXdOhmcrVI+kRiB8YEShbSxnADNteK4eZGdEoyOkMHihvO5XOAVlOq8ng9sIqu8vVefDK1zcj3qw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
-      typescript: ^5.4.3
+      typescript: ^5.7.3
       vite: '*'
     peerDependenciesMeta:
       vite:
@@ -8488,7 +8488,7 @@ packages:
     resolution: {integrity: sha512-WesKCAZCRAbmmhuGl3+VrdWItEvfoFIPXOvUJkjULi+x+6G/Dy69yO3TBRJDr9eUlmsNAwVmxsNZxvHKzbkKdg==}
     hasBin: true
     peerDependencies:
-      typescript: ^5.4.3
+      typescript: ^5.7.3
 
   w3c-xmlserializer@5.0.0:
     resolution: {integrity: sha512-o8qghlI8NZHU1lLPrpi2+Uq7abh4GGPpYANlalzWxyWteJOCsr/P+oPBA49TOLu5FTZO4d3F9MnWJfiMo4BkmA==}

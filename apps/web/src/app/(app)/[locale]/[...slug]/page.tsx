@@ -108,7 +108,7 @@ export async function generateMetadata({
   return {
     title: seoData?.title || pageData?.pageTitle || 'Monorepo',
     description: seoData?.description || 'Default description text',
-    keywords: seoData?.keywords || null,
+    keywords: null,
     openGraph: {
       images: [seoImage]
     }

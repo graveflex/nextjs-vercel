@@ -1,7 +1,7 @@
 import getPayloadAccessToken from './getPayloadAccessToken';
 
 export async function redirectApi(path: string | string[]) {
-  const payloadAccessToken = getPayloadAccessToken();
+  const payloadAccessToken = await getPayloadAccessToken();
 
   // make url friendly
   const q = `depth=1&where[from][equals]=${path}`;

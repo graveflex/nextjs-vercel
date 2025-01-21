@@ -164,7 +164,8 @@ export default buildConfig({
   plugins: [
     seoPlugin({
       collections: ['pages', 'posts'],
-      fields: [
+      fields: ({ defaultFields }) => [
+        ...defaultFields,
         {
           name: 'keywords',
           label: 'Keywords',
