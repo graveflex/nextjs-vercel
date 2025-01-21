@@ -11,7 +11,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./../../../components/ui/accordion"
+} from "@mono/web/components/ui/accordion"
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
