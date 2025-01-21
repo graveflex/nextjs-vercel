@@ -16,6 +16,8 @@ jobs:
           cache: 'pnpm'
 
       - name: Init pnpm global
+        env:
+          SHELL: sh
         run: pnpm setup
 
       - name: Install dependencies
