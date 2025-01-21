@@ -43,6 +43,12 @@ jobs:
     uses: ./.github/workflows/get-vercel-domain.yaml
     secrets: inherit
 
+  build_stories:
+    if: github.ref != 'refs/heads/main'
+    uses: ./.github/workflows/build-stories.yaml
+    secrets: inherit
+    needs: setup
+
   build:
     runs-on: ubuntu-latest
     needs: [set_vercel_domain, setup]

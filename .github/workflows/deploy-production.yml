@@ -52,6 +52,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-vercel-
 
+      - name: Cache storybook build
+        uses: actions/cache@v4
+        with:
+          path: |
+            .vercel/output/static/stories
+          key: ${{ runner.os }}-stories-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-stories-
+
       - name: Get the Commit Author Name
         run: |
           echo "AUTHOR_NAME=$(git log -1 --pretty=format:'%an')" >> $GITHUB_ENV
