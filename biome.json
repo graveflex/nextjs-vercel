@@ -261,6 +261,10 @@
       "attributePosition": "auto"
     }
   },
+  "css": {
+    "formatter": { "enabled": false },
+    "linter": { "enabled": false }
+  },
   "overrides": [
     { "include": ["*.json"], "formatter": { "indentWidth": 2 } },
     {
@@ -272,6 +276,7 @@
   ],
   "files": {
     "ignore": [
+      "*.css",
       "**/node_modules/**",
       "**/dist/**",
       "**/storybook-static/**",
