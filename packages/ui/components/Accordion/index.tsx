@@ -8,6 +8,7 @@ import { useCallback, useMemo, useState } from 'react';
 
 export type AccordionProps = Partial<FAQBlockT>;
 
+// TODO: Replace w/ ShadCN Accordion:
 function Accordion({
   items,
   children
