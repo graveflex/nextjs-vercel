@@ -4,6 +4,7 @@ import type { LanguageLocale } from '@mono/web/lib/constants';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import type React from 'react';
+import '../../global.css';
 
 import Providers from './providers';
 
