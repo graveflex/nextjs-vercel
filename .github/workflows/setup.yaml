@@ -16,3 +16,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Install Vercel links
+        run: npm install -g vercel@latest 
