@@ -1,0 +1,5 @@
+@import "tailwindcss/theme" theme(reference);
+
+.container {
+  @apply px-4 py-2 text-slate-500;
+}

@@ -1,6 +1,6 @@
 import type { Nav as NavT } from '@mono/types/payload-types';
 import Footer from '@mono/ui/components/Footer';
-import Header from '@mono/ui/components/Header';
+import Header from '@mono/web/components/Header';
 import React from 'react';
 import type { PropsWithChildren } from 'react';
 

@@ -6,6 +6,7 @@ import type {
   Image
 } from '@mono/types/payload-types';
 import React from 'react';
+import styles from './Header.module.css';
 
 export type HeaderType = {
   logo?: Image | number | null;
@@ -18,7 +19,7 @@ export type HeaderType = {
 };
 
 function Header() {
-  return <div>header</div>;
+  return <header className={styles.container}>header</header>;
 }
 
 export default Header;
