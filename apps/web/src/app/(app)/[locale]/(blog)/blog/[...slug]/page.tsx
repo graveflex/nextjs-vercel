@@ -12,11 +12,11 @@ export const dynamic = 'force-static';
 export const revalidate = 60;
 
 interface BlogDetailProps {
-  params: {
+  params: Promise<{
     locale: LanguageLocale;
     slug: string[];
     draft?: boolean;
-  };
+  }>;
 }
 
 async function fetchPageData(
@@ -57,9 +57,8 @@ async function fetchPageData(
   return executeQuery(draft, locale, pageSlug);
 }
 
-export default async function Blog({
-  params: { locale = DEFAULT_LOCALE, slug, draft }
-}: BlogDetailProps) {
+export default async function Blog({ params }: BlogDetailProps) {
+  const { locale = DEFAULT_LOCALE, slug, draft } = await params;
   const pageSlug = slug ? slug.join('/') : '/';
 
   const [postData] = await fetchPageData(draft, locale, pageSlug);
@@ -83,9 +82,8 @@ export default async function Blog({
   );
 }
 
-export async function generateMetadata({
-  params: { draft, slug, locale }
-}: BlogDetailProps) {
+export async function generateMetadata({ params }: BlogDetailProps) {
+  const { draft, slug, locale } = await params;
   const pageSlug = slug ? slug.join('/') : '/';
   const [data] = await fetchPageData(draft, locale, pageSlug);
 

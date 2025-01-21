@@ -7,14 +7,19 @@ export const revalidate = 0;
 export default async function (
   props: React.ComponentProps<typeof CatchallPage>
 ) {
+  const params = await props.params;
+
+  // Create a new params object with the draft property
+  const updatedParams = Promise.resolve({
+    ...params,
+    draft: true
+  });
+
   return (
     <CatchallPage
       {...{
         ...props,
-        params: {
-          ...props.params,
-          draft: true
-        }
+        params: updatedParams
       }}
     />
   );

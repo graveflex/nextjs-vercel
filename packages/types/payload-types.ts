@@ -141,6 +141,7 @@ export interface Page {
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
     image?: (number | null) | Image;
+    keywords?: string | null;
   };
   pageTitle: string;
   /**
@@ -1255,6 +1256,7 @@ export interface Post {
      * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
      */
     image?: (number | null) | Image;
+    keywords?: string | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -1475,6 +1477,7 @@ export interface PagesSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         image?: T;
+        keywords?: T;
       };
   pageTitle?: T;
   slug?: T;
@@ -2194,6 +2197,7 @@ export interface PostsSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         image?: T;
+        keywords?: T;
       };
   updatedAt?: T;
   createdAt?: T;

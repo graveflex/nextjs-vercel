@@ -1,3 +1,5 @@
+'use client';
+
 import type { Tag } from '@mono/types/payload-types';
 import Wrapper from '@mono/ui/components/Wrapper';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';

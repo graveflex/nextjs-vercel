@@ -12,16 +12,16 @@ export const dynamic = 'auto';
 export const revalidate = 60;
 
 interface BlogLayoutProps {
-  params: {
+  params: Promise<{
     locale: LanguageLocale;
     draft?: boolean;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     page: string;
     sort: string;
     filter: string;
     search: string;
-  };
+  }>;
 }
 
 async function fetchPageData(
@@ -30,6 +30,7 @@ async function fetchPageData(
   searchParams: BlogLayoutProps['searchParams']
 ) {
   const cacheKey = [locale, 'blogIndex'].filter((x) => x).join('/');
+  const { page } = await searchParams;
 
   const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
     const payload = await getPayload({ config });
@@ -45,7 +46,7 @@ async function fetchPageData(
     : unstable_cache(
         query,
         [
-          `${[locale, 'blog'].filter((x) => x).join('/')}?page=${searchParams.page}`
+          `${[locale, 'blog'].filter((x) => x).join('/')}?page=${page}`
         ],
         {
           tags: [cacheKey]
@@ -56,9 +57,11 @@ async function fetchPageData(
 }
 
 export default async function Blog({
-  params: { locale = DEFAULT_LOCALE, draft },
+  params,
   searchParams
 }: BlogLayoutProps) {
+  const { locale = DEFAULT_LOCALE, draft } = await params;
+  const sp = await searchParams;
   const indexData = await fetchPageData(draft, locale, searchParams);
 
   // if there's an error fetching data, 404
@@ -73,15 +76,16 @@ export default async function Blog({
     <>
       {blocks && <BlocksRenderer blocks={blocks} />}
       <Tags locale={locale} draft={draft} />
-      <Posts locale={locale} draft={draft} searchParams={searchParams} />
+      <Posts locale={locale} draft={draft} searchParams={sp} />
     </>
   );
 }
 
 export async function generateMetadata({
-  params: { draft, locale },
+  params,
   searchParams
 }: BlogLayoutProps) {
+  const { draft, locale } = await params;
   const data = await fetchPageData(draft, locale, searchParams);
 
   if ('error' in data) {

@@ -1,3 +1,5 @@
+'use client';
+
 import type { CTAType, Image, Post, Tag } from '@mono/types/payload-types';
 import GeneralCard from '@mono/ui/components/GeneralCard';
 import Pagination, {
