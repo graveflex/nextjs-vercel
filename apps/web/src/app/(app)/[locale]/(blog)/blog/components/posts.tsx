@@ -77,7 +77,7 @@ async function fetchPostData({ draft, locale, searchParams }: LayoutProps) {
           `${[locale, 'blogPosts', 'page', pagPage].filter((x) => x).join('/')}`
         ],
         {
-          tags: [cacheKey]
+          tags: [cacheKey, 'global-cache-key']
         }
       );
 

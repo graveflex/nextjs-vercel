@@ -48,7 +48,7 @@ async function fetchPageData(
           `${[locale, 'blog'].filter((x) => x).join('/')}?page=${searchParams.page}`
         ],
         {
-          tags: [cacheKey]
+          tags: [cacheKey, 'global-cache-key']
         }
       );
 

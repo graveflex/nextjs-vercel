@@ -50,8 +50,8 @@ async function fetchPageData(
 
   const executeQuery = draft
     ? query
-    : unstable_cache(query, [cacheKey], {
-        tags: [cacheKey]
+    : unstable_cache(query, [cacheKey, 'global-cache-key'], {
+        tags: [cacheKey, 'global-cache-key']
       });
 
   return executeQuery(draft, locale, pageSlug);

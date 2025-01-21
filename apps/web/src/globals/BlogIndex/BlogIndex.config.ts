@@ -15,7 +15,7 @@ import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.confi
 import VideoBlock from '@mono/web/blocks/VideoBlock/VideoBlock.config';
 import type { GlobalConfig } from 'payload';
 
-import { globalInvalidateCache } from '../../hooks/globalInvalidateCache';
+import { invalidateCache } from '../../hooks/invalidateCache';
 import { globalPublishBeforeRead } from '../../hooks/globalPublishBeforeRead';
 
 const themeOptions = [
@@ -124,7 +124,7 @@ const BlogIndex: GlobalConfig = {
   ],
   hooks: {
     beforeRead: [globalPublishBeforeRead],
-    afterChange: [globalInvalidateCache]
+    afterChange: [invalidateCache]
   }
 };
 

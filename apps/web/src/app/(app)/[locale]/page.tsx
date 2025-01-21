@@ -37,7 +37,7 @@ async function fetchPageData(
   const executeQuery = draft
     ? query
     : unstable_cache(query, [[locale, 'homepage'].filter((x) => x).join('/')], {
-        tags: [cacheKey]
+        tags: [cacheKey, 'global-cache-key']
       });
 
   return executeQuery(draft, locale);

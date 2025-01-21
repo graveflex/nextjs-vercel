@@ -15,7 +15,7 @@ import { WEB_URL } from '@mono/web/lib/constants';
 
 import type { GlobalConfig } from 'payload';
 
-import { globalInvalidateCache } from '../../hooks/globalInvalidateCache';
+import { invalidateCache } from '../../hooks/invalidateCache';
 import { globalPublishBeforeRead } from '../../hooks/globalPublishBeforeRead';
 
 const themeOptions = [
@@ -124,7 +124,7 @@ const HomePage: GlobalConfig = {
   ],
   hooks: {
     beforeRead: [globalPublishBeforeRead],
-    afterChange: [globalInvalidateCache]
+    afterChange: [invalidateCache]
   }
 };
 

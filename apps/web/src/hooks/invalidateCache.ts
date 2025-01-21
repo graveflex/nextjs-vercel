@@ -1,16 +1,14 @@
-import { revalidateTag } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import type { CollectionAfterChangeHook } from 'payload';
 
-export const invalidateCache: CollectionAfterChangeHook = async ({
-  req,
-  doc
-}) => {
+export const invalidateCache: CollectionAfterChangeHook = async ({ doc }) => {
   try {
-    const path = doc?.slug;
-    const locale = req?.locale;
+    revalidatePath('/', 'layout');
 
-    // invalidate dynamic block pages / blog detail pages
-    revalidateTag(`${locale}/${path}`);
+    const tags = ['global-nav', 'global-cache-key'];
+    for (const tag of tags) {
+      revalidateTag(tag);
+    }
   } catch (_err) {
     // no-op
   }

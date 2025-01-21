@@ -2,7 +2,7 @@ import CTA from '@mono/web/payload/fields/CTA';
 import IconSelect from '@mono/web/payload/fields/IconSelect';
 import Link from '@mono/web/payload/fields/Link';
 import type { ArrayField, GlobalConfig, GroupField } from 'payload';
-import { globalInvalidateCache } from '../../hooks/globalInvalidateCache';
+import { invalidateCache } from '../../hooks/invalidateCache';
 
 const banner: GroupField = {
   name: 'banner',
@@ -195,7 +195,7 @@ const Nav: GlobalConfig = {
     }
   ],
   hooks: {
-    afterChange: [globalInvalidateCache]
+    afterChange: [invalidateCache]
   }
 };
 
