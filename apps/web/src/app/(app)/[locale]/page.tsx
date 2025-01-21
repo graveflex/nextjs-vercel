@@ -5,6 +5,7 @@ import { getPayload } from 'payload';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { unstable_cache } from 'next/cache';
 import React from 'react';
+import { Button } from '@mono/web/components/ui/Button';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
@@ -50,6 +51,7 @@ export default async function HomePage(props: RootLayoutProps) {
 
   return (
     <>
+      <Button>click me</Button>
       <BlocksRenderer blocks={homepageData.blocks ?? []} />
     </>
   );

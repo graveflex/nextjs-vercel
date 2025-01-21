@@ -74,10 +74,16 @@
       "persistent": true,
       "interactive": false
     },
+    "dev:stories": {
+      "cache": false,
+      "persistent": true,
+      "interactive": false
+    },
     "build": {
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**", ".vercel/output/**"]
     },
+    "build:stories": {},
     "start": {
       "dependsOn": ["^start"],
       "outputs": []
