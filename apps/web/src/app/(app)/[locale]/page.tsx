@@ -6,13 +6,6 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import { unstable_cache } from 'next/cache';
 import React from 'react';
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@mono/web/components/ui/Accordion"
-
 export const dynamic = 'force-static';
 export const revalidate = 60;
 
@@ -54,19 +47,10 @@ export default async function HomePage(props: RootLayoutProps) {
   const { locale = DEFAULT_LOCALE, draft } = await props.params;
 
   const homepageData = await fetchPageData(draft, locale);
-  console.log('In page.tsx, this is homepageData: ', homepageData);
 
   return (
     <>
       <BlocksRenderer blocks={homepageData.blocks ?? []} />
-      <Accordion type="single" collapsible>
-        <AccordionItem value="item-1">
-          <AccordionTrigger>Is it accessible?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
     </>
   );
 }
