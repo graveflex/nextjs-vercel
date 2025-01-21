@@ -27,12 +27,7 @@ const config: StorybookConfig = {
   docs: {
     autodocs: true
   },
-  staticDirs: [
-    {
-      from: '../../../packages/theme/fonts',
-      to: path.resolve(__dirname, '../../../packages/theme/fonts')
-    }
-  ],
+  staticDirs: [],
   webpackFinal: async (c) => {
     const monoDir = path.resolve(__dirname, '../../web/src');
     if (c?.resolve?.alias) {
