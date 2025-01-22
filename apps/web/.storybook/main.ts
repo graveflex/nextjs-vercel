@@ -9,38 +9,33 @@ const config: StorybookConfig = {
     '../../../apps/web/**/*.stories.tsx',
     '../../../apps/web/**/**/*.stories.tsx'
   ],
-  addons: [
-    // '@storybook/addon-webpack5-compiler-swc',
-    '@storybook/addon-essentials',
-    '@storybook/addon-links',
-    '@storybook/addon-a11y',
-    {
-      name: '@storybook/addon-styling-webpack',
-      options: {
-        rules: [
-          {
-            test: /\.css$/,
-            sideEffects: true,
-            use: [
-              require.resolve('style-loader'),
-              {
-                loader: require.resolve('css-loader'),
-                options: {
-                  importLoaders: 1
-                }
-              },
-              {
-                loader: require.resolve('postcss-loader'),
-                options: {
-                  implementation: require.resolve('postcss')
-                }
+  addons: [// '@storybook/addon-webpack5-compiler-swc',
+  '@storybook/addon-essentials', '@storybook/addon-links', '@storybook/addon-a11y', {
+    name: '@storybook/addon-styling-webpack',
+    options: {
+      rules: [
+        {
+          test: /\.css$/,
+          sideEffects: true,
+          use: [
+            require.resolve('style-loader'),
+            {
+              loader: require.resolve('css-loader'),
+              options: {
+                importLoaders: 1
               }
-            ]
-          }
-        ]
-      }
+            },
+            {
+              loader: require.resolve('postcss-loader'),
+              options: {
+                implementation: require.resolve('postcss')
+              }
+            }
+          ]
+        }
+      ]
     }
-  ],
+  }, '@storybook/experimental-addon-test'],
   framework: {
     name: '@storybook/nextjs',
     options: {

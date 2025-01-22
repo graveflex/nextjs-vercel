@@ -61,8 +61,8 @@
     "@storybook/addon-interactions": "latest",
     "@storybook/addon-links": "latest",
     "@storybook/addon-onboarding": "latest",
-    "@storybook/addon-themes": "latest",
     "@storybook/addon-styling-webpack": "latest",
+    "@storybook/addon-themes": "latest",
     "@storybook/addon-webpack5-compiler-swc": "^1.0.2",
     "@storybook/blocks": "latest",
     "@storybook/nextjs": "latest",
@@ -122,11 +122,13 @@
     "vite-plugin-svgr": "latest",
     "vite-transform-stub": "latest",
     "vite-tsconfig-paths": "latest",
-    "vitest": "latest",
     "vitest-canvas-mock": "latest",
     "voca": "^1.4.1"
   },
   "devDependencies": {
-    "@types/nodemailer": "^6.4.15"
+    "@storybook/experimental-addon-test": "^8.5.0",
+    "@types/nodemailer": "^6.4.15",
+    "@vitest/browser": "^3.0.3",
+    "vitest": "3.0.2"
   }
 }
