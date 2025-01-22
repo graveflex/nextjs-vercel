@@ -25,8 +25,7 @@
     "payload.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
-    "vitest.config"
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules", "**/migrations"]
 }

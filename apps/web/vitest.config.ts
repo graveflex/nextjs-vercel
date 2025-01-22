@@ -1,67 +1,34 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin';
-import { defineConfig, mergeConfig } from 'vitest/config';
-
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import { stubTransform } from 'vite-transform-stub';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { defineConfig } from 'vitest/config';
 
-const dirname =
-  typeof __dirname !== 'undefined'
-    ? __dirname
-    : path.dirname(fileURLToPath(import.meta.url));
-
-export default mergeConfig(
-  defineConfig({
-    plugins: [
-      tsconfigPaths(),
-      react(),
-      svgr(),
-      stubTransform(/^.+\.(gif|jpe?g|tiff?|png|webp|bmp)(\?\w+)?$/)
-    ],
-    test: {
-      coverage: {
-        provider: 'v8',
-        reporter: ['text', 'html', 'cobertura'],
-        include: ['./src/**/*']
-      },
-      globals: true,
-      setupFiles: ['./setup.ts'],
-      environment: 'jsdom',
-      deps: {
-        inline: ['vitest-canvas-mock']
-      },
-      // For this config, check https://github.com/vitest-dev/vitest/issues/740
-      // threads: false,
-      environmentOptions: {
-        jsdom: {
-          resources: 'usable'
-        }
+export default defineConfig({
+  plugins: [
+    tsconfigPaths(),
+    react(),
+    svgr(),
+    stubTransform(/^.+\.(gif|jpe?g|tiff?|png|webp|bmp)(\?\w+)?$/)
+  ],
+  test: {
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html', 'cobertura'],
+      include: ['./src/**/*']
+    },
+    globals: true,
+    setupFiles: ['./setup.ts'],
+    environment: 'jsdom',
+    deps: {
+      inline: ['vitest-canvas-mock']
+    },
+    // For this config, check https://github.com/vitest-dev/vitest/issues/740
+    // threads: false,
+    environmentOptions: {
+      jsdom: {
+        resources: 'usable'
       }
     }
-  }),
-  defineConfig({
-    plugins: [
-      storybookTest({
-        // The location of your Storybook config, main.js|ts
-        configDir: path.join(dirname, '.storybook'),
-        // This should match your package.json script to run Storybook
-        // The --ci flag will skip prompts and not open a browser
-        storybookScript: 'yarn storybook --ci'
-      })
-    ],
-    test: {
-      // Enable browser mode
-      browser: {
-        enabled: true,
-        name: 'chromium',
-        // Make sure to install Playwright
-        provider: 'playwright',
-        headless: true
-      },
-      setupFiles: ['./.storybook/vitest.setup.ts']
-    }
-  })
-);
+  }
+});
