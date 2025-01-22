@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   Table,
@@ -7,43 +7,43 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
-} from "@mono/web/components/ui/Table";
+  TableRow
+} from '@mono/web/components/ui/Table';
 
 const invoices = [
   {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
+    invoice: 'INV001',
+    paymentStatus: 'Paid',
+    totalAmount: '$250.00',
+    paymentMethod: 'Credit Card'
   },
   {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
+    invoice: 'INV002',
+    paymentStatus: 'Pending',
+    totalAmount: '$150.00',
+    paymentMethod: 'PayPal'
   },
   {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
+    invoice: 'INV003',
+    paymentStatus: 'Unpaid',
+    totalAmount: '$350.00',
+    paymentMethod: 'Bank Transfer'
   },
   {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
-  },
+    invoice: 'INV004',
+    paymentStatus: 'Paid',
+    totalAmount: '$450.00',
+    paymentMethod: 'Credit Card'
+  }
 ];
 
 /**
  * Powerful table and datagrids built using TanStack Table.
  */
 const meta = {
-  title: "ui/Table",
+  title: 'ui/Table',
   component: Table,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   render: (args) => (
     <Table {...args}>
@@ -67,7 +67,7 @@ const meta = {
         ))}
       </TableBody>
     </Table>
-  ),
+  )
 } satisfies Meta<typeof Table>;
 
 export default meta;

@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   Select,
@@ -8,16 +8,16 @@ import {
   SelectLabel,
   SelectSeparator,
   SelectTrigger,
-  SelectValue,
-} from "@mono/web/components/ui/Select";
+  SelectValue
+} from '@mono/web/components/ui/Select';
 
 /**
  * Displays a list of options for the user to pick from—triggered by a button.
  */
 const meta: Meta<typeof Select> = {
-  title: "ui/Select",
+  title: 'ui/Select',
   component: Select,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   render: (args) => (
     <Select {...args}>
@@ -38,7 +38,7 @@ const meta: Meta<typeof Select> = {
           <SelectLabel>Vegetables</SelectLabel>
           <SelectItem value="aubergine">Aubergine</SelectItem>
           <SelectItem value="broccoli">Broccoli</SelectItem>
-          <SelectItem value="carrot" disabled>
+          <SelectItem value="carrot" disabled={true}>
             Carrot
           </SelectItem>
           <SelectItem value="courgette">Courgette</SelectItem>
@@ -56,8 +56,8 @@ const meta: Meta<typeof Select> = {
     </Select>
   ),
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } satisfies Meta<typeof Select>;
 
 export default meta;

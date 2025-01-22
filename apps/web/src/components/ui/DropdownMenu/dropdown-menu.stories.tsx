@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Mail, Plus, PlusCircle, Search, UserPlus } from "lucide-react";
+import type { Meta, StoryObj } from '@storybook/react';
+import { Mail, Plus, PlusCircle, Search, UserPlus } from 'lucide-react';
 
 import {
   DropdownMenu,
@@ -16,17 +16,17 @@ import {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from "@mono/web/components/ui/DropdownMenu";
+  DropdownMenuTrigger
+} from '@mono/web/components/ui/DropdownMenu';
 
 /**
  * Displays a menu to the user — such as a set of actions or functions —
  * triggered by a button.
  */
 const meta = {
-  title: "ui/DropdownMenu",
+  title: 'ui/DropdownMenu',
   component: DropdownMenu,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   render: (args) => (
     <DropdownMenu {...args}>
@@ -42,8 +42,8 @@ const meta = {
     </DropdownMenu>
   ),
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } satisfies Meta<typeof DropdownMenu>;
 
 export default meta;
@@ -68,13 +68,13 @@ export const WithShortcuts: Story = {
           Back
           <DropdownMenuShortcut>⌘[</DropdownMenuShortcut>
         </DropdownMenuItem>
-        <DropdownMenuItem disabled>
+        <DropdownMenuItem disabled={true}>
           Forward
           <DropdownMenuShortcut>⌘]</DropdownMenuShortcut>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  ),
+  )
 };
 
 /**
@@ -118,7 +118,7 @@ export const WithSubmenus: Story = {
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  ),
+  )
 };
 
 /**
@@ -129,7 +129,7 @@ export const WithRadioItems: Story = {
     <DropdownMenu {...args}>
       <DropdownMenuTrigger>Open</DropdownMenuTrigger>
       <DropdownMenuContent className="w-44">
-        <DropdownMenuLabel inset>Status</DropdownMenuLabel>
+        <DropdownMenuLabel inset={true}>Status</DropdownMenuLabel>
         <DropdownMenuRadioGroup value="warning">
           <DropdownMenuRadioItem value="info">Info</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="warning">Warning</DropdownMenuRadioItem>
@@ -137,7 +137,7 @@ export const WithRadioItems: Story = {
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  ),
+  )
 };
 
 /**
@@ -148,12 +148,12 @@ export const WithCheckboxes: Story = {
     <DropdownMenu {...args}>
       <DropdownMenuTrigger>Open</DropdownMenuTrigger>
       <DropdownMenuContent className="w-44">
-        <DropdownMenuCheckboxItem checked>
+        <DropdownMenuCheckboxItem checked={true}>
           Autosave
           <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem>Show Comments</DropdownMenuCheckboxItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  ),
+  )
 };

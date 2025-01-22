@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { Separator } from "@mono/web/components/ui/Separator";
+import { Separator } from '@mono/web/components/ui/Separator';
 
 /**
  * Visually or semantically separates content.
  */
 const meta = {
-  title: "ui/Separator",
+  title: 'ui/Separator',
   component: Separator,
-  tags: ["autodocs"],
-  argTypes: {},
+  tags: ['autodocs'],
+  argTypes: {}
 } satisfies Meta<typeof Separator>;
 
 export default meta;
@@ -26,7 +26,7 @@ export const Horizontal: Story = {
       <Separator orientation="vertical" className="h-auto" />
       <div>Right</div>
     </div>
-  ),
+  )
 };
 
 /**
@@ -39,5 +39,5 @@ export const Vertical: Story = {
       <Separator orientation="horizontal" />
       <div>Bottom</div>
     </div>
-  ),
+  )
 };

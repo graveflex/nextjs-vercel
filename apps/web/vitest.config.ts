@@ -1,7 +1,7 @@
-import { defineConfig, mergeConfig } from 'vitest/config';
-import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin';
+import { defineConfig, mergeConfig } from 'vitest/config';
 
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
@@ -9,7 +9,9 @@ import { stubTransform } from 'vite-transform-stub';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const dirname =
-  typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+  typeof __dirname !== 'undefined'
+    ? __dirname
+    : path.dirname(fileURLToPath(import.meta.url));
 
 export default mergeConfig(
   defineConfig({
@@ -47,8 +49,8 @@ export default mergeConfig(
         configDir: path.join(dirname, '.storybook'),
         // This should match your package.json script to run Storybook
         // The --ci flag will skip prompts and not open a browser
-        storybookScript: 'yarn storybook --ci',
-      }),
+        storybookScript: 'yarn storybook --ci'
+      })
     ],
     test: {
       // Enable browser mode
@@ -57,9 +59,9 @@ export default mergeConfig(
         name: 'chromium',
         // Make sure to install Playwright
         provider: 'playwright',
-        headless: true,
+        headless: true
       },
-      setupFiles: ['./.storybook/vitest.setup.ts'],
-    },
+      setupFiles: ['./.storybook/vitest.setup.ts']
+    }
   })
 );

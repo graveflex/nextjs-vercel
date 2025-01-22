@@ -1,23 +1,23 @@
-import { action } from "@storybook/addon-actions";
-import type { Meta, StoryObj } from "@storybook/react";
-import { toast } from "sonner";
+import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/react';
+import { toast } from 'sonner';
 
-import { Toaster } from "@mono/web/components/ui/Sonner";
+import { Toaster } from '@mono/web/components/ui/Sonner';
 
 /**
  * An opinionated toast component for React.
  */
 const meta: Meta<typeof Toaster> = {
-  title: "ui/Sonner",
+  title: 'ui/Sonner',
   component: Toaster,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
-    position: "bottom-right",
+    position: 'bottom-right'
   },
   parameters: {
-    layout: "fullscreen",
-  },
+    layout: 'fullscreen'
+  }
 } satisfies Meta<typeof Toaster>;
 
 export default meta;
@@ -31,13 +31,14 @@ export const Default: Story = {
   render: (args) => (
     <div className="min-h-96 flex items-center justify-center space-x-2">
       <button
+        type="button"
         onClick={() =>
-          toast("Event has been created", {
+          toast('Event has been created', {
             description: new Date().toLocaleString(),
             action: {
-              label: "Undo",
-              onClick: action("Undo clicked"),
-            },
+              label: 'Undo',
+              onClick: action('Undo clicked')
+            }
           })
         }
       >
@@ -45,5 +46,5 @@ export const Default: Story = {
       </button>
       <Toaster {...args} />
     </div>
-  ),
+  )
 };

@@ -1,18 +1,18 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   Popover,
   PopoverContent,
-  PopoverTrigger,
-} from "@mono/web/components/ui/Popover";
+  PopoverTrigger
+} from '@mono/web/components/ui/Popover';
 
 /**
  * Displays rich content in a portal, triggered by a button.
  */
 const meta = {
-  title: "ui/Popover",
+  title: 'ui/Popover',
   component: Popover,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
 
   render: (args) => (
@@ -22,8 +22,8 @@ const meta = {
     </Popover>
   ),
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } satisfies Meta<typeof Popover>;
 
 export default meta;

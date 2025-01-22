@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   Sheet,
@@ -8,27 +8,27 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
-} from "@mono/web/components/ui/Sheet";
+  SheetTrigger
+} from '@mono/web/components/ui/Sheet';
 
 /**
  * Extends the Dialog component to display content that complements the main
  * content of the screen.
  */
 const meta: Meta<typeof SheetContent> = {
-  title: "ui/Sheet",
+  title: 'ui/Sheet',
   component: Sheet,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     side: {
-      options: ["top", "bottom", "left", "right"],
+      options: ['top', 'bottom', 'left', 'right'],
       control: {
-        type: "radio",
-      },
-    },
+        type: 'radio'
+      }
+    }
   },
   args: {
-    side: "right",
+    side: 'right'
   },
   render: (args) => (
     <Sheet>
@@ -43,9 +43,14 @@ const meta: Meta<typeof SheetContent> = {
         </SheetHeader>
         <SheetFooter>
           <SheetClose>
-            <button className="hover:underline">Cancel</button>
+            <button type="button" className="hover:underline">
+              Cancel
+            </button>
           </SheetClose>
-          <button className="rounded bg-primary px-4 py-2 text-primary-foreground">
+          <button
+            type="button"
+            className="rounded bg-primary px-4 py-2 text-primary-foreground"
+          >
             Submit
           </button>
         </SheetFooter>
@@ -53,8 +58,8 @@ const meta: Meta<typeof SheetContent> = {
     </Sheet>
   ),
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } satisfies Meta<typeof SheetContent>;
 
 export default meta;

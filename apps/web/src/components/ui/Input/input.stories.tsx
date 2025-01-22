@@ -1,24 +1,24 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { Input } from "@mono/web/components/ui/Input";
+import { Input } from '@mono/web/components/ui/Input';
 
 /**
  * Displays a form input field or a component that looks like an input field.
  */
 const meta = {
-  title: "ui/Input",
+  title: 'ui/Input',
   component: Input,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
-    className: "w-96",
-    type: "email",
-    placeholder: "Email",
-    disabled: false,
+    className: 'w-96',
+    type: 'email',
+    placeholder: 'Email',
+    disabled: false
   },
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } satisfies Meta<typeof Input>;
 
 export default meta;
@@ -35,7 +35,7 @@ export const Default: Story = {};
  * indicating that input is not currently accepted.
  */
 export const Disabled: Story = {
-  args: { disabled: true },
+  args: { disabled: true }
 };
 
 /**
@@ -48,7 +48,7 @@ export const WithLabel: Story = {
       <label htmlFor="email">{args.placeholder}</label>
       <Input {...args} id="email" />
     </div>
-  ),
+  )
 };
 
 /**
@@ -62,7 +62,7 @@ export const WithHelperText: Story = {
       <Input {...args} id="email-2" />
       <p className="text-sm text-foreground/50">Enter your email address.</p>
     </div>
-  ),
+  )
 };
 
 /**
@@ -80,5 +80,5 @@ export const WithButton: Story = {
         Subscribe
       </button>
     </div>
-  ),
+  )
 };

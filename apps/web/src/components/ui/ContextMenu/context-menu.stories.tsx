@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   ContextMenu,
@@ -13,17 +13,17 @@ import {
   ContextMenuSub,
   ContextMenuSubContent,
   ContextMenuSubTrigger,
-  ContextMenuTrigger,
-} from "@mono/web/components/ui/ContextMenu";
+  ContextMenuTrigger
+} from '@mono/web/components/ui/ContextMenu';
 
 /**
  * Displays a menu to the user — such as a set of actions or functions —
  * triggered by a button.
  */
 const meta = {
-  title: "ui/ContextMenu",
+  title: 'ui/ContextMenu',
   component: ContextMenu,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {},
   render: (args) => (
@@ -40,8 +40,8 @@ const meta = {
     </ContextMenu>
   ),
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } satisfies Meta<typeof ContextMenu>;
 
 export default meta;
@@ -67,7 +67,7 @@ export const WithShortcuts: Story = {
           Back
           <ContextMenuShortcut>⌘[</ContextMenuShortcut>
         </ContextMenuItem>
-        <ContextMenuItem disabled>
+        <ContextMenuItem disabled={true}>
           Forward
           <ContextMenuShortcut>⌘]</ContextMenuShortcut>
         </ContextMenuItem>
@@ -77,7 +77,7 @@ export const WithShortcuts: Story = {
         </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
-  ),
+  )
 };
 
 /**
@@ -109,7 +109,7 @@ export const WithSubmenu: Story = {
         </ContextMenuSub>
       </ContextMenuContent>
     </ContextMenu>
-  ),
+  )
 };
 
 /**
@@ -122,14 +122,14 @@ export const WithCheckboxes: Story = {
         Right click here
       </ContextMenuTrigger>
       <ContextMenuContent className="w-64">
-        <ContextMenuCheckboxItem checked>
+        <ContextMenuCheckboxItem checked={true}>
           Show Comments
           <ContextMenuShortcut>⌘⇧C</ContextMenuShortcut>
         </ContextMenuCheckboxItem>
         <ContextMenuCheckboxItem>Show Preview</ContextMenuCheckboxItem>
       </ContextMenuContent>
     </ContextMenu>
-  ),
+  )
 };
 
 /**
@@ -143,11 +143,11 @@ export const WithRadioGroup: Story = {
       </ContextMenuTrigger>
       <ContextMenuContent className="w-64">
         <ContextMenuRadioGroup value="light">
-          <ContextMenuLabel inset>Theme</ContextMenuLabel>
+          <ContextMenuLabel inset={true}>Theme</ContextMenuLabel>
           <ContextMenuRadioItem value="light">Light</ContextMenuRadioItem>
           <ContextMenuRadioItem value="dark">Dark</ContextMenuRadioItem>
         </ContextMenuRadioGroup>
       </ContextMenuContent>
     </ContextMenu>
-  ),
+  )
 };

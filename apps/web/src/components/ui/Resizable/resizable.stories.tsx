@@ -1,21 +1,21 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   ResizableHandle,
   ResizablePanel,
-  ResizablePanelGroup,
-} from "@mono/web/components/ui/Resizable";
+  ResizablePanelGroup
+} from '@mono/web/components/ui/Resizable';
 
 /**
  * Accessible resizable panel groups and layouts with keyboard support.
  */
 const meta: Meta<typeof ResizablePanelGroup> = {
-  title: "ui/ResizablePanelGroup",
+  title: 'ui/ResizablePanelGroup',
   component: ResizablePanelGroup,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   args: {
-    className: "max-w-96 rounded-lg border",
-    direction: "horizontal",
+    className: 'max-w-96 rounded-lg border',
+    direction: 'horizontal'
   },
   render: (args) => (
     <ResizablePanelGroup {...args}>
@@ -41,7 +41,7 @@ const meta: Meta<typeof ResizablePanelGroup> = {
         </ResizablePanelGroup>
       </ResizablePanel>
     </ResizablePanelGroup>
-  ),
+  )
 } satisfies Meta<typeof ResizablePanelGroup>;
 
 export default meta;

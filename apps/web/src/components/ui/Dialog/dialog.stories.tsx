@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   Dialog,
@@ -8,17 +8,17 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
-} from "@mono/web/components/ui/Dialog";
+  DialogTrigger
+} from '@mono/web/components/ui/Dialog';
 
 /**
  * A window overlaid on either the primary window or another dialog window,
  * rendering the content underneath inert.
  */
 const meta = {
-  title: "ui/Dialog",
+  title: 'ui/Dialog',
   component: Dialog,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   render: (args) => (
     <Dialog {...args}>
@@ -32,9 +32,14 @@ const meta = {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="gap-4">
-          <button className="hover:underline">Cancel</button>
+          <button type="button" className="hover:underline">
+            Cancel
+          </button>
           <DialogClose>
-            <button className="rounded bg-primary px-4 py-2 text-primary-foreground">
+            <button
+              type="button"
+              className="rounded bg-primary px-4 py-2 text-primary-foreground"
+            >
               Continue
             </button>
           </DialogClose>
@@ -43,8 +48,8 @@ const meta = {
     </Dialog>
   ),
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } satisfies Meta<typeof Dialog>;
 
 export default meta;

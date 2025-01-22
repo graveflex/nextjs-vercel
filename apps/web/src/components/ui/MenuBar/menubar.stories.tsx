@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   Menubar,
@@ -15,17 +15,17 @@ import {
   MenubarSub,
   MenubarSubContent,
   MenubarSubTrigger,
-  MenubarTrigger,
-} from "@mono/web/components/ui/MenuBar";
+  MenubarTrigger
+} from '@mono/web/components/ui/MenuBar';
 
 /**
  * A visually persistent menu common in desktop applications that provides
  * quick access to a consistent set of commands.
  */
 const meta = {
-  title: "ui/Menubar",
+  title: 'ui/Menubar',
   component: Menubar,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
 
   render: (args) => (
@@ -38,7 +38,7 @@ const meta = {
           </MenubarItem>
           <MenubarItem>New Window</MenubarItem>
           <MenubarSeparator />
-          <MenubarItem disabled>Share</MenubarItem>
+          <MenubarItem disabled={true}>Share</MenubarItem>
           <MenubarSeparator />
           <MenubarItem>Print</MenubarItem>
         </MenubarContent>
@@ -46,8 +46,8 @@ const meta = {
     </Menubar>
   ),
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } satisfies Meta<typeof Menubar>;
 
 export default meta;
@@ -80,7 +80,7 @@ export const WithSubmenu: Story = {
         </MenubarContent>
       </MenubarMenu>
     </Menubar>
-  ),
+  )
 };
 
 /**
@@ -92,7 +92,7 @@ export const WithRadioItems: Story = {
       <MenubarMenu>
         <MenubarTrigger>View</MenubarTrigger>
         <MenubarContent>
-          <MenubarLabel inset>Device Size</MenubarLabel>
+          <MenubarLabel inset={true}>Device Size</MenubarLabel>
           <MenubarRadioGroup value="md">
             <MenubarRadioItem value="sm">Small</MenubarRadioItem>
             <MenubarRadioItem value="md">Medium</MenubarRadioItem>
@@ -101,7 +101,7 @@ export const WithRadioItems: Story = {
         </MenubarContent>
       </MenubarMenu>
     </Menubar>
-  ),
+  )
 };
 
 /**
@@ -115,12 +115,12 @@ export const WithCheckboxItems: Story = {
         <MenubarContent>
           <MenubarItem>Show All</MenubarItem>
           <MenubarGroup>
-            <MenubarCheckboxItem checked>Unread</MenubarCheckboxItem>
-            <MenubarCheckboxItem checked>Important</MenubarCheckboxItem>
+            <MenubarCheckboxItem checked={true}>Unread</MenubarCheckboxItem>
+            <MenubarCheckboxItem checked={true}>Important</MenubarCheckboxItem>
             <MenubarCheckboxItem>Flagged</MenubarCheckboxItem>
           </MenubarGroup>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>
-  ),
+  )
 };

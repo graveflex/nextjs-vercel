@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { BellRing } from "lucide-react";
+import type { Meta, StoryObj } from '@storybook/react';
+import { BellRing } from 'lucide-react';
 
 import {
   Card,
@@ -7,34 +7,34 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
-} from "@mono/web/components/ui/Card";
+  CardTitle
+} from '@mono/web/components/ui/Card';
 
 const notifications = [
   {
-    title: "Your call has been confirmed.",
-    description: "1 hour ago",
+    title: 'Your call has been confirmed.',
+    description: '1 hour ago'
   },
   {
-    title: "You have a new message!",
-    description: "1 hour ago",
+    title: 'You have a new message!',
+    description: '1 hour ago'
   },
   {
-    title: "Your subscription is expiring soon!",
-    description: "2 hours ago",
-  },
+    title: 'Your subscription is expiring soon!',
+    description: '2 hours ago'
+  }
 ];
 
 /**
  * Displays a card with header, content, and footer.
  */
 const meta = {
-  title: "ui/Card",
+  title: 'ui/Card',
   component: Card,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
-    className: "w-96",
+    className: 'w-96'
   },
   render: (args) => (
     <Card {...args}>
@@ -43,8 +43,11 @@ const meta = {
         <CardDescription>You have 3 unread messages.</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
-        {notifications.map((notification, index) => (
-          <div key={index} className="flex items-center gap-4">
+        {notifications.map((notification) => (
+          <div
+            key={`${notification?.title}-${notification?.description}`}
+            className="flex items-center gap-4"
+          >
             <BellRing className="size-6" />
             <div>
               <p>{notification.title}</p>
@@ -54,13 +57,15 @@ const meta = {
         ))}
       </CardContent>
       <CardFooter>
-        <button className="hover:underline">Close</button>
+        <button type="button" className="hover:underline">
+          Close
+        </button>
       </CardFooter>
     </Card>
   ),
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } satisfies Meta<typeof Card>;
 
 export default meta;

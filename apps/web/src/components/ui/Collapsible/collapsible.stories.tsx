@@ -1,23 +1,23 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Info } from "lucide-react";
+import type { Meta, StoryObj } from '@storybook/react';
+import { Info } from 'lucide-react';
 
 import {
   Collapsible,
   CollapsibleContent,
-  CollapsibleTrigger,
-} from "@mono/web/components/ui/Collapsible";
+  CollapsibleTrigger
+} from '@mono/web/components/ui/Collapsible';
 
 /**
  * An interactive component which expands/collapses a panel.
  */
 const meta = {
-  title: "ui/Collapsible",
+  title: 'ui/Collapsible',
   component: Collapsible,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
-    className: "w-96",
-    disabled: false,
+    className: 'w-96',
+    disabled: false
   },
   render: (args) => (
     <Collapsible {...args}>
@@ -32,8 +32,8 @@ const meta = {
     </Collapsible>
   ),
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } satisfies Meta<typeof Collapsible>;
 
 export default meta;
@@ -50,6 +50,6 @@ export const Default: Story = {};
  */
 export const Disabled: Story = {
   args: {
-    disabled: true,
-  },
+    disabled: true
+  }
 };

@@ -1,27 +1,27 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { Bold, Italic } from "lucide-react";
+import type { Meta, StoryObj } from '@storybook/react';
+import { Bold, Italic } from 'lucide-react';
 
-import { Toggle } from "@mono/web/components/ui/Toggle";
+import { Toggle } from '@mono/web/components/ui/Toggle';
 
 /**
  * A two-state button that can be either on or off.
  */
 const meta: Meta<typeof Toggle> = {
-  title: "ui/Toggle",
+  title: 'ui/Toggle',
   component: Toggle,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     children: {
-      control: { disable: true },
-    },
+      control: { disable: true }
+    }
   },
   args: {
     children: <Bold className="h-4 w-4" />,
-    "aria-label": "Toggle bold",
+    'aria-label': 'Toggle bold'
   },
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 };
 export default meta;
 
@@ -38,10 +38,10 @@ export const Default: Story = {};
  */
 export const Outline: Story = {
   args: {
-    variant: "outline",
+    variant: 'outline',
     children: <Italic className="h-4 w-4" />,
-    "aria-label": "Toggle italic",
-  },
+    'aria-label': 'Toggle italic'
+  }
 };
 
 /**
@@ -54,7 +54,7 @@ export const WithText: Story = {
       Italic
     </Toggle>
   ),
-  args: { ...Outline.args },
+  args: { ...Outline.args }
 };
 
 /**
@@ -63,8 +63,8 @@ export const WithText: Story = {
  */
 export const Small: Story = {
   args: {
-    size: "sm",
-  },
+    size: 'sm'
+  }
 };
 
 /**
@@ -73,8 +73,8 @@ export const Small: Story = {
  */
 export const Large: Story = {
   args: {
-    size: "lg",
-  },
+    size: 'lg'
+  }
 };
 
 /**
@@ -82,6 +82,6 @@ export const Large: Story = {
  */
 export const Disabled: Story = {
   args: {
-    disabled: true,
-  },
+    disabled: true
+  }
 };

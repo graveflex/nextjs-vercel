@@ -1,20 +1,20 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { Progress } from "@mono/web/components/ui/Progress";
+import { Progress } from '@mono/web/components/ui/Progress';
 
 /**
  * Displays an indicator showing the completion progress of a task, typically
  * displayed as a progress bar.
  */
 const meta = {
-  title: "ui/Progress",
+  title: 'ui/Progress',
   component: Progress,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
     value: 30,
-    max: 100,
-  },
+    max: 100
+  }
 } satisfies Meta<typeof Progress>;
 
 export default meta;
@@ -31,8 +31,8 @@ export const Default: Story = {};
  */
 export const Indeterminate: Story = {
   args: {
-    value: undefined,
-  },
+    value: undefined
+  }
 };
 
 /**
@@ -40,6 +40,6 @@ export const Indeterminate: Story = {
  */
 export const Completed: Story = {
   args: {
-    value: 100,
-  },
+    value: 100
+  }
 };

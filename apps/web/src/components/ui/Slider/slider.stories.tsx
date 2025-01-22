@@ -1,20 +1,20 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { Slider } from "@mono/web/components/ui/Slider";
+import { Slider } from '@mono/web/components/ui/Slider';
 
 /**
  * An input where the user selects a value from within a given range.
  */
 const meta = {
-  title: "ui/Slider",
+  title: 'ui/Slider',
   component: Slider,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
     defaultValue: [33],
     max: 100,
-    step: 1,
-  },
+    step: 1
+  }
 } satisfies Meta<typeof Slider>;
 
 export default meta;
@@ -31,8 +31,8 @@ export const Default: Story = {};
  */
 export const Inverted: Story = {
   args: {
-    inverted: true,
-  },
+    inverted: true
+  }
 };
 
 /**
@@ -40,6 +40,6 @@ export const Inverted: Story = {
  */
 export const Disabled: Story = {
   args: {
-    disabled: true,
-  },
+    disabled: true
+  }
 };

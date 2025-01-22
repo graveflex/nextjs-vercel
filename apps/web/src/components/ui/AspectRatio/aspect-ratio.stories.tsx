@@ -1,22 +1,22 @@
-import Image from "next/image";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
+import Image from 'next/image';
 
-import { AspectRatio } from "@mono/web/components/ui/AspectRatio";
+import { AspectRatio } from '@mono/web/components/ui/AspectRatio';
 
 /**
  * Displays content within a desired ratio.
  */
 const meta: Meta<typeof AspectRatio> = {
-  title: "ui/AspectRatio",
+  title: 'ui/AspectRatio',
   component: AspectRatio,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   render: (args) => (
     <AspectRatio {...args} className="bg-slate-50 dark:bg-slate-800">
       <Image
         src="https://images.unsplash.com/photo-1576075796033-848c2a5f3696?w=800&dpr=2&q=80"
         alt="Photo by Alvaro Pinot"
-        fill
+        fill={true}
         className="rounded-md object-cover"
       />
     </AspectRatio>
@@ -26,8 +26,8 @@ const meta: Meta<typeof AspectRatio> = {
       <div className="w-1/2">
         <Story />
       </div>
-    ),
-  ],
+    )
+  ]
 } satisfies Meta<typeof AspectRatio>;
 
 export default meta;
@@ -39,8 +39,8 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {
   args: {
-    ratio: 16 / 9,
-  },
+    ratio: 16 / 9
+  }
 };
 
 /**
@@ -48,8 +48,8 @@ export const Default: Story = {
  */
 export const Square: Story = {
   args: {
-    ratio: 1,
-  },
+    ratio: 1
+  }
 };
 
 /**
@@ -57,8 +57,8 @@ export const Square: Story = {
  */
 export const Landscape: Story = {
   args: {
-    ratio: 4 / 3,
-  },
+    ratio: 4 / 3
+  }
 };
 
 /**
@@ -66,6 +66,6 @@ export const Landscape: Story = {
  */
 export const Cinemascope: Story = {
   args: {
-    ratio: 2.35 / 1,
-  },
+    ratio: 2.35 / 1
+  }
 };

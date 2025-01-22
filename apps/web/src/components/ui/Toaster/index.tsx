@@ -1,17 +1,17 @@
-"use client"
+'use client';
 
-import { useToast } from "@mono/web/hooks/use-toast"
 import {
   Toast,
   ToastClose,
   ToastDescription,
   ToastProvider,
   ToastTitle,
-  ToastViewport,
-} from "@mono/web/components/ui/Toast"
+  ToastViewport
+} from '@mono/web/components/ui/Toast';
+import { useToast } from '@mono/web/hooks/use-toast';
 
 export function Toaster() {
-  const { toasts } = useToast()
+  const { toasts } = useToast();
 
   return (
     <ToastProvider>
@@ -27,9 +27,9 @@ export function Toaster() {
             {action}
             <ToastClose />
           </Toast>
-        )
+        );
       })}
       <ToastViewport />
     </ToastProvider>
-  )
+  );
 }

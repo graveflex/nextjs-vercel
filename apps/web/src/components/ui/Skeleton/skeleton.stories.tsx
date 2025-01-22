@@ -1,18 +1,18 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { Skeleton } from "@mono/web/components/ui/Skeleton";
+import { Skeleton } from '@mono/web/components/ui/Skeleton';
 
 /**
  * Use to show a placeholder while content is loading.
  */
 const meta = {
-  title: "ui/Skeleton",
+  title: 'ui/Skeleton',
   component: Skeleton,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } satisfies Meta<typeof Skeleton>;
 
 export default meta;
@@ -31,5 +31,5 @@ export const Default: Story = {
         <Skeleton {...args} className="h-4 w-[200px]" />
       </div>
     </div>
-  ),
+  )
 };

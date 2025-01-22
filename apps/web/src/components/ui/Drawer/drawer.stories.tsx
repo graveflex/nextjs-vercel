@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   Drawer,
@@ -8,16 +8,16 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
-} from "@mono/web/components/ui/Drawer";
+  DrawerTrigger
+} from '@mono/web/components/ui/Drawer';
 
 /**
  * A drawer component for React.
  */
 const meta = {
-  title: "ui/Drawer",
+  title: 'ui/Drawer',
   component: Drawer,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   render: (args) => (
     <Drawer {...args}>
@@ -28,19 +28,24 @@ const meta = {
           <DrawerDescription>This action cannot be undone.</DrawerDescription>
         </DrawerHeader>
         <DrawerFooter>
-          <button className="rounded bg-primary px-4 py-2 text-primary-foreground">
+          <button
+            type="button"
+            className="rounded bg-primary px-4 py-2 text-primary-foreground"
+          >
             Submit
           </button>
           <DrawerClose>
-            <button className="hover:underline">Cancel</button>
+            <button type="button" className="hover:underline">
+              Cancel
+            </button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
   ),
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } as Meta<typeof Drawer>;
 
 export default meta;

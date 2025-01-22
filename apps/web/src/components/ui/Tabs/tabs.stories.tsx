@@ -1,19 +1,24 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@mono/web/components/ui/Tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger
+} from '@mono/web/components/ui/Tabs';
 
 /**
  * A set of layered sections of content—known as tab panels—that are displayed
  * one at a time.
  */
 const meta = {
-  title: "ui/Tabs",
+  title: 'ui/Tabs',
   component: Tabs,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
-    defaultValue: "account",
-    className: "w-96",
+    defaultValue: 'account',
+    className: 'w-96'
   },
   render: (args) => (
     <Tabs {...args}>
@@ -28,8 +33,8 @@ const meta = {
     </Tabs>
   ),
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } satisfies Meta<typeof Tabs>;
 
 export default meta;

@@ -1,18 +1,18 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   HoverCard,
   HoverCardContent,
-  HoverCardTrigger,
-} from "@mono/web/components/ui/HoverCard";
+  HoverCardTrigger
+} from '@mono/web/components/ui/HoverCard';
 
 /**
  * For sighted users to preview content available behind a link.
  */
 const meta = {
-  title: "ui/HoverCard",
+  title: 'ui/HoverCard',
   component: HoverCard,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {},
   render: (args) => (
@@ -24,8 +24,8 @@ const meta = {
     </HoverCard>
   ),
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } satisfies Meta<typeof HoverCard>;
 
 export default meta;
@@ -44,6 +44,6 @@ export const Default: Story = {};
 export const Instant: Story = {
   args: {
     openDelay: 0,
-    closeDelay: 0,
-  },
+    closeDelay: 0
+  }
 };

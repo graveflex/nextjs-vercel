@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
 import {
   Pagination,
@@ -7,16 +7,16 @@ import {
   PaginationItem,
   PaginationLink,
   PaginationNext,
-  PaginationPrevious,
-} from "@mono/web/components/ui/Pagination";
+  PaginationPrevious
+} from '@mono/web/components/ui/Pagination';
 
 /**
  * Pagination with page navigation, next and previous links.
  */
 const meta = {
-  title: "ui/Pagination",
+  title: 'ui/Pagination',
   component: Pagination,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   render: (args) => (
     <Pagination {...args}>
@@ -43,8 +43,8 @@ const meta = {
     </Pagination>
   ),
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } satisfies Meta<typeof Pagination>;
 
 export default meta;

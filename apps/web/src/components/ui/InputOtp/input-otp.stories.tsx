@@ -1,25 +1,25 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
+import type { Meta, StoryObj } from '@storybook/react';
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
 
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
-  InputOTPSlot,
-} from "@mono/web/components/ui/InputOtp";
+  InputOTPSlot
+} from '@mono/web/components/ui/InputOtp';
 
 /**
  * Accessible one-time password component with copy paste functionality.
  */
 const meta = {
-  title: "ui/InputOTP",
+  title: 'ui/InputOTP',
   component: InputOTP,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {},
   args: {
     maxLength: 6,
     pattern: REGEXP_ONLY_DIGITS_AND_CHARS,
-    children: null,
+    children: null
   },
 
   render: (args) => (
@@ -35,8 +35,8 @@ const meta = {
     </InputOTP>
   ),
   parameters: {
-    layout: "centered",
-  },
+    layout: 'centered'
+  }
 } satisfies Meta<typeof InputOTP>;
 
 export default meta;
@@ -66,5 +66,5 @@ export const SeparatedGroup: Story = {
         <InputOTPSlot index={5} />
       </InputOTPGroup>
     </InputOTP>
-  ),
+  )
 };

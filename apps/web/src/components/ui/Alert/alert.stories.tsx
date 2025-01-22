@@ -1,23 +1,27 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import { AlertCircle } from "lucide-react";
+import type { Meta, StoryObj } from '@storybook/react';
+import { AlertCircle } from 'lucide-react';
 
-import { Alert, AlertDescription, AlertTitle } from "@mono/web/components/ui/Alert";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle
+} from '@mono/web/components/ui/Alert';
 
 /**
  * Displays a callout for user attention.
  */
 const meta = {
-  title: "ui/Alert",
+  title: 'ui/Alert',
   component: Alert,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     variant: {
-      options: ["default", "destructive"],
-      control: { type: "radio" },
-    },
+      options: ['default', 'destructive'],
+      control: { type: 'radio' }
+    }
   },
   args: {
-    variant: "default",
+    variant: 'default'
   },
   render: (args) => (
     <Alert {...args}>
@@ -26,7 +30,7 @@ const meta = {
         You can add components to your app using the cli.
       </AlertDescription>
     </Alert>
-  ),
+  )
 } satisfies Meta<typeof Alert>;
 
 export default meta;
@@ -51,6 +55,6 @@ export const Destructive: Story = {
     </Alert>
   ),
   args: {
-    variant: "destructive",
-  },
+    variant: 'destructive'
+  }
 };

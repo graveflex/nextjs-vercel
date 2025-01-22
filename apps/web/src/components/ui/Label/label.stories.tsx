@@ -1,23 +1,23 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { Label } from "@mono/web/components/ui/Label";
+import { Label } from '@mono/web/components/ui/Label';
 
 /**
  * Renders an accessible label associated with controls.
  */
 const meta = {
-  title: "ui/Label",
+  title: 'ui/Label',
   component: Label,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
     children: {
-      control: { type: "text" },
-    },
+      control: { type: 'text' }
+    }
   },
   args: {
-    children: "Your email address",
-    htmlFor: "email",
-  },
+    children: 'Your email address',
+    htmlFor: 'email'
+  }
 } satisfies Meta<typeof Label>;
 
 export default meta;
