@@ -13,11 +13,6 @@ const meta: Meta<typeof ResizablePanelGroup> = {
   title: "ui/ResizablePanelGroup",
   component: ResizablePanelGroup,
   tags: ["autodocs"],
-  argTypes: {
-    onLayout: {
-      control: false,
-    },
-  },
   args: {
     className: "max-w-96 rounded-lg border",
     direction: "horizontal",
