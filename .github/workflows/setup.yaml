@@ -16,3 +16,14 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Auto-fix linting issues
+        run: |
+          pnpm lint:fix
+          if [ -n "$(git status --porcelain)" ]; then
+            git config --global user.name 'softb0y'
+            git config --global user.email 'softboy@graveflex.com'
+            git add .
+            git commit -m "chore: lint fixes"
+            git push
+          fi
