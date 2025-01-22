@@ -23,7 +23,9 @@ jobs:
           key: ${{ runner.os }}-stories-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-stories-
+
       - name: Build Project Artifacts
-        working-directory: apps/docs
+        working-directory: apps/web
         run: |
-          pnpm build:ci
+          pnpm build:stories
+

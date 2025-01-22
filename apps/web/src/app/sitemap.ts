@@ -1,6 +1,6 @@
 import config from '@payload-config';
-import { getPayload } from 'payload';
 import type { MetadataRoute } from 'next';
+import { getPayload } from 'payload';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;

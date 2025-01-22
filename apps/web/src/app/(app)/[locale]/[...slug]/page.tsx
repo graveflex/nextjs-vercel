@@ -8,19 +8,19 @@ import {
 import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
-import { getPayload } from 'payload';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { notFound, redirect } from 'next/navigation';
+import { getPayload } from 'payload';
 import React from 'react';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
 export interface RootLayoutProps {
-  params: {
+  params: Promise<{
     slug: string[];
     locale: LanguageLocale;
     draft?: boolean;
-  };
+  }>;
 }
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -48,9 +48,8 @@ async function fetchPageData(
   return executeCachedQuery(query, pageSlug, locale, draft);
 }
 
-export default async function CatchallPage({
-  params: { slug, locale: localeOrSlug = DEFAULT_LOCALE, draft }
-}: RootLayoutProps) {
+export default async function CatchallPage({ params }: RootLayoutProps) {
+  const { slug, locale: localeOrSlug = DEFAULT_LOCALE, draft } = await params;
   let pageSlug = slug.join('/');
   let locale = localeOrSlug;
   if (LOCALES.includes(pageSlug as LanguageLocale)) {
@@ -73,9 +72,9 @@ export default async function CatchallPage({
 
   return <BlocksRenderer blocks={page.blocks ?? []} />;
 }
-export async function generateMetadata({
-  params: { draft, slug, locale }
-}: RootLayoutProps) {
+
+export async function generateMetadata({ params }: RootLayoutProps) {
+  const { draft, slug, locale } = await params;
   const pageSlug = slug ? slug.join('/') : '/';
   const data = await fetchPageData(draft, locale, pageSlug);
   if ('error' in data) {

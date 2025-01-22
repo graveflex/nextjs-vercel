@@ -284,7 +284,6 @@ const seedNavUsingPayload = async ({ payload, count = 2 }: SeedFnProps) => {
         ctaButton: cta,
         iconItems,
         banner: {
-          // @ts-expect-error/false-flag
           content: {
             ...genRichText([
               { type: 'paragraph', text: 'Welcome to our Demo Repo' }
@@ -295,8 +294,7 @@ const seedNavUsingPayload = async ({ payload, count = 2 }: SeedFnProps) => {
       },
       footer: {
         footerItems: {
-          logo: images[1].id,
-          // @ts-expect-error/false-flag
+          // logo: images[1].id,
           copyright: {
             ...genRichText([
               { type: 'paragraph', text: '© 2024 Mono. All rights reserved.' }

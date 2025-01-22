@@ -89,7 +89,7 @@ jobs:
           commit_message="$(git log -1 --pretty=format:'%s' $commit_sha)"
           gh_username="${{ github.actor }}"
           token="${{ env.VERCEL_TOKEN }}"
-          preview_url=$(vercel deploy \
+          preview_url=$(./node_modules/.bin/vercel deploy \
             --prebuilt \
             --token="$token" \
             --scope=${{ vars.VERCEL_ORG }} \
@@ -110,7 +110,7 @@ jobs:
         run: |
           commit_url=${{ steps.deploy.outputs.preview_url }}
           pr_domain=${{ needs.build_app.outputs.vercel_domain }}
-          vercel alias set $commit_url $pr_domain --token=${{ env.VERCEL_TOKEN }} --scope=${{ vars.VERCEL_ORG }}
+          ./node_modules/.bin/vercel alias set $commit_url $pr_domain --token=${{ env.VERCEL_TOKEN }} --scope=${{ vars.VERCEL_ORG }}
 
       - name: Comment on Pull Request with URLs
         uses: marocchino/sticky-pull-request-comment@v2

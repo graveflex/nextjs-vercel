@@ -1,3 +1,5 @@
+import '../../web/src/app/global.css';
+
 export const parameters = {
   backgrounds: {
     default: 'light'

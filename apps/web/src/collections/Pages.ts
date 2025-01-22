@@ -12,7 +12,8 @@ import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.confi
 import VideoBlock from '@mono/web/blocks/VideoBlock/VideoBlock.config';
 import { WEB_URL } from '@mono/web/lib/constants';
 import formatSlug from '@mono/web/payload/utils/formatSlug';
-import type { CollectionConfig } from 'payload';
+import type { CollectionConfig, Field } from 'payload';
+import { text } from 'payload/shared';
 
 import { invalidateCache } from '../hooks/invalidateCache';
 import { publishBeforeRead } from '../hooks/publishBeforeRead';
@@ -91,7 +92,7 @@ const Pages: CollectionConfig = {
       label: 'Page Slug',
       type: 'text',
       unique: true,
-      validate: (value) => {
+      validate: (value: string) => {
         const regex = /[!@#$%^*[()+=.]/;
         if (regex.test(value)) {
           return 'Slug cannot contain special characters !@]{${%^*()[+= or .';
@@ -114,7 +115,7 @@ const Pages: CollectionConfig = {
       hooks: {
         beforeValidate: [formatSlug('pageTitle')]
       }
-    },
+    } as Field,
     {
       name: 'theme',
       label: 'Theme',

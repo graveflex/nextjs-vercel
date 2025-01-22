@@ -1,9 +1,10 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
+import { Button } from '@mono/web/components/ui/Button';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import config from '@payload-config';
-import { getPayload } from 'payload';
 import { unstable_setRequestLocale } from 'next-intl/server';
+import { getPayload } from 'payload';
 import React from 'react';
 
 export const dynamic = 'force-static';
@@ -42,6 +43,7 @@ export default async function HomePage(props: RootLayoutProps) {
 
   return (
     <>
+      <Button>click me</Button>
       <BlocksRenderer blocks={homepageData.blocks ?? []} />
     </>
   );
