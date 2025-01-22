@@ -248,7 +248,7 @@
     ]
   },
   "javascript": {
-    "globals": ["describe", "it"],
+    "globals": ["describe", "it", "React"],
     "formatter": {
       "jsxQuoteStyle": "double",
       "quoteProperties": "asNeeded",
