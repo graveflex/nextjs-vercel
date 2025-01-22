@@ -89,7 +89,7 @@ jobs:
           commit_message="$(git log -1 --pretty=format:'%s' $commit_sha)"
           gh_username="${{ github.actor }}"
           token="${{ env.VERCEL_TOKEN }}"
-          preview_url=$(vercel deploy \
+          preview_url=$(./node_modules/.bin/vercel deploy \
             --prebuilt \
             --token="$token" \
             --scope=${{ vars.VERCEL_ORG }} \
