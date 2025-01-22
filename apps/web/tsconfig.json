@@ -26,6 +26,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "vitest.config"  ],
   "exclude": ["node_modules", "**/migrations"]
 }
