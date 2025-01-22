@@ -45,9 +45,7 @@ async function fetchPageData(
     ? query
     : unstable_cache(
         query,
-        [
-          `${[locale, 'blog'].filter((x) => x).join('/')}?page=${page}`
-        ],
+        [`${[locale, 'blog'].filter((x) => x).join('/')}?page=${page}`],
         {
           tags: [cacheKey]
         }
@@ -56,10 +54,7 @@ async function fetchPageData(
   return executeQuery(draft, locale);
 }
 
-export default async function Blog({
-  params,
-  searchParams
-}: BlogLayoutProps) {
+export default async function Blog({ params, searchParams }: BlogLayoutProps) {
   const { locale = DEFAULT_LOCALE, draft } = await params;
   const sp = await searchParams;
   const indexData = await fetchPageData(draft, locale, searchParams);
