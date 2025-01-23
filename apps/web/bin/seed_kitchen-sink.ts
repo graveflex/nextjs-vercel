@@ -1,6 +1,6 @@
 import { cardGridBlockSchema } from '@mono/web/blocks/CardGridBlock/CardGridBlockSeed';
 // ImportBlockSchema
-import { CtaSectionsSchema } from '@mono/web/blocks/CtaSections/CtaSectionsSeed';
+// import { CtaSectionsSchema } from '@mono/web/blocks/CtaSections/CtaSectionsSeed';
 import { faqBlockSchema } from '@mono/web/blocks/FAQBlock/FAQBlockSeed';
 import { galleryGridBlockSchema } from '@mono/web/blocks/GalleryGridBlock/GalleryGridBlockSeed';
 import { heroBlockSchema } from '@mono/web/blocks/HeroBlock/HeroBlockSeed';
@@ -66,7 +66,7 @@ const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {
   });
 
   // ResolveBlockSchema
-  const ctaSections = await CtaSectionsSchema();
+  // const ctaSections = await CtaSectionsSchema();
 
   await payload.create({
     collection: 'pages',
@@ -75,7 +75,7 @@ const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {
       slug: 'kitchen-sink',
       blocks: [
         // AddBlock
-        ctaSections,
+        // ctaSections,
         heroBlockBG,
         heroBlockCTA,
         sectionHeaderBlockSchema,
