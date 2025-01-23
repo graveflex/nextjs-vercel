@@ -11,6 +11,9 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
+  ctaSections: dynamic(() => import('@mono/web/blocks/CtaSections'), {
+    ...defaultOpts
+  }),
   fullBleedImageBlock: dynamic(
     () => import('@mono/web/blocks/FullBleedImageBlock'),
     {
