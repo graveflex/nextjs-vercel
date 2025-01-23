@@ -1,5 +1,5 @@
 import BlockConfig from '@mono/web/payload/fields/BlockConfig';
-import type { Block } from 'payload/types';
+import type { Block } from 'payload';
 
 const CtaSections: Block = {
   slug: 'ctaSections',
