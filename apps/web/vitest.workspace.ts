@@ -10,12 +10,15 @@ const dirname =
 
 // More info at: https://storybook.js.org/docs/writing-tests/test-addon
 export default defineWorkspace([
-  'vitest.config.ts',
+  './vitest.config.ts',
   {
     plugins: [
       // The plugin will run tests for the stories defined in your Storybook config
       // See options at: https://storybook.js.org/docs/writing-tests/test-addon#storybooktest
-      storybookTest({ configDir: path.join(dirname, '.storybook') })
+      storybookTest({
+        configDir: path.join(dirname, '.storybook'),
+        storybookScript: 'pnpm storybook --ci'
+      })
     ],
     test: {
       name: 'storybook',
