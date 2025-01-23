@@ -7,12 +7,24 @@ import { stubTransform } from 'vite-transform-stub';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vitest/config';
 
+const monoDir = path.resolve(__dirname, '../../web/src');
+
+// TODO: Probably can get rid of this alias soon.
+// Just added to test migrating to Vite for test integration:
+const monoUiDir = path.resolve(__dirname, '../../../packages/ui/');
+
 const dirname =
   typeof __dirname !== 'undefined'
     ? __dirname
     : path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@mono/web': monoDir,
+      '@mono/ui': monoUiDir
+    }
+  },
   plugins: [
     tsconfigPaths(),
     react(),
