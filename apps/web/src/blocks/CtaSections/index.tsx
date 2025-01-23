@@ -7,7 +7,9 @@ import { ArrowRight } from 'lucide-react';
 
 export type CtaSectionsType = Omit<PayloadType, 'blockType'>;
 
-function CtaSections({ title, blockConfig }: CtaSectionsType) {
+function CtaSections({
+  title = 'Action-driving headline that creates urgency'
+}: CtaSectionsType) {
   return (
     <section
       className="bg-primary py-16 md:py-24"
@@ -26,7 +28,7 @@ function CtaSections({ title, blockConfig }: CtaSectionsType) {
               id="cta-heading"
               className="text-3xl md:text-4xl font-bold text-primary-foreground text-center"
             >
-              Action-driving headline that creates urgency
+              {title}
             </h2>
             {/* Section Description */}
             <p className="text-base md:text-lg text-primary-foreground text-center opacity-80">
