@@ -13,88 +13,88 @@ import configPromise from '@payload-config';
 import type { BasePayload } from 'payload';
 import { getPayload } from 'payload';
 
-interface SeedFnProps {
-  payload: BasePayload;
-}
+// interface SeedFnProps {
+//   payload: BasePayload;
+// }
 
-const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {
-  console.info(`@-->seeding the kitchenSink!`);
+// const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {
+//   console.info(`@-->seeding the kitchenSink!`);
 
-  const heroBlockBG = await heroBlockSchema({
-    blockConfig: {
-      contentWidth: 'xl'
-    },
-    blockName: 'Hero Block BG Image',
-    layout: 'contentLeft'
-  });
+//   const heroBlockBG = await heroBlockSchema({
+//     blockConfig: {
+//       contentWidth: 'xl'
+//     },
+//     blockName: 'Hero Block BG Image',
+//     layout: 'contentLeft'
+//   });
 
-  const heroBlockCTA = await heroBlockSchema({
-    blockName: 'Hero Block Image Right + CTA',
-    blockConfig: {
-      contentWidth: 'xl'
-    },
-    cta: {
-      link: {
-        type: 'external',
-        label: 'Read More',
-        externalHref: '/blog'
-      }
-    }
-  });
-  const cardGridBlock = await cardGridBlockSchema();
-  const galleryGridBlock = await galleryGridBlockSchema();
-  const imageTextBlockLeft = await imageTextBlockSchema(
-    'imgLeft',
-    'Text Image Block (image left)'
-  );
-  const imageTextBlockRight = await imageTextBlockSchema(
-    'imgRight',
-    'Text Image Block (image right)'
-  );
-  const iconGridBlock = await iconGridBlockSchema({
-    blockName: 'Icon Grid Block',
-    blockConfig: {
-      contentWidth: 'xl'
-    }
-  });
+//   const heroBlockCTA = await heroBlockSchema({
+//     blockName: 'Hero Block Image Right + CTA',
+//     blockConfig: {
+//       contentWidth: 'xl'
+//     },
+//     cta: {
+//       link: {
+//         type: 'external',
+//         label: 'Read More',
+//         externalHref: '/blog'
+//       }
+//     }
+//   });
+//   const cardGridBlock = await cardGridBlockSchema();
+//   const galleryGridBlock = await galleryGridBlockSchema();
+//   const imageTextBlockLeft = await imageTextBlockSchema(
+//     'imgLeft',
+//     'Text Image Block (image left)'
+//   );
+//   const imageTextBlockRight = await imageTextBlockSchema(
+//     'imgRight',
+//     'Text Image Block (image right)'
+//   );
+//   const iconGridBlock = await iconGridBlockSchema({
+//     blockName: 'Icon Grid Block',
+//     blockConfig: {
+//       contentWidth: 'xl'
+//     }
+//   });
 
-  const iFrameBlock = await iFrameBlockSchema({
-    blockName: 'iFrame Block',
-    blockConfig: {
-      contentWidth: 'xl'
-    }
-  });
+//   const iFrameBlock = await iFrameBlockSchema({
+//     blockName: 'iFrame Block',
+//     blockConfig: {
+//       contentWidth: 'xl'
+//     }
+//   });
 
-  // ResolveBlockSchema
-  // const ctaSections = await CtaSectionsSchema();
+//   // ResolveBlockSchema
+//   // const ctaSections = await CtaSectionsSchema();
 
-  await payload.create({
-    collection: 'pages',
-    data: {
-      pageTitle: 'Kitchen Sink',
-      slug: 'kitchen-sink',
-      blocks: [
-        // AddBlock
-        // ctaSections,
-        heroBlockBG,
-        heroBlockCTA,
-        sectionHeaderBlockSchema,
-        imageTextBlockLeft,
-        markdownBlockSchema,
-        imageTextBlockRight,
-        cardGridBlock,
-        iconGridBlock,
-        iFrameBlock,
-        faqBlockSchema,
-        galleryGridBlock
-      ]
-    }
-  });
-};
+//   await payload.create({
+//     collection: 'pages',
+//     data: {
+//       pageTitle: 'Kitchen Sink',
+//       slug: 'kitchen-sink',
+//       blocks: [
+//         // AddBlock
+//         // ctaSections,
+//         heroBlockBG,
+//         heroBlockCTA,
+//         sectionHeaderBlockSchema,
+//         imageTextBlockLeft,
+//         markdownBlockSchema,
+//         imageTextBlockRight,
+//         cardGridBlock,
+//         iconGridBlock,
+//         iFrameBlock,
+//         faqBlockSchema,
+//         galleryGridBlock
+//       ]
+//     }
+//   });
+// };
 
 const seed = async (): Promise<void> => {
-  const payload = await getPayload({ config: configPromise });
-  await seedKitchenSinkPage({ payload });
+  // const payload = await getPayload({ config: configPromise });
+  // await seedKitchenSinkPage({ payload });
   console.info('@-->successfully seeded the kitchen sink!');
 
   process.exit(0);
