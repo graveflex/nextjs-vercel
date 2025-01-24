@@ -1,4 +1,6 @@
 import CardGridBlock from '@mono/web/blocks/CardGridBlock/CardGridBlock.config';
+// InsertBlockConfigs
+import CtaSectionsBlock from '@mono/web/blocks/CtaSectionsBlock/CtaSectionsBlock.config';
 import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
 import FormBlock from '@mono/web/blocks/FormBlock/FormBlock.config';
 import FullBleedImageBlock from '@mono/web/blocks/FullBleedImageBlock/FullBleedImageBlock.config';
@@ -8,7 +10,7 @@ import IconGridBlock from '@mono/web/blocks/IconGridBlock/IconGridBlock.config';
 import IframeBlock from '@mono/web/blocks/IframeBlock/IframeBlock.config';
 import MarkdownBlock from '@mono/web/blocks/MarkdownBlock/MarkdownBlock.config';
 import SectionHeaderBlock from '@mono/web/blocks/SectionHeaderBlock/SectionHeaderBlock.config';
-// InsertBlockConfigs
+
 import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
 import VideoBlock from '@mono/web/blocks/VideoBlock/VideoBlock.config';
 import { WEB_URL } from '@mono/web/lib/constants';
@@ -56,6 +58,7 @@ const HomePage: GlobalConfig = {
               type: 'blocks',
               blocks: [
                 // InsertBlockConfigFields
+                CtaSectionsBlock,
                 IframeBlock,
                 IconGridBlock,
                 FullBleedImageBlock('Home'),
