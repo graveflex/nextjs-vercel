@@ -1,6 +1,6 @@
-import type { CtaSectionsT as PayloadType } from '@mono/types/payload-types';
 import Wrapper from '@mono/ui/components/Wrapper';
 import React from 'react';
+import type { CtaSectionsT as PayloadType } from './../../../../../packages/types/payload-types';
 
 import { Button } from '@mono/web/components/ui/Button';
 import { ArrowRight } from 'lucide-react';
