@@ -29,7 +29,7 @@ const mobileImage: Image = {
   height: 800,
   createdAt: '2023-09-13T16:32:11.202Z',
   updatedAt: '2023-09-13T16:32:11.202Z',
-  url: faker.image.url({ category: 'abstract', width: 1200 })
+  url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 })
 };
 
 const desktopImage: Image = {
@@ -42,7 +42,7 @@ const desktopImage: Image = {
   height: 450,
   createdAt: '2023-09-13T16:32:11.202Z',
   updatedAt: '2023-09-13T16:32:11.202Z',
-  url: faker.image.url({ category: 'abstract', width: 1200 })
+  url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 })
 };
 
 const responsiveImage = multipleImages(desktopImage, mobileImage, 'desktop');
@@ -64,7 +64,7 @@ export const Defaults: Story = {
           mimeType: 'image/jpeg',
           filesize: 13968,
           filename: 'module0-300x211.jpg',
-          url: faker.image.url({ category: 'abstract', width: 1200 })
+          url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 })
         },
         mobile: {
           width: 1024,
@@ -72,7 +72,7 @@ export const Defaults: Story = {
           mimeType: 'image/jpeg',
           filesize: 101228,
           filename: 'module0-1024x722.jpg',
-          url: faker.image.url({ category: 'abstract', width: 1200 })
+          url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 })
         },
         desktop: {
           width: 2048,
@@ -80,19 +80,19 @@ export const Defaults: Story = {
           mimeType: 'image/jpeg',
           filesize: 376199,
           filename: 'module0-2048x1445.jpg',
-          url: faker.image.url({ category: 'abstract', width: 1200 })
+          url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 })
         },
         ultrawide: {
           width: 4096,
           height: 2891,
           mimeType: 'image/jpeg',
           filesize: 1557423,
-          url: faker.image.url({ category: 'abstract', width: 1200 })
+          url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 })
         }
       },
       createdAt: '2023-09-13T16:32:11.202Z',
       updatedAt: '2023-09-13T16:32:11.202Z',
-      url: faker.image.url({ category: 'abstract', width: 1200 })
+      url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 })
     }
   }
 };
@@ -109,7 +109,7 @@ export const NoSizes: Story = {
       height: 450,
       createdAt: '2023-09-13T16:32:11.202Z',
       updatedAt: '2023-09-13T16:32:11.202Z',
-      url: faker.image.url({ category: 'abstract', width: 1200 })
+      url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 })
     }
   }
 };
@@ -125,7 +125,7 @@ export const NoSizesNoAlt: Story = {
       height: 1000,
       createdAt: '2023-09-13T16:32:11.202Z',
       updatedAt: '2023-09-13T16:32:11.202Z',
-      url: faker.image.url({ category: 'abstract', width: 1200 })
+      url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 })
     }
   }
 };
@@ -146,7 +146,7 @@ export const NoAlt: Story = {
           mimeType: 'image/jpeg',
           filesize: 13968,
           filename: 'module0-300x211.jpg',
-          url: faker.image.url({ category: 'abstract', width: 1200 })
+          url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 })
         },
         mobile: {
           width: 1024,
@@ -154,7 +154,7 @@ export const NoAlt: Story = {
           mimeType: 'image/jpeg',
           filesize: 101228,
           filename: 'module0-1024x722.jpg',
-          url: faker.image.url({ category: 'abstract', width: 1200 })
+          url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 })
         },
         desktop: {
           width: 2048,
@@ -162,19 +162,19 @@ export const NoAlt: Story = {
           mimeType: 'image/jpeg',
           filesize: 376199,
           filename: 'module0-2048x1445.jpg',
-          url: faker.image.url({ category: 'abstract', width: 1200 })
+          url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 })
         },
         ultrawide: {
           width: 4096,
           height: 2891,
           mimeType: 'image/jpeg',
           filesize: 1557423,
-          url: faker.image.url({ category: 'abstract', width: 1200 })
+          url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 })
         }
       },
       createdAt: '2023-09-13T16:32:11.202Z',
       updatedAt: '2023-09-13T16:32:11.202Z',
-      url: faker.image.url({ category: 'abstract', width: 1200 })
+      url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 })
     }
   }
 };
@@ -264,7 +264,7 @@ export const MultipleAspectRatios: Story = {
       alt: 'test',
       updatedAt: '2024-01-09T21:42:47.363Z',
       createdAt: '2024-01-09T21:42:47.363Z',
-      url: faker.image.url({ category: 'abstract', width: 1200 }),
+      url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 }),
       filename: 'small-image-2-1024x768.jpg',
       mimeType: 'image/jpeg',
       filesize: 77483,
@@ -276,7 +276,10 @@ export const MultipleAspectRatios: Story = {
       },
       sizes: {
         tablet: {
-          url: faker.image.url({ category: 'abstract', width: 1200 }),
+          url: faker.image.urlLoremFlickr({
+            category: 'abstract',
+            width: 1200
+          }),
           width: 300,
           height: 200,
           mimeType: 'image/jpeg',

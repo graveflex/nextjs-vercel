@@ -1,7 +1,7 @@
 import path from 'node:path';
+import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
-import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin';
 
 const monoDir = path.resolve(__dirname, '../../web/src');
 

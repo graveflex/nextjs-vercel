@@ -13,7 +13,8 @@ const meta: Meta<CtaLinkType> = {
 };
 
 export default meta;
-type Story = StoryObj<CtaLinkType>;
+
+type Story = StoryObj<typeof meta>;
 
 export const Defaults: Story = {
   args: {

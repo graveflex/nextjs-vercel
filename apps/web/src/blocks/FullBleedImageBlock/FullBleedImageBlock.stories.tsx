@@ -21,7 +21,7 @@ const image = {
   alt: 'placeholder',
   updatedAt: '2024-01-05T20:29:44.749Z',
   createdAt: '2024-01-05T20:29:44.749Z',
-  url: faker.image.urlPicsumPhotos(),
+  url: faker.image.urlLoremFlickr(),
   filename: 'Logo.svg',
   mimeType: 'image/svg+xml',
   filesize: 7144,

@@ -25,7 +25,7 @@ type Story = StoryObj<WrapperProps>;
 export const CenterSmContent: Story = {
   args: {
     ...sharedArgs,
-    contentWidth: 'sm',
+    contentWidth: 'full',
     backgroundColor: 'blue20'
   }
 };
@@ -34,7 +34,7 @@ export const CenterXxlContent: Story = {
   args: {
     ...sharedArgs,
     backgroundColor: 'blue20',
-    contentWidth: 'xxl'
+    contentWidth: 'full'
   }
 };
 
@@ -56,13 +56,13 @@ export const MaxContentNoGutter: Story = {
 export const BackgroundImage: Story = {
   args: {
     ...sharedArgs,
-    contentWidth: 'sm',
+    contentWidth: 'full',
     backgroundImage: {
       id: 1,
       alt: 'Myopic Logo',
       updatedAt: '2024-01-05T20:29:44.749Z',
       createdAt: '2024-01-05T20:29:44.749Z',
-      url: faker.image.url({ category: 'abstract', width: 1200 }),
+      url: faker.image.urlLoremFlickr({ category: 'abstract', width: 1200 }),
       filename: 'Logo.svg',
       mimeType: 'image/svg+xml',
       filesize: 7144,

@@ -4,9 +4,7 @@
   "main": "./index.tsx",
   "types": "./index.tsx",
   "license": "MIT",
-  "files": [
-    "**"
-  ],
+  "files": ["**"],
   "scripts": {
     "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
     "types": "tsc --noEmit --skipLibCheck"

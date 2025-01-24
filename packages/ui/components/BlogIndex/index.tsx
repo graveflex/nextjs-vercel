@@ -33,7 +33,7 @@ function BlogIndex({ posts, paginationProps }: BlogIndexType) {
   };
 
   return (
-    <Wrapper contentWidth="xl">
+    <Wrapper contentWidth="full">
       <div ref={ref}>
         {posts && (
           <div>

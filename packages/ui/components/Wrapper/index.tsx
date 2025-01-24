@@ -8,11 +8,11 @@ type paddingType = {
 };
 
 export interface WrapperProps extends React.ComponentProps<'section'> {
-  backgroundColor?: string;
+  backgroundColor?: string | null;
   backgroundImage?: number | PayloadImageProps | null | undefined;
-  contentWidth?: 'full' | null;
+  contentWidth?: string | null;
   fullBleed?: boolean;
-  gutter?: boolean | number;
+  gutter?: boolean | string | number;
   className?: string;
   p?: {
     xs?: paddingType;

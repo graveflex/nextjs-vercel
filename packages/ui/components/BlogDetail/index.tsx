@@ -84,7 +84,7 @@ function BlogDetail({ postData }: BlogDetailType) {
     (postData as Post) ?? {};
 
   return (
-    <Wrapper contentWidth="xxl">
+    <Wrapper contentWidth="full">
       <div>
         {title && <div>{title}</div>}
         {subTitle && <div>{subTitle}</div>}
