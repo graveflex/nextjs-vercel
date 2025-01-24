@@ -9,7 +9,7 @@ import { ArrowRight } from 'lucide-react';
 export type CtaSectionsBlockType = Omit<PayloadType, 'blockType'>;
 
 function CtaSections({
-  title = 'Action-driving headline that creates urgency'
+  title = 'Action-Driving headline that creates urgency'
 }: CtaSectionsBlockType) {
   return (
     <section
