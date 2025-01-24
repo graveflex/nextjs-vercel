@@ -1,7 +1,7 @@
 import path from 'path';
 import type { StorybookConfig } from '@storybook/experimental-nextjs-vite';
 
-const nextConfigPath = path.resolve(__dirname, '../../web/next.config.js');
+const nextConfigPath = path.resolve(__dirname, '../next.config.mjs');
 
 const config: StorybookConfig = {
   stories: [
@@ -10,7 +10,6 @@ const config: StorybookConfig = {
     '../../../apps/web/**/**/*.stories.tsx'
   ],
   addons: [
-    // '@storybook/addon-webpack5-compiler-swc',
     '@storybook/addon-essentials',
     '@storybook/addon-links',
     '@storybook/addon-a11y',
@@ -27,6 +26,9 @@ const config: StorybookConfig = {
     options: {
       nextConfigPath
     }
+  },
+  features: {
+    experimentalRSC: true
   },
   docs: {
     autodocs: true

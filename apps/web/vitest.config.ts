@@ -1,9 +1,7 @@
 import path from 'node:path';
 import react from '@vitejs/plugin-react';
-import svgr from 'vite-plugin-svgr';
-import { stubTransform } from 'vite-transform-stub';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vitest/config';
+import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin';
 
 const monoDir = path.resolve(__dirname, '../../web/src');
 
@@ -19,29 +17,19 @@ export default defineConfig({
     }
   },
   plugins: [
-    tsconfigPaths(),
     react(),
-    svgr(),
-    stubTransform(/^.+\.(gif|jpe?g|tiff?|png|webp|bmp)(\?\w+)?$/)
+    storybookTest({
+      configDir: path.join(__dirname, '.storybook'),
+      storybookUrl: `http://127.0.0.1:${process.env.DOCS_PORT}`,
+      storybookScript: 'pnpm dev:stories --ci'
+    })
   ],
   test: {
-    coverage: {
-      provider: 'v8',
-      reporter: ['text', 'html', 'cobertura'],
-      include: ['./src/**/*']
+    browser: {
+      enabled: true,
+      provider: 'playwright',
+      name: 'chromium'
     },
-    globals: true,
-    setupFiles: ['./setup.ts'],
-    environment: 'jsdom',
-    deps: {
-      inline: ['vitest-canvas-mock']
-    },
-    // For this config, check https://github.com/vitest-dev/vitest/issues/740
-    // threads: false,
-    environmentOptions: {
-      jsdom: {
-        resources: 'usable'
-      }
-    }
+    setupFiles: './.storybook/vitest.setup.ts'
   }
 });

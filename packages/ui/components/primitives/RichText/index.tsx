@@ -1,5 +1,4 @@
 import type React from 'react';
-import type { DefaultTheme } from 'styled-components';
 import type { ResponsivePayloadWrapperProps } from '../ResponsivePayloadImage';
 import serializeText from './utils/serializeText';
 
@@ -48,7 +47,7 @@ export type PayloadRichTextProps =
       [k: string]: unknown;
       className?: string;
       $isSubHeadSans?: boolean;
-      $subHeadColor?: keyof DefaultTheme['colorTokens'];
+      $subHeadColor?: string;
     }
   | (null & BaseRichTextProps);
 

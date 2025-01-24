@@ -4,12 +4,12 @@
   "main": "./index.tsx",
   "types": "./index.tsx",
   "license": "MIT",
-  "files": ["**"],
+  "files": [
+    "**"
+  ],
   "scripts": {
     "clean": "rm -rf -- ./.turbo ./dist ./coverage ./node_modules",
-    "types": "tsc --noEmit --skipLibCheck",
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "types": "tsc --noEmit --skipLibCheck"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.0",
@@ -20,6 +20,8 @@
     "@payloadcms/richtext-lexical": "latest",
     "@storybook/react": "latest",
     "@storybook/test": "latest",
+    "@storybook/experimental-addon-test": "latest",
+    "@storybook/experimental-nextjs-vite": "latest",
     "@testing-library/jest-dom": "^6.4.1",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.5",
@@ -27,7 +29,7 @@
     "@types/luxon": "^3.4.2",
     "@types/react": "^18.2.74",
     "@types/react-dom": "^18.2.24",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react": "latest",
     "framer-motion": "latest",
     "lodash": "latest",
     "luxon": "^3.4.4",
@@ -36,16 +38,15 @@
     "react": "latest",
     "react-hook-form": "^7.51.3",
     "react-paginate": "^8.2.0",
-    "styled-components": "latest",
     "typescript": "latest",
     "vite-plugin-svgr": "latest",
-    "vite-transform-stub": "^1.0.1",
-    "vite-tsconfig-paths": "^4.3.2",
+    "vite-transform-stub": "latest",
+    "vite-tsconfig-paths": "latest",
     "vitest": "latest",
-    "vitest-canvas-mock": "latest"
+    "vitest-canvas-mock": "latest",
+    "vitest-plugin": "link:@storybook/experimental-addon-test/vitest-plugin"
   },
   "dependencies": {
-    "@types/styled-components": "latest",
     "react-loader-spinner": "^6.1.6"
   }
 }

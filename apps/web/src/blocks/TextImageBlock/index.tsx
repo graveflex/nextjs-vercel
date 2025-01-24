@@ -8,7 +8,6 @@ import Wrapper from '@mono/ui/components/Wrapper';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
 import React, { useMemo } from 'react';
-import { Controller } from 'react-hook-form';
 
 export type TextImageBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -28,7 +27,6 @@ function TextImageBlock({
   image,
   items,
   blockConfig,
-  form,
   video
 }: TextImageBlockType) {
   const Items = useMemo(() => {
@@ -51,20 +49,6 @@ function TextImageBlock({
         <div>
           {content && <RichText {...content} />}
           {items && <div>{Items}</div>}
-          {form?.textinput?.placeholder && form?.cta && (
-            <form onSubmit={(data) => console.info(data)}>
-              <Controller
-                name={form?.textinput?.name || 'textInput'}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <input
-                    placeholder={form?.textinput?.placeholder || undefined}
-                    {...field}
-                  />
-                )}
-              />
-            </form>
-          )}
         </div>
         {image && !video && (
           <ResponsivePayloadImage
