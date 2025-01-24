@@ -8,7 +8,7 @@ import Wrapper from '@mono/ui/components/Wrapper';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
 import React, { useMemo } from 'react';
-import { Controller } from 'react-hook-form';
+// import { Controller } from 'react-hook-form';
 
 export type TextImageBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -53,7 +53,7 @@ function TextImageBlock({
           {items && <div>{Items}</div>}
           {form?.textinput?.placeholder && form?.cta && (
             <form onSubmit={(data) => console.info(data)}>
-              <Controller
+              {/* <Controller
                 name={form?.textinput?.name || 'textInput'}
                 rules={{ required: true }}
                 render={({ field }) => (
@@ -62,7 +62,7 @@ function TextImageBlock({
                     {...field}
                   />
                 )}
-              />
+              /> */}
             </form>
           )}
         </div>
