@@ -1,15 +1,13 @@
+// @ts-ignore
 import Wrapper from '@mono/ui/components/Wrapper';
 import React from 'react';
-import type { CtaSectionsT as PayloadType } from './../../../../../packages/types/payload-types';
 
 import { Button } from '@mono/web/components/ui/Button';
 import { ArrowRight } from 'lucide-react';
 
-export type CtaSectionsType = Omit<PayloadType, 'blockType'>;
-
 function CtaSections({
   title = 'Action-driving headline that creates urgency'
-}: CtaSectionsType) {
+}) {
   return (
     <section
       className="bg-primary py-16 md:py-24"

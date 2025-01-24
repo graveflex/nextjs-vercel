@@ -1,10 +1,10 @@
+// @ts-ignore
 import { faker } from '@faker-js/faker';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import type { CtaSectionsType } from '.';
 import CtaSections from '.';
 
-const meta: Meta<CtaSectionsType> = {
+const meta: Meta = {
   title: 'blocks/CtaSections',
   component: CtaSections,
   parameters: {
@@ -14,7 +14,7 @@ const meta: Meta<CtaSectionsType> = {
 };
 
 export default meta;
-type Story = StoryObj<CtaSectionsType>;
+type Story = StoryObj;
 
 export const Defaults: Story = {
   args: {
