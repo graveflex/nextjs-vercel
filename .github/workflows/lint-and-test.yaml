@@ -53,6 +53,9 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install
 
+      - name: Install Playwright Browsers
+        run: pnpm dlx playwright install --with-deps
+
       - name: ci
         env:
           BLOB_READ_WRITE_TOKEN: vercel_blob_rw_xxxxxxxxxxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
