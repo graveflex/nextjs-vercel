@@ -58,7 +58,7 @@ const HomePage: GlobalConfig = {
               type: 'blocks',
               blocks: [
                 // InsertBlockConfigFields
-                HeaderSectionBlock,
+                HeaderSectionBlock('Home'),
                 IframeBlock,
                 IconGridBlock,
                 FullBleedImageBlock('Home'),

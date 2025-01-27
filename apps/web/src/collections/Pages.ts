@@ -61,7 +61,7 @@ const Pages: CollectionConfig = {
               type: 'blocks',
               blocks: [
                 // InsertBlockConfigFields
-                HeaderSectionBlock,
+                HeaderSectionBlock('Page'),
                 IframeBlock,
                 IconGridBlock,
                 FullBleedImageBlock('Page'),

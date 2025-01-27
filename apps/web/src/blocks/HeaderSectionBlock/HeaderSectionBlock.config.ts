@@ -1,9 +1,10 @@
 import BlockConfig from '@mono/web/payload/fields/BlockConfig';
 import type { Block } from 'payload';
 
-const HeaderSectionBlock: Block = {
+const HeaderSectionBlock = (prefix: string): Block => ({
   slug: 'headerSectionBlock',
   interfaceName: 'HeaderSectionBlockT',
+  dbName: `${prefix}hdrSec`,
   fields: [
     BlockConfig(),
     {
@@ -14,6 +15,6 @@ const HeaderSectionBlock: Block = {
       required: false
     }
   ]
-};
+});
 
 export default HeaderSectionBlock;
