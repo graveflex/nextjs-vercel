@@ -120,6 +120,7 @@
     "framer-motion": "latest",
     "graphql-playground-middleware-express": "^1.7.23",
     "input-otp": "^1.4.2",
+    "lodash": "latest",
     "lucide-react": "^0.473.0",
     "md5": "^2.3.0",
     "next": "latest",

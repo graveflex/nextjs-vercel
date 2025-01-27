@@ -31,5 +31,48 @@ export default defineConfig({
       name: 'chromium'
     },
     setupFiles: './.storybook/vitest.setup.ts'
+  },
+  optimizeDeps: {
+    include: [
+      '@radix-ui/react-avatar',
+      '@radix-ui/react-toggle-group',
+      '@radix-ui/react-alert-dialog',
+      '@radix-ui/react-tooltip',
+      '@radix-ui/react-slider',
+      '@radix-ui/react-collapsible',
+      '@radix-ui/react-tabs',
+      '@radix-ui/react-label',
+      'embla-carousel-react',
+      'react-resizable-panels',
+      'react-day-picker',
+      'next-themes',
+      '@radix-ui/react-slot',
+      'class-variance-authority',
+      '@radix-ui/react-progress',
+      '@radix-ui/react-select',
+      'clsx',
+      'tailwind-merge',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-switch',
+      '@radix-ui/react-menubar',
+      '@radix-ui/react-toast',
+      '@radix-ui/react-checkbox',
+      'sb-original/default-loader',
+      'sb-original/image-context',
+      'next/link',
+      'lodash/isNull',
+      '@radix-ui/react-toggle',
+      'vaul',
+      '@radix-ui/react-separator',
+      '@radix-ui/react-accordion',
+      '@radix-ui/react-popover',
+      '@radix-ui/react-scroll-area',
+      '@radix-ui/react-aspect-ratio',
+      '@radix-ui/react-navigation-menu',
+      '@radix-ui/react-radio-group',
+      '@radix-ui/react-dropdown-menu',
+      '@radix-ui/react-hover-card',
+      '@radix-ui/react-context-menu'
+    ]
   }
 });

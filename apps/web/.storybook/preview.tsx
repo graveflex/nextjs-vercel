@@ -10,5 +10,11 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/
     }
+  },
+
+  // necessary for react 19
+  reactOptions: {
+    legacyRootApi: false,
+    strictMode: false
   }
 };
