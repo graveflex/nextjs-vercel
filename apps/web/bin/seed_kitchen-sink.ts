@@ -1,12 +1,13 @@
 import { cardGridBlockSchema } from '@mono/web/blocks/CardGridBlock/CardGridBlockSeed';
 import { faqBlockSchema } from '@mono/web/blocks/FAQBlock/FAQBlockSeed';
 import { galleryGridBlockSchema } from '@mono/web/blocks/GalleryGridBlock/GalleryGridBlockSeed';
+// ImportBlockSchema
+import { HeaderSectionBlockSchema } from '@mono/web/blocks/HeaderSectionBlock/HeaderSectionBlockSeed';
 import { heroBlockSchema } from '@mono/web/blocks/HeroBlock/HeroBlockSeed';
 import { iconGridBlockSchema } from '@mono/web/blocks/IconGridBlock/IconGridSeed';
 import { iFrameBlockSchema } from '@mono/web/blocks/IframeBlock/iframeSeed';
 import { markdownBlockSchema } from '@mono/web/blocks/MarkdownBlock/MarkdownBlockSeed';
 import { sectionHeaderBlockSchema } from '@mono/web/blocks/SectionHeaderBlock/SectionHeaderSeed';
-// ImportBlockSchema
 import { imageTextBlockSchema } from '@mono/web/blocks/TextImageBlock/TextImageBlockSeed';
 import configPromise from '@payload-config';
 import type { BasePayload } from 'payload';
@@ -65,6 +66,7 @@ const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {
   });
 
   // ResolveBlockSchema
+  const headerSectionBlock = await HeaderSectionBlockSchema();
 
   await payload.create({
     collection: 'pages',
@@ -73,6 +75,7 @@ const seedKitchenSinkPage = async ({ payload }: SeedFnProps) => {
       slug: 'kitchen-sink',
       blocks: [
         // AddBlock
+        headerSectionBlock,
         heroBlockBG,
         heroBlockCTA,
         sectionHeaderBlockSchema,

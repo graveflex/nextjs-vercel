@@ -11,6 +11,12 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
+  headerSectionBlock: dynamic(
+    () => import('@mono/web/blocks/HeaderSectionBlock'),
+    {
+      ...defaultOpts
+    }
+  ),
   fullBleedImageBlock: dynamic(
     () => import('@mono/web/blocks/FullBleedImageBlock'),
     {

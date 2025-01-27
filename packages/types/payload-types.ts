@@ -120,6 +120,7 @@ export interface Page {
   id: number;
   blocks?:
     | (
+        | HeaderSectionBlockT
         | IframeBlockT
         | IconGridBlockT
         | FullBleedImageBlockT
@@ -159,9 +160,9 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IframeBlockT".
+ * via the `definition` "HeaderSectionBlockT".
  */
-export interface IframeBlockT {
+export interface HeaderSectionBlockT {
   blockConfig?: {
     theme?: ('_' | 'light' | 'dark') | null;
     backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
@@ -190,25 +191,10 @@ export interface IframeBlockT {
       };
     };
   };
-  title?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  iframe: string;
+  title?: string | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'iframeBlock';
+  blockType: 'headerSectionBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -282,6 +268,59 @@ export interface Image {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IframeBlockT".
+ */
+export interface IframeBlockT {
+  blockConfig?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
+    backgroundImage?: (number | null) | Image;
+    /**
+     * Block will not appear on page
+     */
+    hidden?: boolean | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    p?: {
+      xs?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      md?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      lg?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+      xl?: {
+        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+      };
+    };
+  };
+  title?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  iframe: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'iframeBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1458,6 +1497,7 @@ export interface PagesSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
+        headerSectionBlock?: T | HeaderSectionBlockTSelect<T>;
         iframeBlock?: T | IframeBlockTSelect<T>;
         iconGridBlock?: T | IconGridBlockTSelect<T>;
         fullBleedImageBlock?: T | FullBleedImageBlockTSelect<T>;
@@ -1486,6 +1526,52 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeaderSectionBlockT_select".
+ */
+export interface HeaderSectionBlockTSelect<T extends boolean = true> {
+  blockConfig?:
+    | T
+    | {
+        theme?: T;
+        backgroundColor?: T;
+        backgroundImage?: T;
+        hidden?: T;
+        contentWidth?: T;
+        p?:
+          | T
+          | {
+              xs?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              md?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              lg?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+              xl?:
+                | T
+                | {
+                    paddingTop?: T;
+                    paddingBottom?: T;
+                  };
+            };
+      };
+  title?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2655,6 +2741,7 @@ export interface Homepage {
   id: number;
   blocks?:
     | (
+        | HeaderSectionBlockT
         | IframeBlockT
         | IconGridBlockT
         | FullBleedImageBlockT
@@ -2688,6 +2775,7 @@ export interface BlogIndex {
   id: number;
   blocks?:
     | (
+        | HeaderSectionBlockT
         | IframeBlockT
         | IconGridBlockT
         | FullBleedImageBlockT
@@ -2814,6 +2902,7 @@ export interface HomepageSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
+        headerSectionBlock?: T | HeaderSectionBlockTSelect<T>;
         iframeBlock?: T | IframeBlockTSelect<T>;
         iconGridBlock?: T | IconGridBlockTSelect<T>;
         fullBleedImageBlock?: T | FullBleedImageBlockTSelect<T>;
@@ -2844,6 +2933,7 @@ export interface BlogIndexSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
+        headerSectionBlock?: T | HeaderSectionBlockTSelect<T>;
         iframeBlock?: T | IframeBlockTSelect<T>;
         iconGridBlock?: T | IconGridBlockTSelect<T>;
         fullBleedImageBlock?: T | FullBleedImageBlockTSelect<T>;
