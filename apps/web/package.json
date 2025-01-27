@@ -27,7 +27,8 @@
     "seed:kitchenSink": "tsx ./bin/seed_kitchen-sink.ts",
     "seed:nav": "tsx ./bin/seed-nav.ts",
     "seed:blog": "tsx ./bin/seed_blog.ts",
-    "seed:all": "pnpm seed:nav && pnpm seed:blog && pnpm seed:kitchenSink"
+    "seed:all": "pnpm seed:nav && pnpm seed:blog && pnpm seed:kitchenSink",
+    "test:browser": "vitest --workspace=../../vitest.workspace.ts"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.10.1",
@@ -83,16 +84,12 @@
     "@storybook/addon-a11y": "latest",
     "@storybook/addon-actions": "latest",
     "@storybook/addon-essentials": "latest",
-    "@storybook/addon-interactions": "latest",
     "@storybook/addon-links": "latest",
     "@storybook/addon-onboarding": "latest",
     "@storybook/addon-styling-webpack": "latest",
     "@storybook/addon-themes": "latest",
-    "@storybook/addon-webpack5-compiler-swc": "^1.0.2",
     "@storybook/blocks": "latest",
-    "@storybook/nextjs": "latest",
     "@storybook/react": "latest",
-    "@storybook/test": "latest",
     "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "4.0.0-beta.9",
     "@testing-library/jest-dom": "^6.4.2",
@@ -104,7 +101,6 @@
     "@types/ramda": "^0.30.0",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "@types/styled-components": "latest",
     "@types/tinycolor2": "^1.4.6",
     "@types/tmp": "^0.2.6",
     "@types/voca": "^1.4.5",
@@ -124,6 +120,7 @@
     "framer-motion": "latest",
     "graphql-playground-middleware-express": "^1.7.23",
     "input-otp": "^1.4.2",
+    "lodash": "latest",
     "lucide-react": "^0.473.0",
     "md5": "^2.3.0",
     "next": "latest",
@@ -144,7 +141,6 @@
     "sharp": "0.33.3",
     "sonner": "^1.7.2",
     "storybook": "latest",
-    "styled-components": "latest",
     "tailwind-merge": "^2.6.0",
     "tailwindcss": "4.0.0-beta.9",
     "tailwindcss-animate": "^1.0.7",
@@ -163,6 +159,14 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@types/nodemailer": "^6.4.15"
+    "@storybook/experimental-addon-test": "latest",
+    "@storybook/experimental-nextjs-vite": "latest",
+    "@storybook/test": "latest",
+    "@types/nodemailer": "^6.4.15",
+    "@vitest/browser": "latest",
+    "@vitest/coverage-v8": "latest",
+    "playwright": "^1.50.0",
+    "vitest-browser-react": "latest",
+    "vitest-plugin": "link:@storybook/experimental-addon-test/vitest-plugin"
   }
 }

@@ -1,8 +1,6 @@
 import type { Image as PayloadImageProps } from '@mono/types/payload-types';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import type React from 'react';
-import { useMemo } from 'react';
-import type { DefaultTheme } from 'styled-components';
 
 type paddingType = {
   paddingTop?: string | null;
@@ -10,18 +8,11 @@ type paddingType = {
 };
 
 export interface WrapperProps extends React.ComponentProps<'section'> {
-  backgroundColor?:
-    | keyof DefaultTheme['allColors']
-    | keyof DefaultTheme['themeColors']
-    | keyof DefaultTheme['colorTokens']
-    | null;
+  backgroundColor?: string | null;
   backgroundImage?: number | PayloadImageProps | null | undefined;
-  contentWidth?:
-    | DefaultTheme['settings']['breakpointNames'][number]
-    | 'full'
-    | null;
+  contentWidth?: string | null;
   fullBleed?: boolean;
-  gutter?: boolean | keyof DefaultTheme['spacingTokens'];
+  gutter?: boolean | string | number;
   className?: string;
   p?: {
     xs?: paddingType;

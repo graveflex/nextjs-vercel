@@ -29,7 +29,10 @@ export const Defaults: Story = {
             alt: 'Card Image',
             updatedAt: '2024-01-05T20:29:44.749Z',
             createdAt: '2024-01-05T20:29:44.749Z',
-            url: faker.image.abstract(1200),
+            url: faker.image.urlLoremFlickr({
+              category: 'abstract',
+              width: 1200
+            }),
             filename: 'Logo.svg',
             mimeType: 'image/svg+xml',
             filesize: 7144,
@@ -58,7 +61,10 @@ export const Defaults: Story = {
             alt: 'Card Image',
             updatedAt: '2024-01-05T20:29:44.749Z',
             createdAt: '2024-01-05T20:29:44.749Z',
-            url: faker.image.abstract(1200),
+            url: faker.image.urlLoremFlickr({
+              category: 'abstract',
+              width: 1200
+            }),
             filename: 'Logo.svg',
             mimeType: 'image/svg+xml',
             filesize: 7144,
@@ -87,7 +93,10 @@ export const Defaults: Story = {
             alt: 'Card Image',
             updatedAt: '2024-01-05T20:29:44.749Z',
             createdAt: '2024-01-05T20:29:44.749Z',
-            url: faker.image.abstract(1200),
+            url: faker.image.urlLoremFlickr({
+              category: 'abstract',
+              width: 1200
+            }),
             filename: 'Logo.svg',
             mimeType: 'image/svg+xml',
             filesize: 7144,
@@ -123,7 +132,10 @@ export const FourCards: Story = {
             alt: 'Card Image',
             updatedAt: '2024-01-05T20:29:44.749Z',
             createdAt: '2024-01-05T20:29:44.749Z',
-            url: faker.image.abstract(1200),
+            url: faker.image.urlLoremFlickr({
+              category: 'abstract',
+              width: 1200
+            }),
             filename: 'Logo.svg',
             mimeType: 'image/svg+xml',
             filesize: 7144,
@@ -152,7 +164,10 @@ export const FourCards: Story = {
             alt: 'Card Image',
             updatedAt: '2024-01-05T20:29:44.749Z',
             createdAt: '2024-01-05T20:29:44.749Z',
-            url: faker.image.abstract(1200),
+            url: faker.image.urlLoremFlickr({
+              category: 'abstract',
+              width: 1200
+            }),
             filename: 'Logo.svg',
             mimeType: 'image/svg+xml',
             filesize: 7144,
@@ -181,7 +196,10 @@ export const FourCards: Story = {
             alt: 'Card Image',
             updatedAt: '2024-01-05T20:29:44.749Z',
             createdAt: '2024-01-05T20:29:44.749Z',
-            url: faker.image.abstract(1200),
+            url: faker.image.urlLoremFlickr({
+              category: 'abstract',
+              width: 1200
+            }),
             filename: 'Logo.svg',
             mimeType: 'image/svg+xml',
             filesize: 7144,
@@ -210,7 +228,10 @@ export const FourCards: Story = {
             alt: 'Card Image',
             updatedAt: '2024-01-05T20:29:44.749Z',
             createdAt: '2024-01-05T20:29:44.749Z',
-            url: faker.image.abstract(1200),
+            url: faker.image.urlLoremFlickr({
+              category: 'abstract',
+              width: 1200
+            }),
             filename: 'Logo.svg',
             mimeType: 'image/svg+xml',
             filesize: 7144,

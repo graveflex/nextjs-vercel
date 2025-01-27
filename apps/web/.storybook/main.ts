@@ -1,7 +1,7 @@
 import path from 'path';
-import type { StorybookConfig } from '@storybook/nextjs';
+import type { StorybookConfig } from '@storybook/experimental-nextjs-vite';
 
-const nextConfigPath = path.resolve(__dirname, '../../web/next.config.js');
+const nextConfigPath = path.resolve(__dirname, '../next.config.mjs');
 
 const config: StorybookConfig = {
   stories: [
@@ -10,57 +10,42 @@ const config: StorybookConfig = {
     '../../../apps/web/**/**/*.stories.tsx'
   ],
   addons: [
-    // '@storybook/addon-webpack5-compiler-swc',
     '@storybook/addon-essentials',
     '@storybook/addon-links',
     '@storybook/addon-a11y',
     {
       name: '@storybook/addon-styling-webpack',
       options: {
-        rules: [
-          {
-            test: /\.css$/,
-            sideEffects: true,
-            use: [
-              require.resolve('style-loader'),
-              {
-                loader: require.resolve('css-loader'),
-                options: {
-                  importLoaders: 1
-                }
-              },
-              {
-                loader: require.resolve('postcss-loader'),
-                options: {
-                  implementation: require.resolve('postcss')
-                }
-              }
-            ]
-          }
-        ]
+        rules: []
       }
-    }
+    },
+    '@storybook/experimental-addon-test'
   ],
   framework: {
-    name: '@storybook/nextjs',
+    name: '@storybook/experimental-nextjs-vite',
     options: {
-      image: {
-        loading: 'eager'
-      },
       nextConfigPath
     }
+  },
+  features: {
+    experimentalRSC: true
   },
   docs: {
     autodocs: true
   },
   staticDirs: [],
-  webpackFinal: async (c) => {
+  viteFinal: async (c) => {
     const monoDir = path.resolve(__dirname, '../../web/src');
+
+    // TODO: Probably can get rid of this alias soon.
+    // Just added to test migrating to Vite for test integration:
+    const monoUiDir = path.resolve(__dirname, '../../../packages/ui/');
     if (c?.resolve?.alias) {
       // eslint-disable-next-line
       c.resolve.alias = {
         ...(c.resolve.alias ?? {}),
-        '@mono/web': monoDir
+        '@mono/web': monoDir,
+        '@mono/ui': monoUiDir
       };
     }
 
