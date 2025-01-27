@@ -11,6 +11,12 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
+  heroSectionsBlock: dynamic(
+    () => import('@mono/web/blocks/HeroSectionsBlock'),
+    {
+      ...defaultOpts
+    }
+  ),
   fullBleedImageBlock: dynamic(
     () => import('@mono/web/blocks/FullBleedImageBlock'),
     {

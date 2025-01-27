@@ -1,3 +1,5 @@
+import HeroSectionsBlock from '@mono/web/blocks/HeroSectionsBlock/HeroSectionsBlock.config';
+
 import CardGridBlock from '@mono/web/blocks/CardGridBlock/CardGridBlock.config';
 import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
 import FormBlock from '@mono/web/blocks/FormBlock/FormBlock.config';
@@ -59,6 +61,7 @@ const Pages: CollectionConfig = {
               type: 'blocks',
               blocks: [
                 // InsertBlockConfigFields
+                HeroSectionsBlock('Page'),
                 IframeBlock,
                 IconGridBlock,
                 FullBleedImageBlock('Page'),

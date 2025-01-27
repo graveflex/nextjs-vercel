@@ -4,12 +4,13 @@ import FormBlock from '@mono/web/blocks/FormBlock/FormBlock.config';
 import FullBleedImageBlock from '@mono/web/blocks/FullBleedImageBlock/FullBleedImageBlock.config';
 import GalleryGridBlock from '@mono/web/blocks/GalleryGridBlock/GalleryGridBlock.config';
 import HeroBlock from '@mono/web/blocks/HeroBlock/HeroBlock.config';
+// InsertBlockConfigs
+import HeroSectionsBlock from '@mono/web/blocks/HeroSectionsBlock/HeroSectionsBlock.config';
 import IconGridBlock from '@mono/web/blocks/IconGridBlock/IconGridBlock.config';
 import IframeBlock from '@mono/web/blocks/IframeBlock/IframeBlock.config';
 import MarkdownBlock from '@mono/web/blocks/MarkdownBlock/MarkdownBlock.config';
 import SectionHeaderBlock from '@mono/web/blocks/SectionHeaderBlock/SectionHeaderBlock.config';
 import { WEB_URL } from '@mono/web/lib/constants';
-// InsertBlockConfigs
 
 import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
 import VideoBlock from '@mono/web/blocks/VideoBlock/VideoBlock.config';
@@ -56,6 +57,7 @@ const BlogIndex: GlobalConfig = {
               type: 'blocks',
               blocks: [
                 // InsertBlockConfigFields
+                HeroSectionsBlock('Blog'),
                 IframeBlock,
                 IconGridBlock,
                 FullBleedImageBlock('Blog'),
