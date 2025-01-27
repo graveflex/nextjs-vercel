@@ -17,6 +17,21 @@ const layout: number = 1;
 const layoutList: Record<number, ComponentType<HeaderSectionBlockType>> = {
   1: dynamic(() => import('./layouts/HeaderSection1'), {
     ...defaultOpts
+  }),
+  2: dynamic(() => import('./layouts/HeaderSection2'), {
+    ...defaultOpts
+  }),
+  3: dynamic(() => import('./layouts/HeaderSection3'), {
+    ...defaultOpts
+  }),
+  4: dynamic(() => import('./layouts/HeaderSection4'), {
+    ...defaultOpts
+  }),
+  5: dynamic(() => import('./layouts/HeaderSection5'), {
+    ...defaultOpts
+  }),
+  6: dynamic(() => import('./layouts/HeaderSection6'), {
+    ...defaultOpts
   })
 };
 
