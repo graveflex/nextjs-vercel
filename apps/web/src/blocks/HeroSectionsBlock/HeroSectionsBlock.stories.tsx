@@ -16,6 +16,7 @@ const meta: Meta<HeroSectionsBlockType> = {
 export default meta;
 type Story = StoryObj<HeroSectionsBlockType>;
 
+// Story name corresponds to variant number:
 export const One: Story = {
   args: {
     title: faker.lorem.words(5),
