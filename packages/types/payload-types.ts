@@ -191,6 +191,10 @@ export interface HeroSectionsBlockT {
       };
     };
   };
+  /**
+   * The layout variant for the block.
+   */
+  variant: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
   title?: string | null;
   id?: string | null;
   blockName?: string | null;
@@ -1569,6 +1573,7 @@ export interface HeroSectionsBlockTSelect<T extends boolean = true> {
                   };
             };
       };
+  variant?: T;
   title?: T;
   id?: T;
   blockName?: T;
