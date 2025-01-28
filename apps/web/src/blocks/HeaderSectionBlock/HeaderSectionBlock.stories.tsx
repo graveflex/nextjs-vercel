@@ -18,6 +18,49 @@ type Story = StoryObj<HeaderSectionBlockType>;
 
 export const Defaults: Story = {
   args: {
-    title: faker.lorem.words(5)
+    title: faker.lorem.words(5),
+    variant: '1'
+  }
+};
+
+export const One: Story = {
+  args: {
+    title: faker.lorem.words(5),
+    variant: '1'
+  }
+};
+
+export const Two: Story = {
+  args: {
+    title: faker.lorem.words(5),
+    variant: '2'
+  }
+};
+
+export const Three: Story = {
+  args: {
+    title: faker.lorem.words(5),
+    variant: '3'
+  }
+};
+
+export const Four: Story = {
+  args: {
+    title: faker.lorem.words(5),
+    variant: '4'
+  }
+};
+
+export const Five: Story = {
+  args: {
+    title: faker.lorem.words(5),
+    variant: '5'
+  }
+};
+
+export const Six: Story = {
+  args: {
+    title: faker.lorem.words(5),
+    variant: '6'
   }
 };
