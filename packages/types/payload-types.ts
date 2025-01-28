@@ -191,6 +191,10 @@ export interface CtaSectionsBlockT {
       };
     };
   };
+  /**
+   * The layout variant for the block.
+   */
+  variant: '1' | '2' | '3' | '4' | '5' | '6' | '7';
   title?: string | null;
   id?: string | null;
   blockName?: string | null;
@@ -1569,6 +1573,7 @@ export interface CtaSectionsBlockTSelect<T extends boolean = true> {
                   };
             };
       };
+  variant?: T;
   title?: T;
   id?: T;
   blockName?: T;

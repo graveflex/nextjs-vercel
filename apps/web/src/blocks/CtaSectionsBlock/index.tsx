@@ -14,39 +14,37 @@ const defaultOpts = {
   ssr: true
 };
 
-// Todo: Convert into a prop:
-const layout: number = 3;
-
-const layoutList: Record<number, ComponentType<CtaSectionsBlockType>> = {
-  1: dynamic(() => import('./layouts/CtaSections1'), {
+const layoutList: Record<string, ComponentType<CtaSectionsBlockType>> = {
+  '1': dynamic(() => import('./layouts/CtaSections1'), {
     ...defaultOpts
   }),
-  2: dynamic(() => import('./layouts/CtaSections2'), {
+  '2': dynamic(() => import('./layouts/CtaSections2'), {
     ...defaultOpts
   }),
-  3: dynamic(() => import('./layouts/CtaSections3'), {
+  '3': dynamic(() => import('./layouts/CtaSections3'), {
     ...defaultOpts
   }),
-  4: dynamic(() => import('./layouts/CtaSections4'), {
+  '4': dynamic(() => import('./layouts/CtaSections4'), {
     ...defaultOpts
   }),
-  5: dynamic(() => import('./layouts/CtaSections5'), {
+  '5': dynamic(() => import('./layouts/CtaSections5'), {
     ...defaultOpts
   }),
-  6: dynamic(() => import('./layouts/CtaSections6'), {
+  '6': dynamic(() => import('./layouts/CtaSections6'), {
     ...defaultOpts
   }),
-  7: dynamic(() => import('./layouts/CtaSections7'), {
+  '7': dynamic(() => import('./layouts/CtaSections7'), {
     ...defaultOpts
   })
 };
 
 function CtaSections({
-  title = 'Action-Driving headline that creates urgency'
+  title = 'Action-Driving headline that creates urgency',
+  variant = '1'
 }: CtaSectionsBlockType) {
-  const Component: ComponentType<CtaSectionsBlockType> = layoutList[layout];
+  const Component: ComponentType<CtaSectionsBlockType> = layoutList[variant];
 
-  return <Component title={title} />;
+  return <Component title={title} variant={variant} />;
 }
 
 export default CtaSections;
