@@ -1,6 +1,7 @@
 import type { Image as PayloadImageProps } from '@mono/types/payload-types';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import type React from 'react';
+import styles from './Wrapper.module.scss';
 
 type paddingType = {
   paddingTop?: string | null;
