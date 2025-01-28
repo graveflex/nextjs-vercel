@@ -29,3 +29,52 @@ export const Two: Story = {
     variant: '2'
   }
 };
+
+export const Three: Story = {
+  args: {
+    title: faker.lorem.words(5),
+    variant: '3'
+  }
+};
+
+export const Four: Story = {
+  args: {
+    title: faker.lorem.words(5),
+    variant: '4'
+  }
+};
+
+export const Five: Story = {
+  args: {
+    title: faker.lorem.words(5),
+    variant: '5'
+  }
+};
+
+export const Six: Story = {
+  args: {
+    title: faker.lorem.words(5),
+    variant: '6'
+  }
+};
+
+export const Seven: Story = {
+  args: {
+    title: faker.lorem.words(5),
+    variant: '7'
+  }
+};
+
+export const Eight: Story = {
+  args: {
+    title: faker.lorem.words(5),
+    variant: '8'
+  }
+};
+
+export const Nine: Story = {
+  args: {
+    title: faker.lorem.words(5),
+    variant: '9'
+  }
+};

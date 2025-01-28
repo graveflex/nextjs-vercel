@@ -17,6 +17,27 @@ const layoutList: Record<string, ComponentType<HeroSectionsBlockType>> = {
   }),
   '2': dynamic(() => import('./layouts/HeroSections2'), {
     ...defaultOpts
+  }),
+  '3': dynamic(() => import('./layouts/HeroSections3'), {
+    ...defaultOpts
+  }),
+  '4': dynamic(() => import('./layouts/HeroSections4'), {
+    ...defaultOpts
+  }),
+  '5': dynamic(() => import('./layouts/HeroSections5'), {
+    ...defaultOpts
+  }),
+  '6': dynamic(() => import('./layouts/HeroSections6'), {
+    ...defaultOpts
+  }),
+  '7': dynamic(() => import('./layouts/HeroSections7'), {
+    ...defaultOpts
+  }),
+  '8': dynamic(() => import('./layouts/HeroSections8'), {
+    ...defaultOpts
+  }),
+  '9': dynamic(() => import('./layouts/HeroSections9'), {
+    ...defaultOpts
   })
 };
 
