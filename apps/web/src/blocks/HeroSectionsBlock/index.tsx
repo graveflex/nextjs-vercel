@@ -11,19 +11,19 @@ const defaultOpts = {
   ssr: true
 };
 
-// Todo: Convert into a prop:
-const layout: number = 1;
-
-const layoutList: Record<number, ComponentType<HeroSectionsBlockType>> = {
-  1: dynamic(() => import('./layouts/HeroSections1'), {
+const layoutList: Record<string, ComponentType<HeroSectionsBlockType>> = {
+  '1': dynamic(() => import('./layouts/HeroSections1'), {
+    ...defaultOpts
+  }),
+  '2': dynamic(() => import('./layouts/HeroSections2'), {
     ...defaultOpts
   })
 };
 
-function HeroSectionsBlock({ title }: HeroSectionsBlockType) {
-  const Component: ComponentType<HeroSectionsBlockType> = layoutList[layout];
+function HeroSectionsBlock({ title, variant = '1' }: HeroSectionsBlockType) {
+  const Component: ComponentType<HeroSectionsBlockType> = layoutList[variant];
 
-  return <Component title={title} />;
+  return <Component title={title} variant={variant} />;
 }
 
 export default HeroSectionsBlock;

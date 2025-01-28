@@ -1,11 +1,11 @@
 import { AspectRatio } from '@mono/web/components/ui/AspectRatio';
 import { Button } from '@mono/web/components/ui/Button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 import type { HeroSectionsBlockType } from '../index';
 
-function HeroSections1({ title }: HeroSectionsBlockType) {
+function HeroSections2({ title }: HeroSectionsBlockType) {
   return (
     <section
       className="bg-background py-16 lg:py-24"
@@ -20,14 +20,14 @@ function HeroSections1({ title }: HeroSectionsBlockType) {
               className="text-muted-foreground text-sm lg:text-base font-semibold"
               aria-hidden="true"
             >
-              {title}
+              Hero section
             </p>
             {/* Main Heading */}
             <h1
               id="hero-heading"
               className="text-foreground text-3xl md:text-5xl font-bold"
             >
-              Headline that solves user's{' '}
+              {title}
               <span className="text-primary">main problem</span>
             </h1>
             {/* Description */}
@@ -36,6 +36,36 @@ function HeroSections1({ title }: HeroSectionsBlockType) {
               proposition. Focus on key benefits and address why users should
               take action now. Keep it scannable, short and benefit-driven.
             </p>
+          </div>
+
+          {/* Feature List */}
+          <div className="flex flex-col gap-3">
+            <div className="flex items-start gap-3">
+              <div className="pt-0.5">
+                <Check className="h-5 w-5 text-primary" />
+              </div>
+              <span className="text-card-foreground text-base font-medium leading-6">
+                Benefit driven feature title
+              </span>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <div className="pt-0.5">
+                <Check className="h-5 w-5 text-primary" />
+              </div>
+              <span className="text-card-foreground text-base font-medium leading-6">
+                Benefit driven feature title
+              </span>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <div className="pt-0.5">
+                <Check className="h-5 w-5 text-primary" />
+              </div>
+              <span className="text-card-foreground text-base font-medium leading-6">
+                Benefit driven feature title
+              </span>
+            </div>
           </div>
 
           {/* CTA Buttons */}
@@ -65,4 +95,4 @@ function HeroSections1({ title }: HeroSectionsBlockType) {
   );
 }
 
-export default HeroSections1;
+export default HeroSections2;
