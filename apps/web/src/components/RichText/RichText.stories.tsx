@@ -6,6 +6,13 @@ import RichText from '.';
 const meta: Meta<RichTextType> = {
   title: 'ui/RichText',
   component: RichText,
+  decorators: [
+    (Story) => (
+      <div className="bg-gray-400 p-16">
+        <Story />
+      </div>
+    )
+  ],
   parameters: {
     layout: 'centered'
   },
