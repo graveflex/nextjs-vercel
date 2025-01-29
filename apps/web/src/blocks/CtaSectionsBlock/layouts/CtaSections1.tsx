@@ -2,18 +2,8 @@
 import type { CtaSectionsBlockT as PayloadType } from '@mono/types/payload-types';
 import React from 'react';
 
+import RichText from '@mono/web/components/RichText/index';
 import { Button } from '@mono/web/components/ui/Button';
-import {
-  type DefaultNodeTypes,
-  SerializedBlockNode,
-  SerializedHeadingNode,
-  SerializedLinkNode
-} from '@payloadcms/richtext-lexical';
-import {
-  type JSXConvertersFunction,
-  LinkJSXConverter,
-  RichText
-} from '@payloadcms/richtext-lexical/react';
 import { ArrowRight } from 'lucide-react';
 export type CtaSectionsBlockType = Omit<PayloadType, 'blockType'>;
 
@@ -47,7 +37,7 @@ function CtaSections1({
               to act now. Align this copy with your CTA button text.
             </p>
 
-            {content && <RichText data={content} converters={jsxConverters} />}
+            {content && <RichText data={content} />}
           </div>
 
           {/* CTA Button */}
