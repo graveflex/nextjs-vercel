@@ -1,7 +1,6 @@
 import type { Author, Image, Post, Tag } from '@mono/types/payload-types';
 import RenderIcon from '@mono/ui/components/RenderIcon';
 import StaticTag from '@mono/ui/components/StaticTag';
-import Wrapper from '@mono/ui/components/Wrapper';
 import PayloadDate from '@mono/ui/components/primitives/PayloadDate';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/ui/components/primitives/RichText';
@@ -84,7 +83,7 @@ function BlogDetail({ postData }: BlogDetailType) {
     (postData as Post) ?? {};
 
   return (
-    <Wrapper contentWidth="full">
+    <>
       <div>
         {title && <div>{title}</div>}
         {subTitle && <div>{subTitle}</div>}
@@ -100,7 +99,7 @@ function BlogDetail({ postData }: BlogDetailType) {
         />
       )}
       <div>{Content(content)}</div>
-    </Wrapper>
+    </>
   );
 }
 

@@ -1,7 +1,10 @@
-import type { Image as PayloadImageProps } from '@mono/types/payload-types';
+import type {
+  CtaSectionsBlockT,
+  Image as PayloadImageProps
+} from '@mono/types/payload-types';
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import type React from 'react';
-import styles from './Wrapper.module.scss';
+import styles from './Wrapper.module.css';
 
 type paddingType = {
   paddingTop?: string | null;
