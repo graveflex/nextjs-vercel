@@ -1,0 +1,36 @@
+@import "tailwindcss/theme" theme(reference);
+/* @reference "./../../app/global.css"; */
+
+.rich-text-container {
+  border: 1px dotted green;
+}
+
+.richtext {
+  border: 1px dotted red;
+}
+
+.richtext h1,
+.richtext h2,
+.richtext h3,
+.richtext h4,
+.richtext h5,
+.richtext h6 {
+  border: 1px dotted blue;
+}
+
+/* .h1 {
+  @apply tracking-tight scroll-m-20 text-4xl;
+}
+
+.richtext h1 {
+  composes: h1;
+} */
+
+.richtext h1 {
+  @apply
+    scroll-m-20
+    text-4xl
+    lg:text-5xl;
+    /* font-extrabold
+    tracking-tight; */
+}

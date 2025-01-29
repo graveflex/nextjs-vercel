@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './rich-text-styles.css';
 
 @plugin 'tailwindcss-animate';
 @source './safelist.css';
