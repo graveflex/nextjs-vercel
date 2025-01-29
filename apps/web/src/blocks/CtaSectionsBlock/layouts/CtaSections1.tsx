@@ -3,14 +3,25 @@ import type { CtaSectionsBlockT as PayloadType } from '@mono/types/payload-types
 import React from 'react';
 
 import { Button } from '@mono/web/components/ui/Button';
+import {
+  type DefaultNodeTypes,
+  SerializedBlockNode,
+  SerializedHeadingNode,
+  SerializedLinkNode
+} from '@payloadcms/richtext-lexical';
+import {
+  type JSXConvertersFunction,
+  LinkJSXConverter,
+  RichText
+} from '@payloadcms/richtext-lexical/react';
 import { ArrowRight } from 'lucide-react';
-
 export type CtaSectionsBlockType = Omit<PayloadType, 'blockType'>;
 
 import styles from '../CtaSectionsBlock.module.css';
 
 function CtaSections1({
-  title = 'Action-Driving headline that creates urgency'
+  title = 'Action-Driving headline that creates urgency',
+  content
 }: CtaSectionsBlockType) {
   return (
     <section className={styles.container} aria-labelledby="cta-heading">
@@ -35,6 +46,8 @@ function CtaSections1({
               proposition and overcome final objections. End with a clear reason
               to act now. Align this copy with your CTA button text.
             </p>
+
+            {content && <RichText data={content} converters={jsxConverters} />}
           </div>
 
           {/* CTA Button */}
