@@ -1,3 +1,5 @@
+import CtaSectionsBlock from '@mono/web/blocks/CtaSectionsBlock/CtaSectionsBlock.config';
+
 import CardGridBlock from '@mono/web/blocks/CardGridBlock/CardGridBlock.config';
 import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
 import FormBlock from '@mono/web/blocks/FormBlock/FormBlock.config';
@@ -59,6 +61,7 @@ const Pages: CollectionConfig = {
               type: 'blocks',
               blocks: [
                 // InsertBlockConfigFields
+                CtaSectionsBlock,
                 IframeBlock,
                 IconGridBlock,
                 FullBleedImageBlock('Page'),
