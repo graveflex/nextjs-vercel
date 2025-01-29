@@ -4,8 +4,10 @@ import type {
   DefaultNodeTypes,
   SerializedBlockNode
 } from '@payloadcms/richtext-lexical';
-import { RichText as LexicalRichText } from '@payloadcms/richtext-lexical/react';
-import type { JSXConvertersFunction } from '@payloadcms/richtext-lexical/react';
+import {
+  type JSXConvertersFunction,
+  RichText as LexicalRichText
+} from '@payloadcms/richtext-lexical/react';
 import React from 'react';
 import styles from './RichText.module.css';
 
