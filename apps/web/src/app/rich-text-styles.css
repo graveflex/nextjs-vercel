@@ -1,0 +1,106 @@
+  /* Global Rich Text Styles ----------------------------- */
+  .rich-text-global h1 {
+    @apply
+      text-primary-foreground
+      scroll-m-20
+      text-4xl
+      lg:text-5xl
+      font-extrabold
+      tracking-tight;
+  }
+
+  .rich-text-global h2 {
+    @apply
+      text-primary-foreground
+      scroll-m-20
+      border-b
+      pb-2
+      text-3xl
+      font-semibold
+      tracking-tight
+      first:mt-0;
+  }
+
+  .rich-text-global h3 {
+    @apply
+      text-primary-foreground
+      scroll-m-20
+      text-2xl
+      font-semibold
+      tracking-tight;
+  }
+
+  .rich-text-global h4 {
+    @apply
+      text-primary-foreground
+      scroll-m-20
+      text-xl
+      font-semibold
+      tracking-tight;
+  }
+
+  .rich-text-global h5 {
+    @apply
+      text-primary-foreground
+      scroll-m-20
+      text-xl
+      font-semibold
+      tracking-tight;
+  }
+
+  .rich-text-global h6 {
+    @apply
+      text-primary-foreground
+      scroll-m-20
+      text-xl
+      font-semibold
+      tracking-tight;
+  }
+
+  .rich-text-global p {
+    @apply
+      text-primary-foreground
+      leading-7
+      [&:not(:first-child)]:mt-6;
+  }
+
+  .rich-text-global blockquote {
+    @apply
+      text-primary-foreground
+      mt-6
+      border-l-2
+      pl-6
+      italic;
+  }
+
+  .rich-text-global ul {
+    @apply
+      text-primary-foreground
+      my-6
+      ml-6
+      list-disc
+      [&>li]:mt-2;
+  }
+
+  .rich-text-global ol {
+    @apply
+      text-primary-foreground
+      my-6
+      ml-6
+      list-decimal
+      [&>li]:mt-2;
+  }
+
+  .rich-text-global code {
+    @apply
+      text-primary-foreground
+      relative
+      rounded
+      bg-muted
+      px-[0.3rem]
+      py-[0.2rem]
+      font-mono
+      text-sm
+      font-semibold;
+  }
+  
