@@ -3,7 +3,9 @@ import {
   type DefaultNodeTypes,
   SerializedBlockNode,
   SerializedHeadingNode,
-  SerializedLinkNode
+  SerializedLinkNode,
+  SerializedListItemNode,
+  SerializedListNode
 } from '@payloadcms/richtext-lexical';
 import {
   type JSXConvertersFunction,
@@ -94,6 +96,15 @@ const jsxConverters: JSXConvertersFunction<DefaultNodeTypes> = ({
           </h1>
         );
     }
+  },
+  paragraph: ({ node }) => {
+    return (
+      <p className="text-base md:text-lg leading-7 [&:not(:first-child)]:mt-6 text-primary-foreground">
+        {node?.children
+          ?.map((child) => ('text' in child ? child.text : ''))
+          .join('')}
+      </p>
+    );
   }
 });
 
