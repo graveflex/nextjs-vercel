@@ -1,4 +1,3 @@
-import { WEB_URL } from '@mono/web/lib/constants';
 import formatSlug from '@mono/web/payload/utils/formatSlug';
 import type { CollectionConfig, Field } from 'payload';
 import { allBlocks } from '@mono/web/lib/blockList';
@@ -17,17 +16,40 @@ const Pages: CollectionConfig = {
     useAsTitle: 'pageTitle',
     defaultColumns: ['pageTitle', 'slug', '_status', 'createdAt'],
     livePreview: {
-      url: (doc) => {
-        const {
-          locale: { code }
-        } = doc;
-        const { slug } = doc.data;
-        return `${WEB_URL}/${code}/draft/${slug}`;
+      url: ({ data: { slug }, req }) => {
+        const baseUrl = `${req.protocol}//${req.host}`;
+        console.log('@-->base url', baseUrl);
+        return `${baseUrl}/draft/${slug}`;
       }
     }
   },
   access: {
-    read: () => true
+    read: ({ req }) => {
+      // If there is a user logged in,
+      // let them retrieve all documents
+      if (req.user) {
+        return true;
+      }
+
+      // If there is no user,
+      // restrict the documents that are returned
+      // to only those where `_status` is equal to `published`
+      // or where `_status` does not exist
+      return {
+        or: [
+          {
+            _status: {
+              equals: 'published'
+            }
+          },
+          {
+            _status: {
+              exists: false
+            }
+          }
+        ]
+      };
+    }
   },
   versions: {
     drafts: {
@@ -71,14 +93,11 @@ const Pages: CollectionConfig = {
         if (regex.test(value)) {
           return 'Slug cannot contain special characters !@]{${%^*()[+= or .';
         }
-        if (value === '/') {
-          return 'Slug cannot be / - this is reserved for the homepage global';
-        }
         if (value === 'admin') {
-          return 'Slug cannot be admin';
+          return 'Slug cannot be "admin"';
         }
         if (value === 'api') {
-          return 'Slug cannot be api';
+          return 'Slug cannot be "api"';
         }
         return true;
       },

@@ -18,6 +18,7 @@ const blockList = {
 };
 
 function BlocksRenderer({ blocks }: { blocks: NonNullable<Page['blocks']> }) {
+  console.log('@-->blocks', blocks);
   return blocks?.map(({ blockType, ...blockProps }) => {
     const Component = blockList[blockType] as ComponentType<typeof blockProps>;
 

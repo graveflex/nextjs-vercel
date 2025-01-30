@@ -1,1 +1,9 @@
 @import "tailwindcss/theme" theme(reference);
+
+.container {
+  @apply grid justify-items-center;
+}
+
+.content {
+  @apply grid;
+}

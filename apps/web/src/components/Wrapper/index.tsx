@@ -1,44 +1,82 @@
-import type {
-  CtaSectionsBlockT,
-  Image as PayloadImageProps
-} from '@mono/types/payload-types';
-import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
+import type { CtaSectionsBlockT } from '@mono/types/payload-types';
 import type React from 'react';
+import { cva } from 'class-variance-authority';
 import styles from './Wrapper.module.css';
 
-type paddingType = {
-  paddingTop?: string | null;
-  paddingBottom?: string | null;
+export type BlockWrapperProps = Pick<
+  CtaSectionsBlockT,
+  | 'theme'
+  | 'contentWidth'
+  | 'paddingXs'
+  | 'paddingMd'
+  | 'paddingLg'
+  | 'paddingXl'
+> & {};
+
+const container = cva([styles.container], {
+  variants: {
+    gutter: {
+      none: 'px-0',
+      default: 'px-4'
+    }
+  },
+  defaultVariants: {
+    gutter: 'default'
+  }
+});
+
+const content = cva([styles.content], {
+  variants: {
+    width: {
+      full: 'w-full',
+      xs: 'w-full md:max-w-lg',
+      sm: 'w-full md:max-w-xl',
+      md: 'w-full md:max-w-3xl',
+      lg: 'w-full md:max-w-5xl',
+      xl: 'w-full md:max-w-6xl',
+      xxl: 'w-full md:max-w-7xl'
+    }
+  },
+  defaultVariants: {
+    width: 'lg'
+  }
+});
+
+const getPaddingClasses = (
+  utilClass: string,
+  prop: 'paddingTop' | 'paddingBottom',
+  props: BlockWrapperProps
+) => {
+  const padding = [props.paddingXs?.[prop] ?? `${utilClass}-4`] as string[];
+  if (props.paddingMd?.[prop]) {
+    padding.push(`md:${props.paddingMd?.[prop]}`);
+  }
+  if (props.paddingLg?.[prop]) {
+    padding.push(`lg:${props.paddingLg?.[prop]}`);
+  }
+  if (props.paddingXl?.[prop]) {
+    padding.push(`xl:${props.paddingXl?.[prop]}`);
+  }
+
+  return padding;
 };
 
-export interface WrapperProps extends React.ComponentProps<'section'> {
-  backgroundColor?: string | null;
-  backgroundImage?: number | PayloadImageProps | null | undefined;
-  contentWidth?: string | null;
-  fullBleed?: boolean;
-  gutter?: boolean | string | number;
-  className?: string;
-  p?: {
-    xs?: paddingType;
-    sm?: paddingType;
-    md?: paddingType;
-    lg?: paddingType;
-    xl?: paddingType;
-  };
-}
+const getContainerClasses = (props: BlockWrapperProps) => {
+  return [
+    ...getPaddingClasses('pt', 'paddingTop', props),
+    ...getPaddingClasses('pb', 'paddingBottom', props)
+  ].join(' ');
+};
 
-function Wrapper({ children, backgroundImage, className }: WrapperProps) {
+export type WrapperProps = React.ComponentProps<'section'> & BlockWrapperProps;
+
+function Wrapper({ children, className, ...props }: WrapperProps) {
+  const containerClasses = `${container({ gutter: 'default' })} ${getContainerClasses(props)} ${className}`;
+  const contentClasses = content({ width: props.contentWidth });
   return (
-    <div className={className}>
-      {!!backgroundImage && (
-        <ResponsivePayloadImage
-          image={backgroundImage}
-          sizes="100%"
-          className="backgroundImage"
-        />
-      )}
-      <div>{children}</div>
-    </div>
+    <section className={containerClasses}>
+      <div className={contentClasses}>{children}</div>
+    </section>
   );
 }
 

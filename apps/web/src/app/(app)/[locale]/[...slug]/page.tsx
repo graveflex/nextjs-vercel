@@ -5,7 +5,6 @@ import {
   LOCALES,
   type LanguageLocale
 } from '@mono/web/lib/constants';
-import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
 import { unstable_setRequestLocale } from 'next-intl/server';
@@ -30,22 +29,16 @@ async function fetchPageData(
   locale: LanguageLocale,
   pageSlug: string
 ) {
-  const query = async (locale: LanguageLocale) => {
-    const payload = await getPayload({ config });
-    const data = await payload.find({
-      collection: 'pages',
-      locale,
-      draft,
-      depth: 2,
-      where: {
-        slug: { equals: pageSlug }
-      },
-      limit: 1
-    });
-    return data?.docs?.[0];
-  };
-
-  return executeCachedQuery(query, pageSlug, locale, draft);
+  const payload = await getPayload({ config });
+  const data = await payload.find({
+    collection: 'pages',
+    locale,
+    draft,
+    depth: 2,
+    where: { slug: { equals: pageSlug }},
+    limit: 1
+  });
+  return data.docs[0];
 }
 
 export default async function CatchallPage({ params }: RootLayoutProps) {
@@ -58,6 +51,9 @@ export default async function CatchallPage({ params }: RootLayoutProps) {
   }
   unstable_setRequestLocale(locale);
   const page = await fetchPageData(draft, locale, pageSlug);
+
+  console.log('@-->page', page);
+
   // if not page data and not the index check for redirects
   if (!page) {
     const redirectPath = await redirectApi(pageSlug);

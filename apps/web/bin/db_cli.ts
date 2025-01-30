@@ -310,7 +310,9 @@ async function reseed(props: Step2Props) {
 
   if (proceed) {
     await runFreshMigration(db);
-    return seedAll(db);
+    return;
+    // TODO: re-implement seeds
+    // return seedAll(db);
   }
 
   console.info('Re-seed cancelled.');

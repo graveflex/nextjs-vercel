@@ -27,6 +27,8 @@ export default async function DraftLayout({ children }: DraftLayoutProps) {
     notFound();
   }
 
+  console.log('@-->me', me);
+
   return (
     <>
       <RefreshRouteOnSave />

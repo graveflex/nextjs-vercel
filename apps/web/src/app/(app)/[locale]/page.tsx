@@ -1,7 +1,6 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
 import { Button } from '@mono/web/components/ui/Button';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
-import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import config from '@payload-config';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { getPayload } from 'payload';
@@ -22,22 +21,21 @@ async function fetchPageData(
   draft: boolean | undefined,
   locale: LanguageLocale
 ) {
-  const query = async (locale: LanguageLocale) => {
-    const payload = await getPayload({ config });
-    return payload.findGlobal({
-      slug: 'homepage',
-      locale,
-      draft,
-      depth: 2,
-      fallbackLocale: DEFAULT_LOCALE
-    });
-  };
-
-  return executeCachedQuery(query, 'homepage', locale, draft);
+  const payload = await getPayload({ config });
+  console.log('@-->draft', draft);
+  return payload.findGlobal({
+    slug: 'homepage',
+    locale,
+    draft,
+    depth: 2,
+    fallbackLocale: DEFAULT_LOCALE
+  });
 }
 
 export default async function HomePage(props: RootLayoutProps) {
   const { locale = DEFAULT_LOCALE, draft } = await props.params;
+
+  console.log('@-->draft', draft);
 
   const homepageData = await fetchPageData(draft, locale);
 
