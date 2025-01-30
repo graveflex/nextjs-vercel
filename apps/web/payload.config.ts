@@ -22,7 +22,9 @@ import { seoPlugin } from '@payloadcms/plugin-seo';
 import type { FeatureProviderServer } from '@payloadcms/richtext-lexical';
 import {
   AlignFeature,
+  BlockquoteFeature,
   BoldFeature,
+  EXPERIMENTAL_TableFeature,
   HeadingFeature,
   HorizontalRuleFeature,
   InlineCodeFeature,
@@ -145,7 +147,9 @@ export default buildConfig({
           ]
         }),
         UploadFeature(),
-        InlineToolbarFeature()
+        InlineToolbarFeature(),
+        BlockquoteFeature(),
+        EXPERIMENTAL_TableFeature()
       ] as FeatureProviderServer<unknown, unknown>[]
   }),
   collections: [Pages, Posts, Authors, Tags, Files, Images, Videos, Users],
