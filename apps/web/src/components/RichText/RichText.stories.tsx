@@ -171,7 +171,7 @@ export const Defaults: Story = {
             indent: 0,
             version: 1,
             children: [],
-            direction: null,
+            direction: 'ltr',
             textStyle: '',
             textFormat: 0
           },
@@ -254,7 +254,7 @@ export const Defaults: Story = {
             indent: 0,
             version: 1,
             children: [],
-            direction: null,
+            direction: 'ltr',
             textStyle: '',
             textFormat: 0
           },
@@ -464,6 +464,104 @@ export const Defaults: Story = {
                 style: '',
                 detail: 0,
                 format: 0,
+                version: 1
+              }
+            ],
+            direction: 'ltr',
+            textStyle: '',
+            textFormat: 0
+          },
+          {
+            type: 'paragraph',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [],
+            direction: null,
+            textStyle: '',
+            textFormat: 0
+          },
+          {
+            type: 'paragraph',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                mode: 'normal',
+                text: '{ This is a code block };',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 16,
+                version: 1
+              }
+            ],
+            direction: 'ltr',
+            textStyle: '',
+            textFormat: 16
+          },
+          {
+            type: 'paragraph',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [],
+            direction: 'ltr',
+            textStyle: '',
+            textFormat: 16
+          },
+          {
+            type: 'paragraph',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                mode: 'normal',
+                text: 'This is ',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
+              },
+              {
+                mode: 'normal',
+                text: 'subscript',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 32,
+                version: 1
+              }
+            ],
+            direction: 'ltr',
+            textStyle: '',
+            textFormat: 0
+          },
+          {
+            type: 'paragraph',
+            format: '',
+            indent: 0,
+            version: 1,
+            children: [
+              {
+                mode: 'normal',
+                text: 'And this is ',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 0,
+                version: 1
+              },
+              {
+                mode: 'normal',
+                text: 'superscript',
+                type: 'text',
+                style: '',
+                detail: 0,
+                format: 64,
                 version: 1
               }
             ],
