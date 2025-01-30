@@ -1,5 +1,7 @@
 import { faker } from '@faker-js/faker';
-import { richTextMockData } from '@mono/web/components/RichText/RichText.stories';
+import richTextMockData, {
+  payloadTypography
+} from '@mono/web/components/RichText/richTextMockData';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { CtaSectionsBlockType } from '.';
