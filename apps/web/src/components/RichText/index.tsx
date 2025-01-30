@@ -30,7 +30,7 @@ function RichText({ className, data }: RichTextType) {
     data && (
       <div
         className={cn(
-          'rich-text-container rich-text-global',
+          'rich-text-container w-full rich-text-global',
           styles.richtext,
           className
         )}
