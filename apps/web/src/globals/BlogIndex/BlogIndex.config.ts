@@ -1,5 +1,5 @@
-import { WEB_URL } from '@mono/web/lib/constants';
 import { allBlocks } from '@mono/web/lib/blockList';
+import { WEB_URL } from '@mono/web/lib/constants';
 
 import type { GlobalConfig } from 'payload';
 

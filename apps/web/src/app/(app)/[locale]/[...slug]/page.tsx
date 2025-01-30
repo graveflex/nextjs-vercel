@@ -8,9 +8,9 @@ import {
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
 import { unstable_setRequestLocale } from 'next-intl/server';
-import { notFound, redirect } from 'next/navigation';
-import { getPayload, type PayloadRequest } from 'payload';
 import { headers } from 'next/headers';
+import { notFound, redirect } from 'next/navigation';
+import { type PayloadRequest, getPayload } from 'payload';
 import React from 'react';
 
 export const dynamic = 'force-static';
@@ -36,7 +36,7 @@ async function fetchPageData(
   const payload = await getPayload({ config });
   let user;
 
-  // we need to pass the current user to the local API request, otherwise 
+  // we need to pass the current user to the local API request, otherwise
   // payload won't be able to perform access control correctly
   if (draft) {
     const requestHeaders = await headers();

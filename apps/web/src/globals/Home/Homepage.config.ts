@@ -1,6 +1,6 @@
+import { allBlocks } from '@mono/web/lib/blockList';
 // InsertBlockConfigs
 import { WEB_URL } from '@mono/web/lib/constants';
-import { allBlocks } from '@mono/web/lib/blockList';
 
 import type { GlobalConfig } from 'payload';
 

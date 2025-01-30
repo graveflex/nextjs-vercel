@@ -1,4 +1,4 @@
-import type { GroupField, Field, Option } from 'payload';
+import type { Field, GroupField, Option } from 'payload';
 
 const themeOptions = [
   { label: 'Inherit', value: '_' },

@@ -2,7 +2,7 @@
 
 import { RefreshRouteOnSave as PayloadLivePreview } from '@payloadcms/live-preview-react';
 import { useRouter } from 'next/navigation.js';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type React from 'react';
 
 export const RefreshRouteOnSave: React.FC = () => {
@@ -11,11 +11,16 @@ export const RefreshRouteOnSave: React.FC = () => {
 
   useEffect(() => {
     setServerURL(window.location.origin);
-  }, [])
+  }, []);
 
   if (!serverURL) {
     return null;
   }
 
-  return <PayloadLivePreview refresh={() => router.refresh()} serverURL={serverURL} />;
+  return (
+    <PayloadLivePreview
+      refresh={() => router.refresh()}
+      serverURL={serverURL}
+    />
+  );
 };

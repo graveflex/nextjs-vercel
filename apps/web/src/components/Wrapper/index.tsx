@@ -1,6 +1,6 @@
 import type { CtaSectionsBlockT } from '@mono/types/payload-types';
-import type React from 'react';
 import { cva } from 'class-variance-authority';
+import type React from 'react';
 import styles from './Wrapper.module.css';
 
 export type BlockWrapperProps = CtaSectionsBlockT['wrapper'] &
@@ -15,7 +15,7 @@ const container = cva([styles.container], {
     theme: {
       dark: 'dark',
       light: 'light',
-      _: '',
+      _: ''
     }
   },
   defaultVariants: {
@@ -70,7 +70,7 @@ const getContainerClasses = (props: BlockWrapperProps) => {
 
 export type WrapperProps = React.ComponentProps<'section'> & BlockWrapperProps;
 
-function Wrapper({ children, className, ...props }: WrapperProps) {
+function Wrapper({ children, ...props }: WrapperProps) {
   const containerClasses = `${container({ gutter: 'default', theme: props.theme ?? '_' })} ${getContainerClasses(props)}`;
   const contentClasses = content({ width: props.contentWidth });
   return (

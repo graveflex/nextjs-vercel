@@ -1,7 +1,7 @@
 @import "tailwindcss/theme" theme(reference);
 
 .container {
-  @apply grid justify-items-center;
+  @apply grid justify-items-center w-full;
 }
 
 .content {

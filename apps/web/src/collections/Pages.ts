@@ -1,6 +1,6 @@
+import { allBlocks } from '@mono/web/lib/blockList';
 import formatSlug from '@mono/web/payload/utils/formatSlug';
 import type { CollectionConfig, Field } from 'payload';
-import { allBlocks } from '@mono/web/lib/blockList';
 
 import { invalidateCache } from '../hooks/invalidateCache';
 import { publishBeforeRead } from '../hooks/publishBeforeRead';

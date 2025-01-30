@@ -162,6 +162,7 @@
     "@storybook/experimental-addon-test": "latest",
     "@storybook/experimental-nextjs-vite": "latest",
     "@storybook/test": "latest",
+    "@types/lodash": "^4.17.15",
     "@types/nodemailer": "^6.4.15",
     "@vitest/browser": "latest",
     "@vitest/coverage-v8": "latest",

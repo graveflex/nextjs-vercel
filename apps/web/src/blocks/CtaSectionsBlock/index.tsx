@@ -1,5 +1,5 @@
-import Wrapper from '@mono/web/components/Wrapper';
 import type { CtaSectionsBlockT as PayloadType } from '@mono/types/payload-types';
+import Wrapper from '@mono/web/components/Wrapper';
 import React from 'react';
 
 import dynamic from 'next/dynamic';
@@ -44,7 +44,10 @@ function CtaSections({
   const Component: ComponentType<CtaSectionsBlockType> = layoutList[variant];
   return (
     <Wrapper {...props.wrapper}>
-      <Component title={'Action-Driving headline that creates urgency'} variant={variant} />
+      <Component
+        title={'Action-Driving headline that creates urgency'}
+        variant={variant}
+      />
     </Wrapper>
   );
 }
