@@ -9,7 +9,7 @@ const meta: Meta<RichTextType> = {
   component: RichText,
   decorators: [
     (Story) => (
-      <div className="bg-gray-400 p-16">
+      <div className="bg-primary text-primary-foreground p-16">
         <Story />
       </div>
     )
