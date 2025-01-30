@@ -11,10 +11,16 @@ const container = cva([styles.container], {
     gutter: {
       none: 'px-0',
       default: 'px-4'
+    },
+    theme: {
+      dark: 'dark',
+      light: 'light',
+      _: '',
     }
   },
   defaultVariants: {
-    gutter: 'default'
+    gutter: 'default',
+    theme: '_'
   }
 });
 
@@ -65,7 +71,7 @@ const getContainerClasses = (props: BlockWrapperProps) => {
 export type WrapperProps = React.ComponentProps<'section'> & BlockWrapperProps;
 
 function Wrapper({ children, className, ...props }: WrapperProps) {
-  const containerClasses = `${container({ gutter: 'default' })} ${getContainerClasses(props)}`;
+  const containerClasses = `${container({ gutter: 'default', theme: props.theme ?? '_' })} ${getContainerClasses(props)}`;
   const contentClasses = content({ width: props.contentWidth });
   return (
     <section className={containerClasses}>
