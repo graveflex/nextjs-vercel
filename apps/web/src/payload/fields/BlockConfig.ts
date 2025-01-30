@@ -1,4 +1,4 @@
-import type { CollapsibleField, Field, GroupField, Option } from 'payload';
+import type { GroupField, Field, Option } from 'payload';
 
 const themeOptions = [
   { label: 'Inherit', value: '_' },
@@ -12,9 +12,10 @@ const paddingLabels = [
   'Small',
   'Medium',
   'Large',
-  'X-Large'
+  'X-Large',
+  'XX-Large'
 ] as const;
-const paddingValues = [0, 2, 4, 6, 8, 10] as const;
+const paddingValues = [0, 2, 4, 6, 8, 10, 16] as const;
 
 const genPaddingOptions = (prefix: 'pt' | 'pb') =>
   paddingLabels.map((label, idx) => {
@@ -63,16 +64,17 @@ function BlockConfig({
   fields = [],
   defaultWidth,
   defaultPadding
-}: Partial<CollapsibleField> & {
+}: Partial<GroupField> & {
   defaultPadding?: {
     paddingTop: string;
     paddingBottom: string;
   };
   defaultWidth?: string;
-} = {}): CollapsibleField {
+} = {}): GroupField {
   return {
     label: label || 'Theme, Padding & Content Width Settings',
-    type: 'collapsible',
+    type: 'group',
+    name: 'wrapper',
     fields: [
       {
         name: 'theme',

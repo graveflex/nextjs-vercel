@@ -3,15 +3,8 @@ import type React from 'react';
 import { cva } from 'class-variance-authority';
 import styles from './Wrapper.module.css';
 
-export type BlockWrapperProps = Pick<
-  CtaSectionsBlockT,
-  | 'theme'
-  | 'contentWidth'
-  | 'paddingXs'
-  | 'paddingMd'
-  | 'paddingLg'
-  | 'paddingXl'
-> & {};
+export type BlockWrapperProps = CtaSectionsBlockT['wrapper'] &
+  React.HTMLAttributes<HTMLDivElement>;
 
 const container = cva([styles.container], {
   variants: {
@@ -62,16 +55,17 @@ const getPaddingClasses = (
 };
 
 const getContainerClasses = (props: BlockWrapperProps) => {
-  return [
+  return cva([
     ...getPaddingClasses('pt', 'paddingTop', props),
-    ...getPaddingClasses('pb', 'paddingBottom', props)
-  ].join(' ');
+    ...getPaddingClasses('pb', 'paddingBottom', props),
+    props.className
+  ])({});
 };
 
 export type WrapperProps = React.ComponentProps<'section'> & BlockWrapperProps;
 
 function Wrapper({ children, className, ...props }: WrapperProps) {
-  const containerClasses = `${container({ gutter: 'default' })} ${getContainerClasses(props)} ${className}`;
+  const containerClasses = `${container({ gutter: 'default' })} ${getContainerClasses(props)}`;
   const contentClasses = content({ width: props.contentWidth });
   return (
     <section className={containerClasses}>

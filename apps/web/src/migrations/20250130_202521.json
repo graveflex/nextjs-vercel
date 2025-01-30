@@ -1,5 +1,5 @@
 {
-  "id": "653089d0-7789-4b59-b60b-9c6ef1601451",
+  "id": "d7cf7308-97f5-4e7d-a5c7-9738df9a8c3e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -32,72 +32,72 @@
           "primaryKey": true,
           "notNull": true
         },
-        "theme": {
-          "name": "theme",
-          "type": "enum_pages_blocks_cta_sections_block_theme",
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum_pages_blocks_cta_sections_block_wrapper_theme",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "content_width": {
-          "name": "content_width",
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
           "type": "cw",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
           "default": "'xl'"
         },
-        "padding_xs_padding_top": {
-          "name": "padding_xs_padding_top",
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xs_padding_bottom": {
-          "name": "padding_xs_padding_bottom",
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_md_padding_top": {
-          "name": "padding_md_padding_top",
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_md_padding_bottom": {
-          "name": "padding_md_padding_bottom",
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_lg_padding_top": {
-          "name": "padding_lg_padding_top",
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_lg_padding_bottom": {
-          "name": "padding_lg_padding_bottom",
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xl_padding_top": {
-          "name": "padding_xl_padding_top",
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xl_padding_bottom": {
-          "name": "padding_xl_padding_bottom",
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
@@ -541,72 +541,72 @@
           "primaryKey": true,
           "notNull": true
         },
-        "theme": {
-          "name": "theme",
-          "type": "enum__pages_v_blocks_cta_sections_block_theme",
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum__pages_v_blocks_cta_sections_block_wrapper_theme",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "content_width": {
-          "name": "content_width",
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
           "type": "cw",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
           "default": "'xl'"
         },
-        "padding_xs_padding_top": {
-          "name": "padding_xs_padding_top",
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xs_padding_bottom": {
-          "name": "padding_xs_padding_bottom",
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_md_padding_top": {
-          "name": "padding_md_padding_top",
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_md_padding_bottom": {
-          "name": "padding_md_padding_bottom",
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_lg_padding_top": {
-          "name": "padding_lg_padding_top",
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_lg_padding_bottom": {
-          "name": "padding_lg_padding_bottom",
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xl_padding_top": {
-          "name": "padding_xl_padding_top",
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xl_padding_bottom": {
-          "name": "padding_xl_padding_bottom",
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
@@ -8023,72 +8023,72 @@
           "primaryKey": true,
           "notNull": true
         },
-        "theme": {
-          "name": "theme",
-          "type": "enum_homepage_blocks_cta_sections_block_theme",
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum_homepage_blocks_cta_sections_block_wrapper_theme",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "content_width": {
-          "name": "content_width",
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
           "type": "cw",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
           "default": "'xl'"
         },
-        "padding_xs_padding_top": {
-          "name": "padding_xs_padding_top",
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xs_padding_bottom": {
-          "name": "padding_xs_padding_bottom",
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_md_padding_top": {
-          "name": "padding_md_padding_top",
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_md_padding_bottom": {
-          "name": "padding_md_padding_bottom",
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_lg_padding_top": {
-          "name": "padding_lg_padding_top",
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_lg_padding_bottom": {
-          "name": "padding_lg_padding_bottom",
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xl_padding_top": {
-          "name": "padding_xl_padding_top",
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xl_padding_bottom": {
-          "name": "padding_xl_padding_bottom",
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
@@ -8444,72 +8444,72 @@
           "primaryKey": true,
           "notNull": true
         },
-        "theme": {
-          "name": "theme",
-          "type": "enum__homepage_v_blocks_cta_sections_block_theme",
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum__homepage_v_blocks_cta_sections_block_wrapper_theme",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "content_width": {
-          "name": "content_width",
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
           "type": "cw",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
           "default": "'xl'"
         },
-        "padding_xs_padding_top": {
-          "name": "padding_xs_padding_top",
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xs_padding_bottom": {
-          "name": "padding_xs_padding_bottom",
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_md_padding_top": {
-          "name": "padding_md_padding_top",
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_md_padding_bottom": {
-          "name": "padding_md_padding_bottom",
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_lg_padding_top": {
-          "name": "padding_lg_padding_top",
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_lg_padding_bottom": {
-          "name": "padding_lg_padding_bottom",
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xl_padding_top": {
-          "name": "padding_xl_padding_top",
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xl_padding_bottom": {
-          "name": "padding_xl_padding_bottom",
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
@@ -9000,72 +9000,72 @@
           "primaryKey": true,
           "notNull": true
         },
-        "theme": {
-          "name": "theme",
-          "type": "enum_blog_index_blocks_cta_sections_block_theme",
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum_blog_index_blocks_cta_sections_block_wrapper_theme",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "content_width": {
-          "name": "content_width",
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
           "type": "cw",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
           "default": "'xl'"
         },
-        "padding_xs_padding_top": {
-          "name": "padding_xs_padding_top",
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xs_padding_bottom": {
-          "name": "padding_xs_padding_bottom",
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_md_padding_top": {
-          "name": "padding_md_padding_top",
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_md_padding_bottom": {
-          "name": "padding_md_padding_bottom",
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_lg_padding_top": {
-          "name": "padding_lg_padding_top",
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_lg_padding_bottom": {
-          "name": "padding_lg_padding_bottom",
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xl_padding_top": {
-          "name": "padding_xl_padding_top",
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xl_padding_bottom": {
-          "name": "padding_xl_padding_bottom",
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
@@ -9421,72 +9421,72 @@
           "primaryKey": true,
           "notNull": true
         },
-        "theme": {
-          "name": "theme",
-          "type": "enum__blog_index_v_blocks_cta_sections_block_theme",
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum__blog_index_v_blocks_cta_sections_block_wrapper_theme",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "content_width": {
-          "name": "content_width",
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
           "type": "cw",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false,
           "default": "'xl'"
         },
-        "padding_xs_padding_top": {
-          "name": "padding_xs_padding_top",
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xs_padding_bottom": {
-          "name": "padding_xs_padding_bottom",
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_md_padding_top": {
-          "name": "padding_md_padding_top",
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_md_padding_bottom": {
-          "name": "padding_md_padding_bottom",
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_lg_padding_top": {
-          "name": "padding_lg_padding_top",
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_lg_padding_bottom": {
-          "name": "padding_lg_padding_bottom",
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xl_padding_top": {
-          "name": "padding_xl_padding_top",
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
           "type": "t",
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": false
         },
-        "padding_xl_padding_bottom": {
-          "name": "padding_xl_padding_bottom",
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
           "type": "b",
           "typeSchema": "public",
           "primaryKey": false,
@@ -9959,8 +9959,8 @@
         "es-US"
       ]
     },
-    "public.enum_pages_blocks_cta_sections_block_theme": {
-      "name": "enum_pages_blocks_cta_sections_block_theme",
+    "public.enum_pages_blocks_cta_sections_block_wrapper_theme": {
+      "name": "enum_pages_blocks_cta_sections_block_wrapper_theme",
       "schema": "public",
       "values": [
         "_",
@@ -9990,7 +9990,8 @@
         "pt-4",
         "pt-6",
         "pt-8",
-        "pt-10"
+        "pt-10",
+        "pt-16"
       ]
     },
     "public.b": {
@@ -10002,7 +10003,8 @@
         "pb-4",
         "pb-6",
         "pb-8",
-        "pb-10"
+        "pb-10",
+        "pb-16"
       ]
     },
     "public.enum_pages_blocks_cta_sections_block_variant": {
@@ -10034,8 +10036,8 @@
         "published"
       ]
     },
-    "public.enum__pages_v_blocks_cta_sections_block_theme": {
-      "name": "enum__pages_v_blocks_cta_sections_block_theme",
+    "public.enum__pages_v_blocks_cta_sections_block_wrapper_theme": {
+      "name": "enum__pages_v_blocks_cta_sections_block_wrapper_theme",
       "schema": "public",
       "values": [
         "_",
@@ -10262,8 +10264,8 @@
         "contrast"
       ]
     },
-    "public.enum_homepage_blocks_cta_sections_block_theme": {
-      "name": "enum_homepage_blocks_cta_sections_block_theme",
+    "public.enum_homepage_blocks_cta_sections_block_wrapper_theme": {
+      "name": "enum_homepage_blocks_cta_sections_block_wrapper_theme",
       "schema": "public",
       "values": [
         "_",
@@ -10300,8 +10302,8 @@
         "published"
       ]
     },
-    "public.enum__homepage_v_blocks_cta_sections_block_theme": {
-      "name": "enum__homepage_v_blocks_cta_sections_block_theme",
+    "public.enum__homepage_v_blocks_cta_sections_block_wrapper_theme": {
+      "name": "enum__homepage_v_blocks_cta_sections_block_wrapper_theme",
       "schema": "public",
       "values": [
         "_",
@@ -10346,8 +10348,8 @@
         "es-US"
       ]
     },
-    "public.enum_blog_index_blocks_cta_sections_block_theme": {
-      "name": "enum_blog_index_blocks_cta_sections_block_theme",
+    "public.enum_blog_index_blocks_cta_sections_block_wrapper_theme": {
+      "name": "enum_blog_index_blocks_cta_sections_block_wrapper_theme",
       "schema": "public",
       "values": [
         "_",
@@ -10384,8 +10386,8 @@
         "published"
       ]
     },
-    "public.enum__blog_index_v_blocks_cta_sections_block_theme": {
-      "name": "enum__blog_index_v_blocks_cta_sections_block_theme",
+    "public.enum__blog_index_v_blocks_cta_sections_block_wrapper_theme": {
+      "name": "enum__blog_index_v_blocks_cta_sections_block_wrapper_theme",
       "schema": "public",
       "values": [
         "_",

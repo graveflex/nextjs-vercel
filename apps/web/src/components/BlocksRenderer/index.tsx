@@ -1,6 +1,5 @@
 import type { Page } from '@mono/types/payload-types';
 
-import MaybeThemed from '@mono/ui/components/MaybeThemed';
 import dynamic from 'next/dynamic';
 import type { ComponentType } from 'react';
 import React from 'react';
@@ -18,16 +17,11 @@ const blockList = {
 };
 
 function BlocksRenderer({ blocks }: { blocks: NonNullable<Page['blocks']> }) {
-  console.log('@-->blocks', blocks);
   return blocks?.map(({ blockType, ...blockProps }) => {
     const Component = blockList[blockType] as ComponentType<typeof blockProps>;
 
     if (Component) {
-      return (
-        <MaybeThemed key={blockProps?.id}>
-          <Component {...blockProps} />
-        </MaybeThemed>
-      );
+      return <Component {...blockProps} key={blockProps.id} />;
     }
 
     return null;

@@ -3,14 +3,14 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
    CREATE TYPE "public"."_locales" AS ENUM('en-US', 'es-US');
-  CREATE TYPE "public"."enum_pages_blocks_cta_sections_block_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_pages_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."cw" AS ENUM('full', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs');
-  CREATE TYPE "public"."t" AS ENUM('pt-0', 'pt-2', 'pt-4', 'pt-6', 'pt-8', 'pt-10');
-  CREATE TYPE "public"."b" AS ENUM('pb-0', 'pb-2', 'pb-4', 'pb-6', 'pb-8', 'pb-10');
+  CREATE TYPE "public"."t" AS ENUM('pt-0', 'pt-2', 'pt-4', 'pt-6', 'pt-8', 'pt-10', 'pt-16');
+  CREATE TYPE "public"."b" AS ENUM('pb-0', 'pb-2', 'pb-4', 'pb-6', 'pb-8', 'pb-10', 'pb-16');
   CREATE TYPE "public"."enum_pages_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
   CREATE TYPE "public"."enum_pages_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum_pages_status" AS ENUM('draft', 'published');
-  CREATE TYPE "public"."enum__pages_v_blocks_cta_sections_block_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__pages_v_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__pages_v_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
   CREATE TYPE "public"."enum__pages_v_version_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum__pages_v_version_status" AS ENUM('draft', 'published');
@@ -30,20 +30,20 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_nav_header_banner_background" AS ENUM('white', 'black', 'gray');
   CREATE TYPE "public"."undefined_cta_v" AS ENUM('outline', 'solid', 'link');
   CREATE TYPE "public"."undefined_cta_tv" AS ENUM('lightTheme', 'darkTheme', 'contrast');
-  CREATE TYPE "public"."enum_homepage_blocks_cta_sections_block_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_homepage_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_homepage_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
   CREATE TYPE "public"."enum_homepage_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum_homepage_status" AS ENUM('draft', 'published');
-  CREATE TYPE "public"."enum__homepage_v_blocks_cta_sections_block_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__homepage_v_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__homepage_v_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
   CREATE TYPE "public"."enum__homepage_v_version_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum__homepage_v_version_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__homepage_v_published_locale" AS ENUM('en-US', 'es-US');
-  CREATE TYPE "public"."enum_blog_index_blocks_cta_sections_block_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_blog_index_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_blog_index_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
   CREATE TYPE "public"."enum_blog_index_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum_blog_index_status" AS ENUM('draft', 'published');
-  CREATE TYPE "public"."enum__blog_index_v_blocks_cta_sections_block_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__blog_index_v_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__blog_index_v_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
   CREATE TYPE "public"."enum__blog_index_v_version_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum__blog_index_v_version_status" AS ENUM('draft', 'published');
@@ -53,16 +53,16 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL,
   	"_path" text NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
-  	"theme" "enum_pages_blocks_cta_sections_block_theme",
-  	"content_width" "cw" DEFAULT 'xl',
-  	"padding_xs_padding_top" "t",
-  	"padding_xs_padding_bottom" "b",
-  	"padding_md_padding_top" "t",
-  	"padding_md_padding_bottom" "b",
-  	"padding_lg_padding_top" "t",
-  	"padding_lg_padding_bottom" "b",
-  	"padding_xl_padding_top" "t",
-  	"padding_xl_padding_bottom" "b",
+  	"wrapper_theme" "enum_pages_blocks_cta_sections_block_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "enum_pages_blocks_cta_sections_block_variant" DEFAULT '1',
   	"block_name" varchar
   );
@@ -100,16 +100,16 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL,
   	"_path" text NOT NULL,
   	"id" serial PRIMARY KEY NOT NULL,
-  	"theme" "enum__pages_v_blocks_cta_sections_block_theme",
-  	"content_width" "cw" DEFAULT 'xl',
-  	"padding_xs_padding_top" "t",
-  	"padding_xs_padding_bottom" "b",
-  	"padding_md_padding_top" "t",
-  	"padding_md_padding_bottom" "b",
-  	"padding_lg_padding_top" "t",
-  	"padding_lg_padding_bottom" "b",
-  	"padding_xl_padding_top" "t",
-  	"padding_xl_padding_bottom" "b",
+  	"wrapper_theme" "enum__pages_v_blocks_cta_sections_block_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "enum__pages_v_blocks_cta_sections_block_variant" DEFAULT '1',
   	"_uuid" varchar,
   	"block_name" varchar
@@ -731,16 +731,16 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL,
   	"_path" text NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
-  	"theme" "enum_homepage_blocks_cta_sections_block_theme",
-  	"content_width" "cw" DEFAULT 'xl',
-  	"padding_xs_padding_top" "t",
-  	"padding_xs_padding_bottom" "b",
-  	"padding_md_padding_top" "t",
-  	"padding_md_padding_bottom" "b",
-  	"padding_lg_padding_top" "t",
-  	"padding_lg_padding_bottom" "b",
-  	"padding_xl_padding_top" "t",
-  	"padding_xl_padding_bottom" "b",
+  	"wrapper_theme" "enum_homepage_blocks_cta_sections_block_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "enum_homepage_blocks_cta_sections_block_variant" DEFAULT '1',
   	"block_name" varchar
   );
@@ -774,16 +774,16 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL,
   	"_path" text NOT NULL,
   	"id" serial PRIMARY KEY NOT NULL,
-  	"theme" "enum__homepage_v_blocks_cta_sections_block_theme",
-  	"content_width" "cw" DEFAULT 'xl',
-  	"padding_xs_padding_top" "t",
-  	"padding_xs_padding_bottom" "b",
-  	"padding_md_padding_top" "t",
-  	"padding_md_padding_bottom" "b",
-  	"padding_lg_padding_top" "t",
-  	"padding_lg_padding_bottom" "b",
-  	"padding_xl_padding_top" "t",
-  	"padding_xl_padding_bottom" "b",
+  	"wrapper_theme" "enum__homepage_v_blocks_cta_sections_block_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "enum__homepage_v_blocks_cta_sections_block_variant" DEFAULT '1',
   	"_uuid" varchar,
   	"block_name" varchar
@@ -824,16 +824,16 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL,
   	"_path" text NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
-  	"theme" "enum_blog_index_blocks_cta_sections_block_theme",
-  	"content_width" "cw" DEFAULT 'xl',
-  	"padding_xs_padding_top" "t",
-  	"padding_xs_padding_bottom" "b",
-  	"padding_md_padding_top" "t",
-  	"padding_md_padding_bottom" "b",
-  	"padding_lg_padding_top" "t",
-  	"padding_lg_padding_bottom" "b",
-  	"padding_xl_padding_top" "t",
-  	"padding_xl_padding_bottom" "b",
+  	"wrapper_theme" "enum_blog_index_blocks_cta_sections_block_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "enum_blog_index_blocks_cta_sections_block_variant" DEFAULT '1',
   	"block_name" varchar
   );
@@ -867,16 +867,16 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL,
   	"_path" text NOT NULL,
   	"id" serial PRIMARY KEY NOT NULL,
-  	"theme" "enum__blog_index_v_blocks_cta_sections_block_theme",
-  	"content_width" "cw" DEFAULT 'xl',
-  	"padding_xs_padding_top" "t",
-  	"padding_xs_padding_bottom" "b",
-  	"padding_md_padding_top" "t",
-  	"padding_md_padding_bottom" "b",
-  	"padding_lg_padding_top" "t",
-  	"padding_lg_padding_bottom" "b",
-  	"padding_xl_padding_top" "t",
-  	"padding_xl_padding_bottom" "b",
+  	"wrapper_theme" "enum__blog_index_v_blocks_cta_sections_block_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "enum__blog_index_v_blocks_cta_sections_block_variant" DEFAULT '1',
   	"_uuid" varchar,
   	"block_name" varchar
@@ -1790,14 +1790,14 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "_blog_index_v" CASCADE;
   DROP TABLE "_blog_index_v_locales" CASCADE;
   DROP TYPE "public"."_locales";
-  DROP TYPE "public"."enum_pages_blocks_cta_sections_block_theme";
+  DROP TYPE "public"."enum_pages_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."cw";
   DROP TYPE "public"."t";
   DROP TYPE "public"."b";
   DROP TYPE "public"."enum_pages_blocks_cta_sections_block_variant";
   DROP TYPE "public"."enum_pages_theme";
   DROP TYPE "public"."enum_pages_status";
-  DROP TYPE "public"."enum__pages_v_blocks_cta_sections_block_theme";
+  DROP TYPE "public"."enum__pages_v_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum__pages_v_blocks_cta_sections_block_variant";
   DROP TYPE "public"."enum__pages_v_version_theme";
   DROP TYPE "public"."enum__pages_v_version_status";
@@ -1817,20 +1817,20 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_nav_header_banner_background";
   DROP TYPE "public"."undefined_cta_v";
   DROP TYPE "public"."undefined_cta_tv";
-  DROP TYPE "public"."enum_homepage_blocks_cta_sections_block_theme";
+  DROP TYPE "public"."enum_homepage_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum_homepage_blocks_cta_sections_block_variant";
   DROP TYPE "public"."enum_homepage_theme";
   DROP TYPE "public"."enum_homepage_status";
-  DROP TYPE "public"."enum__homepage_v_blocks_cta_sections_block_theme";
+  DROP TYPE "public"."enum__homepage_v_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum__homepage_v_blocks_cta_sections_block_variant";
   DROP TYPE "public"."enum__homepage_v_version_theme";
   DROP TYPE "public"."enum__homepage_v_version_status";
   DROP TYPE "public"."enum__homepage_v_published_locale";
-  DROP TYPE "public"."enum_blog_index_blocks_cta_sections_block_theme";
+  DROP TYPE "public"."enum_blog_index_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum_blog_index_blocks_cta_sections_block_variant";
   DROP TYPE "public"."enum_blog_index_theme";
   DROP TYPE "public"."enum_blog_index_status";
-  DROP TYPE "public"."enum__blog_index_v_blocks_cta_sections_block_theme";
+  DROP TYPE "public"."enum__blog_index_v_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum__blog_index_v_blocks_cta_sections_block_variant";
   DROP TYPE "public"."enum__blog_index_v_version_theme";
   DROP TYPE "public"."enum__blog_index_v_version_status";

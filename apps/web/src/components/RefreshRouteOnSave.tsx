@@ -10,9 +10,8 @@ export const RefreshRouteOnSave: React.FC = () => {
   const [serverURL, setServerURL] = useState<string | null>(null);
 
   useEffect(() => {
-    router.refresh();
     setServerURL(window.location.origin);
-  }, [router.refresh])
+  }, [])
 
   if (!serverURL) {
     return null;

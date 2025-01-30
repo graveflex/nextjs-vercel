@@ -22,7 +22,6 @@ async function fetchPageData(
   locale: LanguageLocale
 ) {
   const payload = await getPayload({ config });
-  console.log('@-->draft', draft);
   return payload.findGlobal({
     slug: 'homepage',
     locale,
@@ -34,9 +33,6 @@ async function fetchPageData(
 
 export default async function HomePage(props: RootLayoutProps) {
   const { locale = DEFAULT_LOCALE, draft } = await props.params;
-
-  console.log('@-->draft', draft);
-
   const homepageData = await fetchPageData(draft, locale);
 
   return (

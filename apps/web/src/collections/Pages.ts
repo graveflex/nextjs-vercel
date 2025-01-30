@@ -18,7 +18,6 @@ const Pages: CollectionConfig = {
     livePreview: {
       url: ({ data: { slug }, req }) => {
         const baseUrl = `${req.protocol}//${req.host}`;
-        console.log('@-->base url', baseUrl);
         return `${baseUrl}/draft/${slug}`;
       }
     }

@@ -42,12 +42,9 @@ function CtaSections({
   ...props
 }: CtaSectionsBlockType) {
   const Component: ComponentType<CtaSectionsBlockType> = layoutList[variant];
-
-  console.log('@-->component', Component);
-
   return (
-    <Wrapper {...props}>
-      <Component title={title} variant={variant} />
+    <Wrapper {...props.wrapper}>
+      <Component title={'Action-Driving headline that creates urgency'} variant={variant} />
     </Wrapper>
   );
 }
