@@ -22,13 +22,18 @@ export type RichTextType = {
     };
     [k: string]: unknown;
   } | null;
+  className?: string;
 };
 
-function RichText({ data }: RichTextType) {
+function RichText({ className, data }: RichTextType) {
   return (
     data && (
       <div
-        className={cn('rich-text-container rich-text-global', styles.richtext)}
+        className={cn(
+          'rich-text-container rich-text-global',
+          styles.richtext,
+          className
+        )}
       >
         <LexicalRichText data={data} className="rich-text" />
       </div>

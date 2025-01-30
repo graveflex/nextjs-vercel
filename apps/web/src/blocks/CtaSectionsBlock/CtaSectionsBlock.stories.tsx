@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import { richTextMockData } from '@mono/web/components/RichText/RichText.stories';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { CtaSectionsBlockType } from '.';
@@ -26,7 +27,8 @@ export const Defaults: Story = {
 export const One: Story = {
   args: {
     title: faker.lorem.words(5),
-    variant: '1'
+    variant: '1',
+    content: richTextMockData.data
   }
 };
 

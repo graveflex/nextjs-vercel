@@ -91,6 +91,7 @@
     py-[0.2rem]
     font-mono
     text-sm
+    text-secondary-foreground
     font-semibold;
 }
 
