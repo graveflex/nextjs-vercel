@@ -1,9 +1,7 @@
-// import Wrapper from '@mono/ui/components/Wrapper';
 import type { CtaSectionsBlockT as PayloadType } from '@mono/types/payload-types';
+import Wrapper from '@mono/web/components/Wrapper';
 import React from 'react';
 
-import { Button } from '@mono/web/components/ui/Button';
-import { ArrowRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import type { ComponentType } from 'react';
 
@@ -40,11 +38,18 @@ const layoutList: Record<string, ComponentType<CtaSectionsBlockType>> = {
 
 function CtaSections({
   title = 'Action-Driving headline that creates urgency',
-  variant = '1'
+  variant = '1',
+  ...props
 }: CtaSectionsBlockType) {
   const Component: ComponentType<CtaSectionsBlockType> = layoutList[variant];
-
-  return <Component title={title} variant={variant} />;
+  return (
+    <Wrapper {...props.wrapper}>
+      <Component
+        title={'Action-Driving headline that creates urgency'}
+        variant={variant}
+      />
+    </Wrapper>
+  );
 }
 
 export default CtaSections;

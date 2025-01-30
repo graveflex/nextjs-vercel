@@ -1,23 +1,10 @@
-import CardGridBlock from '@mono/web/blocks/CardGridBlock/CardGridBlock.config';
-// InsertBlockConfigs
-import CtaSectionsBlock from '@mono/web/blocks/CtaSectionsBlock/CtaSectionsBlock.config';
-import FAQBlock from '@mono/web/blocks/FAQBlock/FAQBlock.config';
-import FormBlock from '@mono/web/blocks/FormBlock/FormBlock.config';
-import FullBleedImageBlock from '@mono/web/blocks/FullBleedImageBlock/FullBleedImageBlock.config';
-import GalleryGridBlock from '@mono/web/blocks/GalleryGridBlock/GalleryGridBlock.config';
-import HeroBlock from '@mono/web/blocks/HeroBlock/HeroBlock.config';
-import IconGridBlock from '@mono/web/blocks/IconGridBlock/IconGridBlock.config';
-import IframeBlock from '@mono/web/blocks/IframeBlock/IframeBlock.config';
-import MarkdownBlock from '@mono/web/blocks/MarkdownBlock/MarkdownBlock.config';
-import SectionHeaderBlock from '@mono/web/blocks/SectionHeaderBlock/SectionHeaderBlock.config';
+import { allBlocks } from '@mono/web/lib/blockList';
 import { WEB_URL } from '@mono/web/lib/constants';
 
-import TextImageBlock from '@mono/web/blocks/TextImageBlock/TextImageBlock.config';
-import VideoBlock from '@mono/web/blocks/VideoBlock/VideoBlock.config';
 import type { GlobalConfig } from 'payload';
 
-import { globalInvalidateCache } from '../../hooks/globalInvalidateCache';
-import { globalPublishBeforeRead } from '../../hooks/globalPublishBeforeRead';
+import { globalInvalidateCache } from '@mono/web/hooks/globalInvalidateCache';
+import { globalPublishBeforeRead } from '@mono/web/hooks/globalPublishBeforeRead';
 
 const themeOptions = [
   { label: 'Light', value: 'light' },
@@ -55,22 +42,7 @@ const BlogIndex: GlobalConfig = {
               name: 'blocks',
               label: 'Blocks',
               type: 'blocks',
-              blocks: [
-                // InsertBlockConfigFields
-                CtaSectionsBlock,
-                IframeBlock,
-                IconGridBlock,
-                FullBleedImageBlock('Blog'),
-                SectionHeaderBlock('Blog'),
-                GalleryGridBlock,
-                VideoBlock,
-                FormBlock,
-                CardGridBlock,
-                MarkdownBlock,
-                FAQBlock,
-                TextImageBlock,
-                HeroBlock
-              ]
+              blocks: allBlocks
             }
           ]
         }

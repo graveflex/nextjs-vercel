@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 
 @plugin 'tailwindcss-animate';
+@source './safelist.css';
 
 @variant dark (&:is(.dark *));
 

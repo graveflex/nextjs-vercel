@@ -42,7 +42,6 @@ function CtaSections4({
           {/* Email Form */}
           <form
             className="flex flex-col md:flex-row gap-3 w-full md:max-w-sm"
-            onSubmit={(e) => e.preventDefault()}
             aria-label="Email signup form"
           >
             <Input

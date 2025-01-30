@@ -5,12 +5,12 @@ import {
   LOCALES,
   type LanguageLocale
 } from '@mono/web/lib/constants';
-import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
 import { unstable_setRequestLocale } from 'next-intl/server';
+import { headers } from 'next/headers';
 import { notFound, redirect } from 'next/navigation';
-import { getPayload } from 'payload';
+import { type PayloadRequest, getPayload } from 'payload';
 import React from 'react';
 
 export const dynamic = 'force-static';
@@ -22,30 +22,49 @@ export interface RootLayoutProps {
     draft?: boolean;
   }>;
 }
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
+
+// TODO: abstract this into a generic helper function
 async function fetchPageData(
   draft: boolean | undefined,
   locale: LanguageLocale,
   pageSlug: string
 ) {
-  const query = async (locale: LanguageLocale) => {
-    const payload = await getPayload({ config });
-    const data = await payload.find({
-      collection: 'pages',
-      locale,
-      draft,
-      depth: 2,
-      where: {
-        slug: { equals: pageSlug }
-      },
-      limit: 1
-    });
-    return data?.docs?.[0];
-  };
+  const payload = await getPayload({ config });
+  let user;
 
-  return executeCachedQuery(query, pageSlug, locale, draft);
+  // we need to pass the current user to the local API request, otherwise
+  // payload won't be able to perform access control correctly
+  if (draft) {
+    const requestHeaders = await headers();
+    const me = await payload.auth({
+      headers: requestHeaders,
+      req: {} as PayloadRequest
+    });
+
+    // only admins should be able to see drafts
+    if (!me?.permissions?.canAccessAdmin) {
+      notFound();
+    }
+
+    user = me.user;
+  }
+
+  const data = await payload.find({
+    collection: 'pages',
+    locale,
+    draft,
+    depth: 3,
+    user,
+    overrideAccess: false,
+    where: { slug: { equals: pageSlug } },
+    limit: 1
+  });
+
+  return data.docs[0];
 }
 
 export default async function CatchallPage({ params }: RootLayoutProps) {
@@ -58,6 +77,7 @@ export default async function CatchallPage({ params }: RootLayoutProps) {
   }
   unstable_setRequestLocale(locale);
   const page = await fetchPageData(draft, locale, pageSlug);
+
   // if not page data and not the index check for redirects
   if (!page) {
     const redirectPath = await redirectApi(pageSlug);
