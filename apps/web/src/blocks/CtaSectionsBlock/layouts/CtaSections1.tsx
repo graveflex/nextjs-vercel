@@ -37,7 +37,9 @@ function CtaSections1({
               to act now. Align this copy with your CTA button text.
             </p>
 
-            {content && <RichText data={content} />}
+            {content && (
+              <RichText data={content} className="text-primary-foreground" />
+            )}
           </div>
 
           {/* CTA Button */}
