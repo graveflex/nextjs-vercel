@@ -1,12 +1,12 @@
-@import "tailwindcss/theme" theme(reference);
+@reference "./../../app/global.css";
 
 .richtext h1 {
   @apply
-    scroll-m-20
-    text-4xl
-    lg:text-5xl
-    font-extrabold
-    tracking-tight;
+  scroll-m-20
+  text-4xl
+  lg:text-5xl
+  font-extrabold
+  tracking-tight;
 }
 
 .richtext h2 {
@@ -86,6 +86,7 @@
   @apply
     relative
     rounded
+    bg-muted
     px-[0.3rem]
     py-[0.2rem]
     font-mono
