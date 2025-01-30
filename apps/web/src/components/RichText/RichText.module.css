@@ -1,36 +1,95 @@
 @import "tailwindcss/theme" theme(reference);
-/* @reference "./../../app/global.css"; */
-
-.rich-text-container {
-  border: 1px dotted green;
-}
-
-.richtext {
-  border: 1px dotted red;
-}
-
-.richtext h1,
-.richtext h2,
-.richtext h3,
-.richtext h4,
-.richtext h5,
-.richtext h6 {
-  border: 1px dotted blue;
-}
-
-/* .h1 {
-  @apply tracking-tight scroll-m-20 text-4xl;
-}
-
-.richtext h1 {
-  composes: h1;
-} */
 
 .richtext h1 {
   @apply
     scroll-m-20
     text-4xl
-    lg:text-5xl;
-    /* font-extrabold
-    tracking-tight; */
+    lg:text-5xl
+    font-extrabold
+    tracking-tight;
 }
+
+.richtext h2 {
+  @apply
+    scroll-m-20
+    border-b
+    pb-2
+    text-3xl
+    font-semibold
+    tracking-tight
+    first:mt-0;
+}
+
+.richtext h3 {
+  @apply
+    scroll-m-20
+    text-2xl
+    font-semibold
+    tracking-tight;
+}
+
+.richtext h4 {
+  @apply
+    scroll-m-20
+    text-xl
+    font-semibold
+    tracking-tight;
+}
+
+.richtext h5 {
+  @apply
+    scroll-m-20
+    text-xl
+    font-semibold
+    tracking-tight;
+}
+
+.richtext h6 {
+  @apply
+    scroll-m-20
+    text-xl
+    font-semibold
+    tracking-tight;
+}
+
+.richtext p {
+  @apply
+    leading-7
+    [&:not(:first-child)]:mt-6;
+}
+
+.richtext blockquote {
+  @apply
+    mt-6
+    border-l-2
+    pl-6
+    italic;
+}
+
+.richtext ul {
+  @apply
+    my-6
+    ml-6
+    list-disc
+    [&>li]:mt-2;
+}
+
+.richtext ol {
+  @apply
+    my-6
+    ml-6
+    list-decimal
+    [&>li]:mt-2;
+}
+
+.richtext code {
+  @apply
+    relative
+    rounded
+    px-[0.3rem]
+    py-[0.2rem]
+    font-mono
+    text-sm
+    font-semibold;
+}
+
