@@ -32,7 +32,7 @@ function CtaSections1({
             </h2>
             {/* Section Description */}
             <p className="text-base md:text-lg text-primary-foreground text-center opacity-80">
-              Add one or two compelling sentences that reinforce your main value
+              Add 1 or 2 compelling sentences that reinforce your main value
               proposition and overcome final objections. End with a clear reason
               to act now. Align this copy with your CTA button text.
             </p>
