@@ -100,7 +100,7 @@ function BlockConfig({
         fields: [...paddingOptions],
         defaultValue: defaultPadding || {
           paddingTop: 'pt-4',
-          paddingBottom: 'pt-4'
+          paddingBottom: 'pb-4'
         }
       },
 
