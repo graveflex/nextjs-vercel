@@ -42,7 +42,6 @@ function HeroSections4({ title }: HeroSectionsBlockType) {
           {/* Email Form */}
           <form
             className="flex flex-col lg:flex-row gap-3 w-full md:max-w-sm"
-            onSubmit={(e) => e.preventDefault()}
             aria-label="Email signup form"
           >
             <Input
