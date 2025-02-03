@@ -1,4 +1,4 @@
-import type { Field, GroupField, Option } from 'payload';
+import type { Field, CollapsibleField, Option } from 'payload';
 
 const themeOptions = [
   { label: 'Inherit', value: '_' },
@@ -64,74 +64,83 @@ function BlockConfig({
   fields = [],
   defaultWidth,
   defaultPadding
-}: Partial<GroupField> & {
+}: Partial<CollapsibleField> & {
   defaultPadding?: {
     paddingTop: string;
     paddingBottom: string;
   };
   defaultWidth?: string;
-} = {}): GroupField {
+} = {}): CollapsibleField {
   return {
     label: label || 'Theme, Padding & Content Width Settings',
-    type: 'group',
-    name: 'wrapper',
+    type: 'collapsible',
+    admin: {
+      initCollapsed: true
+    },
     fields: [
       {
-        name: 'theme',
-        label: 'Theme',
-        type: 'select',
-        required: false,
-        options: themeOptions
-      },
-      {
-        name: 'contentWidth',
-        dbName: 'cw',
-        label: 'Content Width',
-        type: 'select',
-        required: false,
-        options: contentWidthValues,
-        defaultValue: defaultWidth || 'xl'
-      },
-
-      {
-        name: 'paddingXs',
-        label: 'Padding',
+        label: label || 'Theme, Padding & Content Width Settings',
         type: 'group',
-        fields: [...paddingOptions],
-        defaultValue: defaultPadding || {
-          paddingTop: 'pt-4',
-          paddingBottom: 'pb-4'
-        }
-      },
-
-      {
-        label: 'Advanced Padding',
-        type: 'collapsible',
-        admin: {
-          initCollapsed: true
-        },
+        name: 'wrapper',
         fields: [
           {
-            name: 'paddingMd',
-            label: 'Tablet and above',
-            type: 'group',
-            fields: [...paddingOptions]
+            name: 'theme',
+            label: 'Theme',
+            type: 'select',
+            required: false,
+            options: themeOptions
           },
           {
-            name: 'paddingLg',
-            label: 'Desktop and above',
-            type: 'group',
-            fields: [...paddingOptions]
+            name: 'contentWidth',
+            dbName: 'cw',
+            label: 'Content Width',
+            type: 'select',
+            required: false,
+            options: contentWidthValues,
+            defaultValue: defaultWidth || 'xl'
           },
+
           {
-            name: 'paddingXl',
-            label: 'XL Desktop and above',
+            name: 'paddingXs',
+            label: 'Padding',
             type: 'group',
-            fields: [...paddingOptions]
-          }
+            fields: [...paddingOptions],
+            defaultValue: defaultPadding || {
+              paddingTop: 'pt-4',
+              paddingBottom: 'pb-4'
+            }
+          },
+
+          {
+            label: 'Advanced Padding',
+            type: 'collapsible',
+            admin: {
+              initCollapsed: true
+            },
+            fields: [
+              {
+                name: 'paddingMd',
+                label: 'Tablet and above',
+                type: 'group',
+                fields: [...paddingOptions]
+              },
+              {
+                name: 'paddingLg',
+                label: 'Desktop and above',
+                type: 'group',
+                fields: [...paddingOptions]
+              },
+              {
+                name: 'paddingXl',
+                label: 'XL Desktop and above',
+                type: 'group',
+                fields: [...paddingOptions]
+              }
+            ]
+          },
+          ...fields
         ]
-      },
-      ...fields
+      }
     ]
   };
 }
