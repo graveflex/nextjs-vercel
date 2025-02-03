@@ -1,4 +1,4 @@
-import type { Field, CollapsibleField, Option } from 'payload';
+import type { CollapsibleField, Field, Option } from 'payload';
 
 const themeOptions = [
   { label: 'Inherit', value: '_' },

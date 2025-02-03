@@ -13,10 +13,7 @@ function CtaSections1({
   title = 'Action-Driving headline that creates urgency'
 }: CtaSectionsBlockType) {
   return (
-    <section
-      className={styles.container}
-      aria-labelledby="cta-heading"
-    >
+    <section className={styles.container} aria-labelledby="cta-heading">
       <div className={styles.content}>
         <div className="flex flex-col items-center max-w-xl gap-8 md:gap-10 mx-auto">
           {/* Section Header */}
