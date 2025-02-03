@@ -19,6 +19,12 @@ const blockList = {
     {
       ...defaultOpts
     }
+  ),
+  heroSectionsBlock: dynamic(
+    () => import('@mono/web/blocks/HeroSectionsBlock'),
+    {
+      ...defaultOpts
+    }
   )
 };
 
