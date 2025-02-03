@@ -18,7 +18,7 @@ const Pages: CollectionConfig = {
     livePreview: {
       url: ({ data: { slug }, req }) => {
         const protocol = process.env.VERCEL_URL ? 'https' : 'http';
-        const baseUrl = `${protocol}//${req.host}`;
+        const baseUrl = `${protocol}://${req.host}`;
         return `${baseUrl}/draft/${slug}`;
       }
     }
