@@ -1,5 +1,5 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
-import { Button } from '@mono/web/components/ui/Button';
+import PageThemeObserver from '@mono/web/components/PageThemeObserver';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
 import { unstable_setRequestLocale } from 'next-intl/server';
@@ -37,7 +37,7 @@ export default async function HomePage(props: RootLayoutProps) {
 
   return (
     <>
-      <Button>click me</Button>
+      <PageThemeObserver theme={homepageData.theme} />
       <BlocksRenderer blocks={homepageData.blocks ?? []} />
     </>
   );

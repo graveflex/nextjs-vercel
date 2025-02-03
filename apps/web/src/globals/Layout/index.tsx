@@ -1,13 +1,11 @@
-'use server';
-
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
 import { unstable_cache } from 'next/cache';
 import { getPayload } from 'payload';
+import Footer from '@mono/ui/components/Footer';
+import Header from '@mono/web/components/Header';
 
 import type React from 'react';
-
-import LayoutClient from './Layout.client';
 
 type LayoutProps = {
   locale: LanguageLocale;
@@ -42,8 +40,10 @@ export default async function Layout({
   const navData = await fetchNavData(draft, locale);
 
   return (
-    <LayoutClient showHeader={showHeader} {...navData}>
-      {children}
-    </LayoutClient>
+    <>
+      {showHeader && <Header />}
+      <main>{children}</main>
+      <Footer {...navData.footer?.footerItems} />
+    </>
   );
 }
