@@ -204,7 +204,7 @@ export interface HeaderSectionBlockT {
   /**
    * The layout variant for the block.
    */
-  variant: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
+  variant: '1' | '2' | '3' | '4' | '5' | '6';
   title?: string | null;
   id?: string | null;
   blockName?: string | null;
