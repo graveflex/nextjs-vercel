@@ -252,6 +252,7 @@ async function runFreshMigration(db: { uri: string }) {
   });
 }
 
+/*
 async function seedAll(db: { uri: string }) {
   const seedProcess = spawn('pnpm', ['seed:all'], {
     stdio: 'inherit',
@@ -271,6 +272,7 @@ async function seedAll(db: { uri: string }) {
     });
   });
 }
+*/
 
 async function issueDireWarning() {
   const username = os.userInfo().username;
@@ -310,7 +312,9 @@ async function reseed(props: Step2Props) {
 
   if (proceed) {
     await runFreshMigration(db);
-    return seedAll(db);
+    return;
+    // TODO: re-implement seeds
+    // return seedAll(db);
   }
 
   console.info('Re-seed cancelled.');

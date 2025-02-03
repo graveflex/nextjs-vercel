@@ -1,8 +1,11 @@
-@import "tailwindcss/theme" theme(reference);
+@reference "../../app/global.css";
 
 .container {
   @apply 
     px-4 
     py-2 
+    font-extrabold
     text-slate-500;
+
+  @apply md:text-pink-500;
 }

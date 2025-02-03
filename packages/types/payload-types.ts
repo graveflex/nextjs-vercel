@@ -118,23 +118,7 @@ export interface UserAuthOperations {
  */
 export interface Page {
   id: number;
-  blocks?:
-    | (
-        | HeaderSectionBlockT
-        | IframeBlockT
-        | IconGridBlockT
-        | FullBleedImageBlockT
-        | SectionHeaderBlockT
-        | GalleryGridBlockT
-        | VideoBlockT
-        | FormBlockT
-        | CardGridBlockT
-        | MarkdownBlockT
-        | FAQBlockT
-        | TextImageBlockT
-        | HeroBlockT
-      )[]
-    | null;
+  blocks?: CtaSectionsBlockT[] | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -160,45 +144,37 @@ export interface Page {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "HeaderSectionBlockT".
+ * via the `definition` "CtaSectionsBlockT".
  */
-export interface HeaderSectionBlockT {
-  blockConfig?: {
+export interface CtaSectionsBlockT {
+  wrapper?: {
     theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: (number | null) | Image;
-    /**
-     * Block will not appear on page
-     */
-    hidden?: boolean | null;
     contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    p?: {
-      xs?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      md?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      lg?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      xl?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
+    paddingXs?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingMd?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingLg?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingXl?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
     };
   };
   /**
    * The layout variant for the block.
    */
-  variant: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
+  variant: '1' | '2' | '3' | '4' | '5' | '6' | '7';
   title?: string | null;
   id?: string | null;
   blockName?: string | null;
-  blockType: 'headerSectionBlock';
+  blockType: 'ctaSectionsBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -275,38 +251,76 @@ export interface Image {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IframeBlockT".
+ * via the `definition` "posts".
  */
-export interface IframeBlockT {
-  blockConfig?: {
-    theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: (number | null) | Image;
+export interface Post {
+  id: number;
+  title: string;
+  subTitle?: string | null;
+  date: string;
+  authors?: (number | Author)[] | null;
+  tags?: (number | Tag)[] | null;
+  ctas?:
+    | {
+        cta?: CTAType;
+        id?: string | null;
+      }[]
+    | null;
+  thumbnail: number | Image;
+  coverImage: number | Image;
+  content: {
     /**
-     * Block will not appear on page
+     * The content that will be displayed in the markdown block.
      */
-    hidden?: boolean | null;
-    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    p?: {
-      xs?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
+    content?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
       };
-      md?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      lg?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      xl?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-    };
+      [k: string]: unknown;
+    } | null;
+    id?: string | null;
+  }[];
+  /**
+   * pathname for the blog deatail - do not inculde /.
+   */
+  slug?: string | null;
+  /**
+   * If the current time is before this date, the page will not render
+   */
+  publishedAt?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Image;
+    keywords?: string | null;
   };
-  title?: {
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "authors".
+ */
+export interface Author {
+  id: number;
+  slug?: string | null;
+  fullName: string;
+  image?: (number | null) | Image;
+  jobTitle: string;
+  bio?: {
     root: {
       type: string;
       children: {
@@ -321,70 +335,18 @@ export interface IframeBlockT {
     };
     [k: string]: unknown;
   } | null;
-  iframe: string;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'iframeBlock';
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IconGridBlockT".
+ * via the `definition` "tags".
  */
-export interface IconGridBlockT {
-  blockConfig?: {
-    theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: (number | null) | Image;
-    /**
-     * Block will not appear on page
-     */
-    hidden?: boolean | null;
-    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    p?: {
-      xs?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      md?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      lg?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      xl?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-    };
-  };
-  layout?: ('horizontal' | 'vertical') | null;
-  items?:
-    | {
-        image: number | Image;
-        content: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        };
-        cta?: CTAType;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'iconGridBlock';
+export interface Tag {
+  id: number;
+  label: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -492,202 +454,6 @@ export interface IconSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FullBleedImageBlockT".
- */
-export interface FullBleedImageBlockT {
-  blockConfig?: {
-    theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: (number | null) | Image;
-    /**
-     * Block will not appear on page
-     */
-    hidden?: boolean | null;
-    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    p?: {
-      xs?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      md?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      lg?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      xl?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-    };
-  };
-  image: number | Image;
-  mobileImage?: (number | null) | Image;
-  /**
-   * Controls the overlap of blocks. If checked, make sure that this block has the bottom padding unset and the block below it has the top padding unset.
-   */
-  isBackground?: boolean | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'fullBleedImageBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "SectionHeaderBlockT".
- */
-export interface SectionHeaderBlockT {
-  blockConfig?: {
-    theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: (number | null) | Image;
-    /**
-     * Block will not appear on page
-     */
-    hidden?: boolean | null;
-    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    p?: {
-      xs?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      md?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      lg?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      xl?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-    };
-  };
-  eyebrow?: string | null;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
-  alignment?: ('center' | 'left' | 'right') | null;
-  cta?: CTAType;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'sectionHeaderBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "GalleryGridBlockT".
- */
-export interface GalleryGridBlockT {
-  blockConfig?: {
-    theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: (number | null) | Image;
-    /**
-     * Block will not appear on page
-     */
-    hidden?: boolean | null;
-    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    p?: {
-      xs?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      md?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      lg?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      xl?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-    };
-  };
-  galleryImages?:
-    | {
-        image?: (number | null) | Image;
-        id?: string | null;
-      }[]
-    | null;
-  cta?: CTAType;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'galleryGridBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "VideoBlockT".
- */
-export interface VideoBlockT {
-  blockConfig?: {
-    theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: (number | null) | Image;
-    /**
-     * Block will not appear on page
-     */
-    hidden?: boolean | null;
-    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    p?: {
-      xs?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      md?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      lg?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      xl?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-    };
-  };
-  video?: (number | null) | Video;
-  /**
-   * A direct link to a video file, to be used for videos larger than 4.5MB
-   */
-  videoURL?: string | null;
-  /**
-   * A URL from a video hosting service like YouTube or Vimeo
-   */
-  embedURL?: string | null;
-  /**
-   * Optional caption will display below the video
-   */
-  caption?: string | null;
-  /**
-   * Makes video taller & overflow off page on mobile. Also hides video controls.
-   */
-  fullBleedMobile?: boolean | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'videoBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "videos".
  */
 export interface Video {
@@ -709,56 +475,43 @@ export interface Video {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FormBlockT".
+ * via the `definition` "users".
  */
-export interface FormBlockT {
-  blockConfig?: {
-    theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: (number | null) | Image;
-    /**
-     * Block will not appear on page
-     */
-    hidden?: boolean | null;
-    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    p?: {
-      xs?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      md?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      lg?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      xl?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-    };
+export interface User {
+  id: number;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "redirects".
+ */
+export interface Redirect {
+  id: number;
+  from: string;
+  to?: {
+    type?: ('reference' | 'custom') | null;
+    reference?:
+      | ({
+          relationTo: 'pages';
+          value: number | Page;
+        } | null)
+      | ({
+          relationTo: 'posts';
+          value: number | Post;
+        } | null);
+    url?: string | null;
   };
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  form: number | Form;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'formBlock';
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -863,523 +616,6 @@ export interface Form {
         id?: string | null;
       }[]
     | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CardGridBlockT".
- */
-export interface CardGridBlockT {
-  blockConfig?: {
-    theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: (number | null) | Image;
-    /**
-     * Block will not appear on page
-     */
-    hidden?: boolean | null;
-    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    p?: {
-      xs?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      md?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      lg?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      xl?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-    };
-  };
-  cards?:
-    | {
-        card: CardType;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'cardGridBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CardType".
- */
-export interface CardType {
-  /**
-   * The image that will be displayed at the top of the card.
-   */
-  image?: (number | null) | Image;
-  eyebrow?: string | null;
-  /**
-   * The main headline of the card.
-   */
-  headline: string;
-  /**
-   * The subhead of the card.
-   */
-  subHead?: string | null;
-  /**
-   * The date to be shown on the card.
-   */
-  date?: string | null;
-  /**
-   * The call to actions that appear at the bottom of the card. Be mindful of text length.
-   */
-  ctas?:
-    | {
-        cta?: CTAType;
-        id?: string | null;
-      }[]
-    | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MarkdownBlockT".
- */
-export interface MarkdownBlockT {
-  blockConfig?: {
-    theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: (number | null) | Image;
-    /**
-     * Block will not appear on page
-     */
-    hidden?: boolean | null;
-    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    p?: {
-      xs?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      md?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      lg?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      xl?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-    };
-  };
-  /**
-   * The content that will be displayed in the markdown block.
-   */
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * The maximum width of the content block.
-   */
-  maxWidth?: ('1440px' | '1280px' | '992px' | '768px' | '576px' | '320px' | 'unset') | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'markdownBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FAQBlockT".
- */
-export interface FAQBlockT {
-  blockConfig?: {
-    theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: (number | null) | Image;
-    /**
-     * Block will not appear on page
-     */
-    hidden?: boolean | null;
-    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    p?: {
-      xs?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      md?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      lg?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      xl?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-    };
-  };
-  /**
-   * Header & subtitle content for FAQ Block.
-   */
-  header?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  /**
-   * The alignment of the Header text
-   */
-  textAlignment?: ('left' | 'center' | 'right') | null;
-  items?:
-    | {
-        /**
-         * The text that will be displayed in the accordion item.
-         */
-        title?: string | null;
-        /**
-         * The content that will be displayed when the accordion item is expanded.
-         */
-        content?: {
-          root: {
-            type: string;
-            children: {
-              type: string;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        } | null;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'faqBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TextImageBlockT".
- */
-export interface TextImageBlockT {
-  blockConfig?: {
-    theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: (number | null) | Image;
-    /**
-     * Block will not appear on page
-     */
-    hidden?: boolean | null;
-    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    p?: {
-      xs?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      md?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      lg?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      xl?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-    };
-  };
-  /**
-   * Select the layout of the block
-   */
-  layout?: ('imgRight' | 'imgLeft') | null;
-  /**
-   * The image that will be displayed in its selected position.
-   */
-  image?: (number | null) | Image;
-  /**
-   * If a video is uploaded, the image will not be displayed.
-   */
-  video?: (number | null) | Video;
-  /**
-   * The content that will be displayed in the block.
-   */
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  items?:
-    | {
-        cta?: CTAType;
-        id?: string | null;
-      }[]
-    | null;
-  form?: {
-    textinput?: TextInputType;
-    cta?: CTAType;
-  };
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'textImageBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TextInputType".
- */
-export interface TextInputType {
-  /**
-   * The unique name that serves as the ID for the input.
-   */
-  name?: string | null;
-  placeholder?: string | null;
-  helpText?: string | null;
-  label?: string | null;
-  required?: boolean | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "HeroBlockT".
- */
-export interface HeroBlockT {
-  blockConfig?: {
-    theme?: ('_' | 'light' | 'dark') | null;
-    backgroundColor?: ('fg' | 'neutral' | 'blue' | 'indigo' | 'purple') | null;
-    backgroundImage?: (number | null) | Image;
-    /**
-     * Block will not appear on page
-     */
-    hidden?: boolean | null;
-    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    p?: {
-      xs?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      md?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      lg?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-      xl?: {
-        paddingTop?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-        paddingBottom?: ('9.375rem' | '7.5rem' | '3.75rem' | '2.25rem' | '1.125rem' | 'unset') | null;
-      };
-    };
-  };
-  /**
-   * Set Fill to true to make the image full-bleed
-   */
-  image?: (number | null) | Image;
-  eyebrow?: string | null;
-  layout?: ('contentRight' | 'contentLeft' | 'contentCenter') | null;
-  /**
-   * If copy flows from left, right, or center.
-   */
-  contentAlign?: ('right' | 'left' | 'center') | null;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  form?: {
-    textinput?: TextInputType;
-    cta?: CTAType;
-  };
-  cta?: CTAType;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'heroBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "posts".
- */
-export interface Post {
-  id: number;
-  title: string;
-  subTitle?: string | null;
-  date: string;
-  authors?: (number | Author)[] | null;
-  tags?: (number | Tag)[] | null;
-  ctas?:
-    | {
-        cta?: CTAType;
-        id?: string | null;
-      }[]
-    | null;
-  thumbnail: number | Image;
-  coverImage: number | Image;
-  content: {
-    /**
-     * The content that will be displayed in the markdown block.
-     */
-    content?: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    id?: string | null;
-  }[];
-  /**
-   * pathname for the blog deatail - do not inculde /.
-   */
-  slug?: string | null;
-  /**
-   * If the current time is before this date, the page will not render
-   */
-  publishedAt?: string | null;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    /**
-     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
-     */
-    image?: (number | null) | Image;
-    keywords?: string | null;
-  };
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "authors".
- */
-export interface Author {
-  id: number;
-  slug?: string | null;
-  fullName: string;
-  image?: (number | null) | Image;
-  jobTitle: string;
-  bio?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "tags".
- */
-export interface Tag {
-  id: number;
-  label: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: number;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "redirects".
- */
-export interface Redirect {
-  id: number;
-  from: string;
-  to?: {
-    type?: ('reference' | 'custom') | null;
-    reference?:
-      | ({
-          relationTo: 'pages';
-          value: number | Page;
-        } | null)
-      | ({
-          relationTo: 'posts';
-          value: number | Post;
-        } | null);
-    url?: string | null;
-  };
   updatedAt: string;
   createdAt: string;
 }
@@ -1501,19 +737,7 @@ export interface PagesSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
-        headerSectionBlock?: T | HeaderSectionBlockTSelect<T>;
-        iframeBlock?: T | IframeBlockTSelect<T>;
-        iconGridBlock?: T | IconGridBlockTSelect<T>;
-        fullBleedImageBlock?: T | FullBleedImageBlockTSelect<T>;
-        sectionHeaderBlock?: T | SectionHeaderBlockTSelect<T>;
-        galleryGridBlock?: T | GalleryGridBlockTSelect<T>;
-        videoBlock?: T | VideoBlockTSelect<T>;
-        formBlock?: T | FormBlockTSelect<T>;
-        cardGridBlock?: T | CardGridBlockTSelect<T>;
-        markdownBlock?: T | MarkdownBlockTSelect<T>;
-        faqBlock?: T | FAQBlockTSelect<T>;
-        textImageBlock?: T | TextImageBlockTSelect<T>;
-        heroBlock?: T | HeroBlockTSelect<T>;
+        ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
       };
   meta?:
     | T
@@ -1533,726 +757,41 @@ export interface PagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "HeaderSectionBlockT_select".
+ * via the `definition` "CtaSectionsBlockT_select".
  */
-export interface HeaderSectionBlockTSelect<T extends boolean = true> {
-  blockConfig?:
+export interface CtaSectionsBlockTSelect<T extends boolean = true> {
+  wrapper?:
     | T
     | {
         theme?: T;
-        backgroundColor?: T;
-        backgroundImage?: T;
-        hidden?: T;
         contentWidth?: T;
-        p?:
+        paddingXs?:
           | T
           | {
-              xs?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              md?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              lg?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              xl?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingMd?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingLg?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingXl?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
             };
       };
   variant?: T;
   title?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IframeBlockT_select".
- */
-export interface IframeBlockTSelect<T extends boolean = true> {
-  blockConfig?:
-    | T
-    | {
-        theme?: T;
-        backgroundColor?: T;
-        backgroundImage?: T;
-        hidden?: T;
-        contentWidth?: T;
-        p?:
-          | T
-          | {
-              xs?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              md?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              lg?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              xl?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-            };
-      };
-  title?: T;
-  iframe?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IconGridBlockT_select".
- */
-export interface IconGridBlockTSelect<T extends boolean = true> {
-  blockConfig?:
-    | T
-    | {
-        theme?: T;
-        backgroundColor?: T;
-        backgroundImage?: T;
-        hidden?: T;
-        contentWidth?: T;
-        p?:
-          | T
-          | {
-              xs?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              md?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              lg?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              xl?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-            };
-      };
-  layout?: T;
-  items?:
-    | T
-    | {
-        image?: T;
-        content?: T;
-        cta?: T | CTATypeSelect<T>;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CTAType_select".
- */
-export interface CTATypeSelect<T extends boolean = true> {
-  link?: T | PayLoadLinkSelect<T>;
-  variant?: T;
-  color?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "payLoadLink_select".
- */
-export interface PayLoadLinkSelect<T extends boolean = true> {
-  type?: T;
-  label?: T;
-  internalHref?: T;
-  externalHref?: T;
-  emailHref?: T;
-  phoneHref?: T;
-  fileHref?: T;
-  newTab?: T;
-  icon?: T | IconSelectSelect<T>;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IconSelect_select".
- */
-export interface IconSelectSelect<T extends boolean = true> {
-  name?: T;
-  size?: T;
-  color?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FullBleedImageBlockT_select".
- */
-export interface FullBleedImageBlockTSelect<T extends boolean = true> {
-  blockConfig?:
-    | T
-    | {
-        theme?: T;
-        backgroundColor?: T;
-        backgroundImage?: T;
-        hidden?: T;
-        contentWidth?: T;
-        p?:
-          | T
-          | {
-              xs?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              md?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              lg?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              xl?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-            };
-      };
-  image?: T;
-  mobileImage?: T;
-  isBackground?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "SectionHeaderBlockT_select".
- */
-export interface SectionHeaderBlockTSelect<T extends boolean = true> {
-  blockConfig?:
-    | T
-    | {
-        theme?: T;
-        backgroundColor?: T;
-        backgroundImage?: T;
-        hidden?: T;
-        contentWidth?: T;
-        p?:
-          | T
-          | {
-              xs?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              md?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              lg?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              xl?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-            };
-      };
-  eyebrow?: T;
-  content?: T;
-  alignment?: T;
-  cta?: T | CTATypeSelect<T>;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "GalleryGridBlockT_select".
- */
-export interface GalleryGridBlockTSelect<T extends boolean = true> {
-  blockConfig?:
-    | T
-    | {
-        theme?: T;
-        backgroundColor?: T;
-        backgroundImage?: T;
-        hidden?: T;
-        contentWidth?: T;
-        p?:
-          | T
-          | {
-              xs?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              md?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              lg?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              xl?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-            };
-      };
-  galleryImages?:
-    | T
-    | {
-        image?: T;
-        id?: T;
-      };
-  cta?: T | CTATypeSelect<T>;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "VideoBlockT_select".
- */
-export interface VideoBlockTSelect<T extends boolean = true> {
-  blockConfig?:
-    | T
-    | {
-        theme?: T;
-        backgroundColor?: T;
-        backgroundImage?: T;
-        hidden?: T;
-        contentWidth?: T;
-        p?:
-          | T
-          | {
-              xs?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              md?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              lg?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              xl?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-            };
-      };
-  video?: T;
-  videoURL?: T;
-  embedURL?: T;
-  caption?: T;
-  fullBleedMobile?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FormBlockT_select".
- */
-export interface FormBlockTSelect<T extends boolean = true> {
-  blockConfig?:
-    | T
-    | {
-        theme?: T;
-        backgroundColor?: T;
-        backgroundImage?: T;
-        hidden?: T;
-        contentWidth?: T;
-        p?:
-          | T
-          | {
-              xs?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              md?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              lg?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              xl?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-            };
-      };
-  content?: T;
-  form?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CardGridBlockT_select".
- */
-export interface CardGridBlockTSelect<T extends boolean = true> {
-  blockConfig?:
-    | T
-    | {
-        theme?: T;
-        backgroundColor?: T;
-        backgroundImage?: T;
-        hidden?: T;
-        contentWidth?: T;
-        p?:
-          | T
-          | {
-              xs?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              md?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              lg?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              xl?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-            };
-      };
-  cards?:
-    | T
-    | {
-        card?: T | CardTypeSelect<T>;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "CardType_select".
- */
-export interface CardTypeSelect<T extends boolean = true> {
-  image?: T;
-  eyebrow?: T;
-  headline?: T;
-  subHead?: T;
-  date?: T;
-  ctas?:
-    | T
-    | {
-        cta?: T | CTATypeSelect<T>;
-        id?: T;
-      };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "MarkdownBlockT_select".
- */
-export interface MarkdownBlockTSelect<T extends boolean = true> {
-  blockConfig?:
-    | T
-    | {
-        theme?: T;
-        backgroundColor?: T;
-        backgroundImage?: T;
-        hidden?: T;
-        contentWidth?: T;
-        p?:
-          | T
-          | {
-              xs?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              md?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              lg?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              xl?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-            };
-      };
-  content?: T;
-  maxWidth?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FAQBlockT_select".
- */
-export interface FAQBlockTSelect<T extends boolean = true> {
-  blockConfig?:
-    | T
-    | {
-        theme?: T;
-        backgroundColor?: T;
-        backgroundImage?: T;
-        hidden?: T;
-        contentWidth?: T;
-        p?:
-          | T
-          | {
-              xs?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              md?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              lg?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              xl?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-            };
-      };
-  header?: T;
-  textAlignment?: T;
-  items?:
-    | T
-    | {
-        title?: T;
-        content?: T;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TextImageBlockT_select".
- */
-export interface TextImageBlockTSelect<T extends boolean = true> {
-  blockConfig?:
-    | T
-    | {
-        theme?: T;
-        backgroundColor?: T;
-        backgroundImage?: T;
-        hidden?: T;
-        contentWidth?: T;
-        p?:
-          | T
-          | {
-              xs?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              md?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              lg?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              xl?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-            };
-      };
-  layout?: T;
-  image?: T;
-  video?: T;
-  content?: T;
-  items?:
-    | T
-    | {
-        cta?: T | CTATypeSelect<T>;
-        id?: T;
-      };
-  form?:
-    | T
-    | {
-        textinput?: T | TextInputTypeSelect<T>;
-        cta?: T | CTATypeSelect<T>;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "TextInputType_select".
- */
-export interface TextInputTypeSelect<T extends boolean = true> {
-  name?: T;
-  placeholder?: T;
-  helpText?: T;
-  label?: T;
-  required?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "HeroBlockT_select".
- */
-export interface HeroBlockTSelect<T extends boolean = true> {
-  blockConfig?:
-    | T
-    | {
-        theme?: T;
-        backgroundColor?: T;
-        backgroundImage?: T;
-        hidden?: T;
-        contentWidth?: T;
-        p?:
-          | T
-          | {
-              xs?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              md?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              lg?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-              xl?:
-                | T
-                | {
-                    paddingTop?: T;
-                    paddingBottom?: T;
-                  };
-            };
-      };
-  image?: T;
-  eyebrow?: T;
-  layout?: T;
-  contentAlign?: T;
-  content?: T;
-  form?:
-    | T
-    | {
-        textinput?: T | TextInputTypeSelect<T>;
-        cta?: T | CTATypeSelect<T>;
-      };
-  cta?: T | CTATypeSelect<T>;
   id?: T;
   blockName?: T;
 }
@@ -2293,6 +832,39 @@ export interface PostsSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTAType_select".
+ */
+export interface CTATypeSelect<T extends boolean = true> {
+  link?: T | PayLoadLinkSelect<T>;
+  variant?: T;
+  color?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payLoadLink_select".
+ */
+export interface PayLoadLinkSelect<T extends boolean = true> {
+  type?: T;
+  label?: T;
+  internalHref?: T;
+  externalHref?: T;
+  emailHref?: T;
+  phoneHref?: T;
+  fileHref?: T;
+  newTab?: T;
+  icon?: T | IconSelectSelect<T>;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconSelect_select".
+ */
+export interface IconSelectSelect<T extends boolean = true> {
+  name?: T;
+  size?: T;
+  color?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2744,23 +1316,7 @@ export interface FourOhFour {
  */
 export interface Homepage {
   id: number;
-  blocks?:
-    | (
-        | HeaderSectionBlockT
-        | IframeBlockT
-        | IconGridBlockT
-        | FullBleedImageBlockT
-        | SectionHeaderBlockT
-        | GalleryGridBlockT
-        | VideoBlockT
-        | FormBlockT
-        | CardGridBlockT
-        | MarkdownBlockT
-        | FAQBlockT
-        | TextImageBlockT
-        | HeroBlockT
-      )[]
-    | null;
+  blocks?: CtaSectionsBlockT[] | null;
   pageTitle: string;
   slug?: string | null;
   theme?: ('light' | 'dark') | null;
@@ -2778,23 +1334,7 @@ export interface Homepage {
  */
 export interface BlogIndex {
   id: number;
-  blocks?:
-    | (
-        | HeaderSectionBlockT
-        | IframeBlockT
-        | IconGridBlockT
-        | FullBleedImageBlockT
-        | SectionHeaderBlockT
-        | GalleryGridBlockT
-        | VideoBlockT
-        | FormBlockT
-        | CardGridBlockT
-        | MarkdownBlockT
-        | FAQBlockT
-        | TextImageBlockT
-        | HeroBlockT
-      )[]
-    | null;
+  blocks?: CtaSectionsBlockT[] | null;
   pageTitle: string;
   slug?: string | null;
   theme?: ('light' | 'dark') | null;
@@ -2907,19 +1447,7 @@ export interface HomepageSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
-        headerSectionBlock?: T | HeaderSectionBlockTSelect<T>;
-        iframeBlock?: T | IframeBlockTSelect<T>;
-        iconGridBlock?: T | IconGridBlockTSelect<T>;
-        fullBleedImageBlock?: T | FullBleedImageBlockTSelect<T>;
-        sectionHeaderBlock?: T | SectionHeaderBlockTSelect<T>;
-        galleryGridBlock?: T | GalleryGridBlockTSelect<T>;
-        videoBlock?: T | VideoBlockTSelect<T>;
-        formBlock?: T | FormBlockTSelect<T>;
-        cardGridBlock?: T | CardGridBlockTSelect<T>;
-        markdownBlock?: T | MarkdownBlockTSelect<T>;
-        faqBlock?: T | FAQBlockTSelect<T>;
-        textImageBlock?: T | TextImageBlockTSelect<T>;
-        heroBlock?: T | HeroBlockTSelect<T>;
+        ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
       };
   pageTitle?: T;
   slug?: T;
@@ -2938,19 +1466,7 @@ export interface BlogIndexSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
-        headerSectionBlock?: T | HeaderSectionBlockTSelect<T>;
-        iframeBlock?: T | IframeBlockTSelect<T>;
-        iconGridBlock?: T | IconGridBlockTSelect<T>;
-        fullBleedImageBlock?: T | FullBleedImageBlockTSelect<T>;
-        sectionHeaderBlock?: T | SectionHeaderBlockTSelect<T>;
-        galleryGridBlock?: T | GalleryGridBlockTSelect<T>;
-        videoBlock?: T | VideoBlockTSelect<T>;
-        formBlock?: T | FormBlockTSelect<T>;
-        cardGridBlock?: T | CardGridBlockTSelect<T>;
-        markdownBlock?: T | MarkdownBlockTSelect<T>;
-        faqBlock?: T | FAQBlockTSelect<T>;
-        textImageBlock?: T | TextImageBlockTSelect<T>;
-        heroBlock?: T | HeroBlockTSelect<T>;
+        ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
       };
   pageTitle?: T;
   slug?: T;

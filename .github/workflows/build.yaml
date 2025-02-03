@@ -58,7 +58,8 @@ jobs:
       neon_branch: ${{ env.NEON_BRANCH }}
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
+      - name: Enable corepack
+        run: npm i -g --force corepack && corepack enable
       - uses: actions/setup-node@v4
         with:
           node-version: 20

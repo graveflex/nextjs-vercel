@@ -1,7 +1,7 @@
 'use client';
 
 import type { Tag } from '@mono/types/payload-types';
-import Wrapper from '@mono/ui/components/Wrapper';
+import Wrapper from '@mono/web/components/Wrapper';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import type React from 'react';
 import { useEffect, useState } from 'react';
