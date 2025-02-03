@@ -46,11 +46,11 @@
     tracking-tight;
 }
 
-.richtext p {
+/* .richtext p {
   @apply
     text-base
     md:text-lg;
-}
+} */
 
 .richtext blockquote {
   @apply
@@ -113,3 +113,9 @@
     [&[align=right]]:text-right;
 }
 
+.eyebrow {
+  @apply
+    text-sm
+    md:text-base
+    opacity-80;
+}

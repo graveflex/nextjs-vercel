@@ -23,8 +23,10 @@ import type { FeatureProviderServer } from '@payloadcms/richtext-lexical';
 import {
   AlignFeature,
   BlockquoteFeature,
+  BlocksFeature,
   BoldFeature,
   EXPERIMENTAL_TableFeature,
+  FixedToolbarFeature,
   HeadingFeature,
   HorizontalRuleFeature,
   InlineCodeFeature,
@@ -44,6 +46,8 @@ import {
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
+import CtaSectionsBlock from './src/blocks/CtaSectionsBlock/CtaSectionsBlock.config';
+import { Eyebrow } from './src/components/RichText/Blocks/Eyebrow/config';
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
 
@@ -149,7 +153,12 @@ export default buildConfig({
         UploadFeature(),
         InlineToolbarFeature(),
         BlockquoteFeature(),
-        EXPERIMENTAL_TableFeature()
+        EXPERIMENTAL_TableFeature(),
+        FixedToolbarFeature(),
+        BlocksFeature({
+          blocks: [Eyebrow],
+          inlineBlocks: []
+        })
       ] as FeatureProviderServer<unknown, unknown>[]
   }),
   collections: [Pages, Posts, Authors, Tags, Files, Images, Videos, Users],

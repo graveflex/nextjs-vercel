@@ -1,6 +1,11 @@
 import type { CtaSectionsBlockT as PayloadType } from '@mono/types/payload-types';
 import { cn } from '@mono/web/lib/utils';
+import type {
+  DefaultNodeTypes,
+  SerializedBlockNode
+} from '@payloadcms/richtext-lexical';
 import { RichText as LexicalRichText } from '@payloadcms/richtext-lexical/react';
+import type { JSXConvertersFunction } from '@payloadcms/richtext-lexical/react';
 import React from 'react';
 import styles from './RichText.module.css';
 
@@ -25,6 +30,22 @@ export type RichTextType = {
   className?: string;
 };
 
+const jsxConverters: JSXConvertersFunction<DefaultNodeTypes> = ({
+  defaultConverters
+}) => ({
+  ...defaultConverters,
+  blocks: {
+    eyebrow: ({ node }: { node: SerializedBlockNode }) => {
+      return (
+        <LexicalRichText
+          data={node.fields.eyebrowText}
+          className={cn(styles.eyebrow, 'eyebrow')}
+        />
+      );
+    }
+  }
+});
+
 function RichText({ className, data }: RichTextType) {
   return (
     data && (
@@ -35,7 +56,11 @@ function RichText({ className, data }: RichTextType) {
           className
         )}
       >
-        <LexicalRichText data={data} className="rich-text" />
+        <LexicalRichText
+          data={data}
+          className="rich-text"
+          converters={jsxConverters}
+        />
       </div>
     )
   );
