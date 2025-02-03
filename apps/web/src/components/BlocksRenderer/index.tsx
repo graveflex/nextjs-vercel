@@ -13,7 +13,13 @@ const blockList = {
   // InsertBlockDict
   ctaSectionsBlock: dynamic(() => import('@mono/web/blocks/CtaSectionsBlock'), {
     ...defaultOpts
-  })
+  }),
+  headerSectionBlock: dynamic(
+    () => import('@mono/web/blocks/HeaderSectionBlock'),
+    {
+      ...defaultOpts
+    }
+  )
 };
 
 function BlocksRenderer({ blocks }: { blocks: NonNullable<Page['blocks']> }) {

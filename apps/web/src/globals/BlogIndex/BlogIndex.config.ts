@@ -42,7 +42,7 @@ const BlogIndex: GlobalConfig = {
               name: 'blocks',
               label: 'Blocks',
               type: 'blocks',
-              blocks: allBlocks
+              blocks: allBlocks('blogIdx')
             }
           ]
         }

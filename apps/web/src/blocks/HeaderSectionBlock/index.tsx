@@ -1,5 +1,5 @@
 import type { HeaderSectionBlockT as PayloadType } from '@mono/types/payload-types';
-import Wrapper from '@mono/ui/components/Wrapper';
+import Wrapper from '@mono/web/components/Wrapper';
 import dynamic from 'next/dynamic';
 import React from 'react';
 import type { ComponentType } from 'react';
@@ -32,10 +32,18 @@ const layoutList: Record<string, ComponentType<HeaderSectionBlockType>> = {
   })
 };
 
-function HeaderSectionBlock({ title, variant }: HeaderSectionBlockType) {
+function HeaderSectionBlock({
+  title,
+  variant,
+  wrapper
+}: HeaderSectionBlockType) {
   const Component: ComponentType<HeaderSectionBlockType> = layoutList[variant];
 
-  return <Component title={title} variant={variant} />;
+  return (
+    <Wrapper {...wrapper}>
+      <Component title={title} variant={variant} />
+    </Wrapper>
+  );
 }
 
 export default HeaderSectionBlock;

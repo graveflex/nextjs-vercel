@@ -1,4 +1,4 @@
-// import Wrapper from '@mono/ui/components/Wrapper';
+// import Wrapper from '@mono/web/components/Wrapper';
 import type { CtaSectionsBlockT as PayloadType } from '@mono/types/payload-types';
 import React from 'react';
 
