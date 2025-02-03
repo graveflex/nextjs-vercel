@@ -32,22 +32,6 @@ export type RichTextType = {
   className?: string;
 };
 
-const jsxConverters: JSXConvertersFunction<DefaultNodeTypes> = ({
-  defaultConverters
-}) => ({
-  ...defaultConverters,
-  blocks: {
-    eyebrow: ({ node }: { node: SerializedBlockNode }) => {
-      return (
-        <LexicalRichText
-          data={node.fields.eyebrowText}
-          className={cn(styles.eyebrow, 'eyebrow')}
-        />
-      );
-    }
-  }
-});
-
 function RichText({ className, data }: RichTextType) {
   return (
     data && (
