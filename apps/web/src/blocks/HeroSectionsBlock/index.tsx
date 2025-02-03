@@ -1,5 +1,5 @@
 import type { HeroSectionsBlockT as PayloadType } from '@mono/types/payload-types';
-import Wrapper from '@mono/ui/components/Wrapper';
+import Wrapper from '@mono/web/components/Wrapper';
 import dynamic from 'next/dynamic';
 import React from 'react';
 import type { ComponentType } from 'react';
@@ -41,10 +41,18 @@ const layoutList: Record<string, ComponentType<HeroSectionsBlockType>> = {
   })
 };
 
-function HeroSectionsBlock({ title, variant = '1' }: HeroSectionsBlockType) {
+function HeroSectionsBlock({
+  title,
+  variant = '1',
+  wrapper
+}: HeroSectionsBlockType) {
   const Component: ComponentType<HeroSectionsBlockType> = layoutList[variant];
 
-  return <Component title={title} variant={variant} />;
+  return (
+    <Wrapper {...wrapper}>
+      <Component title={title} variant={variant} />
+    </Wrapper>
+  );
 }
 
 export default HeroSectionsBlock;
