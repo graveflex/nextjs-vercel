@@ -67,7 +67,7 @@ const Pages: CollectionConfig = {
               name: 'blocks',
               label: 'Blocks',
               type: 'blocks',
-              blocks: allBlocks
+              blocks: allBlocks('page')
             }
           ]
         }
