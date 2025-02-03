@@ -20,22 +20,22 @@ function CtaSections1({
           {/* Section Header */}
           <div className="flex flex-col items-center gap-4 md:gap-5">
             {/* Category Tag */}
-            <p className="text-sm md:text-base font-semibold text-primary-foreground text-center opacity-80">
+            {/* <p className="text-sm md:text-base font-semibold text-primary-foreground text-center opacity-80">
               CTA section
-            </p>
+            </p> */}
             {/* Main Title */}
-            <h2
+            {/* <h2
               id="cta-heading"
               className="text-3xl md:text-4xl font-bold text-primary-foreground text-center"
             >
               {title}
-            </h2>
+            </h2> */}
             {/* Section Description */}
-            <p className="text-base md:text-lg text-primary-foreground text-center opacity-80">
+            {/* <p className="text-base md:text-lg text-primary-foreground text-center opacity-80">
               Add 1 or 2 compelling sentences that reinforce your main value
               proposition and overcome final objections. End with a clear reason
               to act now. Align this copy with your CTA button text.
-            </p>
+            </p> */}
 
             {content && (
               <RichText data={content} className="text-primary-foreground" />
