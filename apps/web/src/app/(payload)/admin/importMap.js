@@ -23,6 +23,7 @@ import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { AlignFeatureClient as AlignFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { default as default_04bc7bf46b9b15fa9c126362df022943 } from '@mono/web/components/AdminRowLabel/index.tsx'
+import { AfterNav as AfterNav_5b7d533c4890c176b0a70fdfa56ed65e } from '@mono/web/components/CustomPayload/AfterNav/index.tsx'
 
 export const importMap = {
   "@payloadcms/plugin-seo/client#OverviewComponent": OverviewComponent_a8a977ebc872c5d5ea7ee689724c0860,
@@ -49,5 +50,6 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#BoldFeatureClient": BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#AlignFeatureClient": AlignFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
-  "@mono/web/components/AdminRowLabel/index.tsx#default": default_04bc7bf46b9b15fa9c126362df022943
+  "@mono/web/components/AdminRowLabel/index.tsx#default": default_04bc7bf46b9b15fa9c126362df022943,
+  "@mono/web/components/CustomPayload/AfterNav/index.tsx#AfterNav": AfterNav_5b7d533c4890c176b0a70fdfa56ed65e
 }

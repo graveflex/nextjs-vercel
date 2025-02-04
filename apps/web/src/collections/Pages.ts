@@ -2,7 +2,7 @@ import { allBlocks } from '@mono/web/lib/blockList';
 import formatSlug from '@mono/web/payload/utils/formatSlug';
 import type { CollectionConfig, Field } from 'payload';
 
-import { invalidateCache } from '../hooks/invalidateCache';
+import { invalidateCache } from '@mono/web/hooks/invalidateCache';
 import { publishBeforeRead } from '../hooks/publishBeforeRead';
 
 const themeOptions = [
