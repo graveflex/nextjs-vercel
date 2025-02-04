@@ -40,7 +40,7 @@ const toolbarGroups: ToolbarGroup[] = [
       onSelect: ({ editor }) => {
         editor.dispatchCommand(INSERT_INLINE_EYEBROW_COMMAND, undefined);
       },
-      order: 7
+      order: 4
     }
   ])
 ];
