@@ -24,12 +24,12 @@ function CtaSections1({
               CTA section
             </p> */}
             {/* Main Title */}
-            {/* <h2
+            <h2
               id="cta-heading"
               className="text-3xl md:text-4xl font-bold text-primary-foreground text-center"
             >
               {title}
-            </h2> */}
+            </h2>
             {/* Section Description */}
             {/* <p className="text-base md:text-lg text-primary-foreground text-center opacity-80">
               Add 1 or 2 compelling sentences that reinforce your main value

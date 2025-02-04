@@ -6,7 +6,6 @@ import Posts from '@mono/web/collections/Posts';
 import Tags from '@mono/web/collections/Tags/Tags.config';
 import Users from '@mono/web/collections/User';
 import Videos from '@mono/web/collections/Videos';
-import { EyebrowFeature } from '@mono/web/components/RichText/Features/EyebrowFeature/server';
 import BlogIndex from '@mono/web/globals/BlogIndex/BlogIndex.config';
 import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.config';
 import Homepage from '@mono/web/globals/Home/Homepage.config';
@@ -48,6 +47,7 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
 import CtaSectionsBlock from './src/blocks/CtaSectionsBlock/CtaSectionsBlock.config';
+import { EyebrowFeature } from './src/components/RichText/Features/eyebrow/eyebrow.server';
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
 
