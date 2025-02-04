@@ -37,8 +37,8 @@ export class EyebrowNode extends TextNode {
     return false;
   }
 
-  isInline(): true {
-    return true;
+  isInline(): false {
+    return false;
   }
 
   canSplit(): boolean {
