@@ -32,6 +32,21 @@ export type RichTextType = {
   className?: string;
 };
 
+const jsxConverters: JSXConvertersFunction<DefaultNodeTypes> = ({
+  defaultConverters
+}) => ({
+  ...defaultConverters,
+  paragraph: ({ node }) => {
+    return (
+      <p className={`${node?.type}`}>
+        {node?.children
+          ?.map((child) => ('text' in child ? child.text : ''))
+          .join('')}
+      </p>
+    );
+  }
+});
+
 function RichText({ className, data }: RichTextType) {
   return (
     data && (
