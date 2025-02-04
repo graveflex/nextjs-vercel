@@ -25,6 +25,7 @@ export class EyebrowNode extends TextNode {
     const element = document.createElement('p');
     element.classList.add('eyebrow');
     element.style.opacity = '0.8';
+    element.style.fontSize = '0.875rem';
     element.textContent = this.getTextContent();
     return element;
   }
