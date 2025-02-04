@@ -16,8 +16,10 @@
   @apply
     mt-5
     text-3xl
-    md:text-4xl
-    font-bold;
+    font-semibold
+    tracking-tight
+    mt-10
+    first:mt-0;
 }
 
 .richtext h3 {
@@ -26,6 +28,7 @@
     scroll-m-20
     text-2xl
     font-semibold
+    mt-8
     tracking-tight;
 }
 
@@ -56,10 +59,10 @@
     tracking-tight;
 }
 
-/* Set empty p tags to have height */
-.richtext p:empty::before {
-  content: "";
-  display: inline-block;
+.richtext p {
+  @apply
+    leading-7
+    [&:not(:first-child)]:mt-6;
 }
 
 .richtext blockquote {
