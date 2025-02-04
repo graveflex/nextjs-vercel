@@ -56,11 +56,11 @@
     tracking-tight;
 }
 
-/* .richtext p {
-  @apply
-    text-base
-    md:text-lg;
-} */
+/* Set empty p tags to have height */
+.richtext p:empty::before {
+  content: "";
+  display: inline-block;
+}
 
 .richtext blockquote {
   @apply
