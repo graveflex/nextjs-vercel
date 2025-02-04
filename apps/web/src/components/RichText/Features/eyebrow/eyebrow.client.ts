@@ -2,7 +2,6 @@
 
 import {
   createClientFeature,
-  slashMenuBasicGroupWithItems,
   toolbarFormatGroupWithItems
 } from '@payloadcms/richtext-lexical/client';
 
@@ -54,19 +53,6 @@ export const EyebrowFeatureClient = createClientFeature({
     }
   ],
   nodes: [EyebrowNode],
-  slashMenu: {
-    groups: [
-      slashMenuBasicGroupWithItems([
-        {
-          Icon: EyebrowIcon,
-          key: 'eyebrow',
-          onSelect: ({ editor }) => {
-            editor.dispatchCommand(INSERT_INLINE_EYEBROW_COMMAND, undefined);
-          }
-        }
-      ])
-    ]
-  },
   toolbarFixed: {
     groups: toolbarGroups
   },
