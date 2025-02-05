@@ -10,26 +10,30 @@ import Wrapper from '@mono/web/components/Wrapper';
 
 export type FeatureSectionType = Omit<PayloadType, 'blockType'>;
 
-const Variant = (variant: string) => {
-  // Can extend this to accept different props based on the variant
-  // const Variant = (variant: string, payload: any) => {
-  const defaultOpts = {
-    suspense: true,
-    ssr: true
-  };
+const defaultOpts = {
+  suspense: true,
+  ssr: true
+};
 
-  // Add logic here if you want to load different components based on the variant
-  // let options = {
-  //   ...defaultOpts
-  // };
-
-  return dynamic(() => import(`./variations/Variant${variant}`), {
-    ...defaultOpts
-  });
+const Variants = {
+  '1': dynamic(() => import('./variations/Variant1'), { ...defaultOpts }),
+  '2': dynamic(() => import('./variations/Variant2'), { ...defaultOpts }),
+  '3': dynamic(() => import('./variations/Variant3'), { ...defaultOpts }),
+  '4': dynamic(() => import('./variations/Variant4'), { ...defaultOpts }),
+  '5': dynamic(() => import('./variations/Variant5'), { ...defaultOpts }),
+  '6': dynamic(() => import('./variations/Variant5'), { ...defaultOpts }),
+  '7': dynamic(() => import('./variations/Variant5'), { ...defaultOpts }),
+  '8': dynamic(() => import('./variations/Variant5'), { ...defaultOpts }),
+  '9': dynamic(() => import('./variations/Variant5'), { ...defaultOpts }),
+  '10': dynamic(() => import('./variations/Variant5'), { ...defaultOpts }),
+  '11': dynamic(() => import('./variations/Variant5'), { ...defaultOpts }),
+  '12': dynamic(() => import('./variations/Variant5'), { ...defaultOpts }),
+  '13': dynamic(() => import('./variations/Variant5'), { ...defaultOpts }),
+  '14': dynamic(() => import('./variations/Variant5'), { ...defaultOpts })
 };
 
 function FeatureSection({ variant, ...props }: FeatureSectionType) {
-  const VariantComponent = Variant(variant);
+  const VariantComponent = Variants[variant];
 
   return (
     <Wrapper {...props.wrapper}>
