@@ -1,4 +1,4 @@
-/* @import "tailwindcss/theme" theme(reference);
+@reference "../../app/global.css";
 
 .container {
   @apply 
@@ -8,4 +8,4 @@
     text-slate-500;
 
   @apply md:text-pink-500;
-} */
+}

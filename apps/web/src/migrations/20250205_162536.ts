@@ -8,10 +8,20 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."t" AS ENUM('pt-0', 'pt-2', 'pt-4', 'pt-6', 'pt-8', 'pt-10', 'pt-16');
   CREATE TYPE "public"."b" AS ENUM('pb-0', 'pb-2', 'pb-4', 'pb-6', 'pb-8', 'pb-10', 'pb-16');
   CREATE TYPE "public"."enum_pages_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
+  CREATE TYPE "public"."enum_pages_blocks_feature_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_pages_blocks_feature_section_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14');
+  CREATE TYPE "public"."enum_pagehdrSec_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."pagehdrSec_v" AS ENUM('1', '2', '3', '4', '5', '6');
+  CREATE TYPE "public"."enum_pageherSecB_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."vrnt" AS ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9');
   CREATE TYPE "public"."enum_pages_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum_pages_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__pages_v_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__pages_v_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
+  CREATE TYPE "public"."enum__pages_v_blocks_feature_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__pages_v_blocks_feature_section_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14');
+  CREATE TYPE "public"."enum__pagehdrSec_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__pageherSecB_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__pages_v_version_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum__pages_v_version_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__pages_v_published_locale" AS ENUM('en-US', 'es-US');
@@ -32,19 +42,37 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."undefined_cta_tv" AS ENUM('lightTheme', 'darkTheme', 'contrast');
   CREATE TYPE "public"."enum_homepage_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_homepage_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
+  CREATE TYPE "public"."enum_homepage_blocks_feature_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_homepage_blocks_feature_section_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14');
+  CREATE TYPE "public"."enum_homepagehdrSec_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."homepagehdrSec_v" AS ENUM('1', '2', '3', '4', '5', '6');
+  CREATE TYPE "public"."enum_homepageherSecB_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_homepage_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum_homepage_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__homepage_v_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__homepage_v_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
+  CREATE TYPE "public"."enum__homepage_v_blocks_feature_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__homepage_v_blocks_feature_section_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14');
+  CREATE TYPE "public"."enum__homepagehdrSec_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__homepageherSecB_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__homepage_v_version_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum__homepage_v_version_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__homepage_v_published_locale" AS ENUM('en-US', 'es-US');
   CREATE TYPE "public"."enum_blog_index_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_blog_index_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
+  CREATE TYPE "public"."enum_blog_index_blocks_feature_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_blog_index_blocks_feature_section_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14');
+  CREATE TYPE "public"."enum_blogIdxhdrSec_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."blogIdxhdrSec_v" AS ENUM('1', '2', '3', '4', '5', '6');
+  CREATE TYPE "public"."enum_blogIdxherSecB_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_blog_index_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum_blog_index_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__blog_index_v_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__blog_index_v_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
+  CREATE TYPE "public"."enum__blog_index_v_blocks_feature_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__blog_index_v_blocks_feature_section_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14');
+  CREATE TYPE "public"."enum__blogIdxhdrSec_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__blogIdxherSecB_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__blog_index_v_version_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum__blog_index_v_version_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__blog_index_v_published_locale" AS ENUM('en-US', 'es-US');
@@ -68,6 +96,77 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   );
   
   CREATE TABLE IF NOT EXISTS "pages_blocks_cta_sections_block_locales" (
+  	"title" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" varchar NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pages_blocks_feature_section" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_pages_blocks_feature_section_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum_pages_blocks_feature_section_variant" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pagehdrSec" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_pagehdrSec_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "pagehdrSec_v" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pagehdrSec_locales" (
+  	"title" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" varchar NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pageherSecB" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_pageherSecB_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "vrnt" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pageherSecB_locales" (
   	"title" varchar,
   	"id" serial PRIMARY KEY NOT NULL,
   	"_locale" "_locales" NOT NULL,
@@ -116,6 +215,80 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   );
   
   CREATE TABLE IF NOT EXISTS "_pages_v_blocks_cta_sections_block_locales" (
+  	"title" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" integer NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pages_v_blocks_feature_section" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__pages_v_blocks_feature_section_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum__pages_v_blocks_feature_section_variant" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pagehdrSec_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__pagehdrSec_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "pagehdrSec_v" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pagehdrSec_v_locales" (
+  	"title" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" integer NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pageherSecB_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__pageherSecB_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "vrnt" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pageherSecB_v_locales" (
   	"title" varchar,
   	"id" serial PRIMARY KEY NOT NULL,
   	"_locale" "_locales" NOT NULL,
@@ -752,6 +925,77 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" varchar NOT NULL
   );
   
+  CREATE TABLE IF NOT EXISTS "homepage_blocks_feature_section" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_homepage_blocks_feature_section_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum_homepage_blocks_feature_section_variant" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "homepagehdrSec" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_homepagehdrSec_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "homepagehdrSec_v" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "homepagehdrSec_locales" (
+  	"title" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" varchar NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "homepageherSecB" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_homepageherSecB_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "vrnt" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "homepageherSecB_locales" (
+  	"title" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" varchar NOT NULL
+  );
+  
   CREATE TABLE IF NOT EXISTS "homepage" (
   	"id" serial PRIMARY KEY NOT NULL,
   	"slug" varchar DEFAULT '/',
@@ -790,6 +1034,80 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   );
   
   CREATE TABLE IF NOT EXISTS "_homepage_v_blocks_cta_sections_block_locales" (
+  	"title" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" integer NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_homepage_v_blocks_feature_section" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__homepage_v_blocks_feature_section_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum__homepage_v_blocks_feature_section_variant" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_homepagehdrSec_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__homepagehdrSec_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "homepagehdrSec_v" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_homepagehdrSec_v_locales" (
+  	"title" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" integer NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_homepageherSecB_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__homepageherSecB_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "vrnt" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_homepageherSecB_v_locales" (
   	"title" varchar,
   	"id" serial PRIMARY KEY NOT NULL,
   	"_locale" "_locales" NOT NULL,
@@ -845,6 +1163,77 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" varchar NOT NULL
   );
   
+  CREATE TABLE IF NOT EXISTS "blog_index_blocks_feature_section" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_blog_index_blocks_feature_section_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum_blog_index_blocks_feature_section_variant" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "blogIdxhdrSec" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_blogIdxhdrSec_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "blogIdxhdrSec_v" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "blogIdxhdrSec_locales" (
+  	"title" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" varchar NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "blogIdxherSecB" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_blogIdxherSecB_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "vrnt" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "blogIdxherSecB_locales" (
+  	"title" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" varchar NOT NULL
+  );
+  
   CREATE TABLE IF NOT EXISTS "blog_index" (
   	"id" serial PRIMARY KEY NOT NULL,
   	"slug" varchar DEFAULT 'blog',
@@ -889,6 +1278,80 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL
   );
   
+  CREATE TABLE IF NOT EXISTS "_blog_index_v_blocks_feature_section" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__blog_index_v_blocks_feature_section_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum__blog_index_v_blocks_feature_section_variant" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_blogIdxhdrSec_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__blogIdxhdrSec_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "blogIdxhdrSec_v" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_blogIdxhdrSec_v_locales" (
+  	"title" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" integer NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_blogIdxherSecB_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__blogIdxherSecB_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "vrnt" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_blogIdxherSecB_v_locales" (
+  	"title" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" integer NOT NULL
+  );
+  
   CREATE TABLE IF NOT EXISTS "_blog_index_v" (
   	"id" serial PRIMARY KEY NOT NULL,
   	"version_slug" varchar DEFAULT 'blog',
@@ -925,6 +1388,36 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "pages_blocks_feature_section" ADD CONSTRAINT "pages_blocks_feature_section_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pagehdrSec" ADD CONSTRAINT "pagehdrSec_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pagehdrSec_locales" ADD CONSTRAINT "pagehdrSec_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pagehdrSec"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pageherSecB" ADD CONSTRAINT "pageherSecB_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pageherSecB_locales" ADD CONSTRAINT "pageherSecB_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pageherSecB"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "pages_locales" ADD CONSTRAINT "pages_locales_meta_image_id_images_id_fk" FOREIGN KEY ("meta_image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -944,6 +1437,36 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "_pages_v_blocks_cta_sections_block_locales" ADD CONSTRAINT "_pages_v_blocks_cta_sections_block_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_cta_sections_block"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pages_v_blocks_feature_section" ADD CONSTRAINT "_pages_v_blocks_feature_section_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pagehdrSec_v" ADD CONSTRAINT "_pagehdrSec_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pagehdrSec_v_locales" ADD CONSTRAINT "_pagehdrSec_v_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pagehdrSec_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pageherSecB_v" ADD CONSTRAINT "_pageherSecB_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pageherSecB_v_locales" ADD CONSTRAINT "_pageherSecB_v_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pageherSecB_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -1429,6 +1952,36 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "homepage_blocks_feature_section" ADD CONSTRAINT "homepage_blocks_feature_section_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "homepagehdrSec" ADD CONSTRAINT "homepagehdrSec_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "homepagehdrSec_locales" ADD CONSTRAINT "homepagehdrSec_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepagehdrSec"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "homepageherSecB" ADD CONSTRAINT "homepageherSecB_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "homepageherSecB_locales" ADD CONSTRAINT "homepageherSecB_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepageherSecB"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "homepage_locales" ADD CONSTRAINT "homepage_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -1442,6 +1995,36 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "_homepage_v_blocks_cta_sections_block_locales" ADD CONSTRAINT "_homepage_v_blocks_cta_sections_block_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepage_v_blocks_cta_sections_block"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_homepage_v_blocks_feature_section" ADD CONSTRAINT "_homepage_v_blocks_feature_section_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepage_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_homepagehdrSec_v" ADD CONSTRAINT "_homepagehdrSec_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepage_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_homepagehdrSec_v_locales" ADD CONSTRAINT "_homepagehdrSec_v_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepagehdrSec_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_homepageherSecB_v" ADD CONSTRAINT "_homepageherSecB_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepage_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_homepageherSecB_v_locales" ADD CONSTRAINT "_homepageherSecB_v_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepageherSecB_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -1465,6 +2048,36 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "blog_index_blocks_feature_section" ADD CONSTRAINT "blog_index_blocks_feature_section_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blog_index"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "blogIdxhdrSec" ADD CONSTRAINT "blogIdxhdrSec_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blog_index"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "blogIdxhdrSec_locales" ADD CONSTRAINT "blogIdxhdrSec_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blogIdxhdrSec"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "blogIdxherSecB" ADD CONSTRAINT "blogIdxherSecB_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blog_index"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "blogIdxherSecB_locales" ADD CONSTRAINT "blogIdxherSecB_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blogIdxherSecB"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "blog_index_locales" ADD CONSTRAINT "blog_index_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blog_index"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -1483,6 +2096,36 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "_blog_index_v_blocks_feature_section" ADD CONSTRAINT "_blog_index_v_blocks_feature_section_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blog_index_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_blogIdxhdrSec_v" ADD CONSTRAINT "_blogIdxhdrSec_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blog_index_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_blogIdxhdrSec_v_locales" ADD CONSTRAINT "_blogIdxhdrSec_v_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blogIdxhdrSec_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_blogIdxherSecB_v" ADD CONSTRAINT "_blogIdxherSecB_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blog_index_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_blogIdxherSecB_v_locales" ADD CONSTRAINT "_blogIdxherSecB_v_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blogIdxherSecB_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "_blog_index_v_locales" ADD CONSTRAINT "_blog_index_v_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blog_index_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -1492,6 +2135,17 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "pages_blocks_cta_sections_block_parent_id_idx" ON "pages_blocks_cta_sections_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_cta_sections_block_path_idx" ON "pages_blocks_cta_sections_block" USING btree ("_path");
   CREATE UNIQUE INDEX IF NOT EXISTS "pages_blocks_cta_sections_block_locales_locale_parent_id_unique" ON "pages_blocks_cta_sections_block_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_feature_section_order_idx" ON "pages_blocks_feature_section" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_feature_section_parent_id_idx" ON "pages_blocks_feature_section" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pages_blocks_feature_section_path_idx" ON "pages_blocks_feature_section" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pagehdrSec_order_idx" ON "pagehdrSec" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pagehdrSec_parent_id_idx" ON "pagehdrSec" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pagehdrSec_path_idx" ON "pagehdrSec" USING btree ("_path");
+  CREATE UNIQUE INDEX IF NOT EXISTS "pagehdrSec_locales_locale_parent_id_unique" ON "pagehdrSec_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "pageherSecB_order_idx" ON "pageherSecB" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pageherSecB_parent_id_idx" ON "pageherSecB" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pageherSecB_path_idx" ON "pageherSecB" USING btree ("_path");
+  CREATE UNIQUE INDEX IF NOT EXISTS "pageherSecB_locales_locale_parent_id_unique" ON "pageherSecB_locales" USING btree ("_locale","_parent_id");
   CREATE UNIQUE INDEX IF NOT EXISTS "pages_slug_idx" ON "pages" USING btree ("slug");
   CREATE INDEX IF NOT EXISTS "pages_updated_at_idx" ON "pages" USING btree ("updated_at");
   CREATE INDEX IF NOT EXISTS "pages_created_at_idx" ON "pages" USING btree ("created_at");
@@ -1502,6 +2156,17 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_cta_sections_block_parent_id_idx" ON "_pages_v_blocks_cta_sections_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_cta_sections_block_path_idx" ON "_pages_v_blocks_cta_sections_block" USING btree ("_path");
   CREATE UNIQUE INDEX IF NOT EXISTS "_pages_v_blocks_cta_sections_block_locales_locale_parent_id_unique" ON "_pages_v_blocks_cta_sections_block_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_feature_section_order_idx" ON "_pages_v_blocks_feature_section" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_feature_section_parent_id_idx" ON "_pages_v_blocks_feature_section" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pages_v_blocks_feature_section_path_idx" ON "_pages_v_blocks_feature_section" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_pagehdrSec_v_order_idx" ON "_pagehdrSec_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pagehdrSec_v_parent_id_idx" ON "_pagehdrSec_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pagehdrSec_v_path_idx" ON "_pagehdrSec_v" USING btree ("_path");
+  CREATE UNIQUE INDEX IF NOT EXISTS "_pagehdrSec_v_locales_locale_parent_id_unique" ON "_pagehdrSec_v_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pageherSecB_v_order_idx" ON "_pageherSecB_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pageherSecB_v_parent_id_idx" ON "_pageherSecB_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pageherSecB_v_path_idx" ON "_pageherSecB_v" USING btree ("_path");
+  CREATE UNIQUE INDEX IF NOT EXISTS "_pageherSecB_v_locales_locale_parent_id_unique" ON "_pageherSecB_v_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_parent_idx" ON "_pages_v" USING btree ("parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_version_version_slug_idx" ON "_pages_v" USING btree ("version_slug");
   CREATE INDEX IF NOT EXISTS "_pages_v_version_version_updated_at_idx" ON "_pages_v" USING btree ("version_updated_at");
@@ -1675,6 +2340,17 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "homepage_blocks_cta_sections_block_parent_id_idx" ON "homepage_blocks_cta_sections_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "homepage_blocks_cta_sections_block_path_idx" ON "homepage_blocks_cta_sections_block" USING btree ("_path");
   CREATE UNIQUE INDEX IF NOT EXISTS "homepage_blocks_cta_sections_block_locales_locale_parent_id_unique" ON "homepage_blocks_cta_sections_block_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "homepage_blocks_feature_section_order_idx" ON "homepage_blocks_feature_section" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "homepage_blocks_feature_section_parent_id_idx" ON "homepage_blocks_feature_section" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "homepage_blocks_feature_section_path_idx" ON "homepage_blocks_feature_section" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "homepagehdrSec_order_idx" ON "homepagehdrSec" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "homepagehdrSec_parent_id_idx" ON "homepagehdrSec" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "homepagehdrSec_path_idx" ON "homepagehdrSec" USING btree ("_path");
+  CREATE UNIQUE INDEX IF NOT EXISTS "homepagehdrSec_locales_locale_parent_id_unique" ON "homepagehdrSec_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "homepageherSecB_order_idx" ON "homepageherSecB" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "homepageherSecB_parent_id_idx" ON "homepageherSecB" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "homepageherSecB_path_idx" ON "homepageherSecB" USING btree ("_path");
+  CREATE UNIQUE INDEX IF NOT EXISTS "homepageherSecB_locales_locale_parent_id_unique" ON "homepageherSecB_locales" USING btree ("_locale","_parent_id");
   CREATE UNIQUE INDEX IF NOT EXISTS "homepage_slug_idx" ON "homepage" USING btree ("slug");
   CREATE INDEX IF NOT EXISTS "homepage__status_idx" ON "homepage" USING btree ("_status");
   CREATE UNIQUE INDEX IF NOT EXISTS "homepage_locales_locale_parent_id_unique" ON "homepage_locales" USING btree ("_locale","_parent_id");
@@ -1682,6 +2358,17 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_cta_sections_block_parent_id_idx" ON "_homepage_v_blocks_cta_sections_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_cta_sections_block_path_idx" ON "_homepage_v_blocks_cta_sections_block" USING btree ("_path");
   CREATE UNIQUE INDEX IF NOT EXISTS "_homepage_v_blocks_cta_sections_block_locales_locale_parent_id_unique" ON "_homepage_v_blocks_cta_sections_block_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_feature_section_order_idx" ON "_homepage_v_blocks_feature_section" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_feature_section_parent_id_idx" ON "_homepage_v_blocks_feature_section" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_feature_section_path_idx" ON "_homepage_v_blocks_feature_section" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_homepagehdrSec_v_order_idx" ON "_homepagehdrSec_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_homepagehdrSec_v_parent_id_idx" ON "_homepagehdrSec_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_homepagehdrSec_v_path_idx" ON "_homepagehdrSec_v" USING btree ("_path");
+  CREATE UNIQUE INDEX IF NOT EXISTS "_homepagehdrSec_v_locales_locale_parent_id_unique" ON "_homepagehdrSec_v_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "_homepageherSecB_v_order_idx" ON "_homepageherSecB_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_homepageherSecB_v_parent_id_idx" ON "_homepageherSecB_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_homepageherSecB_v_path_idx" ON "_homepageherSecB_v" USING btree ("_path");
+  CREATE UNIQUE INDEX IF NOT EXISTS "_homepageherSecB_v_locales_locale_parent_id_unique" ON "_homepageherSecB_v_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX IF NOT EXISTS "_homepage_v_version_version_slug_idx" ON "_homepage_v" USING btree ("version_slug");
   CREATE INDEX IF NOT EXISTS "_homepage_v_version_version__status_idx" ON "_homepage_v" USING btree ("version__status");
   CREATE INDEX IF NOT EXISTS "_homepage_v_created_at_idx" ON "_homepage_v" USING btree ("created_at");
@@ -1695,6 +2382,17 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_cta_sections_block_parent_id_idx" ON "blog_index_blocks_cta_sections_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_cta_sections_block_path_idx" ON "blog_index_blocks_cta_sections_block" USING btree ("_path");
   CREATE UNIQUE INDEX IF NOT EXISTS "blog_index_blocks_cta_sections_block_locales_locale_parent_id_unique" ON "blog_index_blocks_cta_sections_block_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "blog_index_blocks_feature_section_order_idx" ON "blog_index_blocks_feature_section" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "blog_index_blocks_feature_section_parent_id_idx" ON "blog_index_blocks_feature_section" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "blog_index_blocks_feature_section_path_idx" ON "blog_index_blocks_feature_section" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "blogIdxhdrSec_order_idx" ON "blogIdxhdrSec" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "blogIdxhdrSec_parent_id_idx" ON "blogIdxhdrSec" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "blogIdxhdrSec_path_idx" ON "blogIdxhdrSec" USING btree ("_path");
+  CREATE UNIQUE INDEX IF NOT EXISTS "blogIdxhdrSec_locales_locale_parent_id_unique" ON "blogIdxhdrSec_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "blogIdxherSecB_order_idx" ON "blogIdxherSecB" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "blogIdxherSecB_parent_id_idx" ON "blogIdxherSecB" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "blogIdxherSecB_path_idx" ON "blogIdxherSecB" USING btree ("_path");
+  CREATE UNIQUE INDEX IF NOT EXISTS "blogIdxherSecB_locales_locale_parent_id_unique" ON "blogIdxherSecB_locales" USING btree ("_locale","_parent_id");
   CREATE UNIQUE INDEX IF NOT EXISTS "blog_index_slug_idx" ON "blog_index" USING btree ("slug");
   CREATE INDEX IF NOT EXISTS "blog_index__status_idx" ON "blog_index" USING btree ("_status");
   CREATE UNIQUE INDEX IF NOT EXISTS "blog_index_locales_locale_parent_id_unique" ON "blog_index_locales" USING btree ("_locale","_parent_id");
@@ -1702,6 +2400,17 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_cta_sections_block_parent_id_idx" ON "_blog_index_v_blocks_cta_sections_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_cta_sections_block_path_idx" ON "_blog_index_v_blocks_cta_sections_block" USING btree ("_path");
   CREATE UNIQUE INDEX IF NOT EXISTS "_blog_index_v_blocks_cta_sections_block_locales_locale_parent_id_unique" ON "_blog_index_v_blocks_cta_sections_block_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_feature_section_order_idx" ON "_blog_index_v_blocks_feature_section" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_feature_section_parent_id_idx" ON "_blog_index_v_blocks_feature_section" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_feature_section_path_idx" ON "_blog_index_v_blocks_feature_section" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_blogIdxhdrSec_v_order_idx" ON "_blogIdxhdrSec_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_blogIdxhdrSec_v_parent_id_idx" ON "_blogIdxhdrSec_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_blogIdxhdrSec_v_path_idx" ON "_blogIdxhdrSec_v" USING btree ("_path");
+  CREATE UNIQUE INDEX IF NOT EXISTS "_blogIdxhdrSec_v_locales_locale_parent_id_unique" ON "_blogIdxhdrSec_v_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "_blogIdxherSecB_v_order_idx" ON "_blogIdxherSecB_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_blogIdxherSecB_v_parent_id_idx" ON "_blogIdxherSecB_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_blogIdxherSecB_v_path_idx" ON "_blogIdxherSecB_v" USING btree ("_path");
+  CREATE UNIQUE INDEX IF NOT EXISTS "_blogIdxherSecB_v_locales_locale_parent_id_unique" ON "_blogIdxherSecB_v_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX IF NOT EXISTS "_blog_index_v_version_version_slug_idx" ON "_blog_index_v" USING btree ("version_slug");
   CREATE INDEX IF NOT EXISTS "_blog_index_v_version_version__status_idx" ON "_blog_index_v" USING btree ("version__status");
   CREATE INDEX IF NOT EXISTS "_blog_index_v_created_at_idx" ON "_blog_index_v" USING btree ("created_at");
@@ -1717,10 +2426,20 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   await db.execute(sql`
    DROP TABLE "pages_blocks_cta_sections_block" CASCADE;
   DROP TABLE "pages_blocks_cta_sections_block_locales" CASCADE;
+  DROP TABLE "pages_blocks_feature_section" CASCADE;
+  DROP TABLE "pagehdrSec" CASCADE;
+  DROP TABLE "pagehdrSec_locales" CASCADE;
+  DROP TABLE "pageherSecB" CASCADE;
+  DROP TABLE "pageherSecB_locales" CASCADE;
   DROP TABLE "pages" CASCADE;
   DROP TABLE "pages_locales" CASCADE;
   DROP TABLE "_pages_v_blocks_cta_sections_block" CASCADE;
   DROP TABLE "_pages_v_blocks_cta_sections_block_locales" CASCADE;
+  DROP TABLE "_pages_v_blocks_feature_section" CASCADE;
+  DROP TABLE "_pagehdrSec_v" CASCADE;
+  DROP TABLE "_pagehdrSec_v_locales" CASCADE;
+  DROP TABLE "_pageherSecB_v" CASCADE;
+  DROP TABLE "_pageherSecB_v_locales" CASCADE;
   DROP TABLE "_pages_v" CASCADE;
   DROP TABLE "_pages_v_locales" CASCADE;
   DROP TABLE "posts_ctas" CASCADE;
@@ -1775,18 +2494,38 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "four_oh_four_locales" CASCADE;
   DROP TABLE "homepage_blocks_cta_sections_block" CASCADE;
   DROP TABLE "homepage_blocks_cta_sections_block_locales" CASCADE;
+  DROP TABLE "homepage_blocks_feature_section" CASCADE;
+  DROP TABLE "homepagehdrSec" CASCADE;
+  DROP TABLE "homepagehdrSec_locales" CASCADE;
+  DROP TABLE "homepageherSecB" CASCADE;
+  DROP TABLE "homepageherSecB_locales" CASCADE;
   DROP TABLE "homepage" CASCADE;
   DROP TABLE "homepage_locales" CASCADE;
   DROP TABLE "_homepage_v_blocks_cta_sections_block" CASCADE;
   DROP TABLE "_homepage_v_blocks_cta_sections_block_locales" CASCADE;
+  DROP TABLE "_homepage_v_blocks_feature_section" CASCADE;
+  DROP TABLE "_homepagehdrSec_v" CASCADE;
+  DROP TABLE "_homepagehdrSec_v_locales" CASCADE;
+  DROP TABLE "_homepageherSecB_v" CASCADE;
+  DROP TABLE "_homepageherSecB_v_locales" CASCADE;
   DROP TABLE "_homepage_v" CASCADE;
   DROP TABLE "_homepage_v_locales" CASCADE;
   DROP TABLE "blog_index_blocks_cta_sections_block" CASCADE;
   DROP TABLE "blog_index_blocks_cta_sections_block_locales" CASCADE;
+  DROP TABLE "blog_index_blocks_feature_section" CASCADE;
+  DROP TABLE "blogIdxhdrSec" CASCADE;
+  DROP TABLE "blogIdxhdrSec_locales" CASCADE;
+  DROP TABLE "blogIdxherSecB" CASCADE;
+  DROP TABLE "blogIdxherSecB_locales" CASCADE;
   DROP TABLE "blog_index" CASCADE;
   DROP TABLE "blog_index_locales" CASCADE;
   DROP TABLE "_blog_index_v_blocks_cta_sections_block" CASCADE;
   DROP TABLE "_blog_index_v_blocks_cta_sections_block_locales" CASCADE;
+  DROP TABLE "_blog_index_v_blocks_feature_section" CASCADE;
+  DROP TABLE "_blogIdxhdrSec_v" CASCADE;
+  DROP TABLE "_blogIdxhdrSec_v_locales" CASCADE;
+  DROP TABLE "_blogIdxherSecB_v" CASCADE;
+  DROP TABLE "_blogIdxherSecB_v_locales" CASCADE;
   DROP TABLE "_blog_index_v" CASCADE;
   DROP TABLE "_blog_index_v_locales" CASCADE;
   DROP TYPE "public"."_locales";
@@ -1795,10 +2534,20 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."t";
   DROP TYPE "public"."b";
   DROP TYPE "public"."enum_pages_blocks_cta_sections_block_variant";
+  DROP TYPE "public"."enum_pages_blocks_feature_section_wrapper_theme";
+  DROP TYPE "public"."enum_pages_blocks_feature_section_variant";
+  DROP TYPE "public"."enum_pagehdrSec_wrapper_theme";
+  DROP TYPE "public"."pagehdrSec_v";
+  DROP TYPE "public"."enum_pageherSecB_wrapper_theme";
+  DROP TYPE "public"."vrnt";
   DROP TYPE "public"."enum_pages_theme";
   DROP TYPE "public"."enum_pages_status";
   DROP TYPE "public"."enum__pages_v_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum__pages_v_blocks_cta_sections_block_variant";
+  DROP TYPE "public"."enum__pages_v_blocks_feature_section_wrapper_theme";
+  DROP TYPE "public"."enum__pages_v_blocks_feature_section_variant";
+  DROP TYPE "public"."enum__pagehdrSec_v_wrapper_theme";
+  DROP TYPE "public"."enum__pageherSecB_v_wrapper_theme";
   DROP TYPE "public"."enum__pages_v_version_theme";
   DROP TYPE "public"."enum__pages_v_version_status";
   DROP TYPE "public"."enum__pages_v_published_locale";
@@ -1819,19 +2568,37 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."undefined_cta_tv";
   DROP TYPE "public"."enum_homepage_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum_homepage_blocks_cta_sections_block_variant";
+  DROP TYPE "public"."enum_homepage_blocks_feature_section_wrapper_theme";
+  DROP TYPE "public"."enum_homepage_blocks_feature_section_variant";
+  DROP TYPE "public"."enum_homepagehdrSec_wrapper_theme";
+  DROP TYPE "public"."homepagehdrSec_v";
+  DROP TYPE "public"."enum_homepageherSecB_wrapper_theme";
   DROP TYPE "public"."enum_homepage_theme";
   DROP TYPE "public"."enum_homepage_status";
   DROP TYPE "public"."enum__homepage_v_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum__homepage_v_blocks_cta_sections_block_variant";
+  DROP TYPE "public"."enum__homepage_v_blocks_feature_section_wrapper_theme";
+  DROP TYPE "public"."enum__homepage_v_blocks_feature_section_variant";
+  DROP TYPE "public"."enum__homepagehdrSec_v_wrapper_theme";
+  DROP TYPE "public"."enum__homepageherSecB_v_wrapper_theme";
   DROP TYPE "public"."enum__homepage_v_version_theme";
   DROP TYPE "public"."enum__homepage_v_version_status";
   DROP TYPE "public"."enum__homepage_v_published_locale";
   DROP TYPE "public"."enum_blog_index_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum_blog_index_blocks_cta_sections_block_variant";
+  DROP TYPE "public"."enum_blog_index_blocks_feature_section_wrapper_theme";
+  DROP TYPE "public"."enum_blog_index_blocks_feature_section_variant";
+  DROP TYPE "public"."enum_blogIdxhdrSec_wrapper_theme";
+  DROP TYPE "public"."blogIdxhdrSec_v";
+  DROP TYPE "public"."enum_blogIdxherSecB_wrapper_theme";
   DROP TYPE "public"."enum_blog_index_theme";
   DROP TYPE "public"."enum_blog_index_status";
   DROP TYPE "public"."enum__blog_index_v_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum__blog_index_v_blocks_cta_sections_block_variant";
+  DROP TYPE "public"."enum__blog_index_v_blocks_feature_section_wrapper_theme";
+  DROP TYPE "public"."enum__blog_index_v_blocks_feature_section_variant";
+  DROP TYPE "public"."enum__blogIdxhdrSec_v_wrapper_theme";
+  DROP TYPE "public"."enum__blogIdxherSecB_v_wrapper_theme";
   DROP TYPE "public"."enum__blog_index_v_version_theme";
   DROP TYPE "public"."enum__blog_index_v_version_status";
   DROP TYPE "public"."enum__blog_index_v_published_locale";`)

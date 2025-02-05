@@ -1,4 +1,5 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
+import PageThemeObserver from '@mono/web/components/PageThemeObserver';
 import { routing } from '@mono/web/i18n/routing';
 import {
   DEFAULT_LOCALE,
@@ -79,6 +80,7 @@ export default async function CatchallPage({ params }: RootLayoutProps) {
   const page = await fetchPageData(draft, locale, pageSlug);
 
   // if not page data and not the index check for redirects
+  // TODO: generalize this into a helper function
   if (!page) {
     const redirectPath = await redirectApi(pageSlug);
     if (
@@ -90,7 +92,12 @@ export default async function CatchallPage({ params }: RootLayoutProps) {
     redirect(redirectPath);
   }
 
-  return <BlocksRenderer blocks={page.blocks ?? []} />;
+  return (
+    <>
+      <PageThemeObserver theme={page.theme} />
+      <BlocksRenderer blocks={page.blocks ?? []} />
+    </>
+  );
 }
 
 export async function generateMetadata({ params }: RootLayoutProps) {

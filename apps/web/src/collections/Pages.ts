@@ -17,7 +17,8 @@ const Pages: CollectionConfig = {
     defaultColumns: ['pageTitle', 'slug', '_status', 'createdAt'],
     livePreview: {
       url: ({ data: { slug }, req }) => {
-        const baseUrl = `${req.protocol}//${req.host}`;
+        const protocol = process.env.VERCEL_URL ? 'https' : 'http';
+        const baseUrl = `${protocol}://${req.host}`;
         return `${baseUrl}/draft/${slug}`;
       }
     }
@@ -66,7 +67,7 @@ const Pages: CollectionConfig = {
               name: 'blocks',
               label: 'Blocks',
               type: 'blocks',
-              blocks: allBlocks
+              blocks: allBlocks('page')
             }
           ]
         }

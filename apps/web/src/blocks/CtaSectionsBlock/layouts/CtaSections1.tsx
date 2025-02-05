@@ -1,4 +1,4 @@
-// import Wrapper from '@mono/ui/components/Wrapper';
+// import Wrapper from '@mono/web/components/Wrapper';
 import type { CtaSectionsBlockT as PayloadType } from '@mono/types/payload-types';
 import React from 'react';
 
@@ -7,15 +7,14 @@ import { ArrowRight } from 'lucide-react';
 
 export type CtaSectionsBlockType = Omit<PayloadType, 'blockType'>;
 
+import styles from '../CtaSectionsBlock.module.css';
+
 function CtaSections1({
   title = 'Action-Driving headline that creates urgency'
 }: CtaSectionsBlockType) {
   return (
-    <section
-      className="bg-primary py-16 md:py-24"
-      aria-labelledby="cta-heading"
-    >
-      <div className="container mx-auto px-6">
+    <section className={styles.container} aria-labelledby="cta-heading">
+      <div className={styles.content}>
         <div className="flex flex-col items-center max-w-xl gap-8 md:gap-10 mx-auto">
           {/* Section Header */}
           <div className="flex flex-col items-center gap-4 md:gap-5">
