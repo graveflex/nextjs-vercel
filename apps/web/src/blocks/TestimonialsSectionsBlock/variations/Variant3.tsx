@@ -11,14 +11,16 @@ export default function Variant3() {
         {/* Two-Column Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
           {/* Testimonial Image */}
-          <Image
-            src="https://ui.shadcn.com/placeholder.svg"
-            alt="Testimonial image"
-            fill={true}
-            className="rounded-xl"
-          />
+          <div className="w-full h-full  relative">
+            <Image
+              src="https://ui.shadcn.com/placeholder.svg"
+              alt="Testimonial image"
+              fill={true}
+              className="rounded-xl"
+            />
+          </div>
           {/* Testimonial Content Wrapper */}
-          <div className="flex flex-col items-center md:items-start gap-8">
+          <div className="flex flex-col items-center md:items-start gap-8 py-16 md:py-24 ">
             {/* Star Rating */}
             <div className="flex gap-1">
               {ids.map((id) => (
