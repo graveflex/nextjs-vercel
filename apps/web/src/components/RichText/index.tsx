@@ -36,25 +36,8 @@ const jsxConverters: JSXConvertersFunction<DefaultNodeTypes> = ({
   defaultConverters
 }) => ({
   ...defaultConverters,
-  paragraph: ({ node }) => {
-    const childNodeTypes = node?.children?.map((child) => child?.type);
-
-    if (childNodeTypes?.includes('eyebrow')) {
-      return (
-        <p className={cn(styles.eyebrow, 'eyebrow')}>
-          {node?.children
-            ?.map((child) => ('text' in child ? child.text : ''))
-            .join('')}
-        </p>
-      );
-    }
-    return (
-      <p>
-        {node?.children
-          ?.map((child) => ('text' in child ? child.text : ''))
-          .join('')}
-      </p>
-    );
+  eyebrow: ({ node }) => {
+    return <span className={cn(styles.eyebrow, 'eyebrow')}>{node?.text}</span>;
   }
 });
 
