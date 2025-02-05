@@ -6,6 +6,7 @@ import { ArrowRight } from 'lucide-react';
 
 export type CtaSectionsBlockType = Omit<PayloadType, 'blockType'>;
 
+// This variant will be used in MVP:
 function CtaSections7({
   title = 'Action-Driving headline that creates urgency'
 }: CtaSectionsBlockType) {
