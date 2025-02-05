@@ -1,7 +1,5 @@
 import { faker } from '@faker-js/faker';
-import richTextMockData, {
-  payloadTypography
-} from '@mono/web/components/RichText/richTextMockData';
+import { ctaSection1MockData } from '@mono/web/components/RichText/richTextMockData';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { CtaSectionsBlockType } from '.';
@@ -22,7 +20,8 @@ type Story = StoryObj<CtaSectionsBlockType>;
 export const Defaults: Story = {
   args: {
     title: faker.lorem.words(5),
-    variant: '1'
+    variant: '1',
+    content: ctaSection1MockData.data
   }
 };
 
@@ -30,7 +29,7 @@ export const One: Story = {
   args: {
     title: faker.lorem.words(5),
     variant: '1',
-    content: richTextMockData.data
+    content: ctaSection1MockData.data
   }
 };
 
