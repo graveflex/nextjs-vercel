@@ -1,8 +1,8 @@
-import { Button } from "@mono/web/components/ui/Button";
-import { ArrowRight } from "lucide-react";
-import { AspectRatio } from "@mono/web/components/ui/AspectRatio";
-import { Avatar, AvatarImage } from "@mono/web/components/ui/Avatar";
-import Image from "next/image";
+import { AspectRatio } from '@mono/web/components/ui/AspectRatio';
+import { Avatar, AvatarImage } from '@mono/web/components/ui/Avatar';
+import { Button } from '@mono/web/components/ui/Button';
+import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Variant12() {
   return (
@@ -44,7 +44,7 @@ export default function Variant12() {
                 />
               </Avatar>
               <p className="text-foreground font-medium">
-                Lando Norris{" "}
+                Lando Norris{' '}
                 <span className="text-muted-foreground font-normal">
                   - Product Designer
                 </span>
@@ -58,7 +58,8 @@ export default function Variant12() {
             <Image
               src="https://ui.shadcn.com/placeholder.svg"
               alt="Hero image"
-              fill={true}              className="rounded-xl object-cover w-full h-full"
+              fill={true}
+              className="rounded-xl object-cover w-full h-full"
             />
           </AspectRatio>
         </div>

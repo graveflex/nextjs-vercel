@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { AspectRatio } from "@mono/web/components/ui/AspectRatio";
+import { AspectRatio } from '@mono/web/components/ui/AspectRatio';
+import Image from 'next/image';
 
 export default function Variant14() {
   return (
@@ -26,7 +26,8 @@ export default function Variant14() {
                 <Image
                   src="https://ui.shadcn.com/placeholder.svg"
                   alt="Card image"
-                  fill={true}                  className="rounded-xl object-cover w-full h-full"
+                  fill={true}
+                  className="rounded-xl object-cover w-full h-full"
                 />
               </AspectRatio>
             </div>
@@ -46,7 +47,8 @@ export default function Variant14() {
                 <Image
                   src="https://ui.shadcn.com/placeholder.svg"
                   alt="Card image"
-                  fill={true}                  className="rounded-xl object-cover w-full h-full"
+                  fill={true}
+                  className="rounded-xl object-cover w-full h-full"
                 />
               </AspectRatio>
             </div>
@@ -66,7 +68,8 @@ export default function Variant14() {
                 <Image
                   src="https://ui.shadcn.com/placeholder.svg"
                   alt="Card image"
-                  fill={true}                  className="rounded-xl object-cover w-full h-full"
+                  fill={true}
+                  className="rounded-xl object-cover w-full h-full"
                 />
               </AspectRatio>
             </div>

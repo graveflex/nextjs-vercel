@@ -1,7 +1,7 @@
-import { Button } from "@mono/web/components/ui/Button";
-import { AspectRatio } from "@mono/web/components/ui/AspectRatio";
-import Image from "next/image";
-import { ArrowRight } from "lucide-react";
+import { AspectRatio } from '@mono/web/components/ui/AspectRatio';
+import { Button } from '@mono/web/components/ui/Button';
+import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Variant7() {
   return (
@@ -35,7 +35,8 @@ export default function Variant7() {
             <Image
               src="https://ui.shadcn.com/placeholder.svg"
               alt="Hero image"
-              fill={true}              className="rounded-xl object-cover w-full h-full"
+              fill={true}
+              className="rounded-xl object-cover w-full h-full"
             />
           </AspectRatio>
         </div>

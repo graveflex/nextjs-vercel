@@ -1,6 +1,6 @@
-import { Rocket } from "lucide-react";
-import Image from "next/image";
-import { AspectRatio } from "@mono/web/components/ui/AspectRatio";
+import { AspectRatio } from '@mono/web/components/ui/AspectRatio';
+import { Rocket } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Variant11() {
   return (
@@ -25,7 +25,8 @@ export default function Variant11() {
             <Image
               src="https://ui.shadcn.com/placeholder.svg"
               alt="Hero image"
-              fill={true}              className="rounded-xl object-cover w-full h-full"
+              fill={true}
+              className="rounded-xl object-cover w-full h-full"
             />
           </AspectRatio>
         </div>

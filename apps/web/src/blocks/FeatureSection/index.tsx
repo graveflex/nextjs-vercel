@@ -1,9 +1,9 @@
 // Types
 import type { FeatureSection as PayloadType } from '@mono/types/payload-types';
 
+import dynamic from 'next/dynamic';
 // Libraries
 import React from 'react';
-import dynamic from 'next/dynamic';
 
 // Components
 import Wrapper from '@mono/web/components/Wrapper';

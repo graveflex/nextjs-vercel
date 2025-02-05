@@ -1,6 +1,6 @@
+import { AspectRatio } from '@mono/web/components/ui/AspectRatio';
 import { Button } from '@mono/web/components/ui/Button';
 import { ArrowRight, Rocket } from 'lucide-react';
-import { AspectRatio } from '@mono/web/components/ui/AspectRatio';
 import Image from 'next/image';
 
 export default function Variant6() {

@@ -1,5 +1,5 @@
-import { Rocket, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight, Rocket } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Variant10() {
   return (

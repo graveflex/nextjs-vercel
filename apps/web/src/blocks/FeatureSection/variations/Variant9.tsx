@@ -1,4 +1,4 @@
-import { Rocket } from "lucide-react";
+import { Rocket } from 'lucide-react';
 
 export default function Variant9() {
   return (
