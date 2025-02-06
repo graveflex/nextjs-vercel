@@ -29,7 +29,8 @@
     text-2xl
     font-semibold
     mt-8
-    tracking-tight;
+    tracking-tight
+    first:mt-0;
 }
 
 .richtext h4 {
