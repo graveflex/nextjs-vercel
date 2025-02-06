@@ -11,6 +11,12 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
+  contactSectionsBlock: dynamic(
+    () => import('@mono/web/blocks/ContactSectionsBlock'),
+    {
+      ...defaultOpts
+    }
+  ),
   ctaSectionsBlock: dynamic(() => import('@mono/web/blocks/CtaSectionsBlock'), {
     ...defaultOpts
   }),
