@@ -44,15 +44,15 @@ const jsxConverters: JSXConvertersFunction<DefaultNodeTypes> = ({
 function RichText({ className, data }: RichTextType) {
   return (
     data && (
-      <div
-        className={cn('rich-text-container w-full rich-text-global', className)}
-      >
-        <LexicalRichText
-          data={data}
-          className={styles.richtext}
-          converters={jsxConverters}
-        />
-      </div>
+      <LexicalRichText
+        data={data}
+        className={cn(
+          'lexical rich-text-container',
+          styles.richtext,
+          className
+        )}
+        converters={jsxConverters}
+      />
     )
   );
 }

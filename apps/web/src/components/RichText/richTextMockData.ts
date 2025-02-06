@@ -2050,4 +2050,37 @@ export const ctaSection1MockData: RichTextType = {
   }
 };
 
+export const ctaSectionTitleMockData: RichTextType = {
+  data: {
+    root: {
+      type: 'root',
+      format: '',
+      indent: 0,
+      version: 1,
+      children: [
+        {
+          tag: 'h2',
+          type: 'heading',
+          format: 'center',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'Action-driving headline that creates urgency',
+              type: 'text',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr'
+        }
+      ],
+      direction: 'ltr'
+    }
+  }
+};
+
 export default richTextMockData;
