@@ -1,4 +1,3 @@
-
 ---
 inject: true
 to: <%= app_name %>/components/BlocksRenderer/index.tsx
