@@ -106,7 +106,7 @@ export const ctaSection2MockData: RichTextType = {
   }
 };
 
-export const ctaSection3MockData: RichTextType = {
+export const ctaSection3_4MockData: RichTextType = {
   data: {
     root: {
       type: 'root',

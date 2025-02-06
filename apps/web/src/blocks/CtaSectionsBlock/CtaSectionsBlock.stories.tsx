@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import {
   ctaSection1MockData,
   ctaSection2MockData,
-  ctaSection3MockData
+  ctaSection3_4MockData
 } from './CtaSectionsMockData';
 
 import wrapperMockData from '@mono/web/components/Wrapper/wrapperMockData';
@@ -54,7 +54,7 @@ export const Three: Story = {
   args: {
     title: faker.lorem.words(5),
     variant: '3',
-    content: ctaSection3MockData.data,
+    content: ctaSection3_4MockData.data,
     wrapper: wrapperMockData
   }
 };
@@ -63,6 +63,7 @@ export const Four: Story = {
   args: {
     title: faker.lorem.words(5),
     variant: '4',
+    content: ctaSection3_4MockData.data,
     wrapper: wrapperMockData
   }
 };
@@ -71,6 +72,7 @@ export const Five: Story = {
   args: {
     title: faker.lorem.words(5),
     variant: '5',
+    content: ctaSection3_4MockData.data,
     wrapper: wrapperMockData
   }
 };
