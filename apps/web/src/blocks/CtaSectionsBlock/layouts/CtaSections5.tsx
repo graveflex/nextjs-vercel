@@ -1,4 +1,5 @@
 import type { CtaSectionsBlockT as PayloadType } from '@mono/types/payload-types';
+import RichText from '@mono/web/components/RichText/index';
 import React from 'react';
 
 import { AspectRatio } from '@mono/web/components/ui/AspectRatio';
@@ -8,9 +9,7 @@ import Image from 'next/image';
 
 export type CtaSectionsBlockType = Omit<PayloadType, 'blockType'>;
 
-function CtaSections5({
-  title = 'Action-Driving headline that creates urgency'
-}: CtaSectionsBlockType) {
+function CtaSections5({ content }: CtaSectionsBlockType) {
   return (
     <section
       className="bg-background py-0 lg:py-24"
@@ -24,24 +23,32 @@ function CtaSections5({
               {/* Section Header */}
               <div className="flex flex-col gap-4 lg:gap-5">
                 {/* Category Tag */}
-                <p className="text-primary-foreground/80 text-sm lg:text-base font-semibold">
+                {/* <p className="text-primary-foreground/80 text-sm lg:text-base font-semibold">
                   CTA section
-                </p>
+                </p> */}
                 {/* Main Title */}
-                <h2
+                {/* <h2
                   id="cta-heading"
                   className="text-primary-foreground text-3xl md:text-4xl font-bold"
                 >
                   {title}
-                </h2>
+                </h2> */}
+
+                {content && (
+                  <RichText
+                    data={content}
+                    className="text-primary-foreground"
+                  />
+                )}
               </div>
+
               {/* CTA Content */}
               <div className="flex flex-col gap-6 items-center lg:items-start">
                 {/* Section Description */}
-                <p className="text-primary-foreground/80 text-base">
+                {/* <p className="text-primary-foreground/80 text-base">
                   Add one or two compelling sentences that reinforce your main
                   value proposition and overcome final objections.
-                </p>
+                </p> */}
                 {/* CTA Button */}
                 <Button
                   className="bg-primary-foreground text-primary hover:bg-primary-foreground/80"
@@ -52,7 +59,7 @@ function CtaSections5({
               </div>
             </div>
             {/* Right Column - Image */}
-            <div className="flex-1 w-full pl-6 lg:pl-0">
+            <div className="flex flex-1 w-full pl-6 lg:pl-0">
               <AspectRatio ratio={4 / 3}>
                 <Image
                   src="https://ui.shadcn.com/placeholder.svg"
