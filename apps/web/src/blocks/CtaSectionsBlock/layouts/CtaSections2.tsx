@@ -21,7 +21,12 @@ function CtaSections2({ content }: CtaSectionsBlockType) {
           >
             {title}
           </h2> */}
-          {content && <RichText data={content} className="max-w-lg" />}
+          {content && (
+            <RichText
+              data={content}
+              className="max-w-lg text-primary-foreground"
+            />
+          )}
           {/* CTA Buttons */}
           <div className="flex flex-col md:flex-row gap-3 align-right">
             {/* Primary Button */}
