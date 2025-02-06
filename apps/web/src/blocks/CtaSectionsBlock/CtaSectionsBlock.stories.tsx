@@ -1,10 +1,13 @@
 import { faker } from '@faker-js/faker';
+import type { WrapperProps } from '@mono/web/components/Wrapper';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   ctaSection1MockData,
-  ctaSection2MockData
+  ctaSection2MockData,
+  ctaSection3MockData
 } from './CtaSectionsMockData';
 
+import wrapperMockData from '@mono/web/components/Wrapper/wrapperMockData';
 import type { CtaSectionsBlockType } from '.';
 import CtaSectionsBlock from '.';
 
@@ -24,7 +27,8 @@ export const Defaults: Story = {
   args: {
     title: faker.lorem.words(5),
     variant: '1',
-    content: ctaSection1MockData.data
+    content: ctaSection1MockData.data,
+    wrapper: wrapperMockData
   }
 };
 
@@ -32,7 +36,8 @@ export const One: Story = {
   args: {
     title: faker.lorem.words(5),
     variant: '1',
-    content: ctaSection1MockData.data
+    content: ctaSection1MockData.data,
+    wrapper: wrapperMockData
   }
 };
 
@@ -40,41 +45,48 @@ export const Two: Story = {
   args: {
     title: faker.lorem.words(5),
     variant: '2',
-    content: ctaSection2MockData.data
+    content: ctaSection2MockData.data,
+    wrapper: wrapperMockData
   }
 };
 
 export const Three: Story = {
   args: {
     title: faker.lorem.words(5),
-    variant: '3'
+    variant: '3',
+    content: ctaSection3MockData.data,
+    wrapper: wrapperMockData
   }
 };
 
 export const Four: Story = {
   args: {
     title: faker.lorem.words(5),
-    variant: '4'
+    variant: '4',
+    wrapper: wrapperMockData
   }
 };
 
 export const Five: Story = {
   args: {
     title: faker.lorem.words(5),
-    variant: '5'
+    variant: '5',
+    wrapper: wrapperMockData
   }
 };
 
 export const Six: Story = {
   args: {
     title: faker.lorem.words(5),
-    variant: '6'
+    variant: '6',
+    wrapper: wrapperMockData
   }
 };
 
 export const Seven: Story = {
   args: {
     title: faker.lorem.words(5),
-    variant: '7'
+    variant: '7',
+    wrapper: wrapperMockData
   }
 };
