@@ -325,4 +325,57 @@ export const ctaSection6MockData: RichTextType = {
   }
 };
 
+export const ctaSection7MockData: RichTextType = {
+  data: {
+    root: {
+      type: 'root',
+      format: '',
+      indent: 0,
+      version: 1,
+      children: [
+        {
+          type: 'paragraph',
+          format: 'center',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'CTA Section',
+              type: 'eyebrow',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr',
+          textStyle: '',
+          textFormat: 0
+        },
+        {
+          tag: 'h2',
+          type: 'heading',
+          format: 'center',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'Action-driving headline that creates urgency',
+              type: 'text',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr'
+        }
+      ],
+      direction: 'ltr'
+    }
+  }
+};
+
 export default ctaSection1MockData;

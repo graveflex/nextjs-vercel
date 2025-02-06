@@ -1,12 +1,12 @@
 import { faker } from '@faker-js/faker';
-import type { WrapperProps } from '@mono/web/components/Wrapper';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   ctaSection1MockData,
   ctaSection2MockData,
   ctaSection3_4MockData,
   ctaSection5MockData,
-  ctaSection6MockData
+  ctaSection6MockData,
+  ctaSection7MockData
 } from './CtaSectionsMockData';
 
 import wrapperMockData from '@mono/web/components/Wrapper/wrapperMockData';
@@ -92,6 +92,7 @@ export const Seven: Story = {
   args: {
     title: faker.lorem.words(5),
     variant: '7',
+    content: ctaSection7MockData.data,
     wrapper: wrapperMockData
   }
 };
