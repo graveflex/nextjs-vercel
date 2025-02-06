@@ -1,5 +1,8 @@
 import { faker } from '@faker-js/faker';
-import { ctaSection1MockData } from '@mono/web/components/RichText/richTextMockData';
+import {
+  ctaSection1MockData,
+  ctaSectionTitleMockData
+} from '@mono/web/components/RichText/richTextMockData';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import type { CtaSectionsBlockType } from '.';
@@ -36,7 +39,8 @@ export const One: Story = {
 export const Two: Story = {
   args: {
     title: faker.lorem.words(5),
-    variant: '2'
+    variant: '2',
+    content: ctaSectionTitleMockData.data
   }
 };
 
