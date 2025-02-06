@@ -156,3 +156,7 @@
     font-family: Arial, Helvetica, sans-serif;
   }
 }
+
+#storybook-root {
+  width: 100%;
+}
