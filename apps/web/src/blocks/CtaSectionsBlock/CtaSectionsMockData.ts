@@ -272,4 +272,57 @@ export const ctaSection5MockData: RichTextType = {
   }
 };
 
+export const ctaSection6MockData: RichTextType = {
+  data: {
+    root: {
+      type: 'root',
+      format: '',
+      indent: 0,
+      version: 1,
+      children: [
+        {
+          tag: 'h3',
+          type: 'heading',
+          format: '',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'Action-driving headline that creates urgency',
+              type: 'text',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr'
+        },
+        {
+          type: 'paragraph',
+          format: '',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'Add one or two compelling sentences that reinforce your main value proposition and overcome final objections.',
+              type: 'text',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr',
+          textStyle: '',
+          textFormat: 0
+        }
+      ],
+      direction: 'ltr'
+    }
+  }
+};
+
 export default ctaSection1MockData;

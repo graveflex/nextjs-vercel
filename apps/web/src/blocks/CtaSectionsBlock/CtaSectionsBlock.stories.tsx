@@ -5,7 +5,8 @@ import {
   ctaSection1MockData,
   ctaSection2MockData,
   ctaSection3_4MockData,
-  ctaSection5MockData
+  ctaSection5MockData,
+  ctaSection6MockData
 } from './CtaSectionsMockData';
 
 import wrapperMockData from '@mono/web/components/Wrapper/wrapperMockData';
@@ -82,6 +83,7 @@ export const Six: Story = {
   args: {
     title: faker.lorem.words(5),
     variant: '6',
+    content: ctaSection6MockData.data,
     wrapper: wrapperMockData
   }
 };
