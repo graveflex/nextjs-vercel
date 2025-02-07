@@ -50,10 +50,7 @@ function RichText({ className, data }: RichTextType) {
   return (
     data && (
       <div
-        className={cn(
-          'rich-text-container w-full rich-text-global',
-          className
-        )}
+        className={cn('rich-text-container w-full rich-text-global', className)}
       >
         <LexicalRichText
           data={data}
