@@ -18,7 +18,6 @@
     text-3xl
     font-semibold
     tracking-tight
-    mt-10
     first:mt-0;
 }
 
@@ -28,7 +27,6 @@
     scroll-m-20
     text-2xl
     font-semibold
-    mt-8
     tracking-tight
     first:mt-0;
 }
