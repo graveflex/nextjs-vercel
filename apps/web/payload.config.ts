@@ -12,6 +12,7 @@ import Homepage from '@mono/web/globals/Home/Homepage.config';
 import Nav from '@mono/web/globals/Layout/Layout.config';
 // import nodeMailer from 'nodemailer';
 import { DEFAULT_LOCALE, LOCALES } from '@mono/web/lib/constants';
+import { authConfig } from '@mono/web/payload/auth.config';
 import { translator } from '@payload-enchants/translator';
 import { googleResolver } from '@payload-enchants/translator/resolvers/google';
 import { postgresAdapter } from '@payloadcms/db-postgres';
@@ -41,6 +42,7 @@ import {
 } from '@payloadcms/richtext-lexical';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { buildConfig } from 'payload';
+import { authjsPlugin } from 'payload-authjs';
 import sharp from 'sharp';
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
@@ -226,6 +228,9 @@ export default buildConfig({
         message: false,
         payment: false
       }
+    }),
+    authjsPlugin({
+      authjsConfig: authConfig
     })
   ],
   upload: {
@@ -288,21 +293,26 @@ export default buildConfig({
   typescript: {
     outputFile: '../../packages/types/payload-types.ts'
   },
-  async onInit(payload) {
-    const existingUsers = await payload.find({
-      collection: 'users',
-      limit: 1
-    });
+  // async onInit(payload) {
+  //   try {
+  //     const existingUsers = await payload.find({
+  //       collection: 'users',
+  //       limit: 1
+  //     });
 
-    if (existingUsers.docs.length === 0) {
-      await payload.create({
-        collection: 'users',
-        data: {
-          email: 'dev@payloadcms.com',
-          password: 'test'
-        }
-      });
-    }
-  },
+  //     if (existingUsers.docs.length === 0) {
+  //       // await payload.create({
+  //       //   collection: 'users',
+  //       //   data: {
+  //       //     email: 'dev@payloadcms.com'
+  //       //     // password: 'test',
+  //       //     // roles: ['admin']
+  //       //   }
+  //       // });
+  //     }
+  //   } catch (error) {
+  //     console.error('Error in onInit:', error);
+  //   }
+  // },
   sharp
 });
