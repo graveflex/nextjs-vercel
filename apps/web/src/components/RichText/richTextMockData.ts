@@ -365,16 +365,6 @@ export const payloadTypography: RichTextType = {
           textFormat: 0
         },
         {
-          type: 'paragraph',
-          format: '',
-          indent: 0,
-          version: 1,
-          children: [],
-          direction: null,
-          textStyle: '',
-          textFormat: 0
-        },
-        {
           type: 'table',
           format: '',
           indent: 0,
@@ -683,16 +673,6 @@ export const payloadTypography: RichTextType = {
           ],
           colWidths: [92, 92],
           direction: 'ltr'
-        },
-        {
-          type: 'paragraph',
-          format: '',
-          indent: 0,
-          version: 1,
-          children: [],
-          direction: null,
-          textStyle: '',
-          textFormat: 0
         },
         {
           type: 'paragraph',
