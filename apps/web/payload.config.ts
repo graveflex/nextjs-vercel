@@ -36,8 +36,6 @@ import {
   OrderedListFeature,
   ParagraphFeature,
   StrikethroughFeature,
-  SubscriptFeature,
-  SuperscriptFeature,
   UnderlineFeature,
   UnorderedListFeature,
   UploadFeature,
@@ -66,8 +64,6 @@ export default buildConfig({
         InlineCodeFeature(),
         ItalicFeature(),
         StrikethroughFeature(),
-        SubscriptFeature(),
-        SuperscriptFeature(),
         UnderlineFeature(),
         ParagraphFeature(),
         HeadingFeature({
