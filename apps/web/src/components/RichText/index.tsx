@@ -52,13 +52,12 @@ function RichText({ className, data }: RichTextType) {
       <div
         className={cn(
           'rich-text-container w-full rich-text-global',
-          styles.richtext,
           className
         )}
       >
         <LexicalRichText
           data={data}
-          className="rich-text"
+          className={styles.richtext}
           converters={jsxConverters}
         />
       </div>

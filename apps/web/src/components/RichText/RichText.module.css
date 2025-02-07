@@ -1,7 +1,12 @@
 @reference "./../../app/global.css";
 
+.richtext {
+  @apply grid gap-y-5;
+}
+
 .richtext h1 {
   @apply
+    mt-5
     text-3xl
     md:text-5xl
     font-bold;
@@ -9,6 +14,7 @@
 
 .richtext h2 {
   @apply
+    mt-5
     text-3xl
     md:text-4xl
     font-bold;
@@ -16,6 +22,7 @@
 
 .richtext h3 {
   @apply
+    mt-3
     scroll-m-20
     text-2xl
     font-semibold
@@ -24,6 +31,7 @@
 
 .richtext h4 {
   @apply
+    mt-3
     scroll-m-20
     text-xl
     font-semibold
@@ -32,6 +40,7 @@
 
 .richtext h5 {
   @apply
+    mt-2
     scroll-m-20
     text-xl
     font-semibold
@@ -40,6 +49,7 @@
 
 .richtext h6 {
   @apply
+    mt-2
     scroll-m-20
     text-xl
     font-semibold
@@ -54,7 +64,6 @@
 
 .richtext blockquote {
   @apply
-    mt-6
     border-l-2
     pl-6
     italic;
@@ -62,18 +71,16 @@
 
 .richtext ul {
   @apply
-    my-6
     ml-6
     list-disc
-    [&>li]:mt-2;
+    [&>li:not(:first-child)]:mt-2;
 }
 
 .richtext ol {
   @apply
-    my-6
     ml-6
     list-decimal
-    [&>li]:mt-2;
+    [&>li:not(:first-child)]:mt-2;
 }
 
 .richtext code {
@@ -89,9 +96,7 @@
 }
 
 .richtext table {
-  @apply
-    w-full
-    my-6;
+  @apply w-full my-0;
 }
 
 .richtext tbody tr {
