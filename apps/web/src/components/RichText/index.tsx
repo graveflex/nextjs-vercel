@@ -47,6 +47,7 @@ const jsxConverters: JSXConvertersFunction<DefaultNodeTypes> = ({
           title={node.fields.embedTitle ?? 'Embedded media'}
           allow="autoplay"
           src={node.fields.embedUrl}
+          className="embed embed-block"
         ></iframe>
       );
     }
