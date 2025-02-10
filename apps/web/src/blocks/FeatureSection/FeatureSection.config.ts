@@ -8,7 +8,7 @@ import MakeVariations from '@mono/web/payload/utils/makeVariations';
 const FeatureSection: Block = {
   slug: 'featureSection',
   interfaceName: 'FeatureSection',
-  fields: [BlockConfig(), MakeVariations(14)]
+  fields: [BlockConfig(), MakeVariations(14, 'featureSection')]
 };
 
 export default FeatureSection;
