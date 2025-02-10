@@ -26,13 +26,15 @@ import {
   DropdownMenuTrigger,
   DropdownMenuHoverTrigger
 } from '@mono/web/components/ui/DropdownMenu';
-import {
-  NavigationMenu,
+import { 
+  NavigationMenu, 
+  NavigationMenuSub ,
   NavigationMenuList,
+  NavigationMenuLink,
   NavigationMenuItem,
   NavigationMenuTrigger,
   NavigationMenuContent
-} from '@mono/web/components/ui/NavigationMenu';
+} from '@radix-ui/react-navigation-menu';
 import {
   Sidebar,
   SidebarContent,
@@ -49,6 +51,7 @@ import {
 } from '@mono/web/components/ui/Sidebar';
 import React, { useState } from 'react';
 import styles from './Header.module.css';
+import { cn } from '@mono/web/lib/utils';
 
 export type HeaderType = {
   logo?: Image | number | null;
@@ -326,6 +329,41 @@ function Header() {
   return (
     <header className={styles.container}>
       <RecurseDesktopMenu links={data} />
+
+      <NavigationMenu>
+        <NavigationMenu>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Item one</NavigationMenuTrigger>
+            <NavigationMenuContent>Item one content</NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Item two</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <NavigationMenuSub defaultValue="sub1">
+                <NavigationMenuList>
+                  <NavigationMenuItem value="sub1">
+                    <NavigationMenuTrigger>
+                      Sub item one
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      Sub item one content
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem value="sub2">
+                    <NavigationMenuTrigger>
+                      Sub item two
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      Sub item two content
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenuSub>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        </NavigationMenu>
+      </NavigationMenu>
+
       <RecurseMobileMenu links={data} />
     </header>
   );
