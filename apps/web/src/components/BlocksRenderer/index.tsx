@@ -11,6 +11,9 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
+  featureSection: dynamic(() => import('@mono/web/blocks/FeatureSection'), {
+    ...defaultOpts
+  }),
   ctaSectionsBlock: dynamic(() => import('@mono/web/blocks/CtaSectionsBlock'), {
     ...defaultOpts
   }),
