@@ -1,0 +1,27 @@
+.links_container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.links_container .link {
+  list-style: none;
+}
+
+.button {
+  background-color: var(--theme-elevation-50);
+  border: 1px solid var(--theme-border-color);
+  border-radius: var(--style-radius-m);
+  transition-property: border, box-shadow, background;
+  transition-duration: .1s;
+  transition-timing-function: cubic-bezier(0, 0.2, 0.2, 1);
+  /* background-color: red; */
+
+  &:hover {
+    background: var(--theme-elevation-50);
+    border: 1px solid var(--theme-elevation-250);
+    box-shadow: 0 4px 8px -2px #0000000d;
+  }
+}

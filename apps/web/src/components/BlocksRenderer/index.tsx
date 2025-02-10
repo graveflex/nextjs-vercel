@@ -14,6 +14,9 @@ const blockList = {
   faqSectionsBlock: dynamic(() => import('@mono/web/blocks/FaqSectionsBlock'), {
     ...defaultOpts
   }),
+  featureSection: dynamic(() => import('@mono/web/blocks/FeatureSection'), {
+    ...defaultOpts
+  }),
   ctaSectionsBlock: dynamic(() => import('@mono/web/blocks/CtaSectionsBlock'), {
     ...defaultOpts
   }),
