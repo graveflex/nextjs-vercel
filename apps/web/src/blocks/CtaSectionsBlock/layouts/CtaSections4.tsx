@@ -1,6 +1,7 @@
 import type { CtaSectionsBlockT as PayloadType } from '@mono/types/payload-types';
 import React from 'react';
 
+import RichText from '@mono/web/components/RichText/index';
 import { AspectRatio } from '@mono/web/components/ui/AspectRatio';
 import { Button } from '@mono/web/components/ui/Button';
 import { Input } from '@mono/web/components/ui/Input';
@@ -8,9 +9,7 @@ import Image from 'next/image';
 
 export type CtaSectionsBlockType = Omit<PayloadType, 'blockType'>;
 
-function CtaSections4({
-  title = 'Action-Driving headline that creates urgency'
-}: CtaSectionsBlockType) {
+function CtaSections4({ content }: CtaSectionsBlockType) {
   return (
     <section
       className="bg-background py-16 lg:py-24"
@@ -22,22 +21,24 @@ function CtaSections4({
           {/* Section Header */}
           <div className="flex flex-col gap-4 lg:gap-5">
             {/* Category Tag */}
-            <p className="text-muted-foreground text-sm lg:text-base font-semibold">
+            {/* <p className="text-muted-foreground text-sm lg:text-base font-semibold">
               CTA section
-            </p>
+            </p> */}
             {/* Main Title */}
-            <h2
+            {/* <h2
               id="cta-heading"
               className="text-foreground text-3xl md:text-4xl font-bold"
             >
               {title}
-            </h2>
+            </h2> */}
             {/* Section Description */}
-            <p className="text-muted-foreground text-base">
+            {/* <p className="text-muted-foreground text-base">
               Add one or two compelling sentences that reinforce your main value
               proposition and overcome final objections. End with a clear reason
               to act now. Align this copy with your CTA button text.
-            </p>
+            </p> */}
+
+            {content && <RichText data={content} className="" />}
           </div>
           {/* Email Form */}
           <form
