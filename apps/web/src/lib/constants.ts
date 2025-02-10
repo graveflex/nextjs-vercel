@@ -28,3 +28,8 @@ export type LanguageLocale = (typeof LOCALES)[number];
 export const WEB_URL = process.env.SERVER_URL
   ? `https://${process.env.SERVER_URL}`
   : `http://localhost:${NEXT_PORT}`;
+
+export const API_KEY =
+  process.env.NEXT_PUBLIC_API_KEY ?? 'NO ENV API KEY FOUND';
+
+export const CACHE_TAGS = ['blocks', 'global-nav', 'global-cache-key'];

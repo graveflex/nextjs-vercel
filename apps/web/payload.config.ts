@@ -11,7 +11,7 @@ import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.config';
 import Homepage from '@mono/web/globals/Home/Homepage.config';
 import Nav from '@mono/web/globals/Layout/Layout.config';
 // import nodeMailer from 'nodemailer';
-import { DEFAULT_LOCALE, LOCALES } from '@mono/web/lib/constants';
+import { CACHE_TAGS, DEFAULT_LOCALE, LOCALES } from '@mono/web/lib/constants';
 import { translator } from '@payload-enchants/translator';
 import { googleResolver } from '@payload-enchants/translator/resolvers/google';
 import { postgresAdapter } from '@payloadcms/db-postgres';
@@ -46,6 +46,12 @@ import { buildConfig } from 'payload';
 import sharp from 'sharp';
 import CtaSectionsBlock from './src/blocks/CtaSectionsBlock/CtaSectionsBlock.config';
 import { EyebrowFeature } from './src/components/RichText/Features/eyebrow/eyebrow.server';
+
+import { fileURLToPath } from 'node:url';
+import path from 'path';
+import { revalidatePath, revalidateTag } from 'next/cache';
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
 
@@ -274,6 +280,17 @@ export default buildConfig({
         }
       ],
       collections: ['pages']
+    },
+    importMap: {
+      baseDir: path.resolve(dirname, 'src')
+    },
+    components: {
+      afterNavLinks: [
+        {
+          path: '@mono/web/components/CustomPayload/AfterNav/index.tsx',
+          exportName: 'AfterNav'
+        }
+      ]
     }
   },
   secret: process.env.PAYLOAD_SECRET || '',
@@ -310,5 +327,37 @@ export default buildConfig({
       });
     }
   },
-  sharp
+  sharp,
+  jobs: {
+    tasks: [
+      {
+        // Configure this task to automatically retry
+        // up to two times
+        retries: 2,
+        slug: 'NukeCache',
+        // These are the arguments that your Task will accept
+        inputSchema: [
+          {
+            name: 'title',
+            type: 'text',
+            required: false
+          }
+        ],
+
+        // handler: async ({input, job, req}) => {
+        handler: async ({ input }) => {
+          console.dir('NukeCache fired!');
+          console.dir('input:', input);
+
+          revalidatePath('/', 'layout');
+
+          for (const tag of CACHE_TAGS) {
+            revalidateTag(tag);
+          }
+
+          return { output: { true: false } };
+        }
+      }
+    ]
+  }
 });

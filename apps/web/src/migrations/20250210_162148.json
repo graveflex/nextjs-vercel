@@ -1,5 +1,5 @@
 {
-  "id": "bad918e9-681d-44e8-b2e9-de87d3e35a54",
+  "id": "ac320e19-cf4e-45dc-8be0-c6a376aa7ba3",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -193,6 +193,12 @@
         "title": {
           "name": "title",
           "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content": {
+          "name": "content",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
@@ -1402,6 +1408,12 @@
         "title": {
           "name": "title",
           "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content": {
+          "name": "content",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
@@ -7324,6 +7336,360 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+    "public.payload_jobs_log": {
+      "name": "payload_jobs_log",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "executed_at": {
+          "name": "executed_at",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "completed_at": {
+          "name": "completed_at",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "task_slug": {
+          "name": "task_slug",
+          "type": "enum_payload_jobs_log_task_slug",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "task_i_d": {
+          "name": "task_i_d",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "input": {
+          "name": "input",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "output": {
+          "name": "output",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "state": {
+          "name": "state",
+          "type": "enum_payload_jobs_log_state",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "error": {
+          "name": "error",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "payload_jobs_log_order_idx": {
+          "name": "payload_jobs_log_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "payload_jobs_log_parent_id_idx": {
+          "name": "payload_jobs_log_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "payload_jobs_log_parent_id_fk": {
+          "name": "payload_jobs_log_parent_id_fk",
+          "tableFrom": "payload_jobs_log",
+          "tableTo": "payload_jobs",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.payload_jobs": {
+      "name": "payload_jobs",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "input": {
+          "name": "input",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "completed_at": {
+          "name": "completed_at",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "total_tried": {
+          "name": "total_tried",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "has_error": {
+          "name": "has_error",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "error": {
+          "name": "error",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "task_slug": {
+          "name": "task_slug",
+          "type": "enum_payload_jobs_task_slug",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "queue": {
+          "name": "queue",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'default'"
+        },
+        "wait_until": {
+          "name": "wait_until",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "processing": {
+          "name": "processing",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp(3) with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "payload_jobs_completed_at_idx": {
+          "name": "payload_jobs_completed_at_idx",
+          "columns": [
+            {
+              "expression": "completed_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "payload_jobs_total_tried_idx": {
+          "name": "payload_jobs_total_tried_idx",
+          "columns": [
+            {
+              "expression": "total_tried",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "payload_jobs_has_error_idx": {
+          "name": "payload_jobs_has_error_idx",
+          "columns": [
+            {
+              "expression": "has_error",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "payload_jobs_task_slug_idx": {
+          "name": "payload_jobs_task_slug_idx",
+          "columns": [
+            {
+              "expression": "task_slug",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "payload_jobs_queue_idx": {
+          "name": "payload_jobs_queue_idx",
+          "columns": [
+            {
+              "expression": "queue",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "payload_jobs_wait_until_idx": {
+          "name": "payload_jobs_wait_until_idx",
+          "columns": [
+            {
+              "expression": "wait_until",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "payload_jobs_processing_idx": {
+          "name": "payload_jobs_processing_idx",
+          "columns": [
+            {
+              "expression": "processing",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "payload_jobs_updated_at_idx": {
+          "name": "payload_jobs_updated_at_idx",
+          "columns": [
+            {
+              "expression": "updated_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "payload_jobs_created_at_idx": {
+          "name": "payload_jobs_created_at_idx",
+          "columns": [
+            {
+              "expression": "created_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public.payload_locked_documents": {
       "name": "payload_locked_documents",
       "schema": "",
@@ -7499,6 +7865,12 @@
         },
         "form_submissions_id": {
           "name": "form_submissions_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "payload_jobs_id": {
+          "name": "payload_jobs_id",
           "type": "integer",
           "primaryKey": false,
           "notNull": false
@@ -7714,6 +8086,21 @@
           "concurrently": false,
           "method": "btree",
           "with": {}
+        },
+        "payload_locked_documents_rels_payload_jobs_id_idx": {
+          "name": "payload_locked_documents_rels_payload_jobs_id_idx",
+          "columns": [
+            {
+              "expression": "payload_jobs_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
         }
       },
       "foreignKeys": {
@@ -7866,6 +8253,19 @@
           "tableTo": "form_submissions",
           "columnsFrom": [
             "form_submissions_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "payload_locked_documents_rels_payload_jobs_fk": {
+          "name": "payload_locked_documents_rels_payload_jobs_fk",
+          "tableFrom": "payload_locked_documents_rels",
+          "tableTo": "payload_jobs",
+          "columnsFrom": [
+            "payload_jobs_id"
           ],
           "columnsTo": [
             "id"
@@ -9593,6 +9993,12 @@
           "primaryKey": false,
           "notNull": false
         },
+        "content": {
+          "name": "content",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
         "id": {
           "name": "id",
           "type": "serial",
@@ -10711,6 +11117,12 @@
         "title": {
           "name": "title",
           "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content": {
+          "name": "content",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
@@ -11976,6 +12388,12 @@
           "primaryKey": false,
           "notNull": false
         },
+        "content": {
+          "name": "content",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
         "id": {
           "name": "id",
           "type": "serial",
@@ -13094,6 +13512,12 @@
         "title": {
           "name": "title",
           "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "content": {
+          "name": "content",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
@@ -14531,6 +14955,30 @@
       "values": [
         "message",
         "redirect"
+      ]
+    },
+    "public.enum_payload_jobs_log_task_slug": {
+      "name": "enum_payload_jobs_log_task_slug",
+      "schema": "public",
+      "values": [
+        "inline",
+        "NukeCache"
+      ]
+    },
+    "public.enum_payload_jobs_log_state": {
+      "name": "enum_payload_jobs_log_state",
+      "schema": "public",
+      "values": [
+        "failed",
+        "succeeded"
+      ]
+    },
+    "public.enum_payload_jobs_task_slug": {
+      "name": "enum_payload_jobs_task_slug",
+      "schema": "public",
+      "values": [
+        "inline",
+        "NukeCache"
       ]
     },
     "public.iconnavitem_ic": {
