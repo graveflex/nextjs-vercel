@@ -22,7 +22,11 @@ import { seoPlugin } from '@payloadcms/plugin-seo';
 import type { FeatureProviderServer } from '@payloadcms/richtext-lexical';
 import {
   AlignFeature,
+  BlockquoteFeature,
+  BlocksFeature,
   BoldFeature,
+  EXPERIMENTAL_TableFeature,
+  FixedToolbarFeature,
   HeadingFeature,
   HorizontalRuleFeature,
   InlineCodeFeature,
@@ -32,8 +36,6 @@ import {
   OrderedListFeature,
   ParagraphFeature,
   StrikethroughFeature,
-  SubscriptFeature,
-  SuperscriptFeature,
   UnderlineFeature,
   UnorderedListFeature,
   UploadFeature,
@@ -42,6 +44,8 @@ import {
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
+import CtaSectionsBlock from './src/blocks/CtaSectionsBlock/CtaSectionsBlock.config';
+import { EyebrowFeature } from './src/components/RichText/Features/eyebrow/eyebrow.server';
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
 
@@ -60,12 +64,10 @@ export default buildConfig({
         InlineCodeFeature(),
         ItalicFeature(),
         StrikethroughFeature(),
-        SubscriptFeature(),
-        SuperscriptFeature(),
         UnderlineFeature(),
         ParagraphFeature(),
         HeadingFeature({
-          enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+          enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4']
         }),
         HorizontalRuleFeature(),
         UnorderedListFeature(),
@@ -145,7 +147,11 @@ export default buildConfig({
           ]
         }),
         UploadFeature(),
-        InlineToolbarFeature()
+        InlineToolbarFeature(),
+        BlockquoteFeature(),
+        EXPERIMENTAL_TableFeature(),
+        FixedToolbarFeature(),
+        EyebrowFeature()
       ] as FeatureProviderServer<unknown, unknown>[]
   }),
   collections: [Pages, Posts, Authors, Tags, Files, Images, Videos, Users],

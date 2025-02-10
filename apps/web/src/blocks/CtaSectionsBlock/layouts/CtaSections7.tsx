@@ -1,4 +1,5 @@
 import type { CtaSectionsBlockT as PayloadType } from '@mono/types/payload-types';
+import RichText from '@mono/web/components/RichText/index';
 import React from 'react';
 
 import { Button } from '@mono/web/components/ui/Button';
@@ -6,9 +7,8 @@ import { ArrowRight } from 'lucide-react';
 
 export type CtaSectionsBlockType = Omit<PayloadType, 'blockType'>;
 
-function CtaSections7({
-  title = 'Action-Driving headline that creates urgency'
-}: CtaSectionsBlockType) {
+// This variant will be used in MVP:
+function CtaSections7({ content }: CtaSectionsBlockType) {
   return (
     <section className="bg-background" aria-labelledby="cta-heading">
       <div className="container mx-auto">
@@ -17,16 +17,20 @@ function CtaSections7({
             {/* Section Header */}
             <div className="flex flex-col gap-5">
               {/* Category Tag */}
-              <p className="text-primary-foreground/80 text-sm lg:text-base font-semibold">
+              {/* <p className="text-primary-foreground/80 text-sm lg:text-base font-semibold">
                 CTA section
-              </p>
+              </p> */}
               {/* Main Title */}
-              <h2
+              {/* <h2
                 id="cta-heading"
                 className="text-3xl md:text-4xl font-bold text-primary-foreground"
               >
                 {title}
-              </h2>
+              </h2> */}
+
+              {content && (
+                <RichText data={content} className="text-primary-foreground" />
+              )}
             </div>
             {/* CTA Button */}
             <Button
