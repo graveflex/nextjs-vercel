@@ -126,7 +126,7 @@ export interface UserAuthOperations {
  */
 export interface Page {
   id: number;
-  blocks?: (CtaSectionsBlockT | HeaderSectionBlockT | HeroSectionsBlockT)[] | null;
+  blocks?: (CtaSectionsBlockT | FeatureSection | HeaderSectionBlockT | HeroSectionsBlockT)[] | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -180,9 +180,57 @@ export interface CtaSectionsBlockT {
    */
   variant: '1' | '2' | '3' | '4' | '5' | '6' | '7';
   title?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'ctaSectionsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureSection".
+ */
+export interface FeatureSection {
+  wrapper?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    paddingXs?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingMd?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingLg?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingXl?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+  };
+  /**
+   * The layout variant for the block.
+   */
+  variant: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featureSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -910,6 +958,7 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
+        featureSection?: T | FeatureSectionSelect<T>;
         headerSectionBlock?: T | HeaderSectionBlockTSelect<T>;
         heroSectionsBlock?: T | HeroSectionsBlockTSelect<T>;
       };
@@ -966,6 +1015,46 @@ export interface CtaSectionsBlockTSelect<T extends boolean = true> {
       };
   variant?: T;
   title?: T;
+  content?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeatureSection_select".
+ */
+export interface FeatureSectionSelect<T extends boolean = true> {
+  wrapper?:
+    | T
+    | {
+        theme?: T;
+        contentWidth?: T;
+        paddingXs?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingMd?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingLg?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingXl?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+      };
+  variant?: T;
   id?: T;
   blockName?: T;
 }
@@ -1601,7 +1690,7 @@ export interface FourOhFour {
  */
 export interface Homepage {
   id: number;
-  blocks?: (CtaSectionsBlockT | HeaderSectionBlockT | HeroSectionsBlockT)[] | null;
+  blocks?: (CtaSectionsBlockT | FeatureSection | HeaderSectionBlockT | HeroSectionsBlockT)[] | null;
   pageTitle: string;
   slug?: string | null;
   theme?: ('light' | 'dark') | null;
@@ -1619,7 +1708,7 @@ export interface Homepage {
  */
 export interface BlogIndex {
   id: number;
-  blocks?: (CtaSectionsBlockT | HeaderSectionBlockT | HeroSectionsBlockT)[] | null;
+  blocks?: (CtaSectionsBlockT | FeatureSection | HeaderSectionBlockT | HeroSectionsBlockT)[] | null;
   pageTitle: string;
   slug?: string | null;
   theme?: ('light' | 'dark') | null;
@@ -1733,6 +1822,7 @@ export interface HomepageSelect<T extends boolean = true> {
     | T
     | {
         ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
+        featureSection?: T | FeatureSectionSelect<T>;
         headerSectionBlock?: T | HeaderSectionBlockTSelect<T>;
         heroSectionsBlock?: T | HeroSectionsBlockTSelect<T>;
       };
@@ -1754,6 +1844,7 @@ export interface BlogIndexSelect<T extends boolean = true> {
     | T
     | {
         ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
+        featureSection?: T | FeatureSectionSelect<T>;
         headerSectionBlock?: T | HeaderSectionBlockTSelect<T>;
         heroSectionsBlock?: T | HeroSectionsBlockTSelect<T>;
       };
