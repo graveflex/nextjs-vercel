@@ -38,6 +38,18 @@ const jsxConverters: JSXConvertersFunction<DefaultNodeTypes> = ({
   ...defaultConverters,
   eyebrow: ({ node }) => {
     return <span className={cn(styles.eyebrow, 'eyebrow')}>{node?.text}</span>;
+  },
+  blocks: {
+    embed: ({ node }: { node: SerializedBlockNode }) => {
+      return (
+        <iframe
+          width="100%"
+          title={node.fields.embedTitle ?? 'Embedded media'}
+          allow="autoplay"
+          src={node.fields.embedUrl}
+        ></iframe>
+      );
+    }
   }
 });
 

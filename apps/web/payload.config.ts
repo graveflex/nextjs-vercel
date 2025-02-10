@@ -44,7 +44,7 @@ import {
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
-import CtaSectionsBlock from './src/blocks/CtaSectionsBlock/CtaSectionsBlock.config';
+import { Embed } from './src/components/RichText/Blocks/Embed/config';
 import { EyebrowFeature } from './src/components/RichText/Features/eyebrow/eyebrow.server';
 
 import { fileURLToPath } from 'node:url';
@@ -157,7 +157,11 @@ export default buildConfig({
         BlockquoteFeature(),
         EXPERIMENTAL_TableFeature(),
         FixedToolbarFeature(),
-        EyebrowFeature()
+        EyebrowFeature(),
+        BlocksFeature({
+          blocks: [Embed],
+          inlineBlocks: []
+        })
       ] as FeatureProviderServer<unknown, unknown>[]
   }),
   collections: [Pages, Posts, Authors, Tags, Files, Images, Videos, Users],
