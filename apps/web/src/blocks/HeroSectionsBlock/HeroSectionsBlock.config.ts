@@ -58,13 +58,6 @@ const HeroSectionsBlock = (prefix: string): Block => ({
       }
     },
     {
-      name: 'title',
-      label: 'title',
-      type: 'text',
-      localized: true,
-      required: false
-    },
-    {
       name: 'content',
       label: 'content',
       type: 'richText',

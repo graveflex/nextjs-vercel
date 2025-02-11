@@ -505,7 +505,6 @@ export interface HeroSectionsBlockT {
    * The layout variant for the block.
    */
   variant: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
-  title?: string | null;
   content?: {
     root: {
       type: string;
@@ -1634,7 +1633,6 @@ export interface HeroSectionsBlockTSelect<T extends boolean = true> {
             };
       };
   variant?: T;
-  title?: T;
   content?: T;
   image?: T;
   id?: T;
