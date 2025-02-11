@@ -3,7 +3,6 @@ import RichText from '@mono/web/components/RichText/index';
 import { AspectRatio } from '@mono/web/components/ui/AspectRatio';
 import { Button } from '@mono/web/components/ui/Button';
 import { ArrowRight } from 'lucide-react';
-import Image from 'next/image';
 import React from 'react';
 import type { HeroSectionsBlockType } from '../index';
 
@@ -17,9 +16,7 @@ function HeroSections1({ content, image }: HeroSectionsBlockType) {
         {/* Left Column */}
         <div className="flex flex-col gap-6 lg:gap-8 flex-1">
           <div className="flex flex-col gap-4 lg:gap-5">
-            {content && (
-              <RichText data={content} className="text-primary-foreground" />
-            )}
+            {content && <RichText data={content} />}
           </div>
 
           {/* CTA Buttons */}

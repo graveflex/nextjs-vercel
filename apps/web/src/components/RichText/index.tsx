@@ -60,7 +60,7 @@ function RichText({ className, data }: RichTextType) {
       <LexicalRichText
         data={data}
         className={cn(
-          'lexical rich-text-container',
+          'lexical rich-text-container text-foreground',
           styles.richtext,
           className
         )}
