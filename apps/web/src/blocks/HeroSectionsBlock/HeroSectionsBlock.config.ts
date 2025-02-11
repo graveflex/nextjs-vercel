@@ -63,6 +63,19 @@ const HeroSectionsBlock = (prefix: string): Block => ({
       type: 'text',
       localized: true,
       required: false
+    },
+    {
+      name: 'content',
+      label: 'content',
+      type: 'richText',
+      localized: true,
+      required: false
+    },
+    {
+      name: 'image',
+      label: 'Image',
+      type: 'upload',
+      relationTo: 'images'
     }
   ]
 });
