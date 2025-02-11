@@ -8,7 +8,7 @@ import MakeVariations from '@mono/web/payload/utils/makeVariations';
 const BlogSection: Block = {
   slug: 'blogSection',
   interfaceName: 'BlogSectionT',
-  fields: [BlockConfig(), MakeVariations(5)]
+  fields: [BlockConfig(), MakeVariations(5, 'blog')]
 };
 
 export default BlogSection;

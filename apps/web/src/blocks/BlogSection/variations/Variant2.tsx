@@ -1,6 +1,10 @@
-import { Card, CardContent, CardFooter } from "@mono/web/components/ui/Card";
-import { Avatar, AvatarImage, AvatarFallback } from "@mono/web/components/ui/Avatar";
-import { Separator } from "@mono/web/components/ui/Separator";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage
+} from '@mono/web/components/ui/Avatar';
+import { Card, CardContent, CardFooter } from '@mono/web/components/ui/Card';
+import { Separator } from '@mono/web/components/ui/Separator';
 
 interface BlogPost {
   id: number;
@@ -16,42 +20,42 @@ interface BlogPost {
 const BLOG_POSTS: BlogPost[] = [
   {
     id: 1,
-    title: "Getting Started with shadcn/ui: A Complete Guide",
+    title: 'Getting Started with shadcn/ui: A Complete Guide',
     description:
       "Learn how to set up and maximize your development workflow with shadcn/ui's powerful component library.",
-    date: "Mar 15, 2024",
-    category: "Tutorial",
-    author: "John Doe",
-    authorImage: "https://github.com/shadcn.png",
-    authorRole: "Developer",
+    date: 'Mar 15, 2024',
+    category: 'Tutorial',
+    author: 'John Doe',
+    authorImage: 'https://github.com/shadcn.png',
+    authorRole: 'Developer'
   },
   {
     id: 2,
-    title: "Building Dark Mode with Next.js and Tailwind CSS",
+    title: 'Building Dark Mode with Next.js and Tailwind CSS',
     description:
-      "Implement a seamless dark mode toggle in your Next.js application using Tailwind CSS and shadcn/ui.",
-    date: "Mar 12, 2024",
-    category: "Development",
-    author: "Jane Smith",
-    authorImage: "https://github.com/shadcn.png",
-    authorRole: "Designer",
+      'Implement a seamless dark mode toggle in your Next.js application using Tailwind CSS and shadcn/ui.',
+    date: 'Mar 12, 2024',
+    category: 'Development',
+    author: 'Jane Smith',
+    authorImage: 'https://github.com/shadcn.png',
+    authorRole: 'Designer'
   },
   {
     id: 3,
-    title: "Mastering React Server Components",
+    title: 'Mastering React Server Components',
     description:
       "Deep dive into React Server Components and learn how they can improve your application's performance.",
-    date: "Mar 8, 2024",
-    category: "Advanced",
-    author: "Alice Johnson",
-    authorImage: "https://github.com/shadcn.png",
-    authorRole: "Developer",
-  },
+    date: 'Mar 8, 2024',
+    category: 'Advanced',
+    author: 'Alice Johnson',
+    authorImage: 'https://github.com/shadcn.png',
+    authorRole: 'Developer'
+  }
 ];
 
 export default function Variant2() {
   return (
-    <section 
+    <section
       className="bg-background py-16 md:py-24"
       aria-labelledby="blog-section-2-heading"
     >
@@ -65,7 +69,7 @@ export default function Variant2() {
             </p>
 
             {/* Main Title */}
-            <h2 
+            <h2
               id="blog-section-2-heading"
               className="text-3xl font-bold leading-tight md:text-4xl"
             >
@@ -81,7 +85,7 @@ export default function Variant2() {
           </div>
 
           {/* Blog Grid */}
-          <div 
+          <div
             className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-6"
             role="list"
           >

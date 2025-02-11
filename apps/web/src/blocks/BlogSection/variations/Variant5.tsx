@@ -1,6 +1,6 @@
-import { AspectRatio } from "@mono/web/components/ui/AspectRatio";
-import Image from "next/image";
-import { Avatar, AvatarImage } from "@mono/web/components/ui/Avatar";
+import { AspectRatio } from '@mono/web/components/ui/AspectRatio';
+import { Avatar, AvatarImage } from '@mono/web/components/ui/Avatar';
+import Image from 'next/image';
 
 interface Author {
   name: string;
@@ -21,65 +21,65 @@ interface BlogPost {
 const BLOG_POSTS: BlogPost[] = [
   {
     id: 1,
-    title: "How can shadcn/ui kit for Figma improve your workflow?",
-    date: "Mar 15, 2024",
-    category: "Articles",
+    title: 'How can shadcn/ui kit for Figma improve your workflow?',
+    date: 'Mar 15, 2024',
+    category: 'Articles',
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus interdum hendrerit ex vitae sodales. Donec id leo ipsum. Phasellus volutpat aliquet mauris.",
-    image: "https://ui.shadcn.com/placeholder.svg",
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus interdum hendrerit ex vitae sodales. Donec id leo ipsum. Phasellus volutpat aliquet mauris.',
+    image: 'https://ui.shadcn.com/placeholder.svg',
     author: {
-      name: "Lando Norris",
-      role: "Product Designer",
-      avatar: "https://github.com/shadcn.png",
-    },
+      name: 'Lando Norris',
+      role: 'Product Designer',
+      avatar: 'https://github.com/shadcn.png'
+    }
   },
   {
     id: 2,
-    title: "Building Dark Mode with Next.js and Tailwind CSS",
-    date: "Mar 12, 2024",
-    category: "Development",
+    title: 'Building Dark Mode with Next.js and Tailwind CSS',
+    date: 'Mar 12, 2024',
+    category: 'Development',
     description:
-      "Learn how to implement a seamless dark mode toggle in your Next.js application using Tailwind CSS and system preferences.",
-    image: "https://ui.shadcn.com/placeholder.svg",
+      'Learn how to implement a seamless dark mode toggle in your Next.js application using Tailwind CSS and system preferences.',
+    image: 'https://ui.shadcn.com/placeholder.svg',
     author: {
-      name: "Charles Leclerc",
-      role: "Frontend Developer",
-      avatar: "https://github.com/shadcn.png",
-    },
+      name: 'Charles Leclerc',
+      role: 'Frontend Developer',
+      avatar: 'https://github.com/shadcn.png'
+    }
   },
   {
     id: 3,
-    title: "Mastering React Server Components",
-    date: "Mar 8, 2024",
-    category: "Advanced",
+    title: 'Mastering React Server Components',
+    date: 'Mar 8, 2024',
+    category: 'Advanced',
     description:
       "Deep dive into React Server Components and learn how they can improve your application's performance and user experience.",
-    image: "https://ui.shadcn.com/placeholder.svg",
+    image: 'https://ui.shadcn.com/placeholder.svg',
     author: {
-      name: "Lewis Hamilton",
-      role: "Tech Lead",
-      avatar: "https://github.com/shadcn.png",
-    },
+      name: 'Lewis Hamilton',
+      role: 'Tech Lead',
+      avatar: 'https://github.com/shadcn.png'
+    }
   },
   {
     id: 4,
-    title: "The Future of Web Development in 2024",
-    date: "Mar 5, 2024",
-    category: "Insights",
+    title: 'The Future of Web Development in 2024',
+    date: 'Mar 5, 2024',
+    category: 'Insights',
     description:
-      "Explore the latest trends and technologies shaping the future of web development this year and beyond.",
-    image: "https://ui.shadcn.com/placeholder.svg",
+      'Explore the latest trends and technologies shaping the future of web development this year and beyond.',
+    image: 'https://ui.shadcn.com/placeholder.svg',
     author: {
-      name: "Max Verstappen",
-      role: "Software Architect",
-      avatar: "https://github.com/shadcn.png",
-    },
-  },
+      name: 'Max Verstappen',
+      role: 'Software Architect',
+      avatar: 'https://github.com/shadcn.png'
+    }
+  }
 ];
 
 export default function Variant5() {
   return (
-    <section 
+    <section
       className="bg-background py-16 md:py-24"
       aria-labelledby="blog-section-5-heading"
     >
@@ -108,10 +108,7 @@ export default function Variant5() {
           </div>
 
           {/* Blog List */}
-          <div 
-            className="flex flex-col gap-10 md:gap-8 w-full"
-            role="list"
-          >
+          <div className="flex flex-col gap-10 md:gap-8 w-full" role="list">
             {BLOG_POSTS.map((post) => (
               <div
                 key={post.id}
@@ -128,7 +125,6 @@ export default function Variant5() {
                       src={post.image}
                       alt={`${post.title} thumbnail`}
                       fill={true}
-
                       className="object-cover transition-transform duration-200 group-hover:scale-105"
                     />
                   </AspectRatio>

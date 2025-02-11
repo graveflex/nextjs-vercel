@@ -1,6 +1,6 @@
-import { AspectRatio } from "@mono/web/components/ui/AspectRatio";
-import Image from "next/image";
-import Link from "next/link";
+import { AspectRatio } from '@mono/web/components/ui/AspectRatio';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface BlogPost {
   id: number;
@@ -14,40 +14,40 @@ interface BlogPost {
 const BLOG_POSTS: BlogPost[] = [
   {
     id: 1,
-    title: "Getting Started with shadcn/ui: A Complete Guide",
+    title: 'Getting Started with shadcn/ui: A Complete Guide',
     description:
       "Learn how to set up and maximize your development workflow with shadcn/ui's powerful component library.",
-    date: "Mar 15, 2024",
-    category: "Tutorial",
-    image: "https://ui.shadcn.com/placeholder.svg",
+    date: 'Mar 15, 2024',
+    category: 'Tutorial',
+    image: 'https://ui.shadcn.com/placeholder.svg'
   },
   {
     id: 2,
-    title: "Building Dark Mode with Next.js and Tailwind CSS",
+    title: 'Building Dark Mode with Next.js and Tailwind CSS',
     description:
-      "Implement a seamless dark mode toggle in your Next.js application using Tailwind CSS and shadcn/ui.",
-    date: "Mar 12, 2024",
-    category: "Development",
-    image: "https://ui.shadcn.com/placeholder.svg",
+      'Implement a seamless dark mode toggle in your Next.js application using Tailwind CSS and shadcn/ui.',
+    date: 'Mar 12, 2024',
+    category: 'Development',
+    image: 'https://ui.shadcn.com/placeholder.svg'
   },
   {
     id: 3,
-    title: "Mastering React Server Components",
+    title: 'Mastering React Server Components',
     description:
       "Deep dive into React Server Components and learn how they can improve your application's performance.",
-    date: "Mar 8, 2024",
-    category: "Advanced",
-    image: "https://ui.shadcn.com/placeholder.svg",
+    date: 'Mar 8, 2024',
+    category: 'Advanced',
+    image: 'https://ui.shadcn.com/placeholder.svg'
   },
   {
     id: 4,
-    title: "The Future of Web Development in 2024",
+    title: 'The Future of Web Development in 2024',
     description:
-      "Explore the latest trends and technologies shaping the future of web development this year.",
-    date: "Mar 5, 2024",
-    category: "Insights",
-    image: "https://ui.shadcn.com/placeholder.svg",
-  },
+      'Explore the latest trends and technologies shaping the future of web development this year.',
+    date: 'Mar 5, 2024',
+    category: 'Insights',
+    image: 'https://ui.shadcn.com/placeholder.svg'
+  }
 ];
 
 export default function Variant1() {
@@ -64,7 +64,7 @@ export default function Variant1() {
             <p className="text-base font-semibold text-muted-foreground md:text-sm">
               Blog section
             </p>
-            
+
             {/* Main Title */}
             <h2
               id="blog-section-heading"
@@ -72,7 +72,7 @@ export default function Variant1() {
             >
               Short and clear engaging headline for a blog
             </h2>
-            
+
             {/* Section Description */}
             <p className="text-base text-muted-foreground">
               Add a concise value statement that captures reader interest and
@@ -87,11 +87,7 @@ export default function Variant1() {
             role="list"
           >
             {BLOG_POSTS.map((post) => (
-              <Link
-                href="#"
-                key={post.id}
-                className="group block"
-              >
+              <Link href="#" key={post.id} className="group block">
                 {/* Blog Card */}
                 <div className="flex flex-col gap-4 rounded-xl transition-all duration-200">
                   {/* Image Wrapper */}
@@ -103,7 +99,6 @@ export default function Variant1() {
                       src={post.image}
                       alt={`${post.title} thumbnail`}
                       fill={true}
-
                       className="object-cover w-full h-full transition-transform duration-200 group-hover:scale-105"
                     />
                   </AspectRatio>
