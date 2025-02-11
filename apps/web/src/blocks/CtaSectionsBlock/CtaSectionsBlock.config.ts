@@ -52,6 +52,13 @@ const CtaSectionsBlock: Block = {
       type: 'text',
       localized: true,
       required: false
+    },
+    {
+      name: 'content',
+      label: 'content',
+      type: 'richText',
+      localized: true,
+      required: false
     }
   ]
 };

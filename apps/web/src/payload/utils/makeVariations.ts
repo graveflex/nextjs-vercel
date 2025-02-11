@@ -1,7 +1,7 @@
 export default function makeVariations(
   count: number,
   prefix: string,
-  name: string
+  name: string = 'variant'
 ) {
   const options = [];
   for (let i = 1; i <= count; i++) {

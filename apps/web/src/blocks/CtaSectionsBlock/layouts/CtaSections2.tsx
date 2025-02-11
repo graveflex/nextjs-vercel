@@ -1,13 +1,12 @@
 import type { CtaSectionsBlockT as PayloadType } from '@mono/types/payload-types';
+import RichText from '@mono/web/components/RichText/index';
 import React from 'react';
 
 import { Button } from '@mono/web/components/ui/Button';
 
 export type CtaSectionsBlockType = Omit<PayloadType, 'blockType'>;
 
-function CtaSections2({
-  title = 'Action-Driving headline that creates urgency'
-}: CtaSectionsBlockType) {
+function CtaSections2({ content }: CtaSectionsBlockType) {
   return (
     <section
       className="bg-primary py-16 md:py-24"
@@ -16,12 +15,18 @@ function CtaSections2({
       <div className="container mx-auto px-6">
         <div className="w-full flex flex-col md:flex-row gap-8 items-center text-center md:text-left justify-between">
           {/* Main Title */}
-          <h2
+          {/* <h2
             id="cta-heading"
             className="text-3xl md:text-4xl font-bold text-primary-foreground max-w-lg"
           >
             {title}
-          </h2>
+          </h2> */}
+          {content && (
+            <RichText
+              data={content}
+              className="max-w-lg text-primary-foreground"
+            />
+          )}
           {/* CTA Buttons */}
           <div className="flex flex-col md:flex-row gap-3 align-right">
             {/* Primary Button */}
