@@ -2,7 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import type { RichTextType } from '.';
 import RichText from '.';
-import richTextMockData, { payloadTypography } from './richTextMockData';
+import richTextMockData, {
+  payloadTypography,
+  embedRichTextMockData
+} from './richTextMockData';
 
 const meta: Meta<RichTextType> = {
   title: 'ui/RichText',
@@ -29,4 +32,8 @@ export const Defaults: Story = {
 
 export const PayloadTypography: Story = {
   args: payloadTypography
+};
+
+export const WithEmbeds: Story = {
+  args: embedRichTextMockData
 };
