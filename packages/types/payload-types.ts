@@ -35,6 +35,7 @@ export type IconNavItems =
 
 export interface Config {
   auth: {
+    admins: AdminAuthOperations;
     users: UserAuthOperations;
   };
   collections: {
@@ -45,10 +46,11 @@ export interface Config {
     files: File;
     images: Image;
     videos: Video;
-    users: User;
+    admins: Admin;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
+    users: User;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -62,10 +64,11 @@ export interface Config {
     files: FilesSelect<false> | FilesSelect<true>;
     images: ImagesSelect<false> | ImagesSelect<true>;
     videos: VideosSelect<false> | VideosSelect<true>;
-    users: UsersSelect<false> | UsersSelect<true>;
+    admins: AdminsSelect<false> | AdminsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -86,12 +89,34 @@ export interface Config {
     blogIndex: BlogIndexSelect<false> | BlogIndexSelect<true>;
   };
   locale: 'en-US' | 'es-US';
-  user: User & {
-    collection: 'users';
-  };
+  user:
+    | (Admin & {
+        collection: 'admins';
+      })
+    | (User & {
+        collection: 'users';
+      });
   jobs: {
     tasks: unknown;
     workflows: unknown;
+  };
+}
+export interface AdminAuthOperations {
+  forgotPassword: {
+    email: string;
+    password: string;
+  };
+  login: {
+    email: string;
+    password: string;
+  };
+  registerFirstUser: {
+    email: string;
+    password: string;
+  };
+  unlock: {
+    email: string;
+    password: string;
   };
 }
 export interface UserAuthOperations {
@@ -118,7 +143,7 @@ export interface UserAuthOperations {
  */
 export interface Page {
   id: number;
-  blocks?: (CtaSectionsBlockT | FeatureSection | HeaderSectionBlockT | HeroSectionsBlockT)[] | null;
+  blocks?: (CtaSectionsBlockT | FeatureSection | AuthBlockT | HeaderSectionBlockT | HeroSectionsBlockT)[] | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -208,6 +233,35 @@ export interface FeatureSection {
   id?: string | null;
   blockName?: string | null;
   blockType: 'featureSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AuthBlockT".
+ */
+export interface AuthBlockT {
+  wrapper?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    paddingXs?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingMd?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingLg?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingXl?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'authBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -576,24 +630,23 @@ export interface Video {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "admins".
  */
-export interface User {
-  id: string;
-  email: string;
-  emailVerified?: string | null;
-  name?: string | null;
-  image?: string | null;
-  accounts?:
-    | {
-        id?: string | null;
-        provider: string;
-        providerAccountId: string;
-        type: string;
-      }[]
-    | null;
+export interface Admin {
+  id: number;
+  firstName: string;
+  lastName: string;
+  roles?: ('admin' | 'editor' | 'user')[] | null;
   updatedAt: string;
   createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -743,6 +796,27 @@ export interface FormSubmission {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: string;
+  email: string;
+  emailVerified?: string | null;
+  name?: string | null;
+  image?: string | null;
+  accounts?:
+    | {
+        id?: string | null;
+        provider: string;
+        providerAccountId: string;
+        type: string;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -777,8 +851,8 @@ export interface PayloadLockedDocument {
         value: number | Video;
       } | null)
     | ({
-        relationTo: 'users';
-        value: string | User;
+        relationTo: 'admins';
+        value: number | Admin;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -791,12 +865,21 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'form-submissions';
         value: number | FormSubmission;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: string | User;
       } | null);
   globalSlug?: string | null;
-  user: {
-    relationTo: 'users';
-    value: string | User;
-  };
+  user:
+    | {
+        relationTo: 'admins';
+        value: number | Admin;
+      }
+    | {
+        relationTo: 'users';
+        value: string | User;
+      };
   updatedAt: string;
   createdAt: string;
 }
@@ -806,10 +889,15 @@ export interface PayloadLockedDocument {
  */
 export interface PayloadPreference {
   id: number;
-  user: {
-    relationTo: 'users';
-    value: string | User;
-  };
+  user:
+    | {
+        relationTo: 'admins';
+        value: number | Admin;
+      }
+    | {
+        relationTo: 'users';
+        value: string | User;
+      };
   key?: string | null;
   value?:
     | {
@@ -844,6 +932,7 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
         featureSection?: T | FeatureSectionSelect<T>;
+        authBlock?: T | AuthBlockTSelect<T>;
         headerSectionBlock?: T | HeaderSectionBlockTSelect<T>;
         heroSectionsBlock?: T | HeroSectionsBlockTSelect<T>;
       };
@@ -939,6 +1028,44 @@ export interface FeatureSectionSelect<T extends boolean = true> {
             };
       };
   variant?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AuthBlockT_select".
+ */
+export interface AuthBlockTSelect<T extends boolean = true> {
+  wrapper?:
+    | T
+    | {
+        theme?: T;
+        contentWidth?: T;
+        paddingXs?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingMd?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingLg?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingXl?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+      };
   id?: T;
   blockName?: T;
 }
@@ -1244,24 +1371,21 @@ export interface VideosSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
+ * via the `definition` "admins_select".
  */
-export interface UsersSelect<T extends boolean = true> {
-  id?: T;
-  email?: T;
-  emailVerified?: T;
-  name?: T;
-  image?: T;
-  accounts?:
-    | T
-    | {
-        id?: T;
-        provider?: T;
-        providerAccountId?: T;
-        type?: T;
-      };
+export interface AdminsSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
+  roles?: T;
   updatedAt?: T;
   createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1364,6 +1488,27 @@ export interface FormSubmissionsSelect<T extends boolean = true> {
         field?: T;
         value?: T;
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  id?: T;
+  email?: T;
+  emailVerified?: T;
+  name?: T;
+  image?: T;
+  accounts?:
+    | T
+    | {
+        id?: T;
+        provider?: T;
+        providerAccountId?: T;
+        type?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -1549,7 +1694,7 @@ export interface FourOhFour {
  */
 export interface Homepage {
   id: number;
-  blocks?: (CtaSectionsBlockT | FeatureSection | HeaderSectionBlockT | HeroSectionsBlockT)[] | null;
+  blocks?: (CtaSectionsBlockT | FeatureSection | AuthBlockT | HeaderSectionBlockT | HeroSectionsBlockT)[] | null;
   pageTitle: string;
   slug?: string | null;
   theme?: ('light' | 'dark') | null;
@@ -1567,7 +1712,7 @@ export interface Homepage {
  */
 export interface BlogIndex {
   id: number;
-  blocks?: (CtaSectionsBlockT | FeatureSection | HeaderSectionBlockT | HeroSectionsBlockT)[] | null;
+  blocks?: (CtaSectionsBlockT | FeatureSection | AuthBlockT | HeaderSectionBlockT | HeroSectionsBlockT)[] | null;
   pageTitle: string;
   slug?: string | null;
   theme?: ('light' | 'dark') | null;
@@ -1682,6 +1827,7 @@ export interface HomepageSelect<T extends boolean = true> {
     | {
         ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
         featureSection?: T | FeatureSectionSelect<T>;
+        authBlock?: T | AuthBlockTSelect<T>;
         headerSectionBlock?: T | HeaderSectionBlockTSelect<T>;
         heroSectionsBlock?: T | HeroSectionsBlockTSelect<T>;
       };
@@ -1704,6 +1850,7 @@ export interface BlogIndexSelect<T extends boolean = true> {
     | {
         ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
         featureSection?: T | FeatureSectionSelect<T>;
+        authBlock?: T | AuthBlockTSelect<T>;
         headerSectionBlock?: T | HeaderSectionBlockTSelect<T>;
         heroSectionsBlock?: T | HeroSectionsBlockTSelect<T>;
       };

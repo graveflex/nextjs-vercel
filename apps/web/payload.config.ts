@@ -1,10 +1,11 @@
+import Admins from '@mono/web/collections/Admins';
 import Authors from '@mono/web/collections/Authors';
 import Files from '@mono/web/collections/Files';
 import Images from '@mono/web/collections/Images';
 import Pages from '@mono/web/collections/Pages';
 import Posts from '@mono/web/collections/Posts';
+import Users from '@mono/web/collections/Users';
 import Tags from '@mono/web/collections/Tags/Tags.config';
-import Users from '@mono/web/collections/User';
 import Videos from '@mono/web/collections/Videos';
 import BlogIndex from '@mono/web/globals/BlogIndex/BlogIndex.config';
 import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.config';
@@ -150,7 +151,17 @@ export default buildConfig({
         InlineToolbarFeature()
       ] as FeatureProviderServer<unknown, unknown>[]
   }),
-  collections: [Pages, Posts, Authors, Tags, Files, Images, Videos, Users],
+  collections: [
+    Pages,
+    Posts,
+    Authors,
+    Tags,
+    Files,
+    Images,
+    Videos,
+    Admins,
+    Users
+  ],
   i18n: {
     fallbackLanguage: 'en'
   },
@@ -239,7 +250,7 @@ export default buildConfig({
     }
   },
   admin: {
-    user: Users.slug,
+    user: Admins.slug,
     autoLogin: {
       email: 'dev@payloadcms.com',
       password: 'test',
@@ -293,26 +304,5 @@ export default buildConfig({
   typescript: {
     outputFile: '../../packages/types/payload-types.ts'
   },
-  // async onInit(payload) {
-  //   try {
-  //     const existingUsers = await payload.find({
-  //       collection: 'users',
-  //       limit: 1
-  //     });
-
-  //     if (existingUsers.docs.length === 0) {
-  //       // await payload.create({
-  //       //   collection: 'users',
-  //       //   data: {
-  //       //     email: 'dev@payloadcms.com'
-  //       //     // password: 'test',
-  //       //     // roles: ['admin']
-  //       //   }
-  //       // });
-  //     }
-  //   } catch (error) {
-  //     console.error('Error in onInit:', error);
-  //   }
-  // },
   sharp
 });

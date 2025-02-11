@@ -6,7 +6,7 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import { getPayload } from 'payload';
 import React from 'react';
 
-export const dynamic = 'force-static';
+export const dynamic = 'auto';
 export const revalidate = 60;
 
 export interface RootLayoutProps {
