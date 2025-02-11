@@ -32,7 +32,7 @@ function HeroSections7({ content, image }: HeroSectionsBlockType) {
         <AspectRatio ratio={16 / 9}>
           <ResponsivePayloadImage
             image={image}
-            sizes="(max-width: 1023px) 100vw, 50vw"
+            sizes="100%"
             alt="Hero section visual"
             fill={true}
             imgClasses="rounded-xl object-cover w-full h-full"
