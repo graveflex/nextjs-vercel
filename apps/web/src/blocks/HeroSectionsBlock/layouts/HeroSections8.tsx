@@ -1,3 +1,4 @@
+import RichText from '@mono/web/components/RichText/index';
 import {
   Avatar,
   AvatarFallback,
@@ -8,7 +9,7 @@ import { ArrowRight } from 'lucide-react';
 import React from 'react';
 import type { HeroSectionsBlockType } from '../index';
 
-function HeroSections8({ title }: HeroSectionsBlockType) {
+function HeroSections8({ content }: HeroSectionsBlockType) {
   return (
     <section
       className="bg-background py-16 lg:py-24"
@@ -17,23 +18,7 @@ function HeroSections8({ title }: HeroSectionsBlockType) {
       <div className="container px-6 flex flex-col lg:flex-row items-center gap-12 lg:gap-16 relative z-10 mx-auto">
         <div className="flex flex-col gap-6 lg:gap-8 flex-1 max-w-2xl items-center text-center mx-auto">
           <div className="flex flex-col gap-4 lg:gap-5">
-            <p
-              className="text-muted-foreground text-sm lg:text-base font-semibold"
-              aria-hidden="true"
-            >
-              Hero section
-            </p>
-            <h1
-              id="hero-heading"
-              className="text-foreground text-3xl md:text-5xl font-bold"
-            >
-              {title}
-            </h1>
-            <p className="text-muted-foreground text-base lg:text-lg">
-              Follow with one or two sentences that expand on your value
-              proposition. Focus on key benefits and address why users should
-              take action now. Keep it scannable, short and benefit-driven.
-            </p>
+            {content && <RichText data={content} />}
           </div>
           <Button
             className="md:flex-1"
