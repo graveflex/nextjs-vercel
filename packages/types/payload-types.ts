@@ -331,6 +331,22 @@ export interface HeroSectionsBlockT {
    */
   variant: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
   title?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  image?: (number | null) | Image;
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroSectionsBlock';
@@ -1210,6 +1226,8 @@ export interface HeroSectionsBlockTSelect<T extends boolean = true> {
       };
   variant?: T;
   title?: T;
+  content?: T;
+  image?: T;
   id?: T;
   blockName?: T;
 }
