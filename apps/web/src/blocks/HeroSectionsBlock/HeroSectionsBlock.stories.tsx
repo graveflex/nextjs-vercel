@@ -36,6 +36,7 @@ export const One: Story = {
 export const Two: Story = {
   args: {
     content: heroSectionsMockData.data,
+    image: imgMockData,
     variant: '2'
   }
 };
@@ -43,6 +44,7 @@ export const Two: Story = {
 export const Three: Story = {
   args: {
     content: heroSectionsMockData.data,
+    image: imgMockData,
     variant: '3'
   }
 };
@@ -50,6 +52,7 @@ export const Three: Story = {
 export const Four: Story = {
   args: {
     content: heroSectionsMockData.data,
+    image: imgMockData,
     variant: '4'
   }
 };
@@ -71,6 +74,7 @@ export const Six: Story = {
 export const Seven: Story = {
   args: {
     content: heroSectionsMockData.data,
+    image: imgMockData,
     variant: '7'
   }
 };
