@@ -1,5 +1,5 @@
-import { faker } from '@faker-js/faker';
 import type { Meta, StoryObj } from '@storybook/react';
+import heroSectionsMockData, { imgMockData } from './HeroSectionsMockData';
 
 import type { HeroSectionsBlockType } from '.';
 import HeroSectionsBlock from '.';
@@ -18,7 +18,8 @@ type Story = StoryObj<HeroSectionsBlockType>;
 
 export const Defaults: Story = {
   args: {
-    title: faker.lorem.words(5),
+    content: heroSectionsMockData.data,
+    image: imgMockData,
     variant: '1'
   }
 };
@@ -26,63 +27,64 @@ export const Defaults: Story = {
 // Story name corresponds to variant number:
 export const One: Story = {
   args: {
-    title: faker.lorem.words(5),
+    content: heroSectionsMockData.data,
+    image: imgMockData,
     variant: '1'
   }
 };
 
 export const Two: Story = {
   args: {
-    title: faker.lorem.words(5),
+    content: heroSectionsMockData.data,
     variant: '2'
   }
 };
 
 export const Three: Story = {
   args: {
-    title: faker.lorem.words(5),
+    content: heroSectionsMockData.data,
     variant: '3'
   }
 };
 
 export const Four: Story = {
   args: {
-    title: faker.lorem.words(5),
+    content: heroSectionsMockData.data,
     variant: '4'
   }
 };
 
 export const Five: Story = {
   args: {
-    title: faker.lorem.words(5),
+    content: heroSectionsMockData.data,
     variant: '5'
   }
 };
 
 export const Six: Story = {
   args: {
-    title: faker.lorem.words(5),
+    content: heroSectionsMockData.data,
     variant: '6'
   }
 };
 
 export const Seven: Story = {
   args: {
-    title: faker.lorem.words(5),
+    content: heroSectionsMockData.data,
     variant: '7'
   }
 };
 
 export const Eight: Story = {
   args: {
-    title: faker.lorem.words(5),
+    content: heroSectionsMockData.data,
     variant: '8'
   }
 };
 
 export const Nine: Story = {
   args: {
-    title: faker.lorem.words(5),
+    content: heroSectionsMockData.data,
     variant: '9'
   }
 };
