@@ -40,7 +40,11 @@ const preview: Preview = {
     (Story, ctx) => {
       const bgColor = ctx?.globals?.backgrounds?.value ?? '#fff';
       const containerClass = isColorLight(bgColor) ? 'light' : 'dark';
-      return <div className={containerClass}><Story /></div>;
+      return (
+        <div className={containerClass}>
+          <Story />
+        </div>
+      );
     }
   ]
 };
