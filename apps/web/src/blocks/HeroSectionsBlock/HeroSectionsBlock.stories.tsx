@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import heroSectionsMockData, { imgMockData } from './HeroSectionsMockData';
+import heroSectionsMockData, {
+  heroSections6_9MockData,
+  imgMockData
+} from './HeroSectionsMockData';
 
 import type { HeroSectionsBlockType } from '.';
 import HeroSectionsBlock from '.';
@@ -66,7 +69,7 @@ export const Five: Story = {
 
 export const Six: Story = {
   args: {
-    content: heroSectionsMockData.data,
+    content: heroSections6_9MockData.data,
     variant: '6'
   }
 };
@@ -81,14 +84,14 @@ export const Seven: Story = {
 
 export const Eight: Story = {
   args: {
-    content: heroSectionsMockData.data,
+    content: heroSections6_9MockData.data,
     variant: '8'
   }
 };
 
 export const Nine: Story = {
   args: {
-    content: heroSectionsMockData.data,
+    content: heroSections6_9MockData.data,
     variant: '9'
   }
 };

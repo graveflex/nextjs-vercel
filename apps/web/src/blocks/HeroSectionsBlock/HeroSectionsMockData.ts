@@ -76,6 +76,79 @@ const heroSectionsMockData: RichTextType = {
   }
 };
 
+export const heroSections6_9MockData: RichTextType = {
+  data: {
+    root: {
+      type: 'root',
+      format: '',
+      indent: 0,
+      version: 1,
+      children: [
+        {
+          type: 'paragraph',
+          format: 'center',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'Hero Section',
+              type: 'eyebrow',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr',
+          textStyle: '',
+          textFormat: 0
+        },
+        {
+          tag: 'h2',
+          type: 'heading',
+          format: 'center',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: "Headline that solves user's main problem",
+              type: 'text',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr'
+        },
+        {
+          type: 'paragraph',
+          format: 'center',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'Follow with one or two sentences that expand on your value proposition. Focus on key benefits and address why users should take action now. Keep it scannable, short and benefit-driven.',
+              type: 'text',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr',
+          textStyle: '',
+          textFormat: 0
+        }
+      ],
+      direction: 'ltr'
+    }
+  }
+};
+
 export const imgMockData = {
   id: 1,
   alt: 'Faker Image',
