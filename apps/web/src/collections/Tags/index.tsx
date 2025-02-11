@@ -24,7 +24,10 @@ export default async function TagData({ locale, draft }: TagsProps) {
         depth: 2
       });
     },
-    [`${[locale, draft, 'tags'].filter((x) => x).join('/')}`]
+    [`${[locale, draft, 'tags'].filter((x) => x).join('/')}`],
+    {
+      tags: ['global-cache-key']
+    }
   );
 
   const tagData = await fetchPostData(draft, locale);

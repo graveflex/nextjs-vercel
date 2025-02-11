@@ -39,7 +39,7 @@ const pricingData = {
         monthly: 29,
         annually: 290
       },
-      variant: 'secondary'
+      variant: 'secondary' as const
     },
     {
       name: 'Standard',
@@ -71,7 +71,7 @@ const pricingData = {
         monthly: 49,
         annually: 490
       },
-      variant: 'default',
+      variant: 'default' as const,
       highlighted: true
     },
     {
@@ -108,7 +108,7 @@ const pricingData = {
         monthly: 99,
         annually: 990
       },
-      variant: 'secondary'
+      variant: 'secondary' as const
     }
   ]
 };

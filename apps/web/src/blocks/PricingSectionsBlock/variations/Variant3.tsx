@@ -37,7 +37,7 @@ const pricingData = {
         }
       ],
       price: 99,
-      variant: 'secondary'
+      variant: 'secondary' as const
     },
     {
       name: 'Pro',
@@ -76,7 +76,7 @@ const pricingData = {
         }
       ],
       price: 299,
-      variant: 'default',
+      variant: 'default' as const,
       highlighted: true
     }
   ]
