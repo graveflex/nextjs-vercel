@@ -42,7 +42,8 @@ const layoutList: Record<string, ComponentType<HeroSectionsBlockType>> = {
 };
 
 function HeroSectionsBlock({
-  title,
+  content,
+  image,
   variant = '1',
   wrapper
 }: HeroSectionsBlockType) {
@@ -50,7 +51,7 @@ function HeroSectionsBlock({
 
   return (
     <Wrapper {...wrapper}>
-      <Component title={title} variant={variant} />
+      <Component content={content} image={image} variant={variant} />
     </Wrapper>
   );
 }
