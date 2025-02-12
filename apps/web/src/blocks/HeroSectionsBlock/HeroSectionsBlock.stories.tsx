@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import heroSectionsMockData, {
   heroSections6_9MockData,
+  heroSectionsListMockData,
   imgMockData
 } from './HeroSectionsMockData';
 
@@ -49,11 +50,11 @@ export const One: Story = {
   }
 };
 
-export const Two: Story = {
+export const OneWithList: Story = {
   args: {
     imagePosition: 'right',
-    variant: '2',
-    content: heroSectionsMockData.data,
+    variant: '1',
+    content: heroSectionsListMockData.data,
     image: imgMockData
   }
 };
