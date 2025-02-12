@@ -5,7 +5,7 @@ import { Avatar, AvatarImage } from '@mono/web/components/ui/Avatar';
 export default function Variant1() {
   return (
     <section
-      className="flex flex-col items-center bg-muted py-16 md:py-24 px-6"
+      className="flex flex-col items-center bg-primary-foreground py-16 md:py-24 px-6"
       aria-labelledby="testimonial-title"
     >
       {/* Content Container */}

@@ -24,7 +24,7 @@ export default function Variant5() {
             {/* Main Title */}
             <h2
               id="testimonial-title"
-              className="text-3xl md:text-4xl font-bold"
+              className="text-3xl md:text-4xl font-bold text-foreground"
             >
               Social proof section title that focuses on trust and results
             </h2>

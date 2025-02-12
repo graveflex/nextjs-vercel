@@ -31,7 +31,7 @@ const testimonials = [
 export default function Variant4() {
   return (
     <section
-      className="py-16 md:py-24 bg-muted/40"
+      className="py-16 md:py-24 bg-primary-foreground"
       aria-labelledby="testimonial-title"
     >
       {/* Main Content Container */}
@@ -47,7 +47,7 @@ export default function Variant4() {
             {/* Main Title */}
             <h2
               id="testimonial-title"
-              className="text-3xl md:text-4xl font-bold"
+              className="text-3xl md:text-4xl font-bold text-foreground"
             >
               Social proof section title that focuses on trust and results
             </h2>

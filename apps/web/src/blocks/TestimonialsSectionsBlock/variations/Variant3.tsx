@@ -5,7 +5,7 @@ const ids = ['id1', 'id2', 'id3', 'id4', 'id5'];
 
 export default function Variant3() {
   return (
-    <section className="py-16 md:py-24 bg-muted/40">
+    <section className="py-16 md:py-24 bg-primary-foreground">
       {/* Main Content Container */}
       <div className="container mx-auto px-6">
         {/* Two-Column Grid Layout */}
