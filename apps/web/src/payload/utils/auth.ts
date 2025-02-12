@@ -31,6 +31,6 @@ export const authUser = async (credentials: BasicCredentials) => {
     user = user.docs[0];
   }
 
-  console.log('🍤 ~ authUser ~ user:', user);
+  console.info('🍤 ~ authUser ~ user:', user);
   return user;
 };

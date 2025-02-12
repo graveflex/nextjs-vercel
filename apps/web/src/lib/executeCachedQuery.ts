@@ -21,7 +21,7 @@ export default function executeCachedQuery<
             .join('/')}?${searchParams}`
         ],
         {
-          tags: [cacheKey]
+          tags: [cacheKey, 'global-cache-key']
         }
       );
   return executeQuery(locale, key) as ReturnType<T>;

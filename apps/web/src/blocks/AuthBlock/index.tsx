@@ -1,12 +1,12 @@
 // Types
 import type { AuthBlockT as PayloadType } from '@mono/types/payload-types';
 
+import { auth } from '@mono/web/payload/auth';
+import config from '@payload-config';
+import { headers } from 'next/headers';
+import { getPayload } from 'payload';
 // Libraries
 import React from 'react';
-import { headers } from 'next/headers';
-import config from '@payload-config';
-import { getPayload } from 'payload';
-import { auth } from '@mono/web/payload/auth';
 
 // Components
 import Wrapper from '@mono/web/components/Wrapper';

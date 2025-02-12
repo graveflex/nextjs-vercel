@@ -2,7 +2,7 @@ import { WEB_URL } from '@mono/web/lib/constants';
 import RichTextFields from '@mono/web/payload/fields/RichTextFields';
 import type { CollectionConfig, Field } from 'payload';
 
-import { invalidateCache } from '../hooks/invalidateCache';
+import { invalidateCache } from '@mono/web/hooks/invalidateCache';
 import { publishBeforeRead } from '../hooks/publishBeforeRead';
 import CTA from '../payload/fields/CTA';
 

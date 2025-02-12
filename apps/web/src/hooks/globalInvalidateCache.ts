@@ -1,27 +1,12 @@
-import { revalidateTag } from 'next/cache';
+import nukeCache from '@mono/web/lib/nukeCache';
 import type { GlobalAfterChangeHook } from 'payload';
 
-export const globalInvalidateCache: GlobalAfterChangeHook = async ({
-  req,
-  doc
-}) => {
+export const globalInvalidateCache: GlobalAfterChangeHook = async ({ doc }) => {
   try {
-    const path = doc?.slug;
-    const locale = req?.locale;
-    // Invalidate the homepage
-    if (path === '/') {
-      revalidateTag(`${locale}/homepage`);
-    }
-
-    // Invalidate the blog index
-    if (path === 'blog') {
-      revalidateTag(`${locale}/blogIndex`);
-    }
-
-    // Invalidate the main layout if the nav or footer is updated
-    if (doc?.header) {
-      revalidateTag('global-nav');
-    }
+    await nukeCache({
+      publishedAt: doc?.publishedAt,
+      title: doc?.title
+    });
   } catch (_err) {
     // no-op
   }

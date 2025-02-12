@@ -14,6 +14,12 @@ const blockList = {
   authBlock: dynamic(() => import('@mono/web/blocks/AuthBlock'), {
     ...defaultOpts
   }),
+  headerSectionsBlock: dynamic(
+    () => import('@mono/web/blocks/HeaderSectionsBlock'),
+    {
+      ...defaultOpts
+    }
+  ),
   featureSection: dynamic(() => import('@mono/web/blocks/FeatureSection'), {
     ...defaultOpts
   }),

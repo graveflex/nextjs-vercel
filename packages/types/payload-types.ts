@@ -47,10 +47,11 @@ export interface Config {
     images: Image;
     videos: Video;
     admins: Admin;
+    users: User;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
-    users: User;
+    'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -65,10 +66,11 @@ export interface Config {
     images: ImagesSelect<false> | ImagesSelect<true>;
     videos: VideosSelect<false> | VideosSelect<true>;
     admins: AdminsSelect<false> | AdminsSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
-    users: UsersSelect<false> | UsersSelect<true>;
+    'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -97,7 +99,13 @@ export interface Config {
         collection: 'users';
       });
   jobs: {
-    tasks: unknown;
+    tasks: {
+      NukeCache: TaskNukeCache;
+      inline: {
+        input: unknown;
+        output: unknown;
+      };
+    };
     workflows: unknown;
   };
 }
@@ -143,7 +151,16 @@ export interface UserAuthOperations {
  */
 export interface Page {
   id: number;
-  blocks?: (CtaSectionsBlockT | FeatureSection | AuthBlockT | HeaderSectionBlockT | HeroSectionsBlockT)[] | null;
+  blocks?:
+    | (
+        | HeaderSectionsBlockT
+        | CtaSectionsBlockT
+        | FeatureSection
+        | AuthBlockT
+        | HeaderSectionBlockT
+        | HeroSectionsBlockT
+      )[]
+    | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -166,6 +183,39 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeaderSectionsBlockT".
+ */
+export interface HeaderSectionsBlockT {
+  wrapper?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    paddingXs?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingMd?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingLg?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingXl?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+  };
+  /**
+   * The layout variant for the block.
+   */
+  variant: '1' | '2' | '3' | '4' | '5' | '6';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'headerSectionsBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -197,6 +247,21 @@ export interface CtaSectionsBlockT {
    */
   variant: '1' | '2' | '3' | '4' | '5' | '6' | '7';
   title?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'ctaSectionsBlock';
@@ -650,6 +715,30 @@ export interface Admin {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: string;
+  email: string;
+  emailVerified?: string | null;
+  name?: string | null;
+  image?: string | null;
+  firstName: string;
+  lastName: string;
+  roles?: 'user'[] | null;
+  accounts?:
+    | {
+        id?: string | null;
+        provider: string;
+        providerAccountId: string;
+        type: string;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -796,22 +885,93 @@ export interface FormSubmission {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
+ * via the `definition` "payload-jobs".
  */
-export interface User {
-  id: string;
-  email: string;
-  emailVerified?: string | null;
-  name?: string | null;
-  image?: string | null;
-  accounts?:
+export interface PayloadJob {
+  id: number;
+  /**
+   * Input data provided to the job
+   */
+  input?:
     | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  taskStatus?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  completedAt?: string | null;
+  totalTried?: number | null;
+  /**
+   * If hasError is true this job will not be retried
+   */
+  hasError?: boolean | null;
+  /**
+   * If hasError is true, this is the error that caused it
+   */
+  error?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Task execution log
+   */
+  log?:
+    | {
+        executedAt: string;
+        completedAt: string;
+        taskSlug: 'inline' | 'NukeCache';
+        taskID: string;
+        input?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        output?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        state: 'failed' | 'succeeded';
+        error?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
         id?: string | null;
-        provider: string;
-        providerAccountId: string;
-        type: string;
       }[]
     | null;
+  taskSlug?: ('inline' | 'NukeCache') | null;
+  queue?: string | null;
+  waitUntil?: string | null;
+  processing?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -855,6 +1015,10 @@ export interface PayloadLockedDocument {
         value: number | Admin;
       } | null)
     | ({
+        relationTo: 'users';
+        value: string | User;
+      } | null)
+    | ({
         relationTo: 'redirects';
         value: number | Redirect;
       } | null)
@@ -867,8 +1031,8 @@ export interface PayloadLockedDocument {
         value: number | FormSubmission;
       } | null)
     | ({
-        relationTo: 'users';
-        value: string | User;
+        relationTo: 'payload-jobs';
+        value: number | PayloadJob;
       } | null);
   globalSlug?: string | null;
   user:
@@ -930,6 +1094,7 @@ export interface PagesSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
+        headerSectionsBlock?: T | HeaderSectionsBlockTSelect<T>;
         ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
         featureSection?: T | FeatureSectionSelect<T>;
         authBlock?: T | AuthBlockTSelect<T>;
@@ -951,6 +1116,45 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeaderSectionsBlockT_select".
+ */
+export interface HeaderSectionsBlockTSelect<T extends boolean = true> {
+  wrapper?:
+    | T
+    | {
+        theme?: T;
+        contentWidth?: T;
+        paddingXs?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingMd?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingLg?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingXl?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+      };
+  variant?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -989,6 +1193,7 @@ export interface CtaSectionsBlockTSelect<T extends boolean = true> {
       };
   variant?: T;
   title?: T;
+  content?: T;
   id?: T;
   blockName?: T;
 }
@@ -1389,6 +1594,30 @@ export interface AdminsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  id?: T;
+  email?: T;
+  emailVerified?: T;
+  name?: T;
+  image?: T;
+  firstName?: T;
+  lastName?: T;
+  roles?: T;
+  accounts?:
+    | T
+    | {
+        id?: T;
+        provider?: T;
+        providerAccountId?: T;
+        type?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects_select".
  */
 export interface RedirectsSelect<T extends boolean = true> {
@@ -1494,22 +1723,32 @@ export interface FormSubmissionsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
+ * via the `definition` "payload-jobs_select".
  */
-export interface UsersSelect<T extends boolean = true> {
-  id?: T;
-  email?: T;
-  emailVerified?: T;
-  name?: T;
-  image?: T;
-  accounts?:
+export interface PayloadJobsSelect<T extends boolean = true> {
+  input?: T;
+  taskStatus?: T;
+  completedAt?: T;
+  totalTried?: T;
+  hasError?: T;
+  error?: T;
+  log?:
     | T
     | {
+        executedAt?: T;
+        completedAt?: T;
+        taskSlug?: T;
+        taskID?: T;
+        input?: T;
+        output?: T;
+        state?: T;
+        error?: T;
         id?: T;
-        provider?: T;
-        providerAccountId?: T;
-        type?: T;
       };
+  taskSlug?: T;
+  queue?: T;
+  waitUntil?: T;
+  processing?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1694,7 +1933,16 @@ export interface FourOhFour {
  */
 export interface Homepage {
   id: number;
-  blocks?: (CtaSectionsBlockT | FeatureSection | AuthBlockT | HeaderSectionBlockT | HeroSectionsBlockT)[] | null;
+  blocks?:
+    | (
+        | HeaderSectionsBlockT
+        | CtaSectionsBlockT
+        | FeatureSection
+        | AuthBlockT
+        | HeaderSectionBlockT
+        | HeroSectionsBlockT
+      )[]
+    | null;
   pageTitle: string;
   slug?: string | null;
   theme?: ('light' | 'dark') | null;
@@ -1712,7 +1960,16 @@ export interface Homepage {
  */
 export interface BlogIndex {
   id: number;
-  blocks?: (CtaSectionsBlockT | FeatureSection | AuthBlockT | HeaderSectionBlockT | HeroSectionsBlockT)[] | null;
+  blocks?:
+    | (
+        | HeaderSectionsBlockT
+        | CtaSectionsBlockT
+        | FeatureSection
+        | AuthBlockT
+        | HeaderSectionBlockT
+        | HeroSectionsBlockT
+      )[]
+    | null;
   pageTitle: string;
   slug?: string | null;
   theme?: ('light' | 'dark') | null;
@@ -1825,6 +2082,7 @@ export interface HomepageSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
+        headerSectionsBlock?: T | HeaderSectionsBlockTSelect<T>;
         ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
         featureSection?: T | FeatureSectionSelect<T>;
         authBlock?: T | AuthBlockTSelect<T>;
@@ -1848,6 +2106,7 @@ export interface BlogIndexSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
+        headerSectionsBlock?: T | HeaderSectionsBlockTSelect<T>;
         ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
         featureSection?: T | FeatureSectionSelect<T>;
         authBlock?: T | AuthBlockTSelect<T>;
@@ -1862,6 +2121,16 @@ export interface BlogIndexSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TaskNukeCache".
+ */
+export interface TaskNukeCache {
+  input: {
+    title?: string | null;
+  };
+  output?: unknown;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
