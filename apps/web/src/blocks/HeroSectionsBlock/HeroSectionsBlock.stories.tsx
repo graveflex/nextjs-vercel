@@ -75,14 +75,6 @@ export const Six: Story = {
   }
 };
 
-export const Seven: Story = {
-  args: {
-    content: heroSectionsMockData.data,
-    image: imgMockData,
-    variant: '7'
-  }
-};
-
 export const Eight: Story = {
   args: {
     content: heroSections6_9MockData.data,

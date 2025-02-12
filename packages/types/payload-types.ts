@@ -504,7 +504,7 @@ export interface HeroSectionsBlockT {
   /**
    * The layout variant for the block.
    */
-  variant: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
+  variant: '1' | '2' | '3' | '4' | '5' | '6' | '8' | '9';
   content?: {
     root: {
       type: string;
