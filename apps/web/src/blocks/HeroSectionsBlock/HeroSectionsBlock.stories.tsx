@@ -85,14 +85,6 @@ export const Six: Story = {
   }
 };
 
-export const Eight: Story = {
-  args: {
-    variant: '8',
-    imagePosition: 'right',
-    content: heroSections6_9MockData.data
-  }
-};
-
 export const Nine: Story = {
   args: {
     variant: '9',

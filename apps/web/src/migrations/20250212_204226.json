@@ -1,13 +1,12 @@
 {
+<<<<<<< HEAD:apps/web/src/migrations/20250212_201316.json
 <<<<<<< HEAD:apps/web/src/migrations/20250212_172421.json
 <<<<<<<< HEAD:apps/web/src/migrations/20250220_174819.json
   "id": "f0bd5343-9dc5-4641-aaac-11df78812baa",
 ========
   "id": "c5b56fcd-318a-494e-a796-5cb4ef4d7924",
->>>>>>>> 985e642 (feat(block): add imgPosition to HeroSections):apps/web/src/migrations/20250212_172421.json
-=======
   "id": "9a98f90f-716f-4072-885d-883f212e4e24",
->>>>>>> 5889ff8 (cleanup(block): get rid of variant 2 for list):apps/web/src/migrations/20250212_201316.json
+  "id": "48ab5f06-3efd-48bf-b07f-4633a9f98e39",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -17230,7 +17229,6 @@
         "4",
         "5",
         "6",
-        "8",
         "9"
       ]
     },
