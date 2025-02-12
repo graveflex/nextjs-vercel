@@ -1977,4 +1977,169 @@ const richTextMockData: RichTextType = {
   }
 };
 
+export const embedRichTextMockData: RichTextType = {
+  data: {
+    root: {
+      type: 'root',
+      format: '',
+      indent: 0,
+      version: 1,
+      children: [
+        {
+          type: 'paragraph',
+          format: 'center',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'Eyebrow Text',
+              type: 'eyebrow',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr',
+          textStyle: '',
+          textFormat: 0
+        },
+        {
+          tag: 'h2',
+          type: 'heading',
+          format: 'center',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'Action-driving headline that creates urgency',
+              type: 'text',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr'
+        },
+        {
+          type: 'paragraph',
+          format: 'center',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'Add one or two compelling sentences that reinforce your main value proposition and overcome final objections.',
+              type: 'text',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr',
+          textStyle: '',
+          textFormat: 0
+        },
+        {
+          type: 'paragraph',
+          format: 'center',
+          indent: 0,
+          version: 1,
+          children: [],
+          direction: null,
+          textStyle: '',
+          textFormat: 0
+        },
+        {
+          type: 'block',
+          fields: {
+            id: '67aa7072868c0f54105528eb',
+            embedUrl:
+              'https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1079719264&color=0095c8&show_artwork=false',
+            blockName: 'Soundcloud',
+            blockType: 'embed',
+            embedTitle: '643 Pandemic Road Trip'
+          },
+          format: '',
+          version: 2
+        },
+        {
+          type: 'paragraph',
+          format: '',
+          indent: 0,
+          version: 1,
+          children: [],
+          direction: null,
+          textStyle: '',
+          textFormat: 0
+        },
+        {
+          type: 'block',
+          fields: {
+            id: '67aa709a868c0f54105528ec',
+            embedUrl:
+              'https://embed.podcasts.apple.com/us/podcast/don-george-wanderlust-in-the-time-of-coronavirus/id327760888?i=1000512757281',
+            blockName: 'Podcasts',
+            blockType: 'embed',
+            embedTitle: 'Wanderlust in the Time of Coronavirus'
+          },
+          format: '',
+          version: 2
+        },
+        {
+          type: 'paragraph',
+          format: '',
+          indent: 0,
+          version: 1,
+          children: [],
+          direction: null,
+          textStyle: '',
+          textFormat: 0
+        },
+        {
+          type: 'block',
+          fields: {
+            id: '67aa70b2868c0f54105528ed',
+            embedUrl:
+              '//html5-player.libsyn.com/embed/episode/id/19179794/height/90/theme/custom/thumbnail/yes/direction/backward/render-playlist/no/custom-color/87A93A/"   // src="https://embed.podcasts.apple.com/us/podcast/don-george-wanderlust-in-the-time-of-coronavirus/id327760888?i=1000512757281',
+            blockName: 'LibSyn',
+            blockType: 'embed',
+            embedTitle: 'Confessions of a Confirmed Traveler'
+          },
+          format: '',
+          version: 2
+        },
+        {
+          type: 'paragraph',
+          format: '',
+          indent: 0,
+          version: 1,
+          children: [],
+          direction: null,
+          textStyle: '',
+          textFormat: 0
+        },
+        {
+          type: 'block',
+          fields: {
+            id: '67aa7126868c0f54105528ee',
+            embedUrl:
+              'https://www.youtube-nocookie.com/embed/nYlQaxfMPMY?modestbranding=1&rel=0',
+            blockName: 'Video',
+            blockType: 'embed',
+            embedTitle: 'Navigating Traffic on a Cotonou, Benin Drive'
+          },
+          format: '',
+          version: 2
+        }
+      ],
+      direction: 'ltr'
+    }
+  }
+};
+
 export default richTextMockData;
