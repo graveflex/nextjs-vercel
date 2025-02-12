@@ -725,7 +725,7 @@ export interface User {
   image?: string | null;
   firstName: string;
   lastName: string;
-  roles?: 'user'[] | null;
+  roles?: ('user' | 'admin')[] | null;
   accounts?:
     | {
         id?: string | null;

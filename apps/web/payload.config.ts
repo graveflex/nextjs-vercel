@@ -333,16 +333,18 @@ export default buildConfig({
   },
   async onInit(payload) {
     const existingUsers = await payload.find({
-      collection: 'users',
+      collection: 'admins',
       limit: 1
     });
 
     if (existingUsers.docs.length === 0) {
       await payload.create({
-        collection: 'users',
+        collection: 'admins',
         data: {
           email: 'dev@payloadcms.com',
-          password: 'test'
+          password: 'test',
+          firstName: 'Dev',
+          lastName: 'Admin'
         }
       });
     }
