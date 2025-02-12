@@ -1,5 +1,5 @@
 {
-  "id": "e7902914-038d-41ae-9e77-cb36570040d8",
+  "id": "c5b56fcd-318a-494e-a796-5cb4ef4d7924",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -993,6 +993,20 @@
           "notNull": false,
           "default": "'1'"
         },
+        "image_id": {
+          "name": "image_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_position": {
+          "name": "image_position",
+          "type": "enum_pageherSecB_image_position",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'right'"
+        },
         "block_name": {
           "name": "block_name",
           "type": "varchar",
@@ -1045,9 +1059,37 @@
           "concurrently": false,
           "method": "btree",
           "with": {}
+        },
+        "pageherSecB_image_idx": {
+          "name": "pageherSecB_image_idx",
+          "columns": [
+            {
+              "expression": "image_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
         }
       },
       "foreignKeys": {
+        "pageherSecB_image_id_images_id_fk": {
+          "name": "pageherSecB_image_id_images_id_fk",
+          "tableFrom": "pageherSecB",
+          "tableTo": "images",
+          "columnsFrom": [
+            "image_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
         "pageherSecB_parent_id_fk": {
           "name": "pageherSecB_parent_id_fk",
           "tableFrom": "pageherSecB",
@@ -1072,9 +1114,9 @@
       "name": "pageherSecB_locales",
       "schema": "",
       "columns": {
-        "title": {
-          "name": "title",
-          "type": "varchar",
+        "content": {
+          "name": "content",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
@@ -2408,6 +2450,20 @@
           "notNull": false,
           "default": "'1'"
         },
+        "image_id": {
+          "name": "image_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_position": {
+          "name": "image_position",
+          "type": "enum__pageherSecB_v_image_position",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'right'"
+        },
         "_uuid": {
           "name": "_uuid",
           "type": "varchar",
@@ -2466,9 +2522,37 @@
           "concurrently": false,
           "method": "btree",
           "with": {}
+        },
+        "_pageherSecB_v_image_idx": {
+          "name": "_pageherSecB_v_image_idx",
+          "columns": [
+            {
+              "expression": "image_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
         }
       },
       "foreignKeys": {
+        "_pageherSecB_v_image_id_images_id_fk": {
+          "name": "_pageherSecB_v_image_id_images_id_fk",
+          "tableFrom": "_pageherSecB_v",
+          "tableTo": "images",
+          "columnsFrom": [
+            "image_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
         "_pageherSecB_v_parent_id_fk": {
           "name": "_pageherSecB_v_parent_id_fk",
           "tableFrom": "_pageherSecB_v",
@@ -2493,9 +2577,9 @@
       "name": "_pageherSecB_v_locales",
       "schema": "",
       "columns": {
-        "title": {
-          "name": "title",
-          "type": "varchar",
+        "content": {
+          "name": "content",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
@@ -11160,6 +11244,20 @@
           "notNull": false,
           "default": "'1'"
         },
+        "image_id": {
+          "name": "image_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_position": {
+          "name": "image_position",
+          "type": "enum_homepageherSecB_image_position",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'right'"
+        },
         "block_name": {
           "name": "block_name",
           "type": "varchar",
@@ -11212,9 +11310,37 @@
           "concurrently": false,
           "method": "btree",
           "with": {}
+        },
+        "homepageherSecB_image_idx": {
+          "name": "homepageherSecB_image_idx",
+          "columns": [
+            {
+              "expression": "image_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
         }
       },
       "foreignKeys": {
+        "homepageherSecB_image_id_images_id_fk": {
+          "name": "homepageherSecB_image_id_images_id_fk",
+          "tableFrom": "homepageherSecB",
+          "tableTo": "images",
+          "columnsFrom": [
+            "image_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
         "homepageherSecB_parent_id_fk": {
           "name": "homepageherSecB_parent_id_fk",
           "tableFrom": "homepageherSecB",
@@ -11239,9 +11365,9 @@
       "name": "homepageherSecB_locales",
       "schema": "",
       "columns": {
-        "title": {
-          "name": "title",
-          "type": "varchar",
+        "content": {
+          "name": "content",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
@@ -12487,6 +12613,20 @@
           "notNull": false,
           "default": "'1'"
         },
+        "image_id": {
+          "name": "image_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_position": {
+          "name": "image_position",
+          "type": "enum__homepageherSecB_v_image_position",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'right'"
+        },
         "_uuid": {
           "name": "_uuid",
           "type": "varchar",
@@ -12545,9 +12685,37 @@
           "concurrently": false,
           "method": "btree",
           "with": {}
+        },
+        "_homepageherSecB_v_image_idx": {
+          "name": "_homepageherSecB_v_image_idx",
+          "columns": [
+            {
+              "expression": "image_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
         }
       },
       "foreignKeys": {
+        "_homepageherSecB_v_image_id_images_id_fk": {
+          "name": "_homepageherSecB_v_image_id_images_id_fk",
+          "tableFrom": "_homepageherSecB_v",
+          "tableTo": "images",
+          "columnsFrom": [
+            "image_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
         "_homepageherSecB_v_parent_id_fk": {
           "name": "_homepageherSecB_v_parent_id_fk",
           "tableFrom": "_homepageherSecB_v",
@@ -12572,9 +12740,9 @@
       "name": "_homepageherSecB_v_locales",
       "schema": "",
       "columns": {
-        "title": {
-          "name": "title",
-          "type": "varchar",
+        "content": {
+          "name": "content",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
@@ -13925,6 +14093,20 @@
           "notNull": false,
           "default": "'1'"
         },
+        "image_id": {
+          "name": "image_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_position": {
+          "name": "image_position",
+          "type": "enum_blogIdxherSecB_image_position",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'right'"
+        },
         "block_name": {
           "name": "block_name",
           "type": "varchar",
@@ -13977,9 +14159,37 @@
           "concurrently": false,
           "method": "btree",
           "with": {}
+        },
+        "blogIdxherSecB_image_idx": {
+          "name": "blogIdxherSecB_image_idx",
+          "columns": [
+            {
+              "expression": "image_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
         }
       },
       "foreignKeys": {
+        "blogIdxherSecB_image_id_images_id_fk": {
+          "name": "blogIdxherSecB_image_id_images_id_fk",
+          "tableFrom": "blogIdxherSecB",
+          "tableTo": "images",
+          "columnsFrom": [
+            "image_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
         "blogIdxherSecB_parent_id_fk": {
           "name": "blogIdxherSecB_parent_id_fk",
           "tableFrom": "blogIdxherSecB",
@@ -14004,9 +14214,9 @@
       "name": "blogIdxherSecB_locales",
       "schema": "",
       "columns": {
-        "title": {
-          "name": "title",
-          "type": "varchar",
+        "content": {
+          "name": "content",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
@@ -15252,6 +15462,20 @@
           "notNull": false,
           "default": "'1'"
         },
+        "image_id": {
+          "name": "image_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_position": {
+          "name": "image_position",
+          "type": "enum__blogIdxherSecB_v_image_position",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'right'"
+        },
         "_uuid": {
           "name": "_uuid",
           "type": "varchar",
@@ -15310,9 +15534,37 @@
           "concurrently": false,
           "method": "btree",
           "with": {}
+        },
+        "_blogIdxherSecB_v_image_idx": {
+          "name": "_blogIdxherSecB_v_image_idx",
+          "columns": [
+            {
+              "expression": "image_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
         }
       },
       "foreignKeys": {
+        "_blogIdxherSecB_v_image_id_images_id_fk": {
+          "name": "_blogIdxherSecB_v_image_id_images_id_fk",
+          "tableFrom": "_blogIdxherSecB_v",
+          "tableTo": "images",
+          "columnsFrom": [
+            "image_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
         "_blogIdxherSecB_v_parent_id_fk": {
           "name": "_blogIdxherSecB_v_parent_id_fk",
           "tableFrom": "_blogIdxherSecB_v",
@@ -15337,9 +15589,9 @@
       "name": "_blogIdxherSecB_v_locales",
       "schema": "",
       "columns": {
-        "title": {
-          "name": "title",
-          "type": "varchar",
+        "content": {
+          "name": "content",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
@@ -15858,13 +16110,19 @@
       "values": [
         "1",
         "2",
-        "3",
         "4",
         "5",
         "6",
-        "7",
         "8",
         "9"
+      ]
+    },
+    "public.enum_pageherSecB_image_position": {
+      "name": "enum_pageherSecB_image_position",
+      "schema": "public",
+      "values": [
+        "left",
+        "right"
       ]
     },
     "public.enum_pages_theme": {
@@ -15971,6 +16229,14 @@
         "_",
         "light",
         "dark"
+      ]
+    },
+    "public.enum__pageherSecB_v_image_position": {
+      "name": "enum__pageherSecB_v_image_position",
+      "schema": "public",
+      "values": [
+        "left",
+        "right"
       ]
     },
     "public.enum__pages_v_version_theme": {
@@ -16305,6 +16571,14 @@
         "dark"
       ]
     },
+    "public.enum_homepageherSecB_image_position": {
+      "name": "enum_homepageherSecB_image_position",
+      "schema": "public",
+      "values": [
+        "left",
+        "right"
+      ]
+    },
     "public.enum_homepage_theme": {
       "name": "enum_homepage_theme",
       "schema": "public",
@@ -16409,6 +16683,14 @@
         "_",
         "light",
         "dark"
+      ]
+    },
+    "public.enum__homepageherSecB_v_image_position": {
+      "name": "enum__homepageherSecB_v_image_position",
+      "schema": "public",
+      "values": [
+        "left",
+        "right"
       ]
     },
     "public.enum__homepage_v_version_theme": {
@@ -16537,6 +16819,14 @@
         "dark"
       ]
     },
+    "public.enum_blogIdxherSecB_image_position": {
+      "name": "enum_blogIdxherSecB_image_position",
+      "schema": "public",
+      "values": [
+        "left",
+        "right"
+      ]
+    },
     "public.enum_blog_index_theme": {
       "name": "enum_blog_index_theme",
       "schema": "public",
@@ -16641,6 +16931,14 @@
         "_",
         "light",
         "dark"
+      ]
+    },
+    "public.enum__blogIdxherSecB_v_image_position": {
+      "name": "enum__blogIdxherSecB_v_image_position",
+      "schema": "public",
+      "values": [
+        "left",
+        "right"
       ]
     },
     "public.enum__blog_index_v_version_theme": {

@@ -1,6 +1,9 @@
 import BlockConfig from '@mono/web/payload/fields/BlockConfig';
 import type { Block } from 'payload';
 
+// Block variants w/ left or right positioned media:
+const variantsWithImagePosition = ['1', '2', '4', '5'];
+
 const HeroSectionsBlock = (prefix: string): Block => ({
   slug: 'heroSectionsBlock',
   interfaceName: 'HeroSectionsBlockT',
@@ -23,10 +26,6 @@ const HeroSectionsBlock = (prefix: string): Block => ({
         {
           label: '2',
           value: '2'
-        },
-        {
-          label: '3',
-          value: '3'
         },
         {
           label: '4',
@@ -65,6 +64,32 @@ const HeroSectionsBlock = (prefix: string): Block => ({
       label: 'Image',
       type: 'upload',
       relationTo: 'images'
+    },
+    {
+      name: 'imagePosition',
+      label: 'Image Position',
+      type: 'select',
+      options: [
+        {
+          label: 'Left',
+          value: 'left'
+        },
+        {
+          label: 'Right',
+          value: 'right'
+        }
+      ],
+      defaultValue: 'right',
+      admin: {
+        description:
+          'For certain variants, the position of the image on desktop screens.',
+        condition: (_, siblingData) => {
+          if (variantsWithImagePosition.includes(siblingData.variant)) {
+            return true;
+          }
+          return false;
+        }
+      }
     }
   ]
 });

@@ -329,7 +329,7 @@ export interface HeroSectionsBlockT {
   /**
    * The layout variant for the block.
    */
-  variant: '1' | '2' | '3' | '4' | '5' | '6' | '8' | '9';
+  variant: '1' | '2' | '4' | '5' | '6' | '8' | '9';
   content?: {
     root: {
       type: string;
@@ -346,6 +346,10 @@ export interface HeroSectionsBlockT {
     [k: string]: unknown;
   } | null;
   image?: (number | null) | Image;
+  /**
+   * For certain variants, the position of the image on desktop screens.
+   */
+  imagePosition?: ('left' | 'right') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroSectionsBlock';
@@ -1226,6 +1230,7 @@ export interface HeroSectionsBlockTSelect<T extends boolean = true> {
   variant?: T;
   content?: T;
   image?: T;
+  imagePosition?: T;
   id?: T;
   blockName?: T;
 }

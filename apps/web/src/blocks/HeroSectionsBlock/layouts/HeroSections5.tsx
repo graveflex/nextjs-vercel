@@ -6,8 +6,11 @@ import { Input } from '@mono/web/components/ui/Input';
 import { ArrowRight } from 'lucide-react';
 import React from 'react';
 import type { HeroSectionsBlockType } from '../index';
+import { genImgColumnOrder } from '../index';
 
-function HeroSections5({ content }: HeroSectionsBlockType) {
+function HeroSections5({ content, imagePosition }: HeroSectionsBlockType) {
+  const imgColumnOrder = genImgColumnOrder(imagePosition);
+
   return (
     <section
       className="bg-background py-16 lg:py-24"
@@ -39,7 +42,7 @@ function HeroSections5({ content }: HeroSectionsBlockType) {
         </div>
 
         {/* Right Column */}
-        <div className="flex-1 w-full">
+        <div className={`flex-1 w-full ${imgColumnOrder}`}>
           <AspectRatio ratio={4 / 3}>
             <video
               className="object-cover w-full h-full rounded-lg"

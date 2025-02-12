@@ -5,8 +5,15 @@ import { Button } from '@mono/web/components/ui/Button';
 import { ArrowRight } from 'lucide-react';
 import React from 'react';
 import type { HeroSectionsBlockType } from '../index';
+import { genImgColumnOrder } from '../index';
 
-function HeroSections1({ content, image }: HeroSectionsBlockType) {
+function HeroSections1({
+  content,
+  image,
+  imagePosition
+}: HeroSectionsBlockType) {
+  const imgColumnOrder = genImgColumnOrder(imagePosition);
+
   return (
     <section
       className="bg-background py-16 lg:py-24"
@@ -30,7 +37,7 @@ function HeroSections1({ content, image }: HeroSectionsBlockType) {
         </div>
 
         {/* Right Column */}
-        <div className="flex-1 w-full right-column">
+        <div className={`flex-1 w-full right-column ${imgColumnOrder}`}>
           <AspectRatio ratio={1 / 1} className="aspect-ratio">
             <ResponsivePayloadImage
               image={image}
