@@ -11,9 +11,6 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
-  authBlock: dynamic(() => import('@mono/web/blocks/AuthBlock'), {
-    ...defaultOpts
-  }),
   headerSectionsBlock: dynamic(
     () => import('@mono/web/blocks/HeaderSectionsBlock'),
     {

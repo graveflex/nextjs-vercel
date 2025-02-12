@@ -1,4 +1,3 @@
-import AuthBlock from '@mono/web/blocks/AuthBlock/AuthBlock.config';
 // InsertBlockConfigImports
 import CtaSectionsBlock from '@mono/web/blocks/CtaSectionsBlock/CtaSectionsBlock.config';
 import FeatureSection from '@mono/web/blocks/FeatureSection/FeatureSection.config';
@@ -11,7 +10,6 @@ export const allBlocks = (prefix: string) => [
   HeaderSectionsBlock(prefix),
   CtaSectionsBlock,
   FeatureSection,
-  AuthBlock,
   HeaderSectionBlock(prefix),
   HeroSectionsBlock(prefix)
 ];
