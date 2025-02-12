@@ -41,10 +41,6 @@ const HeroSectionsBlock = (prefix: string): Block => ({
           value: '6'
         },
         {
-          label: '7',
-          value: '7'
-        },
-        {
           label: '8',
           value: '8'
         },
