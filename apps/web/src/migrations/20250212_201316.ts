@@ -15,12 +15,16 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_pagehdrSec_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."pagehdrSec_v" AS ENUM('1', '2', '3', '4', '5', '6');
   CREATE TYPE "public"."enum_pageherSecB_wrapper_theme" AS ENUM('_', 'light', 'dark');
+<<<<<<< HEAD:apps/web/src/migrations/20250212_172421.ts
 <<<<<<<< HEAD:apps/web/src/migrations/20250220_174819.ts
   CREATE TYPE "public"."vrnt" AS ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9');
   CREATE TYPE "public"."enum_pages_blocks_blog_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_pages_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
 ========
   CREATE TYPE "public"."vrnt" AS ENUM('1', '2', '4', '5', '6', '8', '9');
+=======
+  CREATE TYPE "public"."vrnt" AS ENUM('1', '4', '5', '6', '8', '9');
+>>>>>>> 5889ff8 (cleanup(block): get rid of variant 2 for list):apps/web/src/migrations/20250212_201316.ts
   CREATE TYPE "public"."enum_pageherSecB_image_position" AS ENUM('left', 'right');
 >>>>>>>> 985e642 (feat(block): add imgPosition to HeroSections):apps/web/src/migrations/20250212_172421.ts
   CREATE TYPE "public"."enum_pages_theme" AS ENUM('light', 'dark');

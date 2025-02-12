@@ -76,6 +76,148 @@ const heroSectionsMockData: RichTextType = {
   }
 };
 
+export const heroSectionsListMockData: RichTextType = {
+  data: {
+    root: {
+      type: 'root',
+      format: '',
+      indent: 0,
+      version: 1,
+      children: [
+        {
+          type: 'paragraph',
+          format: '',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'Hero Section',
+              type: 'eyebrow',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr',
+          textStyle: '',
+          textFormat: 0
+        },
+        {
+          tag: 'h2',
+          type: 'heading',
+          format: '',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: "Headline that solves user's main problem",
+              type: 'text',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr'
+        },
+        {
+          type: 'paragraph',
+          format: '',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'Follow with one or two sentences that expand on your value proposition. Focus on key benefits and address why users should take action now. Keep it scannable, short and benefit-driven.',
+              type: 'text',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr',
+          textStyle: '',
+          textFormat: 0
+        },
+        {
+          tag: 'ul',
+          type: 'list',
+          start: 1,
+          format: '',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              type: 'listitem',
+              value: 1,
+              format: '',
+              indent: 0,
+              version: 1,
+              children: [
+                {
+                  mode: 'normal',
+                  text: 'Benefit driven feature title',
+                  type: 'text',
+                  style: '',
+                  detail: 0,
+                  format: 0,
+                  version: 1
+                }
+              ],
+              direction: 'ltr'
+            },
+            {
+              type: 'listitem',
+              value: 2,
+              format: '',
+              indent: 0,
+              version: 1,
+              children: [
+                {
+                  mode: 'normal',
+                  text: 'Benefit driven feature title',
+                  type: 'text',
+                  style: '',
+                  detail: 0,
+                  format: 0,
+                  version: 1
+                }
+              ],
+              direction: 'ltr'
+            },
+            {
+              type: 'listitem',
+              value: 3,
+              format: '',
+              indent: 0,
+              version: 1,
+              children: [
+                {
+                  mode: 'normal',
+                  text: 'Benefit driven feature title',
+                  type: 'text',
+                  style: '',
+                  detail: 0,
+                  format: 0,
+                  version: 1
+                }
+              ],
+              direction: 'ltr'
+            }
+          ],
+          listType: 'bullet',
+          direction: 'ltr'
+        }
+      ],
+      direction: 'ltr'
+    }
+  }
+};
+
 export const heroSections6_9MockData: RichTextType = {
   data: {
     root: {
