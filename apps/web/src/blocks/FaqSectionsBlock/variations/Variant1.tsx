@@ -41,7 +41,7 @@ export default function Variant1() {
         <Accordion type="single" defaultValue="item-1" aria-label="FAQ items">
           {/* FAQ Item 1 */}
           <AccordionItem value="item-1">
-            <AccordionTrigger className="text-base font-medium text-left">
+            <AccordionTrigger className="text-foreground text-base font-medium text-left">
               What is shadcn/ui?
             </AccordionTrigger>
             <AccordionContent className="text-sm text-muted-foreground">
@@ -54,7 +54,7 @@ export default function Variant1() {
 
           {/* FAQ Item 2 */}
           <AccordionItem value="item-2">
-            <AccordionTrigger className="text-base font-medium text-left">
+            <AccordionTrigger className="text-foreground text-base font-medium text-left">
               What is shadcn/ui kit for Figma?
             </AccordionTrigger>
             <AccordionContent className="text-sm text-muted-foreground">
@@ -65,7 +65,7 @@ export default function Variant1() {
 
           {/* FAQ Item 3 */}
           <AccordionItem value="item-3">
-            <AccordionTrigger className="text-base font-medium text-left">
+            <AccordionTrigger className="text-foreground text-base font-medium text-left">
               I'm not familiar with shadcn/ui. Can I still use this kit?
             </AccordionTrigger>
             <AccordionContent className="text-sm text-muted-foreground">
@@ -76,7 +76,7 @@ export default function Variant1() {
 
           {/* FAQ Item 4 */}
           <AccordionItem value="item-4">
-            <AccordionTrigger className="text-base font-medium text-left">
+            <AccordionTrigger className="text-foreground text-base font-medium text-left">
               Can I create multi-brand design systems with this UI kit?
             </AccordionTrigger>
             <AccordionContent className="text-sm text-muted-foreground">
@@ -87,7 +87,7 @@ export default function Variant1() {
 
           {/* FAQ Item 5 */}
           <AccordionItem value="item-5">
-            <AccordionTrigger className="text-base font-medium text-left">
+            <AccordionTrigger className="text-foreground text-base font-medium text-left">
               How will this kit save me time?
             </AccordionTrigger>
             <AccordionContent className="text-sm text-muted-foreground">
@@ -98,7 +98,7 @@ export default function Variant1() {
 
           {/* FAQ Item 6 */}
           <AccordionItem value="item-6">
-            <AccordionTrigger className="text-base font-medium text-left">
+            <AccordionTrigger className="text-foreground text-base font-medium text-left">
               How does this improve my collaboration with developers?
             </AccordionTrigger>
             <AccordionContent className="text-sm text-muted-foreground">
@@ -109,7 +109,7 @@ export default function Variant1() {
         </Accordion>
 
         {/* CTA Card */}
-        <div className="bg-muted/60 w-full rounded-xl p-6 md:p-8 flex flex-col items-center gap-6">
+        <div className="bg-primary-foreground w-full rounded-xl p-6 md:p-8 flex flex-col items-center gap-6">
           <div className="flex flex-col text-center gap-2">
             <h2 className="text-2xl font-bold text-foreground">
               Still have questions?
