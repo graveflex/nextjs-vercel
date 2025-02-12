@@ -75,11 +75,19 @@ export default function Variant3() {
 
             {/* Action Buttons */}
             <div className="flex flex-col md:flex-row gap-3">
-              <Button variant="outline" aria-label="Contact our support team">
+              <Button
+                variant="outline"
+                aria-label="Contact our support team"
+                className="text-foreground"
+              >
                 Contact us
                 <ArrowUpRight />
               </Button>
-              <Button variant="outline" aria-label="View documentation">
+              <Button
+                variant="outline"
+                aria-label="View documentation"
+                className="text-foreground"
+              >
                 View documentation
                 <ArrowUpRight />
               </Button>
