@@ -45,7 +45,7 @@ const BLOG_POSTS: BlogPost[] = [
 export default function Variant4() {
   return (
     <section
-      className="bg-muted/40 py-16 md:py-24"
+      className="bg-primary-foreground py-16 md:py-24"
       aria-labelledby="blog-section-4-heading"
     >
       <div className="container px-6 mx-auto">
@@ -55,7 +55,7 @@ export default function Variant4() {
               <p className="text-sm md:text-base font-semibold text-muted-foreground">
                 Blog section
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold">
+              <h2 className="text-foreground text-3xl md:text-4xl font-bold">
                 Short and clear engaging headline for a blog
               </h2>
               <p className="text-base text-muted-foreground">
@@ -64,7 +64,7 @@ export default function Variant4() {
                 two lines. Align with your blog categories.
               </p>
             </div>
-            <Button variant="outline" className="w-fit">
+            <Button variant="outline" className="w-fit text-foreground">
               View all articles
             </Button>
           </div>

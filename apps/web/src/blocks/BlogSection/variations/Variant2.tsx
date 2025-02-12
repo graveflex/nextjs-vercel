@@ -71,7 +71,7 @@ export default function Variant2() {
             {/* Main Title */}
             <h2
               id="blog-section-2-heading"
-              className="text-3xl font-bold leading-tight md:text-4xl"
+              className="text-foreground text-3xl font-bold leading-tight md:text-4xl"
             >
               Short and clear engaging headline for a blog
             </h2>
