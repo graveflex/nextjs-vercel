@@ -13,6 +13,17 @@ const meta: Meta<HeroSectionsBlockType> = {
   parameters: {
     layout: 'centered'
   },
+  argTypes: {
+    imagePosition: {
+      control: 'select',
+      options: ['left', 'right']
+    },
+    variant: {
+      control: 'select',
+      options: ['1', '2', '4', '5', '6', '8', '9']
+    }
+  },
+  decorators: [(Story) => <div className="bg-background">{Story()}</div>],
   tags: ['autodocs']
 };
 
@@ -21,62 +32,70 @@ type Story = StoryObj<HeroSectionsBlockType>;
 
 export const Defaults: Story = {
   args: {
+    imagePosition: 'right',
+    variant: '1',
     content: heroSectionsMockData.data,
-    image: imgMockData,
-    variant: '1'
+    image: imgMockData
   }
 };
 
 // Story name corresponds to variant number:
 export const One: Story = {
   args: {
+    imagePosition: 'right',
+    variant: '1',
     content: heroSectionsMockData.data,
-    image: imgMockData,
-    variant: '1'
+    image: imgMockData
   }
 };
 
 export const Two: Story = {
   args: {
+    imagePosition: 'right',
+    variant: '2',
     content: heroSectionsMockData.data,
-    image: imgMockData,
-    variant: '2'
+    image: imgMockData
   }
 };
 
 export const Four: Story = {
   args: {
+    imagePosition: 'right',
+    variant: '4',
     content: heroSectionsMockData.data,
-    image: imgMockData,
-    variant: '4'
+    image: imgMockData
   }
 };
 
 export const Five: Story = {
   args: {
-    content: heroSectionsMockData.data,
-    variant: '5'
+    imagePosition: 'right',
+    variant: '5',
+    content: heroSectionsMockData.data
   }
 };
 
 export const Six: Story = {
   args: {
+    variant: '6',
+    imagePosition: 'right',
     content: heroSections6_9MockData.data,
-    image: imgMockData,
-    variant: '6'
+    image: imgMockData
   }
 };
 
 export const Eight: Story = {
   args: {
-    content: heroSections6_9MockData.data,
-    variant: '8'
+    variant: '8',
+    imagePosition: 'right',
+    content: heroSections6_9MockData.data
   }
 };
 
 export const Nine: Story = {
   args: {
-    content: heroSections6_9MockData.data,
-    variant: '9'
+    variant: '9',
+    imagePosition: 'right',
+    content: heroSections6_9MockData.data
   }
 };
