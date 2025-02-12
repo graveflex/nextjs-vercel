@@ -70,6 +70,7 @@ export const Five: Story = {
 export const Six: Story = {
   args: {
     content: heroSections6_9MockData.data,
+    image: imgMockData,
     variant: '6'
   }
 };
