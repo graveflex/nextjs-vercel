@@ -15,7 +15,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_pagehdrSec_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."pagehdrSec_v" AS ENUM('1', '2', '3', '4', '5', '6');
   CREATE TYPE "public"."enum_pageherSecB_wrapper_theme" AS ENUM('_', 'light', 'dark');
-  CREATE TYPE "public"."vrnt" AS ENUM('1', '4', '5', '6', '8', '9');
+  CREATE TYPE "public"."vrnt" AS ENUM('1', '4', '5', '6', '9');
   CREATE TYPE "public"."enum_pageherSecB_image_position" AS ENUM('left', 'right');
   CREATE TYPE "public"."enum_pages_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum_pages_status" AS ENUM('draft', 'published');
