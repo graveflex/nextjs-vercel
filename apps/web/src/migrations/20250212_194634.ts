@@ -689,8 +689,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"email_verified" timestamp(3) with time zone,
   	"name" varchar,
   	"image" varchar,
-  	"first_name" varchar NOT NULL,
-  	"last_name" varchar NOT NULL,
+  	"first_name" varchar,
+  	"last_name" varchar,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
   );

@@ -687,8 +687,8 @@ export interface User {
   emailVerified?: string | null;
   name?: string | null;
   image?: string | null;
-  firstName: string;
-  lastName: string;
+  firstName?: string | null;
+  lastName?: string | null;
   roles?: ('user' | 'admin')[] | null;
   accounts?:
     | {

@@ -36,12 +36,12 @@ const Users: CollectionConfig = {
         {
           name: 'firstName',
           type: 'text',
-          required: true
+          required: false
         },
         {
           name: 'lastName',
           type: 'text',
-          required: true
+          required: false
         }
       ]
     },

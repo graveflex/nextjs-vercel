@@ -24,13 +24,14 @@ export const authUser = async (credentials: BasicCredentials) => {
         id: `${credentials.username}_1`,
         email: credentials.username,
         password: credentials.password,
-        roles: ['user']
+        roles: ['user'],
+        firstName: 'Admin',
+        lastName: 'User'
       }
     });
   } else {
     user = user.docs[0];
   }
 
-  console.info('🍤 ~ authUser ~ user:', user);
   return user;
 };
