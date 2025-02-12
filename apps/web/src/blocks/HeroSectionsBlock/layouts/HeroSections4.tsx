@@ -7,8 +7,14 @@ import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 import type { HeroSectionsBlockType } from '../index';
+import { genImgColumnOrder } from '../index';
 
-function HeroSections4({ content, image }: HeroSectionsBlockType) {
+function HeroSections4({
+  content,
+  image,
+  imagePosition
+}: HeroSectionsBlockType) {
+  const imgColumnOrder = genImgColumnOrder(imagePosition);
   return (
     <section
       className="bg-background py-16 lg:py-24"
@@ -40,7 +46,7 @@ function HeroSections4({ content, image }: HeroSectionsBlockType) {
         </div>
 
         {/* Right Column */}
-        <div className="flex-1 w-full">
+        <div className={`flex-1 w-full ${imgColumnOrder}`}>
           <AspectRatio ratio={1 / 1}>
             <ResponsivePayloadImage
               image={image}
