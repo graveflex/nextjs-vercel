@@ -34,7 +34,7 @@ export default async function Layout({
     },
     [[locale, draft, 'nav'].filter((x) => x).join('/')],
     {
-      tags: ['global-nav']
+      tags: ['global-nav', 'global-cache-key']
     }
   );
 
