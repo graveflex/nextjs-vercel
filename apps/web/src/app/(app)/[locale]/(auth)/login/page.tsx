@@ -1,9 +1,9 @@
+import Wrapper from '@mono/web/components/Wrapper';
+import { WEB_URL } from '@mono/web/lib/constants';
 import config from '@payload-config';
 import { headers } from 'next/headers';
 import { getPayload } from 'payload';
-import { WEB_URL } from '@mono/web/lib/constants';
 import type React from 'react';
-import Wrapper from '@mono/web/components/Wrapper';
 import styles from './Auth.module.css';
 
 async function AuthPage() {
