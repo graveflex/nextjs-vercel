@@ -41,12 +41,14 @@ export default function Variant2() {
             {/* Contact Form */}
             <form
               className="flex flex-col gap-5 md:gap-6"
-              onSubmit={(e) => e.preventDefault()}
+              // onSubmit={(e) => e.preventDefault()}
               aria-label="Contact form"
             >
               {/* Name Input */}
               <div className="flex flex-col gap-2">
-                <Label htmlFor="name">Name</Label>
+                <Label className="text-foreground" htmlFor="name">
+                  Name
+                </Label>
                 <Input
                   id="name"
                   placeholder="Name"
@@ -57,7 +59,9 @@ export default function Variant2() {
 
               {/* Email Input */}
               <div className="flex flex-col gap-2">
-                <Label htmlFor="email">Email</Label>
+                <Label className="text-foreground" htmlFor="email">
+                  Email
+                </Label>
                 <Input
                   id="email"
                   type="email"
@@ -69,7 +73,9 @@ export default function Variant2() {
 
               {/* Message Textarea */}
               <div className="flex flex-col gap-1.5">
-                <Label htmlFor="message">Message</Label>
+                <Label className="text-foreground" htmlFor="message">
+                  Message
+                </Label>
                 <Textarea
                   id="message"
                   placeholder="Type your message"
@@ -106,7 +112,7 @@ export default function Variant2() {
         <Separator className="block md:hidden" />
 
         {/* Right Column */}
-        <div className="md:bg-muted/40 flex flex-col items-center justify-center flex-1 px-6">
+        <div className="md:bg-primary-foreground flex flex-col items-center justify-center flex-1 px-6">
           <div className="flex flex-col gap-12">
             {/* Phone Card */}
             <Link

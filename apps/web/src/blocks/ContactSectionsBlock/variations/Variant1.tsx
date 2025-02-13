@@ -21,7 +21,10 @@ export default function Variant1() {
             </p>
 
             {/* Main Title */}
-            <h1 id="contact-heading" className="text-3xl md:text-4xl font-bold">
+            <h1
+              id="contact-heading"
+              className="text-3xl md:text-4xl font-bold text-foreground"
+            >
               Get in touch
             </h1>
 
@@ -36,12 +39,14 @@ export default function Variant1() {
           {/* Contact Form */}
           <form
             className="flex flex-col w-full gap-5"
-            onSubmit={(e) => e.preventDefault()}
+            // onSubmit={(e) => e.preventDefault()}
             aria-label="Contact form"
           >
             {/* Name Input */}
             <div className="grid gap-2">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="name" className="text-foreground">
+                Name
+              </Label>
               <Input
                 id="name"
                 placeholder="Name"
@@ -52,7 +57,9 @@ export default function Variant1() {
 
             {/* Email Input */}
             <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-foreground">
+                Email
+              </Label>
               <Input
                 id="email"
                 placeholder="Email"
@@ -64,7 +71,9 @@ export default function Variant1() {
 
             {/* Message Textarea */}
             <div className="grid gap-2">
-              <Label htmlFor="message">Message</Label>
+              <Label htmlFor="message" className="text-foreground">
+                Message
+              </Label>
               <Textarea
                 id="message"
                 placeholder="Type your message"

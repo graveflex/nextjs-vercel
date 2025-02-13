@@ -44,12 +44,14 @@ export default function Variant6() {
           {/* Contact Form */}
           <form
             className="flex flex-col gap-5 md:gap-6"
-            onSubmit={(e) => e.preventDefault()}
+            // onSubmit={(e) => e.preventDefault()}
             aria-label="Contact form"
           >
             {/* Name Input */}
             <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
+              <Label className="text-foreground" htmlFor="name">
+                Name
+              </Label>
               <Input
                 id="name"
                 placeholder="Name"
@@ -60,7 +62,9 @@ export default function Variant6() {
 
             {/* Email Input */}
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label className="text-foreground" htmlFor="email">
+                Email
+              </Label>
               <Input
                 id="email"
                 type="email"
@@ -72,7 +76,9 @@ export default function Variant6() {
 
             {/* Message Textarea */}
             <div className="space-y-2">
-              <Label htmlFor="message">Message</Label>
+              <Label className="text-foreground" htmlFor="message">
+                Message
+              </Label>
               <Textarea
                 id="message"
                 placeholder="Type your message"
@@ -114,7 +120,7 @@ export default function Variant6() {
       <Separator className="block md:hidden" />
 
       {/* Right Column */}
-      <div className="flex-1 md:bg-muted/40 items-center justify-center md:py-24 px-6 md:px-0">
+      <div className="flex-1 md:bg-primary-foreground items-center justify-center md:py-24 px-6 md:px-0">
         <div className="flex flex-col gap-8 max-w-md mx-auto">
           {/* Office Locations */}
           <div className="flex flex-col gap-6">

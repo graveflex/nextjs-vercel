@@ -119,7 +119,7 @@ export default function Variant3() {
         <Separator className="block md:hidden" />
 
         {/* Right Column */}
-        <div className="flex flex-col items-center md:items-start flex-1 md:p-12 rounded-xl md:bg-muted/40">
+        <div className="flex flex-col items-center md:items-start flex-1 md:p-12 rounded-xl md:bg-primary-foreground">
           <div className="flex flex-col gap-12 flex-1">
             {/* Phone Card */}
             <Link
