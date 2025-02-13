@@ -182,29 +182,9 @@ const DropdownMenuShortcut = ({
 };
 DropdownMenuShortcut.displayName = 'DropdownMenuShortcut';
 
-const DropdownMenuHoverTrigger = (props: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Trigger>) => {
-  const ref = React.useRef<HTMLButtonElement>(null);
-  const handleHoverEnter = () => {
-    if (ref.current) {
-      const clickEvent = new PointerEvent('pointerdown', {
-        bubbles: true,
-        cancelable: true
-      });
-      ref.current.dispatchEvent(clickEvent)
-    }
-  };
-
-  return <DropdownMenuTrigger 
-    ref={ref} 
-    onMouseEnter={handleHoverEnter}
-    {...props} 
-  />;
-};
-
 export {
   DropdownMenu,
   DropdownMenuTrigger,
-  DropdownMenuHoverTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuCheckboxItem,

@@ -23,18 +23,9 @@ import {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-  DropdownMenuHoverTrigger
+  DropdownMenuTrigger
 } from '@mono/web/components/ui/DropdownMenu';
-import { 
-  NavigationMenu, 
-  NavigationMenuSub ,
-  NavigationMenuList,
-  NavigationMenuLink,
-  NavigationMenuItem,
-  NavigationMenuTrigger,
-  NavigationMenuContent
-} from '@radix-ui/react-navigation-menu';
+import NestedNavigationMenu from '@mono/web/components/NavigationMenu';
 import {
   Sidebar,
   SidebarContent,
@@ -238,9 +229,9 @@ function TopLevelDesktopDropdownContainer({
   return links.map((link, i) =>
     link.links?.length ? (
       <DropdownMenu key={`menu-${level}-${i}`}>
-        <DropdownMenuHoverTrigger asChild={true}>
+        <DropdownMenuTrigger asChild={true}>
           <DesktopDropdownLink variant="outline" {...link} />
-        </DropdownMenuHoverTrigger>
+        </DropdownMenuTrigger>
         <DropdownMenuContent>
           <RecurseDesktopMenu links={link.links} level={1} />
         </DropdownMenuContent>
@@ -330,39 +321,7 @@ function Header() {
     <header className={styles.container}>
       <RecurseDesktopMenu links={data} />
 
-      <NavigationMenu>
-        <NavigationMenu>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Item one</NavigationMenuTrigger>
-            <NavigationMenuContent>Item one content</NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Item two</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <NavigationMenuSub defaultValue="sub1">
-                <NavigationMenuList>
-                  <NavigationMenuItem value="sub1">
-                    <NavigationMenuTrigger>
-                      Sub item one
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      Sub item one content
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                  <NavigationMenuItem value="sub2">
-                    <NavigationMenuTrigger>
-                      Sub item two
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      Sub item two content
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                </NavigationMenuList>
-              </NavigationMenuSub>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        </NavigationMenu>
-      </NavigationMenu>
+      <NestedNavigationMenu />
 
       <RecurseMobileMenu links={data} />
     </header>
