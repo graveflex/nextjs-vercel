@@ -1,5 +1,5 @@
 // Types
-import type { BannersBlockT as PayloadType } from '@mono/types/payload-types';
+import type { HeaderSectionsBlockT as PayloadType } from '@mono/types/payload-types';
 
 import dynamic from 'next/dynamic';
 // Libraries
@@ -8,7 +8,7 @@ import React from 'react';
 // Components
 import Wrapper from '@mono/web/components/Wrapper';
 
-export type BannersBlockType = Omit<PayloadType, 'blockType'>;
+export type HeaderSectionsBlockType = Omit<PayloadType, 'blockType'>;
 
 const defaultOpts = {
   suspense: true,
@@ -24,24 +24,14 @@ const Variants = {
   '6': dynamic(() => import('./variations/Variant6'), { ...defaultOpts })
 };
 
-function BannersBlock({ variant, ...props }: BannersBlockType) {
+function HeaderSectionsBlock({ variant, ...props }: HeaderSectionsBlockType) {
   const VariantComponent = Variants[variant];
 
   return (
     <Wrapper {...props.wrapper}>
-      {/* 
-        Exception for Banner  Variant6, it's supposed to be position fixed;
-        */}
-
-      {variant === '6' ? (
-        <div className="relative h-24 mb-24">
-          <VariantComponent />
-        </div>
-      ) : (
-        <VariantComponent />
-      )}
+      <VariantComponent />
     </Wrapper>
   );
 }
 
-export default BannersBlock;
+export default HeaderSectionsBlock;

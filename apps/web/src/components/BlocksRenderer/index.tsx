@@ -11,6 +11,12 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
+  headerSectionsBlock: dynamic(
+    () => import('@mono/web/blocks/HeaderSectionsBlock'),
+    {
+      ...defaultOpts
+    }
+  ),
   bannersBlock: dynamic(() => import('@mono/web/blocks/BannersBlock'), {
     ...defaultOpts
   }),

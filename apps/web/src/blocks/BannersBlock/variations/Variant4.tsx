@@ -10,12 +10,15 @@ export default function Variant4() {
     >
       <Link
         href="#"
-        className="flex px-4 py-1.5 border border-border bg-background gap-2 items-center rounded-full hover:bg-muted w-fit"
+        className="flex px-4 py-1.5 border border-border bg-background gap-2 items-center rounded-full hover:bg-primary-foreground hover:drop-shadow-sm w-fit"
         aria-label="Learn more about new Pro Blocks update"
       >
-        <Rocket className="size-4 shrink-0" aria-hidden="true" />
+        <Rocket
+          className="size-4 shrink-0 text-foreground"
+          aria-hidden="true"
+        />
         <span className="text-sm" id="update-description">
-          <span className="font-semibold">New update </span>
+          <span className="font-semibold text-foreground">New update </span>
           <span className="text-muted-foreground">
             · 100+ Pro Blocks are now available
           </span>

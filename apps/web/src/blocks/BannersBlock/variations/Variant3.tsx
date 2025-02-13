@@ -6,11 +6,11 @@ export default function Variant3() {
     <aside
       role="alert"
       aria-label="Cookie consent banner"
-      className="bg-background py-4"
+      className="bg-accent-foreground py-4"
     >
       <div className="container mx-auto px-6 flex flex-col md:flex-row gap-6 items-center justify-between">
         <p
-          className="text-sm text-foreground max-w-xl text-center md:text-left"
+          className="text-sm text-background max-w-xl text-center md:text-left"
           id="cookie-consent-description"
         >
           We use cookies to enhance your experience. By clicking "Accept," you
@@ -25,19 +25,19 @@ export default function Variant3() {
           aria-describedby="cookie-consent-description"
         >
           <Button
-            onClick={() => {
-              /* Add accept handler */
-            }}
-            className="order-1 md:order-2 w-full md:w-auto"
+            // onClick={() => {
+            //   /* Add accept handler */
+            // }}
+            className="order-1 md:order-2 w-full md:w-auto bg-accent text-accent-foreground hover:text-accent hover:bg-foreground border-background border-1"
             aria-label="Accept all cookies"
           >
             Accept all
           </Button>
           <Button
-            onClick={() => {
-              /* Add reject handler */
-            }}
-            className="order-2 md:order-1 w-full md:w-auto"
+            // onClick={() => {
+            //   /* Add reject handler */
+            // }}
+            className="order-2 md:order-1 w-full md:w-auto bg-accent-foreground text-background hover:text-accent-foreground hover:bg-background "
             variant="outline"
             aria-label="Reject all cookies"
           >
