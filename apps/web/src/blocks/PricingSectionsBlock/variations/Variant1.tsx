@@ -133,7 +133,7 @@ export default function Variant1() {
             {/* Main Title */}
             <h2
               id="pricing-section-title"
-              className="text-3xl md:text-4xl font-bold"
+              className="text-3xl md:text-4xl font-bold text-foreground"
             >
               Benefit-focused headline that highlights choice
             </h2>
@@ -152,16 +152,16 @@ export default function Variant1() {
             onValueChange={setBillingPeriod}
             className="w-fit"
           >
-            <TabsList className="bg-muted h-10 p-1 rounded-[40px]">
+            <TabsList className="bg-primary-foreground h-10 py-1 rounded-[40px]">
               <TabsTrigger
                 value="monthly"
-                className="rounded-full px-3 py-1.5 data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                className="rounded-full px-3 py-1.5 data-[state=active]:bg-background"
               >
                 Monthly
               </TabsTrigger>
               <TabsTrigger
                 value="annually"
-                className="rounded-full px-3 py-1.5 data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                className="rounded-full px-3 py-1.5 data-[state=active]:bg-background"
               >
                 Annually
               </TabsTrigger>

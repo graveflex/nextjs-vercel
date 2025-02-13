@@ -86,7 +86,7 @@ export default function Variant3() {
   return (
     // Main pricing section container with muted background
     <section
-      className="py-16 md:py-24 bg-muted/40"
+      className="py-16 md:py-24 bg-primary-foreground"
       aria-labelledby="pricing-section-title-3"
     >
       <div className="container mx-auto px-6">
@@ -100,7 +100,7 @@ export default function Variant3() {
             {/* Main Title */}
             <h2
               id="pricing-section-title-3"
-              className="text-3xl md:text-4xl font-bold"
+              className="text-3xl md:text-4xl font-bold text-foreground"
             >
               Benefit-focused headline that highlights choice
             </h2>

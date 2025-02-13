@@ -158,7 +158,7 @@ export default function Variant2() {
             {/* Main Title */}
             <h2
               id="pricing-section-title-2"
-              className="text-3xl md:text-4xl font-bold"
+              className="text-3xl md:text-4xl font-bold text-foreground"
             >
               Benefit-focused headline that highlights choice
             </h2>
