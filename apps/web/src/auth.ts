@@ -79,6 +79,8 @@ export const signUp = async (formData: FormData) => {
       path: '/'
     });
 
+    await signIn('credentials', formData);
+
     return user;
   }
 
