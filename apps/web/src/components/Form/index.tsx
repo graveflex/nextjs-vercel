@@ -2,11 +2,10 @@
 import type { Form } from '@mono/types/payload-types';
 import { Button } from '@mono/web/components/ui/Button';
 import { Label } from '@mono/web/components/ui/Label';
+import { WEB_URL } from '@mono/web/lib/constants';
 import { cn } from '@mono/web/lib/utils';
-// import { WEB_URL } from '@mono/web/lib/constants';
 import has from 'lodash/has';
 import { ArrowRight } from 'lucide-react';
-import { Fragment } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import fieldInputs from './fields';
 
@@ -36,7 +35,7 @@ export default function FormComponent({ form }: FormComponentTypes) {
     }));
 
     try {
-      await fetch(`http://localhost:3000/api/form-submissions`, {
+      await fetch(`${WEB_URL}/api/form-submissions`, {
         body: JSON.stringify({
           form: formId,
           submissionData: dataToSend
