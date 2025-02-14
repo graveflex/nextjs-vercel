@@ -1,6 +1,6 @@
 import payloadConfig from '@payload-config';
 import NextAuth from 'next-auth';
-import { getPayload, type BasePayload } from 'payload';
+import { type BasePayload, getPayload } from 'payload';
 import { withPayload } from 'payload-authjs';
 import { authConfig } from './auth.config';
 

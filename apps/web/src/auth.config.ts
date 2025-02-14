@@ -1,8 +1,8 @@
 import type { User as PayloadUser } from '@mono/types/payload-types';
+import { createPayloadAuthSessionWithEmailCreds } from '@mono/web/lib/authSession';
 import type { NextAuthConfig } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import github from 'next-auth/providers/github';
-import { createPayloadAuthSessionWithEmailCreds } from '@mono/web/lib/authSession';
 import type { PayloadAuthjsUser } from 'payload-authjs';
 
 declare module 'next-auth' {
