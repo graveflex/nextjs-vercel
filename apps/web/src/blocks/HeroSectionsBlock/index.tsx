@@ -38,6 +38,7 @@ function HeroSectionsBlock({
   image,
   variant = '1',
   imagePosition,
+  form,
   wrapper
 }: HeroSectionsBlockType) {
   const Component: ComponentType<HeroSectionsBlockType> = layoutList[variant];
@@ -46,6 +47,7 @@ function HeroSectionsBlock({
     <Wrapper {...wrapper}>
       <Component
         content={content}
+        form={form}
         image={image}
         imagePosition={imagePosition}
         variant={variant}
