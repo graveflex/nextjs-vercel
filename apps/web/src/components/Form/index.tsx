@@ -1,13 +1,14 @@
 'use client';
 import type { Form } from '@mono/types/payload-types';
 import { Button } from '@mono/web/components/ui/Button';
-import { Input } from '@mono/web/components/ui/Input';
+import type { Input } from '@mono/web/components/ui/Input';
 import { Label } from '@mono/web/components/ui/Label';
 // import { WEB_URL } from '@mono/web/lib/constants';
 import has from 'lodash/has';
 import { ArrowRight } from 'lucide-react';
 import { Fragment } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
+import fieldInputs from './fields';
 
 type Inputs = {
   [key: string]: string;
@@ -64,10 +65,12 @@ export default function FormComponent({ form }: FormComponentTypes) {
         const defaultValue: string = has(field, 'defaultValue')
           ? (field.defaultValue as string)
           : '';
+
+        const Field = fieldInputs?.[`${field.blockType}`];
         return (
           <Fragment key={field.id}>
             <Label htmlFor={field.name}>{field.label}</Label>
-            <Input
+            <Field
               type={field.blockType}
               placeholder={`${field.label}`}
               defaultValue={defaultValue}
