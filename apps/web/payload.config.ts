@@ -234,7 +234,7 @@ export default buildConfig({
         text: true,
         textarea: true,
         select: true,
-        email: false,
+        email: true,
         state: false,
         country: false,
         checkbox: false,

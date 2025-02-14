@@ -82,6 +82,12 @@ const HeroSectionsBlock = (prefix: string): Block => ({
           return false;
         }
       }
+    },
+    {
+      name: 'form',
+      type: 'relationship',
+      relationTo: 'forms',
+      required: true
     }
   ]
 });

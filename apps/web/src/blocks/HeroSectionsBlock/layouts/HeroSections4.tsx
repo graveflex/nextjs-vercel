@@ -1,10 +1,7 @@
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
+import Form from '@mono/web/components/Form';
 import RichText from '@mono/web/components/RichText/index';
 import { AspectRatio } from '@mono/web/components/ui/AspectRatio';
-import { Button } from '@mono/web/components/ui/Button';
-import { Input } from '@mono/web/components/ui/Input';
-import { ArrowRight } from 'lucide-react';
-import Image from 'next/image';
 import React from 'react';
 import type { HeroSectionsBlockType } from '../index';
 import { genImgColumnOrder } from '../index';
@@ -12,9 +9,11 @@ import { genImgColumnOrder } from '../index';
 function HeroSections4({
   content,
   image,
-  imagePosition
+  imagePosition,
+  form
 }: HeroSectionsBlockType) {
   const imgColumnOrder = genImgColumnOrder(imagePosition);
+  const payloadForm = typeof form !== 'number' ? form : undefined;
   return (
     <section
       className="bg-background py-16 lg:py-24"
@@ -28,7 +27,7 @@ function HeroSections4({
           </div>
 
           {/* Email Form */}
-          <form
+          {/* <form
             className="flex flex-col lg:flex-row gap-3 w-full md:max-w-sm"
             aria-label="Email signup form"
           >
@@ -42,7 +41,9 @@ function HeroSections4({
               Sign up
               <ArrowRight />
             </Button>
-          </form>
+          </form> */}
+
+          <Form form={payloadForm} />
         </div>
 
         {/* Right Column */}
