@@ -1,7 +1,6 @@
 'use client';
 import type { Form } from '@mono/types/payload-types';
 import { Button } from '@mono/web/components/ui/Button';
-import type { Input } from '@mono/web/components/ui/Input';
 import { Label } from '@mono/web/components/ui/Label';
 // import { WEB_URL } from '@mono/web/lib/constants';
 import has from 'lodash/has';
@@ -26,7 +25,8 @@ export default function FormComponent({ form }: FormComponentTypes) {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
+    control
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const dataToSend = Object.entries(data).map(([name, value]) => ({
@@ -67,6 +67,7 @@ export default function FormComponent({ form }: FormComponentTypes) {
           : '';
 
         const Field = fieldInputs?.[`${field.blockType}`];
+        const isDropdown = field?.blockType === 'select';
         return (
           <Fragment key={field.id}>
             <Label htmlFor={field.name}>{field.label}</Label>
@@ -76,6 +77,8 @@ export default function FormComponent({ form }: FormComponentTypes) {
               defaultValue={defaultValue}
               required={!!field.required}
               className={errors?.[`${field.name}`] && 'border-red-500'}
+              options={isDropdown ? field?.options : null}
+              control={control}
               {...register(field.name, {
                 required: field?.required
                   ? `${field?.label} is required.`
