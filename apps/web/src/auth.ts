@@ -1,9 +1,7 @@
 import payloadConfig from '@payload-config';
 import NextAuth from 'next-auth';
-import { cookies } from 'next/headers';
-import { getPayload } from 'payload';
+import { getPayload, type BasePayload } from 'payload';
 import { withPayload } from 'payload-authjs';
-import { v4 as uuidv4 } from 'uuid';
 import { authConfig } from './auth.config';
 
 export const { handlers, signIn, signOut, auth } = NextAuth(
@@ -37,54 +35,16 @@ export const signUp = async (formData: FormData) => {
     throw new Error('User already exists');
   }
 
-  const existingUserResp = await payload.find({
-    collection: 'users',
-    where: { email: { equals: email } },
-    limit: 1
-  });
-
-  let user = existingUserResp.docs[0];
-  if (!user) {
-    user = await payload.create({
-      collection: 'users',
-      data: {
-        id: uuidv4(),
-        email
-      }
-    });
-  }
-
-  await payload.create({
+  const account = await payload.create({
     collection: 'userEmailProviders',
     data: {
       email: email,
-      password: password,
-      user: user.id
+      password: password
     }
   });
 
-  const account = await payload.login({
-    collection: 'userEmailProviders',
-    data: {
-      email: email as string,
-      password: password as string
-    }
-  });
-
-  if (account.token) {
-    const cookieStore = await cookies();
-    const cookieName = `${payload.config.cookiePrefix}-token`;
-    cookieStore.set(cookieName, account.token, {
-      maxAge: 60 * 60 * 24 * 30,
-      path: '/'
-    });
-
-    await signIn('credentials', formData);
-
-    return user;
-  }
-
-  throw new Error('Failed to sign up');
+  await signIn('credentials', formData);
+  return account.user;
 };
 
 export const sendPasswordResetEmail = async (formData: FormData) => {

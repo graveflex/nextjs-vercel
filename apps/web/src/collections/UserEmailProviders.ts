@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload';
+import { v4 as uuidv4 } from 'uuid';
 
 const UserEmailProviders: CollectionConfig = {
   slug: 'userEmailProviders',
@@ -14,7 +15,36 @@ const UserEmailProviders: CollectionConfig = {
       type: 'relationship',
       relationTo: 'users'
     }
-  ]
+  ],
+  hooks: {
+    beforeChange: [
+      async ({ data, req, operation }) => {
+        if (operation === 'create') {
+          const email = data.email;
+          const existingAuthjsUserResp = await req.payload.find({
+            collection: 'users',
+            where: { email: { equals: email } },
+            limit: 1
+          });
+
+          let authjsUser = existingAuthjsUserResp.docs[0];
+          if (!authjsUser) {
+            authjsUser = await req.payload.create({
+              collection: 'users',
+              data: {
+                id: uuidv4(),
+                email
+              }
+            });
+          }
+
+          data.user = authjsUser?.id;
+        }
+
+        return data;
+      }
+    ]
+  }
 };
 
 export default UserEmailProviders;
