@@ -49,7 +49,7 @@ export async function generateMetadata(props: RootLayoutProps) {
   unstable_setRequestLocale(locale);
   const data = await fetchPageData(draft, locale);
 
-  if ('error' in data) {
+  if ((data && 'error' in data) || !data) {
     return {};
   }
 

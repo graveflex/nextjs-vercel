@@ -78,7 +78,7 @@ export async function generateMetadata({
   const { draft, locale } = await params;
   const data = await fetchPageData(draft, locale, searchParams);
 
-  if ('error' in data) {
+  if ((data && 'error' in data) || !data) {
     return {};
   }
 
