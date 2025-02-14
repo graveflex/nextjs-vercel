@@ -2,6 +2,7 @@
 import type { Form } from '@mono/types/payload-types';
 import { Button } from '@mono/web/components/ui/Button';
 import { Label } from '@mono/web/components/ui/Label';
+import { cn } from '@mono/web/lib/utils';
 // import { WEB_URL } from '@mono/web/lib/constants';
 import has from 'lodash/has';
 import { ArrowRight } from 'lucide-react';
@@ -57,7 +58,7 @@ export default function FormComponent({ form }: FormComponentTypes) {
     <form
       id={`${formId}`}
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col lg:flex-row gap-3 w-full md:max-w-sm"
+      className="flex flex-col flex-wrap gap-3 w-full md:max-w-sm"
       aria-label="Email signup form"
       noValidate={true}
     >
@@ -68,15 +69,19 @@ export default function FormComponent({ form }: FormComponentTypes) {
 
         const Field = fieldInputs?.[`${field.blockType}`];
         const isDropdown = field?.blockType === 'select';
+
         return (
-          <Fragment key={field.id}>
+          <div key={field.id} className="flex-1">
             <Label htmlFor={field.name}>{field.label}</Label>
             <Field
               type={field.blockType}
               placeholder={`${field.label}`}
               defaultValue={defaultValue}
               required={!!field.required}
-              className={errors?.[`${field.name}`] && 'border-red-500'}
+              className={cn(
+                errors?.[`${field.name}`] && 'border-red-500',
+                'flex-1'
+              )}
               options={isDropdown ? field?.options : null}
               control={control}
               {...register(field.name, {
@@ -90,7 +95,7 @@ export default function FormComponent({ form }: FormComponentTypes) {
                 {`* ${errors?.[`${field.name}`]?.message}`}
               </span>
             )}
-          </Fragment>
+          </div>
         );
       })}
 
