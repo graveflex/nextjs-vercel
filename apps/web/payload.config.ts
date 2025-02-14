@@ -220,7 +220,7 @@ export default buildConfig({
         'authors'
       ],
       // globals with the enabled translator in the admin UI
-      globals: ['nav', 'four-oh-four'],
+      globals: ['nav', 'homepage'],
       // add resolvers that you want to include, examples on how to write your own in ./plugin/src/resolvers
       resolvers: [
         googleResolver({

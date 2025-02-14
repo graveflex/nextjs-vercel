@@ -42,8 +42,8 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
 
-import React from 'react';
 import nextDynamic from 'next/dynamic';
+import React from 'react';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
