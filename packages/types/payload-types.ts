@@ -450,6 +450,16 @@ export interface Form {
             name: string;
             label?: string | null;
             width?: number | null;
+            defaultValue?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'number';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
             defaultValue?: string | null;
             options?:
               | {
@@ -1511,6 +1521,17 @@ export interface FormsSelect<T extends boolean = true> {
               name?: T;
               label?: T;
               width?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        number?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              defaultValue?: T;
               required?: T;
               id?: T;
               blockName?: T;
