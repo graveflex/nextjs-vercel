@@ -9,12 +9,12 @@ export default function AuthLayout({
       {/* Left side: Sign-in form */}
       <div className="md:w-1/2 md:flex items-center justify-center px-6 py-24 relative">
         {/* Logo */}
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 md:left-4 md:translate-x-0">
+        <div className="absolute top-4 left-4">
           <div className="w-8 h-8 bg-accent-foreground" />
         </div>
 
         {/* Account dropdown */}
-        <div className="absolute top-4 right-1/2 -translate-x-1/2 md:right-4 md:translate-x-0">
+        <div className="absolute top-4 right-4">
           <AccountDropdown />
         </div>
 
