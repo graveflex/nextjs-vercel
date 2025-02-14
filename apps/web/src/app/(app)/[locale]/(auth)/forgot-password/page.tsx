@@ -1,3 +1,4 @@
+import { sendPasswordResetEmail } from '@mono/web/auth';
 import { Button } from '@mono/web/components/ui/Button';
 import { Checkbox } from '@mono/web/components/ui/Checkbox';
 import { Input } from '@mono/web/components/ui/Input';
@@ -16,7 +17,14 @@ async function ForgotPassword() {
         </div>
 
         {/* Sign-in form container */}
-        <div className="w-full max-w-sm space-y-6 m-auto">
+        <form
+          className="w-full max-w-sm space-y-6 m-auto"
+          action={async (formData) => {
+            'use server';
+            // TODO: handle validation + success message
+            await sendPasswordResetEmail(formData);
+          }}
+        >
           {/* Header */}
           <div className="space-y-2 text-center">
             <h1 className="text-3xl font-bold">Reset Password</h1>
@@ -56,7 +64,7 @@ async function ForgotPassword() {
               Sign up
             </Link>
           </p>
-        </div>
+        </form>
       </div>
 
       {/* Right side: Image */}

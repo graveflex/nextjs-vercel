@@ -152,6 +152,7 @@
     "tsx": "latest",
     "typescript": "latest",
     "use-intl": "^3.19.0",
+    "uuid": "^11.0.5",
     "vaul": "^1.1.2",
     "vite-plugin-svgr": "latest",
     "vite-transform-stub": "latest",

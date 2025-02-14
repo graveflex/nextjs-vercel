@@ -1,10 +1,12 @@
+import Admins from '@mono/web/collections/Admins';
 import Authors from '@mono/web/collections/Authors';
 import Files from '@mono/web/collections/Files';
 import Images from '@mono/web/collections/Images';
 import Pages from '@mono/web/collections/Pages';
 import Posts from '@mono/web/collections/Posts';
 import Tags from '@mono/web/collections/Tags/Tags.config';
-import Users from '@mono/web/collections/User';
+import UserEmailProviders from '@mono/web/collections/UserEmailProviders';
+import Users from '@mono/web/collections/Users';
 import Videos from '@mono/web/collections/Videos';
 import BlogIndex from '@mono/web/globals/BlogIndex/BlogIndex.config';
 import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.config';
@@ -42,16 +44,13 @@ import {
   lexicalEditor
 } from '@payloadcms/richtext-lexical';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { buildConfig } from 'payload';
+import { authjsPlugin } from 'payload-authjs';
 import sharp from 'sharp';
+import { authConfig } from './src/auth.config';
 import { Embed } from './src/components/RichText/Blocks/Embed/config';
 import { EyebrowFeature } from './src/components/RichText/Features/eyebrow/eyebrow.server';
-
-import { fileURLToPath } from 'node:url';
-import path from 'path';
-import { revalidatePath, revalidateTag } from 'next/cache';
-const filename = fileURLToPath(import.meta.url);
-const dirname = path.dirname(filename);
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
 
@@ -164,7 +163,18 @@ export default buildConfig({
         })
       ] as FeatureProviderServer<unknown, unknown>[]
   }),
-  collections: [Pages, Posts, Authors, Tags, Files, Images, Videos, Users],
+  collections: [
+    Pages,
+    Posts,
+    Authors,
+    Tags,
+    Files,
+    Images,
+    Videos,
+    Users,
+    UserEmailProviders,
+    Admins
+  ],
   i18n: {
     fallbackLanguage: 'en'
   },
@@ -178,6 +188,9 @@ export default buildConfig({
     api: '/api'
   },
   plugins: [
+    authjsPlugin({
+      authjsConfig: authConfig
+    }),
     seoPlugin({
       collections: ['pages', 'posts'],
       fields: ({ defaultFields }) => [
@@ -250,9 +263,9 @@ export default buildConfig({
     }
   },
   admin: {
-    user: Users.slug,
+    user: Admins.slug,
     autoLogin: {
-      email: 'dev@payloadcms.com',
+      email: 'admin@graveflex.com',
       password: 'test',
       prefillOnly: true
     },
@@ -286,7 +299,7 @@ export default buildConfig({
       collections: ['pages']
     },
     importMap: {
-      baseDir: path.resolve(dirname, 'src')
+      baseDir: './src'
     },
     components: {
       afterNavLinks: [
@@ -317,15 +330,15 @@ export default buildConfig({
   },
   async onInit(payload) {
     const existingUsers = await payload.find({
-      collection: 'users',
+      collection: 'admins',
       limit: 1
     });
 
     if (existingUsers.docs.length === 0) {
       await payload.create({
-        collection: 'users',
+        collection: 'admins',
         data: {
-          email: 'dev@payloadcms.com',
+          email: 'admin@graveflex.com',
           password: 'test'
         }
       });
