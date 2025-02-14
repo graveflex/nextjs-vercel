@@ -7,7 +7,6 @@ import Tags from '@mono/web/collections/Tags/Tags.config';
 import Users from '@mono/web/collections/User';
 import Videos from '@mono/web/collections/Videos';
 import BlogIndex from '@mono/web/globals/BlogIndex/BlogIndex.config';
-import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.config';
 import Homepage from '@mono/web/globals/Home/Homepage.config';
 import Nav from '@mono/web/globals/Layout/Layout.config';
 // import nodeMailer from 'nodemailer';
@@ -173,7 +172,7 @@ export default buildConfig({
     defaultLocale: DEFAULT_LOCALE,
     fallback: true
   },
-  globals: [Nav, FourOhFour, Homepage, BlogIndex],
+  globals: [Nav, Homepage, BlogIndex],
   routes: {
     api: '/api'
   },

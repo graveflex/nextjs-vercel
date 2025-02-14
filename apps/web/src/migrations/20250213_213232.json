@@ -1,191 +1,9 @@
 {
-  "id": "a810c579-79c6-4bb2-9747-2e3ab9c484ca",
+  "id": "75ac4a32-756e-4589-9038-a695d86e6117",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.pageFourOhFourBlock": {
-      "name": "pageFourOhFourBlock",
-      "schema": "",
-      "columns": {
-        "_order": {
-          "name": "_order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_path": {
-          "name": "_path",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "id": {
-          "name": "id",
-          "type": "varchar",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "wrapper_theme": {
-          "name": "wrapper_theme",
-          "type": "enum_pageFourOhFourBlock_wrapper_theme",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_content_width": {
-          "name": "wrapper_content_width",
-          "type": "cw",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'xl'"
-        },
-        "wrapper_padding_xs_padding_top": {
-          "name": "wrapper_padding_xs_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xs_padding_bottom": {
-          "name": "wrapper_padding_xs_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_md_padding_top": {
-          "name": "wrapper_padding_md_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_md_padding_bottom": {
-          "name": "wrapper_padding_md_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_lg_padding_top": {
-          "name": "wrapper_padding_lg_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_lg_padding_bottom": {
-          "name": "wrapper_padding_lg_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xl_padding_top": {
-          "name": "wrapper_padding_xl_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xl_padding_bottom": {
-          "name": "wrapper_padding_xl_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "variant": {
-          "name": "variant",
-          "type": "enum_pageFourOhFourBlock_variant",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'1'"
-        },
-        "block_name": {
-          "name": "block_name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {
-        "pageFourOhFourBlock_order_idx": {
-          "name": "pageFourOhFourBlock_order_idx",
-          "columns": [
-            {
-              "expression": "_order",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "pageFourOhFourBlock_parent_id_idx": {
-          "name": "pageFourOhFourBlock_parent_id_idx",
-          "columns": [
-            {
-              "expression": "_parent_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "pageFourOhFourBlock_path_idx": {
-          "name": "pageFourOhFourBlock_path_idx",
-          "columns": [
-            {
-              "expression": "_path",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        }
-      },
-      "foreignKeys": {
-        "pageFourOhFourBlock_parent_id_fk": {
-          "name": "pageFourOhFourBlock_parent_id_fk",
-          "tableFrom": "pageFourOhFourBlock",
-          "tableTo": "pages",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
     "public.pageHeaderSectionsBlock": {
       "name": "pageHeaderSectionsBlock",
       "schema": "",
@@ -1561,194 +1379,6 @@
           "name": "pages_locales_parent_id_fk",
           "tableFrom": "pages_locales",
           "tableTo": "pages",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public._pageFourOhFourBlock_v": {
-      "name": "_pageFourOhFourBlock_v",
-      "schema": "",
-      "columns": {
-        "_order": {
-          "name": "_order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_path": {
-          "name": "_path",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "wrapper_theme": {
-          "name": "wrapper_theme",
-          "type": "enum__pageFourOhFourBlock_v_wrapper_theme",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_content_width": {
-          "name": "wrapper_content_width",
-          "type": "cw",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'xl'"
-        },
-        "wrapper_padding_xs_padding_top": {
-          "name": "wrapper_padding_xs_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xs_padding_bottom": {
-          "name": "wrapper_padding_xs_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_md_padding_top": {
-          "name": "wrapper_padding_md_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_md_padding_bottom": {
-          "name": "wrapper_padding_md_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_lg_padding_top": {
-          "name": "wrapper_padding_lg_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_lg_padding_bottom": {
-          "name": "wrapper_padding_lg_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xl_padding_top": {
-          "name": "wrapper_padding_xl_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xl_padding_bottom": {
-          "name": "wrapper_padding_xl_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "variant": {
-          "name": "variant",
-          "type": "enum__pageFourOhFourBlock_v_variant",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'1'"
-        },
-        "_uuid": {
-          "name": "_uuid",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "block_name": {
-          "name": "block_name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {
-        "_pageFourOhFourBlock_v_order_idx": {
-          "name": "_pageFourOhFourBlock_v_order_idx",
-          "columns": [
-            {
-              "expression": "_order",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "_pageFourOhFourBlock_v_parent_id_idx": {
-          "name": "_pageFourOhFourBlock_v_parent_id_idx",
-          "columns": [
-            {
-              "expression": "_parent_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "_pageFourOhFourBlock_v_path_idx": {
-          "name": "_pageFourOhFourBlock_v_path_idx",
-          "columns": [
-            {
-              "expression": "_path",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        }
-      },
-      "foreignKeys": {
-        "_pageFourOhFourBlock_v_parent_id_fk": {
-          "name": "_pageFourOhFourBlock_v_parent_id_fk",
-          "tableFrom": "_pageFourOhFourBlock_v",
-          "tableTo": "_pages_v",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -10446,6 +10076,85 @@
           "primaryKey": true,
           "notNull": true
         },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum_four_oh_four_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum_four_oh_four_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'1'"
+        },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp(3) with time zone",
@@ -10525,188 +10234,6 @@
           "name": "four_oh_four_locales_parent_id_fk",
           "tableFrom": "four_oh_four_locales",
           "tableTo": "four_oh_four",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.homepageFourOhFourBlock": {
-      "name": "homepageFourOhFourBlock",
-      "schema": "",
-      "columns": {
-        "_order": {
-          "name": "_order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_path": {
-          "name": "_path",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "id": {
-          "name": "id",
-          "type": "varchar",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "wrapper_theme": {
-          "name": "wrapper_theme",
-          "type": "enum_homepageFourOhFourBlock_wrapper_theme",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_content_width": {
-          "name": "wrapper_content_width",
-          "type": "cw",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'xl'"
-        },
-        "wrapper_padding_xs_padding_top": {
-          "name": "wrapper_padding_xs_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xs_padding_bottom": {
-          "name": "wrapper_padding_xs_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_md_padding_top": {
-          "name": "wrapper_padding_md_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_md_padding_bottom": {
-          "name": "wrapper_padding_md_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_lg_padding_top": {
-          "name": "wrapper_padding_lg_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_lg_padding_bottom": {
-          "name": "wrapper_padding_lg_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xl_padding_top": {
-          "name": "wrapper_padding_xl_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xl_padding_bottom": {
-          "name": "wrapper_padding_xl_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "variant": {
-          "name": "variant",
-          "type": "enum_homepageFourOhFourBlock_variant",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'1'"
-        },
-        "block_name": {
-          "name": "block_name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {
-        "homepageFourOhFourBlock_order_idx": {
-          "name": "homepageFourOhFourBlock_order_idx",
-          "columns": [
-            {
-              "expression": "_order",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "homepageFourOhFourBlock_parent_id_idx": {
-          "name": "homepageFourOhFourBlock_parent_id_idx",
-          "columns": [
-            {
-              "expression": "_parent_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "homepageFourOhFourBlock_path_idx": {
-          "name": "homepageFourOhFourBlock_path_idx",
-          "columns": [
-            {
-              "expression": "_path",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        }
-      },
-      "foreignKeys": {
-        "homepageFourOhFourBlock_parent_id_fk": {
-          "name": "homepageFourOhFourBlock_parent_id_fk",
-          "tableFrom": "homepageFourOhFourBlock",
-          "tableTo": "homepage",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -12010,194 +11537,6 @@
           "name": "homepage_locales_parent_id_fk",
           "tableFrom": "homepage_locales",
           "tableTo": "homepage",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public._homepageFourOhFourBlock_v": {
-      "name": "_homepageFourOhFourBlock_v",
-      "schema": "",
-      "columns": {
-        "_order": {
-          "name": "_order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_path": {
-          "name": "_path",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "wrapper_theme": {
-          "name": "wrapper_theme",
-          "type": "enum__homepageFourOhFourBlock_v_wrapper_theme",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_content_width": {
-          "name": "wrapper_content_width",
-          "type": "cw",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'xl'"
-        },
-        "wrapper_padding_xs_padding_top": {
-          "name": "wrapper_padding_xs_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xs_padding_bottom": {
-          "name": "wrapper_padding_xs_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_md_padding_top": {
-          "name": "wrapper_padding_md_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_md_padding_bottom": {
-          "name": "wrapper_padding_md_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_lg_padding_top": {
-          "name": "wrapper_padding_lg_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_lg_padding_bottom": {
-          "name": "wrapper_padding_lg_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xl_padding_top": {
-          "name": "wrapper_padding_xl_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xl_padding_bottom": {
-          "name": "wrapper_padding_xl_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "variant": {
-          "name": "variant",
-          "type": "enum__homepageFourOhFourBlock_v_variant",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'1'"
-        },
-        "_uuid": {
-          "name": "_uuid",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "block_name": {
-          "name": "block_name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {
-        "_homepageFourOhFourBlock_v_order_idx": {
-          "name": "_homepageFourOhFourBlock_v_order_idx",
-          "columns": [
-            {
-              "expression": "_order",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "_homepageFourOhFourBlock_v_parent_id_idx": {
-          "name": "_homepageFourOhFourBlock_v_parent_id_idx",
-          "columns": [
-            {
-              "expression": "_parent_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "_homepageFourOhFourBlock_v_path_idx": {
-          "name": "_homepageFourOhFourBlock_v_path_idx",
-          "columns": [
-            {
-              "expression": "_path",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        }
-      },
-      "foreignKeys": {
-        "_homepageFourOhFourBlock_v_parent_id_fk": {
-          "name": "_homepageFourOhFourBlock_v_parent_id_fk",
-          "tableFrom": "_homepageFourOhFourBlock_v",
-          "tableTo": "_homepage_v",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -13676,188 +13015,6 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
-    "public.blogIdxFourOhFourBlock": {
-      "name": "blogIdxFourOhFourBlock",
-      "schema": "",
-      "columns": {
-        "_order": {
-          "name": "_order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_path": {
-          "name": "_path",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "id": {
-          "name": "id",
-          "type": "varchar",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "wrapper_theme": {
-          "name": "wrapper_theme",
-          "type": "enum_blogIdxFourOhFourBlock_wrapper_theme",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_content_width": {
-          "name": "wrapper_content_width",
-          "type": "cw",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'xl'"
-        },
-        "wrapper_padding_xs_padding_top": {
-          "name": "wrapper_padding_xs_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xs_padding_bottom": {
-          "name": "wrapper_padding_xs_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_md_padding_top": {
-          "name": "wrapper_padding_md_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_md_padding_bottom": {
-          "name": "wrapper_padding_md_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_lg_padding_top": {
-          "name": "wrapper_padding_lg_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_lg_padding_bottom": {
-          "name": "wrapper_padding_lg_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xl_padding_top": {
-          "name": "wrapper_padding_xl_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xl_padding_bottom": {
-          "name": "wrapper_padding_xl_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "variant": {
-          "name": "variant",
-          "type": "enum_blogIdxFourOhFourBlock_variant",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'1'"
-        },
-        "block_name": {
-          "name": "block_name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {
-        "blogIdxFourOhFourBlock_order_idx": {
-          "name": "blogIdxFourOhFourBlock_order_idx",
-          "columns": [
-            {
-              "expression": "_order",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "blogIdxFourOhFourBlock_parent_id_idx": {
-          "name": "blogIdxFourOhFourBlock_parent_id_idx",
-          "columns": [
-            {
-              "expression": "_parent_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "blogIdxFourOhFourBlock_path_idx": {
-          "name": "blogIdxFourOhFourBlock_path_idx",
-          "columns": [
-            {
-              "expression": "_path",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        }
-      },
-      "foreignKeys": {
-        "blogIdxFourOhFourBlock_parent_id_fk": {
-          "name": "blogIdxFourOhFourBlock_parent_id_fk",
-          "tableFrom": "blogIdxFourOhFourBlock",
-          "tableTo": "blog_index",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
     "public.blogIdxHeaderSectionsBlock": {
       "name": "blogIdxHeaderSectionsBlock",
       "schema": "",
@@ -15145,194 +14302,6 @@
           "name": "blog_index_locales_parent_id_fk",
           "tableFrom": "blog_index_locales",
           "tableTo": "blog_index",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public._blogIdxFourOhFourBlock_v": {
-      "name": "_blogIdxFourOhFourBlock_v",
-      "schema": "",
-      "columns": {
-        "_order": {
-          "name": "_order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_path": {
-          "name": "_path",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "wrapper_theme": {
-          "name": "wrapper_theme",
-          "type": "enum__blogIdxFourOhFourBlock_v_wrapper_theme",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_content_width": {
-          "name": "wrapper_content_width",
-          "type": "cw",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'xl'"
-        },
-        "wrapper_padding_xs_padding_top": {
-          "name": "wrapper_padding_xs_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xs_padding_bottom": {
-          "name": "wrapper_padding_xs_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_md_padding_top": {
-          "name": "wrapper_padding_md_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_md_padding_bottom": {
-          "name": "wrapper_padding_md_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_lg_padding_top": {
-          "name": "wrapper_padding_lg_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_lg_padding_bottom": {
-          "name": "wrapper_padding_lg_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xl_padding_top": {
-          "name": "wrapper_padding_xl_padding_top",
-          "type": "t",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "wrapper_padding_xl_padding_bottom": {
-          "name": "wrapper_padding_xl_padding_bottom",
-          "type": "b",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "variant": {
-          "name": "variant",
-          "type": "enum__blogIdxFourOhFourBlock_v_variant",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "'1'"
-        },
-        "_uuid": {
-          "name": "_uuid",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "block_name": {
-          "name": "block_name",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {
-        "_blogIdxFourOhFourBlock_v_order_idx": {
-          "name": "_blogIdxFourOhFourBlock_v_order_idx",
-          "columns": [
-            {
-              "expression": "_order",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "_blogIdxFourOhFourBlock_v_parent_id_idx": {
-          "name": "_blogIdxFourOhFourBlock_v_parent_id_idx",
-          "columns": [
-            {
-              "expression": "_parent_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        },
-        "_blogIdxFourOhFourBlock_v_path_idx": {
-          "name": "_blogIdxFourOhFourBlock_v_path_idx",
-          "columns": [
-            {
-              "expression": "_path",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": false,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        }
-      },
-      "foreignKeys": {
-        "_blogIdxFourOhFourBlock_v_parent_id_fk": {
-          "name": "_blogIdxFourOhFourBlock_v_parent_id_fk",
-          "tableFrom": "_blogIdxFourOhFourBlock_v",
-          "tableTo": "_blog_index_v",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -16821,8 +15790,8 @@
         "es-US"
       ]
     },
-    "public.enum_pageFourOhFourBlock_wrapper_theme": {
-      "name": "enum_pageFourOhFourBlock_wrapper_theme",
+    "public.enum_pageHeaderSectionsBlock_wrapper_theme": {
+      "name": "enum_pageHeaderSectionsBlock_wrapper_theme",
       "schema": "public",
       "values": [
         "_",
@@ -16867,24 +15836,6 @@
         "pb-8",
         "pb-10",
         "pb-16"
-      ]
-    },
-    "public.enum_pageFourOhFourBlock_variant": {
-      "name": "enum_pageFourOhFourBlock_variant",
-      "schema": "public",
-      "values": [
-        "1",
-        "2",
-        "3"
-      ]
-    },
-    "public.enum_pageHeaderSectionsBlock_wrapper_theme": {
-      "name": "enum_pageHeaderSectionsBlock_wrapper_theme",
-      "schema": "public",
-      "values": [
-        "_",
-        "light",
-        "dark"
       ]
     },
     "public.enum_pageHeaderSectionsBlock_variant": {
@@ -17009,24 +15960,6 @@
       "values": [
         "draft",
         "published"
-      ]
-    },
-    "public.enum__pageFourOhFourBlock_v_wrapper_theme": {
-      "name": "enum__pageFourOhFourBlock_v_wrapper_theme",
-      "schema": "public",
-      "values": [
-        "_",
-        "light",
-        "dark"
-      ]
-    },
-    "public.enum__pageFourOhFourBlock_v_variant": {
-      "name": "enum__pageFourOhFourBlock_v_variant",
-      "schema": "public",
-      "values": [
-        "1",
-        "2",
-        "3"
       ]
     },
     "public.enum__pageHeaderSectionsBlock_v_wrapper_theme": {
@@ -17349,8 +16282,8 @@
         "contrast"
       ]
     },
-    "public.enum_homepageFourOhFourBlock_wrapper_theme": {
-      "name": "enum_homepageFourOhFourBlock_wrapper_theme",
+    "public.enum_four_oh_four_wrapper_theme": {
+      "name": "enum_four_oh_four_wrapper_theme",
       "schema": "public",
       "values": [
         "_",
@@ -17358,8 +16291,8 @@
         "dark"
       ]
     },
-    "public.enum_homepageFourOhFourBlock_variant": {
-      "name": "enum_homepageFourOhFourBlock_variant",
+    "public.enum_four_oh_four_variant": {
+      "name": "enum_four_oh_four_variant",
       "schema": "public",
       "values": [
         "1",
@@ -17485,24 +16418,6 @@
         "published"
       ]
     },
-    "public.enum__homepageFourOhFourBlock_v_wrapper_theme": {
-      "name": "enum__homepageFourOhFourBlock_v_wrapper_theme",
-      "schema": "public",
-      "values": [
-        "_",
-        "light",
-        "dark"
-      ]
-    },
-    "public.enum__homepageFourOhFourBlock_v_variant": {
-      "name": "enum__homepageFourOhFourBlock_v_variant",
-      "schema": "public",
-      "values": [
-        "1",
-        "2",
-        "3"
-      ]
-    },
     "public.enum__homepageHeaderSectionsBlock_v_wrapper_theme": {
       "name": "enum__homepageHeaderSectionsBlock_v_wrapper_theme",
       "schema": "public",
@@ -17615,24 +16530,6 @@
       "values": [
         "en-US",
         "es-US"
-      ]
-    },
-    "public.enum_blogIdxFourOhFourBlock_wrapper_theme": {
-      "name": "enum_blogIdxFourOhFourBlock_wrapper_theme",
-      "schema": "public",
-      "values": [
-        "_",
-        "light",
-        "dark"
-      ]
-    },
-    "public.enum_blogIdxFourOhFourBlock_variant": {
-      "name": "enum_blogIdxFourOhFourBlock_variant",
-      "schema": "public",
-      "values": [
-        "1",
-        "2",
-        "3"
       ]
     },
     "public.enum_blogIdxHeaderSectionsBlock_wrapper_theme": {
@@ -17751,24 +16648,6 @@
       "values": [
         "draft",
         "published"
-      ]
-    },
-    "public.enum__blogIdxFourOhFourBlock_v_wrapper_theme": {
-      "name": "enum__blogIdxFourOhFourBlock_v_wrapper_theme",
-      "schema": "public",
-      "values": [
-        "_",
-        "light",
-        "dark"
-      ]
-    },
-    "public.enum__blogIdxFourOhFourBlock_v_variant": {
-      "name": "enum__blogIdxFourOhFourBlock_v_variant",
-      "schema": "public",
-      "values": [
-        "1",
-        "2",
-        "3"
       ]
     },
     "public.enum__blogIdxHeaderSectionsBlock_v_wrapper_theme": {

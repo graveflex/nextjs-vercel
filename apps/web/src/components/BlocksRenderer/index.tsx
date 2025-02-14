@@ -11,9 +11,6 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
-  fourOhFourBlock: dynamic(() => import('@mono/web/blocks/FourOhFourBlock'), {
-    ...defaultOpts
-  }),
   headerSectionsBlock: dynamic(
     () => import('@mono/web/blocks/HeaderSectionsBlock'),
     {

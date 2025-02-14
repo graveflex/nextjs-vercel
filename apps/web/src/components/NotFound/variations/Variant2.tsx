@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default function Variant2() {
   return (
     <section
-      className="bg-background py-16 lg:py-24 flex flex-col items-center relative overflow-hidden"
+      className="bg-background py-16 lg:py-24 flex flex-col items-center relative overflow-hidden min-h-screen"
       aria-labelledby="error-title"
     >
       <div className="container px-6 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
@@ -32,10 +32,14 @@ export default function Variant2() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button>Go back home</Button>
-            <Button variant="ghost">
-              Contact support
-              <ArrowRight />
+            <Button asChild={true}>
+              <Link href="/">Go back home</Link>
+            </Button>
+            <Button variant="ghost" className="text-foreground" asChild={true}>
+              <span>
+                <a href="mailto:email@email.com">Contact support</a>
+                <ArrowRight />
+              </span>
             </Button>
           </div>
         </div>
