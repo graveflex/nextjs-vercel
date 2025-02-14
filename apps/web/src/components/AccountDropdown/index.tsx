@@ -1,25 +1,25 @@
 'use client';
 
-import { signOut } from 'next-auth/react';
-import { useDeleteCookie } from 'cookies-next';
-import { useCookieValue } from '@mono/web/lib/useCookieValue';
-import { useEffect, useState } from 'react';
 import type { User } from '@mono/types/payload-types';
-import Link from 'next/link';
-import { PAYLOAD_USER_TYPE_COOKIE_NAME } from '@mono/web/lib/constants';
-import styles from './AccountDropdown.module.css';
-import { LoaderIcon } from 'lucide-react';
-import { Button } from '@mono/web/components/ui/Button';
 import { Avatar, AvatarFallback } from '@mono/web/components/ui/Avatar';
+import { Button } from '@mono/web/components/ui/Button';
 import {
   NavigationMenu,
-  NavigationMenuList,
-  NavigationMenuTrigger,
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
   navigationMenuTriggerStyle
 } from '@mono/web/components/ui/NavigationMenu';
+import { PAYLOAD_USER_TYPE_COOKIE_NAME } from '@mono/web/lib/constants';
+import { useCookieValue } from '@mono/web/lib/useCookieValue';
+import { useDeleteCookie } from 'cookies-next';
+import { LoaderIcon } from 'lucide-react';
+import { signOut } from 'next-auth/react';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import styles from './AccountDropdown.module.css';
 
 async function loadUserData() {
   const meUserReq = await fetch('/api/users/me');

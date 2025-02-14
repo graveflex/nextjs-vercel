@@ -1,11 +1,11 @@
-import payloadConfig from '@payload-config';
-import { cookies } from 'next/headers';
-import NextAuth from 'next-auth';
 import { PAYLOAD_USER_TYPE_COOKIE_NAME } from '@mono/web/lib/constants';
+import payloadConfig from '@payload-config';
+import { deleteCookie, setCookie } from 'cookies-next/server';
+import NextAuth from 'next-auth';
+import { cookies } from 'next/headers';
 import { getPayload } from 'payload';
 import { withPayload } from 'payload-authjs';
 import { authConfig } from './auth.config';
-import { setCookie, deleteCookie } from 'cookies-next/server';
 
 export const { handlers, signIn, signOut, auth } = NextAuth(
   withPayload(authConfig, {

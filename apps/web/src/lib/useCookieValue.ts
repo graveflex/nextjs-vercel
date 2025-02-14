@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import { useGetCookie } from 'cookies-next';
+import { useEffect, useState } from 'react';
 
 export function useCookieValue(cookieName: string, pollInterval = 100) {
   const getCookieValue = useGetCookie();
