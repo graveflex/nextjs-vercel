@@ -10,6 +10,8 @@ export const BLOB_STORE_ID = process.env.BLOB_STORE_ID;
 
 export const NODE_ENV = process.env.NODE_ENV;
 
+export const PAYLOAD_USER_TYPE_COOKIE_NAME = 'PAYLOAD_USER_TYPE' as const;
+
 export const DEFAULT_LOCALE = 'en-US' as const;
 export const FALLBACK_LOCALE = 'en' as const;
 export const LOCALE_SETTINGS = [
