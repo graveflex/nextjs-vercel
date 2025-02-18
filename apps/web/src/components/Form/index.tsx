@@ -7,6 +7,7 @@ import { WEB_URL } from '@mono/web/lib/constants';
 import { cn } from '@mono/web/lib/utils';
 import has from 'lodash/has';
 import { ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import fieldInputs from './fields';
 import { fallbackConfirmationMessage } from './formMockData';
@@ -20,12 +21,15 @@ type FormComponentTypes = {
 };
 
 export default function FormComponent({ form }: FormComponentTypes) {
+  const router = useRouter();
+
   const formId = form?.id;
   const submitButtonLabel = form?.submitButtonLabel;
   const fields = form?.fields;
   const confirmationType = form?.confirmationType ?? 'message';
   const confirmationMessage =
     form?.confirmationMessage ?? fallbackConfirmationMessage;
+  const redirectUrl = form?.redirect?.url;
 
   const {
     register,
@@ -51,6 +55,11 @@ export default function FormComponent({ form }: FormComponentTypes) {
         },
         method: 'POST'
       }).then(() => {
+        if (confirmationType === 'redirect' && redirectUrl) {
+          if (redirectUrl) {
+            router.push(redirectUrl);
+          }
+        }
         // Clear the form fields after successful submission:
         reset();
       });
