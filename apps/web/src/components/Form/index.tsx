@@ -16,7 +16,7 @@ type Inputs = {
   [key: string]: string;
 };
 
-type FormComponentTypes = {
+export type FormComponentTypes = {
   form?: Form;
 };
 
