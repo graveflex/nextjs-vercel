@@ -77,7 +77,7 @@ export default function FormComponent({ form }: FormComponentTypes) {
         <form
           id={`${formId}`}
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col flex-wrap gap-3 w-full md:max-w-sm"
+          className="flex flex-col md:flex-row flex-wrap gap-3 w-full md:max-w-sm"
           aria-label="Email signup form"
           noValidate={true}
         >
@@ -91,7 +91,10 @@ export default function FormComponent({ form }: FormComponentTypes) {
             const blockName = field?.blockName ?? '';
 
             return (
-              <div key={field.id} className="flex-1">
+              <div
+                key={field.id}
+                className={`w-full md:max-w-[${field.width ? field.width : 50}%]`}
+              >
                 <Label htmlFor={field.name}>{field.label}</Label>
                 <Field
                   type={field.blockType}
