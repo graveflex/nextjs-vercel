@@ -27,23 +27,7 @@ function HeroSections4({
           </div>
 
           {/* Email Form */}
-          {/* <form
-            className="flex flex-col lg:flex-row gap-3 w-full md:max-w-sm"
-            aria-label="Email signup form"
-          >
-            <Input
-              placeholder="Your email"
-              type="email"
-              required={true}
-              aria-required="true"
-            />
-            <Button>
-              Sign up
-              <ArrowRight />
-            </Button>
-          </form> */}
-
-          <Form form={payloadForm} />
+          {payloadForm && <Form form={payloadForm} />}
         </div>
 
         {/* Right Column */}
