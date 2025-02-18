@@ -10,7 +10,7 @@ import { Controller } from 'react-hook-form';
 
 import type { SelectField as PayloadSelectFieldTypes } from '@payloadcms/plugin-form-builder/types';
 import { useMemo } from 'react';
-import type { Control, FieldErrorsImpl, FieldValues } from 'react-hook-form';
+import type { Control, FieldValues } from 'react-hook-form';
 
 type SelectFieldTypes = {
   options?:
@@ -21,6 +21,7 @@ type SelectFieldTypes = {
       }[]
     | null;
   control: Control<FieldValues>;
+  disabled?: boolean;
 } & Omit<PayloadSelectFieldTypes, 'options' | 'blockType'>;
 
 const SelectField = ({
@@ -28,7 +29,8 @@ const SelectField = ({
   name,
   defaultValue,
   control,
-  required
+  required,
+  disabled
 }: SelectFieldTypes) => {
   const DropdownOptions = useMemo(() => {
     return (
@@ -50,6 +52,7 @@ const SelectField = ({
       control={control}
       defaultValue={defaultValue}
       rules={{ required }}
+      disabled={disabled}
       render={({ field }) => {
         return (
           <Select {...field} onValueChange={field.onChange}>
