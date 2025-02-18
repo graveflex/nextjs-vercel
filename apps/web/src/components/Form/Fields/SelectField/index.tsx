@@ -22,6 +22,7 @@ type SelectFieldTypes = {
     | null;
   control: Control<FieldValues>;
   disabled?: boolean;
+  placeholder?: string;
 } & Omit<PayloadSelectFieldTypes, 'options' | 'blockType'>;
 
 const SelectField = ({
@@ -30,7 +31,8 @@ const SelectField = ({
   defaultValue,
   control,
   required,
-  disabled
+  disabled,
+  placeholder = ''
 }: SelectFieldTypes) => {
   const DropdownOptions = useMemo(() => {
     return (
@@ -50,14 +52,14 @@ const SelectField = ({
     <Controller
       name={name}
       control={control}
-      defaultValue={defaultValue}
+      defaultValue={defaultValue ? defaultValue : undefined}
       rules={{ required }}
       disabled={disabled}
       render={({ field }) => {
         return (
           <Select {...field} onValueChange={field.onChange}>
             <SelectTrigger>
-              <SelectValue placeholder={`Select an item`} />
+              <SelectValue placeholder={`${placeholder}`} />
             </SelectTrigger>
             <SelectContent>{DropdownOptions}</SelectContent>
           </Select>
