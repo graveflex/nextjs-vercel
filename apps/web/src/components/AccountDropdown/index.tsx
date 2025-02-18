@@ -18,23 +18,32 @@ import { useDeleteCookie } from 'cookies-next';
 import { LoaderIcon } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 import Link from 'next/link';
+import { usePayloadSession } from 'payload-authjs/client';
 import { useEffect, useState } from 'react';
 import styles from './AccountDropdown.module.css';
 
+// TODO: make utility?
 async function loadUserData() {
   const meUserReq = await fetch('/api/users/me');
-  const { user } = await meUserReq.json();
+  let { user } = await meUserReq.json();
+
+  if (!user) {
+    const { session } = usePayloadSession();
+    user = session?.user;
+  }
+
   return user;
 }
 
 function AccountDropdown() {
   const deleteCookie = useDeleteCookie();
   const userType = useCookieValue(PAYLOAD_USER_TYPE_COOKIE_NAME);
+  const authUserType = useCookieValue('auth-provider');
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    if (userType) {
+    if (userType || authUserType) {
       setLoading(true);
 
       (async () => {
@@ -46,7 +55,7 @@ function AccountDropdown() {
       setUser(null);
       setLoading(false);
     }
-  }, [userType]);
+  }, [userType, authUserType]);
 
   if (loading) {
     return (
@@ -76,8 +85,22 @@ function AccountDropdown() {
               <NavigationMenuLink
                 className={`${navigationMenuTriggerStyle()} cursor-pointer`}
                 onClick={async () => {
+                  const cookiesToRemove = [
+                    PAYLOAD_USER_TYPE_COOKIE_NAME,
+                    'auth-provider',
+                    'authjs.callback-url',
+                    'authjs.csrf-token',
+                    'authjs.pkce.code_verifier'
+                  ];
+
+                  cookiesToRemove.forEach((cookie) => {
+                    deleteCookie(cookie);
+                  });
+
                   await signOut();
-                  deleteCookie(PAYLOAD_USER_TYPE_COOKIE_NAME);
+
+                  // Force redirect to login page
+                  window.location.href = '/login';
                 }}
               >
                 Sign Out
