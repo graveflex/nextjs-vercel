@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import type { FormComponentTypes } from '.';
 import FormComponent from '.';
-import formFieldsMockData, { formFieldsRedirectMockData } from './formMockData';
+import formFieldsMockData, {
+  formFieldsRedirectMockData,
+  emailSignupForm
+} from './formMockData';
 
 const meta: Meta<FormComponentTypes> = {
   title: 'ui/FormComponent',
@@ -27,5 +30,11 @@ export const Defaults: Story = {
 export const RedirectOnSubmit: Story = {
   args: {
     form: formFieldsRedirectMockData
+  }
+};
+
+export const EmailSignup: Story = {
+  args: {
+    form: emailSignupForm
   }
 };

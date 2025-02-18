@@ -88,13 +88,14 @@ export default function FormComponent({ form }: FormComponentTypes) {
 
             const Field = fieldInputs?.[`${field.blockType}`];
             const isDropdown = field?.blockType === 'select';
+            const blockName = field?.blockName ?? '';
 
             return (
               <div key={field.id} className="flex-1">
                 <Label htmlFor={field.name}>{field.label}</Label>
                 <Field
                   type={field.blockType}
-                  placeholder={`${field.label}`}
+                  placeholder={`${blockName}`}
                   defaultValue={defaultValue}
                   required={!!field.required}
                   className={cn(
@@ -106,7 +107,7 @@ export default function FormComponent({ form }: FormComponentTypes) {
                   disabled={isLoading || isSubmitting}
                   {...register(field.name, {
                     required: field?.required
-                      ? `${field?.label} is required.`
+                      ? `${field?.name} is required.`
                       : false
                   })}
                 />

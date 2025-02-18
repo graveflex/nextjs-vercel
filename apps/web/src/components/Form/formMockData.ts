@@ -10,26 +10,26 @@ const formFieldsMockData: Form = {
       name: 'text',
       width: 50,
       required: true,
-      blockName: 'My Field One',
+      blockName: 'Enter text',
       blockType: 'text',
       label: 'Text',
       defaultValue: 'Default text value'
     },
     {
       id: '67ae65110017b722ef7747dd',
-      name: 'emailTwo',
+      name: 'email',
       width: 50,
       required: true,
-      blockName: 'My Field Two',
+      blockName: 'Enter email',
       blockType: 'email',
-      label: 'Email Two'
+      label: 'Email'
     },
     {
       id: '67af9e3768650256c61fe2c1',
       name: 'comments',
       width: 100,
       required: null,
-      blockName: null,
+      blockName: 'Enter Comments',
       blockType: 'textarea',
       label: 'Comments',
       defaultValue: null
@@ -39,7 +39,7 @@ const formFieldsMockData: Form = {
       name: 'fruits',
       width: 100,
       required: null,
-      blockName: null,
+      blockName: 'Select a fruit',
       options: [
         {
           id: '67afa1a1eddbff769f06db78',
@@ -67,7 +67,7 @@ const formFieldsMockData: Form = {
       width: 75,
       defaultValue: null,
       required: null,
-      blockName: null,
+      blockName: 'Enter a number',
       blockType: 'number',
       label: 'Number'
     }
@@ -122,26 +122,26 @@ export const formFieldsRedirectMockData: Form = {
       name: 'text',
       width: 50,
       required: true,
-      blockName: 'My Field One',
+      blockName: 'Enter text',
       blockType: 'text',
       label: 'Text',
       defaultValue: 'Default text value'
     },
     {
       id: '67ae65110017b722ef7747dd',
-      name: 'emailTwo',
+      name: 'email',
       width: 50,
       required: true,
-      blockName: 'My Field Two',
+      blockName: 'Enter email',
       blockType: 'email',
-      label: 'Email Two'
+      label: 'Email'
     },
     {
       id: '67af9e3768650256c61fe2c1',
       name: 'comments',
       width: 100,
       required: null,
-      blockName: null,
+      blockName: 'Enter comments',
       blockType: 'textarea',
       label: 'Comments',
       defaultValue: null
@@ -151,7 +151,7 @@ export const formFieldsRedirectMockData: Form = {
       name: 'fruits',
       width: 100,
       required: null,
-      blockName: null,
+      blockName: 'Select a fruit',
       options: [
         {
           id: '67afa1a1eddbff769f06db78',
@@ -179,7 +179,7 @@ export const formFieldsRedirectMockData: Form = {
       width: 75,
       defaultValue: null,
       required: null,
-      blockName: null,
+      blockName: 'Enter a number',
       blockType: 'number',
       label: 'Number'
     }
@@ -223,6 +223,59 @@ export const formFieldsRedirectMockData: Form = {
   emails: [],
   updatedAt: '2025-02-18T16:09:40.423Z',
   createdAt: '2025-02-12T22:55:37.194Z'
+};
+
+export const emailSignupForm: Form = {
+  id: 2,
+  title: 'Email Signup',
+  fields: [
+    {
+      id: '67b4c1c616c28e7b485d12f9',
+      name: 'email',
+      width: 100,
+      required: true,
+      blockName: 'Your email',
+      blockType: 'email'
+    }
+  ],
+  submitButtonLabel: 'Sign up',
+  confirmationType: 'message',
+  confirmationMessage: {
+    root: {
+      type: 'root',
+      format: '',
+      indent: 0,
+      version: 1,
+      children: [
+        {
+          tag: 'h3',
+          type: 'heading',
+          format: '',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'Thanks for signing up!',
+              type: 'text',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr'
+        }
+      ],
+      direction: 'ltr'
+    }
+  },
+  redirect: {
+    url: 'https://www.google.com'
+  },
+  emails: [],
+  updatedAt: '2025-02-18T17:27:35.113Z',
+  createdAt: '2025-02-18T17:22:48.027Z'
 };
 
 export const fallbackConfirmationMessage: RichTextType['data'] = {
