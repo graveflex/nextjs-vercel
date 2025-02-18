@@ -34,7 +34,7 @@ export default function FormComponent({ form }: FormComponentTypes) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors, isSubmitSuccessful, isLoading, isSubmitting },
     reset,
     control
   } = useForm<Inputs>();
@@ -103,6 +103,7 @@ export default function FormComponent({ form }: FormComponentTypes) {
                   )}
                   options={isDropdown ? field?.options : null}
                   control={control}
+                  disabled={isLoading || isSubmitting}
                   {...register(field.name, {
                     required: field?.required
                       ? `${field?.label} is required.`
