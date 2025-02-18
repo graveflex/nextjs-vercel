@@ -350,7 +350,10 @@ export interface HeroSectionsBlockT {
    * For certain variants, the position of the image on desktop screens.
    */
   imagePosition?: ('left' | 'right') | null;
-  form: number | Form;
+  /**
+   * Add a form to be displayed at the bottom of the content section.
+   */
+  form?: (number | null) | Form;
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroSectionsBlock';
