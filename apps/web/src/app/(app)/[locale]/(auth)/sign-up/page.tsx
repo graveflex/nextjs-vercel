@@ -47,6 +47,14 @@ async function SignUp({ searchParams }: SignUpProps) {
           {/* Sign-up form fields */}
           <div className="space-y-4 mb-6">
             {/* Email input */}
+            <Input
+              id="redirectTo"
+              name="redirectTo"
+              type="hidden"
+              value="/account?created=true"
+            />
+
+            {/* Email input */}
             <Input id="email" name="email" placeholder="Email" type="email" />
 
             {/* Password input */}
