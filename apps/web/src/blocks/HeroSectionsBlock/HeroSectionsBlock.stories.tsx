@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import heroSectionsMockData, {
+  heroSections4_5MockData,
   heroSections6_9MockData,
   heroSectionsListMockData,
-  imgMockData
+  imgMockData,
+  emailSignupFormMockData
 } from './HeroSectionsMockData';
 
 import type { HeroSectionsBlockType } from '.';
@@ -12,7 +14,10 @@ const meta: Meta<HeroSectionsBlockType> = {
   title: 'blocks/HeroSectionsBlock',
   component: HeroSectionsBlock,
   parameters: {
-    layout: 'centered'
+    layout: 'centered',
+    nextjs: {
+      appDirectory: true
+    }
   },
   argTypes: {
     imagePosition: {
@@ -63,8 +68,9 @@ export const Four: Story = {
   args: {
     imagePosition: 'right',
     variant: '4',
-    content: heroSectionsMockData.data,
-    image: imgMockData
+    content: heroSections4_5MockData.data,
+    image: imgMockData,
+    form: emailSignupFormMockData
   }
 };
 
@@ -72,7 +78,8 @@ export const Five: Story = {
   args: {
     imagePosition: 'right',
     variant: '5',
-    content: heroSectionsMockData.data
+    content: heroSections4_5MockData.data,
+    form: emailSignupFormMockData
   }
 };
 

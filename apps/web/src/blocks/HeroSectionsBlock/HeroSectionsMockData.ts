@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import type { Form } from '@mono/types/payload-types';
 import type { RichTextType } from '@mono/web/components/RichText';
 
 const imgUrl = faker.image.url();
@@ -218,6 +219,79 @@ export const heroSectionsListMockData: RichTextType = {
   }
 };
 
+export const heroSections4_5MockData: RichTextType = {
+  data: {
+    root: {
+      type: 'root',
+      format: '',
+      indent: 0,
+      version: 1,
+      children: [
+        {
+          type: 'paragraph',
+          format: '',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'Hero Section',
+              type: 'eyebrow',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr',
+          textStyle: '',
+          textFormat: 0
+        },
+        {
+          tag: 'h2',
+          type: 'heading',
+          format: '',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: "Headline that solves user's main problem",
+              type: 'text',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr'
+        },
+        {
+          type: 'paragraph',
+          format: '',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'Follow with one or two sentences that expand on your value proposition. Focus on key benefits and address why users should take action now. Keep it scannable, short and benefit-driven.',
+              type: 'text',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr',
+          textStyle: '',
+          textFormat: 0
+        }
+      ],
+      direction: 'ltr'
+    }
+  }
+};
+
 export const heroSections6_9MockData: RichTextType = {
   data: {
     root: {
@@ -359,6 +433,59 @@ export const imgMockData = {
       filename: null
     }
   }
+};
+
+export const emailSignupFormMockData: Form = {
+  id: 2,
+  title: 'Email Signup',
+  fields: [
+    {
+      id: '67b4c1c616c28e7b485d12f9',
+      name: 'email',
+      width: 50,
+      required: true,
+      blockName: 'Your email',
+      blockType: 'email'
+    }
+  ],
+  submitButtonLabel: 'Sign up',
+  confirmationType: 'message',
+  confirmationMessage: {
+    root: {
+      type: 'root',
+      format: '',
+      indent: 0,
+      version: 1,
+      children: [
+        {
+          tag: 'h3',
+          type: 'heading',
+          format: '',
+          indent: 0,
+          version: 1,
+          children: [
+            {
+              mode: 'normal',
+              text: 'Thanks for signing up!',
+              type: 'text',
+              style: '',
+              detail: 0,
+              format: 0,
+              version: 1
+            }
+          ],
+          direction: 'ltr'
+        }
+      ],
+      direction: 'ltr'
+    }
+  },
+  redirect: {
+    url: 'https://www.google.com'
+  },
+  emails: [],
+  updatedAt: '2025-02-18T19:56:51.171Z',
+  createdAt: '2025-02-18T17:22:48.027Z'
 };
 
 export default heroSectionsMockData;
