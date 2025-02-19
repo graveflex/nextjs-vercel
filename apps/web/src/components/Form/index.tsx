@@ -56,7 +56,7 @@ export default function FormComponent({ form }: FormComponentTypes) {
                 setError(true);
               })
           }
-          className="grid md:grid-cols-2 gap-3 w-full md:max-w-sm"
+          className="grid md:grid-cols-2 gap-3 w-full items-end md:max-w-sm"
           aria-label="Email signup form"
         >
           {fields?.map((field) => {
