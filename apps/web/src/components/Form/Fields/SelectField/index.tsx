@@ -6,7 +6,6 @@ import {
   SelectTrigger,
   SelectValue
 } from '@mono/web/components/ui/Select';
-import { Controller } from 'react-hook-form';
 
 import type { SelectField as PayloadSelectFieldTypes } from '@payloadcms/plugin-form-builder/types';
 import { useMemo } from 'react';
@@ -20,7 +19,7 @@ type SelectFieldTypes = {
         id?: string | null;
       }[]
     | null;
-  control: Control<FieldValues>;
+  control?: Control<FieldValues>;
   disabled?: boolean;
   placeholder?: string;
 } & Omit<PayloadSelectFieldTypes, 'options' | 'blockType'>;
@@ -29,7 +28,6 @@ const SelectField = ({
   options,
   name,
   defaultValue,
-  control,
   required,
   disabled,
   placeholder = ''
@@ -49,23 +47,17 @@ const SelectField = ({
   }, [options]);
 
   return (
-    <Controller
+    <Select
       name={name}
-      control={control}
       defaultValue={defaultValue ? defaultValue : undefined}
-      rules={{ required }}
+      required={required}
       disabled={disabled}
-      render={({ field }) => {
-        return (
-          <Select {...field} onValueChange={field.onChange}>
-            <SelectTrigger>
-              <SelectValue placeholder={`${placeholder}`} />
-            </SelectTrigger>
-            <SelectContent>{DropdownOptions}</SelectContent>
-          </Select>
-        );
-      }}
-    />
+    >
+      <SelectTrigger>
+        <SelectValue placeholder={`${placeholder}`} />
+      </SelectTrigger>
+      <SelectContent>{DropdownOptions}</SelectContent>
+    </Select>
   );
 };
 
