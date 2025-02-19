@@ -35,3 +35,9 @@ export const API_KEY =
   process.env.NEXT_PUBLIC_API_KEY ?? 'NO ENV API KEY FOUND';
 
 export const CACHE_TAGS = ['blocks', 'global-nav', 'global-cache-key'];
+
+export const SIGNUP_URL = '/sign-up';
+export const SIGNIN_URL = '/login';
+export const FORGOT_PASSWORD_URL = '/forgot-password';
+export const RESET_PASSWORD_URL = '/reset-password';
+export const ACCOUNT_URL = '/account';

@@ -97,10 +97,7 @@ function AccountDropdown() {
                     deleteCookie(cookie);
                   });
 
-                  await signOut();
-
-                  // Force redirect to login page
-                  window.location.href = '/login';
+                  await signOut({ redirect: true, redirectTo: '/login' });
                 }}
               >
                 Sign Out

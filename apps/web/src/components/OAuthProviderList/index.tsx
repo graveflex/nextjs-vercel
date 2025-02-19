@@ -1,9 +1,10 @@
-import { providerMap, signIn } from '@mono/web/auth';
+import { signIn } from '@mono/web/auth';
 import { Button } from '@mono/web/components/ui/Button';
+import { providerMap } from '@mono/web/lib/auth/config';
+import { ACCOUNT_URL } from '@mono/web/lib/constants';
 import { AuthError } from 'next-auth';
 import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
-
 interface OAuthProviderListProps {
   callbackUrl?: string;
 }
@@ -42,7 +43,7 @@ function OAuthProviderList(props: OAuthProviderListProps) {
         'use server';
         try {
           await signIn(provider.id, {
-            redirectTo: props.callbackUrl ?? ''
+            redirectTo: props.callbackUrl ?? `${ACCOUNT_URL}?logged-in=true`
           });
         } catch (error) {
           // Signin can fail for a number of reasons, such as the user

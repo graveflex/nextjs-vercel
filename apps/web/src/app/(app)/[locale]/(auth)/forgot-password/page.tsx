@@ -1,8 +1,8 @@
-import { sendPasswordResetEmail } from '@mono/web/auth';
 import { Button } from '@mono/web/components/ui/Button';
 import { Checkbox } from '@mono/web/components/ui/Checkbox';
 import { Input } from '@mono/web/components/ui/Input';
 import { Label } from '@mono/web/components/ui/Label';
+import { sendPasswordResetEmail } from '@mono/web/lib/auth/config';
 import Link from 'next/link';
 
 async function ForgotPassword() {

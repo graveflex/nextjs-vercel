@@ -1,22 +1,31 @@
 import { signIn } from '@mono/web/auth';
+import AuthErrorBoundary from '@mono/web/components/AuthErrorBoundary';
 import OAuthProviderList from '@mono/web/components/OAuthProviderList';
 import { Button } from '@mono/web/components/ui/Button';
 import { Checkbox } from '@mono/web/components/ui/Checkbox';
 import { Input } from '@mono/web/components/ui/Input';
 import { Label } from '@mono/web/components/ui/Label';
 import { Separator } from '@mono/web/components/ui/Separator';
+import { SIGNIN_URL } from '@mono/web/lib/constants';
 import Link from 'next/link';
+import { redirect, unstable_rethrow } from 'next/navigation';
 
 interface SignInProps {
-  searchParams: Promise<{ callbackUrl?: string }>;
+  searchParams: Promise<{
+    callbackUrl?: string;
+    error?: string;
+    email?: string;
+  }>;
 }
 
 async function SignIn({ searchParams }: SignInProps) {
-  const { callbackUrl } = await searchParams;
+  const { callbackUrl, email, error } = await searchParams;
   return (
     <>
       {/* Sign-in form container */}
       <div className="w-full max-w-sm space-y-6 m-auto">
+        <AuthErrorBoundary error={error || ''} />
+
         {/* Header */}
         <div className="space-y-2 text-center">
           <h1 className="text-3xl font-bold">Sign in</h1>
@@ -41,12 +50,35 @@ async function SignIn({ searchParams }: SignInProps) {
           action={async (formData) => {
             'use server';
             // TODO: handle validation + success message
-            await signIn('credentials', formData);
+            try {
+              await signIn('credentials', formData);
+            } catch (error) {
+              unstable_rethrow(error);
+              const email = formData.get('email');
+              if (email) {
+                redirect(`${SIGNIN_URL}?error=${error.code}&email=${email}`);
+              } else {
+                redirect(`${SIGNIN_URL}?error=${error.code}`);
+              }
+            }
           }}
         >
+          {/* Redirect */}
+          <Input id="redirect" name="redirect" type="hidden" value="true" />
+          <Input
+            id="redirectTo"
+            name="redirectTo"
+            type="hidden"
+            value="/account?logged-in=true"
+          />
+
           {/* Email and password inputs */}
           <div className="space-y-4">
-            <Input name="email" placeholder="Email" />
+            {email ? (
+              <Input name="email" placeholder="Email" defaultValue={email} />
+            ) : (
+              <Input name="email" placeholder="Email" />
+            )}
             <Input name="password" type="password" placeholder="Password" />
           </div>
 

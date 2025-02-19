@@ -1,14 +1,29 @@
 import type { User as PayloadUser } from '@mono/types/payload-types';
-import { createPayloadAuthSessionWithEmailCreds } from '@mono/web/lib/authSession';
+// Types
 import type { NextAuthConfig } from 'next-auth';
-import Credentials from 'next-auth/providers/credentials';
-import GitHub from 'next-auth/providers/github';
-import { cookies } from 'next/headers';
 import type { PayloadAuthjsUser } from 'payload-authjs';
 
-declare module 'next-auth' {
-  interface User extends PayloadAuthjsUser<PayloadUser> {}
-}
+// Libraries
+
+import Credentials from 'next-auth/providers/credentials';
+import GitHub from 'next-auth/providers/github';
+import { redirect, unstable_rethrow } from 'next/navigation';
+import { ZodError } from 'zod';
+
+// Constants
+import { SIGNIN_URL, SIGNUP_URL } from '@mono/web/lib/constants';
+import { signInSchema } from '@mono/web/lib/zod';
+
+import {
+  EmailRequiredError,
+  InvalidLoginError,
+  PasswordRequiredError
+} from '@mono/web/lib/auth/errors';
+// Helpers
+import { signInEvent, signOutEvent } from '@mono/web/lib/auth/events';
+
+import { th } from '@faker-js/faker';
+import { createPayloadAuthSessionWithEmailCreds } from '@mono/web/lib/auth/session';
 
 export const authConfig: NextAuthConfig = {
   providers: [
@@ -18,28 +33,44 @@ export const authConfig: NextAuthConfig = {
         email: {},
         password: {}
       },
-      authorize: async (creds) => {
-        if (creds.email && creds.password) {
-          const user = await createPayloadAuthSessionWithEmailCreds(creds);
-          return user as PayloadAuthjsUser<PayloadUser>;
-        }
+      authorize: async (credentials) => {
+        try {
+          const { email, password } = credentials;
+          if (!email) {
+            throw new EmailRequiredError();
+          }
+          if (!password) {
+            throw new PasswordRequiredError();
+          }
+          const user =
+            await createPayloadAuthSessionWithEmailCreds(credentials);
+          if (!user) {
+            throw new InvalidLoginError();
+          }
 
-        return null;
+          return user as PayloadAuthjsUser<PayloadUser>;
+        } catch (error) {
+          unstable_rethrow(error);
+          switch (error.code) {
+            case 'invalid-credentials':
+              throw new InvalidLoginError();
+            case 'email-required':
+              throw new EmailRequiredError();
+            case 'password-required':
+              throw new PasswordRequiredError();
+            default:
+              throw new Error('unknown-error');
+          }
+        }
       }
     })
   ],
   events: {
-    signIn: async ({ user, account }) => {
-      if (user.id) {
-        if (account?.provider) {
-          const cookieStore = await cookies();
-          cookieStore.set('auth-provider', account?.provider, {
-            maxAge: 60 * 60 * 24 * 30,
-            path: '/'
-          });
-        }
-        return;
-      }
+    signIn: async (event) => {
+      await signInEvent(event);
+    },
+    signOut: async (event) => {
+      await signOutEvent(event);
     }
   },
   pages: {

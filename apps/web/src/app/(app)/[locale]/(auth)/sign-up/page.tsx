@@ -1,21 +1,28 @@
-import { signUp } from '@mono/web/auth';
+import AuthErrorBoundary from '@mono/web/components/AuthErrorBoundary';
 import OAuthProviderList from '@mono/web/components/OAuthProviderList';
 import { Button } from '@mono/web/components/ui/Button';
 import { Checkbox } from '@mono/web/components/ui/Checkbox';
 import { Input } from '@mono/web/components/ui/Input';
 import { Label } from '@mono/web/components/ui/Label';
 import { Separator } from '@mono/web/components/ui/Separator';
+import { signUp } from '@mono/web/lib/auth/config';
 import Link from 'next/link';
 
 interface SignUpProps {
-  searchParams: Promise<{ callbackUrl?: string }>;
+  searchParams: Promise<{
+    callbackUrl?: string;
+    error?: string;
+    email?: string;
+  }>;
 }
 
 async function SignUp({ searchParams }: SignUpProps) {
-  const { callbackUrl } = await searchParams;
+  const { callbackUrl, error, email } = await searchParams;
   return (
     <>
       <div className="w-full max-w-sm space-y-6 m-auto">
+        <AuthErrorBoundary error={error || ''} />
+
         {/* Header */}
         <div className="space-y-2 text-center">
           <h1 className="text-2xl md:text-3xl font-bold mb-3">
@@ -26,6 +33,7 @@ async function SignUp({ searchParams }: SignUpProps) {
           </p>
         </div>
 
+        {/* OAuth provider list */}
         <OAuthProviderList callbackUrl={callbackUrl} />
 
         {/* Separator */}
@@ -55,7 +63,16 @@ async function SignUp({ searchParams }: SignUpProps) {
             />
 
             {/* Email input */}
-            <Input id="email" name="email" placeholder="Email" type="email" />
+            {email ? (
+              <Input
+                id="email"
+                name="email"
+                defaultValue={email}
+                type="email"
+              />
+            ) : (
+              <Input id="email" name="email" placeholder="Email" type="email" />
+            )}
 
             {/* Password input */}
             <div className="space-y-2">
