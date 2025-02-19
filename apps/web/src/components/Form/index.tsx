@@ -77,7 +77,7 @@ export default function FormComponent({ form }: FormComponentTypes) {
                   placeholder={`${blockName}`}
                   defaultValue={defaultValue}
                   required={!!field.required}
-                  className={cn('flex-1')}
+                  className={cn('flex-1 text-primary')}
                   options={isDropdown ? field?.options : null}
                   disabled={isPending}
                 />
