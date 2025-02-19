@@ -11,27 +11,15 @@ import {
   buttonVariants,
   type ButtonProps
 } from '@mono/web/components/ui/Button';
+import { DropdownMenuSeparator } from '@mono/web/components/ui/DropdownMenu';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger
-} from '@mono/web/components/ui/DropdownMenu';
-import NestedNavigationMenu from '@mono/web/components/NavigationMenu';
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuItem
+} from '@mono/web/components/ui/NavigationMenu';
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -40,9 +28,14 @@ import {
   SidebarMenuSubButton,
   SidebarSeparator
 } from '@mono/web/components/ui/Sidebar';
-import React, { useState } from 'react';
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger
+} from '@mono/web/components/ui/HoverCard';
+import type React from 'react';
+import { ChevronRight } from 'lucide-react';
 import styles from './Header.module.css';
-import { cn } from '@mono/web/lib/utils';
 
 export type HeaderType = {
   logo?: Image | number | null;
@@ -63,6 +56,14 @@ type Link = {
 };
 
 const data: Link[] = [
+  {
+    label: 'Flat-1',
+    href: '/flat-1'
+  },
+  {
+    label: 'Flat-2',
+    href: '/flat-2'
+  },
   {
     label: 'Shallow Nested',
     links: [
@@ -204,45 +205,56 @@ function DesktopDropdownLink({
   label,
   separator,
   variant = 'link'
-}: Link) {
+}: Link & { children?: React.ReactNode }) {
   if (separator) {
-    return <DropdownMenuSeparator />;
+    return <DropdownMenuSeparator className={styles.separator} />;
   }
 
   const displayLabel = label || 'Untitled Link';
 
   if (href) {
     return (
-      <NextLink href={href} className={buttonVariants({ variant })}>
+      <NextLink href={href} className={`${buttonVariants({ variant })} px-0`}>
         {displayLabel}
       </NextLink>
     );
   }
 
-  return <Button variant={variant}>{displayLabel}</Button>;
+  return displayLabel;
 }
 
 function TopLevelDesktopDropdownContainer({
   links,
   level
 }: { links: Link[]; level: number }) {
-  return links.map((link, i) =>
-    link.links?.length ? (
-      <DropdownMenu key={`menu-${level}-${i}`}>
-        <DropdownMenuTrigger asChild={true}>
-          <DesktopDropdownLink variant="outline" {...link} />
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <RecurseDesktopMenu links={link.links} level={1} />
-        </DropdownMenuContent>
-      </DropdownMenu>
-    ) : (
-      <DesktopDropdownLink
-        key={`menu-link-${level}-${i}`}
-        variant="link"
-        {...link}
-      />
-    )
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        {links.map((link, i) =>
+          link.links?.length ? (
+            <NavigationMenuItem key={`menu-${level}-${i}`} className="relative">
+              <NavigationMenuTrigger>
+                <DesktopDropdownLink
+                  variant="link"
+                  {...link}
+                ></DesktopDropdownLink>
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <RecurseDesktopMenu links={link.links} level={1} />
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          ) : (
+            <NavigationMenuItem key={`menu-${level}-${i}`}>
+              <DesktopDropdownLink
+                key={`menu-link-${level}-${i}`}
+                variant="link"
+                {...link}
+              />
+            </NavigationMenuItem>
+          )
+        )}
+      </NavigationMenuList>
+    </NavigationMenu>
   );
 }
 
@@ -251,24 +263,35 @@ function NestedDesktopDropdownContainer({
   level
 }: { links: Link[]; level: number }) {
   return (
-    <DropdownMenuGroup>
-      {links.map((link, i) =>
-        link.links?.length ? (
-          <DropdownMenuSub key={`submenu-${level}-${i}`}>
-            <DropdownMenuSubTrigger>{link.label}</DropdownMenuSubTrigger>
-            <DropdownMenuSubContent>
-              <RecurseDesktopMenu links={link.links} level={level + 1} />
-            </DropdownMenuSubContent>
-          </DropdownMenuSub>
-        ) : link.separator ? (
-          <DropdownMenuSeparator key={`separator-${level}-${i}`} />
-        ) : (
-          <DropdownMenuItem key={`link-${level}-${i}`}>
-            {link.label}
-          </DropdownMenuItem>
-        )
-      )}
-    </DropdownMenuGroup>
+    <ul className={styles.list}>
+      {links.map((link, i) => (
+        <li
+          key={`submenu-${level}-${i}`}
+          className={link.separator ? '' : styles.item}
+        >
+          {link.links?.length ? (
+            <HoverCard openDelay={0}>
+              <HoverCardTrigger className={styles.trigger}>
+                <div className="flex items-center gap-2 justify-between">
+                  {link.label} <ChevronRight size={12} />
+                </div>
+              </HoverCardTrigger>
+              <HoverCardContent
+                side="right"
+                className={styles.hoverCard}
+                sideOffset={20}
+              >
+                <RecurseDesktopMenu links={link.links} level={level + 1} />
+              </HoverCardContent>
+            </HoverCard>
+          ) : link.separator ? (
+            <DropdownMenuSeparator className={styles.separator} />
+          ) : (
+            link.label
+          )}
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -320,9 +343,6 @@ function Header() {
   return (
     <header className={styles.container}>
       <RecurseDesktopMenu links={data} />
-
-      <NestedNavigationMenu />
-
       <RecurseMobileMenu links={data} />
     </header>
   );

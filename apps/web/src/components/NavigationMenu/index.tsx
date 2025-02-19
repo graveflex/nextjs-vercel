@@ -25,7 +25,7 @@ export interface NavigationMenuProps {
 const NestedNavigationMenu = (_props: NavigationMenuProps) => {
   return (
     <NavigationMenu className={styles.container}>
-      <NavigationMenu className={styles.menu}>
+      <NavigationMenuList className={styles.list}>
         <NavigationMenuItem className={styles.item}>
           <NavigationMenuTrigger className={styles.trigger}>
             Item one
@@ -46,22 +46,32 @@ const NestedNavigationMenu = (_props: NavigationMenuProps) => {
                     Sub item one
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className={styles.content}>
-                    Sub item one content
+                    <NavigationMenuList className={styles.menu}>
+                      <NavigationMenuItem className={styles.item}>
+                        <NavigationMenuLink>
+                          Sub item one content
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    </NavigationMenuList>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem className={styles.item} value="sub2">
                   <NavigationMenuTrigger className={styles.trigger}>
                     Sub item two
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className={styles.content}>
-                    Sub item two content
-                  </NavigationMenuContent>
+                    <NavigationMenuList className={styles.menu}>
+                      <NavigationMenuItem className={styles.item}>
+                        <NavigationMenuLink>
+                          Sub item two content
+                        </NavigationMenuLink>
+                      </NavigationMenuItem>
+                    </NavigationMenuList>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenuSub>
           </NavigationMenuContent>
         </NavigationMenuItem>
-      </NavigationMenu>
+      </NavigationMenuList>
     </NavigationMenu>
   );
 };
