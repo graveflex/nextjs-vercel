@@ -3,25 +3,24 @@ import type { Form } from '@mono/types/payload-types';
 import RichText from '@mono/web/components/RichText/index';
 import { Button } from '@mono/web/components/ui/Button';
 import { Label } from '@mono/web/components/ui/Label';
-import { WEB_URL } from '@mono/web/lib/constants';
 import { cn } from '@mono/web/lib/utils';
 import has from 'lodash/has';
 import { ArrowRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { type SubmitHandler, useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { useFormStatus } from 'react-dom';
+import onSubmit from './Actions/onSubmit';
 import fieldInputs from './fields';
 import { fallbackConfirmationMessage } from './formMockData';
-
-type Inputs = {
-  [key: string]: string;
-};
 
 export type FormComponentTypes = {
   form?: Form;
 };
 
 export default function FormComponent({ form }: FormComponentTypes) {
+  const [isSubmitSuccessful, setIsSubmitSuccessful] = useState(false);
   const router = useRouter();
+  const { pending: isPending } = useFormStatus();
 
   const formId = form?.id;
   const submitButtonLabel = form?.submitButtonLabel;
@@ -30,43 +29,40 @@ export default function FormComponent({ form }: FormComponentTypes) {
   const confirmationMessage =
     form?.confirmationMessage ?? fallbackConfirmationMessage;
   const redirectUrl = form?.redirect?.url;
+  //   'use server';
+  //   const entries = [];
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isSubmitSuccessful, isLoading, isSubmitting },
-    reset,
-    control
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const dataToSend = Object.entries(data).map(([name, value]) => ({
-      field: name,
-      value
-    }));
+  //   for (const pair of data.entries()) {
+  //     entries.push(pair);
+  //   }
 
-    try {
-      await fetch(`${WEB_URL}/api/form-submissions`, {
-        body: JSON.stringify({
-          form: formId,
-          submissionData: dataToSend
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        method: 'POST'
-      }).then(() => {
-        if (confirmationType === 'redirect' && redirectUrl) {
-          if (redirectUrl) {
-            router.push(redirectUrl);
-          }
-        }
-        // Clear the form fields after successful submission:
-        reset();
-      });
-    } catch (err) {
-      console.warn(err);
-    }
-  };
+  //   const dataToSend = entries.map(([name, value]) => ({
+  //     field: name,
+  //     value
+  //   }));
+
+  //   try {
+  //     await fetch(`${WEB_URL}/api/form-submissions`, {
+  //       body: JSON.stringify({
+  //         form: formId,
+  //         submissionData: dataToSend
+  //       }),
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       method: 'POST'
+  //     }).then(() => {
+  //       setIsSubmitSuccessful(true);
+  //       if (confirmationType === 'redirect' && redirectUrl) {
+  //         if (redirectUrl) {
+  //           router.push(redirectUrl);
+  //         }
+  //       }
+  //     });
+  //   } catch (err) {
+  //     console.warn(err);
+  //   }
+  // };
 
   return (
     <div className="outer-form-wrapper">
@@ -76,10 +72,21 @@ export default function FormComponent({ form }: FormComponentTypes) {
       {!isSubmitSuccessful && (
         <form
           id={`${formId}`}
-          onSubmit={handleSubmit(onSubmit)}
+          action={(formData) =>
+            onSubmit({
+              formData,
+              formId
+            }).then(() => {
+              setIsSubmitSuccessful(true);
+              if (confirmationType === 'redirect' && redirectUrl) {
+                if (redirectUrl) {
+                  router.push(redirectUrl);
+                }
+              }
+            })
+          }
           className="grid md:grid-cols-2 gap-3 w-full md:max-w-sm"
           aria-label="Email signup form"
-          noValidate={true}
         >
           {fields?.map((field) => {
             const defaultValue: string = has(field, 'defaultValue')
@@ -95,27 +102,19 @@ export default function FormComponent({ form }: FormComponentTypes) {
                 <Label htmlFor={field.name}>{field.label}</Label>
                 <Field
                   type={field.blockType}
+                  name={field.name}
                   placeholder={`${blockName}`}
                   defaultValue={defaultValue}
                   required={!!field.required}
-                  className={cn(
-                    errors?.[`${field.name}`] && 'border-red-500',
-                    'flex-1'
-                  )}
+                  className={cn('flex-1')}
                   options={isDropdown ? field?.options : null}
-                  control={control}
-                  disabled={isLoading || isSubmitting}
-                  {...register(field.name, {
-                    required: field?.required
-                      ? `${field?.name} is required.`
-                      : false
-                  })}
+                  disabled={isPending}
                 />
-                {errors?.[`${field.name}`] && (
+                {/* {errors?.[`${field.name}`] && (
                   <span className="text-red-500 text-xs">
                     {`* ${errors?.[`${field.name}`]?.message}`}
                   </span>
-                )}
+                )} */}
               </div>
             );
           })}
