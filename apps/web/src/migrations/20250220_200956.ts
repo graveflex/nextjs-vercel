@@ -1278,19 +1278,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"created_at" timestamp(3) with time zone
   );
   
-  CREATE TABLE IF NOT EXISTS "four_oh_four" (
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"updated_at" timestamp(3) with time zone,
-  	"created_at" timestamp(3) with time zone
-  );
-  
-  CREATE TABLE IF NOT EXISTS "four_oh_four_locales" (
-  	"content" jsonb,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"_locale" "_locales" NOT NULL,
-  	"_parent_id" integer NOT NULL
-  );
-  
   CREATE TABLE IF NOT EXISTS "homepagePricingSectionsBlock" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -2972,12 +2959,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "four_oh_four_locales" ADD CONSTRAINT "four_oh_four_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."four_oh_four"("id") ON DELETE cascade ON UPDATE no action;
-  EXCEPTION
-   WHEN duplicate_object THEN null;
-  END $$;
-  
-  DO $$ BEGIN
    ALTER TABLE "homepagePricingSectionsBlock" ADD CONSTRAINT "homepagePricingSectionsBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -3595,7 +3576,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "nav_header_cta_button_cta_link_header_cta_button_cta_link_internal_href_idx" ON "nav" USING btree ("header_cta_button_cta_link_internal_href_id");
   CREATE INDEX IF NOT EXISTS "nav_header_cta_button_cta_link_header_cta_button_cta_link_file_href_idx" ON "nav" USING btree ("header_cta_button_cta_link_file_href_id");
   CREATE INDEX IF NOT EXISTS "nav_footer_footer_items_footer_footer_items_footer_logo_idx" ON "nav" USING btree ("footer_footer_items_footer_logo_id");
-  CREATE UNIQUE INDEX IF NOT EXISTS "four_oh_four_locales_locale_parent_id_unique" ON "four_oh_four_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX IF NOT EXISTS "homepagePricingSectionsBlock_order_idx" ON "homepagePricingSectionsBlock" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "homepagePricingSectionsBlock_parent_id_idx" ON "homepagePricingSectionsBlock" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "homepagePricingSectionsBlock_path_idx" ON "homepagePricingSectionsBlock" USING btree ("_path");
@@ -3850,8 +3830,6 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "nav_header_icon_items" CASCADE;
   DROP TABLE "nav_footer_footer_items_footer_menu" CASCADE;
   DROP TABLE "nav" CASCADE;
-  DROP TABLE "four_oh_four" CASCADE;
-  DROP TABLE "four_oh_four_locales" CASCADE;
   DROP TABLE "homepagePricingSectionsBlock" CASCADE;
   DROP TABLE "homepageTestimonialsSectionsBlock" CASCADE;
   DROP TABLE "homepageHeaderSectionsBlock" CASCADE;

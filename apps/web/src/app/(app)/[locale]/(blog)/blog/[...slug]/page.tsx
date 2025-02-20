@@ -75,7 +75,7 @@ export async function generateMetadata({ params }: BlogDetailProps) {
   const pageSlug = slug ? slug.join('/') : '/';
   const [data] = await fetchPageData(draft, locale, pageSlug);
 
-  if ('error' in data) {
+  if ((data && 'error' in data) || !data) {
     return {};
   }
 

@@ -77,13 +77,11 @@ export interface Config {
   };
   globals: {
     nav: Nav;
-    'four-oh-four': FourOhFour;
     homepage: Homepage;
     blogIndex: BlogIndex;
   };
   globalsSelect: {
     nav: NavSelect<false> | NavSelect<true>;
-    'four-oh-four': FourOhFourSelect<false> | FourOhFourSelect<true>;
     homepage: HomepageSelect<false> | HomepageSelect<true>;
     blogIndex: BlogIndexSelect<false> | BlogIndexSelect<true>;
   };
@@ -2184,33 +2182,6 @@ export interface FooterItems {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "four-oh-four".
- */
-export interface FourOhFour {
-  id: number;
-  /**
-   * The content that will be displayed in the markdown block.
-   */
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "homepage".
  */
 export interface Homepage {
@@ -2355,16 +2326,6 @@ export interface FooterItemsSelect<T extends boolean = true> {
   copyright?: T;
   legalDisclaimer?: T;
   footerMenu?: T | FlatMenuSelect<T>;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "four-oh-four_select".
- */
-export interface FourOhFourSelect<T extends boolean = true> {
-  content?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

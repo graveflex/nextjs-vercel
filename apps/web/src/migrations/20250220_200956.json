@@ -1,5 +1,5 @@
 {
-  "id": "77a54d93-dfe7-460b-af54-8d3c90690e45",
+  "id": "67125e29-9e58-405b-b98b-995d4bbcb92c",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -12277,111 +12277,6 @@
             "id"
           ],
           "onDelete": "set null",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.four_oh_four": {
-      "name": "four_oh_four",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp(3) with time zone",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp(3) with time zone",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.four_oh_four_locales": {
-      "name": "four_oh_four_locales",
-      "schema": "",
-      "columns": {
-        "content": {
-          "name": "content",
-          "type": "jsonb",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "_locale": {
-          "name": "_locale",
-          "type": "_locales",
-          "typeSchema": "public",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "_parent_id": {
-          "name": "_parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {
-        "four_oh_four_locales_locale_parent_id_unique": {
-          "name": "four_oh_four_locales_locale_parent_id_unique",
-          "columns": [
-            {
-              "expression": "_locale",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            },
-            {
-              "expression": "_parent_id",
-              "isExpression": false,
-              "asc": true,
-              "nulls": "last"
-            }
-          ],
-          "isUnique": true,
-          "concurrently": false,
-          "method": "btree",
-          "with": {}
-        }
-      },
-      "foreignKeys": {
-        "four_oh_four_locales_parent_id_fk": {
-          "name": "four_oh_four_locales_parent_id_fk",
-          "tableFrom": "four_oh_four_locales",
-          "tableTo": "four_oh_four",
-          "columnsFrom": [
-            "_parent_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
           "onUpdate": "no action"
         }
       },
