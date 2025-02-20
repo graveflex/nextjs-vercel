@@ -237,7 +237,7 @@ export default buildConfig({
         email: true,
         state: false,
         country: false,
-        checkbox: false,
+        checkbox: true,
         number: true,
         message: false,
         payment: false

@@ -75,11 +75,13 @@ export default function FormComponent({ form }: FormComponentTypes) {
                   type={field.blockType}
                   name={field.name}
                   placeholder={`${blockName}`}
+                  // @ts-ignore
                   defaultValue={defaultValue}
                   required={!!field.required}
                   className={cn('flex-1 text-primary')}
                   options={isDropdown ? field?.options : null}
                   disabled={isPending}
+                  id={field.id !== null ? field?.id : undefined}
                 />
               </div>
             );
