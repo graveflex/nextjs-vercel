@@ -11,6 +11,13 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
+  testimonialsSectionsBlock: dynamic(
+    () => import('@mono/web/blocks/TestimonialsSectionsBlock'),
+
+    {
+      ...defaultOpts
+    }
+  ),
   blogSection: dynamic(() => import('@mono/web/blocks/BlogSection'), {
     ...defaultOpts
   }),
@@ -20,6 +27,12 @@ const blockList = {
       ...defaultOpts
     }
   ),
+  faqSectionsBlock: dynamic(() => import('@mono/web/blocks/FaqSectionsBlock'), {
+    ...defaultOpts
+  }),
+  bannersBlock: dynamic(() => import('@mono/web/blocks/BannersBlock'), {
+    ...defaultOpts
+  }),
   featureSection: dynamic(() => import('@mono/web/blocks/FeatureSection'), {
     ...defaultOpts
   }),

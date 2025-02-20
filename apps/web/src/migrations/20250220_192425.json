@@ -1,9 +1,191 @@
 {
-  "id": "615c555e-b5f1-493a-8e30-422d11dc3ff2",
+  "id": "270e4564-aa53-455e-b11b-4453703697a3",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
+    "public.pageTestimonialsSectionsBlock": {
+      "name": "pageTestimonialsSectionsBlock",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum_pageTestimonialsSectionsBlock_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum_pageTestimonialsSectionsBlock_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "pageTestimonialsSectionsBlock_order_idx": {
+          "name": "pageTestimonialsSectionsBlock_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "pageTestimonialsSectionsBlock_parent_id_idx": {
+          "name": "pageTestimonialsSectionsBlock_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "pageTestimonialsSectionsBlock_path_idx": {
+          "name": "pageTestimonialsSectionsBlock_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "pageTestimonialsSectionsBlock_parent_id_fk": {
+          "name": "pageTestimonialsSectionsBlock_parent_id_fk",
+          "tableFrom": "pageTestimonialsSectionsBlock",
+          "tableTo": "pages",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public.pageHeaderSectionsBlock": {
       "name": "pageHeaderSectionsBlock",
       "schema": "",
@@ -169,6 +351,370 @@
         "pageHeaderSectionsBlock_parent_id_fk": {
           "name": "pageHeaderSectionsBlock_parent_id_fk",
           "tableFrom": "pageHeaderSectionsBlock",
+          "tableTo": "pages",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.pageFaqSectionsBlock": {
+      "name": "pageFaqSectionsBlock",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum_pageFaqSectionsBlock_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum_pageFaqSectionsBlock_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "pageFaqSectionsBlock_order_idx": {
+          "name": "pageFaqSectionsBlock_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "pageFaqSectionsBlock_parent_id_idx": {
+          "name": "pageFaqSectionsBlock_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "pageFaqSectionsBlock_path_idx": {
+          "name": "pageFaqSectionsBlock_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "pageFaqSectionsBlock_parent_id_fk": {
+          "name": "pageFaqSectionsBlock_parent_id_fk",
+          "tableFrom": "pageFaqSectionsBlock",
+          "tableTo": "pages",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.pageBannersBlock": {
+      "name": "pageBannersBlock",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum_pageBannersBlock_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum_pageBannersBlock_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "pageBannersBlock_order_idx": {
+          "name": "pageBannersBlock_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "pageBannersBlock_parent_id_idx": {
+          "name": "pageBannersBlock_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "pageBannersBlock_path_idx": {
+          "name": "pageBannersBlock_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "pageBannersBlock_parent_id_fk": {
+          "name": "pageBannersBlock_parent_id_fk",
+          "tableFrom": "pageBannersBlock",
           "tableTo": "pages",
           "columnsFrom": [
             "_parent_id"
@@ -1577,6 +2123,194 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+    "public._pageTestimonialsSectionsBlock_v": {
+      "name": "_pageTestimonialsSectionsBlock_v",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum__pageTestimonialsSectionsBlock_v_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum__pageTestimonialsSectionsBlock_v_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "_uuid": {
+          "name": "_uuid",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "_pageTestimonialsSectionsBlock_v_order_idx": {
+          "name": "_pageTestimonialsSectionsBlock_v_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_pageTestimonialsSectionsBlock_v_parent_id_idx": {
+          "name": "_pageTestimonialsSectionsBlock_v_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_pageTestimonialsSectionsBlock_v_path_idx": {
+          "name": "_pageTestimonialsSectionsBlock_v_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "_pageTestimonialsSectionsBlock_v_parent_id_fk": {
+          "name": "_pageTestimonialsSectionsBlock_v_parent_id_fk",
+          "tableFrom": "_pageTestimonialsSectionsBlock_v",
+          "tableTo": "_pages_v",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public._pageHeaderSectionsBlock_v": {
       "name": "_pageHeaderSectionsBlock_v",
       "schema": "",
@@ -1748,6 +2482,382 @@
         "_pageHeaderSectionsBlock_v_parent_id_fk": {
           "name": "_pageHeaderSectionsBlock_v_parent_id_fk",
           "tableFrom": "_pageHeaderSectionsBlock_v",
+          "tableTo": "_pages_v",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public._pageFaqSectionsBlock_v": {
+      "name": "_pageFaqSectionsBlock_v",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum__pageFaqSectionsBlock_v_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum__pageFaqSectionsBlock_v_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "_uuid": {
+          "name": "_uuid",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "_pageFaqSectionsBlock_v_order_idx": {
+          "name": "_pageFaqSectionsBlock_v_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_pageFaqSectionsBlock_v_parent_id_idx": {
+          "name": "_pageFaqSectionsBlock_v_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_pageFaqSectionsBlock_v_path_idx": {
+          "name": "_pageFaqSectionsBlock_v_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "_pageFaqSectionsBlock_v_parent_id_fk": {
+          "name": "_pageFaqSectionsBlock_v_parent_id_fk",
+          "tableFrom": "_pageFaqSectionsBlock_v",
+          "tableTo": "_pages_v",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public._pageBannersBlock_v": {
+      "name": "_pageBannersBlock_v",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum__pageBannersBlock_v_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum__pageBannersBlock_v_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "_uuid": {
+          "name": "_uuid",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "_pageBannersBlock_v_order_idx": {
+          "name": "_pageBannersBlock_v_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_pageBannersBlock_v_parent_id_idx": {
+          "name": "_pageBannersBlock_v_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_pageBannersBlock_v_path_idx": {
+          "name": "_pageBannersBlock_v_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "_pageBannersBlock_v_parent_id_fk": {
+          "name": "_pageBannersBlock_v_parent_id_fk",
+          "tableFrom": "_pageBannersBlock_v",
           "tableTo": "_pages_v",
           "columnsFrom": [
             "_parent_id"
@@ -11046,6 +12156,188 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+    "public.homepageTestimonialsSectionsBlock": {
+      "name": "homepageTestimonialsSectionsBlock",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum_homepageTestimonialsSectionsBlock_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum_homepageTestimonialsSectionsBlock_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "homepageTestimonialsSectionsBlock_order_idx": {
+          "name": "homepageTestimonialsSectionsBlock_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "homepageTestimonialsSectionsBlock_parent_id_idx": {
+          "name": "homepageTestimonialsSectionsBlock_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "homepageTestimonialsSectionsBlock_path_idx": {
+          "name": "homepageTestimonialsSectionsBlock_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "homepageTestimonialsSectionsBlock_parent_id_fk": {
+          "name": "homepageTestimonialsSectionsBlock_parent_id_fk",
+          "tableFrom": "homepageTestimonialsSectionsBlock",
+          "tableTo": "homepage",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public.homepageHeaderSectionsBlock": {
       "name": "homepageHeaderSectionsBlock",
       "schema": "",
@@ -11211,6 +12503,370 @@
         "homepageHeaderSectionsBlock_parent_id_fk": {
           "name": "homepageHeaderSectionsBlock_parent_id_fk",
           "tableFrom": "homepageHeaderSectionsBlock",
+          "tableTo": "homepage",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.homepageFaqSectionsBlock": {
+      "name": "homepageFaqSectionsBlock",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum_homepageFaqSectionsBlock_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum_homepageFaqSectionsBlock_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "homepageFaqSectionsBlock_order_idx": {
+          "name": "homepageFaqSectionsBlock_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "homepageFaqSectionsBlock_parent_id_idx": {
+          "name": "homepageFaqSectionsBlock_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "homepageFaqSectionsBlock_path_idx": {
+          "name": "homepageFaqSectionsBlock_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "homepageFaqSectionsBlock_parent_id_fk": {
+          "name": "homepageFaqSectionsBlock_parent_id_fk",
+          "tableFrom": "homepageFaqSectionsBlock",
+          "tableTo": "homepage",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.homepageBannersBlock": {
+      "name": "homepageBannersBlock",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum_homepageBannersBlock_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum_homepageBannersBlock_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "homepageBannersBlock_order_idx": {
+          "name": "homepageBannersBlock_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "homepageBannersBlock_parent_id_idx": {
+          "name": "homepageBannersBlock_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "homepageBannersBlock_path_idx": {
+          "name": "homepageBannersBlock_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "homepageBannersBlock_parent_id_fk": {
+          "name": "homepageBannersBlock_parent_id_fk",
+          "tableFrom": "homepageBannersBlock",
           "tableTo": "homepage",
           "columnsFrom": [
             "_parent_id"
@@ -12531,6 +14187,194 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+    "public._homepageTestimonialsSectionsBlock_v": {
+      "name": "_homepageTestimonialsSectionsBlock_v",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum__homepageTestimonialsSectionsBlock_v_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum__homepageTestimonialsSectionsBlock_v_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "_uuid": {
+          "name": "_uuid",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "_homepageTestimonialsSectionsBlock_v_order_idx": {
+          "name": "_homepageTestimonialsSectionsBlock_v_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_homepageTestimonialsSectionsBlock_v_parent_id_idx": {
+          "name": "_homepageTestimonialsSectionsBlock_v_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_homepageTestimonialsSectionsBlock_v_path_idx": {
+          "name": "_homepageTestimonialsSectionsBlock_v_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "_homepageTestimonialsSectionsBlock_v_parent_id_fk": {
+          "name": "_homepageTestimonialsSectionsBlock_v_parent_id_fk",
+          "tableFrom": "_homepageTestimonialsSectionsBlock_v",
+          "tableTo": "_homepage_v",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public._homepageHeaderSectionsBlock_v": {
       "name": "_homepageHeaderSectionsBlock_v",
       "schema": "",
@@ -12702,6 +14546,382 @@
         "_homepageHeaderSectionsBlock_v_parent_id_fk": {
           "name": "_homepageHeaderSectionsBlock_v_parent_id_fk",
           "tableFrom": "_homepageHeaderSectionsBlock_v",
+          "tableTo": "_homepage_v",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public._homepageFaqSectionsBlock_v": {
+      "name": "_homepageFaqSectionsBlock_v",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum__homepageFaqSectionsBlock_v_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum__homepageFaqSectionsBlock_v_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "_uuid": {
+          "name": "_uuid",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "_homepageFaqSectionsBlock_v_order_idx": {
+          "name": "_homepageFaqSectionsBlock_v_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_homepageFaqSectionsBlock_v_parent_id_idx": {
+          "name": "_homepageFaqSectionsBlock_v_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_homepageFaqSectionsBlock_v_path_idx": {
+          "name": "_homepageFaqSectionsBlock_v_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "_homepageFaqSectionsBlock_v_parent_id_fk": {
+          "name": "_homepageFaqSectionsBlock_v_parent_id_fk",
+          "tableFrom": "_homepageFaqSectionsBlock_v",
+          "tableTo": "_homepage_v",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public._homepageBannersBlock_v": {
+      "name": "_homepageBannersBlock_v",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum__homepageBannersBlock_v_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum__homepageBannersBlock_v_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "_uuid": {
+          "name": "_uuid",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "_homepageBannersBlock_v_order_idx": {
+          "name": "_homepageBannersBlock_v_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_homepageBannersBlock_v_parent_id_idx": {
+          "name": "_homepageBannersBlock_v_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_homepageBannersBlock_v_path_idx": {
+          "name": "_homepageBannersBlock_v_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "_homepageBannersBlock_v_parent_id_fk": {
+          "name": "_homepageBannersBlock_v_parent_id_fk",
+          "tableFrom": "_homepageBannersBlock_v",
           "tableTo": "_homepage_v",
           "columnsFrom": [
             "_parent_id"
@@ -14181,6 +16401,188 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+    "public.blogIdxTestimonialsSectionsBlock": {
+      "name": "blogIdxTestimonialsSectionsBlock",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum_blogIdxTestimonialsSectionsBlock_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum_blogIdxTestimonialsSectionsBlock_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "blogIdxTestimonialsSectionsBlock_order_idx": {
+          "name": "blogIdxTestimonialsSectionsBlock_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "blogIdxTestimonialsSectionsBlock_parent_id_idx": {
+          "name": "blogIdxTestimonialsSectionsBlock_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "blogIdxTestimonialsSectionsBlock_path_idx": {
+          "name": "blogIdxTestimonialsSectionsBlock_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "blogIdxTestimonialsSectionsBlock_parent_id_fk": {
+          "name": "blogIdxTestimonialsSectionsBlock_parent_id_fk",
+          "tableFrom": "blogIdxTestimonialsSectionsBlock",
+          "tableTo": "blog_index",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public.blogIdxHeaderSectionsBlock": {
       "name": "blogIdxHeaderSectionsBlock",
       "schema": "",
@@ -14346,6 +16748,370 @@
         "blogIdxHeaderSectionsBlock_parent_id_fk": {
           "name": "blogIdxHeaderSectionsBlock_parent_id_fk",
           "tableFrom": "blogIdxHeaderSectionsBlock",
+          "tableTo": "blog_index",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.blogIdxFaqSectionsBlock": {
+      "name": "blogIdxFaqSectionsBlock",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum_blogIdxFaqSectionsBlock_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum_blogIdxFaqSectionsBlock_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "blogIdxFaqSectionsBlock_order_idx": {
+          "name": "blogIdxFaqSectionsBlock_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "blogIdxFaqSectionsBlock_parent_id_idx": {
+          "name": "blogIdxFaqSectionsBlock_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "blogIdxFaqSectionsBlock_path_idx": {
+          "name": "blogIdxFaqSectionsBlock_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "blogIdxFaqSectionsBlock_parent_id_fk": {
+          "name": "blogIdxFaqSectionsBlock_parent_id_fk",
+          "tableFrom": "blogIdxFaqSectionsBlock",
+          "tableTo": "blog_index",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.blogIdxBannersBlock": {
+      "name": "blogIdxBannersBlock",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum_blogIdxBannersBlock_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum_blogIdxBannersBlock_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "blogIdxBannersBlock_order_idx": {
+          "name": "blogIdxBannersBlock_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "blogIdxBannersBlock_parent_id_idx": {
+          "name": "blogIdxBannersBlock_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "blogIdxBannersBlock_path_idx": {
+          "name": "blogIdxBannersBlock_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "blogIdxBannersBlock_parent_id_fk": {
+          "name": "blogIdxBannersBlock_parent_id_fk",
+          "tableFrom": "blogIdxBannersBlock",
           "tableTo": "blog_index",
           "columnsFrom": [
             "_parent_id"
@@ -15666,6 +18432,194 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+    "public._blogIdxTestimonialsSectionsBlock_v": {
+      "name": "_blogIdxTestimonialsSectionsBlock_v",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum__blogIdxTestimonialsSectionsBlock_v_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum__blogIdxTestimonialsSectionsBlock_v_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "_uuid": {
+          "name": "_uuid",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "_blogIdxTestimonialsSectionsBlock_v_order_idx": {
+          "name": "_blogIdxTestimonialsSectionsBlock_v_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_blogIdxTestimonialsSectionsBlock_v_parent_id_idx": {
+          "name": "_blogIdxTestimonialsSectionsBlock_v_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_blogIdxTestimonialsSectionsBlock_v_path_idx": {
+          "name": "_blogIdxTestimonialsSectionsBlock_v_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "_blogIdxTestimonialsSectionsBlock_v_parent_id_fk": {
+          "name": "_blogIdxTestimonialsSectionsBlock_v_parent_id_fk",
+          "tableFrom": "_blogIdxTestimonialsSectionsBlock_v",
+          "tableTo": "_blog_index_v",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public._blogIdxHeaderSectionsBlock_v": {
       "name": "_blogIdxHeaderSectionsBlock_v",
       "schema": "",
@@ -15837,6 +18791,382 @@
         "_blogIdxHeaderSectionsBlock_v_parent_id_fk": {
           "name": "_blogIdxHeaderSectionsBlock_v_parent_id_fk",
           "tableFrom": "_blogIdxHeaderSectionsBlock_v",
+          "tableTo": "_blog_index_v",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public._blogIdxFaqSectionsBlock_v": {
+      "name": "_blogIdxFaqSectionsBlock_v",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum__blogIdxFaqSectionsBlock_v_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum__blogIdxFaqSectionsBlock_v_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "_uuid": {
+          "name": "_uuid",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "_blogIdxFaqSectionsBlock_v_order_idx": {
+          "name": "_blogIdxFaqSectionsBlock_v_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_blogIdxFaqSectionsBlock_v_parent_id_idx": {
+          "name": "_blogIdxFaqSectionsBlock_v_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_blogIdxFaqSectionsBlock_v_path_idx": {
+          "name": "_blogIdxFaqSectionsBlock_v_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "_blogIdxFaqSectionsBlock_v_parent_id_fk": {
+          "name": "_blogIdxFaqSectionsBlock_v_parent_id_fk",
+          "tableFrom": "_blogIdxFaqSectionsBlock_v",
+          "tableTo": "_blog_index_v",
+          "columnsFrom": [
+            "_parent_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public._blogIdxBannersBlock_v": {
+      "name": "_blogIdxBannersBlock_v",
+      "schema": "",
+      "columns": {
+        "_order": {
+          "name": "_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_parent_id": {
+          "name": "_parent_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "_path": {
+          "name": "_path",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wrapper_theme": {
+          "name": "wrapper_theme",
+          "type": "enum__blogIdxBannersBlock_v_wrapper_theme",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_content_width": {
+          "name": "wrapper_content_width",
+          "type": "cw",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'xl'"
+        },
+        "wrapper_padding_xs_padding_top": {
+          "name": "wrapper_padding_xs_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xs_padding_bottom": {
+          "name": "wrapper_padding_xs_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_top": {
+          "name": "wrapper_padding_md_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_md_padding_bottom": {
+          "name": "wrapper_padding_md_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_top": {
+          "name": "wrapper_padding_lg_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_lg_padding_bottom": {
+          "name": "wrapper_padding_lg_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_top": {
+          "name": "wrapper_padding_xl_padding_top",
+          "type": "t",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "wrapper_padding_xl_padding_bottom": {
+          "name": "wrapper_padding_xl_padding_bottom",
+          "type": "b",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "variant": {
+          "name": "variant",
+          "type": "enum__blogIdxBannersBlock_v_variant",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'1'"
+        },
+        "_uuid": {
+          "name": "_uuid",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "block_name": {
+          "name": "block_name",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "_blogIdxBannersBlock_v_order_idx": {
+          "name": "_blogIdxBannersBlock_v_order_idx",
+          "columns": [
+            {
+              "expression": "_order",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_blogIdxBannersBlock_v_parent_id_idx": {
+          "name": "_blogIdxBannersBlock_v_parent_id_idx",
+          "columns": [
+            {
+              "expression": "_parent_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "_blogIdxBannersBlock_v_path_idx": {
+          "name": "_blogIdxBannersBlock_v_path_idx",
+          "columns": [
+            {
+              "expression": "_path",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "_blogIdxBannersBlock_v_parent_id_fk": {
+          "name": "_blogIdxBannersBlock_v_parent_id_fk",
+          "tableFrom": "_blogIdxBannersBlock_v",
           "tableTo": "_blog_index_v",
           "columnsFrom": [
             "_parent_id"
@@ -17326,8 +20656,8 @@
         "es-US"
       ]
     },
-    "public.enum_pageHeaderSectionsBlock_wrapper_theme": {
-      "name": "enum_pageHeaderSectionsBlock_wrapper_theme",
+    "public.enum_pageTestimonialsSectionsBlock_wrapper_theme": {
+      "name": "enum_pageTestimonialsSectionsBlock_wrapper_theme",
       "schema": "public",
       "values": [
         "_",
@@ -17374,8 +20704,68 @@
         "pb-16"
       ]
     },
+    "public.enum_pageTestimonialsSectionsBlock_variant": {
+      "name": "enum_pageTestimonialsSectionsBlock_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "public.enum_pageHeaderSectionsBlock_wrapper_theme": {
+      "name": "enum_pageHeaderSectionsBlock_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
     "public.enum_pageHeaderSectionsBlock_variant": {
       "name": "enum_pageHeaderSectionsBlock_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    "public.enum_pageFaqSectionsBlock_wrapper_theme": {
+      "name": "enum_pageFaqSectionsBlock_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum_pageFaqSectionsBlock_variant": {
+      "name": "enum_pageFaqSectionsBlock_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "public.enum_pageBannersBlock_wrapper_theme": {
+      "name": "enum_pageBannersBlock_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum_pageBannersBlock_variant": {
+      "name": "enum_pageBannersBlock_variant",
       "schema": "public",
       "values": [
         "1",
@@ -17518,6 +20908,26 @@
         "published"
       ]
     },
+    "public.enum__pageTestimonialsSectionsBlock_v_wrapper_theme": {
+      "name": "enum__pageTestimonialsSectionsBlock_v_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum__pageTestimonialsSectionsBlock_v_variant": {
+      "name": "enum__pageTestimonialsSectionsBlock_v_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
     "public.enum__pageHeaderSectionsBlock_v_wrapper_theme": {
       "name": "enum__pageHeaderSectionsBlock_v_wrapper_theme",
       "schema": "public",
@@ -17529,6 +20939,46 @@
     },
     "public.enum__pageHeaderSectionsBlock_v_variant": {
       "name": "enum__pageHeaderSectionsBlock_v_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    "public.enum__pageFaqSectionsBlock_v_wrapper_theme": {
+      "name": "enum__pageFaqSectionsBlock_v_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum__pageFaqSectionsBlock_v_variant": {
+      "name": "enum__pageFaqSectionsBlock_v_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "public.enum__pageBannersBlock_v_wrapper_theme": {
+      "name": "enum__pageBannersBlock_v_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum__pageBannersBlock_v_variant": {
+      "name": "enum__pageBannersBlock_v_variant",
       "schema": "public",
       "values": [
         "1",
@@ -17858,6 +21308,26 @@
         "contrast"
       ]
     },
+    "public.enum_homepageTestimonialsSectionsBlock_wrapper_theme": {
+      "name": "enum_homepageTestimonialsSectionsBlock_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum_homepageTestimonialsSectionsBlock_variant": {
+      "name": "enum_homepageTestimonialsSectionsBlock_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
     "public.enum_homepageHeaderSectionsBlock_wrapper_theme": {
       "name": "enum_homepageHeaderSectionsBlock_wrapper_theme",
       "schema": "public",
@@ -17869,6 +21339,46 @@
     },
     "public.enum_homepageHeaderSectionsBlock_variant": {
       "name": "enum_homepageHeaderSectionsBlock_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    "public.enum_homepageFaqSectionsBlock_wrapper_theme": {
+      "name": "enum_homepageFaqSectionsBlock_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum_homepageFaqSectionsBlock_variant": {
+      "name": "enum_homepageFaqSectionsBlock_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "public.enum_homepageBannersBlock_wrapper_theme": {
+      "name": "enum_homepageBannersBlock_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum_homepageBannersBlock_variant": {
+      "name": "enum_homepageBannersBlock_variant",
       "schema": "public",
       "values": [
         "1",
@@ -17996,6 +21506,26 @@
         "published"
       ]
     },
+    "public.enum__homepageTestimonialsSectionsBlock_v_wrapper_theme": {
+      "name": "enum__homepageTestimonialsSectionsBlock_v_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum__homepageTestimonialsSectionsBlock_v_variant": {
+      "name": "enum__homepageTestimonialsSectionsBlock_v_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
     "public.enum__homepageHeaderSectionsBlock_v_wrapper_theme": {
       "name": "enum__homepageHeaderSectionsBlock_v_wrapper_theme",
       "schema": "public",
@@ -18007,6 +21537,46 @@
     },
     "public.enum__homepageHeaderSectionsBlock_v_variant": {
       "name": "enum__homepageHeaderSectionsBlock_v_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    "public.enum__homepageFaqSectionsBlock_v_wrapper_theme": {
+      "name": "enum__homepageFaqSectionsBlock_v_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum__homepageFaqSectionsBlock_v_variant": {
+      "name": "enum__homepageFaqSectionsBlock_v_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "public.enum__homepageBannersBlock_v_wrapper_theme": {
+      "name": "enum__homepageBannersBlock_v_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum__homepageBannersBlock_v_variant": {
+      "name": "enum__homepageBannersBlock_v_variant",
       "schema": "public",
       "values": [
         "1",
@@ -18130,6 +21700,26 @@
         "es-US"
       ]
     },
+    "public.enum_blogIdxTestimonialsSectionsBlock_wrapper_theme": {
+      "name": "enum_blogIdxTestimonialsSectionsBlock_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum_blogIdxTestimonialsSectionsBlock_variant": {
+      "name": "enum_blogIdxTestimonialsSectionsBlock_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
     "public.enum_blogIdxHeaderSectionsBlock_wrapper_theme": {
       "name": "enum_blogIdxHeaderSectionsBlock_wrapper_theme",
       "schema": "public",
@@ -18141,6 +21731,46 @@
     },
     "public.enum_blogIdxHeaderSectionsBlock_variant": {
       "name": "enum_blogIdxHeaderSectionsBlock_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    "public.enum_blogIdxFaqSectionsBlock_wrapper_theme": {
+      "name": "enum_blogIdxFaqSectionsBlock_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum_blogIdxFaqSectionsBlock_variant": {
+      "name": "enum_blogIdxFaqSectionsBlock_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "public.enum_blogIdxBannersBlock_wrapper_theme": {
+      "name": "enum_blogIdxBannersBlock_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum_blogIdxBannersBlock_variant": {
+      "name": "enum_blogIdxBannersBlock_variant",
       "schema": "public",
       "values": [
         "1",
@@ -18268,6 +21898,26 @@
         "published"
       ]
     },
+    "public.enum__blogIdxTestimonialsSectionsBlock_v_wrapper_theme": {
+      "name": "enum__blogIdxTestimonialsSectionsBlock_v_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum__blogIdxTestimonialsSectionsBlock_v_variant": {
+      "name": "enum__blogIdxTestimonialsSectionsBlock_v_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
     "public.enum__blogIdxHeaderSectionsBlock_v_wrapper_theme": {
       "name": "enum__blogIdxHeaderSectionsBlock_v_wrapper_theme",
       "schema": "public",
@@ -18279,6 +21929,46 @@
     },
     "public.enum__blogIdxHeaderSectionsBlock_v_variant": {
       "name": "enum__blogIdxHeaderSectionsBlock_v_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    "public.enum__blogIdxFaqSectionsBlock_v_wrapper_theme": {
+      "name": "enum__blogIdxFaqSectionsBlock_v_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum__blogIdxFaqSectionsBlock_v_variant": {
+      "name": "enum__blogIdxFaqSectionsBlock_v_variant",
+      "schema": "public",
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    "public.enum__blogIdxBannersBlock_v_wrapper_theme": {
+      "name": "enum__blogIdxBannersBlock_v_wrapper_theme",
+      "schema": "public",
+      "values": [
+        "_",
+        "light",
+        "dark"
+      ]
+    },
+    "public.enum__blogIdxBannersBlock_v_variant": {
+      "name": "enum__blogIdxBannersBlock_v_variant",
       "schema": "public",
       "values": [
         "1",
