@@ -9,6 +9,7 @@ import {
 } from '@mono/web/components/ui/Sidebar';
 import NextLink from 'next/link';
 import type { Link } from './shared';
+import styles from './Header.module.css';
 
 function SidebarLink({ href, label, separator }: Link) {
   if (separator) {
@@ -78,7 +79,12 @@ function MobileMenu({
     level === 0
       ? TopLevelMobileDropdownContainer
       : NestedMobileDropdownContainer;
-  return <Container level={level} links={links} />;
+
+  return (
+    <div className={styles.mobileNavContainer}>
+      <Container level={level} links={links} />
+    </div>
+  );
 }
 
 export default MobileMenu;

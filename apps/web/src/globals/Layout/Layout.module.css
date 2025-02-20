@@ -1,0 +1,27 @@
+@reference "../../app/global.css";
+
+.container {
+  @apply w-full grid;
+
+  grid-template-rows: min-content 1fr min-content;
+  grid-template-areas: 
+    'header'
+    'body'
+    'footer';
+}
+
+.header {
+  grid-area: 'header';
+  @apply bg-red-100;
+}
+
+.body {
+  grid-area: 'body';
+  @apply bg-green-100;
+}
+
+.footer {
+  grid-area: 'footer';
+  @apply bg-blue-100;
+}
+

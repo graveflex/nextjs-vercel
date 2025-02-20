@@ -4,16 +4,18 @@ import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePay
 import RichText from '@mono/ui/components/primitives/RichText';
 import React from 'react';
 
-export type FooterType = FooterItems;
+export type FooterType = FooterItems & { className?: string };
 
 function Footer({
   footerLogo,
   copyright,
   legalDisclaimer,
-  footerMenu
-}: FooterItems) {
+  footerMenu,
+  className
+}: FooterType) {
   return (
-    <div>
+    <div className={className}>
+      <div>This is the footer</div>
       <div>
         {footerLogo && (
           <ResponsivePayloadImage image={footerLogo} sizes="200px" />

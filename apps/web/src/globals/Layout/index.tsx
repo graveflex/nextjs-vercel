@@ -4,9 +4,8 @@ import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
 import { unstable_cache } from 'next/cache';
 import { getPayload } from 'payload';
-import {
-  SidebarProvider,
-} from '@mono/web/components/ui/Sidebar';
+import { SidebarProvider } from '@mono/web/components/ui/Sidebar';
+import styles from './Layout.module.css';
 
 import type React from 'react';
 
@@ -16,11 +15,7 @@ export type LayoutProps = {
   children: React.ReactNode;
 };
 
-export default async function Layout({
-  children,
-  locale,
-  draft,
-}: LayoutProps) {
+export default async function Layout({ children, locale, draft }: LayoutProps) {
   const fetchNavData = unstable_cache(
     async (draft: boolean | undefined, locale: LanguageLocale) => {
       const payload = await getPayload({ config });
@@ -42,9 +37,11 @@ export default async function Layout({
 
   return (
     <SidebarProvider>
-      <Header />
-      <main>{children}</main>
-      <Footer {...navData.footer?.footerItems} />
+      <div className={styles.container}>
+        <Header className={styles.header} />
+        <main className={styles.body}>{children}</main>
+        <Footer className={styles.footer} {...navData.footer?.footerItems} />
+      </div>
     </SidebarProvider>
   );
 }

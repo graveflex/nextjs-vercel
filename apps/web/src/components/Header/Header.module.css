@@ -1,5 +1,24 @@
 @reference "../../app/global.css";
 
+.desktopNavContainer {
+  @apply
+    w-full
+    row-auto
+    justify-between
+    hidden
+    gap-4;
+
+  /* md */
+  @apply md:grid;
+
+  grid-template-columns: min-content 1fr min-content;
+}
+
+.mobileNavContainer {
+  /* md */
+  @apply md:hidden;
+}
+
 .container {
   @apply 
     px-4 

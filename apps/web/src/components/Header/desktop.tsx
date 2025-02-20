@@ -13,6 +13,8 @@ import {
   HoverCardContent,
   HoverCardTrigger
 } from '@mono/web/components/ui/HoverCard';
+import Logo from '@mono/web/components/Logo';
+import { Avatar, AvatarFallback } from '@mono/web/components/ui/Avatar';
 import { ChevronRight } from 'lucide-react';
 import type { Link } from './shared';
 import styles from './Header.module.css';
@@ -57,7 +59,7 @@ function TopLevelDesktopDropdownContainer({
                 ></DesktopDropdownLink>
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <DesktopMenu links={link.links} level={1} />
+                <RecurseDesktopMenu links={link.links} level={1} />
               </NavigationMenuContent>
             </NavigationMenuItem>
           ) : (
@@ -98,7 +100,7 @@ function NestedDesktopDropdownContainer({
                 className={styles.hoverCard}
                 sideOffset={20}
               >
-                <DesktopMenu links={link.links} level={level + 1} />
+                <RecurseDesktopMenu links={link.links} level={level + 1} />
               </HoverCardContent>
             </HoverCard>
           ) : link.separator ? (
@@ -112,7 +114,7 @@ function NestedDesktopDropdownContainer({
   );
 }
 
-function DesktopMenu({
+function RecurseDesktopMenu({
   links = [],
   level = 0
 }: { links: Link[]; level?: number }) {
@@ -121,6 +123,24 @@ function DesktopMenu({
       ? TopLevelDesktopDropdownContainer
       : NestedDesktopDropdownContainer;
   return <Container level={level} links={links} />;
+}
+
+interface DesktopMenuProps {
+  links: Link[];
+}
+
+function DesktopMenu({
+  links = []
+}: DesktopMenuProps) {
+  return (
+    <div className={styles.desktopNavContainer}>
+      <Logo />
+      <RecurseDesktopMenu links={links} />
+      <Avatar>
+        <AvatarFallback>LH</AvatarFallback>
+      </Avatar>
+    </div>
+  ) 
 }
 
 export default DesktopMenu;
