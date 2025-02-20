@@ -10,6 +10,7 @@ const CheckboxField = (args: CheckboxTypes) => {
         defaultChecked={args?.defaultValue}
         className="w-4"
         required={args?.required}
+        name={args?.name}
       />
       <label
         htmlFor={args?.id}
