@@ -41,7 +41,7 @@ export const Defaults: Story = {
     imagePosition: 'right',
     variant: '1',
     content: heroSectionsMockData.data,
-    image: imgMockData
+    media: imgMockData
   }
 };
 
@@ -51,7 +51,7 @@ export const One: Story = {
     imagePosition: 'right',
     variant: '1',
     content: heroSectionsMockData.data,
-    image: imgMockData
+    media: imgMockData
   }
 };
 
@@ -60,7 +60,7 @@ export const OneWithList: Story = {
     imagePosition: 'right',
     variant: '1',
     content: heroSectionsListMockData.data,
-    image: imgMockData
+    media: imgMockData
   }
 };
 
@@ -69,16 +69,7 @@ export const Four: Story = {
     imagePosition: 'right',
     variant: '4',
     content: heroSections4_5MockData.data,
-    image: imgMockData,
-    form: emailSignupFormMockData
-  }
-};
-
-export const Five: Story = {
-  args: {
-    imagePosition: 'right',
-    variant: '5',
-    content: heroSections4_5MockData.data,
+    media: imgMockData,
     form: emailSignupFormMockData
   }
 };
@@ -88,7 +79,7 @@ export const Six: Story = {
     variant: '6',
     imagePosition: 'right',
     content: heroSections6_9MockData.data,
-    image: imgMockData
+    media: imgMockData
   }
 };
 

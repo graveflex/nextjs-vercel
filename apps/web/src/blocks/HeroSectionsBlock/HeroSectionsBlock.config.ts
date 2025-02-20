@@ -53,10 +53,12 @@ const HeroSectionsBlock = (prefix: string): Block => ({
       required: false
     },
     {
-      name: 'image',
-      label: 'Image',
-      type: 'upload',
-      relationTo: 'images'
+      name: 'media',
+      label: 'Media',
+      type: 'relationship',
+      relationTo: ['images', 'videos'],
+      hasMany: false,
+      required: true
     },
     {
       name: 'imagePosition',

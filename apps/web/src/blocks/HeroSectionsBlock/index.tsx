@@ -18,9 +18,6 @@ const layoutList: Record<string, ComponentType<HeroSectionsBlockType>> = {
   '4': dynamic(() => import('./layouts/HeroSections4'), {
     ...defaultOpts
   }),
-  '5': dynamic(() => import('./layouts/HeroSections5'), {
-    ...defaultOpts
-  }),
   '6': dynamic(() => import('./layouts/HeroSections6'), {
     ...defaultOpts
   }),
@@ -35,9 +32,9 @@ export const genImgColumnOrder = (
 
 function HeroSectionsBlock({
   content,
-  image,
   variant = '1',
   imagePosition,
+  media,
   form,
   wrapper
 }: HeroSectionsBlockType) {
@@ -48,7 +45,7 @@ function HeroSectionsBlock({
       <Component
         content={content}
         form={form}
-        image={image}
+        media={media}
         imagePosition={imagePosition}
         variant={variant}
       />

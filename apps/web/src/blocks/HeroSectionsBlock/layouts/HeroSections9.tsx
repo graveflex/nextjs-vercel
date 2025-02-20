@@ -1,11 +1,14 @@
+import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/web/components/RichText/index';
+import Video from '@mono/web/components/Video';
 import { AspectRatio } from '@mono/web/components/ui/AspectRatio';
 import { Button } from '@mono/web/components/ui/Button';
 import { ArrowRight } from 'lucide-react';
 import React from 'react';
 import type { HeroSectionsBlockType } from '../index';
 
-function HeroSections9({ content }: HeroSectionsBlockType) {
+function HeroSections9({ content, media }: HeroSectionsBlockType) {
+  const mediaRelation = media?.relationTo;
   return (
     <section
       className="bg-background py-16 lg:py-24"
@@ -29,21 +32,20 @@ function HeroSections9({ content }: HeroSectionsBlockType) {
 
         {/* Video Section */}
         <AspectRatio ratio={16 / 9}>
-          <video
-            className="object-cover w-full h-full rounded-lg"
-            controls={true}
-            preload="none"
-            aria-label="Product demonstration video"
-          >
-            <source src="/path/to/video.mp4" type="video/mp4" />
-            <track
-              src="/path/to/captions.vtt"
-              kind="captions"
-              srcLang="en"
-              label="English"
+          {mediaRelation === 'videos' ? (
+            <Video
+              className="object-cover w-full h-full rounded-lg"
+              video={media?.value}
             />
-            Your browser does not support the video tag.
-          </video>
+          ) : (
+            <ResponsivePayloadImage
+              image={media?.value}
+              sizes="(max-width: 1023px) 100vw, 50vw"
+              alt="Hero section visual"
+              fill={true}
+              imgClasses="rounded-xl object-cover w-full h-full"
+            />
+          )}
         </AspectRatio>
       </div>
     </section>
