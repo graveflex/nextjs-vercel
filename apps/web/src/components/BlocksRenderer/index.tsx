@@ -18,6 +18,9 @@ const blockList = {
       ...defaultOpts
     }
   ),
+  blogSection: dynamic(() => import('@mono/web/blocks/BlogSection'), {
+    ...defaultOpts
+  }),
   headerSectionsBlock: dynamic(
     () => import('@mono/web/blocks/HeaderSectionsBlock'),
     {
