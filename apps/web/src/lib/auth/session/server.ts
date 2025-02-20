@@ -46,6 +46,9 @@ const createPayloadAuthSessionWithEmailCreds = async ({
     console.error(error);
 
     if (error instanceof Error && 'name' in error) {
+      console.dir('🍤 ~ error.name:');
+      console.dir(error.name);
+      console.dir(JSON.stringify(error));
       switch (error.name) {
         case 'InvalidCredentials':
         case 'AuthenticationError':
