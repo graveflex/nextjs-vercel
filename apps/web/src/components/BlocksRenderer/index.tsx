@@ -27,6 +27,9 @@ const blockList = {
       ...defaultOpts
     }
   ),
+  bannersBlock: dynamic(() => import('@mono/web/blocks/BannersBlock'), {
+    ...defaultOpts
+  }),
   featureSection: dynamic(() => import('@mono/web/blocks/FeatureSection'), {
     ...defaultOpts
   }),

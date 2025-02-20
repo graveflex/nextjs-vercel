@@ -1,4 +1,5 @@
 // InsertBlockConfigImports
+import BannersBlock from '@mono/web/blocks/BannersBlock/BannersBlock.config';
 import BlogSectionBlock from '@mono/web/blocks/BlogSection/BlogSection.config';
 import CtaSectionsBlock from '@mono/web/blocks/CtaSectionsBlock/CtaSectionsBlock.config';
 import FeatureSection from '@mono/web/blocks/FeatureSection/FeatureSection.config';
@@ -11,6 +12,7 @@ export const allBlocks = (prefix: string) => [
   // InsertBlockConfigFields
   TestimonialsSectionsBlock(prefix),
   HeaderSectionsBlock(prefix),
+  BannersBlock(prefix),
   CtaSectionsBlock,
   FeatureSection,
   HeaderSectionBlock(prefix),
