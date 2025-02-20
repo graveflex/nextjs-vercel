@@ -41,6 +41,9 @@ export const authConfig: NextAuthConfig = {
         } catch (error) {
           unstable_rethrow(error);
 
+          console.dir('Auth.config: error');
+          console.error(error);
+
           // Type guard to ensure error is of type Error with code property
           if (error instanceof Error && 'code' in error) {
             switch (error.code) {

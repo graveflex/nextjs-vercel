@@ -49,11 +49,14 @@ async function SignIn({ searchParams }: SignInProps) {
           className="w-full max-w-sm space-y-6 m-auto"
           action={async (formData) => {
             'use server';
-            // TODO: handle validation + success message
             try {
               await signIn('credentials', formData);
             } catch (error) {
               unstable_rethrow(error);
+
+              console.dir('SignIn: error');
+              console.error(error);
+
               if (error instanceof Error && 'code' in error) {
                 // Type guard to ensure error is of type Error with code property
                 const email = formData.get('email');
@@ -64,7 +67,6 @@ async function SignIn({ searchParams }: SignInProps) {
                 }
               }
 
-              console.error(error);
               redirect(`${SIGNIN_URL}?error=unknown-error`);
             }
           }}
