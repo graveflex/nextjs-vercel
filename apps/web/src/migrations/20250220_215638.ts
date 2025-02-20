@@ -3,10 +3,12 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
    CREATE TYPE "public"."_locales" AS ENUM('en-US', 'es-US');
-  CREATE TYPE "public"."enum_pageTestimonialsSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_pagePricingSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."cw" AS ENUM('full', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs');
   CREATE TYPE "public"."t" AS ENUM('pt-0', 'pt-2', 'pt-4', 'pt-6', 'pt-8', 'pt-10', 'pt-16');
   CREATE TYPE "public"."b" AS ENUM('pb-0', 'pb-2', 'pb-4', 'pb-6', 'pb-8', 'pb-10', 'pb-16');
+  CREATE TYPE "public"."enum_pagePricingSectionsBlock_variant" AS ENUM('1', '2', '3', '4');
+  CREATE TYPE "public"."enum_pageTestimonialsSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_pageTestimonialsSectionsBlock_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum_pageHeaderSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_pageHeaderSectionsBlock_variant" AS ENUM('1', '2', '3', '4', '5', '6');
@@ -28,6 +30,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_pages_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum_pages_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum_pages_status" AS ENUM('draft', 'published');
+  CREATE TYPE "public"."enum__pagePricingSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__pagePricingSectionsBlock_v_variant" AS ENUM('1', '2', '3', '4');
   CREATE TYPE "public"."enum__pageTestimonialsSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__pageTestimonialsSectionsBlock_v_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum__pageHeaderSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
@@ -67,6 +71,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_nav_header_banner_background" AS ENUM('white', 'black', 'gray');
   CREATE TYPE "public"."undefined_cta_v" AS ENUM('outline', 'solid', 'link');
   CREATE TYPE "public"."undefined_cta_tv" AS ENUM('lightTheme', 'darkTheme', 'contrast');
+  CREATE TYPE "public"."enum_homepagePricingSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_homepagePricingSectionsBlock_variant" AS ENUM('1', '2', '3', '4');
   CREATE TYPE "public"."enum_homepageTestimonialsSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_homepageTestimonialsSectionsBlock_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum_homepageHeaderSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
@@ -88,6 +94,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_homepage_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum_homepage_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum_homepage_status" AS ENUM('draft', 'published');
+  CREATE TYPE "public"."enum__homepagePricingSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__homepagePricingSectionsBlock_v_variant" AS ENUM('1', '2', '3', '4');
   CREATE TYPE "public"."enum__homepageTestimonialsSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__homepageTestimonialsSectionsBlock_v_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum__homepageHeaderSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
@@ -109,6 +117,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum__homepage_v_version_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum__homepage_v_version_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__homepage_v_published_locale" AS ENUM('en-US', 'es-US');
+  CREATE TYPE "public"."enum_blogIdxPricingSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_blogIdxPricingSectionsBlock_variant" AS ENUM('1', '2', '3', '4');
   CREATE TYPE "public"."enum_blogIdxTestimonialsSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_blogIdxTestimonialsSectionsBlock_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum_blogIdxHeaderSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
@@ -130,6 +140,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_blog_index_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum_blog_index_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum_blog_index_status" AS ENUM('draft', 'published');
+  CREATE TYPE "public"."enum__blogIdxPricingSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__blogIdxPricingSectionsBlock_v_variant" AS ENUM('1', '2', '3', '4');
   CREATE TYPE "public"."enum__blogIdxTestimonialsSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__blogIdxTestimonialsSectionsBlock_v_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum__blogIdxHeaderSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
@@ -151,6 +163,25 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum__blog_index_v_version_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum__blog_index_v_version_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__blog_index_v_published_locale" AS ENUM('en-US', 'es-US');
+  CREATE TABLE IF NOT EXISTS "pagePricingSectionsBlock" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_pagePricingSectionsBlock_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum_pagePricingSectionsBlock_variant" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
   CREATE TABLE IF NOT EXISTS "pageTestimonialsSectionsBlock" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -382,6 +413,26 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"id" serial PRIMARY KEY NOT NULL,
   	"_locale" "_locales" NOT NULL,
   	"_parent_id" integer NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pagePricingSectionsBlock_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__pagePricingSectionsBlock_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum__pagePricingSectionsBlock_v_variant" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
   );
   
   CREATE TABLE IF NOT EXISTS "_pageTestimonialsSectionsBlock_v" (
@@ -1264,17 +1315,23 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"created_at" timestamp(3) with time zone
   );
   
-  CREATE TABLE IF NOT EXISTS "four_oh_four" (
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"updated_at" timestamp(3) with time zone,
-  	"created_at" timestamp(3) with time zone
-  );
-  
-  CREATE TABLE IF NOT EXISTS "four_oh_four_locales" (
-  	"content" jsonb,
-  	"id" serial PRIMARY KEY NOT NULL,
-  	"_locale" "_locales" NOT NULL,
-  	"_parent_id" integer NOT NULL
+  CREATE TABLE IF NOT EXISTS "homepagePricingSectionsBlock" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_homepagePricingSectionsBlock_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum_homepagePricingSectionsBlock_variant" DEFAULT '1',
+  	"block_name" varchar
   );
   
   CREATE TABLE IF NOT EXISTS "homepageTestimonialsSectionsBlock" (
@@ -1504,6 +1561,26 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"id" serial PRIMARY KEY NOT NULL,
   	"_locale" "_locales" NOT NULL,
   	"_parent_id" integer NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_homepagePricingSectionsBlock_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__homepagePricingSectionsBlock_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum__homepagePricingSectionsBlock_v_variant" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
   );
   
   CREATE TABLE IF NOT EXISTS "_homepageTestimonialsSectionsBlock_v" (
@@ -1751,6 +1828,25 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL
   );
   
+  CREATE TABLE IF NOT EXISTS "blogIdxPricingSectionsBlock" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_blogIdxPricingSectionsBlock_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum_blogIdxPricingSectionsBlock_variant" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
   CREATE TABLE IF NOT EXISTS "blogIdxTestimonialsSectionsBlock" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -1978,6 +2074,26 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"id" serial PRIMARY KEY NOT NULL,
   	"_locale" "_locales" NOT NULL,
   	"_parent_id" integer NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_blogIdxPricingSectionsBlock_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__blogIdxPricingSectionsBlock_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum__blogIdxPricingSectionsBlock_v_variant" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
   );
   
   CREATE TABLE IF NOT EXISTS "_blogIdxTestimonialsSectionsBlock_v" (
@@ -2226,6 +2342,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   );
   
   DO $$ BEGIN
+   ALTER TABLE "pagePricingSectionsBlock" ADD CONSTRAINT "pagePricingSectionsBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "pageTestimonialsSectionsBlock" ADD CONSTRAINT "pageTestimonialsSectionsBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -2311,6 +2433,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "pages_locales" ADD CONSTRAINT "pages_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pagePricingSectionsBlock_v" ADD CONSTRAINT "_pagePricingSectionsBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -2904,7 +3032,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
-   ALTER TABLE "four_oh_four_locales" ADD CONSTRAINT "four_oh_four_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."four_oh_four"("id") ON DELETE cascade ON UPDATE no action;
+   ALTER TABLE "homepagePricingSectionsBlock" ADD CONSTRAINT "homepagePricingSectionsBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -2994,6 +3122,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "_homepagePricingSectionsBlock_v" ADD CONSTRAINT "_homepagePricingSectionsBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepage_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "_homepageTestimonialsSectionsBlock_v" ADD CONSTRAINT "_homepageTestimonialsSectionsBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepage_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -3073,6 +3207,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "_homepage_v_locales" ADD CONSTRAINT "_homepage_v_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepage_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "blogIdxPricingSectionsBlock" ADD CONSTRAINT "blogIdxPricingSectionsBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blog_index"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -3162,6 +3302,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "_blogIdxPricingSectionsBlock_v" ADD CONSTRAINT "_blogIdxPricingSectionsBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blog_index_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "_blogIdxTestimonialsSectionsBlock_v" ADD CONSTRAINT "_blogIdxTestimonialsSectionsBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blog_index_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -3245,6 +3391,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
    WHEN duplicate_object THEN null;
   END $$;
   
+  CREATE INDEX IF NOT EXISTS "pagePricingSectionsBlock_order_idx" ON "pagePricingSectionsBlock" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pagePricingSectionsBlock_parent_id_idx" ON "pagePricingSectionsBlock" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pagePricingSectionsBlock_path_idx" ON "pagePricingSectionsBlock" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "pageTestimonialsSectionsBlock_order_idx" ON "pageTestimonialsSectionsBlock" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "pageTestimonialsSectionsBlock_parent_id_idx" ON "pageTestimonialsSectionsBlock" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pageTestimonialsSectionsBlock_path_idx" ON "pageTestimonialsSectionsBlock" USING btree ("_path");
@@ -3284,6 +3433,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "pages__status_idx" ON "pages" USING btree ("_status");
   CREATE INDEX IF NOT EXISTS "pages_meta_meta_image_idx" ON "pages_locales" USING btree ("meta_image_id","_locale");
   CREATE UNIQUE INDEX IF NOT EXISTS "pages_locales_locale_parent_id_unique" ON "pages_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pagePricingSectionsBlock_v_order_idx" ON "_pagePricingSectionsBlock_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pagePricingSectionsBlock_v_parent_id_idx" ON "_pagePricingSectionsBlock_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pagePricingSectionsBlock_v_path_idx" ON "_pagePricingSectionsBlock_v" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_pageTestimonialsSectionsBlock_v_order_idx" ON "_pageTestimonialsSectionsBlock_v" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_pageTestimonialsSectionsBlock_v_parent_id_idx" ON "_pageTestimonialsSectionsBlock_v" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pageTestimonialsSectionsBlock_v_path_idx" ON "_pageTestimonialsSectionsBlock_v" USING btree ("_path");
@@ -3511,7 +3663,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "nav_header_cta_button_cta_link_header_cta_button_cta_link_internal_href_idx" ON "nav" USING btree ("header_cta_button_cta_link_internal_href_id");
   CREATE INDEX IF NOT EXISTS "nav_header_cta_button_cta_link_header_cta_button_cta_link_file_href_idx" ON "nav" USING btree ("header_cta_button_cta_link_file_href_id");
   CREATE INDEX IF NOT EXISTS "nav_footer_footer_items_footer_footer_items_footer_logo_idx" ON "nav" USING btree ("footer_footer_items_footer_logo_id");
-  CREATE UNIQUE INDEX IF NOT EXISTS "four_oh_four_locales_locale_parent_id_unique" ON "four_oh_four_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "homepagePricingSectionsBlock_order_idx" ON "homepagePricingSectionsBlock" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "homepagePricingSectionsBlock_parent_id_idx" ON "homepagePricingSectionsBlock" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "homepagePricingSectionsBlock_path_idx" ON "homepagePricingSectionsBlock" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "homepageTestimonialsSectionsBlock_order_idx" ON "homepageTestimonialsSectionsBlock" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "homepageTestimonialsSectionsBlock_parent_id_idx" ON "homepageTestimonialsSectionsBlock" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "homepageTestimonialsSectionsBlock_path_idx" ON "homepageTestimonialsSectionsBlock" USING btree ("_path");
@@ -3548,6 +3702,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE UNIQUE INDEX IF NOT EXISTS "homepage_slug_idx" ON "homepage" USING btree ("slug");
   CREATE INDEX IF NOT EXISTS "homepage__status_idx" ON "homepage" USING btree ("_status");
   CREATE UNIQUE INDEX IF NOT EXISTS "homepage_locales_locale_parent_id_unique" ON "homepage_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "_homepagePricingSectionsBlock_v_order_idx" ON "_homepagePricingSectionsBlock_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_homepagePricingSectionsBlock_v_parent_id_idx" ON "_homepagePricingSectionsBlock_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_homepagePricingSectionsBlock_v_path_idx" ON "_homepagePricingSectionsBlock_v" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_homepageTestimonialsSectionsBlock_v_order_idx" ON "_homepageTestimonialsSectionsBlock_v" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_homepageTestimonialsSectionsBlock_v_parent_id_idx" ON "_homepageTestimonialsSectionsBlock_v" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_homepageTestimonialsSectionsBlock_v_path_idx" ON "_homepageTestimonialsSectionsBlock_v" USING btree ("_path");
@@ -3590,6 +3747,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_homepage_v_latest_idx" ON "_homepage_v" USING btree ("latest");
   CREATE INDEX IF NOT EXISTS "_homepage_v_autosave_idx" ON "_homepage_v" USING btree ("autosave");
   CREATE UNIQUE INDEX IF NOT EXISTS "_homepage_v_locales_locale_parent_id_unique" ON "_homepage_v_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "blogIdxPricingSectionsBlock_order_idx" ON "blogIdxPricingSectionsBlock" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "blogIdxPricingSectionsBlock_parent_id_idx" ON "blogIdxPricingSectionsBlock" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "blogIdxPricingSectionsBlock_path_idx" ON "blogIdxPricingSectionsBlock" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "blogIdxTestimonialsSectionsBlock_order_idx" ON "blogIdxTestimonialsSectionsBlock" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "blogIdxTestimonialsSectionsBlock_parent_id_idx" ON "blogIdxTestimonialsSectionsBlock" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "blogIdxTestimonialsSectionsBlock_path_idx" ON "blogIdxTestimonialsSectionsBlock" USING btree ("_path");
@@ -3626,6 +3786,9 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE UNIQUE INDEX IF NOT EXISTS "blog_index_slug_idx" ON "blog_index" USING btree ("slug");
   CREATE INDEX IF NOT EXISTS "blog_index__status_idx" ON "blog_index" USING btree ("_status");
   CREATE UNIQUE INDEX IF NOT EXISTS "blog_index_locales_locale_parent_id_unique" ON "blog_index_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "_blogIdxPricingSectionsBlock_v_order_idx" ON "_blogIdxPricingSectionsBlock_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_blogIdxPricingSectionsBlock_v_parent_id_idx" ON "_blogIdxPricingSectionsBlock_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_blogIdxPricingSectionsBlock_v_path_idx" ON "_blogIdxPricingSectionsBlock_v" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_blogIdxTestimonialsSectionsBlock_v_order_idx" ON "_blogIdxTestimonialsSectionsBlock_v" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_blogIdxTestimonialsSectionsBlock_v_parent_id_idx" ON "_blogIdxTestimonialsSectionsBlock_v" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_blogIdxTestimonialsSectionsBlock_v_path_idx" ON "_blogIdxTestimonialsSectionsBlock_v" USING btree ("_path");
@@ -3672,7 +3835,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
 
 export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
   await db.execute(sql`
-   DROP TABLE "pageTestimonialsSectionsBlock" CASCADE;
+   DROP TABLE "pagePricingSectionsBlock" CASCADE;
+  DROP TABLE "pageTestimonialsSectionsBlock" CASCADE;
   DROP TABLE "pageHeaderSectionsBlock" CASCADE;
   DROP TABLE "pageContactSectionsBlock" CASCADE;
   DROP TABLE "pageFaqSectionsBlock" CASCADE;
@@ -3687,6 +3851,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "pages_blocks_blog_section" CASCADE;
   DROP TABLE "pages" CASCADE;
   DROP TABLE "pages_locales" CASCADE;
+  DROP TABLE "_pagePricingSectionsBlock_v" CASCADE;
   DROP TABLE "_pageTestimonialsSectionsBlock_v" CASCADE;
   DROP TABLE "_pageHeaderSectionsBlock_v" CASCADE;
   DROP TABLE "_pageContactSectionsBlock_v" CASCADE;
@@ -3755,8 +3920,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "nav_header_icon_items" CASCADE;
   DROP TABLE "nav_footer_footer_items_footer_menu" CASCADE;
   DROP TABLE "nav" CASCADE;
-  DROP TABLE "four_oh_four" CASCADE;
-  DROP TABLE "four_oh_four_locales" CASCADE;
+  DROP TABLE "homepagePricingSectionsBlock" CASCADE;
   DROP TABLE "homepageTestimonialsSectionsBlock" CASCADE;
   DROP TABLE "homepageHeaderSectionsBlock" CASCADE;
   DROP TABLE "homepageContactSectionsBlock" CASCADE;
@@ -3772,6 +3936,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "homepage_blocks_blog_section" CASCADE;
   DROP TABLE "homepage" CASCADE;
   DROP TABLE "homepage_locales" CASCADE;
+  DROP TABLE "_homepagePricingSectionsBlock_v" CASCADE;
   DROP TABLE "_homepageTestimonialsSectionsBlock_v" CASCADE;
   DROP TABLE "_homepageHeaderSectionsBlock_v" CASCADE;
   DROP TABLE "_homepageContactSectionsBlock_v" CASCADE;
@@ -3787,6 +3952,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "_homepage_v_blocks_blog_section" CASCADE;
   DROP TABLE "_homepage_v" CASCADE;
   DROP TABLE "_homepage_v_locales" CASCADE;
+  DROP TABLE "blogIdxPricingSectionsBlock" CASCADE;
   DROP TABLE "blogIdxTestimonialsSectionsBlock" CASCADE;
   DROP TABLE "blogIdxHeaderSectionsBlock" CASCADE;
   DROP TABLE "blogIdxContactSectionsBlock" CASCADE;
@@ -3802,6 +3968,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "blog_index_blocks_blog_section" CASCADE;
   DROP TABLE "blog_index" CASCADE;
   DROP TABLE "blog_index_locales" CASCADE;
+  DROP TABLE "_blogIdxPricingSectionsBlock_v" CASCADE;
   DROP TABLE "_blogIdxTestimonialsSectionsBlock_v" CASCADE;
   DROP TABLE "_blogIdxHeaderSectionsBlock_v" CASCADE;
   DROP TABLE "_blogIdxContactSectionsBlock_v" CASCADE;
@@ -3818,10 +3985,12 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "_blog_index_v" CASCADE;
   DROP TABLE "_blog_index_v_locales" CASCADE;
   DROP TYPE "public"."_locales";
-  DROP TYPE "public"."enum_pageTestimonialsSectionsBlock_wrapper_theme";
+  DROP TYPE "public"."enum_pagePricingSectionsBlock_wrapper_theme";
   DROP TYPE "public"."cw";
   DROP TYPE "public"."t";
   DROP TYPE "public"."b";
+  DROP TYPE "public"."enum_pagePricingSectionsBlock_variant";
+  DROP TYPE "public"."enum_pageTestimonialsSectionsBlock_wrapper_theme";
   DROP TYPE "public"."enum_pageTestimonialsSectionsBlock_variant";
   DROP TYPE "public"."enum_pageHeaderSectionsBlock_wrapper_theme";
   DROP TYPE "public"."enum_pageHeaderSectionsBlock_variant";
@@ -3843,6 +4012,8 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_pages_blocks_blog_section_variant";
   DROP TYPE "public"."enum_pages_theme";
   DROP TYPE "public"."enum_pages_status";
+  DROP TYPE "public"."enum__pagePricingSectionsBlock_v_wrapper_theme";
+  DROP TYPE "public"."enum__pagePricingSectionsBlock_v_variant";
   DROP TYPE "public"."enum__pageTestimonialsSectionsBlock_v_wrapper_theme";
   DROP TYPE "public"."enum__pageTestimonialsSectionsBlock_v_variant";
   DROP TYPE "public"."enum__pageHeaderSectionsBlock_v_wrapper_theme";
@@ -3882,6 +4053,8 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_nav_header_banner_background";
   DROP TYPE "public"."undefined_cta_v";
   DROP TYPE "public"."undefined_cta_tv";
+  DROP TYPE "public"."enum_homepagePricingSectionsBlock_wrapper_theme";
+  DROP TYPE "public"."enum_homepagePricingSectionsBlock_variant";
   DROP TYPE "public"."enum_homepageTestimonialsSectionsBlock_wrapper_theme";
   DROP TYPE "public"."enum_homepageTestimonialsSectionsBlock_variant";
   DROP TYPE "public"."enum_homepageHeaderSectionsBlock_wrapper_theme";
@@ -3903,6 +4076,8 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_homepage_blocks_blog_section_variant";
   DROP TYPE "public"."enum_homepage_theme";
   DROP TYPE "public"."enum_homepage_status";
+  DROP TYPE "public"."enum__homepagePricingSectionsBlock_v_wrapper_theme";
+  DROP TYPE "public"."enum__homepagePricingSectionsBlock_v_variant";
   DROP TYPE "public"."enum__homepageTestimonialsSectionsBlock_v_wrapper_theme";
   DROP TYPE "public"."enum__homepageTestimonialsSectionsBlock_v_variant";
   DROP TYPE "public"."enum__homepageHeaderSectionsBlock_v_wrapper_theme";
@@ -3924,6 +4099,8 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum__homepage_v_version_theme";
   DROP TYPE "public"."enum__homepage_v_version_status";
   DROP TYPE "public"."enum__homepage_v_published_locale";
+  DROP TYPE "public"."enum_blogIdxPricingSectionsBlock_wrapper_theme";
+  DROP TYPE "public"."enum_blogIdxPricingSectionsBlock_variant";
   DROP TYPE "public"."enum_blogIdxTestimonialsSectionsBlock_wrapper_theme";
   DROP TYPE "public"."enum_blogIdxTestimonialsSectionsBlock_variant";
   DROP TYPE "public"."enum_blogIdxHeaderSectionsBlock_wrapper_theme";
@@ -3945,6 +4122,8 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_blog_index_blocks_blog_section_variant";
   DROP TYPE "public"."enum_blog_index_theme";
   DROP TYPE "public"."enum_blog_index_status";
+  DROP TYPE "public"."enum__blogIdxPricingSectionsBlock_v_wrapper_theme";
+  DROP TYPE "public"."enum__blogIdxPricingSectionsBlock_v_variant";
   DROP TYPE "public"."enum__blogIdxTestimonialsSectionsBlock_v_wrapper_theme";
   DROP TYPE "public"."enum__blogIdxTestimonialsSectionsBlock_v_variant";
   DROP TYPE "public"."enum__blogIdxHeaderSectionsBlock_v_wrapper_theme";
