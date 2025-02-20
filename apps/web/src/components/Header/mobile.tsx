@@ -7,9 +7,21 @@ import {
   SidebarMenuSubButton,
   SidebarSeparator
 } from '@mono/web/components/ui/Sidebar';
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetTitle,
+  SheetClose
+} from '@mono/web/components/ui/Sheet';
+import { MenuIcon } from 'lucide-react';
+import Logo from '@mono/web/components/Logo';
+import { Button } from '@mono/web/components/ui/Button';
+import { Avatar, AvatarFallback } from '@mono/web/components/ui/Avatar';
 import NextLink from 'next/link';
 import type { Link } from './shared';
 import styles from './Header.module.css';
+import { SheetHeader } from '../ui/Sheet';
 
 function SidebarLink({ href, label, separator }: Link) {
   if (separator) {
@@ -40,7 +52,7 @@ function TopLevelMobileDropdownContainer({
               <SidebarLink {...link} />
             </SidebarMenuButton>
             {link.links?.length ? (
-              <MobileMenu links={link.links} level={level + 1} />
+              <RecurseMobileMenu links={link.links} level={level + 1} />
             ) : null}
           </SidebarMenuItem>
         )
@@ -62,7 +74,7 @@ function NestedMobileDropdownContainer({
               <SidebarLink {...link} />
             </SidebarMenuSubButton>
             {link.links?.length ? (
-              <MobileMenu links={link.links} level={level + 1} />
+              <RecurseMobileMenu links={link.links} level={level + 1} />
             ) : null}
           </SidebarMenuSubItem>
         )
@@ -71,7 +83,7 @@ function NestedMobileDropdownContainer({
   );
 }
 
-function MobileMenu({
+function RecurseMobileMenu({
   links = [],
   level = 0
 }: { links: Link[]; level?: number }) {
@@ -80,9 +92,46 @@ function MobileMenu({
       ? TopLevelMobileDropdownContainer
       : NestedMobileDropdownContainer;
 
+  return <Container level={level} links={links} />;
+}
+
+interface MobileMenuProps {
+  links: Link[];
+}
+
+function MobileMenu({ links = [] }: MobileMenuProps) {
   return (
     <div className={styles.mobileNavContainer}>
-      <Container level={level} links={links} />
+      <Sheet>
+        <SheetTrigger asChild={true}>
+          <Button variant="ghost">
+            <MenuIcon />
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="left" className={styles.sheetContent}>
+          <SheetHeader className={styles.sheetHeader}>
+            <SheetClose asChild={true}>
+              <Button variant="ghost" className="mb-0">
+                <MenuIcon />
+              </Button>
+            </SheetClose>
+            <SheetTitle className="mb-0">
+              <Logo />
+            </SheetTitle>
+            <Avatar>
+              <AvatarFallback>LH</AvatarFallback>
+            </Avatar>
+          </SheetHeader>
+
+          <div className={styles.mobileNavTree}>
+            <RecurseMobileMenu links={links} />
+          </div>
+        </SheetContent>
+      </Sheet>
+      <Logo />
+      <Avatar>
+        <AvatarFallback>LH</AvatarFallback>
+      </Avatar>
     </div>
   );
 }

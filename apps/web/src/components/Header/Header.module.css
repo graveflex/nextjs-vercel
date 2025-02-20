@@ -11,12 +11,51 @@
   /* md */
   @apply md:grid;
 
+  /* custom */
   grid-template-columns: min-content 1fr min-content;
 }
 
 .mobileNavContainer {
+  @apply
+    grid
+    w-full
+    row-auto
+    justify-between
+    justify-items-center
+    items-center
+    gap-4;
+
   /* md */
   @apply md:hidden;
+
+  /* custom */
+  grid-template-columns: min-content 1fr min-content;
+}
+
+.sheetContent {
+  /* hide default close button */
+  @apply [&>button:first-child]:hidden ;
+
+  @apply 
+    py-2 
+    px-4
+    w-max;
+}
+
+.sheetHeader {
+  @apply 
+    grid 
+    w-full
+    justify-between
+    justify-items-center
+    items-center
+    gap-4;
+
+    grid-template-columns: min-content 1fr min-content;
+}
+
+
+.mobileNavTree {
 }
 
 .container {
