@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
 interface OAuthProviderListProps {
   callbackUrl?: string;
+  label?: string;
 }
 
 // TODO: make utility?
@@ -64,7 +65,9 @@ function OAuthProviderList(props: OAuthProviderListProps) {
       <Button variant="outline" className="w-full" type="submit">
         {ProviderIcons(provider.name.toLowerCase())}
 
-        <span>Sign in with {provider.name}</span>
+        <span>
+          {props.label ? props.label : 'Sign in'} with {provider.name}
+        </span>
       </Button>
     </form>
   ));

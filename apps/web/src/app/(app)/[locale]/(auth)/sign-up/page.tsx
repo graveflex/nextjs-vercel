@@ -34,7 +34,7 @@ async function SignUp({ searchParams }: SignUpProps) {
         </div>
 
         {/* OAuth provider list */}
-        <OAuthProviderList callbackUrl={callbackUrl} />
+        <OAuthProviderList callbackUrl={callbackUrl} label="Sign up" />
 
         {/* Separator */}
         <div className="w-full relative">

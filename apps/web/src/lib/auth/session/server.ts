@@ -45,9 +45,14 @@ const createPayloadAuthSessionWithEmailCreds = async ({
     if (error instanceof Error && 'name' in error) {
       switch (error.name) {
         case 'InvalidCredentials':
+        case 'AuthenticationError':
           throw new InvalidLoginError();
         case 'LockedAuth':
           throw new LockedUserError();
+        case 'EmailRequired':
+          throw new EmailRequiredError();
+        case 'PasswordRequired':
+          throw new PasswordRequiredError();
         default:
           throw error;
       }
