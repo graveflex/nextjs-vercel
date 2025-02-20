@@ -1,5 +1,9 @@
 {
+<<<<<<<< HEAD:apps/web/src/migrations/20250220_200956.json
   "id": "67125e29-9e58-405b-b98b-995d4bbcb92c",
+========
+  "id": "bd3b038b-3d38-4915-9780-4b1e17f210bd",
+>>>>>>>> 330a019 (cleanup(migrations): flatten migrations):apps/web/src/migrations/20250220_192624.json
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
