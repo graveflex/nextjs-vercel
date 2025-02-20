@@ -130,6 +130,7 @@ export interface Page {
     | (
         | TestimonialsSectionsBlockT
         | HeaderSectionsBlockT
+        | ContactSectionsBlockT
         | FaqSectionsBlockT
         | BannersBlockT
         | CtaSectionsBlockT
@@ -227,6 +228,39 @@ export interface HeaderSectionsBlockT {
   id?: string | null;
   blockName?: string | null;
   blockType: 'headerSectionsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactSectionsBlockT".
+ */
+export interface ContactSectionsBlockT {
+  wrapper?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    paddingXs?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingMd?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingLg?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingXl?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+  };
+  /**
+   * The layout variant for the block.
+   */
+  variant: '1' | '2' | '3' | '4' | '5' | '6';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactSectionsBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1136,6 +1170,7 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         testimonialsSectionsBlock?: T | TestimonialsSectionsBlockTSelect<T>;
         headerSectionsBlock?: T | HeaderSectionsBlockTSelect<T>;
+        contactSectionsBlock?: T | ContactSectionsBlockTSelect<T>;
         faqSectionsBlock?: T | FaqSectionsBlockTSelect<T>;
         bannersBlock?: T | BannersBlockTSelect<T>;
         ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
@@ -1204,6 +1239,45 @@ export interface TestimonialsSectionsBlockTSelect<T extends boolean = true> {
  * via the `definition` "HeaderSectionsBlockT_select".
  */
 export interface HeaderSectionsBlockTSelect<T extends boolean = true> {
+  wrapper?:
+    | T
+    | {
+        theme?: T;
+        contentWidth?: T;
+        paddingXs?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingMd?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingLg?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingXl?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+      };
+  variant?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactSectionsBlockT_select".
+ */
+export interface ContactSectionsBlockTSelect<T extends boolean = true> {
   wrapper?:
     | T
     | {
@@ -2071,6 +2145,7 @@ export interface Homepage {
     | (
         | TestimonialsSectionsBlockT
         | HeaderSectionsBlockT
+        | ContactSectionsBlockT
         | FaqSectionsBlockT
         | BannersBlockT
         | CtaSectionsBlockT
@@ -2101,6 +2176,7 @@ export interface BlogIndex {
     | (
         | TestimonialsSectionsBlockT
         | HeaderSectionsBlockT
+        | ContactSectionsBlockT
         | FaqSectionsBlockT
         | BannersBlockT
         | CtaSectionsBlockT
@@ -2224,6 +2300,7 @@ export interface HomepageSelect<T extends boolean = true> {
     | {
         testimonialsSectionsBlock?: T | TestimonialsSectionsBlockTSelect<T>;
         headerSectionsBlock?: T | HeaderSectionsBlockTSelect<T>;
+        contactSectionsBlock?: T | ContactSectionsBlockTSelect<T>;
         faqSectionsBlock?: T | FaqSectionsBlockTSelect<T>;
         bannersBlock?: T | BannersBlockTSelect<T>;
         ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
@@ -2251,6 +2328,7 @@ export interface BlogIndexSelect<T extends boolean = true> {
     | {
         testimonialsSectionsBlock?: T | TestimonialsSectionsBlockTSelect<T>;
         headerSectionsBlock?: T | HeaderSectionsBlockTSelect<T>;
+        contactSectionsBlock?: T | ContactSectionsBlockTSelect<T>;
         faqSectionsBlock?: T | FaqSectionsBlockTSelect<T>;
         bannersBlock?: T | BannersBlockTSelect<T>;
         ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
