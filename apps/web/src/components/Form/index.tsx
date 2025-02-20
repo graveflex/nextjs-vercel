@@ -66,11 +66,14 @@ export default function FormComponent({ form }: FormComponentTypes) {
 
             const Field = fieldInputs?.[`${field.blockType}`];
             const isDropdown = field?.blockType === 'select';
+            const isCheckbox = field?.blockType === 'checkbox';
             const blockName = field?.blockName ?? '';
 
             return (
               <div key={field.id} className="w-full">
-                <Label htmlFor={field.name}>{field.label}</Label>
+                {!isCheckbox && (
+                  <Label htmlFor={field.name}>{field.label}</Label>
+                )}
                 <Field
                   type={field.blockType}
                   name={field.name}

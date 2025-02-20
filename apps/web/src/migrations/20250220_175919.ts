@@ -3,11 +3,17 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
    CREATE TYPE "public"."_locales" AS ENUM('en-US', 'es-US');
-  CREATE TYPE "public"."enum_pageHeaderSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_pageTestimonialsSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."cw" AS ENUM('full', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs');
   CREATE TYPE "public"."t" AS ENUM('pt-0', 'pt-2', 'pt-4', 'pt-6', 'pt-8', 'pt-10', 'pt-16');
   CREATE TYPE "public"."b" AS ENUM('pb-0', 'pb-2', 'pb-4', 'pb-6', 'pb-8', 'pb-10', 'pb-16');
+  CREATE TYPE "public"."enum_pageTestimonialsSectionsBlock_variant" AS ENUM('1', '2', '3', '4', '5');
+  CREATE TYPE "public"."enum_pageHeaderSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_pageHeaderSectionsBlock_variant" AS ENUM('1', '2', '3', '4', '5', '6');
+  CREATE TYPE "public"."enum_pageFaqSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_pageFaqSectionsBlock_variant" AS ENUM('1', '2', '3', '4');
+  CREATE TYPE "public"."enum_pageBannersBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_pageBannersBlock_variant" AS ENUM('1', '2', '3', '4', '5', '6');
   CREATE TYPE "public"."enum_pages_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_pages_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
   CREATE TYPE "public"."enum_pages_blocks_feature_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
@@ -15,38 +21,29 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_pagehdrSec_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."pagehdrSec_v" AS ENUM('1', '2', '3', '4', '5', '6');
   CREATE TYPE "public"."enum_pageherSecB_wrapper_theme" AS ENUM('_', 'light', 'dark');
-<<<<<<< HEAD:apps/web/src/migrations/20250212_201316.ts
-<<<<<<< HEAD:apps/web/src/migrations/20250212_172421.ts
-<<<<<<<< HEAD:apps/web/src/migrations/20250220_174819.ts
-  CREATE TYPE "public"."vrnt" AS ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9');
+  CREATE TYPE "public"."vrnt" AS ENUM('1', '4', '5', '6', '9');
+  CREATE TYPE "public"."enum_pageherSecB_image_position" AS ENUM('left', 'right');
   CREATE TYPE "public"."enum_pages_blocks_blog_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_pages_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
-========
-  CREATE TYPE "public"."vrnt" AS ENUM('1', '2', '4', '5', '6', '8', '9');
-=======
-  CREATE TYPE "public"."vrnt" AS ENUM('1', '4', '5', '6', '8', '9');
->>>>>>> 5889ff8 (cleanup(block): get rid of variant 2 for list):apps/web/src/migrations/20250212_201316.ts
-=======
-  CREATE TYPE "public"."vrnt" AS ENUM('1', '4', '5', '6', '9');
->>>>>>> 1a8a7bc (feat(block): get rid of HeroSections8 variant):apps/web/src/migrations/20250212_204226.ts
-  CREATE TYPE "public"."enum_pageherSecB_image_position" AS ENUM('left', 'right');
->>>>>>>> 985e642 (feat(block): add imgPosition to HeroSections):apps/web/src/migrations/20250212_172421.ts
   CREATE TYPE "public"."enum_pages_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum_pages_status" AS ENUM('draft', 'published');
+  CREATE TYPE "public"."enum__pageTestimonialsSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__pageTestimonialsSectionsBlock_v_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum__pageHeaderSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__pageHeaderSectionsBlock_v_variant" AS ENUM('1', '2', '3', '4', '5', '6');
+  CREATE TYPE "public"."enum__pageFaqSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__pageFaqSectionsBlock_v_variant" AS ENUM('1', '2', '3', '4');
+  CREATE TYPE "public"."enum__pageBannersBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__pageBannersBlock_v_variant" AS ENUM('1', '2', '3', '4', '5', '6');
   CREATE TYPE "public"."enum__pages_v_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__pages_v_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
   CREATE TYPE "public"."enum__pages_v_blocks_feature_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__pages_v_blocks_feature_section_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14');
   CREATE TYPE "public"."enum__pagehdrSec_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__pageherSecB_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
-<<<<<<<< HEAD:apps/web/src/migrations/20250220_174819.ts
+  CREATE TYPE "public"."enum__pageherSecB_v_image_position" AS ENUM('left', 'right');
   CREATE TYPE "public"."enum__pages_v_blocks_blog_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__pages_v_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
-========
-  CREATE TYPE "public"."enum__pageherSecB_v_image_position" AS ENUM('left', 'right');
->>>>>>>> 985e642 (feat(block): add imgPosition to HeroSections):apps/web/src/migrations/20250212_172421.ts
   CREATE TYPE "public"."enum__pages_v_version_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum__pages_v_version_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__pages_v_published_locale" AS ENUM('en-US', 'es-US');
@@ -68,8 +65,14 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_nav_header_banner_background" AS ENUM('white', 'black', 'gray');
   CREATE TYPE "public"."undefined_cta_v" AS ENUM('outline', 'solid', 'link');
   CREATE TYPE "public"."undefined_cta_tv" AS ENUM('lightTheme', 'darkTheme', 'contrast');
+  CREATE TYPE "public"."enum_homepageTestimonialsSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_homepageTestimonialsSectionsBlock_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum_homepageHeaderSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_homepageHeaderSectionsBlock_variant" AS ENUM('1', '2', '3', '4', '5', '6');
+  CREATE TYPE "public"."enum_homepageFaqSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_homepageFaqSectionsBlock_variant" AS ENUM('1', '2', '3', '4');
+  CREATE TYPE "public"."enum_homepageBannersBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_homepageBannersBlock_variant" AS ENUM('1', '2', '3', '4', '5', '6');
   CREATE TYPE "public"."enum_homepage_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_homepage_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
   CREATE TYPE "public"."enum_homepage_blocks_feature_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
@@ -77,33 +80,39 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_homepagehdrSec_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."homepagehdrSec_v" AS ENUM('1', '2', '3', '4', '5', '6');
   CREATE TYPE "public"."enum_homepageherSecB_wrapper_theme" AS ENUM('_', 'light', 'dark');
-<<<<<<<< HEAD:apps/web/src/migrations/20250220_174819.ts
+  CREATE TYPE "public"."enum_homepageherSecB_image_position" AS ENUM('left', 'right');
   CREATE TYPE "public"."enum_homepage_blocks_blog_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_homepage_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
-========
-  CREATE TYPE "public"."enum_homepageherSecB_image_position" AS ENUM('left', 'right');
->>>>>>>> 985e642 (feat(block): add imgPosition to HeroSections):apps/web/src/migrations/20250212_172421.ts
   CREATE TYPE "public"."enum_homepage_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum_homepage_status" AS ENUM('draft', 'published');
+  CREATE TYPE "public"."enum__homepageTestimonialsSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__homepageTestimonialsSectionsBlock_v_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum__homepageHeaderSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__homepageHeaderSectionsBlock_v_variant" AS ENUM('1', '2', '3', '4', '5', '6');
+  CREATE TYPE "public"."enum__homepageFaqSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__homepageFaqSectionsBlock_v_variant" AS ENUM('1', '2', '3', '4');
+  CREATE TYPE "public"."enum__homepageBannersBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__homepageBannersBlock_v_variant" AS ENUM('1', '2', '3', '4', '5', '6');
   CREATE TYPE "public"."enum__homepage_v_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__homepage_v_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
   CREATE TYPE "public"."enum__homepage_v_blocks_feature_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__homepage_v_blocks_feature_section_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14');
   CREATE TYPE "public"."enum__homepagehdrSec_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__homepageherSecB_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
-<<<<<<<< HEAD:apps/web/src/migrations/20250220_174819.ts
+  CREATE TYPE "public"."enum__homepageherSecB_v_image_position" AS ENUM('left', 'right');
   CREATE TYPE "public"."enum__homepage_v_blocks_blog_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__homepage_v_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
-========
-  CREATE TYPE "public"."enum__homepageherSecB_v_image_position" AS ENUM('left', 'right');
->>>>>>>> 985e642 (feat(block): add imgPosition to HeroSections):apps/web/src/migrations/20250212_172421.ts
   CREATE TYPE "public"."enum__homepage_v_version_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum__homepage_v_version_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__homepage_v_published_locale" AS ENUM('en-US', 'es-US');
+  CREATE TYPE "public"."enum_blogIdxTestimonialsSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_blogIdxTestimonialsSectionsBlock_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum_blogIdxHeaderSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_blogIdxHeaderSectionsBlock_variant" AS ENUM('1', '2', '3', '4', '5', '6');
+  CREATE TYPE "public"."enum_blogIdxFaqSectionsBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_blogIdxFaqSectionsBlock_variant" AS ENUM('1', '2', '3', '4');
+  CREATE TYPE "public"."enum_blogIdxBannersBlock_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum_blogIdxBannersBlock_variant" AS ENUM('1', '2', '3', '4', '5', '6');
   CREATE TYPE "public"."enum_blog_index_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_blog_index_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
   CREATE TYPE "public"."enum_blog_index_blocks_feature_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
@@ -111,31 +120,50 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_blogIdxhdrSec_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."blogIdxhdrSec_v" AS ENUM('1', '2', '3', '4', '5', '6');
   CREATE TYPE "public"."enum_blogIdxherSecB_wrapper_theme" AS ENUM('_', 'light', 'dark');
-<<<<<<<< HEAD:apps/web/src/migrations/20250220_174819.ts
+  CREATE TYPE "public"."enum_blogIdxherSecB_image_position" AS ENUM('left', 'right');
   CREATE TYPE "public"."enum_blog_index_blocks_blog_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_blog_index_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
-========
-  CREATE TYPE "public"."enum_blogIdxherSecB_image_position" AS ENUM('left', 'right');
->>>>>>>> 985e642 (feat(block): add imgPosition to HeroSections):apps/web/src/migrations/20250212_172421.ts
   CREATE TYPE "public"."enum_blog_index_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum_blog_index_status" AS ENUM('draft', 'published');
+  CREATE TYPE "public"."enum__blogIdxTestimonialsSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__blogIdxTestimonialsSectionsBlock_v_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum__blogIdxHeaderSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__blogIdxHeaderSectionsBlock_v_variant" AS ENUM('1', '2', '3', '4', '5', '6');
+  CREATE TYPE "public"."enum__blogIdxFaqSectionsBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__blogIdxFaqSectionsBlock_v_variant" AS ENUM('1', '2', '3', '4');
+  CREATE TYPE "public"."enum__blogIdxBannersBlock_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
+  CREATE TYPE "public"."enum__blogIdxBannersBlock_v_variant" AS ENUM('1', '2', '3', '4', '5', '6');
   CREATE TYPE "public"."enum__blog_index_v_blocks_cta_sections_block_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__blog_index_v_blocks_cta_sections_block_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7');
   CREATE TYPE "public"."enum__blog_index_v_blocks_feature_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__blog_index_v_blocks_feature_section_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14');
   CREATE TYPE "public"."enum__blogIdxhdrSec_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__blogIdxherSecB_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
-<<<<<<<< HEAD:apps/web/src/migrations/20250220_174819.ts
+  CREATE TYPE "public"."enum__blogIdxherSecB_v_image_position" AS ENUM('left', 'right');
   CREATE TYPE "public"."enum__blog_index_v_blocks_blog_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__blog_index_v_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
-========
-  CREATE TYPE "public"."enum__blogIdxherSecB_v_image_position" AS ENUM('left', 'right');
->>>>>>>> 985e642 (feat(block): add imgPosition to HeroSections):apps/web/src/migrations/20250212_172421.ts
   CREATE TYPE "public"."enum__blog_index_v_version_theme" AS ENUM('light', 'dark');
   CREATE TYPE "public"."enum__blog_index_v_version_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__blog_index_v_published_locale" AS ENUM('en-US', 'es-US');
+  CREATE TABLE IF NOT EXISTS "pageTestimonialsSectionsBlock" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_pageTestimonialsSectionsBlock_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum_pageTestimonialsSectionsBlock_variant" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
   CREATE TABLE IF NOT EXISTS "pageHeaderSectionsBlock" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -152,6 +180,44 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"wrapper_padding_xl_padding_top" "t",
   	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "enum_pageHeaderSectionsBlock_variant" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pageFaqSectionsBlock" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_pageFaqSectionsBlock_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum_pageFaqSectionsBlock_variant" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "pageBannersBlock" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_pageBannersBlock_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum_pageBannersBlock_variant" DEFAULT '1',
   	"block_name" varchar
   );
   
@@ -245,6 +311,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"variant" "vrnt" DEFAULT '1',
   	"image_id" integer,
   	"image_position" "enum_pageherSecB_image_position" DEFAULT 'right',
+  	"form_id" integer,
   	"block_name" varchar
   );
   
@@ -295,6 +362,26 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL
   );
   
+  CREATE TABLE IF NOT EXISTS "_pageTestimonialsSectionsBlock_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__pageTestimonialsSectionsBlock_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum__pageTestimonialsSectionsBlock_v_variant" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
   CREATE TABLE IF NOT EXISTS "_pageHeaderSectionsBlock_v" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -311,6 +398,46 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"wrapper_padding_xl_padding_top" "t",
   	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "enum__pageHeaderSectionsBlock_v_variant" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pageFaqSectionsBlock_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__pageFaqSectionsBlock_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum__pageFaqSectionsBlock_v_variant" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_pageBannersBlock_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__pageBannersBlock_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum__pageBannersBlock_v_variant" DEFAULT '1',
   	"_uuid" varchar,
   	"block_name" varchar
   );
@@ -408,6 +535,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"variant" "vrnt" DEFAULT '1',
   	"image_id" integer,
   	"image_position" "enum__pageherSecB_v_image_position" DEFAULT 'right',
+  	"form_id" integer,
   	"_uuid" varchar,
   	"block_name" varchar
   );
@@ -762,6 +890,62 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"posts_id" integer
   );
   
+  CREATE TABLE IF NOT EXISTS "forms_blocks_checkbox" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"name" varchar NOT NULL,
+  	"width" numeric,
+  	"required" boolean,
+  	"default_value" boolean,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "forms_blocks_checkbox_locales" (
+  	"label" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" varchar NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "forms_blocks_email" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"name" varchar NOT NULL,
+  	"width" numeric,
+  	"required" boolean,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "forms_blocks_email_locales" (
+  	"label" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" varchar NOT NULL
+  );
+  
+  CREATE TABLE IF NOT EXISTS "forms_blocks_number" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"name" varchar NOT NULL,
+  	"width" numeric,
+  	"default_value" numeric,
+  	"required" boolean,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "forms_blocks_number_locales" (
+  	"label" varchar,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"_locale" "_locales" NOT NULL,
+  	"_parent_id" varchar NOT NULL
+  );
+  
   CREATE TABLE IF NOT EXISTS "forms_blocks_select_options" (
   	"_order" integer NOT NULL,
   	"_parent_id" varchar NOT NULL,
@@ -1073,6 +1257,25 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL
   );
   
+  CREATE TABLE IF NOT EXISTS "homepageTestimonialsSectionsBlock" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_homepageTestimonialsSectionsBlock_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum_homepageTestimonialsSectionsBlock_variant" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
   CREATE TABLE IF NOT EXISTS "homepageHeaderSectionsBlock" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -1089,6 +1292,44 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"wrapper_padding_xl_padding_top" "t",
   	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "enum_homepageHeaderSectionsBlock_variant" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "homepageFaqSectionsBlock" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_homepageFaqSectionsBlock_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum_homepageFaqSectionsBlock_variant" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "homepageBannersBlock" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_homepageBannersBlock_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum_homepageBannersBlock_variant" DEFAULT '1',
   	"block_name" varchar
   );
   
@@ -1182,6 +1423,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"variant" "vrnt" DEFAULT '1',
   	"image_id" integer,
   	"image_position" "enum_homepageherSecB_image_position" DEFAULT 'right',
+  	"form_id" integer,
   	"block_name" varchar
   );
   
@@ -1228,6 +1470,26 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL
   );
   
+  CREATE TABLE IF NOT EXISTS "_homepageTestimonialsSectionsBlock_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__homepageTestimonialsSectionsBlock_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum__homepageTestimonialsSectionsBlock_v_variant" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
   CREATE TABLE IF NOT EXISTS "_homepageHeaderSectionsBlock_v" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -1244,6 +1506,46 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"wrapper_padding_xl_padding_top" "t",
   	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "enum__homepageHeaderSectionsBlock_v_variant" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_homepageFaqSectionsBlock_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__homepageFaqSectionsBlock_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum__homepageFaqSectionsBlock_v_variant" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_homepageBannersBlock_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__homepageBannersBlock_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum__homepageBannersBlock_v_variant" DEFAULT '1',
   	"_uuid" varchar,
   	"block_name" varchar
   );
@@ -1341,6 +1643,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"variant" "vrnt" DEFAULT '1',
   	"image_id" integer,
   	"image_position" "enum__homepageherSecB_v_image_position" DEFAULT 'right',
+  	"form_id" integer,
   	"_uuid" varchar,
   	"block_name" varchar
   );
@@ -1395,6 +1698,25 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL
   );
   
+  CREATE TABLE IF NOT EXISTS "blogIdxTestimonialsSectionsBlock" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_blogIdxTestimonialsSectionsBlock_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum_blogIdxTestimonialsSectionsBlock_variant" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
   CREATE TABLE IF NOT EXISTS "blogIdxHeaderSectionsBlock" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -1411,6 +1733,44 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"wrapper_padding_xl_padding_top" "t",
   	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "enum_blogIdxHeaderSectionsBlock_variant" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "blogIdxFaqSectionsBlock" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_blogIdxFaqSectionsBlock_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum_blogIdxFaqSectionsBlock_variant" DEFAULT '1',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "blogIdxBannersBlock" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum_blogIdxBannersBlock_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum_blogIdxBannersBlock_variant" DEFAULT '1',
   	"block_name" varchar
   );
   
@@ -1504,6 +1864,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"variant" "vrnt" DEFAULT '1',
   	"image_id" integer,
   	"image_position" "enum_blogIdxherSecB_image_position" DEFAULT 'right',
+  	"form_id" integer,
   	"block_name" varchar
   );
   
@@ -1550,6 +1911,26 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"_parent_id" integer NOT NULL
   );
   
+  CREATE TABLE IF NOT EXISTS "_blogIdxTestimonialsSectionsBlock_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__blogIdxTestimonialsSectionsBlock_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum__blogIdxTestimonialsSectionsBlock_v_variant" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
   CREATE TABLE IF NOT EXISTS "_blogIdxHeaderSectionsBlock_v" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -1566,6 +1947,46 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"wrapper_padding_xl_padding_top" "t",
   	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "enum__blogIdxHeaderSectionsBlock_v_variant" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_blogIdxFaqSectionsBlock_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__blogIdxFaqSectionsBlock_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum__blogIdxFaqSectionsBlock_v_variant" DEFAULT '1',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE IF NOT EXISTS "_blogIdxBannersBlock_v" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"wrapper_theme" "enum__blogIdxBannersBlock_v_wrapper_theme",
+  	"wrapper_content_width" "cw" DEFAULT 'xl',
+  	"wrapper_padding_xs_padding_top" "t",
+  	"wrapper_padding_xs_padding_bottom" "b",
+  	"wrapper_padding_md_padding_top" "t",
+  	"wrapper_padding_md_padding_bottom" "b",
+  	"wrapper_padding_lg_padding_top" "t",
+  	"wrapper_padding_lg_padding_bottom" "b",
+  	"wrapper_padding_xl_padding_top" "t",
+  	"wrapper_padding_xl_padding_bottom" "b",
+  	"variant" "enum__blogIdxBannersBlock_v_variant" DEFAULT '1',
   	"_uuid" varchar,
   	"block_name" varchar
   );
@@ -1663,6 +2084,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"variant" "vrnt" DEFAULT '1',
   	"image_id" integer,
   	"image_position" "enum__blogIdxherSecB_v_image_position" DEFAULT 'right',
+  	"form_id" integer,
   	"_uuid" varchar,
   	"block_name" varchar
   );
@@ -1718,7 +2140,25 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   );
   
   DO $$ BEGIN
+   ALTER TABLE "pageTestimonialsSectionsBlock" ADD CONSTRAINT "pageTestimonialsSectionsBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "pageHeaderSectionsBlock" ADD CONSTRAINT "pageHeaderSectionsBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pageFaqSectionsBlock" ADD CONSTRAINT "pageFaqSectionsBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "pageBannersBlock" ADD CONSTRAINT "pageBannersBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -1760,6 +2200,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "pageherSecB" ADD CONSTRAINT "pageherSecB_form_id_forms_id_fk" FOREIGN KEY ("form_id") REFERENCES "public"."forms"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "pageherSecB" ADD CONSTRAINT "pageherSecB_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -1790,7 +2236,25 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "_pageTestimonialsSectionsBlock_v" ADD CONSTRAINT "_pageTestimonialsSectionsBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "_pageHeaderSectionsBlock_v" ADD CONSTRAINT "_pageHeaderSectionsBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pageFaqSectionsBlock_v" ADD CONSTRAINT "_pageFaqSectionsBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pageBannersBlock_v" ADD CONSTRAINT "_pageBannersBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -1827,6 +2291,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "_pageherSecB_v" ADD CONSTRAINT "_pageherSecB_v_image_id_images_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."images"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_pageherSecB_v" ADD CONSTRAINT "_pageherSecB_v_form_id_forms_id_fk" FOREIGN KEY ("form_id") REFERENCES "public"."forms"("id") ON DELETE set null ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -2055,6 +2525,42 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   DO $$ BEGIN
    ALTER TABLE "redirects_rels" ADD CONSTRAINT "redirects_rels_posts_fk" FOREIGN KEY ("posts_id") REFERENCES "public"."posts"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "forms_blocks_checkbox" ADD CONSTRAINT "forms_blocks_checkbox_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."forms"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "forms_blocks_checkbox_locales" ADD CONSTRAINT "forms_blocks_checkbox_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."forms_blocks_checkbox"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "forms_blocks_email" ADD CONSTRAINT "forms_blocks_email_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."forms"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "forms_blocks_email_locales" ADD CONSTRAINT "forms_blocks_email_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."forms_blocks_email"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "forms_blocks_number" ADD CONSTRAINT "forms_blocks_number_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."forms"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "forms_blocks_number_locales" ADD CONSTRAINT "forms_blocks_number_locales_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."forms_blocks_number"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -2330,7 +2836,25 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "homepageTestimonialsSectionsBlock" ADD CONSTRAINT "homepageTestimonialsSectionsBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "homepageHeaderSectionsBlock" ADD CONSTRAINT "homepageHeaderSectionsBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "homepageFaqSectionsBlock" ADD CONSTRAINT "homepageFaqSectionsBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "homepageBannersBlock" ADD CONSTRAINT "homepageBannersBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -2372,6 +2896,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "homepageherSecB" ADD CONSTRAINT "homepageherSecB_form_id_forms_id_fk" FOREIGN KEY ("form_id") REFERENCES "public"."forms"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "homepageherSecB" ADD CONSTRAINT "homepageherSecB_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."homepage"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -2396,7 +2926,25 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "_homepageTestimonialsSectionsBlock_v" ADD CONSTRAINT "_homepageTestimonialsSectionsBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepage_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "_homepageHeaderSectionsBlock_v" ADD CONSTRAINT "_homepageHeaderSectionsBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepage_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_homepageFaqSectionsBlock_v" ADD CONSTRAINT "_homepageFaqSectionsBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepage_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_homepageBannersBlock_v" ADD CONSTRAINT "_homepageBannersBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepage_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -2438,6 +2986,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "_homepageherSecB_v" ADD CONSTRAINT "_homepageherSecB_v_form_id_forms_id_fk" FOREIGN KEY ("form_id") REFERENCES "public"."forms"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "_homepageherSecB_v" ADD CONSTRAINT "_homepageherSecB_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_homepage_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -2462,7 +3016,25 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "blogIdxTestimonialsSectionsBlock" ADD CONSTRAINT "blogIdxTestimonialsSectionsBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blog_index"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "blogIdxHeaderSectionsBlock" ADD CONSTRAINT "blogIdxHeaderSectionsBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blog_index"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "blogIdxFaqSectionsBlock" ADD CONSTRAINT "blogIdxFaqSectionsBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blog_index"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "blogIdxBannersBlock" ADD CONSTRAINT "blogIdxBannersBlock_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blog_index"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -2504,6 +3076,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "blogIdxherSecB" ADD CONSTRAINT "blogIdxherSecB_form_id_forms_id_fk" FOREIGN KEY ("form_id") REFERENCES "public"."forms"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "blogIdxherSecB" ADD CONSTRAINT "blogIdxherSecB_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."blog_index"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -2528,7 +3106,25 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "_blogIdxTestimonialsSectionsBlock_v" ADD CONSTRAINT "_blogIdxTestimonialsSectionsBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blog_index_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "_blogIdxHeaderSectionsBlock_v" ADD CONSTRAINT "_blogIdxHeaderSectionsBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blog_index_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_blogIdxFaqSectionsBlock_v" ADD CONSTRAINT "_blogIdxFaqSectionsBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blog_index_v"("id") ON DELETE cascade ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
+   ALTER TABLE "_blogIdxBannersBlock_v" ADD CONSTRAINT "_blogIdxBannersBlock_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blog_index_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
   END $$;
@@ -2570,6 +3166,12 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   END $$;
   
   DO $$ BEGIN
+   ALTER TABLE "_blogIdxherSecB_v" ADD CONSTRAINT "_blogIdxherSecB_v_form_id_forms_id_fk" FOREIGN KEY ("form_id") REFERENCES "public"."forms"("id") ON DELETE set null ON UPDATE no action;
+  EXCEPTION
+   WHEN duplicate_object THEN null;
+  END $$;
+  
+  DO $$ BEGIN
    ALTER TABLE "_blogIdxherSecB_v" ADD CONSTRAINT "_blogIdxherSecB_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_blog_index_v"("id") ON DELETE cascade ON UPDATE no action;
   EXCEPTION
    WHEN duplicate_object THEN null;
@@ -2593,9 +3195,18 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
    WHEN duplicate_object THEN null;
   END $$;
   
+  CREATE INDEX IF NOT EXISTS "pageTestimonialsSectionsBlock_order_idx" ON "pageTestimonialsSectionsBlock" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pageTestimonialsSectionsBlock_parent_id_idx" ON "pageTestimonialsSectionsBlock" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pageTestimonialsSectionsBlock_path_idx" ON "pageTestimonialsSectionsBlock" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "pageHeaderSectionsBlock_order_idx" ON "pageHeaderSectionsBlock" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "pageHeaderSectionsBlock_parent_id_idx" ON "pageHeaderSectionsBlock" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pageHeaderSectionsBlock_path_idx" ON "pageHeaderSectionsBlock" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pageFaqSectionsBlock_order_idx" ON "pageFaqSectionsBlock" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pageFaqSectionsBlock_parent_id_idx" ON "pageFaqSectionsBlock" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pageFaqSectionsBlock_path_idx" ON "pageFaqSectionsBlock" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "pageBannersBlock_order_idx" ON "pageBannersBlock" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "pageBannersBlock_parent_id_idx" ON "pageBannersBlock" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "pageBannersBlock_path_idx" ON "pageBannersBlock" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "pages_blocks_cta_sections_block_order_idx" ON "pages_blocks_cta_sections_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "pages_blocks_cta_sections_block_parent_id_idx" ON "pages_blocks_cta_sections_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_cta_sections_block_path_idx" ON "pages_blocks_cta_sections_block" USING btree ("_path");
@@ -2611,6 +3222,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "pageherSecB_parent_id_idx" ON "pageherSecB" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "pageherSecB_path_idx" ON "pageherSecB" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "pageherSecB_image_idx" ON "pageherSecB" USING btree ("image_id");
+  CREATE INDEX IF NOT EXISTS "pageherSecB_form_idx" ON "pageherSecB" USING btree ("form_id");
   CREATE UNIQUE INDEX IF NOT EXISTS "pageherSecB_locales_locale_parent_id_unique" ON "pageherSecB_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX IF NOT EXISTS "pages_blocks_blog_section_order_idx" ON "pages_blocks_blog_section" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "pages_blocks_blog_section_parent_id_idx" ON "pages_blocks_blog_section" USING btree ("_parent_id");
@@ -2621,9 +3233,18 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "pages__status_idx" ON "pages" USING btree ("_status");
   CREATE INDEX IF NOT EXISTS "pages_meta_meta_image_idx" ON "pages_locales" USING btree ("meta_image_id","_locale");
   CREATE UNIQUE INDEX IF NOT EXISTS "pages_locales_locale_parent_id_unique" ON "pages_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pageTestimonialsSectionsBlock_v_order_idx" ON "_pageTestimonialsSectionsBlock_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pageTestimonialsSectionsBlock_v_parent_id_idx" ON "_pageTestimonialsSectionsBlock_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pageTestimonialsSectionsBlock_v_path_idx" ON "_pageTestimonialsSectionsBlock_v" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_pageHeaderSectionsBlock_v_order_idx" ON "_pageHeaderSectionsBlock_v" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_pageHeaderSectionsBlock_v_parent_id_idx" ON "_pageHeaderSectionsBlock_v" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pageHeaderSectionsBlock_v_path_idx" ON "_pageHeaderSectionsBlock_v" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_pageFaqSectionsBlock_v_order_idx" ON "_pageFaqSectionsBlock_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pageFaqSectionsBlock_v_parent_id_idx" ON "_pageFaqSectionsBlock_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pageFaqSectionsBlock_v_path_idx" ON "_pageFaqSectionsBlock_v" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_pageBannersBlock_v_order_idx" ON "_pageBannersBlock_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_pageBannersBlock_v_parent_id_idx" ON "_pageBannersBlock_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_pageBannersBlock_v_path_idx" ON "_pageBannersBlock_v" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_cta_sections_block_order_idx" ON "_pages_v_blocks_cta_sections_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_cta_sections_block_parent_id_idx" ON "_pages_v_blocks_cta_sections_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_cta_sections_block_path_idx" ON "_pages_v_blocks_cta_sections_block" USING btree ("_path");
@@ -2639,6 +3260,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_pageherSecB_v_parent_id_idx" ON "_pageherSecB_v" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_pageherSecB_v_path_idx" ON "_pageherSecB_v" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_pageherSecB_v_image_idx" ON "_pageherSecB_v" USING btree ("image_id");
+  CREATE INDEX IF NOT EXISTS "_pageherSecB_v_form_idx" ON "_pageherSecB_v" USING btree ("form_id");
   CREATE UNIQUE INDEX IF NOT EXISTS "_pageherSecB_v_locales_locale_parent_id_unique" ON "_pageherSecB_v_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_blog_section_order_idx" ON "_pages_v_blocks_blog_section" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_pages_v_blocks_blog_section_parent_id_idx" ON "_pages_v_blocks_blog_section" USING btree ("_parent_id");
@@ -2737,6 +3359,18 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "redirects_rels_path_idx" ON "redirects_rels" USING btree ("path");
   CREATE INDEX IF NOT EXISTS "redirects_rels_pages_id_idx" ON "redirects_rels" USING btree ("pages_id");
   CREATE INDEX IF NOT EXISTS "redirects_rels_posts_id_idx" ON "redirects_rels" USING btree ("posts_id");
+  CREATE INDEX IF NOT EXISTS "forms_blocks_checkbox_order_idx" ON "forms_blocks_checkbox" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "forms_blocks_checkbox_parent_id_idx" ON "forms_blocks_checkbox" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "forms_blocks_checkbox_path_idx" ON "forms_blocks_checkbox" USING btree ("_path");
+  CREATE UNIQUE INDEX IF NOT EXISTS "forms_blocks_checkbox_locales_locale_parent_id_unique" ON "forms_blocks_checkbox_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "forms_blocks_email_order_idx" ON "forms_blocks_email" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "forms_blocks_email_parent_id_idx" ON "forms_blocks_email" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "forms_blocks_email_path_idx" ON "forms_blocks_email" USING btree ("_path");
+  CREATE UNIQUE INDEX IF NOT EXISTS "forms_blocks_email_locales_locale_parent_id_unique" ON "forms_blocks_email_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "forms_blocks_number_order_idx" ON "forms_blocks_number" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "forms_blocks_number_parent_id_idx" ON "forms_blocks_number" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "forms_blocks_number_path_idx" ON "forms_blocks_number" USING btree ("_path");
+  CREATE UNIQUE INDEX IF NOT EXISTS "forms_blocks_number_locales_locale_parent_id_unique" ON "forms_blocks_number_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX IF NOT EXISTS "forms_blocks_select_options_order_idx" ON "forms_blocks_select_options" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "forms_blocks_select_options_parent_id_idx" ON "forms_blocks_select_options" USING btree ("_parent_id");
   CREATE UNIQUE INDEX IF NOT EXISTS "forms_blocks_select_options_locales_locale_parent_id_unique" ON "forms_blocks_select_options_locales" USING btree ("_locale","_parent_id");
@@ -2824,9 +3458,18 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "nav_header_cta_button_cta_link_header_cta_button_cta_link_file_href_idx" ON "nav" USING btree ("header_cta_button_cta_link_file_href_id");
   CREATE INDEX IF NOT EXISTS "nav_footer_footer_items_footer_footer_items_footer_logo_idx" ON "nav" USING btree ("footer_footer_items_footer_logo_id");
   CREATE UNIQUE INDEX IF NOT EXISTS "four_oh_four_locales_locale_parent_id_unique" ON "four_oh_four_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "homepageTestimonialsSectionsBlock_order_idx" ON "homepageTestimonialsSectionsBlock" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "homepageTestimonialsSectionsBlock_parent_id_idx" ON "homepageTestimonialsSectionsBlock" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "homepageTestimonialsSectionsBlock_path_idx" ON "homepageTestimonialsSectionsBlock" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "homepageHeaderSectionsBlock_order_idx" ON "homepageHeaderSectionsBlock" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "homepageHeaderSectionsBlock_parent_id_idx" ON "homepageHeaderSectionsBlock" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "homepageHeaderSectionsBlock_path_idx" ON "homepageHeaderSectionsBlock" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "homepageFaqSectionsBlock_order_idx" ON "homepageFaqSectionsBlock" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "homepageFaqSectionsBlock_parent_id_idx" ON "homepageFaqSectionsBlock" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "homepageFaqSectionsBlock_path_idx" ON "homepageFaqSectionsBlock" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "homepageBannersBlock_order_idx" ON "homepageBannersBlock" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "homepageBannersBlock_parent_id_idx" ON "homepageBannersBlock" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "homepageBannersBlock_path_idx" ON "homepageBannersBlock" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "homepage_blocks_cta_sections_block_order_idx" ON "homepage_blocks_cta_sections_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "homepage_blocks_cta_sections_block_parent_id_idx" ON "homepage_blocks_cta_sections_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "homepage_blocks_cta_sections_block_path_idx" ON "homepage_blocks_cta_sections_block" USING btree ("_path");
@@ -2842,6 +3485,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "homepageherSecB_parent_id_idx" ON "homepageherSecB" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "homepageherSecB_path_idx" ON "homepageherSecB" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "homepageherSecB_image_idx" ON "homepageherSecB" USING btree ("image_id");
+  CREATE INDEX IF NOT EXISTS "homepageherSecB_form_idx" ON "homepageherSecB" USING btree ("form_id");
   CREATE UNIQUE INDEX IF NOT EXISTS "homepageherSecB_locales_locale_parent_id_unique" ON "homepageherSecB_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX IF NOT EXISTS "homepage_blocks_blog_section_order_idx" ON "homepage_blocks_blog_section" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "homepage_blocks_blog_section_parent_id_idx" ON "homepage_blocks_blog_section" USING btree ("_parent_id");
@@ -2849,9 +3493,18 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE UNIQUE INDEX IF NOT EXISTS "homepage_slug_idx" ON "homepage" USING btree ("slug");
   CREATE INDEX IF NOT EXISTS "homepage__status_idx" ON "homepage" USING btree ("_status");
   CREATE UNIQUE INDEX IF NOT EXISTS "homepage_locales_locale_parent_id_unique" ON "homepage_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "_homepageTestimonialsSectionsBlock_v_order_idx" ON "_homepageTestimonialsSectionsBlock_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_homepageTestimonialsSectionsBlock_v_parent_id_idx" ON "_homepageTestimonialsSectionsBlock_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_homepageTestimonialsSectionsBlock_v_path_idx" ON "_homepageTestimonialsSectionsBlock_v" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_homepageHeaderSectionsBlock_v_order_idx" ON "_homepageHeaderSectionsBlock_v" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_homepageHeaderSectionsBlock_v_parent_id_idx" ON "_homepageHeaderSectionsBlock_v" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_homepageHeaderSectionsBlock_v_path_idx" ON "_homepageHeaderSectionsBlock_v" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_homepageFaqSectionsBlock_v_order_idx" ON "_homepageFaqSectionsBlock_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_homepageFaqSectionsBlock_v_parent_id_idx" ON "_homepageFaqSectionsBlock_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_homepageFaqSectionsBlock_v_path_idx" ON "_homepageFaqSectionsBlock_v" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_homepageBannersBlock_v_order_idx" ON "_homepageBannersBlock_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_homepageBannersBlock_v_parent_id_idx" ON "_homepageBannersBlock_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_homepageBannersBlock_v_path_idx" ON "_homepageBannersBlock_v" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_cta_sections_block_order_idx" ON "_homepage_v_blocks_cta_sections_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_cta_sections_block_parent_id_idx" ON "_homepage_v_blocks_cta_sections_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_cta_sections_block_path_idx" ON "_homepage_v_blocks_cta_sections_block" USING btree ("_path");
@@ -2867,6 +3520,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_homepageherSecB_v_parent_id_idx" ON "_homepageherSecB_v" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_homepageherSecB_v_path_idx" ON "_homepageherSecB_v" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_homepageherSecB_v_image_idx" ON "_homepageherSecB_v" USING btree ("image_id");
+  CREATE INDEX IF NOT EXISTS "_homepageherSecB_v_form_idx" ON "_homepageherSecB_v" USING btree ("form_id");
   CREATE UNIQUE INDEX IF NOT EXISTS "_homepageherSecB_v_locales_locale_parent_id_unique" ON "_homepageherSecB_v_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_blog_section_order_idx" ON "_homepage_v_blocks_blog_section" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_homepage_v_blocks_blog_section_parent_id_idx" ON "_homepage_v_blocks_blog_section" USING btree ("_parent_id");
@@ -2880,9 +3534,18 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_homepage_v_latest_idx" ON "_homepage_v" USING btree ("latest");
   CREATE INDEX IF NOT EXISTS "_homepage_v_autosave_idx" ON "_homepage_v" USING btree ("autosave");
   CREATE UNIQUE INDEX IF NOT EXISTS "_homepage_v_locales_locale_parent_id_unique" ON "_homepage_v_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "blogIdxTestimonialsSectionsBlock_order_idx" ON "blogIdxTestimonialsSectionsBlock" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "blogIdxTestimonialsSectionsBlock_parent_id_idx" ON "blogIdxTestimonialsSectionsBlock" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "blogIdxTestimonialsSectionsBlock_path_idx" ON "blogIdxTestimonialsSectionsBlock" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "blogIdxHeaderSectionsBlock_order_idx" ON "blogIdxHeaderSectionsBlock" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "blogIdxHeaderSectionsBlock_parent_id_idx" ON "blogIdxHeaderSectionsBlock" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "blogIdxHeaderSectionsBlock_path_idx" ON "blogIdxHeaderSectionsBlock" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "blogIdxFaqSectionsBlock_order_idx" ON "blogIdxFaqSectionsBlock" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "blogIdxFaqSectionsBlock_parent_id_idx" ON "blogIdxFaqSectionsBlock" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "blogIdxFaqSectionsBlock_path_idx" ON "blogIdxFaqSectionsBlock" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "blogIdxBannersBlock_order_idx" ON "blogIdxBannersBlock" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "blogIdxBannersBlock_parent_id_idx" ON "blogIdxBannersBlock" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "blogIdxBannersBlock_path_idx" ON "blogIdxBannersBlock" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_cta_sections_block_order_idx" ON "blog_index_blocks_cta_sections_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_cta_sections_block_parent_id_idx" ON "blog_index_blocks_cta_sections_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_cta_sections_block_path_idx" ON "blog_index_blocks_cta_sections_block" USING btree ("_path");
@@ -2898,6 +3561,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "blogIdxherSecB_parent_id_idx" ON "blogIdxherSecB" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "blogIdxherSecB_path_idx" ON "blogIdxherSecB" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "blogIdxherSecB_image_idx" ON "blogIdxherSecB" USING btree ("image_id");
+  CREATE INDEX IF NOT EXISTS "blogIdxherSecB_form_idx" ON "blogIdxherSecB" USING btree ("form_id");
   CREATE UNIQUE INDEX IF NOT EXISTS "blogIdxherSecB_locales_locale_parent_id_unique" ON "blogIdxherSecB_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_blog_section_order_idx" ON "blog_index_blocks_blog_section" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "blog_index_blocks_blog_section_parent_id_idx" ON "blog_index_blocks_blog_section" USING btree ("_parent_id");
@@ -2905,9 +3569,18 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE UNIQUE INDEX IF NOT EXISTS "blog_index_slug_idx" ON "blog_index" USING btree ("slug");
   CREATE INDEX IF NOT EXISTS "blog_index__status_idx" ON "blog_index" USING btree ("_status");
   CREATE UNIQUE INDEX IF NOT EXISTS "blog_index_locales_locale_parent_id_unique" ON "blog_index_locales" USING btree ("_locale","_parent_id");
+  CREATE INDEX IF NOT EXISTS "_blogIdxTestimonialsSectionsBlock_v_order_idx" ON "_blogIdxTestimonialsSectionsBlock_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_blogIdxTestimonialsSectionsBlock_v_parent_id_idx" ON "_blogIdxTestimonialsSectionsBlock_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_blogIdxTestimonialsSectionsBlock_v_path_idx" ON "_blogIdxTestimonialsSectionsBlock_v" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_blogIdxHeaderSectionsBlock_v_order_idx" ON "_blogIdxHeaderSectionsBlock_v" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_blogIdxHeaderSectionsBlock_v_parent_id_idx" ON "_blogIdxHeaderSectionsBlock_v" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_blogIdxHeaderSectionsBlock_v_path_idx" ON "_blogIdxHeaderSectionsBlock_v" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_blogIdxFaqSectionsBlock_v_order_idx" ON "_blogIdxFaqSectionsBlock_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_blogIdxFaqSectionsBlock_v_parent_id_idx" ON "_blogIdxFaqSectionsBlock_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_blogIdxFaqSectionsBlock_v_path_idx" ON "_blogIdxFaqSectionsBlock_v" USING btree ("_path");
+  CREATE INDEX IF NOT EXISTS "_blogIdxBannersBlock_v_order_idx" ON "_blogIdxBannersBlock_v" USING btree ("_order");
+  CREATE INDEX IF NOT EXISTS "_blogIdxBannersBlock_v_parent_id_idx" ON "_blogIdxBannersBlock_v" USING btree ("_parent_id");
+  CREATE INDEX IF NOT EXISTS "_blogIdxBannersBlock_v_path_idx" ON "_blogIdxBannersBlock_v" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_cta_sections_block_order_idx" ON "_blog_index_v_blocks_cta_sections_block" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_cta_sections_block_parent_id_idx" ON "_blog_index_v_blocks_cta_sections_block" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_cta_sections_block_path_idx" ON "_blog_index_v_blocks_cta_sections_block" USING btree ("_path");
@@ -2923,6 +3596,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "_blogIdxherSecB_v_parent_id_idx" ON "_blogIdxherSecB_v" USING btree ("_parent_id");
   CREATE INDEX IF NOT EXISTS "_blogIdxherSecB_v_path_idx" ON "_blogIdxherSecB_v" USING btree ("_path");
   CREATE INDEX IF NOT EXISTS "_blogIdxherSecB_v_image_idx" ON "_blogIdxherSecB_v" USING btree ("image_id");
+  CREATE INDEX IF NOT EXISTS "_blogIdxherSecB_v_form_idx" ON "_blogIdxherSecB_v" USING btree ("form_id");
   CREATE UNIQUE INDEX IF NOT EXISTS "_blogIdxherSecB_v_locales_locale_parent_id_unique" ON "_blogIdxherSecB_v_locales" USING btree ("_locale","_parent_id");
   CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_blog_section_order_idx" ON "_blog_index_v_blocks_blog_section" USING btree ("_order");
   CREATE INDEX IF NOT EXISTS "_blog_index_v_blocks_blog_section_parent_id_idx" ON "_blog_index_v_blocks_blog_section" USING btree ("_parent_id");
@@ -2940,7 +3614,10 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
 
 export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
   await db.execute(sql`
-   DROP TABLE "pageHeaderSectionsBlock" CASCADE;
+   DROP TABLE "pageTestimonialsSectionsBlock" CASCADE;
+  DROP TABLE "pageHeaderSectionsBlock" CASCADE;
+  DROP TABLE "pageFaqSectionsBlock" CASCADE;
+  DROP TABLE "pageBannersBlock" CASCADE;
   DROP TABLE "pages_blocks_cta_sections_block" CASCADE;
   DROP TABLE "pages_blocks_cta_sections_block_locales" CASCADE;
   DROP TABLE "pages_blocks_feature_section" CASCADE;
@@ -2951,7 +3628,10 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "pages_blocks_blog_section" CASCADE;
   DROP TABLE "pages" CASCADE;
   DROP TABLE "pages_locales" CASCADE;
+  DROP TABLE "_pageTestimonialsSectionsBlock_v" CASCADE;
   DROP TABLE "_pageHeaderSectionsBlock_v" CASCADE;
+  DROP TABLE "_pageFaqSectionsBlock_v" CASCADE;
+  DROP TABLE "_pageBannersBlock_v" CASCADE;
   DROP TABLE "_pages_v_blocks_cta_sections_block" CASCADE;
   DROP TABLE "_pages_v_blocks_cta_sections_block_locales" CASCADE;
   DROP TABLE "_pages_v_blocks_feature_section" CASCADE;
@@ -2985,6 +3665,12 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "users" CASCADE;
   DROP TABLE "redirects" CASCADE;
   DROP TABLE "redirects_rels" CASCADE;
+  DROP TABLE "forms_blocks_checkbox" CASCADE;
+  DROP TABLE "forms_blocks_checkbox_locales" CASCADE;
+  DROP TABLE "forms_blocks_email" CASCADE;
+  DROP TABLE "forms_blocks_email_locales" CASCADE;
+  DROP TABLE "forms_blocks_number" CASCADE;
+  DROP TABLE "forms_blocks_number_locales" CASCADE;
   DROP TABLE "forms_blocks_select_options" CASCADE;
   DROP TABLE "forms_blocks_select_options_locales" CASCADE;
   DROP TABLE "forms_blocks_select" CASCADE;
@@ -3014,7 +3700,10 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "nav" CASCADE;
   DROP TABLE "four_oh_four" CASCADE;
   DROP TABLE "four_oh_four_locales" CASCADE;
+  DROP TABLE "homepageTestimonialsSectionsBlock" CASCADE;
   DROP TABLE "homepageHeaderSectionsBlock" CASCADE;
+  DROP TABLE "homepageFaqSectionsBlock" CASCADE;
+  DROP TABLE "homepageBannersBlock" CASCADE;
   DROP TABLE "homepage_blocks_cta_sections_block" CASCADE;
   DROP TABLE "homepage_blocks_cta_sections_block_locales" CASCADE;
   DROP TABLE "homepage_blocks_feature_section" CASCADE;
@@ -3025,7 +3714,10 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "homepage_blocks_blog_section" CASCADE;
   DROP TABLE "homepage" CASCADE;
   DROP TABLE "homepage_locales" CASCADE;
+  DROP TABLE "_homepageTestimonialsSectionsBlock_v" CASCADE;
   DROP TABLE "_homepageHeaderSectionsBlock_v" CASCADE;
+  DROP TABLE "_homepageFaqSectionsBlock_v" CASCADE;
+  DROP TABLE "_homepageBannersBlock_v" CASCADE;
   DROP TABLE "_homepage_v_blocks_cta_sections_block" CASCADE;
   DROP TABLE "_homepage_v_blocks_cta_sections_block_locales" CASCADE;
   DROP TABLE "_homepage_v_blocks_feature_section" CASCADE;
@@ -3036,7 +3728,10 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "_homepage_v_blocks_blog_section" CASCADE;
   DROP TABLE "_homepage_v" CASCADE;
   DROP TABLE "_homepage_v_locales" CASCADE;
+  DROP TABLE "blogIdxTestimonialsSectionsBlock" CASCADE;
   DROP TABLE "blogIdxHeaderSectionsBlock" CASCADE;
+  DROP TABLE "blogIdxFaqSectionsBlock" CASCADE;
+  DROP TABLE "blogIdxBannersBlock" CASCADE;
   DROP TABLE "blog_index_blocks_cta_sections_block" CASCADE;
   DROP TABLE "blog_index_blocks_cta_sections_block_locales" CASCADE;
   DROP TABLE "blog_index_blocks_feature_section" CASCADE;
@@ -3047,7 +3742,10 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "blog_index_blocks_blog_section" CASCADE;
   DROP TABLE "blog_index" CASCADE;
   DROP TABLE "blog_index_locales" CASCADE;
+  DROP TABLE "_blogIdxTestimonialsSectionsBlock_v" CASCADE;
   DROP TABLE "_blogIdxHeaderSectionsBlock_v" CASCADE;
+  DROP TABLE "_blogIdxFaqSectionsBlock_v" CASCADE;
+  DROP TABLE "_blogIdxBannersBlock_v" CASCADE;
   DROP TABLE "_blog_index_v_blocks_cta_sections_block" CASCADE;
   DROP TABLE "_blog_index_v_blocks_cta_sections_block_locales" CASCADE;
   DROP TABLE "_blog_index_v_blocks_feature_section" CASCADE;
@@ -3059,11 +3757,17 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TABLE "_blog_index_v" CASCADE;
   DROP TABLE "_blog_index_v_locales" CASCADE;
   DROP TYPE "public"."_locales";
-  DROP TYPE "public"."enum_pageHeaderSectionsBlock_wrapper_theme";
+  DROP TYPE "public"."enum_pageTestimonialsSectionsBlock_wrapper_theme";
   DROP TYPE "public"."cw";
   DROP TYPE "public"."t";
   DROP TYPE "public"."b";
+  DROP TYPE "public"."enum_pageTestimonialsSectionsBlock_variant";
+  DROP TYPE "public"."enum_pageHeaderSectionsBlock_wrapper_theme";
   DROP TYPE "public"."enum_pageHeaderSectionsBlock_variant";
+  DROP TYPE "public"."enum_pageFaqSectionsBlock_wrapper_theme";
+  DROP TYPE "public"."enum_pageFaqSectionsBlock_variant";
+  DROP TYPE "public"."enum_pageBannersBlock_wrapper_theme";
+  DROP TYPE "public"."enum_pageBannersBlock_variant";
   DROP TYPE "public"."enum_pages_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum_pages_blocks_cta_sections_block_variant";
   DROP TYPE "public"."enum_pages_blocks_feature_section_wrapper_theme";
@@ -3072,28 +3776,28 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."pagehdrSec_v";
   DROP TYPE "public"."enum_pageherSecB_wrapper_theme";
   DROP TYPE "public"."vrnt";
-<<<<<<<< HEAD:apps/web/src/migrations/20250220_174819.ts
+  DROP TYPE "public"."enum_pageherSecB_image_position";
   DROP TYPE "public"."enum_pages_blocks_blog_section_wrapper_theme";
   DROP TYPE "public"."enum_pages_blocks_blog_section_variant";
-========
-  DROP TYPE "public"."enum_pageherSecB_image_position";
->>>>>>>> 985e642 (feat(block): add imgPosition to HeroSections):apps/web/src/migrations/20250212_172421.ts
   DROP TYPE "public"."enum_pages_theme";
   DROP TYPE "public"."enum_pages_status";
+  DROP TYPE "public"."enum__pageTestimonialsSectionsBlock_v_wrapper_theme";
+  DROP TYPE "public"."enum__pageTestimonialsSectionsBlock_v_variant";
   DROP TYPE "public"."enum__pageHeaderSectionsBlock_v_wrapper_theme";
   DROP TYPE "public"."enum__pageHeaderSectionsBlock_v_variant";
+  DROP TYPE "public"."enum__pageFaqSectionsBlock_v_wrapper_theme";
+  DROP TYPE "public"."enum__pageFaqSectionsBlock_v_variant";
+  DROP TYPE "public"."enum__pageBannersBlock_v_wrapper_theme";
+  DROP TYPE "public"."enum__pageBannersBlock_v_variant";
   DROP TYPE "public"."enum__pages_v_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum__pages_v_blocks_cta_sections_block_variant";
   DROP TYPE "public"."enum__pages_v_blocks_feature_section_wrapper_theme";
   DROP TYPE "public"."enum__pages_v_blocks_feature_section_variant";
   DROP TYPE "public"."enum__pagehdrSec_v_wrapper_theme";
   DROP TYPE "public"."enum__pageherSecB_v_wrapper_theme";
-<<<<<<<< HEAD:apps/web/src/migrations/20250220_174819.ts
+  DROP TYPE "public"."enum__pageherSecB_v_image_position";
   DROP TYPE "public"."enum__pages_v_blocks_blog_section_wrapper_theme";
   DROP TYPE "public"."enum__pages_v_blocks_blog_section_variant";
-========
-  DROP TYPE "public"."enum__pageherSecB_v_image_position";
->>>>>>>> 985e642 (feat(block): add imgPosition to HeroSections):apps/web/src/migrations/20250212_172421.ts
   DROP TYPE "public"."enum__pages_v_version_theme";
   DROP TYPE "public"."enum__pages_v_version_status";
   DROP TYPE "public"."enum__pages_v_published_locale";
@@ -3115,8 +3819,14 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_nav_header_banner_background";
   DROP TYPE "public"."undefined_cta_v";
   DROP TYPE "public"."undefined_cta_tv";
+  DROP TYPE "public"."enum_homepageTestimonialsSectionsBlock_wrapper_theme";
+  DROP TYPE "public"."enum_homepageTestimonialsSectionsBlock_variant";
   DROP TYPE "public"."enum_homepageHeaderSectionsBlock_wrapper_theme";
   DROP TYPE "public"."enum_homepageHeaderSectionsBlock_variant";
+  DROP TYPE "public"."enum_homepageFaqSectionsBlock_wrapper_theme";
+  DROP TYPE "public"."enum_homepageFaqSectionsBlock_variant";
+  DROP TYPE "public"."enum_homepageBannersBlock_wrapper_theme";
+  DROP TYPE "public"."enum_homepageBannersBlock_variant";
   DROP TYPE "public"."enum_homepage_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum_homepage_blocks_cta_sections_block_variant";
   DROP TYPE "public"."enum_homepage_blocks_feature_section_wrapper_theme";
@@ -3124,33 +3834,39 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_homepagehdrSec_wrapper_theme";
   DROP TYPE "public"."homepagehdrSec_v";
   DROP TYPE "public"."enum_homepageherSecB_wrapper_theme";
-<<<<<<<< HEAD:apps/web/src/migrations/20250220_174819.ts
+  DROP TYPE "public"."enum_homepageherSecB_image_position";
   DROP TYPE "public"."enum_homepage_blocks_blog_section_wrapper_theme";
   DROP TYPE "public"."enum_homepage_blocks_blog_section_variant";
-========
-  DROP TYPE "public"."enum_homepageherSecB_image_position";
->>>>>>>> 985e642 (feat(block): add imgPosition to HeroSections):apps/web/src/migrations/20250212_172421.ts
   DROP TYPE "public"."enum_homepage_theme";
   DROP TYPE "public"."enum_homepage_status";
+  DROP TYPE "public"."enum__homepageTestimonialsSectionsBlock_v_wrapper_theme";
+  DROP TYPE "public"."enum__homepageTestimonialsSectionsBlock_v_variant";
   DROP TYPE "public"."enum__homepageHeaderSectionsBlock_v_wrapper_theme";
   DROP TYPE "public"."enum__homepageHeaderSectionsBlock_v_variant";
+  DROP TYPE "public"."enum__homepageFaqSectionsBlock_v_wrapper_theme";
+  DROP TYPE "public"."enum__homepageFaqSectionsBlock_v_variant";
+  DROP TYPE "public"."enum__homepageBannersBlock_v_wrapper_theme";
+  DROP TYPE "public"."enum__homepageBannersBlock_v_variant";
   DROP TYPE "public"."enum__homepage_v_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum__homepage_v_blocks_cta_sections_block_variant";
   DROP TYPE "public"."enum__homepage_v_blocks_feature_section_wrapper_theme";
   DROP TYPE "public"."enum__homepage_v_blocks_feature_section_variant";
   DROP TYPE "public"."enum__homepagehdrSec_v_wrapper_theme";
   DROP TYPE "public"."enum__homepageherSecB_v_wrapper_theme";
-<<<<<<<< HEAD:apps/web/src/migrations/20250220_174819.ts
+  DROP TYPE "public"."enum__homepageherSecB_v_image_position";
   DROP TYPE "public"."enum__homepage_v_blocks_blog_section_wrapper_theme";
   DROP TYPE "public"."enum__homepage_v_blocks_blog_section_variant";
-========
-  DROP TYPE "public"."enum__homepageherSecB_v_image_position";
->>>>>>>> 985e642 (feat(block): add imgPosition to HeroSections):apps/web/src/migrations/20250212_172421.ts
   DROP TYPE "public"."enum__homepage_v_version_theme";
   DROP TYPE "public"."enum__homepage_v_version_status";
   DROP TYPE "public"."enum__homepage_v_published_locale";
+  DROP TYPE "public"."enum_blogIdxTestimonialsSectionsBlock_wrapper_theme";
+  DROP TYPE "public"."enum_blogIdxTestimonialsSectionsBlock_variant";
   DROP TYPE "public"."enum_blogIdxHeaderSectionsBlock_wrapper_theme";
   DROP TYPE "public"."enum_blogIdxHeaderSectionsBlock_variant";
+  DROP TYPE "public"."enum_blogIdxFaqSectionsBlock_wrapper_theme";
+  DROP TYPE "public"."enum_blogIdxFaqSectionsBlock_variant";
+  DROP TYPE "public"."enum_blogIdxBannersBlock_wrapper_theme";
+  DROP TYPE "public"."enum_blogIdxBannersBlock_variant";
   DROP TYPE "public"."enum_blog_index_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum_blog_index_blocks_cta_sections_block_variant";
   DROP TYPE "public"."enum_blog_index_blocks_feature_section_wrapper_theme";
@@ -3158,28 +3874,28 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_blogIdxhdrSec_wrapper_theme";
   DROP TYPE "public"."blogIdxhdrSec_v";
   DROP TYPE "public"."enum_blogIdxherSecB_wrapper_theme";
-<<<<<<<< HEAD:apps/web/src/migrations/20250220_174819.ts
+  DROP TYPE "public"."enum_blogIdxherSecB_image_position";
   DROP TYPE "public"."enum_blog_index_blocks_blog_section_wrapper_theme";
   DROP TYPE "public"."enum_blog_index_blocks_blog_section_variant";
-========
-  DROP TYPE "public"."enum_blogIdxherSecB_image_position";
->>>>>>>> 985e642 (feat(block): add imgPosition to HeroSections):apps/web/src/migrations/20250212_172421.ts
   DROP TYPE "public"."enum_blog_index_theme";
   DROP TYPE "public"."enum_blog_index_status";
+  DROP TYPE "public"."enum__blogIdxTestimonialsSectionsBlock_v_wrapper_theme";
+  DROP TYPE "public"."enum__blogIdxTestimonialsSectionsBlock_v_variant";
   DROP TYPE "public"."enum__blogIdxHeaderSectionsBlock_v_wrapper_theme";
   DROP TYPE "public"."enum__blogIdxHeaderSectionsBlock_v_variant";
+  DROP TYPE "public"."enum__blogIdxFaqSectionsBlock_v_wrapper_theme";
+  DROP TYPE "public"."enum__blogIdxFaqSectionsBlock_v_variant";
+  DROP TYPE "public"."enum__blogIdxBannersBlock_v_wrapper_theme";
+  DROP TYPE "public"."enum__blogIdxBannersBlock_v_variant";
   DROP TYPE "public"."enum__blog_index_v_blocks_cta_sections_block_wrapper_theme";
   DROP TYPE "public"."enum__blog_index_v_blocks_cta_sections_block_variant";
   DROP TYPE "public"."enum__blog_index_v_blocks_feature_section_wrapper_theme";
   DROP TYPE "public"."enum__blog_index_v_blocks_feature_section_variant";
   DROP TYPE "public"."enum__blogIdxhdrSec_v_wrapper_theme";
   DROP TYPE "public"."enum__blogIdxherSecB_v_wrapper_theme";
-<<<<<<<< HEAD:apps/web/src/migrations/20250220_174819.ts
+  DROP TYPE "public"."enum__blogIdxherSecB_v_image_position";
   DROP TYPE "public"."enum__blog_index_v_blocks_blog_section_wrapper_theme";
   DROP TYPE "public"."enum__blog_index_v_blocks_blog_section_variant";
-========
-  DROP TYPE "public"."enum__blogIdxherSecB_v_image_position";
->>>>>>>> 985e642 (feat(block): add imgPosition to HeroSections):apps/web/src/migrations/20250212_172421.ts
   DROP TYPE "public"."enum__blog_index_v_version_theme";
   DROP TYPE "public"."enum__blog_index_v_version_status";
   DROP TYPE "public"."enum__blog_index_v_published_locale";`)
