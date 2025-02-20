@@ -2,6 +2,7 @@
 import BannersBlock from '@mono/web/blocks/BannersBlock/BannersBlock.config';
 import BlogSectionBlock from '@mono/web/blocks/BlogSection/BlogSection.config';
 import CtaSectionsBlock from '@mono/web/blocks/CtaSectionsBlock/CtaSectionsBlock.config';
+import FaqSectionsBlock from '@mono/web/blocks/FaqSectionsBlock/FaqSectionsBlock.config';
 import FeatureSection from '@mono/web/blocks/FeatureSection/FeatureSection.config';
 import HeaderSectionBlock from '@mono/web/blocks/HeaderSectionBlock/HeaderSectionBlock.config';
 import HeaderSectionsBlock from '@mono/web/blocks/HeaderSectionsBlock/HeaderSectionsBlock.config';
@@ -12,6 +13,7 @@ export const allBlocks = (prefix: string) => [
   // InsertBlockConfigFields
   TestimonialsSectionsBlock(prefix),
   HeaderSectionsBlock(prefix),
+  FaqSectionsBlock(prefix),
   BannersBlock(prefix),
   CtaSectionsBlock,
   FeatureSection,
