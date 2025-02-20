@@ -11,12 +11,39 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
+  pricingSectionsBlock: dynamic(
+    () => import('@mono/web/blocks/PricingSectionsBlock'),
+    {
+      ...defaultOpts
+    }
+  ),
+  testimonialsSectionsBlock: dynamic(
+    () => import('@mono/web/blocks/TestimonialsSectionsBlock'),
+    {
+      ...defaultOpts
+    }
+  ),
+  blogSection: dynamic(() => import('@mono/web/blocks/BlogSection'), {
+    ...defaultOpts
+  }),
   headerSectionsBlock: dynamic(
     () => import('@mono/web/blocks/HeaderSectionsBlock'),
     {
       ...defaultOpts
     }
   ),
+  contactSectionsBlock: dynamic(
+    () => import('@mono/web/blocks/ContactSectionsBlock'),
+    {
+      ...defaultOpts
+    }
+  ),
+  faqSectionsBlock: dynamic(() => import('@mono/web/blocks/FaqSectionsBlock'), {
+    ...defaultOpts
+  }),
+  bannersBlock: dynamic(() => import('@mono/web/blocks/BannersBlock'), {
+    ...defaultOpts
+  }),
   featureSection: dynamic(() => import('@mono/web/blocks/FeatureSection'), {
     ...defaultOpts
   }),

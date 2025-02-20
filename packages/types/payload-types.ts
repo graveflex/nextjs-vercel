@@ -125,7 +125,19 @@ export interface UserAuthOperations {
 export interface Page {
   id: number;
   blocks?:
-    | (HeaderSectionsBlockT | CtaSectionsBlockT | FeatureSection | HeaderSectionBlockT | HeroSectionsBlockT)[]
+    | (
+        | PricingSectionsBlockT
+        | TestimonialsSectionsBlockT
+        | HeaderSectionsBlockT
+        | ContactSectionsBlockT
+        | FaqSectionsBlockT
+        | BannersBlockT
+        | CtaSectionsBlockT
+        | FeatureSection
+        | HeaderSectionBlockT
+        | HeroSectionsBlockT
+        | BlogSectionT
+      )[]
     | null;
   meta?: {
     title?: string | null;
@@ -149,6 +161,72 @@ export interface Page {
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PricingSectionsBlockT".
+ */
+export interface PricingSectionsBlockT {
+  wrapper?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    paddingXs?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingMd?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingLg?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingXl?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+  };
+  /**
+   * The layout variant for the block.
+   */
+  variant: '1' | '2' | '3' | '4';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pricingSectionsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsSectionsBlockT".
+ */
+export interface TestimonialsSectionsBlockT {
+  wrapper?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    paddingXs?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingMd?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingLg?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingXl?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+  };
+  /**
+   * The layout variant for the block.
+   */
+  variant: '1' | '2' | '3' | '4' | '5';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonialsSectionsBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -182,6 +260,105 @@ export interface HeaderSectionsBlockT {
   id?: string | null;
   blockName?: string | null;
   blockType: 'headerSectionsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactSectionsBlockT".
+ */
+export interface ContactSectionsBlockT {
+  wrapper?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    paddingXs?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingMd?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingLg?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingXl?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+  };
+  /**
+   * The layout variant for the block.
+   */
+  variant: '1' | '2' | '3' | '4' | '5' | '6';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactSectionsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqSectionsBlockT".
+ */
+export interface FaqSectionsBlockT {
+  wrapper?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    paddingXs?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingMd?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingLg?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingXl?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+  };
+  /**
+   * The layout variant for the block.
+   */
+  variant: '1' | '2' | '3' | '4';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faqSectionsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BannersBlockT".
+ */
+export interface BannersBlockT {
+  wrapper?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    paddingXs?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingMd?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingLg?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingXl?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+  };
+  /**
+   * The layout variant for the block.
+   */
+  variant: '1' | '2' | '3' | '4' | '5' | '6';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'bannersBlock';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -332,6 +509,39 @@ export interface HeroSectionsBlockT {
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroSectionsBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BlogSectionT".
+ */
+export interface BlogSectionT {
+  wrapper?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    paddingXs?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingMd?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingLg?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingXl?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+  };
+  /**
+   * The layout variant for the block.
+   */
+  variant: '1' | '2' | '3' | '4' | '5';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'blogSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -990,11 +1200,17 @@ export interface PagesSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
+        pricingSectionsBlock?: T | PricingSectionsBlockTSelect<T>;
+        testimonialsSectionsBlock?: T | TestimonialsSectionsBlockTSelect<T>;
         headerSectionsBlock?: T | HeaderSectionsBlockTSelect<T>;
+        contactSectionsBlock?: T | ContactSectionsBlockTSelect<T>;
+        faqSectionsBlock?: T | FaqSectionsBlockTSelect<T>;
+        bannersBlock?: T | BannersBlockTSelect<T>;
         ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
         featureSection?: T | FeatureSectionSelect<T>;
         headerSectionBlock?: T | HeaderSectionBlockTSelect<T>;
         heroSectionsBlock?: T | HeroSectionsBlockTSelect<T>;
+        blogSection?: T | BlogSectionTSelect<T>;
       };
   meta?:
     | T
@@ -1014,9 +1230,204 @@ export interface PagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PricingSectionsBlockT_select".
+ */
+export interface PricingSectionsBlockTSelect<T extends boolean = true> {
+  wrapper?:
+    | T
+    | {
+        theme?: T;
+        contentWidth?: T;
+        paddingXs?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingMd?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingLg?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingXl?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+      };
+  variant?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsSectionsBlockT_select".
+ */
+export interface TestimonialsSectionsBlockTSelect<T extends boolean = true> {
+  wrapper?:
+    | T
+    | {
+        theme?: T;
+        contentWidth?: T;
+        paddingXs?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingMd?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingLg?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingXl?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+      };
+  variant?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "HeaderSectionsBlockT_select".
  */
 export interface HeaderSectionsBlockTSelect<T extends boolean = true> {
+  wrapper?:
+    | T
+    | {
+        theme?: T;
+        contentWidth?: T;
+        paddingXs?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingMd?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingLg?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingXl?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+      };
+  variant?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactSectionsBlockT_select".
+ */
+export interface ContactSectionsBlockTSelect<T extends boolean = true> {
+  wrapper?:
+    | T
+    | {
+        theme?: T;
+        contentWidth?: T;
+        paddingXs?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingMd?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingLg?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingXl?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+      };
+  variant?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqSectionsBlockT_select".
+ */
+export interface FaqSectionsBlockTSelect<T extends boolean = true> {
+  wrapper?:
+    | T
+    | {
+        theme?: T;
+        contentWidth?: T;
+        paddingXs?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingMd?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingLg?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingXl?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+      };
+  variant?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BannersBlockT_select".
+ */
+export interface BannersBlockTSelect<T extends boolean = true> {
   wrapper?:
     | T
     | {
@@ -1208,6 +1619,45 @@ export interface HeroSectionsBlockTSelect<T extends boolean = true> {
       };
   variant?: T;
   title?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BlogSectionT_select".
+ */
+export interface BlogSectionTSelect<T extends boolean = true> {
+  wrapper?:
+    | T
+    | {
+        theme?: T;
+        contentWidth?: T;
+        paddingXs?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingMd?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingLg?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+        paddingXl?:
+          | T
+          | {
+              paddingTop?: T;
+              paddingBottom?: T;
+            };
+      };
+  variant?: T;
   id?: T;
   blockName?: T;
 }
@@ -1737,7 +2187,19 @@ export interface FooterItems {
 export interface Homepage {
   id: number;
   blocks?:
-    | (HeaderSectionsBlockT | CtaSectionsBlockT | FeatureSection | HeaderSectionBlockT | HeroSectionsBlockT)[]
+    | (
+        | PricingSectionsBlockT
+        | TestimonialsSectionsBlockT
+        | HeaderSectionsBlockT
+        | ContactSectionsBlockT
+        | FaqSectionsBlockT
+        | BannersBlockT
+        | CtaSectionsBlockT
+        | FeatureSection
+        | HeaderSectionBlockT
+        | HeroSectionsBlockT
+        | BlogSectionT
+      )[]
     | null;
   pageTitle: string;
   slug?: string | null;
@@ -1757,7 +2219,19 @@ export interface Homepage {
 export interface BlogIndex {
   id: number;
   blocks?:
-    | (HeaderSectionsBlockT | CtaSectionsBlockT | FeatureSection | HeaderSectionBlockT | HeroSectionsBlockT)[]
+    | (
+        | PricingSectionsBlockT
+        | TestimonialsSectionsBlockT
+        | HeaderSectionsBlockT
+        | ContactSectionsBlockT
+        | FaqSectionsBlockT
+        | BannersBlockT
+        | CtaSectionsBlockT
+        | FeatureSection
+        | HeaderSectionBlockT
+        | HeroSectionsBlockT
+        | BlogSectionT
+      )[]
     | null;
   pageTitle: string;
   slug?: string | null;
@@ -1861,11 +2335,17 @@ export interface HomepageSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
+        pricingSectionsBlock?: T | PricingSectionsBlockTSelect<T>;
+        testimonialsSectionsBlock?: T | TestimonialsSectionsBlockTSelect<T>;
         headerSectionsBlock?: T | HeaderSectionsBlockTSelect<T>;
+        contactSectionsBlock?: T | ContactSectionsBlockTSelect<T>;
+        faqSectionsBlock?: T | FaqSectionsBlockTSelect<T>;
+        bannersBlock?: T | BannersBlockTSelect<T>;
         ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
         featureSection?: T | FeatureSectionSelect<T>;
         headerSectionBlock?: T | HeaderSectionBlockTSelect<T>;
         heroSectionsBlock?: T | HeroSectionsBlockTSelect<T>;
+        blogSection?: T | BlogSectionTSelect<T>;
       };
   pageTitle?: T;
   slug?: T;
@@ -1884,11 +2364,17 @@ export interface BlogIndexSelect<T extends boolean = true> {
   blocks?:
     | T
     | {
+        pricingSectionsBlock?: T | PricingSectionsBlockTSelect<T>;
+        testimonialsSectionsBlock?: T | TestimonialsSectionsBlockTSelect<T>;
         headerSectionsBlock?: T | HeaderSectionsBlockTSelect<T>;
+        contactSectionsBlock?: T | ContactSectionsBlockTSelect<T>;
+        faqSectionsBlock?: T | FaqSectionsBlockTSelect<T>;
+        bannersBlock?: T | BannersBlockTSelect<T>;
         ctaSectionsBlock?: T | CtaSectionsBlockTSelect<T>;
         featureSection?: T | FeatureSectionSelect<T>;
         headerSectionBlock?: T | HeaderSectionBlockTSelect<T>;
         heroSectionsBlock?: T | HeroSectionsBlockTSelect<T>;
+        blogSection?: T | BlogSectionTSelect<T>;
       };
   pageTitle?: T;
   slug?: T;
