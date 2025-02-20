@@ -653,6 +653,16 @@ export interface Form {
             label?: string | null;
             width?: number | null;
             required?: boolean | null;
+            defaultValue?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'checkbox';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'email';
@@ -1966,6 +1976,17 @@ export interface FormsSelect<T extends boolean = true> {
   fields?:
     | T
     | {
+        checkbox?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              required?: T;
+              defaultValue?: T;
+              id?: T;
+              blockName?: T;
+            };
         email?:
           | T
           | {
