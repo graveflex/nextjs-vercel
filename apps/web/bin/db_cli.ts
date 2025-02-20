@@ -1,7 +1,7 @@
 import { execSync, spawn } from 'child_process';
 import os from 'os';
-import util from 'util';
 import path from 'path';
+import util from 'util';
 import { confirm, search, select } from '@inquirer/prompts';
 import { createApiClient } from '@neondatabase/api-client';
 import { oraPromise } from 'ora';
@@ -95,7 +95,7 @@ async function createMigration() {
 
 async function reset() {
   await cleanMigrationDir();
-  await createMigration(); 
+  await createMigration();
   return runFreshMigration({ uri: process.env.DATABASE_URL as string });
 }
 
@@ -495,7 +495,7 @@ async function run(): Promise<void> {
     case 'reseed':
       return reseed({ prId, gitBranch, neonBranchName });
     case 'reset':
-      return reset({ prId, gitBranch, neonBranchName });
+      return reset();
   }
 }
 
