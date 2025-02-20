@@ -41,3 +41,11 @@ export const SIGNIN_URL = '/login';
 export const FORGOT_PASSWORD_URL = '/forgot-password';
 export const RESET_PASSWORD_URL = '/reset-password';
 export const ACCOUNT_URL = '/account';
+
+export const SESSION_COOKIE_NAMES = [
+  PAYLOAD_USER_TYPE_COOKIE_NAME,
+  'auth-provider',
+  'authjs.callback-url',
+  'authjs.csrf-token',
+  'authjs.pkce.code_verifier'
+];

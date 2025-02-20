@@ -35,6 +35,16 @@ const Errors = {
     variant: 'destructive',
     title: 'Password required',
     description: 'Please enter your password.'
+  },
+  'unknown-error': {
+    variant: 'destructive',
+    title: 'Unknown error',
+    description: 'An unknown error occurred. Please try again.'
+  },
+  'locked-user': {
+    variant: 'destructive',
+    title: 'Account locked',
+    description: 'Your account has been locked. Please contact support.'
   }
 } as const;
 

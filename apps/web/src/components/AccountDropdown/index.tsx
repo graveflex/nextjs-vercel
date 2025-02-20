@@ -12,7 +12,10 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle
 } from '@mono/web/components/ui/NavigationMenu';
-import { PAYLOAD_USER_TYPE_COOKIE_NAME } from '@mono/web/lib/constants';
+import {
+  PAYLOAD_USER_TYPE_COOKIE_NAME,
+  SESSION_COOKIE_NAMES
+} from '@mono/web/lib/constants';
 import { useCookieValue } from '@mono/web/lib/useCookieValue';
 import { useDeleteCookie } from 'cookies-next';
 import { LoaderIcon } from 'lucide-react';
@@ -85,18 +88,9 @@ function AccountDropdown() {
               <NavigationMenuLink
                 className={`${navigationMenuTriggerStyle()} cursor-pointer`}
                 onClick={async () => {
-                  const cookiesToRemove = [
-                    PAYLOAD_USER_TYPE_COOKIE_NAME,
-                    'auth-provider',
-                    'authjs.callback-url',
-                    'authjs.csrf-token',
-                    'authjs.pkce.code_verifier'
-                  ];
-
-                  cookiesToRemove.forEach((cookie) => {
+                  SESSION_COOKIE_NAMES.forEach((cookie) => {
                     deleteCookie(cookie);
                   });
-
                   await signOut({ redirect: true, redirectTo: '/login' });
                 }}
               >

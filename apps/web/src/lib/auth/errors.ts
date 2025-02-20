@@ -3,14 +3,15 @@
 // Libraries
 import { CredentialsSignin } from 'next-auth';
 
-class EmailRequiredError extends CredentialsSignin {
+export class EmailRequiredError extends CredentialsSignin {
   code = 'email-required';
 }
-class PasswordRequiredError extends CredentialsSignin {
+export class PasswordRequiredError extends CredentialsSignin {
   code = 'email-required';
 }
-class InvalidLoginError extends CredentialsSignin {
+export class InvalidLoginError extends CredentialsSignin {
   code = 'invalid-credentials';
 }
-
-export { EmailRequiredError, PasswordRequiredError, InvalidLoginError };
+export class LockedUserError extends CredentialsSignin {
+  code = 'locked-user';
+}

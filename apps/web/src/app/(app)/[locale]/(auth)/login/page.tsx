@@ -54,12 +54,18 @@ async function SignIn({ searchParams }: SignInProps) {
               await signIn('credentials', formData);
             } catch (error) {
               unstable_rethrow(error);
-              const email = formData.get('email');
-              if (email) {
-                redirect(`${SIGNIN_URL}?error=${error.code}&email=${email}`);
-              } else {
-                redirect(`${SIGNIN_URL}?error=${error.code}`);
+              if (error instanceof Error && 'code' in error) {
+                // Type guard to ensure error is of type Error with code property
+                const email = formData.get('email');
+                if (email) {
+                  redirect(`${SIGNIN_URL}?error=${error.code}&email=${email}`);
+                } else {
+                  redirect(`${SIGNIN_URL}?error=${error.code}`);
+                }
               }
+
+              console.error(error);
+              redirect(`${SIGNIN_URL}?error=unknown-error`);
             }
           }}
         >
