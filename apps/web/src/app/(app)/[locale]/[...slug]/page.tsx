@@ -104,11 +104,11 @@ export async function generateMetadata({ params }: RootLayoutProps) {
   const { draft, slug, locale } = await params;
   const pageSlug = slug ? slug.join('/') : '/';
   const data = await fetchPageData(draft, locale, pageSlug);
-  if ('error' in data) {
+  if ((data && 'error' in data) || !data) {
     return {};
   }
   const pageData = data;
-  const seoData = data.meta;
+  const seoData = data?.meta;
   const seoImage =
     typeof seoData?.image !== 'number' && seoData?.image?.url
       ? seoData?.image?.url
