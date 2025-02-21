@@ -11,7 +11,7 @@ function getErrorMessage(err: typeof AuthError | Error | unknown) {
     return { errorCode: err.message ?? 'unknown-error' };
   }
 
-  return 'unknown-error';
+  return { errorCode: 'unknown-error' };
 }
 
 export async function signIn(_prevState: unknown, formData: FormData) {
