@@ -1,7 +1,6 @@
 // All AuthConfig related information is now in this file;
 
 import { signIn } from '@mono/web/auth';
-import { redirect } from 'next/navigation';
 // Libraries
 import { getPayload } from 'payload';
 import { ZodError } from 'zod';
@@ -37,12 +36,10 @@ export const signUp = async (formData: FormData) => {
   } catch (error) {
     if (error instanceof ZodError) {
       if (error.errors[0].path[0] === 'email') {
-        const error_url = `${SIGNUP_URL}?error=invalid-email`;
-        redirect(error_url);
+        throw new Error('invalid-email');
       }
       if (error.errors[0].path[0] === 'password') {
-        const error_url = `${SIGNUP_URL}?error=invalid-password&email=${email}`;
-        redirect(error_url);
+        throw new Error('invalid-password');
       }
     }
   }
@@ -56,8 +53,7 @@ export const signUp = async (formData: FormData) => {
   });
 
   if (existingEmailProviderAccount.docs.length) {
-    const error_url = `${SIGNUP_URL}?error=email-exists`;
-    redirect(error_url);
+    throw new Error('email-exists');
   }
 
   const account = await payload.create({
