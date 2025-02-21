@@ -50,7 +50,11 @@ const HeroSectionsBlock = (prefix: string): Block => ({
       type: 'relationship',
       relationTo: ['images', 'videos'],
       hasMany: false,
-      required: true
+      required: true,
+      admin: {
+        description:
+          'All variants accept images or video except variant 2. Variant 2 only allows images.'
+      }
     },
     {
       name: 'imagePosition',

@@ -14,12 +14,7 @@ function HeroSections6({ content, media }: HeroSectionsBlockType) {
       aria-labelledby="hero-heading"
     >
       <div className="absolute inset-0 z-0">
-        {mediaRelation === 'videos' ? (
-          <Video
-            className="object-cover w-full h-full rounded-lg"
-            video={media?.value}
-          />
-        ) : (
+        {mediaRelation === 'images' && !!media?.value && (
           <ResponsivePayloadImage
             image={media?.value}
             sizes="(max-width: 1023px) 100vw, 50vw"

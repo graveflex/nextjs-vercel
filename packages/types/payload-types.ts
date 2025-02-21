@@ -520,6 +520,9 @@ export interface HeroSectionsBlockT {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * All variants accept images or video except variant 2. Variant 2 only allows images.
+   */
   media:
     | {
         relationTo: 'images';
