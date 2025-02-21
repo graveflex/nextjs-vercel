@@ -4,7 +4,6 @@ type Creds = Partial<Record<'email' | 'password', unknown>>;
 import {
   EmailRequiredError,
   InvalidLoginError,
-  LockedUserError,
   PasswordRequiredError
 } from '@mono/web/lib/auth/errors';
 import { cookies } from 'next/headers';
@@ -23,48 +22,22 @@ const createPayloadAuthSessionWithEmailCreds = async ({
   const { getPayload } = require('payload');
   const config = require('@payload-config');
   const payload = await getPayload({ config });
-  try {
-    const account = await payload.login({
-      collection: 'userEmailProviders',
-      data: {
-        email,
-        password
-      }
+  const account = await payload.login({
+    collection: 'userEmailProviders',
+    data: {
+      email,
+      password
+    }
+  });
+
+  if (account.token) {
+    const cookieStore = await cookies();
+    const cookieName = `${payload.config.cookiePrefix}-token`;
+    cookieStore.set(cookieName, account.token, {
+      maxAge: 60 * 60 * 24 * 30,
+      path: '/'
     });
-
-    if (account.token) {
-      const cookieStore = await cookies();
-      const cookieName = `${payload.config.cookiePrefix}-token`;
-      cookieStore.set(cookieName, account.token, {
-        maxAge: 60 * 60 * 24 * 30,
-        path: '/'
-      });
-      return account.user.user;
-    }
-  } catch (error) {
-    console.dir('createPayload: error');
-    console.error(error);
-
-    if (error instanceof Error && 'name' in error) {
-      console.dir('🍤 ~ error.name:');
-      console.dir(error.name);
-      console.dir(JSON.stringify(error));
-      switch (error.name) {
-        case 'InvalidCredentials':
-        case 'AuthenticationError':
-          throw new InvalidLoginError();
-        case 'LockedAuth':
-          throw new LockedUserError();
-        case 'EmailRequired':
-          throw new EmailRequiredError();
-        case 'PasswordRequired':
-          throw new PasswordRequiredError();
-        default:
-          throw error;
-      }
-    }
-
-    throw error;
+    return account.user.user;
   }
 
   throw new InvalidLoginError();

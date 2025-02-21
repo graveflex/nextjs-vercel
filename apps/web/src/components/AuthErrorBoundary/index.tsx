@@ -58,14 +58,13 @@ const isValidError = (err: string): err is ErrorKeys => {
 };
 
 export default function AuthErrorBoundary({ error }: AuthErrorBoundaryProps) {
-  let key = 'unknown-error' as ErrorKeys;
-
-  if (error && isValidError(error)) {
-    key = error;
-  }
-
   if (error) {
-    const { variant, title, description } = Errors[key];
+    const fallback = {
+      variant: 'destructive',
+      title: 'Error',
+      description: error
+    } as const;
+    const { variant, title, description } = (error && isValidError(error)) ? Errors[error] : fallback;
     return (
       <>
         <Alert variant={variant}>
