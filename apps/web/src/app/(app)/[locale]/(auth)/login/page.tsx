@@ -1,14 +1,8 @@
-import { signIn } from '@mono/web/auth';
-import AuthErrorBoundary from '@mono/web/components/AuthErrorBoundary';
 import OAuthProviderList from '@mono/web/components/OAuthProviderList';
-import { Button } from '@mono/web/components/ui/Button';
-import { Checkbox } from '@mono/web/components/ui/Checkbox';
-import { Input } from '@mono/web/components/ui/Input';
-import { Label } from '@mono/web/components/ui/Label';
 import { Separator } from '@mono/web/components/ui/Separator';
-import { SIGNIN_URL } from '@mono/web/lib/constants';
-import Link from 'next/link';
-import { redirect, unstable_rethrow } from 'next/navigation';
+
+import SignInForm from './SignInForm';
+import { signIn } from './actions';
 
 interface SignInProps {
   searchParams: Promise<{
@@ -19,13 +13,11 @@ interface SignInProps {
 }
 
 async function SignIn({ searchParams }: SignInProps) {
-  const { callbackUrl, email, error } = await searchParams;
+  const { callbackUrl } = await searchParams;
   return (
     <>
       {/* Sign-in form container */}
       <div className="w-full max-w-sm space-y-6 m-auto">
-        <AuthErrorBoundary error={error || ''} />
-
         {/* Header */}
         <div className="space-y-2 text-center">
           <h1 className="text-3xl font-bold">Sign in</h1>
@@ -45,76 +37,8 @@ async function SignIn({ searchParams }: SignInProps) {
           <Separator />
         </div>
 
-        <form
-          className="w-full max-w-sm space-y-6 m-auto"
-          action={async (formData) => {
-            'use server';
-            try {
-              await signIn('credentials', formData);
-            } catch (error) {
-              unstable_rethrow(error);
-
-              console.dir('SignIn: error');
-              console.error(error);
-
-              if (error instanceof Error && 'code' in error) {
-                // Type guard to ensure error is of type Error with code property
-                const email = formData.get('email');
-                if (email) {
-                  redirect(`${SIGNIN_URL}?error=${error.code}&email=${email}`);
-                } else {
-                  redirect(`${SIGNIN_URL}?error=${error.code}`);
-                }
-              }
-
-              redirect(`${SIGNIN_URL}?error=unknown-error`);
-            }
-          }}
-        >
-          {/* Redirect */}
-          <Input id="redirect" name="redirect" type="hidden" value="true" />
-          <Input
-            id="redirectTo"
-            name="redirectTo"
-            type="hidden"
-            value="/account?logged-in=true"
-          />
-
-          {/* Email and password inputs */}
-          <div className="space-y-4">
-            {email ? (
-              <Input name="email" placeholder="Email" defaultValue={email} />
-            ) : (
-              <Input name="email" placeholder="Email" />
-            )}
-            <Input name="password" type="password" placeholder="Password" />
-          </div>
-
-          {/* Keep signed in and forgot password */}
-          <div className="flex justify-between">
-            <div className="flex items-center space-x-2">
-              <Checkbox id="keep-signed-in" />
-              <Label htmlFor="keep-signed-in">Keep me signed in</Label>
-            </div>
-            <Link
-              href="/forgot-password"
-              className="text-sm text-muted-foreground hover:text-foreground underline"
-            >
-              Forgot password?
-            </Link>
-          </div>
-
-          {/* Sign-in button */}
-          <Button className="w-full">Sign in</Button>
-
-          {/* Sign-up link */}
-          <p className="text-sm text-center text-muted-foreground">
-            Don't have an account?{' '}
-            <Link className="underline text-foreground" href="/sign-up">
-              Sign up
-            </Link>
-          </p>
-        </form>
+        {/* Sign-in form */}
+        <SignInForm signIn={signIn} />
       </div>
     </>
   );

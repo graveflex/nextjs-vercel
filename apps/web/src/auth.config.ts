@@ -1,3 +1,4 @@
+import { th } from '@faker-js/faker';
 import type { User as PayloadUser } from '@mono/types/payload-types';
 import {
   EmailRequiredError,
@@ -26,15 +27,18 @@ export const authConfig: NextAuthConfig = {
         try {
           const { email, password } = credentials;
           if (!email) {
-            throw new EmailRequiredError();
+            throw new Error('email-required');
+            // throw new EmailRequiredError();
           }
           if (!password) {
-            throw new PasswordRequiredError();
+            throw new Error('password-required');
+            // throw new PasswordRequiredError();
           }
           const user =
             await createPayloadAuthSessionWithEmailCreds(credentials);
           if (!user) {
-            throw new InvalidLoginError();
+            throw new Error('invalid-credentials');
+            // throw new InvalidLoginError();
           }
 
           return user as PayloadAuthjsUser<PayloadUser>;
@@ -48,13 +52,17 @@ export const authConfig: NextAuthConfig = {
           if (error instanceof Error && 'code' in error) {
             switch (error.code) {
               case 'invalid-credentials':
-                throw new InvalidLoginError();
+                throw new Error('invalid-credentials');
+              // throw new InvalidLoginError();
               case 'email-required':
-                throw new EmailRequiredError();
+                throw new Error('email-required');
+              // throw new EmailRequiredError();
               case 'password-required':
-                throw new PasswordRequiredError();
+                throw new Error('password-required');
+              // throw new PasswordRequiredError();
               case 'locked-user':
-                throw new LockedUserError();
+                throw new Error('locked-user');
+              // throw new LockedUserError();
               default:
                 throw new Error('unknown-error');
             }

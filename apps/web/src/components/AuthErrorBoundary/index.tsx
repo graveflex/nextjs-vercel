@@ -53,12 +53,19 @@ type AuthErrorBoundaryProps = {
   error: string;
 };
 
+const isValidError = (err: string): err is ErrorKeys => {
+  return err in Errors;
+};
+
 export default function AuthErrorBoundary({ error }: AuthErrorBoundaryProps) {
-  const isValidError = (err: string): err is ErrorKeys => {
-    return err in Errors;
-  };
+  let key = 'unknown-error' as ErrorKeys;
+
   if (error && isValidError(error)) {
-    const { variant, title, description } = Errors[error];
+    key = error;
+  }
+
+  if (error) {
+    const { variant, title, description } = Errors[key];
     return (
       <>
         <Alert variant={variant}>
