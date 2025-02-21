@@ -59,7 +59,7 @@ function TopLevelDesktopDropdownContainer({
                 ></DesktopDropdownLink>
               </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <RecurseDesktopMenu links={link.links} level={1} />
+                <RecurseNavItems links={link.links} level={1} />
               </NavigationMenuContent>
             </NavigationMenuItem>
           ) : (
@@ -100,7 +100,7 @@ function NestedDesktopDropdownContainer({
                 className={styles.hoverCard}
                 sideOffset={20}
               >
-                <RecurseDesktopMenu links={link.links} level={level + 1} />
+                <RecurseNavItems links={link.links} level={level + 1} />
               </HoverCardContent>
             </HoverCard>
           ) : link.separator ? (
@@ -114,7 +114,7 @@ function NestedDesktopDropdownContainer({
   );
 }
 
-function RecurseDesktopMenu({
+function RecurseNavItems({
   links = [],
   level = 0
 }: { links: Link[]; level?: number }) {
@@ -135,7 +135,7 @@ function DesktopMenu({
   return (
     <div className={styles.desktopNavContainer}>
       <Logo />
-      <RecurseDesktopMenu links={links} />
+      <RecurseNavItems links={links} />
       <Avatar>
         <AvatarFallback>LH</AvatarFallback>
       </Avatar>

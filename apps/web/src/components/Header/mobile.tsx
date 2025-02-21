@@ -52,7 +52,7 @@ function TopLevelMobileDropdownContainer({
               <SidebarLink {...link} />
             </SidebarMenuButton>
             {link.links?.length ? (
-              <RecurseMobileMenu links={link.links} level={level + 1} />
+              <RecurseNavItems links={link.links} level={level + 1} />
             ) : null}
           </SidebarMenuItem>
         )
@@ -74,7 +74,7 @@ function NestedMobileDropdownContainer({
               <SidebarLink {...link} />
             </SidebarMenuSubButton>
             {link.links?.length ? (
-              <RecurseMobileMenu links={link.links} level={level + 1} />
+              <RecurseNavItems links={link.links} level={level + 1} />
             ) : null}
           </SidebarMenuSubItem>
         )
@@ -83,7 +83,7 @@ function NestedMobileDropdownContainer({
   );
 }
 
-function RecurseMobileMenu({
+function RecurseNavItems({
   links = [],
   level = 0
 }: { links: Link[]; level?: number }) {
@@ -124,7 +124,7 @@ function MobileMenu({ links = [] }: MobileMenuProps) {
           </SheetHeader>
 
           <div className={styles.mobileNavTree}>
-            <RecurseMobileMenu links={links} />
+            <RecurseNavItems links={links} />
           </div>
         </SheetContent>
       </Sheet>
