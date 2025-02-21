@@ -10,12 +10,12 @@ import { genImgColumnOrder } from '../index';
 
 function HeroSections1({
   content,
-  imagePosition,
+  mediaPosition,
   media
 }: HeroSectionsBlockType) {
   const mediaRelation = media?.relationTo;
 
-  const imgColumnOrder = genImgColumnOrder(imagePosition);
+  const imgColumnOrder = genImgColumnOrder(mediaPosition);
 
   return (
     <section

@@ -2,8 +2,7 @@ import BlockConfig from '@mono/web/payload/fields/BlockConfig';
 import type { Block } from 'payload';
 
 // Block variants w/ left or right positioned media:
-const variantsWithImagePosition = ['1', '2', '4', '5'];
-const variantsWithForm = ['4', '5'];
+const variantsWithImagePosition = ['1'];
 
 const HeroSectionsBlock = (prefix: string): Block => ({
   slug: 'heroSectionsBlock',
@@ -76,22 +75,6 @@ const HeroSectionsBlock = (prefix: string): Block => ({
           'For certain variants, the position of the image on desktop screens.',
         condition: (_, siblingData) => {
           if (variantsWithImagePosition.includes(siblingData.variant)) {
-            return true;
-          }
-          return false;
-        }
-      }
-    },
-    {
-      name: 'form',
-      type: 'relationship',
-      relationTo: 'forms',
-      required: false,
-      admin: {
-        description:
-          'Add a form to be displayed at the bottom of the content section.',
-        condition: (_, siblingData) => {
-          if (variantsWithForm.includes(siblingData.variant)) {
             return true;
           }
           return false;

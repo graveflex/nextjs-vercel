@@ -18,9 +18,9 @@ const meta: Meta<HeroSectionsBlockType> = {
     }
   },
   argTypes: {
-    imagePosition: {
+    mediaPosition: {
       control: 'select',
-      options: ['left', 'right']
+      options: ['right', 'left']
     },
     variant: {
       control: 'select',
@@ -36,7 +36,7 @@ type Story = StoryObj<HeroSectionsBlockType>;
 
 export const Defaults: Story = {
   args: {
-    imagePosition: 'right',
+    mediaPosition: 'left',
     variant: '1',
     content: heroSectionsMockData.data,
     media: imgMockData
@@ -46,7 +46,7 @@ export const Defaults: Story = {
 // Story name corresponds to variant number:
 export const One: Story = {
   args: {
-    imagePosition: 'right',
+    mediaPosition: 'left',
     variant: '1',
     content: heroSectionsMockData.data,
     media: imgMockData
@@ -55,7 +55,7 @@ export const One: Story = {
 
 export const OneWithVideo: Story = {
   args: {
-    imagePosition: 'right',
+    mediaPosition: 'left',
     variant: '1',
     content: heroSectionsMockData.data,
     media: videoMockData
@@ -64,7 +64,7 @@ export const OneWithVideo: Story = {
 
 export const OneWithForm: Story = {
   args: {
-    imagePosition: 'right',
+    mediaPosition: 'right',
     variant: '1',
     content: heroSectionsWithFormMockData.data,
     media: imgMockData
@@ -74,8 +74,17 @@ export const OneWithForm: Story = {
 export const Two: Story = {
   args: {
     variant: '2',
-    imagePosition: 'right',
+    mediaPosition: 'right',
     content: heroSectionsMockData.data,
+    media: imgMockData
+  }
+};
+
+export const TwoWithForm: Story = {
+  args: {
+    variant: '2',
+    mediaPosition: 'right',
+    content: heroSectionsWithFormMockData.data,
     media: imgMockData
   }
 };
@@ -83,16 +92,23 @@ export const Two: Story = {
 export const Three: Story = {
   args: {
     variant: '3',
-    imagePosition: 'right',
-    content: heroSectionsMockData.data
+    content: heroSectionsMockData.data,
+    media: videoMockData
   }
 };
 
-export const ThreeWithVideo: Story = {
+export const ThreeWithForm: Story = {
   args: {
     variant: '3',
-    imagePosition: 'right',
-    content: heroSectionsMockData.data,
+    content: heroSectionsWithFormMockData.data,
     media: videoMockData
+  }
+};
+
+export const ThreeWithImage: Story = {
+  args: {
+    variant: '3',
+    content: heroSectionsMockData.data,
+    media: imgMockData
   }
 };

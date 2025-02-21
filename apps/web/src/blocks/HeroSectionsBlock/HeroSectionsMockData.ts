@@ -71,16 +71,6 @@ const heroSectionsMockData: RichTextType = {
           direction: 'ltr',
           textStyle: '',
           textFormat: 0
-        },
-        {
-          type: 'paragraph',
-          format: '',
-          indent: 0,
-          version: 1,
-          children: [],
-          direction: null,
-          textStyle: '',
-          textFormat: 0
         }
       ],
       direction: 'ltr'
@@ -152,16 +142,6 @@ export const heroSectionsWithFormMockData: RichTextType = {
             }
           ],
           direction: 'ltr',
-          textStyle: '',
-          textFormat: 0
-        },
-        {
-          type: 'paragraph',
-          format: '',
-          indent: 0,
-          version: 1,
-          children: [],
-          direction: null,
           textStyle: '',
           textFormat: 0
         },

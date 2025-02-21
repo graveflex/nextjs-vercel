@@ -24,15 +24,14 @@ const layoutList: Record<string, ComponentType<HeroSectionsBlockType>> = {
 };
 
 export const genImgColumnOrder = (
-  imagePosition: HeroSectionsBlockType['imagePosition']
+  imagePosition: HeroSectionsBlockType['mediaPosition']
 ) => (imagePosition === 'left' ? 'lg:order-first' : 'lg:order-last');
 
 function HeroSectionsBlock({
   content,
   variant = '1',
-  imagePosition,
+  mediaPosition,
   media,
-  form,
   wrapper
 }: HeroSectionsBlockType) {
   const Component: ComponentType<HeroSectionsBlockType> = layoutList[variant];
@@ -41,9 +40,8 @@ function HeroSectionsBlock({
     <Wrapper {...wrapper}>
       <Component
         content={content}
-        form={form}
         media={media}
-        imagePosition={imagePosition}
+        mediaPosition={mediaPosition}
         variant={variant}
       />
     </Wrapper>
