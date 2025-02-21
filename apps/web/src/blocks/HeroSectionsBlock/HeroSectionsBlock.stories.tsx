@@ -64,16 +64,6 @@ export const OneWithList: Story = {
   }
 };
 
-export const Four: Story = {
-  args: {
-    imagePosition: 'right',
-    variant: '4',
-    content: heroSections4_5MockData.data,
-    media: imgMockData,
-    form: emailSignupFormMockData
-  }
-};
-
 export const Six: Story = {
   args: {
     variant: '6',

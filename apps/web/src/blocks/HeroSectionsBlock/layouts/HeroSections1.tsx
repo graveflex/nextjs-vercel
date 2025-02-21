@@ -30,6 +30,7 @@ function HeroSections1({
           </div>
 
           {/* CTA Buttons */}
+          {/* TODO: Add Button Array / Link Fields to wire these up: */}
           <div className="flex flex-col sm:flex-row gap-3">
             <Button>Get started</Button>
             <Button variant="ghost">
