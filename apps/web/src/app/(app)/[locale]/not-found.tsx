@@ -1,46 +1,7 @@
-// // Production;
-// import React from 'react';
-// import nextDynamic from 'next/dynamic';
-
-// export const dynamic = 'force-static';
-// export const revalidate = 60;
-
-// const Variant = '1';
-// const Theme = 'light';
-
-// const defaultOpts = {
-//   suspense: true,
-//   ssr: true
-// };
-
-// const Variants = {
-//   '1': nextDynamic(
-//     () => import('@mono/web/components/NotFound/variations/Variant1'),
-//     { ...defaultOpts }
-//   ),
-//   '2': nextDynamic(
-//     () => import('@mono/web/components/NotFound/variations/Variant2'),
-//     { ...defaultOpts }
-//   ),
-//   '3': nextDynamic(
-//     () => import('@mono/web/components/NotFound/variations/Variant3'),
-//     { ...defaultOpts }
-//   )
-// };
-
-// export default async function NotFound() {
-//   const VariantComponent = Variants[Variant];
-
-//   return (
-//     <div className={Theme}>
-//       <VariantComponent />
-//     </div>
-//   );
-// }
-
-// For testing;
 'use client';
+
 import { useSearchParams } from 'next/navigation';
+import { cn } from '@mono/web/lib/utils';
 
 import nextDynamic from 'next/dynamic';
 import React from 'react';
@@ -85,7 +46,7 @@ export default function NotFound() {
     }
   }
   return (
-    <div className={searchTheme || Theme}>
+    <div className={cn(searchTheme || Theme, 'min-h-full grid items-center')}>
       <VariantComponent />
     </div>
   );

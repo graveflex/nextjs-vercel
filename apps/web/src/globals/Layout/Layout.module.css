@@ -12,16 +12,13 @@
 
 .header {
   grid-area: 'header';
-  @apply bg-red-100;
 }
 
 .body {
   grid-area: 'body';
-  @apply bg-green-100;
 }
 
 .footer {
   grid-area: 'footer';
-  @apply bg-blue-100;
 }
 
