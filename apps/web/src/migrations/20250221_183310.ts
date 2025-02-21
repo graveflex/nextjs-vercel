@@ -22,7 +22,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."pagehdrSec_v" AS ENUM('1', '2', '3', '4', '5', '6');
   CREATE TYPE "public"."enum_pageherSecB_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."vrnt" AS ENUM('1', '2', '3');
-  CREATE TYPE "public"."enum_pageherSecB_image_position" AS ENUM('left', 'right');
+  CREATE TYPE "public"."enum_pageherSecB_media_position" AS ENUM('left', 'right');
   CREATE TYPE "public"."enum_pages_blocks_blog_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_pages_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum_pages_theme" AS ENUM('light', 'dark');
@@ -41,7 +41,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum__pages_v_blocks_feature_section_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14');
   CREATE TYPE "public"."enum__pagehdrSec_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__pageherSecB_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
-  CREATE TYPE "public"."enum__pageherSecB_v_image_position" AS ENUM('left', 'right');
+  CREATE TYPE "public"."enum__pageherSecB_v_media_position" AS ENUM('left', 'right');
   CREATE TYPE "public"."enum__pages_v_blocks_blog_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__pages_v_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum__pages_v_version_theme" AS ENUM('light', 'dark');
@@ -80,7 +80,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_homepagehdrSec_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."homepagehdrSec_v" AS ENUM('1', '2', '3', '4', '5', '6');
   CREATE TYPE "public"."enum_homepageherSecB_wrapper_theme" AS ENUM('_', 'light', 'dark');
-  CREATE TYPE "public"."enum_homepageherSecB_image_position" AS ENUM('left', 'right');
+  CREATE TYPE "public"."enum_homepageherSecB_media_position" AS ENUM('left', 'right');
   CREATE TYPE "public"."enum_homepage_blocks_blog_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_homepage_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum_homepage_theme" AS ENUM('light', 'dark');
@@ -99,7 +99,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum__homepage_v_blocks_feature_section_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14');
   CREATE TYPE "public"."enum__homepagehdrSec_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__homepageherSecB_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
-  CREATE TYPE "public"."enum__homepageherSecB_v_image_position" AS ENUM('left', 'right');
+  CREATE TYPE "public"."enum__homepageherSecB_v_media_position" AS ENUM('left', 'right');
   CREATE TYPE "public"."enum__homepage_v_blocks_blog_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__homepage_v_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum__homepage_v_version_theme" AS ENUM('light', 'dark');
@@ -120,7 +120,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_blogIdxhdrSec_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."blogIdxhdrSec_v" AS ENUM('1', '2', '3', '4', '5', '6');
   CREATE TYPE "public"."enum_blogIdxherSecB_wrapper_theme" AS ENUM('_', 'light', 'dark');
-  CREATE TYPE "public"."enum_blogIdxherSecB_image_position" AS ENUM('left', 'right');
+  CREATE TYPE "public"."enum_blogIdxherSecB_media_position" AS ENUM('left', 'right');
   CREATE TYPE "public"."enum_blog_index_blocks_blog_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum_blog_index_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum_blog_index_theme" AS ENUM('light', 'dark');
@@ -139,7 +139,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum__blog_index_v_blocks_feature_section_variant" AS ENUM('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14');
   CREATE TYPE "public"."enum__blogIdxhdrSec_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__blogIdxherSecB_v_wrapper_theme" AS ENUM('_', 'light', 'dark');
-  CREATE TYPE "public"."enum__blogIdxherSecB_v_image_position" AS ENUM('left', 'right');
+  CREATE TYPE "public"."enum__blogIdxherSecB_v_media_position" AS ENUM('left', 'right');
   CREATE TYPE "public"."enum__blog_index_v_blocks_blog_section_wrapper_theme" AS ENUM('_', 'light', 'dark');
   CREATE TYPE "public"."enum__blog_index_v_blocks_blog_section_variant" AS ENUM('1', '2', '3', '4', '5');
   CREATE TYPE "public"."enum__blog_index_v_version_theme" AS ENUM('light', 'dark');
@@ -309,7 +309,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"wrapper_padding_xl_padding_top" "t",
   	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "vrnt" DEFAULT '1',
-  	"image_position" "enum_pageherSecB_image_position" DEFAULT 'right',
+  	"media_position" "enum_pageherSecB_media_position" DEFAULT 'right',
   	"form_id" integer,
   	"block_name" varchar
   );
@@ -541,7 +541,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"wrapper_padding_xl_padding_top" "t",
   	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "vrnt" DEFAULT '1',
-  	"image_position" "enum__pageherSecB_v_image_position" DEFAULT 'right',
+  	"media_position" "enum__pageherSecB_v_media_position" DEFAULT 'right',
   	"form_id" integer,
   	"_uuid" varchar,
   	"block_name" varchar
@@ -1437,7 +1437,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"wrapper_padding_xl_padding_top" "t",
   	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "vrnt" DEFAULT '1',
-  	"image_position" "enum_homepageherSecB_image_position" DEFAULT 'right',
+  	"media_position" "enum_homepageherSecB_media_position" DEFAULT 'right',
   	"form_id" integer,
   	"block_name" varchar
   );
@@ -1665,7 +1665,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"wrapper_padding_xl_padding_top" "t",
   	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "vrnt" DEFAULT '1',
-  	"image_position" "enum__homepageherSecB_v_image_position" DEFAULT 'right',
+  	"media_position" "enum__homepageherSecB_v_media_position" DEFAULT 'right',
   	"form_id" integer,
   	"_uuid" varchar,
   	"block_name" varchar
@@ -1894,7 +1894,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"wrapper_padding_xl_padding_top" "t",
   	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "vrnt" DEFAULT '1',
-  	"image_position" "enum_blogIdxherSecB_image_position" DEFAULT 'right',
+  	"media_position" "enum_blogIdxherSecB_media_position" DEFAULT 'right',
   	"form_id" integer,
   	"block_name" varchar
   );
@@ -2122,7 +2122,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"wrapper_padding_xl_padding_top" "t",
   	"wrapper_padding_xl_padding_bottom" "b",
   	"variant" "vrnt" DEFAULT '1',
-  	"image_position" "enum__blogIdxherSecB_v_image_position" DEFAULT 'right',
+  	"media_position" "enum__blogIdxherSecB_v_media_position" DEFAULT 'right',
   	"form_id" integer,
   	"_uuid" varchar,
   	"block_name" varchar
@@ -3926,7 +3926,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."pagehdrSec_v";
   DROP TYPE "public"."enum_pageherSecB_wrapper_theme";
   DROP TYPE "public"."vrnt";
-  DROP TYPE "public"."enum_pageherSecB_image_position";
+  DROP TYPE "public"."enum_pageherSecB_media_position";
   DROP TYPE "public"."enum_pages_blocks_blog_section_wrapper_theme";
   DROP TYPE "public"."enum_pages_blocks_blog_section_variant";
   DROP TYPE "public"."enum_pages_theme";
@@ -3945,7 +3945,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum__pages_v_blocks_feature_section_variant";
   DROP TYPE "public"."enum__pagehdrSec_v_wrapper_theme";
   DROP TYPE "public"."enum__pageherSecB_v_wrapper_theme";
-  DROP TYPE "public"."enum__pageherSecB_v_image_position";
+  DROP TYPE "public"."enum__pageherSecB_v_media_position";
   DROP TYPE "public"."enum__pages_v_blocks_blog_section_wrapper_theme";
   DROP TYPE "public"."enum__pages_v_blocks_blog_section_variant";
   DROP TYPE "public"."enum__pages_v_version_theme";
@@ -3984,7 +3984,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_homepagehdrSec_wrapper_theme";
   DROP TYPE "public"."homepagehdrSec_v";
   DROP TYPE "public"."enum_homepageherSecB_wrapper_theme";
-  DROP TYPE "public"."enum_homepageherSecB_image_position";
+  DROP TYPE "public"."enum_homepageherSecB_media_position";
   DROP TYPE "public"."enum_homepage_blocks_blog_section_wrapper_theme";
   DROP TYPE "public"."enum_homepage_blocks_blog_section_variant";
   DROP TYPE "public"."enum_homepage_theme";
@@ -4003,7 +4003,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum__homepage_v_blocks_feature_section_variant";
   DROP TYPE "public"."enum__homepagehdrSec_v_wrapper_theme";
   DROP TYPE "public"."enum__homepageherSecB_v_wrapper_theme";
-  DROP TYPE "public"."enum__homepageherSecB_v_image_position";
+  DROP TYPE "public"."enum__homepageherSecB_v_media_position";
   DROP TYPE "public"."enum__homepage_v_blocks_blog_section_wrapper_theme";
   DROP TYPE "public"."enum__homepage_v_blocks_blog_section_variant";
   DROP TYPE "public"."enum__homepage_v_version_theme";
@@ -4024,7 +4024,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum_blogIdxhdrSec_wrapper_theme";
   DROP TYPE "public"."blogIdxhdrSec_v";
   DROP TYPE "public"."enum_blogIdxherSecB_wrapper_theme";
-  DROP TYPE "public"."enum_blogIdxherSecB_image_position";
+  DROP TYPE "public"."enum_blogIdxherSecB_media_position";
   DROP TYPE "public"."enum_blog_index_blocks_blog_section_wrapper_theme";
   DROP TYPE "public"."enum_blog_index_blocks_blog_section_variant";
   DROP TYPE "public"."enum_blog_index_theme";
@@ -4043,7 +4043,7 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   DROP TYPE "public"."enum__blog_index_v_blocks_feature_section_variant";
   DROP TYPE "public"."enum__blogIdxhdrSec_v_wrapper_theme";
   DROP TYPE "public"."enum__blogIdxherSecB_v_wrapper_theme";
-  DROP TYPE "public"."enum__blogIdxherSecB_v_image_position";
+  DROP TYPE "public"."enum__blogIdxherSecB_v_media_position";
   DROP TYPE "public"."enum__blog_index_v_blocks_blog_section_wrapper_theme";
   DROP TYPE "public"."enum__blog_index_v_blocks_blog_section_variant";
   DROP TYPE "public"."enum__blog_index_v_version_theme";

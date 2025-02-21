@@ -23,7 +23,7 @@ function HeroSections6({ content, media }: HeroSectionsBlockType) {
             imgClasses="rounded-xl object-cover w-full h-full"
           />
         )}
-        <div className=" w-full h-full dark:bg-black/80 bg-white/80 absolute" />
+        <div className="top-0 w-full h-full dark:bg-black/80 bg-white/80 absolute" />
       </div>
       <div className="container px-6 flex flex-col lg:flex-row items-center gap-12 lg:gap-16 relative z-1 mx-auto">
         <div className="flex flex-col gap-6 lg:gap-8 flex-1 max-w-2xl items-center text-center m-auto">

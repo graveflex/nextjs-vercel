@@ -535,7 +535,7 @@ export interface HeroSectionsBlockT {
   /**
    * For certain variants, the position of the image on desktop screens.
    */
-  imagePosition?: ('left' | 'right') | null;
+  mediaPosition?: ('left' | 'right') | null;
   /**
    * Add a form to be displayed at the bottom of the content section.
    */
@@ -1683,7 +1683,7 @@ export interface HeroSectionsBlockTSelect<T extends boolean = true> {
   variant?: T;
   content?: T;
   media?: T;
-  imagePosition?: T;
+  mediaPosition?: T;
   form?: T;
   id?: T;
   blockName?: T;

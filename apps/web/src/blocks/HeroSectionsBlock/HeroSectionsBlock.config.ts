@@ -57,8 +57,8 @@ const HeroSectionsBlock = (prefix: string): Block => ({
       }
     },
     {
-      name: 'imagePosition',
-      label: 'Image Position',
+      name: 'mediaPosition',
+      label: 'Media Position',
       type: 'select',
       options: [
         {
