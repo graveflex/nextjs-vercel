@@ -150,6 +150,9 @@ importers:
       '@payloadcms/email-nodemailer':
         specifier: 3.20.0
         version: 3.20.0(payload@3.20.0(bufferutil@4.0.9)(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)(utf-8-validate@6.0.5))
+      '@payloadcms/email-resend':
+        specifier: ^3.24.0
+        version: 3.24.0(payload@3.20.0(bufferutil@4.0.9)(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)(utf-8-validate@6.0.5))
       '@payloadcms/live-preview':
         specifier: 3.20.0
         version: 3.20.0
@@ -2484,6 +2487,12 @@ packages:
 
   '@payloadcms/email-nodemailer@3.20.0':
     resolution: {integrity: sha512-pAqLta3hh2rj/sLSNQs/94+0WyscJYzpc0PALObz6JkiS+SLOBZuDxJDmsNb2AC/lucc2sj253Szr0+JWYMnpw==}
+    engines: {node: ^18.20.2 || >=20.9.0}
+    peerDependencies:
+      payload: 3.20.0
+
+  '@payloadcms/email-resend@3.24.0':
+    resolution: {integrity: sha512-8j7nTHy4hLR4o0SKtx4pl1XHvXNHOGn0giXv6lulAn0twjut16i6+qWSqTsSIriqm3mEdmzFiSG0cwawUw0i1g==}
     engines: {node: ^18.20.2 || >=20.9.0}
     peerDependencies:
       payload: 3.20.0
@@ -11249,6 +11258,10 @@ snapshots:
   '@payloadcms/email-nodemailer@3.20.0(payload@3.20.0(bufferutil@4.0.9)(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)(utf-8-validate@6.0.5))':
     dependencies:
       nodemailer: 6.9.16
+      payload: 3.20.0(bufferutil@4.0.9)(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)(utf-8-validate@6.0.5)
+
+  '@payloadcms/email-resend@3.24.0(payload@3.20.0(bufferutil@4.0.9)(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)(utf-8-validate@6.0.5))':
+    dependencies:
       payload: 3.20.0(bufferutil@4.0.9)(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)(utf-8-validate@6.0.5)
 
   '@payloadcms/graphql@3.20.0(graphql@16.10.0)(payload@3.20.0(bufferutil@4.0.9)(graphql@16.10.0)(monaco-editor@0.52.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.7.3)(utf-8-validate@6.0.5))(typescript@5.7.3)':

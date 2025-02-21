@@ -70,6 +70,10 @@ export const signUp = async (formData: FormData) => {
 export const sendPasswordResetEmail = async (formData: FormData) => {
   const email = formData.get('email') as string;
 
+  if (!email) {
+    throw new Error('email-required');
+  }
+
   const payload = await getPayload({ config: payloadConfig });
 
   const existingEmailProviderAccount = await payload.find({
@@ -85,6 +89,8 @@ export const sendPasswordResetEmail = async (formData: FormData) => {
         email
       }
     });
+  } else {
+    throw new Error('email-not-found');
   }
 
   return {

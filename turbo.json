@@ -36,7 +36,10 @@
     "NEON_PROJECT_ID",
     "AUTH_SECRET",
     "AUTH_GITHUB_ID",
-    "AUTH_GITHUB_SECRET"
+    "AUTH_GITHUB_SECRET",
+    "RESEND_API_KEY",
+    "RESEND_FROM_ADDRESS",
+    "RESEND_FROM_NAME"
   ],
   "globalDependencies": ["**/.env.*local"],
   "tasks": {

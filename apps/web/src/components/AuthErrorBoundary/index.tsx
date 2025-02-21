@@ -45,6 +45,17 @@ const Errors = {
     variant: 'destructive',
     title: 'Account locked',
     description: 'Your account has been locked. Please contact support.'
+  },
+  'email-sent': {
+    variant: 'default',
+    title: 'Email Sent',
+    description:
+      'An email has been sent to your email address with instructions to reset your password.'
+  },
+  'email-not-found': {
+    variant: 'destructive',
+    title: 'Email not found',
+    description: 'The email you entered is not associated with any account.'
   }
 } as const;
 

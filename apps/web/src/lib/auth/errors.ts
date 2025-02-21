@@ -1,6 +1,6 @@
 // Single point of entry for all auth Errors
 
-// Libraries
+import { AuthError } from 'next-auth';
 import { CredentialsSignin } from 'next-auth';
 
 export class EmailRequiredError extends CredentialsSignin {
@@ -14,4 +14,16 @@ export class InvalidLoginError extends CredentialsSignin {
 }
 export class LockedUserError extends CredentialsSignin {
   code = 'locked-user';
+}
+
+export function getErrorMessage(err: typeof AuthError | Error | unknown) {
+  if (err instanceof AuthError) {
+    return { errorCode: err.cause?.err?.message ?? 'unknown-error' };
+  }
+
+  if (err instanceof Error) {
+    return { errorCode: err.message ?? 'unknown-error' };
+  }
+
+  return 'unknown-error';
 }

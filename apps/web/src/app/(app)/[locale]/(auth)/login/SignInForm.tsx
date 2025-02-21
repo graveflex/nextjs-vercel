@@ -40,7 +40,12 @@ function SignInForm({ signIn }: SignInFormProps) {
 
       {/* Email and password inputs */}
       <div className="space-y-4">
-        <Input name="email" placeholder="Email" disabled={pending} />
+        <Input
+          name="email"
+          type="email"
+          placeholder="Email"
+          disabled={pending}
+        />
         <Input
           name="password"
           type="password"

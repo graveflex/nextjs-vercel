@@ -50,6 +50,7 @@ import sharp from 'sharp';
 import { authConfig } from './src/auth.config';
 import { Embed } from './src/components/RichText/Blocks/Embed/config';
 import { EyebrowFeature } from './src/components/RichText/Features/eyebrow/eyebrow.server';
+import { resendAdapter } from '@payloadcms/email-resend';
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
 
@@ -310,19 +311,10 @@ export default buildConfig({
     }
   },
   secret: process.env.PAYLOAD_SECRET || '',
-  email: nodemailerAdapter({
-    // skipVerify should actually be true if we want to verify creds. This is a known Payload bug that hasn't been fixed yet.
-    skipVerify: true,
-    defaultFromAddress: 'admin@graveflex.com',
-    defaultFromName: 'Payload',
-    transportOptions: {
-      host: process.env.SMTP_HOST,
-      port: 587,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-      }
-    }
+  email: resendAdapter({
+    defaultFromAddress: process.env.RESEND_FROM_ADDRESS || 'dev@payloadcms.com',
+    defaultFromName: process.env.RESEND_FROM_NAME || 'Payload CMS',
+    apiKey: process.env.RESEND_API_KEY || ''
   }),
   typescript: {
     outputFile: '../../packages/types/payload-types.ts'
