@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import heroSectionsMockData, {
-  heroSections4_5MockData,
-  heroSections6_9MockData,
-  heroSectionsListMockData,
+  heroSectionsWithFormMockData,
   imgMockData,
-  emailSignupFormMockData
+  videoMockData
 } from './HeroSectionsMockData';
 
 import type { HeroSectionsBlockType } from '.';
@@ -26,7 +24,7 @@ const meta: Meta<HeroSectionsBlockType> = {
     },
     variant: {
       control: 'select',
-      options: ['1', '2', '4', '5', '6', '8', '9']
+      options: ['1', '2', '3']
     }
   },
   decorators: [(Story) => <div className="bg-background">{Story()}</div>],
@@ -55,28 +53,46 @@ export const One: Story = {
   }
 };
 
-export const OneWithList: Story = {
+export const OneWithVideo: Story = {
   args: {
     imagePosition: 'right',
     variant: '1',
-    content: heroSectionsListMockData.data,
+    content: heroSectionsMockData.data,
+    media: videoMockData
+  }
+};
+
+export const OneWithForm: Story = {
+  args: {
+    imagePosition: 'right',
+    variant: '1',
+    content: heroSectionsWithFormMockData.data,
     media: imgMockData
   }
 };
 
-export const Six: Story = {
+export const Two: Story = {
   args: {
-    variant: '6',
+    variant: '2',
     imagePosition: 'right',
-    content: heroSections6_9MockData.data,
+    content: heroSectionsMockData.data,
     media: imgMockData
   }
 };
 
-export const Nine: Story = {
+export const Three: Story = {
   args: {
-    variant: '9',
+    variant: '3',
     imagePosition: 'right',
-    content: heroSections6_9MockData.data
+    content: heroSectionsMockData.data
+  }
+};
+
+export const ThreeWithVideo: Story = {
+  args: {
+    variant: '3',
+    imagePosition: 'right',
+    content: heroSectionsMockData.data,
+    media: videoMockData
   }
 };

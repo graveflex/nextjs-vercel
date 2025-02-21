@@ -21,7 +21,7 @@ const heroSectionsMockData: RichTextType = {
           children: [
             {
               mode: 'normal',
-              text: 'Hero Section',
+              text: 'Hero Block',
               type: 'eyebrow',
               style: '',
               detail: 0,
@@ -71,6 +71,16 @@ const heroSectionsMockData: RichTextType = {
           direction: 'ltr',
           textStyle: '',
           textFormat: 0
+        },
+        {
+          type: 'paragraph',
+          format: '',
+          indent: 0,
+          version: 1,
+          children: [],
+          direction: null,
+          textStyle: '',
+          textFormat: 0
         }
       ],
       direction: 'ltr'
@@ -78,7 +88,7 @@ const heroSectionsMockData: RichTextType = {
   }
 };
 
-export const heroSectionsListMockData: RichTextType = {
+export const heroSectionsWithFormMockData: RichTextType = {
   data: {
     root: {
       type: 'root',
@@ -94,7 +104,7 @@ export const heroSectionsListMockData: RichTextType = {
           children: [
             {
               mode: 'normal',
-              text: 'Hero Section',
+              text: 'Hero Block',
               type: 'eyebrow',
               style: '',
               detail: 0,
@@ -146,219 +156,77 @@ export const heroSectionsListMockData: RichTextType = {
           textFormat: 0
         },
         {
-          tag: 'ul',
-          type: 'list',
-          start: 1,
+          type: 'paragraph',
           format: '',
           indent: 0,
           version: 1,
-          children: [
-            {
-              type: 'listitem',
-              value: 1,
-              format: '',
-              indent: 0,
-              version: 1,
-              children: [
+          children: [],
+          direction: null,
+          textStyle: '',
+          textFormat: 0
+        },
+        {
+          type: 'block',
+          fields: {
+            id: '67b8a85c617c2883988eade4',
+            form: {
+              id: 1,
+              title: 'Email Signup',
+              fields: [
                 {
-                  mode: 'normal',
-                  text: 'Benefit driven feature title',
-                  type: 'text',
-                  style: '',
-                  detail: 0,
-                  format: 0,
-                  version: 1
+                  id: '67b8a833bb2c2c0af9d99976',
+                  name: 'email',
+                  width: null,
+                  required: true,
+                  blockName: 'Enter email',
+                  blockType: 'email',
+                  label: 'Email'
                 }
               ],
-              direction: 'ltr'
+              submitButtonLabel: 'Sign up',
+              confirmationType: 'message',
+              confirmationMessage: {
+                root: {
+                  type: 'root',
+                  format: '',
+                  indent: 0,
+                  version: 1,
+                  children: [
+                    {
+                      tag: 'h3',
+                      type: 'heading',
+                      format: '',
+                      indent: 0,
+                      version: 1,
+                      children: [
+                        {
+                          mode: 'normal',
+                          text: 'Thanks!',
+                          type: 'text',
+                          style: '',
+                          detail: 0,
+                          format: 0,
+                          version: 1
+                        }
+                      ],
+                      direction: 'ltr'
+                    }
+                  ],
+                  direction: 'ltr'
+                }
+              },
+              redirect: {
+                url: null
+              },
+              emails: [],
+              updatedAt: '2025-02-21T16:22:30.383Z',
+              createdAt: '2025-02-21T16:22:30.383Z'
             },
-            {
-              type: 'listitem',
-              value: 2,
-              format: '',
-              indent: 0,
-              version: 1,
-              children: [
-                {
-                  mode: 'normal',
-                  text: 'Benefit driven feature title',
-                  type: 'text',
-                  style: '',
-                  detail: 0,
-                  format: 0,
-                  version: 1
-                }
-              ],
-              direction: 'ltr'
-            },
-            {
-              type: 'listitem',
-              value: 3,
-              format: '',
-              indent: 0,
-              version: 1,
-              children: [
-                {
-                  mode: 'normal',
-                  text: 'Benefit driven feature title',
-                  type: 'text',
-                  style: '',
-                  detail: 0,
-                  format: 0,
-                  version: 1
-                }
-              ],
-              direction: 'ltr'
-            }
-          ],
-          listType: 'bullet',
-          direction: 'ltr'
-        }
-      ],
-      direction: 'ltr'
-    }
-  }
-};
-
-export const heroSections4_5MockData: RichTextType = {
-  data: {
-    root: {
-      type: 'root',
-      format: '',
-      indent: 0,
-      version: 1,
-      children: [
-        {
-          type: 'paragraph',
+            blockName: '',
+            blockType: 'form'
+          },
           format: '',
-          indent: 0,
-          version: 1,
-          children: [
-            {
-              mode: 'normal',
-              text: 'Hero Section',
-              type: 'eyebrow',
-              style: '',
-              detail: 0,
-              format: 0,
-              version: 1
-            }
-          ],
-          direction: 'ltr',
-          textStyle: '',
-          textFormat: 0
-        },
-        {
-          tag: 'h2',
-          type: 'heading',
-          format: '',
-          indent: 0,
-          version: 1,
-          children: [
-            {
-              mode: 'normal',
-              text: "Headline that solves user's main problem",
-              type: 'text',
-              style: '',
-              detail: 0,
-              format: 0,
-              version: 1
-            }
-          ],
-          direction: 'ltr'
-        },
-        {
-          type: 'paragraph',
-          format: '',
-          indent: 0,
-          version: 1,
-          children: [
-            {
-              mode: 'normal',
-              text: 'Follow with one or two sentences that expand on your value proposition. Focus on key benefits and address why users should take action now. Keep it scannable, short and benefit-driven.',
-              type: 'text',
-              style: '',
-              detail: 0,
-              format: 0,
-              version: 1
-            }
-          ],
-          direction: 'ltr',
-          textStyle: '',
-          textFormat: 0
-        }
-      ],
-      direction: 'ltr'
-    }
-  }
-};
-
-export const heroSections6_9MockData: RichTextType = {
-  data: {
-    root: {
-      type: 'root',
-      format: '',
-      indent: 0,
-      version: 1,
-      children: [
-        {
-          type: 'paragraph',
-          format: 'center',
-          indent: 0,
-          version: 1,
-          children: [
-            {
-              mode: 'normal',
-              text: 'Hero Section',
-              type: 'eyebrow',
-              style: '',
-              detail: 0,
-              format: 0,
-              version: 1
-            }
-          ],
-          direction: 'ltr',
-          textStyle: '',
-          textFormat: 0
-        },
-        {
-          tag: 'h2',
-          type: 'heading',
-          format: 'center',
-          indent: 0,
-          version: 1,
-          children: [
-            {
-              mode: 'normal',
-              text: "Headline that solves user's main problem",
-              type: 'text',
-              style: '',
-              detail: 0,
-              format: 0,
-              version: 1
-            }
-          ],
-          direction: 'ltr'
-        },
-        {
-          type: 'paragraph',
-          format: 'center',
-          indent: 0,
-          version: 1,
-          children: [
-            {
-              mode: 'normal',
-              text: 'Follow with one or two sentences that expand on your value proposition. Focus on key benefits and address why users should take action now. Keep it scannable, short and benefit-driven.',
-              type: 'text',
-              style: '',
-              detail: 0,
-              format: 0,
-              version: 1
-            }
-          ],
-          direction: 'ltr',
-          textStyle: '',
-          textFormat: 0
+          version: 2
         }
       ],
       direction: 'ltr'
@@ -439,57 +307,25 @@ export const imgMockData: HeroSectionsBlockType['media'] = {
   }
 };
 
-export const emailSignupFormMockData: Form = {
-  id: 2,
-  title: 'Email Signup',
-  fields: [
-    {
-      id: '67b4c1c616c28e7b485d12f9',
-      name: 'email',
-      width: 50,
-      required: true,
-      blockName: 'Your email',
-      blockType: 'email'
-    }
-  ],
-  submitButtonLabel: 'Sign up',
-  confirmationType: 'message',
-  confirmationMessage: {
-    root: {
-      type: 'root',
-      format: '',
-      indent: 0,
-      version: 1,
-      children: [
-        {
-          tag: 'h3',
-          type: 'heading',
-          format: '',
-          indent: 0,
-          version: 1,
-          children: [
-            {
-              mode: 'normal',
-              text: 'Thanks for signing up!',
-              type: 'text',
-              style: '',
-              detail: 0,
-              format: 0,
-              version: 1
-            }
-          ],
-          direction: 'ltr'
-        }
-      ],
-      direction: 'ltr'
-    }
-  },
-  redirect: {
-    url: 'https://www.google.com'
-  },
-  emails: [],
-  updatedAt: '2025-02-18T19:56:51.171Z',
-  createdAt: '2025-02-18T17:22:48.027Z'
+export const videoMockData: HeroSectionsBlockType['media'] = {
+  relationTo: 'videos',
+  value: {
+    id: 1,
+    title: 'Penguins',
+    description: null,
+    publishedDate: null,
+    updatedAt: '2025-02-21T16:21:11.401Z',
+    createdAt: '2025-02-21T16:21:11.401Z',
+    url: 'https://www.geoex.com/app/uploads/2020/10/antarctica-emperor-penguin-colony.mp4',
+    thumbnailURL: null,
+    filename: 'antarctica-emperor-penguin-colony.mp4',
+    mimeType: 'video/mp4',
+    filesize: 5000000,
+    width: null,
+    height: null,
+    focalX: null,
+    focalY: null
+  }
 };
 
 export default heroSectionsMockData;

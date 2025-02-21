@@ -15,10 +15,10 @@ const layoutList: Record<string, ComponentType<HeroSectionsBlockType>> = {
   '1': dynamic(() => import('./layouts/HeroSections1'), {
     ...defaultOpts
   }),
-  '6': dynamic(() => import('./layouts/HeroSections6'), {
+  '2': dynamic(() => import('./layouts/HeroSections2'), {
     ...defaultOpts
   }),
-  '9': dynamic(() => import('./layouts/HeroSections9'), {
+  '3': dynamic(() => import('./layouts/HeroSections3'), {
     ...defaultOpts
   })
 };
