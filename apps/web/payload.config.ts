@@ -44,6 +44,7 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
 import { Embed } from './src/components/RichText/Blocks/Embed/config';
+import { Form } from './src/components/RichText/Blocks/Form/config';
 import { EyebrowFeature } from './src/components/RichText/Features/eyebrow/eyebrow.server';
 
 import { fileURLToPath } from 'node:url';
@@ -158,7 +159,7 @@ export default buildConfig({
         FixedToolbarFeature(),
         EyebrowFeature(),
         BlocksFeature({
-          blocks: [Embed],
+          blocks: [Embed, Form],
           inlineBlocks: []
         })
       ] as FeatureProviderServer<unknown, unknown>[]
