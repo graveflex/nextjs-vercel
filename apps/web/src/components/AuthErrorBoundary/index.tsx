@@ -64,7 +64,8 @@ export default function AuthErrorBoundary({ error }: AuthErrorBoundaryProps) {
       title: 'Error',
       description: error
     } as const;
-    const { variant, title, description } = (error && isValidError(error)) ? Errors[error] : fallback;
+    const { variant, title, description } =
+      error && isValidError(error) ? Errors[error] : fallback;
     return (
       <>
         <Alert variant={variant}>

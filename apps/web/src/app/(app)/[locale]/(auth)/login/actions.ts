@@ -20,7 +20,7 @@ export async function signIn(_prevState: unknown, formData: FormData) {
   try {
     await nextAuthSignIn('credentials', formData);
   } catch (err) {
-    return getErrorMessage(err)
+    return getErrorMessage(err);
   }
 
   return redirect('/account');

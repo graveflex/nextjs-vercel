@@ -23,8 +23,7 @@ export const authConfig: NextAuthConfig = {
         if (!password) {
           throw new Error('password-required');
         }
-        const user =
-          await createPayloadAuthSessionWithEmailCreds(credentials);
+        const user = await createPayloadAuthSessionWithEmailCreds(credentials);
         if (!user) {
           throw new Error('invalid-credentials');
         }
