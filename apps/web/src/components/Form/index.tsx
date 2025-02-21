@@ -56,7 +56,7 @@ export default function FormComponent({ form }: FormComponentTypes) {
                 setError(true);
               })
           }
-          className="grid md:grid-cols-2 gap-3 w-full items-end"
+          className="grid md:grid-cols-2 gap-3 w-full items-end text-left"
           aria-label="Email signup form"
         >
           {fields?.map((field) => {
@@ -90,7 +90,7 @@ export default function FormComponent({ form }: FormComponentTypes) {
             );
           })}
 
-          <Button type="submit">
+          <Button type="submit" className="w-max">
             {submitButtonLabel}
             <ArrowRight />
           </Button>
