@@ -1,13 +1,14 @@
 import ResponsivePayloadImage from '@mono/ui/components/primitives/ResponsivePayloadImage';
 import RichText from '@mono/web/components/RichText/index';
-import Video from '@mono/web/components/Video';
 import { Button } from '@mono/web/components/ui/Button';
 import { ArrowRight } from 'lucide-react';
 import React from 'react';
 import type { HeroSectionsBlockType } from '../index';
 
 function HeroSections6({ content, media }: HeroSectionsBlockType) {
+  // Only uses images from media field as backgroundImg
   const mediaRelation = media?.relationTo;
+
   return (
     <section
       className="bg-background bg-cover bg-center py-16 lg:py-24 overflow-hidden relative"
