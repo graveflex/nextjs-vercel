@@ -1,8 +1,11 @@
 'use client';
 
+import AuthStateBoundary from '@mono/web/components/Auth/StateBoundary';
 import { PAYLOAD_USER_TYPE_COOKIE_NAME } from '@mono/web/lib/constants';
 import { useCookieValue } from '@mono/web/lib/useCookieValue';
 import { LoaderIcon } from 'lucide-react';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { usePayloadSession } from 'payload-authjs/client';
 import { useEffect, useState } from 'react';
 import styles from './Account.module.css';
@@ -27,6 +30,9 @@ function AccountPage() {
   const authUserType = useCookieValue('auth-provider');
   const hasUserType = userType || authUserType;
 
+  const searchParams = useSearchParams();
+  const state = searchParams.get('state');
+
   useEffect(() => {
     if (hasUserType) {
       (async () => {
@@ -50,8 +56,12 @@ function AccountPage() {
 
   return (
     <div className={styles.account}>
+      <AuthStateBoundary state={state || ''} />
       <h1 className={styles.h1}>Account</h1>
       <pre>{JSON.stringify(user, null, '\t')}</pre>
+      <Link href="/forgot-password" className="underline text-foreground">
+        Reset password
+      </Link>
     </div>
   );
 }

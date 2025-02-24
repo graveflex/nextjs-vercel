@@ -1,22 +1,25 @@
 'use client';
 
-import AuthErrorBoundary from '@mono/web/components/AuthErrorBoundary';
+import AuthErrorBoundary from '@mono/web/components/Auth/ErrorBoundary';
 import { Button } from '@mono/web/components/ui/Button';
 import { Input } from '@mono/web/components/ui/Input';
 import Link from 'next/link';
-import { useActionState } from 'react';
+import { redirect } from 'next/navigation';
+import { useActionState, useEffect } from 'react';
 
+import AuthStateBoundary from '@mono/web/components/Auth/StateBoundary';
 import { SIGNIN_URL, SIGNUP_URL } from '@mono/web/lib/constants';
 
 const initialState = {
-  errorCode: ''
+  errorCode: '',
+  success: false
 };
 
 interface ResetPasswordFormProps {
   resetPassword: (
     prevState: unknown,
     formData: FormData
-  ) => Promise<{ errorCode: string }>;
+  ) => Promise<{ errorCode: string; success?: boolean }>;
   token?: string;
 }
 
@@ -28,8 +31,8 @@ function ResetPasswordForm({ resetPassword, token }: ResetPasswordFormProps) {
 
   return (
     <form className="w-full max-w-sm space-y-6 m-auto" action={formAction}>
-      <pre>Code: {message?.errorCode}</pre>
       <AuthErrorBoundary error={message?.errorCode || ''} />
+      <AuthStateBoundary state={message?.success ? 'password-reset' : ''} />
 
       {/* Header */}
       <div className="space-y-2 text-center">
@@ -40,13 +43,7 @@ function ResetPasswordForm({ resetPassword, token }: ResetPasswordFormProps) {
       </div>
 
       {/* Token input */}
-      <Input
-        id="token"
-        name="token"
-        type="hidden"
-        value={token}
-        disabled={pending}
-      />
+      <Input id="token" name="token" type="hidden" value={token} />
 
       {/* Password input */}
       <div className="space-y-2">
@@ -55,7 +52,7 @@ function ResetPasswordForm({ resetPassword, token }: ResetPasswordFormProps) {
           name="password"
           placeholder="New Password"
           type="password"
-          disabled={pending}
+          disabled={pending || message?.success}
         />
         <p className="text-sm text-muted-foreground">Minimum 8 characters.</p>
       </div>

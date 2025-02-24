@@ -16,14 +16,14 @@ export class LockedUserError extends CredentialsSignin {
   code = 'locked-user';
 }
 
-export function getErrorMessage(err: typeof AuthError | Error | unknown) {
+export function getErrorCode(err: typeof AuthError | Error | unknown) {
   if (err instanceof AuthError) {
-    return { errorCode: err.cause?.err?.message ?? 'unknown-error' };
+    return err.cause?.err?.message ?? 'unknown-error';
   }
 
   if (err instanceof Error) {
-    return { errorCode: err.message ?? 'unknown-error' };
+    return err.message ?? 'unknown-error';
   }
 
-  return { errorCode: 'unknown-error' };
+  return 'unknown-error';
 }

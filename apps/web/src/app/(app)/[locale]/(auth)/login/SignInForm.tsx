@@ -1,24 +1,25 @@
 'use client';
 
-import AuthErrorBoundary from '@mono/web/components/AuthErrorBoundary';
+import AuthErrorBoundary from '@mono/web/components/Auth/ErrorBoundary';
 import { Button } from '@mono/web/components/ui/Button';
 import { Checkbox } from '@mono/web/components/ui/Checkbox';
 import { Input } from '@mono/web/components/ui/Input';
 import { Label } from '@mono/web/components/ui/Label';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
-import { useEffect, useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 
 const initialState = {
   errorCode: '',
-  success: false
+  success: false,
+  email: ''
 };
 
 interface SignInFormProps {
   signIn: (
     prevState: unknown,
     formData: FormData
-  ) => Promise<{ errorCode: string; success?: boolean }>;
+  ) => Promise<{ errorCode: string; success?: boolean; email: string }>;
 }
 
 function SignInForm({ signIn }: SignInFormProps) {
@@ -26,7 +27,7 @@ function SignInForm({ signIn }: SignInFormProps) {
 
   useEffect(() => {
     if (message.success) {
-      redirect('/account?logged-in=true');
+      redirect('/account?state=logged-in');
     }
   }, [message?.success]);
 
@@ -43,13 +44,14 @@ function SignInForm({ signIn }: SignInFormProps) {
           name="email"
           type="email"
           placeholder="Email"
-          disabled={pending}
+          defaultValue={message?.email}
+          disabled={pending || message?.success}
         />
         <Input
           name="password"
           type="password"
           placeholder="Password"
-          disabled={pending}
+          disabled={pending || message?.success}
         />
       </div>
 

@@ -6,8 +6,6 @@ import { signUp } from './actions';
 interface SignUpProps {
   searchParams: Promise<{
     callbackUrl?: string;
-    error?: string;
-    email?: string;
   }>;
 }
 

@@ -1,26 +1,35 @@
 'use client';
 
-import AuthErrorBoundary from '@mono/web/components/AuthErrorBoundary';
+import AuthErrorBoundary from '@mono/web/components/Auth/ErrorBoundary';
 import { Button } from '@mono/web/components/ui/Button';
 import { Checkbox } from '@mono/web/components/ui/Checkbox';
 import { Input } from '@mono/web/components/ui/Input';
 import { Label } from '@mono/web/components/ui/Label';
 import Link from 'next/link';
-import { useActionState } from 'react';
+import { redirect } from 'next/navigation';
+import { useActionState, useEffect } from 'react';
 
 const initialState = {
-  errorCode: ''
+  errorCode: '',
+  email: '',
+  success: false
 };
 
 interface SignUpFormProps {
   signUp: (
     prevState: unknown,
     formData: FormData
-  ) => Promise<{ errorCode: string }>;
+  ) => Promise<{ errorCode: string; email: string; success?: boolean }>;
 }
 
 function SignUpForm({ signUp }: SignUpFormProps) {
   const [message, formAction, pending] = useActionState(signUp, initialState);
+
+  useEffect(() => {
+    if (message.success) {
+      redirect('/account?state=account-created');
+    }
+  }, [message?.success]);
 
   return (
     <form className="w-full max-w-sm space-y-6 m-auto" action={formAction}>
@@ -29,12 +38,7 @@ function SignUpForm({ signUp }: SignUpFormProps) {
       {/* Sign-up form fields */}
       <div className="space-y-4 mb-6">
         {/* Email input */}
-        <Input
-          id="redirectTo"
-          name="redirectTo"
-          type="hidden"
-          value="/account?created=true"
-        />
+        <Input id="redirect" name="redirect" type="hidden" value="" />
 
         {/* Email input */}
         <Input
@@ -42,6 +46,7 @@ function SignUpForm({ signUp }: SignUpFormProps) {
           name="email"
           type="email"
           placeholder="Email"
+          defaultValue={message?.email}
           disabled={pending}
         />
 

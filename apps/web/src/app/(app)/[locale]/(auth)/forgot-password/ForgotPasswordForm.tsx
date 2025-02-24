@@ -1,22 +1,25 @@
 'use client';
 
-import AuthErrorBoundary from '@mono/web/components/AuthErrorBoundary';
+import AuthErrorBoundary from '@mono/web/components/Auth/ErrorBoundary';
 import { Button } from '@mono/web/components/ui/Button';
 import { Input } from '@mono/web/components/ui/Input';
 import Link from 'next/link';
 import { useActionState } from 'react';
 
+import AuthStateBoundary from '@mono/web/components/Auth/StateBoundary';
 import { SIGNIN_URL, SIGNUP_URL } from '@mono/web/lib/constants';
 
 const initialState = {
-  errorCode: ''
+  errorCode: '',
+  email: '',
+  success: false
 };
 
 interface ForgotPasswordFormProps {
   forgotPassword: (
     prevState: unknown,
     formData: FormData
-  ) => Promise<{ errorCode: string }>;
+  ) => Promise<{ errorCode: string; success?: boolean; email: string }>;
 }
 
 function ForgotPasswordForm({ forgotPassword }: ForgotPasswordFormProps) {
@@ -28,6 +31,7 @@ function ForgotPasswordForm({ forgotPassword }: ForgotPasswordFormProps) {
   return (
     <form className="w-full max-w-sm space-y-6 m-auto" action={formAction}>
       <AuthErrorBoundary error={message?.errorCode || ''} />
+      <AuthStateBoundary state={message?.success ? 'email-sent' : ''} />
 
       {/* Header */}
       <div className="space-y-2 text-center">
@@ -46,7 +50,8 @@ function ForgotPasswordForm({ forgotPassword }: ForgotPasswordFormProps) {
           type="email"
           name="email"
           id="email"
-          disabled={pending}
+          defaultValue={message?.email}
+          disabled={pending || message?.success}
         />
       </div>
 

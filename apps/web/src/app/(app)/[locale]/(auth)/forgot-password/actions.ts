@@ -1,14 +1,22 @@
 import { sendPasswordResetEmail } from '@mono/web/lib/auth/config';
-import { getErrorMessage } from '@mono/web/lib/auth/errors';
+import { getErrorCode } from '@mono/web/lib/auth/errors';
+import { email } from 'node_modules/payload/dist/fields/validations';
 
 export async function forgotPassword(_prevState: unknown, formData: FormData) {
   'use server';
 
   try {
     await sendPasswordResetEmail(formData);
-    // Todo: Find a better way to handle this
-    throw new Error('email-sent');
+    return {
+      success: true,
+      errorCode: '',
+      email: formData.get('email') as string
+    };
   } catch (err) {
-    return getErrorMessage(err);
+    return {
+      errorCode: getErrorCode(err),
+      email: formData.get('email') as string,
+      success: false
+    };
   }
 }

@@ -1,11 +1,19 @@
 'use client';
 
-import { SIGNIN_URL } from '@mono/web/lib/constants';
-import { Alert } from '../ui/Alert';
+import { Alert } from '@mono/web/components/ui/Alert';
 
 import { Separator } from '@mono/web/components/ui/Separator';
 
-const Errors = {
+interface ErrorConfig {
+  variant: 'default' | 'destructive'; // add other variants as needed
+  title: string;
+  description: string;
+  link?: {
+    href: string;
+    text: string;
+  };
+}
+const Errors: Record<string, ErrorConfig> = {
   'email-exists': {
     variant: 'destructive',
     title: 'Email already exists',
@@ -47,17 +55,6 @@ const Errors = {
     title: 'Account locked',
     description: 'Your account has been locked. Please contact support.'
   },
-  'email-sent': {
-    variant: 'default',
-    title: 'Email Sent',
-    description:
-      'An email has been sent to your email address with instructions to reset your password.'
-  },
-  'password-reset': {
-    variant: 'default',
-    title: 'Password Reset',
-    description: `Your password has been reset. You can now sign in with your new password. <a class="underline text-foreground" href="${SIGNIN_URL}">Login here</a>`
-  },
   'email-not-found': {
     variant: 'destructive',
     title: 'Email not found',
@@ -79,18 +76,26 @@ export default function AuthErrorBoundary({ error }: AuthErrorBoundaryProps) {
     const fallback = {
       variant: 'destructive',
       title: 'Error',
-      description: error
+      description: error,
+      link: false
     } as const;
-    const { variant, title, description } =
+    const { variant, title, description, link } =
       error && isValidError(error) ? Errors[error] : fallback;
     return (
       <>
         <Alert variant={variant}>
           <h1 className="text-sm font-semibold [&+div]:text-xs">{title}</h1>
-          <p className="text-sm opacity-90 mt-2">{description}</p>
+          <p className="text-sm opacity-90 mt-2">
+            {description}
+            {link && (
+              <a className="underline text-foreground" href={link.href}>
+                {link.text}
+              </a>
+            )}
+          </p>
         </Alert>
         {/* Separator */}
-        <div className="w-full relative">
+        <div className="w-full relative my-4">
           <div className="text-xs text-muted-foreground bg-background px-2 uppercase absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             {/* Or */}
           </div>
