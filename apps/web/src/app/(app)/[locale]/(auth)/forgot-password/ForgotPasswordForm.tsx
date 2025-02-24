@@ -2,9 +2,7 @@
 
 import AuthErrorBoundary from '@mono/web/components/AuthErrorBoundary';
 import { Button } from '@mono/web/components/ui/Button';
-import { Checkbox } from '@mono/web/components/ui/Checkbox';
 import { Input } from '@mono/web/components/ui/Input';
-import { Label } from '@mono/web/components/ui/Label';
 import Link from 'next/link';
 import { useActionState } from 'react';
 

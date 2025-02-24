@@ -25,5 +25,5 @@ export function getErrorMessage(err: typeof AuthError | Error | unknown) {
     return { errorCode: err.message ?? 'unknown-error' };
   }
 
-  return 'unknown-error';
+  return { errorCode: 'unknown-error' };
 }

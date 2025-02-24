@@ -17,7 +17,7 @@ interface SignInFormProps {
   signIn: (
     prevState: unknown,
     formData: FormData
-  ) => Promise<{ errorCode: string; success: boolean }>;
+  ) => Promise<{ errorCode: string; success?: boolean }>;
 }
 
 function SignInForm({ signIn }: SignInFormProps) {

@@ -10,12 +10,7 @@ interface ResetPasswordProps {
 async function ForgotPassword({ searchParams }: ResetPasswordProps) {
   const { token } = await searchParams;
 
-  return (
-    <>
-      {/* Sign-in form */}
-      <ResetPasswordForm resetPassword={resetPassword} token={token} />
-    </>
-  );
+  return <ResetPasswordForm resetPassword={resetPassword} token={token} />;
 }
 
 export default ForgotPassword;

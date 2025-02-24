@@ -17,7 +17,7 @@ interface ResetPasswordFormProps {
     prevState: unknown,
     formData: FormData
   ) => Promise<{ errorCode: string }>;
-  token: string;
+  token?: string;
 }
 
 function ResetPasswordForm({ resetPassword, token }: ResetPasswordFormProps) {

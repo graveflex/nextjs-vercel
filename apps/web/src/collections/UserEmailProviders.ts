@@ -9,7 +9,7 @@ const UserEmailProviders: CollectionConfig = {
     forgotPassword: {
       expiration: 1000 * 60 * 60 * 1, // 1 hour
       generateEmailSubject: () => 'Forgot Password',
-      generateEmailHTML: ({ token, user }) => {
+      generateEmailHTML: ({ token, user } = {}) => {
         // Use the token provided to allow your user to verify their account
         const url = `${WEB_URL}/forgot-password/verify?token=${token}`;
         const name = user?.name || user?.email || 'there';

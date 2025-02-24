@@ -87,10 +87,7 @@ export default function AuthErrorBoundary({ error }: AuthErrorBoundaryProps) {
       <>
         <Alert variant={variant}>
           <h1 className="text-sm font-semibold [&+div]:text-xs">{title}</h1>
-          <p
-            className="text-sm opacity-90 mt-2"
-            dangerouslySetInnerHTML={{ __html: description }}
-          />
+          <p className="text-sm opacity-90 mt-2">{description}</p>
         </Alert>
         {/* Separator */}
         <div className="w-full relative">
