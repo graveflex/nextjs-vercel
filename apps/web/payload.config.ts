@@ -45,6 +45,7 @@ import { buildConfig } from 'payload';
 import sharp from 'sharp';
 import { Embed } from './src/components/RichText/Blocks/Embed/config';
 import { EyebrowFeature } from './src/components/RichText/Features/eyebrow/eyebrow.server';
+import { baseFields as linkFields } from '@mono/web/payload/fields/Link';
 
 import { fileURLToPath } from 'node:url';
 import path from 'path';
@@ -78,24 +79,7 @@ export default buildConfig({
         UnorderedListFeature(),
         OrderedListFeature(),
         LinkFeature({
-          fields: ({ defaultFields }) => {
-            debugger;
-            return [
-              ...defaultFields,
-
-              {
-                name: 'rel',
-                label: 'Rel Attribute',
-                type: 'select',
-                hasMany: true,
-                options: ['noopener', 'noreferrer', 'nofollow'],
-                admin: {
-                  description:
-                    'The rel attribute defines the relationship between a linked resource and the current document. This is a custom link field.'
-                }
-              }
-            ];
-          }
+          fields: linkFields
         }),
         UploadFeature(),
         InlineToolbarFeature(),
