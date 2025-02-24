@@ -6,7 +6,8 @@ import { Checkbox } from '@mono/web/components/ui/Checkbox';
 import { Input } from '@mono/web/components/ui/Input';
 import { Label } from '@mono/web/components/ui/Label';
 import Link from 'next/link';
-import { useActionState } from 'react';
+import { redirect } from 'next/navigation';
+import { useEffect, useActionState } from 'react';
 
 const initialState = {
   errorCode: '',
@@ -23,9 +24,11 @@ interface SignInFormProps {
 function SignInForm({ signIn }: SignInFormProps) {
   const [message, formAction, pending] = useActionState(signIn, initialState);
 
-  if (message?.success) {
-    // Redirect to account page?
-  }
+  useEffect(() => {
+    if (message.success) {
+      redirect('/account?logged-in=true')
+    }
+  }, [message?.success]);
 
   return (
     <form className="w-full max-w-sm space-y-6 m-auto" action={formAction}>
