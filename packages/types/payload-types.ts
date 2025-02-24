@@ -553,44 +553,41 @@ export interface HeroSectionsBlockT {
   /**
    * The layout variant for the block.
    */
-  variant: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
-  title?: string | null;
+  variant: '1' | '2' | '3';
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * All variants accept images or video except variant 2. Variant 2 only allows images.
+   */
+  media:
+    | {
+        relationTo: 'images';
+        value: number | Image;
+      }
+    | {
+        relationTo: 'videos';
+        value: number | Video;
+      };
+  /**
+   * For certain variants, the position of the image on desktop screens.
+   */
+  mediaPosition?: ('left' | 'right') | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'heroSectionsBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "BlogSectionT".
- */
-export interface BlogSectionT {
-  wrapper?: {
-    theme?: ('_' | 'light' | 'dark') | null;
-    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
-    paddingXs?: {
-      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
-      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
-    };
-    paddingMd?: {
-      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
-      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
-    };
-    paddingLg?: {
-      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
-      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
-    };
-    paddingXl?: {
-      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
-      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
-    };
-  };
-  /**
-   * The layout variant for the block.
-   */
-  variant: '1' | '2' | '3' | '4' | '5';
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'blogSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -664,6 +661,60 @@ export interface Image {
       filename?: string | null;
     };
   };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos".
+ */
+export interface Video {
+  id: number;
+  title?: string | null;
+  description?: string | null;
+  publishedDate?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "BlogSectionT".
+ */
+export interface BlogSectionT {
+  wrapper?: {
+    theme?: ('_' | 'light' | 'dark') | null;
+    contentWidth?: ('full' | 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs') | null;
+    paddingXs?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingMd?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingLg?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+    paddingXl?: {
+      paddingTop?: ('pt-0' | 'pt-2' | 'pt-4' | 'pt-6' | 'pt-8' | 'pt-10' | 'pt-16') | null;
+      paddingBottom?: ('pb-0' | 'pb-2' | 'pb-4' | 'pb-6' | 'pb-8' | 'pb-10' | 'pb-16') | null;
+    };
+  };
+  /**
+   * The layout variant for the block.
+   */
+  variant: '1' | '2' | '3' | '4' | '5';
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'blogSection';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -870,27 +921,6 @@ export interface IconSelect {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "videos".
- */
-export interface Video {
-  id: number;
-  title?: string | null;
-  description?: string | null;
-  publishedDate?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -977,6 +1007,35 @@ export interface Form {
   title: string;
   fields?:
     | (
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            defaultValue?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'checkbox';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'email';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'number';
+          }
         | {
             name: string;
             label?: string | null;
@@ -1732,7 +1791,9 @@ export interface HeroSectionsBlockTSelect<T extends boolean = true> {
             };
       };
   variant?: T;
-  title?: T;
+  content?: T;
+  media?: T;
+  mediaPosition?: T;
   id?: T;
   blockName?: T;
 }
@@ -2072,6 +2133,38 @@ export interface FormsSelect<T extends boolean = true> {
   fields?:
     | T
     | {
+        checkbox?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              required?: T;
+              defaultValue?: T;
+              id?: T;
+              blockName?: T;
+            };
+        email?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
+        number?:
+          | T
+          | {
+              name?: T;
+              label?: T;
+              width?: T;
+              defaultValue?: T;
+              required?: T;
+              id?: T;
+              blockName?: T;
+            };
         select?:
           | T
           | {

@@ -50,6 +50,7 @@ import { authjsPlugin } from 'payload-authjs';
 import sharp from 'sharp';
 import { authConfig } from './src/auth.config';
 import { Embed } from './src/components/RichText/Blocks/Embed/config';
+import { Form } from './src/components/RichText/Blocks/Form/config';
 import { EyebrowFeature } from './src/components/RichText/Features/eyebrow/eyebrow.server';
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
@@ -158,7 +159,7 @@ export default buildConfig({
         FixedToolbarFeature(),
         EyebrowFeature(),
         BlocksFeature({
-          blocks: [Embed],
+          blocks: [Embed, Form],
           inlineBlocks: []
         })
       ] as FeatureProviderServer<unknown, unknown>[]
@@ -247,11 +248,11 @@ export default buildConfig({
         text: true,
         textarea: true,
         select: true,
-        email: false,
+        email: true,
         state: false,
         country: false,
-        checkbox: false,
-        number: false,
+        checkbox: true,
+        number: true,
         message: false,
         payment: false
       }
