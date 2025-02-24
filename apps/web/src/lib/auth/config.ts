@@ -90,6 +90,27 @@ export const sendPasswordResetEmail = async (formData: FormData) => {
       }
     });
   } else {
+    const existingEmailInOtherProviders = await payload.find({
+      collection: 'users',
+      where: { email: { equals: email } },
+      limit: 1
+    });
+
+    if (existingEmailInOtherProviders.docs.length) {
+      const { accounts } = existingEmailInOtherProviders.docs[0];
+      if (!accounts || !accounts.length) {
+        throw new Error('email-not-found');
+      }
+
+      const { provider } = accounts[0];
+
+      return {
+        status: 'found_oauth',
+        provider,
+        message: `You already have an account with this email address. Please sign in with ${provider}`
+      };
+    }
+
     throw new Error('email-not-found');
   }
 

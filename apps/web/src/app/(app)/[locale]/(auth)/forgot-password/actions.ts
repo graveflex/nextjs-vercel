@@ -6,7 +6,16 @@ export async function forgotPassword(_prevState: unknown, formData: FormData) {
   'use server';
 
   try {
-    await sendPasswordResetEmail(formData);
+    const result = await sendPasswordResetEmail(formData);
+
+    if (result && result.status === 'found_oauth') {
+      return {
+        success: false,
+        errorCode: `found_oauth:${result.provider}:${result.message}`,
+        email: formData.get('email') as string
+      };
+    }
+
     return {
       success: true,
       errorCode: '',

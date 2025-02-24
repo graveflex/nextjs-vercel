@@ -3,6 +3,7 @@
 import { Alert } from '@mono/web/components/ui/Alert';
 
 import { Separator } from '@mono/web/components/ui/Separator';
+import { SIGNIN_URL } from '@mono/web/lib/constants';
 
 interface ErrorConfig {
   variant: 'default' | 'destructive'; // add other variants as needed
@@ -79,20 +80,30 @@ export default function AuthErrorBoundary({ error }: AuthErrorBoundaryProps) {
       description: error,
       link: false
     } as const;
-    const { variant, title, description, link } =
+
+    let { variant, title, description, link } =
       error && isValidError(error) ? Errors[error] : fallback;
+
+    if (error && error.startsWith('found_oauth')) {
+      const [_, provider, message] = error.split(':');
+      title = 'Account found';
+      description = message;
+      link = {
+        href: SIGNIN_URL,
+        text: `Sign in with ${provider}`
+      };
+    }
+
     return (
       <>
         <Alert variant={variant}>
           <h1 className="text-sm font-semibold [&+div]:text-xs">{title}</h1>
-          <p className="text-sm opacity-90 mt-2">
-            {description}
-            {link && (
-              <a className="underline text-foreground" href={link.href}>
-                {link.text}
-              </a>
-            )}
-          </p>
+          <p className="text-sm opacity-90 mt-2">{description}</p>
+          {link && (
+            <a className="underline text-foreground" href={link.href}>
+              {link.text}
+            </a>
+          )}
         </Alert>
         {/* Separator */}
         <div className="w-full relative my-4">
