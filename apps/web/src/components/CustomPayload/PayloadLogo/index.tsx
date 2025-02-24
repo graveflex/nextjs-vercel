@@ -10,7 +10,7 @@ export const Logo = () => {
 
 export const Icon = () => {
   return (
-    <span style={{ position: 'relative', width: '140px', height: '18px' }}>
+    <span>
       <Image src="/logo.svg" alt="" fill={true} />
     </span>
   );
