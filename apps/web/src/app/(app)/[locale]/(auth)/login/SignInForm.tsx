@@ -26,7 +26,7 @@ function SignInForm({ signIn }: SignInFormProps) {
 
   useEffect(() => {
     if (message.success) {
-      redirect('/account?logged-in=true')
+      redirect('/account?logged-in=true');
     }
   }, [message?.success]);
 
@@ -35,13 +35,7 @@ function SignInForm({ signIn }: SignInFormProps) {
       <AuthErrorBoundary error={message?.errorCode || ''} />
 
       {/* Redirect */}
-      <Input id="redirect" name="redirect" type="hidden" value="true" />
-      <Input
-        id="redirectTo"
-        name="redirectTo"
-        type="hidden"
-        value="/account?logged-in=true"
-      />
+      <Input id="redirect" name="redirect" type="hidden" value="" />
 
       {/* Email and password inputs */}
       <div className="space-y-4">

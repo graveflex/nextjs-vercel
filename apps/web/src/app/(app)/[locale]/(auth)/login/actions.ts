@@ -8,9 +8,6 @@ export async function signIn(_prevState: unknown, formData: FormData) {
     await nextAuthSignIn('credentials', formData);
     return { success: true, errorCode: '' };
   } catch (err) {
-    if (err instanceof Error && err.message === 'NEXT_REDIRECT') {
-      return { success: true };
-    }
     return getErrorMessage(err);
   }
 }
