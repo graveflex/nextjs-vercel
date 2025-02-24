@@ -44,13 +44,13 @@ import {
 } from '@payloadcms/richtext-lexical';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { revalidatePath, revalidateTag } from 'next/cache';
+import nodemailerSendgrid from 'nodemailer-sendgrid';
 import { buildConfig } from 'payload';
 import { authjsPlugin } from 'payload-authjs';
 import sharp from 'sharp';
 import { authConfig } from './src/auth.config';
 import { Embed } from './src/components/RichText/Blocks/Embed/config';
 import { EyebrowFeature } from './src/components/RichText/Features/eyebrow/eyebrow.server';
-import { resendAdapter } from '@payloadcms/email-resend';
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
 
@@ -311,10 +311,13 @@ export default buildConfig({
     }
   },
   secret: process.env.PAYLOAD_SECRET || '',
-  email: resendAdapter({
-    defaultFromAddress: process.env.RESEND_FROM_ADDRESS || 'dev@payloadcms.com',
-    defaultFromName: process.env.RESEND_FROM_NAME || 'Payload CMS',
-    apiKey: process.env.RESEND_API_KEY || ''
+  email: nodemailerAdapter({
+    defaultFromAddress:
+      process.env.SENDGRID_FROM_EMAIL || 'dispatch@graveflex.com',
+    defaultFromName: process.env.SENDGRID_FROM_NAME || 'Payload',
+    transportOptions: nodemailerSendgrid({
+      apiKey: process.env.SENDGRID_API_KEY || ''
+    })
   }),
   typescript: {
     outputFile: '../../packages/types/payload-types.ts'

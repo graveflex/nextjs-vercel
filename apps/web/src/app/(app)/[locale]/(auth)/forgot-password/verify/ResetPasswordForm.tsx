@@ -2,9 +2,7 @@
 
 import AuthErrorBoundary from '@mono/web/components/AuthErrorBoundary';
 import { Button } from '@mono/web/components/ui/Button';
-import { Checkbox } from '@mono/web/components/ui/Checkbox';
 import { Input } from '@mono/web/components/ui/Input';
-import { Label } from '@mono/web/components/ui/Label';
 import Link from 'next/link';
 import { useActionState } from 'react';
 
@@ -14,42 +12,52 @@ const initialState = {
   errorCode: ''
 };
 
-interface ForgotPasswordFormProps {
-  forgotPassword: (
+interface ResetPasswordFormProps {
+  resetPassword: (
     prevState: unknown,
     formData: FormData
   ) => Promise<{ errorCode: string }>;
+  token: string;
 }
 
-function ForgotPasswordForm({ forgotPassword }: ForgotPasswordFormProps) {
+function ResetPasswordForm({ resetPassword, token }: ResetPasswordFormProps) {
   const [message, formAction, pending] = useActionState(
-    forgotPassword,
+    resetPassword,
     initialState
   );
 
   return (
     <form className="w-full max-w-sm space-y-6 m-auto" action={formAction}>
+      <pre>Code: {message?.errorCode}</pre>
       <AuthErrorBoundary error={message?.errorCode || ''} />
 
       {/* Header */}
       <div className="space-y-2 text-center">
         <h1 className="text-3xl font-bold">Reset Password</h1>
         <p className="text-muted-foreground text-sm">
-          Enter your email address. If we have find an account matching your
-          email, we will send you a secure sign-in link to the specified email
-          address.
+          Enter your new password below to reset your password.
         </p>
       </div>
 
-      {/* Email and password inputs */}
-      <div className="space-y-4">
+      {/* Token input */}
+      <Input
+        id="token"
+        name="token"
+        type="hidden"
+        value={token}
+        disabled={pending}
+      />
+
+      {/* Password input */}
+      <div className="space-y-2">
         <Input
-          placeholder="Email"
-          type="email"
-          name="email"
-          id="email"
+          id="password"
+          name="password"
+          placeholder="New Password"
+          type="password"
           disabled={pending}
         />
+        <p className="text-sm text-muted-foreground">Minimum 8 characters.</p>
       </div>
 
       {/* Forgot Password button */}
@@ -73,4 +81,4 @@ function ForgotPasswordForm({ forgotPassword }: ForgotPasswordFormProps) {
   );
 }
 
-export default ForgotPasswordForm;
+export default ResetPasswordForm;

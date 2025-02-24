@@ -1,5 +1,5 @@
 {
-  "id": "c4da540a-6519-4fbb-8527-38a524fba94c",
+  "id": "29e3515d-fe45-48c4-9549-e722bf026d98",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -8511,6 +8511,18 @@
         },
         "hash": {
           "name": "hash",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "_verified": {
+          "name": "_verified",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "_verificationtoken": {
+          "name": "_verificationtoken",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false

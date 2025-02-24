@@ -6,10 +6,9 @@ export async function forgotPassword(_prevState: unknown, formData: FormData) {
 
   try {
     await sendPasswordResetEmail(formData);
+    // Todo: Find a better way to handle this
     throw new Error('email-sent');
   } catch (err) {
-    const test = getErrorMessage(err);
-    console.log('🍤 ~ forgotPassword ~ test:', test);
-    return test;
+    return getErrorMessage(err);
   }
 }

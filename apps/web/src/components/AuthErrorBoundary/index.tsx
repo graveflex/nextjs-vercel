@@ -1,5 +1,6 @@
 'use client';
 
+import { SIGNIN_URL } from '@mono/web/lib/constants';
 import { Alert } from '../ui/Alert';
 
 import { Separator } from '@mono/web/components/ui/Separator';
@@ -52,6 +53,11 @@ const Errors = {
     description:
       'An email has been sent to your email address with instructions to reset your password.'
   },
+  'password-reset': {
+    variant: 'default',
+    title: 'Password Reset',
+    description: `Your password has been reset. You can now sign in with your new password. <a class="underline text-foreground" href="${SIGNIN_URL}">Login here</a>`
+  },
   'email-not-found': {
     variant: 'destructive',
     title: 'Email not found',
@@ -81,7 +87,10 @@ export default function AuthErrorBoundary({ error }: AuthErrorBoundaryProps) {
       <>
         <Alert variant={variant}>
           <h1 className="text-sm font-semibold [&+div]:text-xs">{title}</h1>
-          <p className="text-sm opacity-90 mt-2">{description}</p>
+          <p
+            className="text-sm opacity-90 mt-2"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </Alert>
         {/* Separator */}
         <div className="w-full relative">

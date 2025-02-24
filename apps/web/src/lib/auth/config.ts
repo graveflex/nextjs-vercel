@@ -7,7 +7,7 @@ import { ZodError } from 'zod';
 
 import { authConfig } from '@mono/web/auth.config';
 import { SIGNUP_URL } from '@mono/web/lib/constants';
-import { signInSchema } from '@mono/web/lib/zod';
+import { passwordSchema, signInSchema } from '@mono/web/lib/zod';
 // Constants
 import payloadConfig from '@payload-config';
 
@@ -95,5 +95,45 @@ export const sendPasswordResetEmail = async (formData: FormData) => {
 
   return {
     message: 'Check your email!'
+  };
+};
+
+export const resetPassword = async (formData: FormData) => {
+  const password = formData.get('password') as string;
+  const token = formData.get('token') as string;
+
+  if (!password) {
+    throw new Error('password-required');
+  }
+
+  const zodTest = { password };
+  try {
+    passwordSchema.parse(zodTest);
+  } catch (error) {
+    if (error instanceof ZodError) {
+      if (error.errors[0].path[0] === 'password') {
+        throw new Error('invalid-password');
+      }
+    }
+  }
+
+  if (!token) {
+    throw new Error('token-required');
+  }
+
+  const payload = await getPayload({ config: payloadConfig });
+
+  const result = await payload.resetPassword({
+    collection: 'userEmailProviders',
+    data: {
+      password,
+      token
+    },
+    overrideAccess: true
+  });
+
+  return {
+    message: 'Password reset successfully!',
+    result
   };
 };

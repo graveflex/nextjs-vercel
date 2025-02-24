@@ -9,24 +9,26 @@ import Link from 'next/link';
 import { useActionState } from 'react';
 
 const initialState = {
-  errorCode: ''
+  errorCode: '',
+  success: false
 };
 
 interface SignInFormProps {
   signIn: (
     prevState: unknown,
     formData: FormData
-  ) => Promise<{ errorCode: string }>;
+  ) => Promise<{ errorCode: string; success: boolean }>;
 }
 
 function SignInForm({ signIn }: SignInFormProps) {
   const [message, formAction, pending] = useActionState(signIn, initialState);
 
+  if (message?.success) {
+    // Redirect to account page?
+  }
+
   return (
     <form className="w-full max-w-sm space-y-6 m-auto" action={formAction}>
-      {/* Debug Error Code */}
-      <pre>{JSON.stringify(message)}</pre>
-
       <AuthErrorBoundary error={message?.errorCode || ''} />
 
       {/* Redirect */}

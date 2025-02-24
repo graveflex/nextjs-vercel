@@ -1,15 +1,22 @@
+import { WEB_URL } from '@mono/web/lib/constants';
 import type { CollectionConfig } from 'payload';
 import { v4 as uuidv4 } from 'uuid';
 
 const UserEmailProviders: CollectionConfig = {
   slug: 'userEmailProviders',
   auth: {
-    verify: {
-      generateEmailHTML: ({ req, token, user }) => {
+    verify: false,
+    forgotPassword: {
+      expiration: 1000 * 60 * 60 * 1, // 1 hour
+      generateEmailSubject: () => 'Forgot Password',
+      generateEmailHTML: ({ token, user }) => {
         // Use the token provided to allow your user to verify their account
-        const url = `https://yourfrontend.com/verify?token=${token}`;
+        const url = `${WEB_URL}/forgot-password/verify?token=${token}`;
+        const name = user?.name || user?.email || 'there';
 
-        return `Hey ${user.email}, verify your email by clicking here: ${url}`;
+        return `Hey ${name}, you can reset your password by clicking here: ${url}
+        
+If you didn't request this, you can ignore this email. This link will expire in 1 hour.`;
       }
     }
   },
