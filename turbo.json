@@ -9,7 +9,6 @@
     "PROJECT_NAME",
     "AUTO_LOGIN",
     "NEXT_PORT",
-    "NEXT_PUBLIC_PORT",
     "DOCS_PORT",
     "LOCAL",
     "MONGODB_URI",

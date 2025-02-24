@@ -3,7 +3,6 @@ export const PROJECT_NAME = process.env.PROJECT_NAME;
 export const AUTO_LOGIN = process.env.AUTO_LOGIN === 'true';
 
 export const NEXT_PORT = process.env.NEXT_PORT;
-export const NEXT_PUBLIC_PORT = process.env.NEXT_PUBLIC_PORT;
 export const DOCS_PORT = process.env.DOCS_PORT;
 
 export const BLOB_ENDPOINT_URL = process.env.BLOB_ENDPOINT_URL;
@@ -28,7 +27,7 @@ export type LanguageLocale = (typeof LOCALES)[number];
 
 export const WEB_URL = process.env.SERVER_URL
   ? `https://${process.env.SERVER_URL}`
-  : `http://localhost:${NEXT_PUBLIC_PORT}`;
+  : `http://localhost:${NEXT_PORT}`;
 
 export const API_KEY =
   process.env.NEXT_PUBLIC_API_KEY ?? 'NO ENV API KEY FOUND';
