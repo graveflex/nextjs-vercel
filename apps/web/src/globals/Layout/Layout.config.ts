@@ -2,6 +2,7 @@ import { globalInvalidateCache } from '@mono/web/hooks/globalInvalidateCache';
 import CTA from '@mono/web/payload/fields/CTA';
 import IconSelect from '@mono/web/payload/fields/IconSelect';
 import Link from '@mono/web/payload/fields/Link';
+import NestedLinkArray from '@mono/web/payload/fields/NestedLinks';
 import type { ArrayField, GlobalConfig, GroupField } from 'payload';
 
 const banner: GroupField = {
@@ -61,7 +62,8 @@ const collapsibleMenu: GroupField = {
           },
           type: 'array',
           fields: [Link()]
-        }
+        },
+        NestedLinkArray()
       ]
     }
   ]

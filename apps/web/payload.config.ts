@@ -78,78 +78,24 @@ export default buildConfig({
         UnorderedListFeature(),
         OrderedListFeature(),
         LinkFeature({
-          fields: [
-            {
-              name: 'type',
-              label: 'Type of Link',
-              type: 'select',
-              defaultValue: 'internal',
-              options: [
-                {
-                  label: 'Internal',
-                  value: 'internal'
-                },
-                {
-                  label: 'External',
-                  value: 'external'
-                },
-                {
-                  label: 'Email',
-                  value: 'email'
-                },
-                {
-                  label: 'Phone',
-                  value: 'phone'
-                },
-                {
-                  label: 'File',
-                  value: 'file'
+          fields: ({ defaultFields }) => {
+            debugger;
+            return [
+              ...defaultFields,
+
+              {
+                name: 'rel',
+                label: 'Rel Attribute',
+                type: 'select',
+                hasMany: true,
+                options: ['noopener', 'noreferrer', 'nofollow'],
+                admin: {
+                  description:
+                    'The rel attribute defines the relationship between a linked resource and the current document. This is a custom link field.'
                 }
-              ]
-            },
-            {
-              name: 'internalUrl',
-              label: 'Internal URL',
-              type: 'relationship',
-              relationTo: 'pages',
-              admin: {
-                condition: (_, siblingData) => siblingData.type === 'internal'
               }
-            },
-            {
-              name: 'externalUrl',
-              label: 'External URL',
-              type: 'text',
-              admin: {
-                condition: (_, siblingData) => siblingData.type === 'external'
-              }
-            },
-            {
-              name: 'emailUrl',
-              label: 'Email Address',
-              type: 'text',
-              admin: {
-                condition: (_, siblingData) => siblingData.type === 'email'
-              }
-            },
-            {
-              name: 'phoneUrl',
-              label: 'Phone Number',
-              type: 'text',
-              admin: {
-                condition: (_, siblingData) => siblingData.type === 'phone'
-              }
-            },
-            {
-              name: 'file',
-              label: 'File',
-              type: 'upload',
-              relationTo: 'files',
-              admin: {
-                condition: (_, siblingData) => siblingData.type === 'file'
-              }
-            }
-          ]
+            ];
+          }
         }),
         UploadFeature(),
         InlineToolbarFeature(),

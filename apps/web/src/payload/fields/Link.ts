@@ -1,109 +1,104 @@
-import type { GroupField } from 'payload';
+import type {
+  GroupField,
+  RadioField,
+  TextFieldSingleValidation,
+  Field,
+  CollectionSlug
+} from 'payload';
+import { validateUrl, type LinkFields } from '@payloadcms/richtext-lexical';
 
-import IconSelect from './IconSelect';
+const enabledCollections = ['pages', 'files', 'posts'];
+
+const baseFields: Field[] = [
+  {
+    name: 'text',
+    type: 'text',
+    label: ({ t }) => t('fields:textToDisplay'),
+    required: true
+  },
+  {
+    name: 'linkType',
+    type: 'radio',
+    admin: {
+      description: ({ t }) => t('fields:chooseBetweenCustomTextOrDocument')
+    },
+    defaultValue: 'custom',
+    label: ({ t }) => t('fields:linkType'),
+    options: [
+      {
+        label: ({ t }) => t('fields:customURL'),
+        value: 'custom'
+      },
+      {
+        label: ({ t }) => t('fields:internalLink'),
+        value: 'internal'
+      }
+    ],
+    required: true
+  } as RadioField,
+  {
+    name: 'url',
+    type: 'text',
+    admin: {
+      condition: (_data, _siblingData) => {
+        return _siblingData.linkType !== 'internal';
+      }
+    },
+    hooks: {
+      beforeChange: [
+        ({ value }) => {
+          if (!value) {
+            return;
+          }
+
+          if (!validateUrl(value)) {
+            return encodeURIComponent(value);
+          }
+          return value;
+        }
+      ]
+    },
+    label: ({ t }) => t('fields:enterURL'),
+    required: true,
+    validate: ((value: string, options) => {
+      if ((options?.siblingData as LinkFields)?.linkType === 'internal') {
+        return; // no validation needed, as no url should exist for internal links
+      }
+      if (!validateUrl(value)) {
+        return 'Invalid URL';
+      }
+    }) as TextFieldSingleValidation
+  },
+  {
+    name: 'doc',
+    admin: {
+      condition: (_data, _siblingData) => {
+        return _siblingData.linkType === 'internal';
+      }
+    },
+    // when admin.hidden is a function we need to dynamically call hidden with the user to know if the collection should be shown
+    type: 'relationship',
+    label: ({ t }) => t('fields:chooseDocumentToLink'),
+    maxDepth: 1,
+    relationTo: enabledCollections as CollectionSlug[],
+    required: true
+  },
+  {
+    name: 'newTab',
+    type: 'checkbox',
+    label: ({ t }) => t('fields:openInNewTab')
+  }
+];
 
 function Link({
   name,
   interfaceName,
-  localized,
-  fields = []
 }: Partial<GroupField> = {}): GroupField {
   return {
     name: name || 'link',
     type: 'group',
     interfaceName: interfaceName || 'payLoadLink',
-    fields: [
-      {
-        name: 'type',
-        label: 'Type of Link',
-        type: 'select',
-        dbName: `${name?.toLowerCase()}_cta_t`,
-        options: [
-          {
-            label: 'Internal',
-            value: 'internal'
-          },
-          {
-            label: 'External',
-            value: 'external'
-          },
-          {
-            label: 'Email',
-            value: 'email'
-          },
-          {
-            label: 'Phone',
-            value: 'phone'
-          },
-          {
-            label: 'File',
-            value: 'file'
-          }
-        ],
-        defaultValue: 'internal'
-      },
-      {
-        name: 'label',
-        label: 'Link Label',
-        type: 'text',
-        localized
-      },
-      {
-        name: 'internalHref',
-        label: 'Internal URL',
-        type: 'relationship',
-        relationTo: 'pages',
-        admin: {
-          condition: (_, siblingData) => siblingData.type === 'internal',
-          description: 'Route for link'
-        }
-      },
-      {
-        name: 'externalHref',
-        label: 'External URL',
-        type: 'text',
-        admin: {
-          condition: (_, siblingData) => siblingData.type === 'external',
-          description: 'Route for link'
-        }
-      },
-      {
-        name: 'emailHref',
-        label: 'Email Address',
-        type: 'text',
-        admin: {
-          condition: (_, siblingData) => siblingData.type === 'email',
-          description:
-            'will open the default email client with this email address as the recipient'
-        }
-      },
-      {
-        name: 'phoneHref',
-        label: 'Phone Number',
-        type: 'text',
-        admin: {
-          condition: (_, siblingData) => siblingData.type === 'phone',
-          description: 'Do no include spaces or special characters'
-        }
-      },
-      {
-        name: 'fileHref',
-        label: 'File',
-        type: 'upload',
-        relationTo: 'files',
-        admin: {
-          condition: (_, siblingData) => siblingData.type === 'file'
-        }
-      },
-      {
-        name: 'newTab',
-        label: 'Open in new tab',
-        type: 'checkbox',
-        required: false
-      },
-      IconSelect({ name: `${name}_link` }),
-      ...fields
-    ]
+    fields: [...baseFields]
   };
 }
 

@@ -14,7 +14,7 @@
  */
 export type FlatMenu =
   | {
-      link?: PayLoadLink;
+      link: PayLoadLink;
       id?: string | null;
     }[]
   | null;
@@ -629,7 +629,7 @@ export interface Post {
   tags?: (number | Tag)[] | null;
   ctas?:
     | {
-        cta?: CTAType;
+        cta: CTAType;
         id?: string | null;
       }[]
     | null;
@@ -720,7 +720,7 @@ export interface Tag {
  * via the `definition` "CTAType".
  */
 export interface CTAType {
-  link?: PayLoadLink;
+  link: PayLoadLink;
   /**
    * Variant Style of button - reference Button component in storybook
    */
@@ -735,27 +735,26 @@ export interface CTAType {
  * via the `definition` "payLoadLink".
  */
 export interface PayLoadLink {
-  type?: ('internal' | 'external' | 'email' | 'phone' | 'file') | null;
-  label?: string | null;
+  text: string;
   /**
-   * Route for link
+   * Choose between entering a custom text URL or linking to another document.
    */
-  internalHref?: (number | null) | Page;
-  /**
-   * Route for link
-   */
-  externalHref?: string | null;
-  /**
-   * will open the default email client with this email address as the recipient
-   */
-  emailHref?: string | null;
-  /**
-   * Do no include spaces or special characters
-   */
-  phoneHref?: string | null;
-  fileHref?: (number | null) | File;
+  linkType: 'custom' | 'internal';
+  url?: string | null;
+  doc?:
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
+      } | null)
+    | ({
+        relationTo: 'files';
+        value: number | File;
+      } | null)
+    | ({
+        relationTo: 'posts';
+        value: number | Post;
+      } | null);
   newTab?: boolean | null;
-  icon?: IconSelect;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -776,48 +775,6 @@ export interface File {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IconSelect".
- */
-export interface IconSelect {
-  name?:
-    | (
-        | 'Hamburger'
-        | 'Check'
-        | 'ArrowUp'
-        | 'ArrowLeft'
-        | 'ArrowRight'
-        | 'ArrowDown'
-        | 'CaretDown'
-        | 'CaretUp'
-        | 'CaretRight'
-        | 'CaretLeft'
-        | 'Close'
-        | 'DoubleCaretDown'
-        | 'DoubleCaretUp'
-        | 'DoubleCaretRight'
-        | 'DoubleCaretLeft'
-        | 'Error'
-        | 'LinkOut'
-        | 'MinusSign'
-        | 'Person'
-        | 'PlusSign'
-        | 'Quote'
-        | 'Search'
-        | 'SolidArrowDown'
-        | 'SolidArrowUp'
-        | 'SolidArrowRight'
-        | 'SolidArrowLeft'
-        | 'ArrowNesting'
-      )
-    | null;
-  /**
-   * Icon height/width in pixels - x-large is default.
-   */
-  size?: ('35' | '30' | '25' | '20') | null;
-  color?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1713,24 +1670,11 @@ export interface CTATypeSelect<T extends boolean = true> {
  * via the `definition` "payLoadLink_select".
  */
 export interface PayLoadLinkSelect<T extends boolean = true> {
-  type?: T;
-  label?: T;
-  internalHref?: T;
-  externalHref?: T;
-  emailHref?: T;
-  phoneHref?: T;
-  fileHref?: T;
+  text?: T;
+  linkType?: T;
+  url?: T;
+  doc?: T;
   newTab?: T;
-  icon?: T | IconSelectSelect<T>;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "IconSelect_select".
- */
-export interface IconSelectSelect<T extends boolean = true> {
-  name?: T;
-  size?: T;
-  color?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2084,7 +2028,7 @@ export interface Nav {
      * Call to Action Button
      */
     ctaButton?: {
-      cta?: CTAType;
+      cta: CTAType;
     };
   };
   footer?: {
@@ -2131,13 +2075,61 @@ export interface CollapsibleMenu {
          */
         links?:
           | {
-              link?: PayLoadLink;
+              link: PayLoadLink;
               id?: string | null;
             }[]
           | null;
+        nestedLinks?: NestedLinks;
         id?: string | null;
       }[]
     | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nestedLinks".
+ */
+export interface NestedLinks {}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconSelect".
+ */
+export interface IconSelect {
+  name?:
+    | (
+        | 'Hamburger'
+        | 'Check'
+        | 'ArrowUp'
+        | 'ArrowLeft'
+        | 'ArrowRight'
+        | 'ArrowDown'
+        | 'CaretDown'
+        | 'CaretUp'
+        | 'CaretRight'
+        | 'CaretLeft'
+        | 'Close'
+        | 'DoubleCaretDown'
+        | 'DoubleCaretUp'
+        | 'DoubleCaretRight'
+        | 'DoubleCaretLeft'
+        | 'Error'
+        | 'LinkOut'
+        | 'MinusSign'
+        | 'Person'
+        | 'PlusSign'
+        | 'Quote'
+        | 'Search'
+        | 'SolidArrowDown'
+        | 'SolidArrowUp'
+        | 'SolidArrowRight'
+        | 'SolidArrowLeft'
+        | 'ArrowNesting'
+      )
+    | null;
+  /**
+   * Icon height/width in pixels - x-large is default.
+   */
+  size?: ('35' | '30' | '25' | '20') | null;
+  color?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -2296,9 +2288,15 @@ export interface CollapsibleMenuSelect<T extends boolean = true> {
               link?: T | PayLoadLinkSelect<T>;
               id?: T;
             };
+        nestedLinks?: T | NestedLinksSelect<T>;
         id?: T;
       };
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nestedLinks_select".
+ */
+export interface NestedLinksSelect<T extends boolean = true> {}
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "FlatMenu_select".
@@ -2316,6 +2314,15 @@ export interface IconNavItemsSelect<T extends boolean = true> {
   newTab?: T;
   icon?: T | IconSelectSelect<T>;
   id?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "IconSelect_select".
+ */
+export interface IconSelectSelect<T extends boolean = true> {
+  name?: T;
+  size?: T;
+  color?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
