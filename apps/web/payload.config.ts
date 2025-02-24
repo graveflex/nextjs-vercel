@@ -294,7 +294,11 @@ export default buildConfig({
           path: '@mono/web/components/CustomPayload/AfterNav/index.tsx',
           exportName: 'AfterNav'
         }
-      ]
+      ],
+      graphics: {
+        Icon: '@mono/web/components/CustomPayload/PayloadLogo/index.tsx#Icon',
+        Logo: '@mono/web/components/CustomPayload/PayloadLogo/index.tsx#Logo'
+      }
     }
   },
   secret: process.env.PAYLOAD_SECRET || '',
