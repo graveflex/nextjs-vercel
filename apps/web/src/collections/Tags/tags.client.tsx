@@ -1,12 +1,10 @@
 'use client';
 
-import { de } from '@faker-js/faker';
 import type { Tag } from '@mono/types/payload-types';
-import Wrapper from '@mono/ui/components/Wrapper';
+import Wrapper from '@mono/web/components/Wrapper';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import type React from 'react';
 import { useEffect, useState } from 'react';
-import Styled, { css } from 'styled-components';
 
 type QueryProps = {
   selectedTags: string[];
@@ -14,75 +12,6 @@ type QueryProps = {
   search: string;
   page: string;
 };
-
-const Label = Styled.label`
-    display: block;
-    ${({ theme: { allColors, box } }) => css`
-    ${box.t('label')};
-    color: ${allColors.fg};
-    `}
-`;
-
-const ButtonStyled = Styled.button`
-    ${({ theme: { allColors, box } }) => css`
-      ${box.t('button')};
-
-      && {
-      color: ${allColors.bg};
-      border: 1px solid transparent;
-      background-color: ${allColors.fg};
-      border-radius: 1rem;
-
-      &:focus {
-          outline: 1px solid ${allColors.fg};
-        }
-        &:hover {
-        background-color: ${allColors.plain800};
-        color: ${allColors.bg};
-        border: 1px solid transparent;
-    }
-      }
-
-    &.selected {
-      && {
-        background-color: ${allColors.primary};
-        color: ${allColors.bg};
-        border: 1px solid transparent;
-
-        &:focus {
-          outline: 1px solid ${allColors.primary};
-        }
-
-      }
-    }
-  `}
-`;
-
-const SelectContent = Styled.div`
-    display: grid;
-`;
-
-const FilterContent = Styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-
-  ${({ theme: { spacing } }) => css`
-    gap: ${spacing[4]}rem;
-  `}
-`;
-
-const Container = Styled.div`
-    display: grid;
-    grid-template-columns: 1fr 260px;
-
-    ${({ theme: { spacing, themeColorShades } }) => css`
-    background-color: ${themeColorShades.plain10};
-        margin: ${spacing[6]}rem 0;
-        padding: ${spacing[4]}rem;
-        border-radius: 1.125rem;
-    `}
-`;
 
 const buildQuery = (query: {
   selectedTags: string[];
@@ -176,12 +105,12 @@ function TagsClient({ tagData }: { tagData: Tag[] }) {
 
   return (
     <Wrapper contentWidth="xl">
-      <Container>
-        <FilterContent>
-          <Label>Filter by: </Label>
+      <div>
+        <div>
+          <label>Filter by: </label>
           {tagData.map(({ id, label }) => {
             return (
-              <ButtonStyled
+              <button
                 key={id}
                 onClick={() => handleTagClick(label)}
                 type="button"
@@ -189,13 +118,13 @@ function TagsClient({ tagData }: { tagData: Tag[] }) {
                 aria-label={`Filter by ${label}`}
               >
                 {label}
-              </ButtonStyled>
+              </button>
             );
           })}
-        </FilterContent>
+        </div>
 
-        <SelectContent>
-          <Label htmlFor="sort">Sort by: </Label>
+        <div>
+          <label htmlFor="sort">Sort by: </label>
           <select
             id="sort"
             onChange={handleSelectChange}
@@ -205,7 +134,7 @@ function TagsClient({ tagData }: { tagData: Tag[] }) {
             <option value="oldest">Oldest</option>
           </select>
 
-          <Label htmlFor="search">Search: </Label>
+          <label htmlFor="search">Search: </label>
           <input
             id="search"
             type="text"
@@ -215,8 +144,8 @@ function TagsClient({ tagData }: { tagData: Tag[] }) {
             autoComplete="off"
             aria-label="Search blog posts"
           />
-        </SelectContent>
-      </Container>
+        </div>
+      </div>
     </Wrapper>
   );
 }

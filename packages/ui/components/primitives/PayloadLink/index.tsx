@@ -1,7 +1,4 @@
-'use client';
-
 import RenderIcon, { type IconProps } from '@mono/ui/components/RenderIcon';
-import styled from '@refract-ui/sc';
 import type { LinkProps } from 'next/link';
 import Link from 'next/link';
 import type React from 'react';
@@ -13,10 +10,6 @@ export type PayloadLinkProps = Partial<LinkProps> & {
   ariaLabel?: string;
   title?: string;
 };
-
-const LinkStyled = styled(Link)`
-  width: fit-content;
-`;
 
 function PayloadLink({
   href,
@@ -31,7 +24,7 @@ function PayloadLink({
     return null;
   }
   return (
-    <LinkStyled
+    <Link
       href={href}
       scroll={scroll}
       target={newTab ? '_blank' : undefined}
@@ -41,7 +34,7 @@ function PayloadLink({
     >
       {children}
       {icon && <RenderIcon {...icon} />}
-    </LinkStyled>
+    </Link>
   );
 }
 

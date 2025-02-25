@@ -1,5 +1,3 @@
-'use client';
-
 import type { ImageProps } from 'next/image';
 import type React from 'react';
 import { createContext, useContext } from 'react';

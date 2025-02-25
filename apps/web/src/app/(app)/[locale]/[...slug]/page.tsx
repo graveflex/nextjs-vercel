@@ -1,5 +1,5 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
-import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
+import PageThemeObserver from '@mono/web/components/PageThemeObserver';
 import { routing } from '@mono/web/i18n/routing';
 import {
   DEFAULT_LOCALE,
@@ -8,73 +8,79 @@ import {
 } from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { unstable_setRequestLocale } from 'next-intl/server';
-import { unstable_cache } from 'next/cache';
+import { headers } from 'next/headers';
 import { notFound, redirect } from 'next/navigation';
+import { type PayloadRequest, getPayload } from 'payload';
 import React from 'react';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
-
 export interface RootLayoutProps {
-  params: {
+  params: Promise<{
     slug: string[];
     locale: LanguageLocale;
     draft?: boolean;
-  };
+  }>;
 }
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+// TODO: abstract this into a generic helper function
 async function fetchPageData(
   draft: boolean | undefined,
   locale: LanguageLocale,
   pageSlug: string
 ) {
-  const cacheKey = [locale, pageSlug].filter((x) => x).join('/');
+  const payload = await getPayload({ config });
+  let user;
 
-  const query = async (locale: LanguageLocale, pageSlug: string) => {
-    const payload = await getPayloadHMR({ config });
-    const data = await payload.find({
-      collection: 'pages',
-      locale,
-      draft,
-      depth: 2,
-      where: {
-        slug: { equals: pageSlug }
-      },
-      limit: 1
+  // we need to pass the current user to the local API request, otherwise
+  // payload won't be able to perform access control correctly
+  if (draft) {
+    const requestHeaders = await headers();
+    const me = await payload.auth({
+      headers: requestHeaders,
+      req: {} as PayloadRequest
     });
-    return data?.docs?.[0];
-  };
 
-  const executeQuery = draft
-    ? query
-    : unstable_cache(query, [cacheKey], {
-        tags: [cacheKey]
-      });
+    // only admins should be able to see drafts
+    if (!me?.permissions?.canAccessAdmin) {
+      notFound();
+    }
 
-  return executeQuery(locale, pageSlug);
+    user = me.user;
+  }
+
+  const data = await payload.find({
+    collection: 'pages',
+    locale,
+    draft,
+    depth: 3,
+    user,
+    overrideAccess: false,
+    where: { slug: { equals: pageSlug } },
+    limit: 1
+  });
+
+  return data.docs[0];
 }
 
-export default async function CatchallPage({
-  params: { slug, locale: localeOrSlug = DEFAULT_LOCALE, draft }
-}: RootLayoutProps) {
+export default async function CatchallPage({ params }: RootLayoutProps) {
+  const { slug, locale: localeOrSlug = DEFAULT_LOCALE, draft } = await params;
   let pageSlug = slug.join('/');
   let locale = localeOrSlug;
   if (LOCALES.includes(pageSlug as LanguageLocale)) {
     pageSlug = locale;
     locale = DEFAULT_LOCALE;
   }
-
   unstable_setRequestLocale(locale);
-
   const page = await fetchPageData(draft, locale, pageSlug);
 
   // if not page data and not the index check for redirects
+  // TODO: generalize this into a helper function
   if (!page) {
     const redirectPath = await redirectApi(pageSlug);
     if (
@@ -88,33 +94,29 @@ export default async function CatchallPage({
 
   return (
     <>
-      <UpdatePageTheme theme={page.theme} />
+      <PageThemeObserver theme={page.theme} />
       <BlocksRenderer blocks={page.blocks ?? []} />
     </>
   );
 }
 
-export async function generateMetadata({
-  params: { draft, slug, locale }
-}: RootLayoutProps) {
+export async function generateMetadata({ params }: RootLayoutProps) {
+  const { draft, slug, locale } = await params;
   const pageSlug = slug ? slug.join('/') : '/';
   const data = await fetchPageData(draft, locale, pageSlug);
-
-  if ('error' in data) {
+  if ((data && 'error' in data) || !data) {
     return {};
   }
-
   const pageData = data;
-  const seoData = data.meta;
+  const seoData = data?.meta;
   const seoImage =
     typeof seoData?.image !== 'number' && seoData?.image?.url
       ? seoData?.image?.url
       : 'https://ut94wx32cwlqjiry.public.blob.vercel-storage.com/opengraph-IaDqdUZAHTyyH8EfsPaH2oiQFN50MG.jpg';
-
   return {
     title: seoData?.title || pageData?.pageTitle || 'Monorepo',
     description: seoData?.description || 'Default description text',
-    keywords: seoData?.keywords || null,
+    keywords: null,
     openGraph: {
       images: [seoImage]
     }

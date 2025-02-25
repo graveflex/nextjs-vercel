@@ -1,6 +1,5 @@
 import type { CTAType } from '@mono/types/payload-types';
 import CTAButton from '@mono/ui/components/CtaButton';
-import s from '@refract-ui/sc';
 import type { ReactNode } from 'react';
 import React from 'react';
 import type { FieldValues, SubmitHandler } from 'react-hook-form';
@@ -14,8 +13,6 @@ export interface FormWrapperProps {
   id?: string;
 }
 
-const Container = s.div``;
-
 function FormWrapper({
   id,
   children,
@@ -26,14 +23,14 @@ function FormWrapper({
   const methods = useForm();
 
   return (
-    <Container className={className}>
+    <div className={className}>
       <FormProvider {...methods}>
         <Form onSubmit={onSubmit}>
           {children}
           {cta && <CTAButton cta={cta} form={id} submit={true} />}
         </Form>
       </FormProvider>
-    </Container>
+    </div>
   );
 }
 

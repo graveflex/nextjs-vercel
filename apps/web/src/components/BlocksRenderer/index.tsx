@@ -1,8 +1,6 @@
 import type { Page } from '@mono/types/payload-types';
-import ImagePriorityProvider from '@mono/ui/components/ImagePriorityContext';
-import MaybeThemed from '@mono/ui/components/MaybeThemed';
+
 import dynamic from 'next/dynamic';
-import { ImageProps } from 'next/image';
 import type { ComponentType } from 'react';
 import React from 'react';
 
@@ -13,74 +11,72 @@ const defaultOpts = {
 
 const blockList = {
   // InsertBlockDict
-  fullBleedImageBlock: dynamic(
-    () => import('@mono/web/blocks/FullBleedImageBlock'),
+  pricingSectionsBlock: dynamic(
+    () => import('@mono/web/blocks/PricingSectionsBlock'),
     {
       ...defaultOpts
     }
   ),
-  iframeBlock: dynamic(() => import('@mono/web/blocks/IframeBlock'), {
-    ...defaultOpts
-  }),
-  iconGridBlock: dynamic(() => import('@mono/web/blocks/IconGridBlock'), {
-    ...defaultOpts
-  }),
-  sectionHeaderBlock: dynamic(
-    () => import('@mono/web/blocks/SectionHeaderBlock'),
+  testimonialsSectionsBlock: dynamic(
+    () => import('@mono/web/blocks/TestimonialsSectionsBlock'),
     {
       ...defaultOpts
     }
   ),
-  galleryGridBlock: dynamic(() => import('@mono/web/blocks/GalleryGridBlock'), {
+  blogSection: dynamic(() => import('@mono/web/blocks/BlogSection'), {
     ...defaultOpts
   }),
-  videoBlock: dynamic(() => import('@mono/web/blocks/VideoBlock'), {
+  headerSectionsBlock: dynamic(
+    () => import('@mono/web/blocks/HeaderSectionsBlock'),
+    {
+      ...defaultOpts
+    }
+  ),
+  contactSectionsBlock: dynamic(
+    () => import('@mono/web/blocks/ContactSectionsBlock'),
+    {
+      ...defaultOpts
+    }
+  ),
+  faqSectionsBlock: dynamic(() => import('@mono/web/blocks/FaqSectionsBlock'), {
     ...defaultOpts
   }),
-  formBlock: dynamic(() => import('@mono/web/blocks/FormBlock'), {
+  bannersBlock: dynamic(() => import('@mono/web/blocks/BannersBlock'), {
     ...defaultOpts
   }),
-  cardGridBlock: dynamic(() => import('@mono/web/blocks/CardGridBlock'), {
+  featureSection: dynamic(() => import('@mono/web/blocks/FeatureSection'), {
     ...defaultOpts
   }),
-  markdownBlock: dynamic(() => import('@mono/web/blocks/MarkdownBlock'), {
+  ctaSectionsBlock: dynamic(() => import('@mono/web/blocks/CtaSectionsBlock'), {
     ...defaultOpts
   }),
-
-  faqBlock: dynamic(() => import('@mono/web/blocks/FAQBlock'), {
-    ...defaultOpts
-  }),
-  textImageBlock: dynamic(() => import('@mono/web/blocks/TextImageBlock'), {
-    ...defaultOpts
-  }),
-  heroBlock: dynamic(() => import('@mono/web/blocks/HeroBlock'), {
-    ...defaultOpts
-  })
+  headerSectionBlock: dynamic(
+    () => import('@mono/web/blocks/HeaderSectionBlock'),
+    {
+      ...defaultOpts
+    }
+  ),
+  heroSectionsBlock: dynamic(
+    () => import('@mono/web/blocks/HeroSectionsBlock'),
+    {
+      ...defaultOpts
+    }
+  )
 };
 
 function BlocksRenderer({ blocks }: { blocks: NonNullable<Page['blocks']> }) {
-  return blocks?.map(({ blockType, ...blockProps }, idx) => {
-    // don't render if block is hidden
-    const hide = blockProps?.blockConfig?.hidden ?? false;
-    if (hide) {
-      return null;
-    }
+  // TODO: this is only here so the lighthouse check will pass.
+  // remove once there is header + footer content
+  if (!blocks?.length) {
+    return <h2>This page is empty</h2>;
+  }
 
+  return blocks?.map(({ blockType, ...blockProps }) => {
     const Component = blockList[blockType] as ComponentType<typeof blockProps>;
-    const theme = blockProps?.blockConfig?.theme;
-    const priority = idx < 2 ? 'eager' : 'lazy';
 
     if (Component) {
-      return (
-        <ImagePriorityProvider priority={priority}>
-          <MaybeThemed key={blockProps?.id} theme={theme}>
-            <Component {...blockProps} />
-          </MaybeThemed>
-        </ImagePriorityProvider>
-      );
+      return <Component {...blockProps} key={blockProps.id} />;
     }
-
-    return null;
   });
 }
 

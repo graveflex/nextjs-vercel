@@ -1,7 +1,7 @@
 import type { LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { unstable_cache } from 'next/cache';
+import { getPayload } from 'payload';
 import type React from 'react';
 import TagsClient from './tags.client';
 
@@ -15,7 +15,7 @@ export default async function TagData({ locale, draft }: TagsProps) {
 
   const fetchPostData = unstable_cache(
     async (draft: boolean | undefined, locale: LanguageLocale) => {
-      const payload = await getPayloadHMR({ config });
+      const payload = await getPayload({ config });
 
       return payload.find({
         collection: 'tags',
@@ -24,7 +24,10 @@ export default async function TagData({ locale, draft }: TagsProps) {
         depth: 2
       });
     },
-    [`${[locale, draft, 'tags'].filter((x) => x).join('/')}`]
+    [`${[locale, draft, 'tags'].filter((x) => x).join('/')}`],
+    {
+      tags: ['global-cache-key']
+    }
   );
 
   const tagData = await fetchPostData(draft, locale);

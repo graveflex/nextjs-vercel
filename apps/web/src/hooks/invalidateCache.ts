@@ -1,16 +1,12 @@
-import { revalidateTag } from 'next/cache';
+import nukeCache from '@mono/web/lib/nukeCache';
 import type { CollectionAfterChangeHook } from 'payload';
 
-export const invalidateCache: CollectionAfterChangeHook = async ({
-  req,
-  doc
-}) => {
+export const invalidateCache: CollectionAfterChangeHook = async ({ doc }) => {
   try {
-    const path = doc?.slug;
-    const locale = req?.locale;
-
-    // invalidate dynamic block pages / blog detail pages
-    revalidateTag(`${locale}/${path}`);
+    await nukeCache({
+      publishedAt: doc?.publishedAt,
+      title: doc?.title
+    });
   } catch (_err) {
     // no-op
   }

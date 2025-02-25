@@ -5,15 +5,18 @@ import { RootPage } from '@payloadcms/next/views';
 import { importMap } from '../importMap.js';
 
 type Args = {
-  params: {
+  params: Promise<{
     segments: string[];
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     [key: string]: string | string[];
-  };
+  }>;
 };
 
-const Page = ({ params, searchParams }: Args) =>
-  RootPage({ config, params, searchParams, importMap });
+const Page = async (props: Args) => {
+  const searchParams = props.searchParams;
+  const params = props.params;
+  return RootPage({ config, params, searchParams, importMap });
+};
 
 export default Page;

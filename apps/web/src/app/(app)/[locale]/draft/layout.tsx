@@ -1,8 +1,8 @@
 import { RefreshRouteOnSave } from '@mono/web/components/RefreshRouteOnSave';
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
+import { getPayload } from 'payload';
 import type { PayloadRequest } from 'payload';
 import type React from 'react';
 
@@ -14,8 +14,8 @@ interface DraftLayoutProps {
 }
 
 export default async function DraftLayout({ children }: DraftLayoutProps) {
-  const payload = await getPayloadHMR({ config });
-  const requestHeaders = headers();
+  const payload = await getPayload({ config });
+  const requestHeaders = await headers();
 
   const me = await payload.auth({
     headers: requestHeaders,

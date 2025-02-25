@@ -9,8 +9,6 @@
   "devDependencies": {
     "@mono/tsconfig": "workspace:*",
     "payload": "latest",
-    "@refract-ui/core": "latest",
-    "@refract-ui/sc": "latest",
     "typescript": "latest"
   },
   "peerDependencies": {}
