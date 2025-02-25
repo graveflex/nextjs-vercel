@@ -7,7 +7,7 @@ import { LoaderIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { usePayloadSession } from 'payload-authjs/client';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import styles from './Account.module.css';
 
 async function loadUserData() {
@@ -22,6 +22,13 @@ async function loadUserData() {
   return user;
 }
 
+function StateAlert() {
+  const searchParams = useSearchParams();
+  const state = searchParams.get('state');
+
+  return <AuthStateBoundary state={state || ''} />;
+}
+
 function AccountPage() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
@@ -29,9 +36,6 @@ function AccountPage() {
   const userType = useCookieValue(PAYLOAD_USER_TYPE_COOKIE_NAME);
   const authUserType = useCookieValue('auth-provider');
   const hasUserType = userType || authUserType;
-
-  const searchParams = useSearchParams();
-  const state = searchParams.get('state');
 
   useEffect(() => {
     if (hasUserType) {
@@ -56,7 +60,10 @@ function AccountPage() {
 
   return (
     <div className={styles.account}>
-      <AuthStateBoundary state={state || ''} />
+      <Suspense>
+        <StateAlert />
+      </Suspense>
+
       <h1 className={styles.h1}>Account</h1>
       <pre>{JSON.stringify(user, null, '\t')}</pre>
       <Link href="/forgot-password" className="underline text-foreground">

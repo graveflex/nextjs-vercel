@@ -36,11 +36,13 @@ export const API_KEY =
 
 export const CACHE_TAGS = ['blocks', 'global-nav', 'global-cache-key'];
 
-export const SIGNUP_URL = '/sign-up';
-export const SIGNIN_URL = '/login';
-export const FORGOT_PASSWORD_URL = '/forgot-password';
-export const RESET_PASSWORD_URL = '/reset-password';
-export const ACCOUNT_URL = '/account';
+export const SIGNUP_URL = process.env.SIGNUP_URL ?? '/sign-up';
+export const SIGNIN_URL = process.env.SIGNIN_URL ?? '/login';
+export const FORGOT_PASSWORD_URL =
+  process.env.FORGOT_PASSWORD_URL ?? '/forgot-password';
+export const RESET_PASSWORD_URL =
+  process.env.RESET_PASSWORD_URL ?? '/reset-password';
+export const ACCOUNT_URL = process.env.ACCOUNT_URL ?? '/account';
 
 export const SESSION_COOKIE_NAMES = [
   PAYLOAD_USER_TYPE_COOKIE_NAME,
