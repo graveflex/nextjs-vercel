@@ -1,17 +1,18 @@
+import Admins from '@mono/web/collections/Admins';
 import Authors from '@mono/web/collections/Authors';
 import Files from '@mono/web/collections/Files';
 import Images from '@mono/web/collections/Images';
 import Pages from '@mono/web/collections/Pages';
 import Posts from '@mono/web/collections/Posts';
 import Tags from '@mono/web/collections/Tags/Tags.config';
-import Users from '@mono/web/collections/User';
+import UserEmailProviders from '@mono/web/collections/UserEmailProviders';
+import Users from '@mono/web/collections/Users';
 import Videos from '@mono/web/collections/Videos';
 import BlogIndex from '@mono/web/globals/BlogIndex/BlogIndex.config';
-import FourOhFour from '@mono/web/globals/FourOhFour/FourOhFour.config';
 import Homepage from '@mono/web/globals/Home/Homepage.config';
 import Nav from '@mono/web/globals/Layout/Layout.config';
 // import nodeMailer from 'nodemailer';
-import { DEFAULT_LOCALE, LOCALES } from '@mono/web/lib/constants';
+import { CACHE_TAGS, DEFAULT_LOCALE, LOCALES } from '@mono/web/lib/constants';
 import { translator } from '@payload-enchants/translator';
 import { googleResolver } from '@payload-enchants/translator/resolvers/google';
 import { postgresAdapter } from '@payloadcms/db-postgres';
@@ -22,7 +23,11 @@ import { seoPlugin } from '@payloadcms/plugin-seo';
 import type { FeatureProviderServer } from '@payloadcms/richtext-lexical';
 import {
   AlignFeature,
+  BlockquoteFeature,
+  BlocksFeature,
   BoldFeature,
+  EXPERIMENTAL_TableFeature,
+  FixedToolbarFeature,
   HeadingFeature,
   HorizontalRuleFeature,
   InlineCodeFeature,
@@ -32,16 +37,21 @@ import {
   OrderedListFeature,
   ParagraphFeature,
   StrikethroughFeature,
-  SubscriptFeature,
-  SuperscriptFeature,
   UnderlineFeature,
   UnorderedListFeature,
   UploadFeature,
   lexicalEditor
 } from '@payloadcms/richtext-lexical';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
+import { revalidatePath, revalidateTag } from 'next/cache';
+import nodemailerSendgrid from 'nodemailer-sendgrid';
 import { buildConfig } from 'payload';
+import { authjsPlugin } from 'payload-authjs';
 import sharp from 'sharp';
+import { authConfig } from './src/auth.config';
+import { Embed } from './src/components/RichText/Blocks/Embed/config';
+import { Form } from './src/components/RichText/Blocks/Form/config';
+import { EyebrowFeature } from './src/components/RichText/Features/eyebrow/eyebrow.server';
 
 const DATABASE_URL = process.env.DATABASE_URL as string;
 
@@ -60,12 +70,10 @@ export default buildConfig({
         InlineCodeFeature(),
         ItalicFeature(),
         StrikethroughFeature(),
-        SubscriptFeature(),
-        SuperscriptFeature(),
         UnderlineFeature(),
         ParagraphFeature(),
         HeadingFeature({
-          enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+          enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4']
         }),
         HorizontalRuleFeature(),
         UnorderedListFeature(),
@@ -145,10 +153,29 @@ export default buildConfig({
           ]
         }),
         UploadFeature(),
-        InlineToolbarFeature()
+        InlineToolbarFeature(),
+        BlockquoteFeature(),
+        EXPERIMENTAL_TableFeature(),
+        FixedToolbarFeature(),
+        EyebrowFeature(),
+        BlocksFeature({
+          blocks: [Embed, Form],
+          inlineBlocks: []
+        })
       ] as FeatureProviderServer<unknown, unknown>[]
   }),
-  collections: [Pages, Posts, Authors, Tags, Files, Images, Videos, Users],
+  collections: [
+    Pages,
+    Posts,
+    Authors,
+    Tags,
+    Files,
+    Images,
+    Videos,
+    Users,
+    UserEmailProviders,
+    Admins
+  ],
   i18n: {
     fallbackLanguage: 'en'
   },
@@ -157,14 +184,18 @@ export default buildConfig({
     defaultLocale: DEFAULT_LOCALE,
     fallback: true
   },
-  globals: [Nav, FourOhFour, Homepage, BlogIndex],
+  globals: [Nav, Homepage, BlogIndex],
   routes: {
     api: '/api'
   },
   plugins: [
+    authjsPlugin({
+      authjsConfig: authConfig
+    }),
     seoPlugin({
       collections: ['pages', 'posts'],
-      fields: [
+      fields: ({ defaultFields }) => [
+        ...defaultFields,
         {
           name: 'keywords',
           label: 'Keywords',
@@ -204,7 +235,7 @@ export default buildConfig({
         'authors'
       ],
       // globals with the enabled translator in the admin UI
-      globals: ['nav', 'four-oh-four'],
+      globals: ['nav', 'homepage'],
       // add resolvers that you want to include, examples on how to write your own in ./plugin/src/resolvers
       resolvers: [
         googleResolver({
@@ -217,11 +248,11 @@ export default buildConfig({
         text: true,
         textarea: true,
         select: true,
-        email: false,
+        email: true,
         state: false,
         country: false,
-        checkbox: false,
-        number: false,
+        checkbox: true,
+        number: true,
         message: false,
         payment: false
       }
@@ -233,9 +264,9 @@ export default buildConfig({
     }
   },
   admin: {
-    user: Users.slug,
+    user: Admins.slug,
     autoLogin: {
-      email: 'dev@payloadcms.com',
+      email: 'admin@graveflex.com',
       password: 'test',
       prefillOnly: true
     },
@@ -267,41 +298,82 @@ export default buildConfig({
         }
       ],
       collections: ['pages']
+    },
+    importMap: {
+      baseDir: './src'
+    },
+    components: {
+      afterNavLinks: [
+        {
+          path: '@mono/web/components/CustomPayload/AfterNav/index.tsx',
+          exportName: 'AfterNav'
+        }
+      ],
+      graphics: {
+        Icon: '@mono/web/components/CustomPayload/PayloadLogo/index.tsx#Icon',
+        Logo: '@mono/web/components/CustomPayload/PayloadLogo/index.tsx#Logo'
+      }
     }
   },
   secret: process.env.PAYLOAD_SECRET || '',
   email: nodemailerAdapter({
-    // skipVerify should actually be true if we want to verify creds. This is a known Payload bug that hasn't been fixed yet.
-    skipVerify: true,
-    defaultFromAddress: 'admin@graveflex.com',
-    defaultFromName: 'Payload',
-    transportOptions: {
-      host: process.env.SMTP_HOST,
-      port: 587,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-      }
-    }
+    defaultFromAddress:
+      process.env.SENDGRID_FROM_EMAIL || 'dispatch@graveflex.com',
+    defaultFromName: process.env.SENDGRID_FROM_NAME || 'Payload',
+    transportOptions: nodemailerSendgrid({
+      apiKey: process.env.SENDGRID_API_KEY || ''
+    })
   }),
   typescript: {
     outputFile: '../../packages/types/payload-types.ts'
   },
   async onInit(payload) {
     const existingUsers = await payload.find({
-      collection: 'users',
+      collection: 'admins',
       limit: 1
     });
 
     if (existingUsers.docs.length === 0) {
       await payload.create({
-        collection: 'users',
+        collection: 'admins',
         data: {
-          email: 'dev@payloadcms.com',
+          email: 'admin@graveflex.com',
           password: 'test'
         }
       });
     }
   },
-  sharp
+  sharp,
+  jobs: {
+    tasks: [
+      {
+        // Configure this task to automatically retry
+        // up to two times
+        retries: 2,
+        slug: 'NukeCache',
+        // These are the arguments that your Task will accept
+        inputSchema: [
+          {
+            name: 'title',
+            type: 'text',
+            required: false
+          }
+        ],
+
+        // handler: async ({input, job, req}) => {
+        handler: async ({ input }) => {
+          console.dir('NukeCache fired!');
+          console.dir('input:', input);
+
+          revalidatePath('/', 'layout');
+
+          for (const tag of CACHE_TAGS) {
+            revalidateTag(tag);
+          }
+
+          return { output: { true: false } };
+        }
+      }
+    ]
+  }
 });

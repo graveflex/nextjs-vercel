@@ -1,24 +1,22 @@
-import { DEFAULT_THEME_NAME } from '@mono/theme/src/ThemeProvider';
-import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import { redirectApi } from '@mono/web/lib/redirectApi';
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
-import { unstable_cache } from 'next/cache';
 import { notFound, redirect } from 'next/navigation';
+import { getPayload } from 'payload';
 import React from 'react';
 
+import executeCachedQuery from '@mono/web/lib/executeCachedQuery';
 import PageTemplate from './page.client';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
 
 interface BlogDetailProps {
-  params: {
+  params: Promise<{
     locale: LanguageLocale;
     slug: string[];
     draft?: boolean;
-  };
+  }>;
 }
 
 async function fetchPageData(
@@ -26,14 +24,8 @@ async function fetchPageData(
   locale: LanguageLocale,
   pageSlug: string
 ) {
-  const cacheKey = [locale, pageSlug].filter((x) => x).join('/');
-
-  const query = async (
-    draft: boolean | undefined,
-    locale: LanguageLocale,
-    pageSlug: string
-  ) => {
-    const payload = await getPayloadHMR({ config });
+  const query = async (locale: LanguageLocale, pageSlug?: string) => {
+    const payload = await getPayload({ config });
 
     return Promise.all([
       payload.find({
@@ -50,18 +42,11 @@ async function fetchPageData(
     ]);
   };
 
-  const executeQuery = draft
-    ? query
-    : unstable_cache(query, [cacheKey], {
-        tags: [cacheKey]
-      });
-
-  return executeQuery(draft, locale, pageSlug);
+  return executeCachedQuery(query, pageSlug, locale, draft);
 }
 
-export default async function Blog({
-  params: { locale = DEFAULT_LOCALE, slug, draft }
-}: BlogDetailProps) {
+export default async function Blog({ params }: BlogDetailProps) {
+  const { locale = DEFAULT_LOCALE, slug, draft } = await params;
   const pageSlug = slug ? slug.join('/') : '/';
 
   const [postData] = await fetchPageData(draft, locale, pageSlug);
@@ -80,19 +65,17 @@ export default async function Blog({
 
   return (
     <>
-      <UpdatePageTheme theme={DEFAULT_THEME_NAME} />
       <PageTemplate post={postData.docs[0]} />
     </>
   );
 }
 
-export async function generateMetadata({
-  params: { draft, slug, locale }
-}: BlogDetailProps) {
+export async function generateMetadata({ params }: BlogDetailProps) {
+  const { draft, slug, locale } = await params;
   const pageSlug = slug ? slug.join('/') : '/';
   const [data] = await fetchPageData(draft, locale, pageSlug);
 
-  if ('error' in data) {
+  if ((data && 'error' in data) || !data) {
     return {};
   }
 
@@ -105,7 +88,7 @@ export async function generateMetadata({
   return {
     title: seoData?.title || 'Blog Post',
     description: seoData?.description || "Blog post's description",
-    keywords: seoData?.keywords || null,
+    keywords: null,
     openGraph: {
       images: [seoImage]
     }

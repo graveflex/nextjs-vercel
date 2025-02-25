@@ -1,5 +1,6 @@
 import { execSync, spawn } from 'child_process';
 import os from 'os';
+import path from 'path';
 import util from 'util';
 import { confirm, search, select } from '@inquirer/prompts';
 import { createApiClient } from '@neondatabase/api-client';
@@ -59,6 +60,23 @@ function getCurrentNeonBranchName(branchName: string, prId: string) {
   return `preview/pr-${prId}-${branchName}`;
 }
 
+async function cleanMigrationDir() {
+  const migrationDir = path.resolve(__dirname, '../src/migrations');
+  const cleanProcess = spawn('rm', ['-rf', migrationDir], {
+    stdio: 'inherit'
+  });
+
+  await new Promise<void>((resolve, reject) => {
+    cleanProcess.on('close', (code: number) => {
+      if (code !== 0) {
+        reject(new Error(`Migration process exited with code ${code}`));
+      } else {
+        resolve();
+      }
+    });
+  });
+}
+
 async function createMigration() {
   const migrateProcess = spawn('payload', ['migrate:create'], {
     stdio: 'inherit'
@@ -73,6 +91,12 @@ async function createMigration() {
       }
     });
   });
+}
+
+async function reset() {
+  await cleanMigrationDir();
+  await createMigration();
+  return runFreshMigration({ uri: process.env.DATABASE_URL as string });
 }
 
 async function createNeonBranch(projectId: string, neonBranch: string) {
@@ -90,7 +114,7 @@ async function createNeonBranch(projectId: string, neonBranch: string) {
 
 async function getNeonConnectionUrl(neonBranch: string) {
   const projectId = process.env.NEON_PROJECT_ID as string;
-  const branches = await apiClient.listProjectBranches(projectId);
+  const branches = await apiClient.listProjectBranches({ projectId });
   let branchData = branches.data.branches.find((b) => b.name === neonBranch);
 
   if (!branchData) {
@@ -122,7 +146,7 @@ async function getNeonConnectionUrl(neonBranch: string) {
 
 async function getAnotherNeonPRConnectionUrl() {
   const projectId = process.env.NEON_PROJECT_ID as string;
-  const neonBranchList = await apiClient.listProjectBranches(projectId);
+  const neonBranchList = await apiClient.listProjectBranches({ projectId });
   const neonBranchName = await search({
     message: 'Select a Neon branch (type to narrow down the list)',
     source: async (input) => {
@@ -252,6 +276,7 @@ async function runFreshMigration(db: { uri: string }) {
   });
 }
 
+/*
 async function seedAll(db: { uri: string }) {
   const seedProcess = spawn('pnpm', ['seed:all'], {
     stdio: 'inherit',
@@ -271,6 +296,7 @@ async function seedAll(db: { uri: string }) {
     });
   });
 }
+*/
 
 async function issueDireWarning() {
   const username = os.userInfo().username;
@@ -310,7 +336,9 @@ async function reseed(props: Step2Props) {
 
   if (proceed) {
     await runFreshMigration(db);
-    return seedAll(db);
+    return;
+    // TODO: re-implement seeds
+    // return seedAll(db);
   }
 
   console.info('Re-seed cancelled.');
@@ -446,6 +474,11 @@ async function run(): Promise<void> {
         value: 'reseed',
         description:
           'Delete all contents of a database and re-seed from scratch'
+      },
+      {
+        name: 'Reset migrations',
+        value: 'reset',
+        description: 'Flatten all migrations into a single migration.'
       }
     ]
   });
@@ -461,6 +494,8 @@ async function run(): Promise<void> {
       return sync({ prId, gitBranch, neonBranchName });
     case 'reseed':
       return reseed({ prId, gitBranch, neonBranchName });
+    case 'reset':
+      return reset();
   }
 }
 

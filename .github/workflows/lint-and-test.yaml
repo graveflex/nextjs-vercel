@@ -46,12 +46,16 @@ jobs:
     if: ${{ always() }}
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
+      - name: Enable corepack
+        run: npm i -g --force corepack && corepack enable
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'
       - run: pnpm install
+
+      - name: Install Playwright Browsers
+        run: pnpm dlx playwright install --with-deps
 
       - name: ci
         env:

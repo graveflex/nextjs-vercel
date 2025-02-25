@@ -1,0 +1,19 @@
+@reference "../../app/global.css";
+
+.container {
+  @apply bg-primary py-16;
+
+  /* md */
+  @apply md:py-24;
+}
+
+.content {
+  @apply container mx-auto px-6;
+}
+
+.innerContent {
+  @apply flex flex-col items-center max-w-xl gap-8 mx-auto;
+
+  /* md */
+  @apply md:gap-10;
+}

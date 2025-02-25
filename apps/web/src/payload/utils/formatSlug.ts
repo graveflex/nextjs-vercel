@@ -1,11 +1,7 @@
+import kebabCase from 'lodash/kebabCase';
 import type { FieldHook } from 'payload';
 
-const format = (val: string): string =>
-  val
-    .replace(/ /g, '-')
-    .replace(/^[^\w-]+/, '')
-    .replace(/--/g, '-')
-    .toLowerCase();
+const format = (val: string): string => kebabCase(val);
 
 const formatSlug =
   (fallback: string): FieldHook =>

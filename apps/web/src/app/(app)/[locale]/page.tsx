@@ -1,69 +1,55 @@
 import BlocksRenderer from '@mono/web/components/BlocksRenderer';
-import UpdatePageTheme from '@mono/web/components/UpdatePageTheme';
+import PageThemeObserver from '@mono/web/components/PageThemeObserver';
 import { DEFAULT_LOCALE, type LanguageLocale } from '@mono/web/lib/constants';
 import config from '@payload-config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
 import { unstable_setRequestLocale } from 'next-intl/server';
-import { unstable_cache } from 'next/cache';
+import { getPayload } from 'payload';
 import React from 'react';
 
 export const dynamic = 'force-static';
 export const revalidate = 60;
 
 export interface RootLayoutProps {
-  params: {
+  params: Promise<{
     slug: string[];
     locale: LanguageLocale;
     draft?: boolean;
-  };
+  }>;
 }
 
 async function fetchPageData(
   draft: boolean | undefined,
   locale: LanguageLocale
 ) {
-  const cacheKey = [locale, 'homepage'].filter((x) => x).join('/');
-
-  const query = async (draft: boolean | undefined, locale: LanguageLocale) => {
-    const payload = await getPayloadHMR({ config });
-    return payload.findGlobal({
-      slug: 'homepage',
-      locale,
-      draft,
-      depth: 2,
-      fallbackLocale: DEFAULT_LOCALE
-    });
-  };
-
-  const executeQuery = draft
-    ? query
-    : unstable_cache(query, [[locale, 'homepage'].filter((x) => x).join('/')], {
-        tags: [cacheKey]
-      });
-
-  return executeQuery(draft, locale);
+  const payload = await getPayload({ config });
+  return payload.findGlobal({
+    slug: 'homepage',
+    locale,
+    draft,
+    depth: 2,
+    fallbackLocale: DEFAULT_LOCALE
+  });
 }
 
-export default async function HomePage({
-  params: { locale = DEFAULT_LOCALE, draft }
-}: RootLayoutProps) {
+export default async function HomePage(props: RootLayoutProps) {
+  const { locale = DEFAULT_LOCALE, draft } = await props.params;
   const homepageData = await fetchPageData(draft, locale);
 
   return (
     <>
-      <UpdatePageTheme theme={homepageData.theme} />
+      <PageThemeObserver theme={homepageData.theme} />
       <BlocksRenderer blocks={homepageData.blocks ?? []} />
     </>
   );
 }
 
-export async function generateMetadata({
-  params: { draft, locale }
-}: RootLayoutProps) {
+export async function generateMetadata(props: RootLayoutProps) {
+  const { draft, locale } = await props.params;
+
   unstable_setRequestLocale(locale);
   const data = await fetchPageData(draft, locale);
 
-  if ('error' in data) {
+  if ((data && 'error' in data) || !data) {
     return {};
   }
 

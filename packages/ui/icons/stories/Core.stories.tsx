@@ -27,6 +27,9 @@ export const Defaults: Story = {
   args: {
     color: '#131923',
     size: '25'
+  },
+  async play({ mount }) {
+    await mount();
   }
 };
 
@@ -34,6 +37,9 @@ export const Medium: Story = {
   args: {
     ...Defaults.args,
     size: '30'
+  },
+  async play({ mount }) {
+    await mount();
   }
 };
 
@@ -41,5 +47,8 @@ export const Large: Story = {
   args: {
     ...Defaults.args,
     size: '35'
+  },
+  async play({ mount }) {
+    await mount();
   }
 };

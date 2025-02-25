@@ -1,4 +1,4 @@
-import type { Field, GroupField } from 'payload';
+import type { CollapsibleField, Field, Option } from 'payload';
 
 const themeOptions = [
   { label: 'Inherit', value: '_' },
@@ -6,47 +6,38 @@ const themeOptions = [
   { label: 'Dark', value: 'dark' }
 ];
 
-// UPDATE WITH THEME COLORS
-const colorOptions = [
-  { label: 'Foreground', value: 'fg' },
-  { label: 'Light Background', value: 'neutral' },
-  { label: 'Blue', value: 'blue' },
-  { label: 'Indigo', value: 'indigo' },
-  { label: 'Purple', value: 'purple' }
-];
+const paddingLabels = [
+  'None',
+  'X-Small',
+  'Small',
+  'Medium',
+  'Large',
+  'X-Large',
+  'XX-Large'
+] as const;
+const paddingValues = [0, 2, 4, 6, 8, 10, 16] as const;
 
-const paddingValues = [
-  {
-    label: 'xl',
-    value: '9.375rem'
-  },
-  {
-    label: 'lg',
-    value: '7.5rem'
-  },
-  {
-    label: 'md',
-    value: '3.75rem'
-  },
-  {
-    label: 'sm',
-    value: '2.25rem'
-  },
-  {
-    label: 'xs',
-    value: '1.125rem'
-  },
-  { label: 'unset', value: 'unset' }
-];
+const genPaddingOptions = (prefix: 'pt' | 'pb') =>
+  paddingLabels.map((label, idx) => {
+    const value = paddingValues[idx];
+
+    return {
+      label,
+      value: `${prefix}-${value}` as const
+    };
+  });
+
+const paddingTopOptions = genPaddingOptions('pt');
+const paddingBottomOptions = genPaddingOptions('pb');
 
 const contentWidthValues = [
-  { label: 'full', value: 'full' },
-  { label: 'xxl', value: 'xxl' },
-  { label: 'xl', value: 'xl' },
-  { label: 'lg', value: 'lg' },
-  { label: 'md', value: 'md' },
-  { label: 'sm', value: 'sm' },
-  { label: 'xs', value: 'xs' }
+  { label: 'Full-Bleed', value: 'full' },
+  { label: 'XX-Large', value: 'xxl' },
+  { label: 'X-Large', value: 'xl' },
+  { label: 'Large', value: 'lg' },
+  { label: 'Medium', value: 'md' },
+  { label: 'Small', value: 'sm' },
+  { label: 'X-Small', value: 'xs' }
 ];
 
 const paddingOptions: Array<Field> = [
@@ -56,7 +47,7 @@ const paddingOptions: Array<Field> = [
     label: 'Padding Top',
     required: false,
     type: 'select',
-    options: paddingValues
+    options: paddingTopOptions as Option[]
   },
   {
     name: 'paddingBottom',
@@ -64,34 +55,33 @@ const paddingOptions: Array<Field> = [
     label: 'Padding Bottom',
     required: false,
     type: 'select',
-    options: paddingValues
+    options: paddingBottomOptions as Option[]
   }
 ];
 
 function BlockConfig({
-  name,
   label,
   fields = [],
   defaultWidth,
   defaultPadding
-}: Partial<GroupField> & {
+}: Partial<CollapsibleField> & {
   defaultPadding?: {
     paddingTop: string;
     paddingBottom: string;
   };
   defaultWidth?: string;
-} = {}): GroupField {
+} = {}): CollapsibleField {
   return {
-    name: name || 'blockConfig',
-    label: label || 'Block Configuration',
-    type: 'group',
+    label: label || 'Theme, Padding & Content Width Settings',
+    type: 'collapsible',
+    admin: {
+      initCollapsed: true
+    },
     fields: [
       {
-        label: 'Block Settings',
-        type: 'collapsible',
-        admin: {
-          initCollapsed: true
-        },
+        label: label || 'Theme, Padding & Content Width Settings',
+        type: 'group',
+        name: 'wrapper',
         fields: [
           {
             name: 'theme',
@@ -99,30 +89,6 @@ function BlockConfig({
             type: 'select',
             required: false,
             options: themeOptions
-          },
-          {
-            name: 'backgroundColor',
-            dbName: 'bgColor',
-            label: 'Block Background Color',
-            type: 'select',
-            required: false,
-            options: colorOptions
-          },
-          {
-            name: 'backgroundImage',
-            label: 'BackgroundImage',
-            type: 'upload',
-            relationTo: 'images',
-            required: false
-          },
-          {
-            name: 'hidden',
-            label: 'Hide Block',
-            admin: {
-              description: 'Block will not appear on page'
-            },
-            type: 'checkbox',
-            defaultValue: false
           },
           {
             name: 'contentWidth',
@@ -133,53 +99,48 @@ function BlockConfig({
             options: contentWidthValues,
             defaultValue: defaultWidth || 'xl'
           },
+
           {
-            name: 'p',
+            name: 'paddingXs',
             label: 'Padding',
             type: 'group',
+            fields: [...paddingOptions],
+            defaultValue: defaultPadding || {
+              paddingTop: 'pt-4',
+              paddingBottom: 'pb-4'
+            }
+          },
+
+          {
+            label: 'Advanced Padding',
+            type: 'collapsible',
+            admin: {
+              initCollapsed: true
+            },
             fields: [
               {
-                label: 'Breakpoints',
-                type: 'collapsible',
-                admin: {
-                  initCollapsed: true
-                },
-                fields: [
-                  {
-                    name: 'xs',
-                    label: 'Mobile',
-                    type: 'group',
-                    fields: [...paddingOptions],
-                    defaultValue: defaultPadding || {
-                      paddingTop: '3.75rem',
-                      paddingBottom: '3.75rem'
-                    }
-                  },
-                  {
-                    name: 'md',
-                    label: 'Tablet',
-                    type: 'group',
-                    fields: [...paddingOptions]
-                  },
-                  {
-                    name: 'lg',
-                    label: 'Destkop',
-                    type: 'group',
-                    fields: [...paddingOptions]
-                  },
-                  {
-                    name: 'xl',
-                    label: 'XL Destkop',
-                    type: 'group',
-                    fields: [...paddingOptions]
-                  }
-                ]
+                name: 'paddingMd',
+                label: 'Tablet and above',
+                type: 'group',
+                fields: [...paddingOptions]
+              },
+              {
+                name: 'paddingLg',
+                label: 'Desktop and above',
+                type: 'group',
+                fields: [...paddingOptions]
+              },
+              {
+                name: 'paddingXl',
+                label: 'XL Desktop and above',
+                type: 'group',
+                fields: [...paddingOptions]
               }
             ]
-          }
+          },
+          ...fields
         ]
-      },
-      ...fields
+      }
     ]
   };
 }
